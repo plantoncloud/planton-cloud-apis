@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+//Contains messages and rpc definitions for performing operations on billing related domain objects.
+//All Billing API clients are expected to use the rpc definitions defined in this package.
+package planton.apis.proto.v1.billing.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/resource/enums/enums.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+
+//billing-account
+message BillingAccount {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = billing;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = false;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = company;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  // resource api version
+  string api_version = 1;
+
+  // resource kind
+  string kind = 2;
+
+  // metadata for the resource
+  // identifier for billing account
+  // name of the billing account.
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  // spec
+  BillingAccountSpec spec = 4;
+
+  // status
+  BillingAccountStatus status = 5;
+}
+
+//specification for billing-account.
+//a billing account is created upon company creation.
+message BillingAccountSpec {
+  //id of the company for which the billing account is created
+  string company_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // Represents the customer's information on Stripe.
+  // StripeCustomer is a separate message, not shown here, which presumably includes necessary
+  // Stripe-specific information like the customer ID, email, etc.
+  StripeCustomer stripe_customer = 2;
+  // A list of BillingSubscription objects associated with this billing account.
+  // BillingSubscription is another message type, not shown here, which contains details about individual subscriptions.
+  repeated BillingSubscription subscriptions = 3;
+}
+
+message BillingSubscription {
+  // System audit information associated with this billing subscription.
+  // SysAudit is a separate message defined elsewhere, which includes necessary system audit information.
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+
+  // Unique identifier for the specific billing subscription.
+  // This identifier is unique per billing subscription and is used to correlate the billing subscription with its associated data.
+  string id = 1;
+
+  // Specifies the type of the resource being billed using an enumeration from the planton.apis.proto.v1.commons.resource.enums package.
+  // The resource type helps categorize and manage resources more effectively, ensuring the right billing strategy for each type.
+  planton.apis.proto.v1.commons.resource.enums.ResourceType resource_type = 2;
+
+  // StripeSubscription object associated with this billing subscription.
+  // StripeSubscription is a separate message, which includes necessary Stripe-specific subscription information.
+  StripeSubscription subscription = 3;
+
+  // List of BillingItemState objects associated with this billing subscription.
+  // BillingItemState is another message type, containing details about individual billing items.
+  repeated BillingItem billing_items = 4;
+}
+
+message StripeCustomer {
+  //id of the customer created for the company on stripe
+  string customer_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+}
+
+message StripeSubscription {
+  //id of the subscription created for the company on stripe
+  string subscription_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+}
+
+//status for billing-account
+message BillingAccountStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+  // stack-job that produced the status
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+}
+
+// BillingItemState is a protocol message that represents the state of a billing item.
+// This message is used to manage and track billing related information for various resources.
+message BillingItem {
+  //system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+  // id is the unique identifier for the specific billing item.
+  // This identifier is unique per billing item and is used to correlate the billing item with its associated data.
+  string id = 1;
+
+  // Specifies the type of the resource being billed using an enumeration from the planton.apis.proto.v1.commons.resource.enums package.
+  // The resource type helps categorize and manage resources more effectively, ensuring the right billing strategy for each type.
+  planton.apis.proto.v1.commons.resource.enums.ResourceType resource_type = 2;
+
+  // StripeSubscriptionItem object associated with this billing item.
+  // StripeSubscriptionItem is a separate message, which includes necessary Stripe-specific subscription item information.
+  StripeSubscriptionItem subscription_item = 3;
+
+  // Represents the association between a billing subscription and its corresponding resources.
+  // Each entry in this list maps a billing subscription to a specific resource, allowing for a many-to-many relationship.
+  // This ensures that a single billing subscription can be associated with multiple resources and vice versa.
+  repeated BillingSubscriptionResourceMapping resource_mapping = 4;
+}
+
+// Represents the mapping state of a billing subscription to a resource.
+// This message provides details about the association between a billing subscription and a specific resource.
+message BillingSubscriptionResourceMapping {
+  // System audit information, containing metadata like creation and modification timestamps.
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+
+  // Unique identifier for the billing subscription resource mapping.
+  string id = 1;
+
+  // Identifier for the associated resource.
+  string resource_id = 2;
+}
+
+message StripeSubscriptionItem {
+  // stripe_price_id represents the unique identifier for the price of the resource in Stripe.
+  // Stripe is a payment processing platform, and each distinct price point or billing model has a unique identifier within Stripe.
+  // This field corresponds to this identifier and is used for billing and payment processing.
+  string price_id = 1;
+  // stripe_subscription_item_id represents the unique identifier for the subscription item in Stripe.
+  // This is the identifier of the specific item within a subscription that this BillingItemState represents.
+  // It is used for tracking the billing state of the item within its subscription.
+  string subscription_item_id = 2;
+}
+
+
+//wrapper for id of the billing account.
+message BillingAccountId {
+  string value = 1;
+}
+
+//list of billing accounts.
+message BillingAccounts {
+  repeated BillingAccount billing_accounts = 1;
+}
+
+//response for paginated requests to list all billing accounts.
+message BillingAccountList {
+  int32 total_pages = 1;
+  repeated BillingAccount billing_accounts = 2;
+}
+
+//response to the query to get stripe customer portal session.
+//https://stripe.com/docs/api/customer_portal/sessions/create
+message GetCustomerPortalSessionQueryResp {
+  //url for the customer portal session.
+  string url = 1;
+  //url to which the user should be returned to upon managing the billing on customer portal.
+  string return_url = 2;
+}

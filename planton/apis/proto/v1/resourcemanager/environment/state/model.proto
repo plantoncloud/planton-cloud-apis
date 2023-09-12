@@ -1,0 +1,176 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.resourcemanager.environment.state;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/state/model.proto";
+import "planton/apis/proto/v1/resourcemanager/environment/state/enums/enums.proto";
+
+//environment state
+message EnvironmentState {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = environment;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = product;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.product_id";
+
+  //event-type
+  planton.apis.proto.v1.resourcemanager.environment.state.enums.EnvironmentEventType event_type = 99;
+
+  //resource api version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  EnvironmentSpecState spec = 4;
+
+  //status
+  EnvironmentStatusState status = 5;
+}
+
+//environment spec
+message EnvironmentSpecState {
+  //company to which the environment belongs to.
+  //the value is computed from product.
+  string company_id = 1;
+
+  //product to which the environment belongs to
+  string product_id = 2;
+
+  //cloud-provider on which the storage-bucket is to be created.
+  //the value is computed from kube-cluster.
+  string kubernetes_provider = 3;
+
+  //target kube-cluster to which the workloads like microservice-instances, postgres databases,
+  //kafka-clusters etc are deployed to.
+  string kube_cluster_id = 4;
+
+  //description for environment.
+  string description = 5;
+
+  //id of the environment from which this environment is created.
+  //value is ignored when the environment is not cloned from another environment.
+  string cloned_from = 6;
+
+  //list of environment variables for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentVariableState variables = 7;
+
+  //list of environment secrets for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentSecretState secrets = 8;
+
+  //flag to control inheritance of kube-cluster endpoint domains.
+  //new standard_endpoints are created for each endpoint_domain of the kube-cluster only when this flag is set.
+  bool is_inherit_endpoint_domains_enabled = 9;
+
+  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
+  string environment_secrets_gcp_project_id = 10;
+
+  //microservice-instance spec for environment
+  EnvironmentSpecMicroserviceInstanceSpecState microservice_instance = 11;
+}
+
+//environment microservice-instance spec
+message EnvironmentSpecMicroserviceInstanceSpecState {
+  //flag to indicate of this environment is to be used as the build engine environment.
+  //default value is set to "false".
+  //at any point, only one environment in a product can be configured as build-engine environment.
+  //if there is already a environment which is configured as the build engine environment,
+  //then that environment needs to be updated to disable that first before enabling it on the new environment.
+  bool is_build_engine_environment = 1;
+
+  //microservice-instance pipeline spec
+  EnvironmentSpecMicroserviceInstanceSpecPipelineSpecState pipeline = 2;
+}
+
+//environment microservice-instance pipeline spec
+message EnvironmentSpecMicroserviceInstanceSpecPipelineSpecState {
+  //toggle to enable or disable microservice-instance deployments to this environment.
+  //recommended default is "true"
+  bool is_enabled = 1;
+
+  //list of environment ids that are considered as lower environments to this environment.
+  //in deployment pipelines for microservice-instances a successful deployment of all lower environments
+  //is required before deploying to this environment.
+  //this is used for creating dependency requirements on github/gitlab pipelines between deployment pipeline jobs.
+  repeated string lower_environment_ids = 2;
+
+  //id of the artifact-store required to construct the container image name.
+  //a product can have multiple artifact-stores. The container images are published to all artifact-stores.
+  //when creating a Deployment resource on kubernetes, only one container image name is allowed.
+  //this attribute will provide the ability to determine the artifact-store to be used for constructing the container
+  //image name to be used in the kubernetes Deployment resource.
+  string container_image_artifact_store_id = 3;
+}
+
+//environment status
+message EnvironmentStatusState {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.state.StackJobState stack_job = 97;
+}
+
+//environment-var
+message EnvironmentVariableState {
+  //system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+  //the name must adhere to the following constraints:
+  // - it must be between 1 and 64 characters.
+  // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
+  // - it cannot start with a hyphen or underscore.
+  // - it cannot end with a hyphen.
+  // - it must be unique within the environment.
+  //
+  //this can be represented by the following regular expression:
+  // "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  //
+  //note: in the above regular expression, {0,62} ensures the total length of the string
+  //      is 64 characters or less, including the starting and ending characters.
+  string name = 1;
+
+  //human readable identifier for environment variable unique on planton cloud.
+  //value is computed using 'var-<environment-id>-<var-name>'.
+  string id = 2;
+
+  //value for the environment variable.
+  string value = 3;
+}
+
+//environment-secret
+message EnvironmentSecretState {
+  //system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+  //the name must adhere to the following constraints:
+  // - it must be between 1 and 64 characters.
+  // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
+  // - it cannot start with a hyphen or underscore.
+  // - it cannot end with a hyphen.
+  // - it must be unique within the environment.
+  //
+  //this can be represented by the following regular expression:
+  // "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  //
+  //note: in the above regular expression, {0,62} ensures the total length of the string
+  //      is 64 characters or less, including the starting and ending characters.
+  string name = 1;
+
+  //human readable identifier for environment secret unique on planton cloud.
+  //value is computed using 'sec-<environment-id>-<secret-name>'.
+  string id = 2;
+
+  //id of the secret resource on the secrets management service provider ex: google cloud secrets manager.
+  //value is same as the secret-id for google cloud secrets-manager backend.
+  string provider_secret_id = 3;
+}

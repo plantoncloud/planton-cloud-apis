@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.sourcecode.server.proxy.github.rpc;
+
+import "planton/apis/proto/v1/develop/sourcecode/server/proxy/github/rpc/model.proto";
+import "planton/apis/proto/v1/develop/sourcecode/server/rpc/model.proto";
+import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
+
+//github proxy command controller
+service GithubProxyCommandController {
+  //create a new repository on github
+  //https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
+  //https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
+  //https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
+  rpc creRepository(CreRepositoryCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //apply a cookiecutter template on a code project created on github
+  rpc applyTemplate(GithubApplyTemplateCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjectProfile);
+  //add a list of secrets to a github repository
+  rpc addSecretsToRepo(AddSecretsToRepoCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //add a list of secrets to a github organization
+  rpc addSecretsToOrg(AddSecretsToOrgCommandInput) returns (planton.product.proto.v1.sourcecode.server.rpc.CodeServer);
+  //synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
+  //then add files in the input to .github/workflows directory.
+  rpc synchronizeMagicPipelineFiles(SynchronizeGithubMagicPipelineFilesCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+}
+
+//github proxy query controller
+service GithubProxyQueryController {
+  //list repositories for the requested organization or user on github
+  //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
+  //todo: we have to add pagination support for response.
+  rpc listRepositories(ListRepositoriesQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjects);
+  //get the details of a repository on github
+  rpc getRepository(GetRepositoryQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //get details of a github app installation
+  rpc getGithubAppInstallation(GithubAppInstallation) returns (GithubAppInstallation);
+  //get code project profile of a code-project hosted on github
+  rpc getGithubCodeProjectProfile(GetGithubCodeProjectProfileQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjectProfile);
+}

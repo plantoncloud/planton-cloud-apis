@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.storagebucket.stack.gcp;
+
+import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/deploy/cloudinfra/storagebucket/state/model.proto";
+
+//input for storage-bucket stack
+message StorageBucketGcpStackInput {
+  //pulumi stack input
+  planton.apis.proto.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  //pulumi stack credentials
+  StorageBucketGcpStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  StorageBucketGcpStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message StorageBucketGcpStackCredentialsInput {
+  //google provider credential input
+  planton.apis.proto.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 1;
+}
+
+//stack resource input
+message StorageBucketGcpStackResourceInput {
+  //storage-bucket
+  planton.apis.proto.v1.deploy.cloudinfra.storagebucket.state.StorageBucketState storage_bucket = 1;
+}
+
+//storage-bucket stack outputs
+message StorageBucketGcpStackOutputs {
+}
+
+//stack response
+message StorageBucketGcpStackResponse {
+  //stack progress
+  planton.apis.proto.v1.stack.rpc.StackProgress progress = 1;
+  //stack outputs
+  StorageBucketGcpStackOutputs outputs = 3;
+}

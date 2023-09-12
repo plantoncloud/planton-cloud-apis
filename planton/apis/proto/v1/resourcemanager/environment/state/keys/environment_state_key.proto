@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.resourcemanager.environment.state.keys;
+
+// key for environment state messages
+message EnvironmentStateKey {
+  string value = 1;
+}

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.resourcemanager.company.rpc;
+
+import "planton/apis/proto/v1/commons/protobuf/custom/model.proto";
+import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
+import "planton/apis/proto/v1/resourcemanager/company/rpc/model.proto";
+import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
+
+//company command controller
+service CompanyCommandController {
+  //create a new company on planton cloud
+  rpc create(Company) returns (Company);
+  //update an existing company on planton cloud
+  rpc update(Company) returns (Company) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = company_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update company";
+  }
+  //delete an existing company on planton cloud using company id
+  rpc delete(CompanyId) returns (Company) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = company_delete;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete company";
+  }
+  //restore a previously deleted company.
+  rpc restore(Company) returns (Company) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = company_restore;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore company";
+  }
+}
+
+//company query controller
+service CompanyQueryController {
+  // list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
+  rpc list(planton.apis.proto.v1.commons.rpc.pagination.PageInfo) returns (CompanyList);
+  // get a company using company id
+  rpc getById(CompanyId) returns (Company) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = company_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view company details";
+  }
+  rpc findCompanies(planton.apis.proto.v1.commons.protobuf.custom.CustomEmpty) returns (Companies);
+}

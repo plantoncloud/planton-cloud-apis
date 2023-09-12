@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.stack.rpc.enums;
+
+enum StackOperationType {
+  STACK_OPERATION_TYPE_UNSPECIFIED = 0;
+  preview = 1;
+  apply = 2;
+  destroy = 3;
+  cancel_pending = 4;
+  remove_pending = 5;
+}
+
+enum StackJobStatus {
+  STACK_EXECUTION_STATUS_UNSPECIFIED = 0;
+  pending = 1;
+  running = 2;
+  succeeded = 3;
+  failed = 4;
+  cancelled = 5;
+  skipped = 6;
+}

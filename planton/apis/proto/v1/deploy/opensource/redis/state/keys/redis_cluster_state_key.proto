@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.redis.state.keys;
+
+//wrapper for redis-cluster id used as key in redis messages
+message RedisClusterStateKey {
+  string value = 1;
+}

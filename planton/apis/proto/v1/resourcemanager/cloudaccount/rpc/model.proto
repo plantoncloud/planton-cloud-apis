@@ -1,0 +1,181 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.resourcemanager.cloudaccount.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/cloud/gcp/resource/folder/rpc/model.proto";
+import "planton/apis/proto/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
+import "planton/apis/proto/v1/commons/cloud/provider/rpc/enums/enums.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+
+// company cloud account
+message CloudAccount {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = cloud_account;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = false;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = company;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = true;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "ca";
+  //https://regex101.com/r/Fd9d6S/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_regex) = "^(?=([a-z0-9-]*-){2})(ca-)([a-z0-9-]*[a-z0-9])?$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_min_length) = 6;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_max_length) = 25;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_constraints_description) = "Id should start with 'ca-', succeeded by the company id and a hyphen, concluding with a user-selected suffix of at least 1 character. Total length must be under 25 characters.";
+
+  // resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // metadata for the resource
+  // cloud-account id value adheres to the following constraints:
+  // 1. The ID must be prefixed with 'ca-<company_id>-', where <company_id> can vary in length.
+  // 2. The ID must not exceed 27 characters in length.
+  // 3. Once a cloud account is added to a company, the ID cannot be changed.
+  // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
+  // The constraints are enforced by the regular expression "^ca-.{1,22}$".
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  // cloud account spec
+  CloudAccountSpec spec = 4;
+
+  // cloud account status
+  CloudAccountStatus status = 5;
+}
+
+// company cloud account
+message CloudAccountSpec {
+  // company to which company cloud account belongs to.
+  string company_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // cloud provider.
+  // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
+  planton.apis.proto.v1.commons.cloud.provider.rpc.enums.CloudProvider cloud_provider = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // (conditionally required) if the value of cloud_provider is gcp then this attribute is required.
+  // this is only set if the cloud provider is gcp and is set to nil in other cases.
+  CloudAccountGcpSpec gcp = 3;
+
+  // (conditionally required) if the value of cloud_provider is aws then this attribute is required.
+  // this is only set if the cloud provider is aws and is set to nil in other cases.
+  CloudAccountAwsSpec aws = 4;
+}
+
+// cloud-account status
+message CloudAccountStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  // status of a gcp cloud-account.
+  // this is only populated when the parent cloud-account is a gcp cloud account and is set to nil otherwise.
+  CloudAccountGcpStatus gcp = 1;
+}
+
+// list of cloud accounts
+message CloudAccounts {
+  repeated CloudAccount entries = 1;
+}
+
+// response for paginated query to get list of cloud accounts
+message CloudAccountList {
+  int32 total_pages = 1;
+  repeated CloudAccount entries = 2;
+}
+
+// wrapper for company cloud account id
+message CloudAccountId {
+  string value = 1;
+}
+
+// wrapper for company cloud account id
+message CloudAccountIds {
+  repeated string entries = 1;
+}
+
+// Specification for the Cloud Account in Google Cloud Platform (GCP)
+message CloudAccountGcpSpec {
+  // The ID of the Google Cloud Organization, required and immutable. For more information,
+  // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
+  string org_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[0-9]+$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "Only digits (0-9). Must be at least 1 character long."
+  ];
+
+  // The DNS domain of the Google Cloud Organization, optional during creation.
+  string org_domain = 2;
+
+  // The GCP Billing Account ID that will be linked to the projects created for shared services. Required during creation.
+  string billing_account_id = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[A-Za-z0-9]+([-A-Za-z0-9]*[A-Za-z0-9])?$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "only alphanumeric characters (a-z, a-z, 0-9) and hyphens. cannot start or end with a hyphen."
+  ];
+
+  // Name of the secret containing the value of the service-account key in the secrets manager.
+  // name of the secret is in the format `projects/<project-id>/secrets/<secret-name>`
+  // This is computed automatically by the Platon Cloud system.
+  // The value is derived from the company-status object
+  string service_account_key_secret_name = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+// Status for the Cloud Account in Google Cloud Platform (GCP)
+message CloudAccountGcpStatus {
+  // The GCP Project created to host shared services resources (e.g., artifact-store, DNS managed zones).
+  // This is updated after the successful execution of a shared services stack.
+  planton.apis.proto.v1.commons.cloud.gcp.resource.project.rpc.GcpProject shared_services_project = 1;
+
+  // A GCP Folder is created within the GCP Organization for each Cloud Account added to Platon Cloud.
+  // Multiple Cloud Accounts can share the same Organization ID. Resources created for each Cloud Account are linked to this Folder.
+  // Each Cloud Account's children include the shared services project and one Folder per kube-cluster.
+  planton.apis.proto.v1.commons.cloud.gcp.resource.folder.rpc.GcpFolder cloud_account_folder = 2;
+}
+
+// Specification for the Cloud Account in Amazon Web Services (AWS)
+message CloudAccountAwsSpec {
+  // The ID of the AWS Account, required and immutable. For more information,
+  string account_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[0-9]+$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "Only digits (0-9). Must be at least 1 character long."
+  ];
+
+  //AWS Access Key Id
+  string access_key_id = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    //https://regex101.com/r/N0MQ4W/1
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^AKIA[0-9A-Z]{16}$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "The provided AWS Access Key ID is invalid. It must start with 'AKIA' followed by 16 alphanumeric characters. Please double-check your input and try again."
+  ];
+
+  //AWS Secret Access Key
+  string secret_access_key = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    //https://regex101.com/r/YlvVRM/1
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[0-9a-zA-Z/+]{40}$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "The provided AWS Secret Access Key is invalid. It must contain exactly 40 characters consisting of numbers, lowercase and uppercase letters, slashes (/), and plus signs (+). Please double-check your input and try again."
+  ];
+}

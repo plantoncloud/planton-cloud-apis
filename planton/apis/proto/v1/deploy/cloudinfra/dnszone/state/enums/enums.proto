@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.dnszone.state.enums;
+
+import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+// dns-zone event types
+enum DnsZoneEventType {
+  DNS_ZONE_EVENT_TYPE_UNSPECIFIED = 0;
+  DNS_ZONE_EVENT_TYPE_STATE_CREATED = 1 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_fga_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stripe_subscription_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_UPDATED = 2 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stripe_subscription_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_DELETED = 3 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_RESTORED = 4 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = preview
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+}

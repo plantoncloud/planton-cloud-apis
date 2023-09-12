@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package planton.commons.proto.testing.protobuf;
+
+message TestMessage {
+  string rootLevelString = 1;
+  LevelOne levelOne = 2;
+}
+
+message LevelOne {
+  string levelOneString = 1;
+  LevelTwo levelTwo = 2;
+}
+
+message LevelTwo {
+  string levelTwoString = 1;
+  LevelThree levelThree = 2;
+}
+
+message LevelThree {
+  string levelThreeString = 1;
+  int32 notAString = 2;
+}

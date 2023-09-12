@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.dnszone.rpc.enums;
+
+// provider for dns-zone
+enum DnsZoneProvider {
+  DNS_ZONE_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/dns
+  GCP_CLOUD_DNS = 1;
+  //https://aws.amazon.com/route53/
+  AWS_ROUTE53 = 2;
+  //https://azure.microsoft.com/en-us/products/dns
+  AZURE_DNS = 3;
+  //https://docs.digitalocean.com/products/networking/dns/
+  DIGITAL_OCEAN_DNS = 4;
+}

@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.sourcecode.server.proxy.gitlab.rpc;
+
+import "planton/apis/proto/v1/develop/sourcecode/server/proxy/gitlab/rpc/model.proto";
+import "planton/apis/proto/v1/develop/sourcecode/server/rpc/model.proto";
+import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
+
+//gitlab proxy command controller
+service GitlabProxyCommandController {
+  //create new project on gitlab
+  //https://docs.gitlab.com/ee/api/projects.html#create-project
+  rpc creProject(CreProjectCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //apply a cookiecutter template on a code project created on gitlab
+  rpc applyTemplate(GitlabApplyTemplateCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjectProfile);
+  //add a list of variables to a gitlab project
+  rpc addVariablesToProject(AddVariablesToProjectCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //add a list of variables to a gitlab group
+  rpc addVariablesToGroup(AddVariablesToGroupCommandInput) returns (planton.product.proto.v1.sourcecode.server.rpc.CodeServer);
+  //add a list of files to a gitlab project
+  rpc addFilesToProject(AddFilesToGitlabProjectCommandInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+}
+
+//gitlab proxy query controller
+service GitlabProxyQueryController {
+  //list projects for the requested group, including projects in sub-groups on gitlab
+  //https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
+  //todo: we have to add pagination support for response.
+  rpc listProjects(ListProjectsQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjects);
+  //get details of a project on gitlab
+  rpc getProject(GetProjectQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProject);
+  //get details of a group on gitlab
+  rpc getGroup(GetGroupQueryInput) returns (planton.product.proto.v1.sourcecode.server.rpc.CodeServer);
+  //get code project profile of a code-project hosted on gitlab
+  rpc getGitlabCodeProjectProfile(GetGitlabCodeProjectProfileQueryInput) returns (planton.product.proto.v1.sourcecode.project.rpc.CodeProjectProfile);
+}

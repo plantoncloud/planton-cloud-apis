@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.kubecluster.state.enums;
+
+import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum KubeClusterEventType {
+  KUBE_CLUSTER_EVENT_TYPE_UNSPECIFIED = 0;
+  KUBE_CLUSTER_EVENT_TYPE_STATE_CREATED = 1 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_fga_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stripe_subscription_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STATE_UPDATED = 2 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stripe_subscription_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STATE_DELETED = 3 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STATE_RESTORED = 4 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = preview
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STATE_PAUSED = 11 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  KUBE_CLUSTER_EVENT_TYPE_STATE_UNPAUSED = 12 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+}

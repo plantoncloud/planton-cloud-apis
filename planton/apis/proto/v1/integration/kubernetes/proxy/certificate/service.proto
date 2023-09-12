@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package planton.company.proto.v1.kubernetes.proxy.certificate;
+
+import "planton/apis/proto/v1/integration/kubernetes/proxy/certificate/model.proto";
+import "planton/apis/proto/v1/integration/kubernetes/resource/certificate.proto";
+
+service CertificateProxyQueryController {
+  rpc getCertificateByNamespaceByName(GetCertificateByNamespaceByNameQueryInput) returns (planton.apis.proto.v1.integration.kubernetes.resource.Certificate);
+  rpc findCertificates(FindCertificatesQueryInput) returns (planton.apis.proto.v1.integration.kubernetes.resource.Certificates);
+}

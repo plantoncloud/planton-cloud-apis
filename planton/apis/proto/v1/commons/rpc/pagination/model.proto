@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.commons.rpc.pagination;
+
+message PageInfo {
+  int32 num = 1;
+  int32 size = 2;
+}

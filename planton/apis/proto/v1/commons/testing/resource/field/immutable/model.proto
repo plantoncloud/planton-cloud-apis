@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package planton.commons.proto.testing.resource.field.immutable;
+
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+
+// New message to test immutable fields.
+message ImmutableFieldsTest {
+  string immutable_string_field = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+  string mutable_string_field = 2;
+  int32 immutable_int_field = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+  int32 mutable_int_field = 4;
+}
+
+// New message to test nested immutable fields.
+message NestedImmutableFieldsTest {
+  ImmutableFieldsTest nested_immutable_fields = 1;
+  string mutable_string_field = 2;
+}

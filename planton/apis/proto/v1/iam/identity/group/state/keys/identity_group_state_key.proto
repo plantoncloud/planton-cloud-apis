@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.iam.identity.group.state.keys;
+
+//// key for identity-group state messages
+message IdentityGroupStateKey {
+  string value = 1;
+}

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.endpoint.standard.stack.kubernetes;
+
+import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
+import "planton/apis/proto/v1/deploy/endpoint/standard/stack/kubernetes/model.proto";
+
+service StandardEndpointKubernetesStackController {
+  rpc execute(StandardEndpointKubernetesStackInput) returns (stream StandardEndpointKubernetesStackResponse);
+  rpc getStackOutputs(StandardEndpointKubernetesStackInput) returns (StandardEndpointKubernetesStackOutputs);
+}

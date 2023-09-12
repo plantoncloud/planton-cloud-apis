@@ -1,0 +1,219 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.sourcecode.project.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/develop/sourcecode/project/rpc/enums/enums.proto";
+
+//code-project
+message CodeProject {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = code_project;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = false;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = product;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.product_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "cp";
+  //id format "cp-<product-id>-<normalized-git-repo-url>"
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/Zxvqng/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_regex) = "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,98}[a-zA-Z0-9_]?$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_min_length) = 1;
+  //the max length is because Github limits git repository names to 100 characters
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_max_length) = 99;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_constraints_description) = "Must be a valid repository name on Github.";
+
+  //resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  CodeProjectSpec spec = 4;
+
+  //status
+  CodeProjectStatus status = 5;
+}
+
+//code-project spec
+message CodeProjectSpec {
+  //company to which the code project belongs to.
+  //value is computed from product.
+  string company_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //product to which the code-project belongs to.
+  //this is computed from code-server.
+  string product_id = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //code server to which the code-project belongs to.
+  string code_server_id = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //path of the group/owner/user on github or gitlab
+  //(note) the parent path should start with the code_server_group path
+  //when creating a project on gitlab, all the groups in the provided path are created if they do not exist.
+  string parent_path = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //web or clone(http/ssh) for the code project.
+  //important: this value is used for reverse lookup to generate the code pipelines and other
+  //operations performed using the cli.
+  //The cli reads the value using "git remote get-url origin" command.
+  //so, the value returned by "git remote get-url origin" should match this attribute.
+  //conditionally required while adding(add) a code-project project that already exists.
+  //is not required while creating a code project
+  string code_project_url = 5;
+
+  //toggle to control code pipeline for the code project.
+  bool is_code_pipeline_enabled = 6;
+
+  //toggle to control code pipeline for the code project for merge request commits
+  bool is_review_code_pipeline_enabled = 7;
+
+  //toggle to control code pipeline for the code project for tags
+  bool is_tag_code_pipeline_enabled = 8;
+
+  //id of the code project on upstream code server.
+  //this is the id of repository on github/gitlab etc, if the code project was created as part of code-server sync.
+  //value is computed by looking up the repository on the code-server.
+  string upstream_code_project_id = 9 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //browser url for the code project to be used for opening the code project on github/gitlab/bitbucket etc.
+  //value is either populated from the information received about the project on git server or is
+  //computed by applying string transformations on the clone url.
+  string browser_url = 10 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //flag to indicate if the code project is a template project.
+  //a template project on github is marked as template project and is also a valid cookiecutter project.
+  //https://cookiecutter.readthedocs.io
+  bool is_template = 11;
+
+  //configuration variables required to render a full project from a template project.
+  //https://cookiecutter.readthedocs.io/en/1.7.2/tutorial1.html#cookiecutter-json
+  //when a template code project is synchronized from github, if the project contains cookiecutter.json file in the
+  //root directory of the project in the default branch, then the json contents are loaded as key value map and are
+  //persistent in the planton cloud system.
+  //the stored configuration is used to allow the users to provide the values while creating new projects from the
+  //template project.
+  map<string, string> cookiecutter_json = 12 [
+    //is only computed for template projects.
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //id of the template code project from which the code project is created.
+  //this value is only populated for code projects created using planton cloud.
+  string template_code_project_id = 13;
+
+  //input values provided when code project is created using a template.
+  //this value is only populated for code projects created using planton cloud.
+  //conditionally required when creating a code-project from a template.
+  map<string, string> cookiecutter_input = 14;
+}
+
+//code-project status
+message CodeProjectStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+}
+
+//wrapper for code project id
+message CodeProjectId {
+  string value = 1;
+}
+
+//list of code project ids
+message CodeProjectIds {
+  repeated string entries = 1;
+}
+
+//wrapper for code project url
+message CodeProjectUrl {
+  string value = 1;
+}
+
+//list of code projects
+message CodeProjects {
+  repeated CodeProject entries = 1;
+}
+
+//response for paginated query to list code projects
+message CodeProjectList {
+  int32 total_pages = 1;
+  repeated CodeProject entries = 2;
+}
+
+//input for command to attach a machine account to code-project on upstream code-server(github/gitlab)
+message AttachMachineAccountByCodeProjectIdCommandInput {
+  //email of the machine account to be attached to the code-project
+  string machine_account_email = 1;
+  //id of the code project to which the machine account is to be attached
+  string code_project_id = 2;
+}
+
+//code project file
+message CodeProjectFile {
+  //path of the file, including the name of the file ex: .github/workflows/main.yaml
+  string file_path = 1;
+  //base64 encoded content of the template file
+  string file_content_base64 = 2;
+  //file content plain text
+  string file_content = 3;
+}
+
+//list of code project files
+message CodeProjectFiles {
+  repeated CodeProjectFile entries = 1;
+}
+
+//code project profile
+message CodeProjectProfile {
+  //this field is only used in the local context and is ignored for operations performed on the server.
+  string code_project_dir = 1;
+  //is code project deployable to a environment.
+  //this field is only used in the local context and is ignored for operations performed on the server.
+  bool is_deployable = 2;
+  //code project language
+  planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectLang lang = 3;
+  //code project category library vs cli vs microservice
+  planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCat cat = 4;
+  //code project sub category
+  oneof sub_cat {
+    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+  }
+  //code project sub-sub category
+  oneof sub_sub_cat {
+    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+  }
+}
