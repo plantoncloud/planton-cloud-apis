@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.commons.network.dns.record.rpc;
+
+import "planton/apis/proto/v1/commons/network/dns/record/rpc/enums/enums.proto";
+
+// dns record
+message DnsRecord {
+  // dns record type
+  planton.apis.proto.v1.commons.network.dns.record.rpc.enums.DnsRecordType record_type = 1;
+  // name to be added to the domain. ex: if name is "dev" then the
+  string name = 2;
+  // record values
+  repeated string values = 3;
+  // ttl in seconds
+  int32 ttl_seconds = 4;
+}

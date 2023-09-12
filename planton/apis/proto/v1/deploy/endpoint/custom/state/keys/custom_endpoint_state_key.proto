@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.endpoint.custom.state.keys;
+
+// key for custom-endpoint state messages
+message CustomEndpointStateKey {
+  string value = 1;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.iam.authn.machine.rpc;
+
+import "planton/apis/proto/v1/iam/authn/machine/rpc/model.proto";
+import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
+
+//machine authentication query controller
+service MachineAuthenticationQueryController {
+  // get an access token in exchange for a valid machine identity account client credentials
+  rpc getAccessToken(GetMachineAccessTokenQueryInput) returns (AccessToken) {
+    option (planton.apis.proto.v1.iam.authz.extensions.is_public) = true;
+  }
+}

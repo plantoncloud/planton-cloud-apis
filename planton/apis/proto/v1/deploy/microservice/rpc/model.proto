@@ -1,0 +1,275 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.microservice.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/kubernetes/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/integration/kubernetes/enums/enums.proto";
+import "planton/apis/proto/v1/commons/resource/owner/model.proto";
+
+//microservice-instance
+message MicroserviceInstance {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = microservice_instance;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = environment;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "msi";
+  //id format "msi-<environment-id>-<microservice-instance-name>"
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/QbMSjf/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_max_length) = 20;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen. Length must be under 20 characters.";
+
+  //resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  MicroserviceInstanceSpec spec = 4;
+
+  //status
+  MicroserviceInstanceStatus status = 5;
+}
+
+//microservice-instance spec
+message MicroserviceInstanceSpec {
+  //resource parent
+  planton.apis.proto.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
+  //review-<id> where id is the merge request number
+  string version = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //microservice runtime configuration for kubernetes provider
+  MicroserviceInstanceSpecKubernetes kubernetes = 3;
+
+  //pipeline configuration required to update the microservice instance from ci/cd pipelines
+  MicroserviceInstanceSpecPipeline pipeline = 4;
+}
+
+//microservice-instance kubernetes spec
+message MicroserviceInstanceSpecKubernetes {
+  //(required) type of the pod controller to use for the microservice deployment.
+  //default is set to "deployment".
+  planton.company.proto.v1.kubernetes.enums.PodControllerType pod_controller_type = 1;
+
+  //number of replicas
+  int32 min_replicas = 2;
+
+  //container spec
+  MicroserviceInstanceSpecKubernetesContainer container = 3;
+
+  //microservice instance network configuration on kubernetes
+  MicroserviceInstanceSpecKubernetesNetwork network = 4;
+
+  //flag to toggle workload identity for the microservice
+  //default is set to "false".
+  bool is_workload_identity_enabled = 5;
+}
+
+//microservice-instance-spec kubernetes container spec
+message MicroserviceInstanceSpecKubernetesContainer {
+  //microservice app container
+  MicroserviceInstanceSpecKubernetesAppContainer app = 1;
+
+  //sidecar containers
+  repeated planton.apis.proto.v1.commons.kubernetes.Container sidecars = 2;
+}
+
+//microservice-instance-spec kubernetes app container spec
+message MicroserviceInstanceSpecKubernetesAppContainer {
+  //container image. this value is computed during creation but is allowed for updates.
+  //value is computed by combining the docker-repo of the artifact-store configured for environment and code project path.
+  //
+  //pull-secret-name: name of the image pull secret to be configured in kubernetes Deployment resource.
+  //computed by looking up the container_image_artifact_store_id from the environment to which the
+  //microservice deployment is created.
+  planton.apis.proto.v1.commons.kubernetes.ContainerImage image = 1;
+
+  //container resources
+  planton.apis.proto.v1.commons.kubernetes.ContainerResources resources = 2;
+
+  //microservice-instance environment variables and secrets.
+  MicroserviceInstanceSpecKubernetesAppContainerEnv env = 3;
+
+  //container volumes
+  //key is the mount path and value is size of the volume
+  map<string, string> volumes = 4;
+}
+
+//microservice-instance-spec kubernetes app container environment variables spec
+message MicroserviceInstanceSpecKubernetesAppContainerEnv {
+  //map of variable
+  map<string, string> variables = 1;
+  //map of secrets
+  map<string, string> secrets = 2;
+}
+
+//microservice-instance-spec kubernetes network spec
+message MicroserviceInstanceSpecKubernetesNetwork {
+  //(required) application protocol for the microservice.
+  //the default is set to "http"
+  //https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol.
+  //this field is used for setting up the name of the service port in kubernetes.
+  //this attribute is used during microservice deployment.
+  //this attribute is only relevant for deployment and stateful-set pod_controllers.
+  string app_protocol = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //container port
+  int32 container_port = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.int32_default) = 8080
+  ];
+
+  //kubernetes service port
+  int32 service_port = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.int32_default) = 80
+  ];
+
+  //ingress-domain names.
+  //each ingress-domain name should already exist as a standard-endpoint domain for the product.
+  //endpoints will only created if the pod_controller_type is either deployment or stateful-set.
+  repeated string ingress_domains = 4;
+}
+
+//microservice-instance-spec pipeline configuration
+message MicroserviceInstanceSpecPipeline {
+  //flag to toggle pipelines for microservice-instance.
+  //default is "false".
+  bool is_enabled = 1;
+
+  //id of the code project.
+  //allowed values are the list of code projects in the same product.
+  string code_project_id = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //git branch configured to deploy new versions of microservice-instances
+  string git_branch = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //toggle to enable or disable review environments to control the creation of ephemeral
+  //review environments for merge requests.
+  //default is "false".
+  bool is_review_deployments_enabled = 4;
+
+  //toggle for manual gate on ci/cd deployment jobs
+  bool is_manual_gate_required = 5;
+
+  //environment url to access the microservice deployed from the deployment job
+  string deployment_environment_url = 6 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//microservice-instance-status
+message MicroserviceInstanceStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  //microservice-instance kubernetes status
+  MicroserviceInstanceStatusKubernetesStatus kubernetes = 1;
+
+  //id of the service account created for the workload identity
+  string workload_identity_account_id = 2;
+}
+
+//microservice-instance-status  kubernetes status
+message MicroserviceInstanceStatusKubernetesStatus {
+  //kubernetes namespace in which microservice-instance is created.
+  string namespace = 1;
+
+  //kubernetes service name for microservice-instance.
+  //ex: main-microservice-instance
+  //in the above example, "main" is the name of the microservice-instance
+  string service = 2;
+
+  //command to setup port-forwarding to open microservice-instance from developers laptop.
+  //this might come handy when microservice-instance ingress is disabled for security reasons.
+  //this is rendered by combining microservice_instance_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/microservice_instance_kubernetes_service -n kubernetes_namespace 8080:8080
+  //running the command from this attribute makes it possible to access microservice-instance using http://localhost:8080
+  string port_forward_command = 3;
+
+  //kubernetes endpoint to connect to microservice-instance from the web browser.
+  //ex: main-microservice-instance.namespace.svc.instance.local:8080
+  string kube_endpoint = 4;
+
+  //public endpoint to open microservice-instance from clients outside kubernetes.
+  //ex: https://ms-planton-pcs-dev-account.dev.planton.live:8080
+  repeated string ingress_endpoints = 5;
+}
+
+//wrapper for id field of microservice-instance
+message MicroserviceInstanceId {
+  string value = 1;
+}
+
+//list of microservice-instances
+message MicroserviceInstances {
+  repeated MicroserviceInstance entries = 1;
+}
+
+//response for paginated query to list microservice-instances
+message MicroserviceInstanceList {
+  int32 total_pages = 1;
+  repeated MicroserviceInstance entries = 2;
+}
+
+//input for query to get microservice-instance log stream
+message GetMicroserviceInstanceLogStreamQueryInput {
+  //id of the microservice-instance
+  string microservice_instance_id = 1;
+  //https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/
+  //the number of lines from the end of the logs to show.
+  //if the value is not set or is set to 0, then a default value of 600 seconds is used.
+  int32 tail_lines = 2;
+  //https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/
+  //a relative time in seconds before the current time from which to show logs.
+  //If this value precedes the time a pod was started, only logs since the pod start will be returned.
+  //If this value is in the future, no logs will be returned.
+  //if the value is not set or is set to 0, then a default value of 60 seconds is used.
+  int32 since_seconds = 3;
+}
+
+//input for rpc queries that take environment-id and code-project-id as input
+message ByEnvironmentIdByCodeProjectIdInput {
+  //id of the environment
+  string environment_id = 1;
+  //id of the code project
+  string code_project_id = 2;
+}
+
+//wrapper for microservice-instance env var map
+message MicroserviceInstanceEnvVarMap {
+  map<string, string> value = 1;
+}

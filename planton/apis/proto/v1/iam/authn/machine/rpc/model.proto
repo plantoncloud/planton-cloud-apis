@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.iam.authn.machine.rpc;
+
+// input for query to get access token for machine identity account
+message GetMachineAccessTokenQueryInput {
+  // email of machine identity account
+  string machine_account_email = 1;
+  // client secret of the machine identity account
+  string client_secret = 2;
+}
+
+// wrapper for access token
+message AccessToken {
+  string value = 1;
+}

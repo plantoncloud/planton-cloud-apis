@@ -1,0 +1,105 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.integration.kubernetes.cluster.rpc;
+
+import "planton/apis/proto/v1/integration/kubernetes/resource/pod.proto";
+
+// kubernetes-cluster components
+message KubernetesClusterComponents {
+  // kube-system
+  KubeSystem kube_system = 1;
+  // istio-system and istio-ingress
+  // https://github.com/istio/istio
+  Istio istio = 2;
+  // cert-manager https://github.com/cert-manager/cert-manager
+  CertManager cert_manager = 3;
+  // external-secrets https://github.com/external-secrets/external-secrets
+  ExternalSecrets external_secrets = 4;
+  // kafka-operator https://github.com/strimzi/strimzi-kafka-operator
+  KafkaOperator kafka_operator = 5;
+  // postgres-operator https://github.com/zalando/postgres-operator
+  PostgresOperator postgres_operator = 6;
+  // prometheus https://github.com/prometheus/prometheus
+  Prometheus prometheus = 7;
+  // open-cost https://github.com/opencost/opencost
+  OpenCost open_cost = 8;
+  // planton-cloud-kube-agent https://github.com/plantoncloud-inc/planton-cloud-kube-agent
+  PlantonCloudKubeAgent planton_cloud_kube_agent = 9;
+  // kube-cost https://www.kubecost.com/
+  KubeCost kube_cost = 10;
+  // solr-operator https://github.com/apache/solr-operator
+  SolrOperator solr_operator = 11;
+}
+
+// kube-system components
+message KubeSystem {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// istio https://github.com/istio/istio
+message Istio {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// cert-manager https://github.com/cert-manager/cert-manager
+message CertManager {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// external-secrets https://github.com/external-secrets/external-secrets
+message ExternalSecrets {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// kafka-operator https://github.com/strimzi/strimzi-kafka-operator
+message KafkaOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// postgres-operator https://github.com/zalando/postgres-operator
+message PostgresOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// prometheus https://github.com/prometheus/prometheus
+message Prometheus {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// open-cost https://github.com/opencost/opencost
+message OpenCost {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// planton-cloud-kube-agent https://github.com/plantoncloud-inc/planton-cloud-kube-agent
+message PlantonCloudKubeAgent {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// kube-cost https://www.kubecost.com/
+message KubeCost {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// solr-operator https://github.com/apache/solr-operator
+message SolrOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// input for rpc requests that require kubernetes-cluster id, namespace and pod id
+message ByKubeClusterByNamespaceByPodInput {
+  // id of the kubernetes-cluster
+  string kubernetes_cluster_id = 1;
+  // name of the kubernetes namespace
+  string namespace = 2;
+  // id of the kubernetes pod
+  string pod_id = 3;
+}
+
+// input for rpc requests that require kubernetes-cluster id, namespace
+message ByKubeClusterByNamespaceInput {
+  // id of the kubernetes-cluster
+  string kubernetes_cluster_id = 1;
+  // name of the kubernetes namespace
+  string namespace = 2;
+}

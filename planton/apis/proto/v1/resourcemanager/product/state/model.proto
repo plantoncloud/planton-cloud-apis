@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.resourcemanager.product.state;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/state/model.proto";
+import "planton/apis/proto/v1/resourcemanager/product/state/enums/enums.proto";
+
+//product state
+message ProductState {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = product;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = false;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = company;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  //event-type
+  planton.apis.proto.v1.resourcemanager.product.state.enums.ProductEventType event_type = 99;
+
+  //resource api version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  ProductSpecState spec = 4;
+
+  //status
+  ProductStatusState status = 5;
+}
+
+//product spec
+message ProductSpecState {
+  //company to which the product belongs to.
+  string company_id = 1;
+
+  //product key is a three character key for the product.
+  //this key is unique with in the company.
+  //product key length should be minimum 2 chars and maximum of 4 chars.
+  //product-key is suffixed to the company-id to create product-id
+  string product_key = 2;
+
+  //product description.
+  string description = 3;
+}
+
+//product status
+message ProductStatusState {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.state.StackJobState stack_job = 97;
+}

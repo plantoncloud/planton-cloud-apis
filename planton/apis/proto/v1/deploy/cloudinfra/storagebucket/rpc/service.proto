@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.storagebucket.rpc;
+
+import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
+import "planton/apis/proto/v1/deploy/cloudinfra/kubecluster/rpc/model.proto";
+import "planton/apis/proto/v1/integration/kubernetes/resource/pod.proto";
+import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
+import "planton/apis/proto/v1/resourcemanager/environment/rpc/model.proto";
+import "planton/apis/proto/v1/resourcemanager/product/rpc/model.proto";
+import "planton/apis/proto/v1/deploy/cloudinfra/storagebucket/rpc/model.proto";
+
+//storage-bucket command controller
+service StorageBucketCommandController {
+  //create storage-bucket
+  rpc create(StorageBucket) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_create;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "spec.owner.environment_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create postgres-cluster";
+  }
+
+  //update an existing storage-bucket
+  rpc update(StorageBucket) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update storage-bucket";
+  }
+
+  //delete an existing storage-bucket
+  rpc delete(StorageBucketId) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_delete;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete storage-bucket";
+  }
+
+  //restore a deleted storage-bucket
+  rpc restore(StorageBucket) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_restore;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore storage-bucket";
+  }
+}
+
+//storage-bucket query controller
+service StorageBucketQueryController {
+  //list all storage-buckets on planton-cloud for the requested page. This is intended for use on portal.
+  rpc list(planton.apis.proto.v1.commons.rpc.pagination.PageInfo) returns(StorageBucketList);
+
+  //look up a storage-bucket using storage-bucket id
+  rpc getById(StorageBucketId) returns(StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view storage-bucket";
+  }
+
+  //find storage-buckets by product id.
+  //response contains only objects that the authenticated user account id has viewer access to.
+  rpc findByProductId(planton.apis.proto.v1.resourcemanager.product.rpc.ProductId) returns(StorageBuckets);
+
+  //find storage-buckets by environment id.
+  //response contains only objects that the authenticated user account id has viewer access to.
+  rpc findByEnvironmentId(planton.apis.proto.v1.resourcemanager.environment.rpc.EnvironmentId) returns(StorageBuckets);
+}
+
+//storage-bucket stack controller
+service StorageBucketStackController {
+  //preview storage-bucket stack
+  rpc preview(StorageBucket) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview storage-bucket stack";
+  }
+  //apply storage-bucket stack
+  rpc apply(StorageBucketId) returns (StorageBucket) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply storage-bucket stack";
+  }
+}

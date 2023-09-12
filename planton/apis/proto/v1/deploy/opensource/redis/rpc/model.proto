@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.redis.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/kubernetes/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/commons/resource/owner/model.proto";
+
+//redis-cluster
+message RedisCluster {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = redis_cluster;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = environment;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "rdc";
+  //id format "rdc-<environment-id>-<redis-cluster-name>"
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/QbMSjf/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_max_length) = 10;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
+
+  //resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  RedisClusterSpec spec = 4;
+
+  //status
+  RedisClusterStatus status = 5;
+}
+
+//redis-cluster spec
+message RedisClusterSpec {
+  //resource parent
+  planton.apis.proto.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //kubernetes spec
+  RedisClusterSpecKubernetesSpec kubernetes = 2;
+}
+
+//redis-cluster status.
+message RedisClusterStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  //kubernetes status
+  RedisClusterStatusKubernetesStatus kubernetes = 1;
+}
+
+// redis-cluster kubernetes spec
+message RedisClusterSpecKubernetesSpec {
+  //redis-container spec
+  RedisClusterSpecKubernetesSpecRedisContainerSpec redis_container = 1;
+
+  //redis-cluster ingress-spec
+  RedisClusterSpecKubernetesSpecIngressSpec ingress = 2;
+}
+
+// redis-cluster kubernetes redis-container spec
+message RedisClusterSpecKubernetesSpecRedisContainerSpec {
+  //number of redis pods.
+  //recommended default 1
+  int32 replicas = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //redis container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  planton.apis.proto.v1.commons.kubernetes.ContainerResources resources = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //flag to toggle persistence for redis data.
+  //when enabled, redis in-memory data will be persisted to a storage volume.
+  //the backup data from persistent volume is restored into redis memory between pod restarts.
+  //defaults to false.
+  bool is_persistence_enabled = 3;
+
+  //size of persistent volume attached to each redis pod
+  //if the client does not provide a value, the default value is configured.
+  //this attribute is ignored when persistence is not enabled.
+  //this persistent volume is used for backing up in-memory data.
+  //data from the persistent volume will be restored into memory between pod restarts.
+  //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
+  string disk_size = 4;
+}
+
+// redis-cluster kubernetes ingress spec
+message RedisClusterSpecKubernetesSpecIngressSpec {
+  //standard-endpoint domain to be used for creating internal and external endpoints for redis-cluster.
+  //only tls enabled standard-endpoints are eligible for creating redis endpoints.
+  string standard_endpoint_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //endpoint-domain-name used for creating redis-cluster endpoints.
+  //value is computed from the configured standard-endpoint.
+  string endpoint_domain_name = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//redis-cluster kubernetes status
+message RedisClusterStatusKubernetesStatus {
+  //kubernetes namespace in which redis-cluster is created.
+  string namespace = 1;
+
+  //kubernetes service name for redis-cluster.
+  //ex: main-redis-cluster
+  //in the above example, "main" is the name of the redis-cluster
+  string service = 2;
+
+  //command to setup port-forwarding to open redis-cluster from developers laptop.
+  //this might come handy when redis-cluster ingress is disabled for security reasons.
+  //this is rendered by combining redis_cluster_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/redis_cluster_kubernetes_service -n kubernetes_namespace 6379:6379
+  //running the command from this attribute makes it possible to access redis-cluster using http://localhost:8080/redis
+  string port_forward_command = 3;
+
+  //kubernetes endpoint to connect to redis-cluster from the web browser.
+  //ex: main-redis-cluster.namespace.svc.cluster.local:6379
+  string kube_endpoint = 4;
+
+  //public endpoint to open redis-cluster from clients outside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/redis
+  string ingress_endpoint = 5;
+}
+
+//wrapper for id field of redis-cluster
+message RedisClusterId {
+  string value = 1;
+}
+
+//list of redis-clusters
+message RedisClusters {
+  repeated RedisCluster entries = 1;
+}
+
+//wrapper for redis-cluster password
+message RedisClusterPassword {
+  string value = 1;
+}
+
+//response for paginated query to list redis-clusters
+message RedisClusterList {
+  int32 total_pages = 1;
+  repeated RedisCluster entries = 2;
+}

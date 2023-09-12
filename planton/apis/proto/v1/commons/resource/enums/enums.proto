@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.commons.resource.enums;
+
+enum ResourceType {
+  RESOURCE_TYPE_UNSPECIFIED = 0;
+  artifact_store = 1;
+  billing = 2;
+  cloud_account = 3;
+  code_project = 4;
+  code_server = 5;
+  company = 6;
+  custom_endpoint = 7;
+  dns_zone = 8;
+  environment = 9;
+  environment_secret = 10;
+  environment_variable = 11;
+  identity_account = 12;
+  identity_connection = 13;
+  identity_group = 14;
+  kafka_cluster = 15;
+  kube_cluster = 16;
+  microservice_instance = 17;
+  platform = 18;
+  postgres_cluster = 19;
+  product = 20;
+  redis_cluster = 21;
+  solr_cloud = 22;
+  standard_endpoint = 23;
+  storage_bucket = 24;
+}

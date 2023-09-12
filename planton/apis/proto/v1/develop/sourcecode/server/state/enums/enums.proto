@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.sourcecode.server.state.enums;
+
+import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum CodeServerEventType {
+  CODE_SERVER_EVENT_TYPE_UNSPECIFIED = 0;
+  CODE_SERVER_EVENT_TYPE_STATE_CREATED = 1 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_fga_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_UPDATED = 2 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_DELETED = 3 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_RESTORED = 4 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+}

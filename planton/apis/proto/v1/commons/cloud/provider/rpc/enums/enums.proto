@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.commons.cloud.provider.rpc.enums;
+
+//cloud provider type
+//the recommended best practice to prefix the entry with enum name and using uppercase for entry names has been intentionally ignored as the values of entry names are used for naming resources.
+enum CloudProvider {
+  // default value when cloud provider name is not set
+  CLOUD_PROVIDER_UNSPECIFIED = 0;
+  // amazon web services cloud provider
+  aws = 1;
+  // google cloud platform cloud provider
+  gcp = 2;
+  // microsoft azure cloud provider
+  azure = 3;
+  // alibaba cloud provider
+  alibaba = 4;
+  // oracle cloud provider
+  oracle = 5;
+}

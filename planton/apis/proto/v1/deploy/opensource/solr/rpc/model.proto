@@ -1,0 +1,209 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.solr.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/kubernetes/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/commons/resource/owner/model.proto";
+
+//solr-cloud
+message SolrCloud {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = solr_cloud;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = environment;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "slc";
+  //id format "slc-<environment-id>-<solr-cloud-name>"
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/QbMSjf/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_max_length) = 10;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
+
+  //resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  SolrCloudSpec spec = 4;
+
+  //status
+  SolrCloudStatus status = 5;
+}
+
+//solr-cloud spec
+message SolrCloudSpec {
+  //resource parent
+  planton.apis.proto.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //kubernetes spec
+  SolrCloudSpecKubernetesSpec kubernetes = 2;
+}
+
+//solr-cloud status
+message SolrCloudStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  //solr-cloud kubernetes status
+  SolrCloudStatusKubernetesStatus kubernetes = 1;
+}
+
+//solr-cloud kubernetes spec
+message SolrCloudSpecKubernetesSpec {
+  //solr container spec
+  SolrCloudSpecKubernetesSpecSolrContainerSpec solr_container = 1;
+
+  //zookeeper container spec
+  SolrCloudSpecKubernetesSpecZookeeperContainerSpec zookeeper_container = 2;
+
+  //ingress spec
+  SolrCloudSpecKubernetesSpecIngressSpec ingress = 3;
+}
+
+//solr container spec
+message SolrCloudSpecKubernetesSpecSolrContainerSpec {
+  //number of solr pods in solr-cloud
+  //recommended default 1.
+  int32 replicas = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //solr container image
+  //example repo: solr example tag: 8.7.0
+  planton.apis.proto.v1.commons.kubernetes.ContainerImage image = 2;
+
+  //solr container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  planton.apis.proto.v1.commons.kubernetes.ContainerResources resources = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //size of persistent volume attached to each solr pod.
+  //recommended default 1Gi
+  string disk_size = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.string_default) = "1Gi"
+  ];
+
+  //solr config
+  SolrCloudSpecKubernetesSpecSolrConfigSpec config = 5;
+}
+
+// solr config
+message SolrCloudSpecKubernetesSpecSolrConfigSpec {
+  //jvm memory settings for solr
+  string java_mem = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.string_default) = "-Xms1g -Xmx3g"
+  ];
+
+  //custom solr options
+  //ex: "-Dsolr.autoSoftCommit.maxTime=10000"
+  string opts = 2;
+
+  //solr garbage collection tuning configuration
+  //ex: "-XX:SurvivorRatio=4 -XX:TargetSurvivorRatio=90 -XX:MaxTenuringThreshold=8"
+  string garbage_collection_tuning = 3;
+}
+
+//solr-cloud kubernetes zookeeper container spec
+message SolrCloudSpecKubernetesSpecZookeeperContainerSpec {
+  //number of zookeeper pods in zookeeper cluster.
+  //recommended default 1
+  int32 replicas = 1;
+
+  //zookeeper container cpu and memory resources.
+  //recommended default "cpu-request: 50m, memory-request: 256Mi, cpu-limit: 1, memory-limit: 1Gi"
+  planton.apis.proto.v1.commons.kubernetes.ContainerResources resources = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //size of persistent volume attached to each zookeeper pod
+  string disk_size = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.string_default) = "1Gi"
+  ];
+}
+
+//solr-cloud kubernetes ingress spec
+message SolrCloudSpecKubernetesSpecIngressSpec {
+  //standard-endpoint domain to be used for creating internal and external endpoints for solr-cloud.
+  //only tls enabled standard-endpoints are eligible for creating solr endpoints.
+  string standard_endpoint_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //endpoint-domain-name used for creating solr-cloud endpoints.
+  //value is computed from the configured standard-endpoint.
+  string endpoint_domain_name = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//solr-cloud kubernetes status
+message SolrCloudStatusKubernetesStatus {
+  //kubernetes namespace in which solr-cloud is created.
+  string namespace = 1;
+
+  //kubernetes service name for solr-cloud dashboard.
+  //ex: main-solrcloud-common
+  //in the above example, "main" is the name of the solr-cloud
+  string service = 2;
+
+  //command to setup port-forwarding to open solr-cloud from developers laptop.
+  //this might come handy when solr-cloud ingress is disabled for security reasons.
+  //this is rendered by combining solr_cloud_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/solr_cloud_kubernetes_service -n kubernetes_namespace 8080:80
+  //running the command from this attribute makes it possible to access solr-cloud using http://localhost:8080/solr
+  string port_forward_command = 3;
+
+  //kubernetes endpoint that can be used by clients running in the same kubernetes cluster.
+  //ex: http://main-solrcloud-common.<namespace-name>:8983/solr
+  string kube_endpoint = 4;
+
+  //ingress endpoint to be used by solr clients running outside the kubernetes cluster.
+  //ex: https://slc-planton-pcs-dev-main.data.dev.planton.live:8983/solr
+  string ingress_endpoint = 5;
+}
+
+//wrapper for id field of solr-cloud
+message SolrCloudId {
+  string value = 1;
+}
+
+//list of solr-clouds
+message SolrClouds {
+  repeated SolrCloud entries = 1;
+}
+
+//wrapper for solr-cloud password
+message SolrCloudPassword {
+  string value = 1;
+}
+
+//response for paginated query to list solr-clouds
+message SolrCloudList {
+  int32 total_pages = 1;
+  repeated SolrCloud entries = 2;
+}

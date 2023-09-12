@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.postgres.state.keys;
+
+// key for postgres-cluster state messages
+message PostgresClusterStateKey {
+  string value = 1;
+}

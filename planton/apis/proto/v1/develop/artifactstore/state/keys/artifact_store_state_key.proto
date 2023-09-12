@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.artifactstore.state.keys;
+
+// key for artifact-store state messages
+message ArtifactStoreStateKey {
+  string value = 1;
+}

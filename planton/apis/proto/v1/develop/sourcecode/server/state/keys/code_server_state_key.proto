@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.sourcecode.server.state.keys;
+
+// key for code-server state messages
+message CodeServerStateKey {
+  string value = 1;
+}

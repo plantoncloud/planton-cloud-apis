@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.dnszone.stack.gcp;
+
+import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
+import "planton/apis/proto/v1/deploy/cloudinfra/dnszone/stack/gcp/model.proto";
+
+// dns-zone stack controller
+service DnsZoneGcpStackController {
+  rpc execute(DnsZoneGcpStackInput) returns (stream DnsZoneGcpStackResponse);
+  rpc getStackOutputs(DnsZoneGcpStackInput) returns (DnsZoneGcpStackOutputs);
+}

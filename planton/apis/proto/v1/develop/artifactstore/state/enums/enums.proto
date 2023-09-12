@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package planton.product.proto.v1.artifactstore.state.enums;
+import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum ArtifactStoreEventType {
+  ARTIFACT_STORE_EVENT_TYPE_UNSPECIFIED = 0;
+  ARTIFACT_STORE_EVENT_TYPE_STATE_CREATED = 1 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_fga_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STATE_UPDATED = 2 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STATE_DELETED = 3 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STATE_RESTORED = 4 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_search_indexing_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = preview
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = apply
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
+    (planton.apis.proto.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
+  ];
+  ARTIFACT_STORE_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+    (planton.apis.proto.v1.commons.resource.state.enums.options.is_persist_required) = true
+  ];
+}
