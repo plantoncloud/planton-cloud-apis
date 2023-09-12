@@ -92,7 +92,7 @@ message SearchByResourceTypeInput {
   planton.apis.proto.v1.commons.rpc.pagination.PageInfo page_info = 4;
   //  this field is an enumeration used to dictate the active status of the resources
   //  included in the search results.
-  planton.apis.proto.v1.search.search.rpc.enums.StatusFilter status_filter = 5;
+  planton.apis.proto.v1.search.resource.rpc.enums.StatusFilter status_filter = 5;
 }
 
 // SearchIdentityAccountByEmail is a message type that represents the input parameters

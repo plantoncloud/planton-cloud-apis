@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.search.search.rpc.enums;
+package planton.apis.proto.v1.search.resource.rpc.enums;
 
 enum StatusFilter {
   STATUS_FILTER_UNSPECIFIED = 0;
