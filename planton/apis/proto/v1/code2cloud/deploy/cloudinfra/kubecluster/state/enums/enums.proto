@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.cloudinfra.kubecluster.state.enums;
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.state.enums;
 
 import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
 

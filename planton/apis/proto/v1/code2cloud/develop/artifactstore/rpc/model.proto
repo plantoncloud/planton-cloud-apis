@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.artifactstore.rpc;
+package planton.apis.proto.v1.code2cloud.develop.artifactstore.rpc;
 
 import "google/protobuf/timestamp.proto";
 import "planton/apis/proto/v1/commons/audit/model.proto";
@@ -76,7 +76,7 @@ message ArtifactStoreSpec {
   string go_module_fetch_git_ssh_key_base64 = 5;
 
   //provider for the artifact-store repositories
-  planton.apis.proto.v1.develop.artifactstore.rpc.enums.ArtifactStoreRepoProvider repo_provider = 6 [
+  planton.apis.proto.v1.code2cloud.develop.artifactstore.rpc.enums.ArtifactStoreRepoProvider repo_provider = 6 [
     (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
     (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
   ];

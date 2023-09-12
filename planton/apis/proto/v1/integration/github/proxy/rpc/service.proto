@@ -12,16 +12,16 @@ service GithubProxyCommandController {
   //https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
   //https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
   //https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
-  rpc creRepository(CreRepositoryCommandInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject);
+  rpc creRepository(CreRepositoryCommandInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
   //apply a cookiecutter template on a code project created on github
-  rpc applyTemplate(GithubApplyTemplateCommandInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectProfile);
+  rpc applyTemplate(GithubApplyTemplateCommandInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
   //add a list of secrets to a github repository
-  rpc addSecretsToRepo(AddSecretsToRepoCommandInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject);
+  rpc addSecretsToRepo(AddSecretsToRepoCommandInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
   //add a list of secrets to a github organization
-  rpc addSecretsToOrg(AddSecretsToOrgCommandInput) returns (planton.apis.proto.v1.develop.sourcecode.server.rpc.CodeServer);
+  rpc addSecretsToOrg(AddSecretsToOrgCommandInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.server.rpc.CodeServer);
   //synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
   //then add files in the input to .github/workflows directory.
-  rpc synchronizeMagicPipelineFiles(SynchronizeGithubMagicPipelineFilesCommandInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject);
+  rpc synchronizeMagicPipelineFiles(SynchronizeGithubMagicPipelineFilesCommandInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
 }
 
 //github proxy query controller
@@ -29,11 +29,11 @@ service GithubProxyQueryController {
   //list repositories for the requested organization or user on github
   //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
   //todo: we have to add pagination support for response.
-  rpc listRepositories(ListRepositoriesQueryInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjects);
+  rpc listRepositories(ListRepositoriesQueryInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjects);
   //get the details of a repository on github
-  rpc getRepository(GetRepositoryQueryInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject);
+  rpc getRepository(GetRepositoryQueryInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
   //get details of a github app installation
   rpc getGithubAppInstallation(GithubAppInstallation) returns (GithubAppInstallation);
   //get code project profile of a code-project hosted on github
-  rpc getGithubCodeProjectProfile(GetGithubCodeProjectProfileQueryInput) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectProfile);
+  rpc getGithubCodeProjectProfile(GetGithubCodeProjectProfileQueryInput) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.sourcecode.pipeline.common.rpc;
+package planton.apis.proto.v1.code2cloud.develop.sourcecode.pipeline.common.rpc;
 
 import "planton/apis/proto/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 import "planton/apis/proto/v1/code2cloud/develop/sourcecode/pipeline/rpc/model.proto";
@@ -10,7 +10,7 @@ import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
 //code pipeline command controller
 service CodePipelineCommandController {
   //add or update magic pipeline for a code project
-  rpc addOrUpdatePipeline(planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectId) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject)  {
+  rpc addOrUpdatePipeline(planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectId) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject)  {
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = code_project;
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = code_project_update;
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -28,7 +28,7 @@ service CodePipelineQueryController {
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get code-pipeline template";
   }
   //get code-pipeline template files for a code project
-  rpc getPipelineFilesByCodeProjectId(planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectId) returns (planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectFiles) {
+  rpc getPipelineFilesByCodeProjectId(planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectId) returns (planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectFiles) {
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = code_project;
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = code_project_get;
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";

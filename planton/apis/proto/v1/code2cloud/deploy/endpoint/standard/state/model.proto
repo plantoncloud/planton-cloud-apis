@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.endpoint.standard.state;
+package planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.state;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/resource/model.proto";
@@ -17,7 +17,7 @@ message StandardEndpointState {
   option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
 
   //event-type
-  planton.apis.proto.v1.deploy.endpoint.standard.state.enums.StandardEndpointEventType event_type = 99;
+  planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.state.enums.StandardEndpointEventType event_type = 99;
 
   //resource api version
   string api_version = 1;

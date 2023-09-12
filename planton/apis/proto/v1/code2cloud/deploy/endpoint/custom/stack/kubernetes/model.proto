@@ -2,7 +2,7 @@ syntax = "proto3";
 
 //this stack creates resources required to enable routing for custom-endpoint domains.
 //wildcard certificates are provisioned for the custom-endpoint.
-package planton.apis.proto.v1.deploy.endpoint.custom.stack.kubernetes;
+package planton.apis.proto.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes;
 
 import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
@@ -27,13 +27,13 @@ message CustomEndpointKubernetesStackCredentialsInput {
 //custom-endpoint container stack resource input
 message CustomEndpointKubernetesStackResourceInput {
   //custom-endpoint
-  planton.apis.proto.v1.deploy.endpoint.custom.state.CustomEndpointState custom_endpoint = 1;
+  planton.apis.proto.v1.code2cloud.deploy.endpoint.custom.state.CustomEndpointState custom_endpoint = 1;
 }
 
 //custom-endpoint container stack outputs
 message CustomEndpointKubernetesStackOutputs {
   //custom-endpoint
-  planton.apis.proto.v1.deploy.endpoint.custom.state.CustomEndpointStatusState custom_endpoint_status = 1;
+  planton.apis.proto.v1.code2cloud.deploy.endpoint.custom.state.CustomEndpointStatusState custom_endpoint_status = 1;
 }
 
 //stack response

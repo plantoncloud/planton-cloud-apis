@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.cloudinfra.kubecluster.stack.gcp;
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.stack.gcp;
 
 import "planton/apis/proto/v1/commons/cloud/gcp/resource/folder/rpc/model.proto";
 import "planton/apis/proto/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
@@ -32,7 +32,7 @@ message KubeClusterGcpStackResourceInput {
   planton.apis.proto.v1.code2cloud.cloudaccount.rpc.CloudAccount cloud_account = 1;
 
   //details of the kube-cluster
-  planton.apis.proto.v1.deploy.cloudinfra.kubecluster.state.KubeClusterState kube_cluster = 2;
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.state.KubeClusterState kube_cluster = 2;
 
   //input required to configure kube-clusters.
   KubeClusterGcpStackContainerInput container = 7;
@@ -79,7 +79,7 @@ message ClusterConfig {
   // secondary range set number to select for cora/dora kube-cluster.
   // one set can be used only by one cluster.
   // this value should be different for each kube-cluster in a gcp project.
-  planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.enums.GkeKubePodServiceSecondaryRangeCidrSetNum kube_pod_secondary_range_cidr_set_num = 2;
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums.GkeKubePodServiceSecondaryRangeCidrSetNum kube_pod_secondary_range_cidr_set_num = 2;
 }
 
 message Addons {

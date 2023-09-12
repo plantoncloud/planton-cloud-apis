@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.microservice.state.keys;
+package planton.apis.proto.v1.code2cloud.deploy.microservice.state.keys;
 
 //wrapper for microservice-instance id used as key in microservice messages
 message MicroserviceInstanceStateKey {

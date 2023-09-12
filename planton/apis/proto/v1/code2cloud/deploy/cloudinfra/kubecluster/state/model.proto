@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.cloudinfra.kubecluster.state;
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.state;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/cloud/gcp/resource/folder/state/model.proto";
@@ -19,7 +19,7 @@ message KubeClusterState {
 
   // event_type is event type after the command is processed
   // do refer the enums values for the possible event types
-  planton.apis.proto.v1.deploy.cloudinfra.kubecluster.state.enums.KubeClusterEventType event_type = 99;
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.state.enums.KubeClusterEventType event_type = 99;
 
   // api version for the resource
   string api_version = 1;

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.opensource.postgres.stack.kubernetes;
+package planton.apis.proto.v1.code2cloud.deploy.opensource.postgres.stack.kubernetes;
 
 import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
@@ -25,7 +25,7 @@ message PostgresClusterKubernetesStackCredentialsInput {
 //stack resource input
 message PostgresClusterKubernetesStackResourceInput {
   //postgres-cluster
-  planton.apis.proto.v1.deploy.opensource.postgres.state.PostgresClusterState postgres_cluster = 1;
+  planton.apis.proto.v1.code2cloud.deploy.opensource.postgres.state.PostgresClusterState postgres_cluster = 1;
   //postgres-cluster config
   PostgresClusterConfig postgres_cluster_config = 2;
 }
@@ -57,7 +57,7 @@ message PostgresDatabase {
 //stack outputs
 message PostgresClusterKubernetesStackOutputs {
   //postgres-cluster status
-  planton.apis.proto.v1.deploy.opensource.postgres.state.PostgresClusterStatusState postgres_cluster_status = 1;
+  planton.apis.proto.v1.code2cloud.deploy.opensource.postgres.state.PostgresClusterStatusState postgres_cluster_status = 1;
 }
 
 //stack response

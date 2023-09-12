@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.microservice.rpc;
+package planton.apis.proto.v1.code2cloud.deploy.microservice.rpc;
 
 import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
@@ -93,7 +93,7 @@ service MicroserviceInstanceQueryController {
   rpc findByEnvironmentId(planton.apis.proto.v1.code2cloud.environment.rpc.EnvironmentId) returns (MicroserviceInstances);
 
   //find microservice-instances by kube-cluster
-  rpc findByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (MicroserviceInstances);
+  rpc findByKubeClusterId(planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (MicroserviceInstances);
 
   //find microservice-instances in a environment for a code-project
   rpc findByEnvironmentIdByCodeProjectId(ByEnvironmentIdByCodeProjectIdInput) returns (MicroserviceInstances) {
@@ -120,10 +120,10 @@ service MicroserviceInstanceQueryController {
   }
 
   //lookup a microservice-instance by code project id
-  rpc getByCodeProjectId(planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectId) returns (MicroserviceInstance);
+  rpc getByCodeProjectId(planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectId) returns (MicroserviceInstance);
 
   //lookup all microservice-instances by code project url
-  rpc findByCodeProjectUrl(planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectUrl) returns (MicroserviceInstances);
+  rpc findByCodeProjectUrl(planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectUrl) returns (MicroserviceInstances);
 
   rpc getEnvVarMap(MicroserviceInstance) returns (MicroserviceInstanceEnvVarMap) {
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.sourcecode.project.rpc.enums;
+package planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.enums;
 
 //deviation from the recommended best-practice of prefixing all enum entries with enum type in order to use the
 //language to name and identify project specific folders.

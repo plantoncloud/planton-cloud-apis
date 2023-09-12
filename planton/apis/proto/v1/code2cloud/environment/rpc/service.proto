@@ -123,7 +123,7 @@ service EnvironmentQueryController {
   rpc findByProductId(planton.apis.proto.v1.resourcemanager.product.rpc.ProductId) returns (Environments);
 
   //find environments by kube-cluster id
-  rpc findByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (Environments);
+  rpc findByKubeClusterId(planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (Environments);
 
   //look up environment using environment id
   rpc getByProductIdAndEnvironmentName(GetByProductIdAndEnvironmentNameQueryInput) returns (Environment) {

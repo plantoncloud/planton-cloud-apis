@@ -3,7 +3,7 @@ syntax = "proto3";
 //this stack creates resources required to enable tls for external and internal endpoints for both stateless and stateful workloads.
 //wildcard certificates are provisioned for the standard-endpoint.
 //istio gateways are also created to route http, grpc, kafka and postgres traffic on the default ports.
-package planton.apis.proto.v1.deploy.endpoint.standard.stack.kubernetes;
+package planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.stack.kubernetes;
 
 import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
@@ -28,13 +28,13 @@ message StandardEndpointKubernetesStackCredentialsInput {
 //standard-endpoint container stack resource input
 message StandardEndpointKubernetesStackResourceInput {
   //standard-endpoint
-  planton.apis.proto.v1.deploy.endpoint.standard.state.StandardEndpointState standard_endpoint = 1;
+  planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.state.StandardEndpointState standard_endpoint = 1;
 }
 
 //standard-endpoint container stack outputs
 message StandardEndpointKubernetesStackOutputs {
   //standard-endpoint status
-  planton.apis.proto.v1.deploy.endpoint.standard.state.StandardEndpointStatusState standard_endpoint_status = 2;
+  planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.state.StandardEndpointStatusState standard_endpoint_status = 2;
 }
 
 //stack response

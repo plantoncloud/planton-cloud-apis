@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.cloudinfra.dnszone.stack.aws;
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.dnszone.stack.aws;
 
 import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
 import "planton/apis/proto/v1/code2cloud/deploy/cloudinfra/dnszone/stack/aws/model.proto";

@@ -53,9 +53,9 @@ message GitlabApplyTemplateCommandInput {
   //gitlab client info required to clone and publish template changes to target project
   GitlabClientInfo target_project_gitlab_client_info = 2;
   //template code project
-  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject template_project = 3;
+  planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject template_project = 3;
   //code project for which the template should be applied
-  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject target_code_project = 4;
+  planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject target_code_project = 4;
 }
 
 //input for command to add list of variables to a gitlab project
@@ -103,5 +103,5 @@ message AddFilesToGitlabProjectCommandInput {
   //id of the gitlab project to which the files are to be added
   string gitlab_project_id = 2;
   //files to be added to the project
-  repeated planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectFile code_project_files = 3;
+  repeated planton.apis.proto.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectFile code_project_files = 3;
 }

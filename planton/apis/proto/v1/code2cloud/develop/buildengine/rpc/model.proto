@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.buildengine.rpc;
+package planton.apis.proto.v1.code2cloud.develop.buildengine.rpc;
 
 import "planton/apis/proto/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 

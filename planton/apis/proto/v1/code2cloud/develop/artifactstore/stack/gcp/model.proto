@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.artifactstore.stack.gcp;
+package planton.apis.proto.v1.code2cloud.develop.artifactstore.stack.gcp;
 
 import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
@@ -25,12 +25,12 @@ message ArtifactStoreGcpStackCredentialsInput {
 
 //stack resource input
 message ArtifactStoreGcpStackResourceInput {
-  planton.apis.proto.v1.develop.artifactstore.state.ArtifactStoreState artifact_store = 1;
+  planton.apis.proto.v1.code2cloud.develop.artifactstore.state.ArtifactStoreState artifact_store = 1;
 }
 
 //gcp artifact repo stack outputs
 message ArtifactStoreGcpStackOutputs {
-  planton.apis.proto.v1.develop.artifactstore.state.ArtifactStoreGcpArtifactRegistryStatusState gcp_artifact_registry_status = 1;
+  planton.apis.proto.v1.code2cloud.develop.artifactstore.state.ArtifactStoreGcpArtifactRegistryStatusState gcp_artifact_registry_status = 1;
 }
 
 //stack response

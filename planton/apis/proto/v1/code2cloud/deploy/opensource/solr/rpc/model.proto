@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.opensource.solr.rpc;
+package planton.apis.proto.v1.code2cloud.deploy.opensource.solr.rpc;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/kubernetes/model.proto";

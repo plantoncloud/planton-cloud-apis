@@ -63,7 +63,7 @@ message EnvironmentSpec {
 
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
-  planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.enums.KubernetesProvider kubernetes_provider = 3 [
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums.KubernetesProvider kubernetes_provider = 3 [
     (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
   ];
 

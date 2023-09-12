@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.sourcecode.server.rpc.enums;
+package planton.apis.proto.v1.code2cloud.develop.sourcecode.server.rpc.enums;
 
 enum CodeServerProvider {
   CODE_SERVER_PROVIDER_UNSPECIFIED = 0;

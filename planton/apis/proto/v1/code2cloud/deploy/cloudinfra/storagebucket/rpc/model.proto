@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.cloudinfra.storagebucket.rpc;
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.storagebucket.rpc;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
@@ -64,7 +64,7 @@ message StorageBucketSpec {
   //the value is computed from environment.
   //the storage-bucket is created in the same cloud-provider in which the kube-cluster that
   //is configured for the environment.
-  planton.apis.proto.v1.deploy.cloudinfra.storagebucket.rpc.enums.StorageBucketProvider storage_bucket_provider = 3 [
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.storagebucket.rpc.enums.StorageBucketProvider storage_bucket_provider = 3 [
     (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
   ];
 

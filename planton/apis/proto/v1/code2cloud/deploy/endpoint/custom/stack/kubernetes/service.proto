@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.deploy.endpoint.custom.stack.kubernetes;
+package planton.apis.proto.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes;
 
 import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
 import "planton/apis/proto/v1/code2cloud/deploy/endpoint/custom/stack/kubernetes/model.proto";
