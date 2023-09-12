@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.server.proxy.gitlab.rpc;
+package planton.apis.proto.v1.develop.sourcecode.server.proxy.gitlab.rpc;
 
 import "planton/apis/proto/v1/develop/sourcecode/server/proxy/gitlab/rpc/enums/enums.proto";
 import "planton/apis/proto/v1/develop/sourcecode/server/proxy/github/rpc/model.proto";
@@ -11,7 +11,7 @@ message GitlabClientInfo {
   //gitlab host to send the request to ex: https://gitlab.com
   string gitlab_host = 1;
   //gitlab authorization type
-  planton.product.proto.v1.sourcecode.server.proxy.gitlab.rpc.enums.GitlabApiAuthorizationType authorization_type = 2;
+  planton.apis.proto.v1.develop.sourcecode.server.proxy.gitlab.rpc.enums.GitlabApiAuthorizationType authorization_type = 2;
   //api or oauth token to be used to query gitlab server
   string token = 3;
 }
@@ -49,13 +49,13 @@ message CreProjectCommandInput {
 message GitlabApplyTemplateCommandInput {
   //github client info required to lookup template project info.
   //code project templates is only supported for template projects hosted on github
-  planton.product.proto.v1.sourcecode.server.proxy.github.rpc.GithubClientInfo template_project_github_client_info = 1;
+  planton.apis.proto.v1.develop.sourcecode.server.proxy.github.rpc.GithubClientInfo template_project_github_client_info = 1;
   //gitlab client info required to clone and publish template changes to target project
   GitlabClientInfo target_project_gitlab_client_info = 2;
   //template code project
-  planton.product.proto.v1.sourcecode.project.rpc.CodeProject template_project = 3;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject template_project = 3;
   //code project for which the template should be applied
-  planton.product.proto.v1.sourcecode.project.rpc.CodeProject target_code_project = 4;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject target_code_project = 4;
 }
 
 //input for command to add list of variables to a gitlab project
@@ -103,5 +103,5 @@ message AddFilesToGitlabProjectCommandInput {
   //id of the gitlab project to which the files are to be added
   string gitlab_project_id = 2;
   //files to be added to the project
-  repeated planton.product.proto.v1.sourcecode.project.rpc.CodeProjectFile code_project_files = 3;
+  repeated planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectFile code_project_files = 3;
 }

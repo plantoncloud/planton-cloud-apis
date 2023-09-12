@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.commons.proto.testing.resource.field.immutable;
+package planton.apis.proto.v1.commons.testing.resource.field.immutable;
 
 import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
 

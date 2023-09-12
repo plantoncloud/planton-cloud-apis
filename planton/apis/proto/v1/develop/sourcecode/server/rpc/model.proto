@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.server.rpc;
+package planton.apis.proto.v1.develop.sourcecode.server.rpc;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
@@ -68,7 +68,7 @@ message CodeServerSpec {
   ];
 
   //Specifies the provider for the code server.
-  planton.product.proto.v1.sourcecode.server.rpc.enums.CodeServerProvider code_server_provider = 4 [
+  planton.apis.proto.v1.develop.sourcecode.server.rpc.enums.CodeServerProvider code_server_provider = 4 [
     (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
     (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
   ];
@@ -93,7 +93,7 @@ message CodeServerGithubSpec {
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
-  planton.product.proto.v1.sourcecode.server.rpc.enums.GithubAppInstallOwnerType app_install_owner_type = 3 [
+  planton.apis.proto.v1.develop.sourcecode.server.rpc.enums.GithubAppInstallOwnerType app_install_owner_type = 3 [
     (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
   ];
 }

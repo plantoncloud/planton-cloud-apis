@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.postgres.state.enums;
+package planton.apis.proto.v1.deploy.opensource.postgres.state.enums;
 
 import "google/protobuf/descriptor.proto";
 import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";

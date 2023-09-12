@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.project.rpc;
+package planton.apis.proto.v1.develop.sourcecode.project.rpc;
 
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
 import "planton/apis/proto/v1/resourcemanager/product/rpc/model.proto";
@@ -93,7 +93,7 @@ service CodeProjectQueryController {
   rpc findByProductId(planton.apis.proto.v1.resourcemanager.product.rpc.ProductId) returns (CodeProjects);
 
   //find code projects by code-server id
-  rpc findByCodeServerId(planton.product.proto.v1.sourcecode.server.rpc.CodeServerId) returns (CodeProjects);
+  rpc findByCodeServerId(planton.apis.proto.v1.develop.sourcecode.server.rpc.CodeServerId) returns (CodeProjects);
 
   //look up all code projects by code project url
   rpc findByCodeProjectUrl(CodeProjectUrl) returns (CodeProjects) {

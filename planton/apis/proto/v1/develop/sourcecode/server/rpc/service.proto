@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.server.rpc;
+package planton.apis.proto.v1.develop.sourcecode.server.rpc;
 
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
 import "planton/apis/proto/v1/resourcemanager/product/rpc/model.proto";

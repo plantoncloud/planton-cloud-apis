@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.server.proxy.github.rpc;
+package planton.apis.proto.v1.develop.sourcecode.server.proxy.github.rpc;
 
 import "planton/apis/proto/v1/develop/sourcecode/server/proxy/github/rpc/enums/enums.proto";
 import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
@@ -11,7 +11,7 @@ message GithubClientInfo {
   //github host to send the request to ex: https://github.com
   string github_host = 1;
   //github authorization type
-  planton.product.proto.v1.sourcecode.server.proxy.github.rpc.enums.GithubApiAuthorizationType authorization_type = 2;
+  planton.apis.proto.v1.develop.sourcecode.server.proxy.github.rpc.enums.GithubApiAuthorizationType authorization_type = 2;
   //api token to be used to query github server when authorization type is api token
   string api_token = 3;
   //github app installation details to be used to query github server when authorization type is github app
@@ -27,7 +27,7 @@ message GithubAppInstallation {
   //id of the github app installation
   int64 github_app_install_id = 3;
   //type of the account of the github app installation
-  planton.product.proto.v1.sourcecode.server.rpc.enums.GithubAppInstallOwnerType install_owner_type = 4;
+  planton.apis.proto.v1.develop.sourcecode.server.rpc.enums.GithubAppInstallOwnerType install_owner_type = 4;
   //id of the github app installation.
   //this is the name of the organization when the app is installed on an organization and id of the user when
   //the app is installed on a personal user account.
@@ -66,9 +66,9 @@ message GithubApplyTemplateCommandInput {
   //github client info required to clone and push changes for target project
   GithubClientInfo target_project_github_client_info = 2;
   //template code project
-  planton.product.proto.v1.sourcecode.project.rpc.CodeProject template_project = 3;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject template_project = 3;
   //code project for which the template should be applied
-  planton.product.proto.v1.sourcecode.project.rpc.CodeProject target_code_project = 4;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProject target_code_project = 4;
 }
 
 //input for command to add list of secrets to a github repository
@@ -110,5 +110,5 @@ message SynchronizeGithubMagicPipelineFilesCommandInput {
   //prefix to be used for identifying the existing magic pipelines to be deleted before adding new files
   string magic_pipeline_files_prefix = 3;
   //files to be added to the repository
-  repeated planton.product.proto.v1.sourcecode.project.rpc.CodeProjectFile magic_pipeline_files = 4;
+  repeated planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectFile magic_pipeline_files = 4;
 }

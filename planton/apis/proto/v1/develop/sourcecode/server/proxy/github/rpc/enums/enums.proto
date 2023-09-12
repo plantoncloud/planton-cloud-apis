@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.server.proxy.github.rpc.enums;
+package planton.apis.proto.v1.develop.sourcecode.server.proxy.github.rpc.enums;
 
 enum GithubApiAuthorizationType {
   GITHUB_API_AUTHORIZATION_TYPE_UNSPECIFIED = 0;

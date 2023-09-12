@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.microservice.stack.kubernetes;
+package planton.apis.proto.v1.deploy.microservice.stack.kubernetes;
 
 import "planton/apis/proto/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
 import "planton/apis/proto/v1/commons/pulumi/operation/rpc/model.proto";
@@ -28,7 +28,7 @@ message MicroserviceInstanceKubernetesStackCredentialsInput {
 //stack resource input
 message MicroserviceInstanceKubernetesStackResourceInput {
   //microservice-instance
-  planton.product.proto.v1.microservice.state.MicroserviceInstanceState microservice_instance = 1;
+  planton.apis.proto.v1.deploy.microservice.state.MicroserviceInstanceState microservice_instance = 1;
   //input required for creating kubernetes secret resources to be used by deployment resources to pull private
   //container images.
   //a product can have many artifact-stores. each artifact-store has a separate service account credential.
@@ -54,7 +54,7 @@ message KubernetesImagePullSecretInput {
 //microservice-instance stack outputs
 message MicroserviceInstanceKubernetesStackOutputs {
   //status of the microservice-instance upon stack-job
-  planton.product.proto.v1.microservice.state.MicroserviceInstanceStatusState microservice_instance_status = 1;
+  planton.apis.proto.v1.deploy.microservice.state.MicroserviceInstanceStatusState microservice_instance_status = 1;
 }
 
 //stack response

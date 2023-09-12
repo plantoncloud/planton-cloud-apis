@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.pipeline.common.rpc;
+package planton.apis.proto.v1.develop.sourcecode.pipeline.common.rpc;
 
 import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
 import "planton/apis/proto/v1/develop/artifactstore/rpc/model.proto";
@@ -11,11 +11,11 @@ import "planton/apis/proto/v1/deploy/microservice/rpc/model.proto";
 //input for query rpc to get dynamically generated code pipeline template
 message GenerateCodePipelineTemplateQueryInput {
   //code project profile
-  planton.product.proto.v1.sourcecode.project.rpc.CodeProjectProfile code_project_profile = 1;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectProfile code_project_profile = 1;
   //git remote url used for looking up code project
   string git_remote_url = 2;
   //list of microservice-instances declared in _kustomize directory
-  repeated planton.product.proto.v1.microservice.rpc.MicroserviceInstance microservice_instances = 3;
+  repeated planton.apis.proto.v1.deploy.microservice.rpc.MicroserviceInstance microservice_instances = 3;
 }
 
 message GenerateCodePipelineTemplateQueryResp {
@@ -41,7 +41,7 @@ message CodePipelineBuildTemplateInput {
   //name of the cli environment to be used. this can be test or live.
   string planton_cloud_cli_environment = 1;
   //artifact-store to be used by the pipeline
-  planton.product.proto.v1.artifactstore.rpc.ArtifactStore artifact_store = 2;
+  planton.apis.proto.v1.develop.artifactstore.rpc.ArtifactStore artifact_store = 2;
   //container images(docker) to be used inside code pipeline templates
   CodePipelineTemplateContainerImages template_container_images = 3;
   //container image to be used in container image build jobs.
@@ -57,7 +57,7 @@ message CodePipelineDeployTemplateJobInput {
   //environment
   planton.apis.proto.v1.resourcemanager.environment.rpc.Environment environment = 2;
   //microservice-instance
-  planton.product.proto.v1.microservice.rpc.MicroserviceInstance microservice_instance = 3;
+  planton.apis.proto.v1.deploy.microservice.rpc.MicroserviceInstance microservice_instance = 3;
   //container image tag is not included in the value of this attribute.
   //git commit short sha is used as the tag for the image.
   string project_container_image = 4;

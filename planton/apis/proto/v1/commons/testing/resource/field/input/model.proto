@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.commons.proto.testing.resource.field.input;
+package planton.apis.proto.v1.commons.testing.resource.field.input;
 
 import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
 import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.commons.proto.testing.resource.enums;
+package planton.apis.proto.v1.commons.testing.resource.enums;
 
 import "planton/apis/proto/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
 

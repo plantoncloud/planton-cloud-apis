@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.company.proto.v1.kubernetes.proxy.certificate;
+package planton.apis.proto.v1.integration.kubernetes.proxy.certificate;
 
 message GetCertificateByNamespaceByNameQueryInput {
   //base64 encoded kube-config

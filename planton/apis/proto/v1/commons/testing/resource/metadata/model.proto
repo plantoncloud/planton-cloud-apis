@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.commons.proto.testing.resource.metadata;
+package planton.apis.proto.v1.commons.testing.resource.metadata;
 
 import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "planton/apis/proto/v1/commons/resource/model.proto";

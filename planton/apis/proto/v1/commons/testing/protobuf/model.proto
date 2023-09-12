@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.commons.proto.testing.protobuf;
+package planton.apis.proto.v1.commons.testing.protobuf;
 
 message TestMessage {
   string rootLevelString = 1;

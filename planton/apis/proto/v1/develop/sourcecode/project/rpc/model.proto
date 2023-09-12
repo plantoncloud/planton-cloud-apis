@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.sourcecode.project.rpc;
+package planton.apis.proto.v1.develop.sourcecode.project.rpc;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
@@ -203,17 +203,17 @@ message CodeProjectProfile {
   //this field is only used in the local context and is ignored for operations performed on the server.
   bool is_deployable = 2;
   //code project language
-  planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectLang lang = 3;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectLang lang = 3;
   //code project category library vs cli vs microservice
-  planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCat cat = 4;
+  planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectCat cat = 4;
   //code project sub category
   oneof sub_cat {
-    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatLibSubCat lib_sub_cat = 5;
-    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+    planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
   }
   //code project sub-sub category
   oneof sub_sub_cat {
-    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
-    planton.product.proto.v1.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+    planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    planton.apis.proto.v1.develop.sourcecode.project.rpc.enums.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
   }
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.artifactstore.rpc;
+package planton.apis.proto.v1.develop.artifactstore.rpc;
 
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
 import "planton/apis/proto/v1/resourcemanager/company/rpc/model.proto";
@@ -62,7 +62,7 @@ service ArtifactStoreQueryController {
   //look up artifact-stores by product id.
   rpc findByProductId(planton.apis.proto.v1.resourcemanager.product.rpc.ProductId) returns (ArtifactStores);
   //look up artifact-stores by code project url
-  rpc findByCodeProjectUrl(planton.product.proto.v1.sourcecode.project.rpc.CodeProjectUrl) returns (ArtifactStores);
+  rpc findByCodeProjectUrl(planton.apis.proto.v1.develop.sourcecode.project.rpc.CodeProjectUrl) returns (ArtifactStores);
 
   //list docker images from the artifact-store provided in the input
   //(proxy google artifact-registry server)

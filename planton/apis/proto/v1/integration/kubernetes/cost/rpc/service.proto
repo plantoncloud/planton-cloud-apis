@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.company.proto.v1.kubernetes.cost.rpc;
+package planton.apis.proto.v1.integration.kubernetes.cost.rpc;
 
 import "planton/apis/proto/v1/integration/kubernetes/cost/rpc/model.proto";
 

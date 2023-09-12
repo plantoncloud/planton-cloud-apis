@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.product.proto.v1.microservice.rpc;
+package planton.apis.proto.v1.deploy.microservice.rpc;
 
 import "planton/apis/proto/v1/commons/audit/model.proto";
 import "planton/apis/proto/v1/commons/kubernetes/model.proto";
@@ -72,7 +72,7 @@ message MicroserviceInstanceSpec {
 message MicroserviceInstanceSpecKubernetes {
   //(required) type of the pod controller to use for the microservice deployment.
   //default is set to "deployment".
-  planton.company.proto.v1.kubernetes.enums.PodControllerType pod_controller_type = 1;
+  planton.apis.proto.v1.integration.kubernetes.enums.PodControllerType pod_controller_type = 1;
 
   //number of replicas
   int32 min_replicas = 2;
