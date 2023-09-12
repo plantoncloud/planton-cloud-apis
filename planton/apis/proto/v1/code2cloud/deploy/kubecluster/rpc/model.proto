@@ -1,0 +1,533 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/cloud/gcp/resource/folder/rpc/model.proto";
+import "planton/apis/proto/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/kubecluster/rpc/enums/enums.proto";
+import "planton/apis/proto/v1/integration/kubernetes/resource/pod.proto";
+
+// kube-cluster
+message KubeCluster {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = kube_cluster;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = company;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "k8c";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = true;
+  //https://regex101.com/r/3J2jFI/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_regex) = "^(?=([a-z0-9-]*-){2})(k8c-)([a-z0-9-]*[a-z0-9])?$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_min_length) = 6;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_max_length) = 25;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_constraints_description) = "Id should start with 'k8c-', succeeded by the company id and a hyphen, concluding with a user-selected suffix of at least 1 character. Total length must be under 25 characters.";
+
+  // resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  // resource spec
+  KubeClusterSpec spec = 4;
+
+  // resource status
+  KubeClusterStatus status = 5;
+}
+
+// KubeClusterSpec is a message type that defines the specifications for a kube-cluster on Planton Cloud.
+message KubeClusterSpec {
+  // company_id is a required, immutable field that uniquely identifies the company associated with the kube-cluster.
+  string company_id = 1  [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // endpoint_domains is a list of valid DNS domain names for the endpoints hosted in the environment.
+  // Each endpoint domain name must already exist and be associated with the company on Planton Cloud.
+  repeated string endpoint_domains = 2;
+
+  // kube-cluster kubernetes addons spec
+  KubeClusterAddonsSpec kubernetes_addons = 3;
+
+  // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums.KubernetesProvider kubernetes_provider = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // gcp is a field for GCP-specific kube-cluster specifications.
+  // This field is only set if the kubernetes-provider is GCP GKE.
+  KubeClusterGcpSpec gcp = 5;
+
+  // aws is a field for AWS-specific kube-cluster specifications.
+  // This field is only set if the kubernetes-provider is AWS EKS.
+  KubeClusterAwsSpec aws = 6;
+}
+
+//kube-cluster kubernetes addons
+message KubeClusterAddonsSpec {
+  //flag to control postgres-operator installation
+  bool is_install_postgres_operator = 1;
+  //flag to control kafka-operator installation
+  bool is_install_kafka_operator = 2;
+  //flag to control solr-operator installation
+  bool is_install_solr_operator = 3;
+  //flag to control kubecost
+  bool is_install_kubecost = 4;
+  //planton-cloud-kube-agent addon spec
+  KubeClusterAddonsPlantonCloudKubeAgentSpec planton_cloud_kube_agent = 5;
+}
+
+//planton-cloud-kube-agent addon spec
+message KubeClusterAddonsPlantonCloudKubeAgentSpec {
+  // flag to control planton-cloud-kube-agent installation
+  bool is_install = 1;
+  // machine_account_email is the email of the machine-account to be used by planton-cloud-kube-agent.
+  // this is only created if the is_install is true.
+  string machine_account_email = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+// kube-cluster status
+message KubeClusterStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  // status of the kube-cluster in gcp
+  KubeClusterGcpStatus gcp = 1;
+
+  // status of the kube-cluster in aws
+  KubeClusterAwsStatus aws = 2;
+}
+
+//specification for kube-cluster in google cloud
+message KubeClusterGcpSpec {
+  //id of the gcp cloud account to be used for creating kube-cluster resources.
+  string gcp_cloud_account_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // gcp billing account id required to link kube-cluster projects.
+  // planton cloud creates one/two gcp projects per kube-cluster.
+  // these projects will be linked to this billing account.
+  string billing_account_id = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[A-Za-z0-9]+([-A-Za-z0-9]*[A-Za-z0-9])?$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "only alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-). cannot start or end with a hyphen."
+  ];
+
+  // valid gcp region in which to create the kube-cluster.
+  // warning: kube-cluster will recreated if this value is updated.
+  // https://cloud.google.com/compute/docs/regions-zones
+  string region = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // valid gcp zone in which to create the kube-cluster.
+  // https://cloud.google.com/compute/docs/regions-zones
+  string zone = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // flag to indicate that the cluster should be created in a shared vpc network.
+  // warning: kube-cluster will be recreated if this is updated.
+  // note: vpc network is created in a separate project when this is enabled.
+  bool is_create_shared_vpc = 5;
+
+  // flag to toggle workload logs for kube-cluster environment.
+  // when workload logs is enabled, the logs from kubernetes pods would be sent to google cloud logging.
+  // warning: enabling log forwarding increases cloud bills depending on the log volume.
+  bool is_workload_logs_enabled = 6;
+
+  // cluster autoscaling configuration
+  KubeClusterGcpClusterAutoscalingConfigSpec cluster_autoscaling_config = 7;
+
+  // kube-cluster node pools
+  repeated KubeClusterNodePoolGcp node_pools = 8;
+}
+
+//cluster autoscaling configuration for gke clusters.
+// https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
+message KubeClusterGcpClusterAutoscalingConfigSpec {
+  // Flag to control autoscaling of kubernetes worker nodes.
+  // When set to true, the cluster will automatically scale up or down based on the resource requirements.
+  bool is_enabled = 1;
+
+  // The minimum number of CPU cores that the cluster can down up to when autoscaling is enabled.
+  // The number of CPU cores is a sum across all nodes in the cluster.
+  int64 cpu_min_cores = 2;
+
+  // The maximum number of CPU cores that the cluster can scale up to when autoscaling is enabled.
+  // The number of CPU cores is a sum across all nodes in the cluster.
+  int64 cpu_max_cores = 3;
+
+  // The minimum amount of memory in gigabytes (GB) that the cluster can scale down to when autoscaling is enabled.
+  // The memory size is a sum across all nodes in the cluster.
+  int64 memory_min_gb = 4;
+
+  // The maximum amount of memory in gigabytes (GB) that the cluster can scale up to when autoscaling is enabled.
+  // The memory size is a sum across all nodes in the cluster.
+  int64 memory_max_gb = 5;
+}
+
+// status of the kube-cluster in gcp
+message KubeClusterGcpStatus {
+  // a folder is created with the cloud account folder as parent for the kube-cluster.
+  // resources created for kube-cluster are linked to this folder as the parent.
+  // children for a cloud account are the gcp projects in the kube-cluster.
+  planton.apis.proto.v1.commons.cloud.gcp.resource.folder.rpc.GcpFolder folder = 1;
+
+  // projects created on google cloud for this kube-cluster
+  // this value is updated upon successful kube-cluster creation stack-job.
+  // gcp project info for the kube-cluster project
+  planton.apis.proto.v1.commons.cloud.gcp.resource.project.rpc.GcpProject container_cluster_project = 2;
+
+  // gcp project info for vpc-network project
+  // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
+  // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
+  // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
+  planton.apis.proto.v1.commons.cloud.gcp.resource.project.rpc.GcpProject vpc_network_project = 3;
+
+  // kube-cluster endpoint.
+  string cluster_endpoint = 4;
+
+  // kube-cluster certificate-authority-data.
+  // this value is updated upon successful kube-cluster creation stack-job.
+  string cluster_ca_data = 5;
+
+  // ip address of the NAT for egress traffic.
+  // this is the ip addresses attached to all network requests originating from the kube-cluster.
+  // if server receiving requires the exact ip of the microservice to add it the firewall rules, this is the one.
+  // this value is updated upon successful kube-cluster creation stack-job.
+  string external_nat_ip = 6;
+
+  // internal ingress ip.
+  string internal_ingress_ip = 7;
+
+  // internal ingress ip.
+  string external_ingress_ip = 8;
+
+  // google service account email created for cert-manager addon workload identity.
+  // this is the service account that is used by cert-manager component to update dns records
+  // to issue ssl certificates from letsencrypt provided for product endpoints.
+  // this service account is configured with permissions required to manage dns entries for issuing certs.
+  string cert_manager_gsa_email = 9;
+
+  // google service account email created for external-secrets addon workload identity.
+  // this is the service account that is used by external-secrets component to fetch secrets from the
+  // secrets-manager on the cloud provider and make them available to the microservices.
+  string external_secrets_gsa_email = 10;
+
+  // google service account email created for external-secrets addon workload identity.
+  // this key for this service account is used for deploying workloads like microservices,
+  // postgres clusters, kafka clusters onto the kube-cluster kube-cluster/s.
+  string workload_deployer_gsa_email = 11;
+
+  // base64 encoded workload deployer google service account key.
+  // this service account key is used as a credential for deploying workloads like microservices,
+  // postgres clusters, kafka clusters onto the kube-cluster kube-cluster/s.
+  string workload_deployer_gsa_key_base64 = 12;
+}
+
+// gcp kube-cluster node pool
+message KubeClusterNodePoolGcp  {
+  // The audit information for system tracking
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+  // Name of the node pool. The name is added as a label to the node pool that can be used to schedule workloads.
+  string name = 1[
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.string_regex) = "^[a-zA-Z0-9][a-zA-Z0-9-]{0,23}[a-zA-Z0-9]$",
+    (planton.apis.proto.v1.commons.resource.field.options.field_constraints_description) = "NodePool name should be a-z, A-Z, 0-9, and internal hyphens; mustn't start/end with hyphen; 1-25 characters."
+  ];
+
+  // Unique ID of the node pool. Convention for the node-pool-id is 'np-<kube-cluster-id>-<node-pool-name>'.
+  // Planton Cloud ignores the input value and assigns the ID as per the convention.
+  string id = 2[
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // Type of machine for the node pool. For example, 'n2-custom-8-16234'.
+  string machine_type = 3[
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // Minimum number of nodes in the node pool. Defaults to 1.
+  int32 min_node_count = 4[
+    (planton.apis.proto.v1.commons.resource.field.options.int32_default) = 1
+  ];
+
+  // Maximum number of nodes in the node pool. Defaults to 1.
+  int32 max_node_count = 5[
+    (planton.apis.proto.v1.commons.resource.field.options.int32_default) = 1
+  ];
+
+  // Flag to enable spot instances on the node pool. Defaults to false.
+  bool is_spot_enabled = 6;
+}
+
+//specification for kube-cluster in aws
+message KubeClusterAwsSpec {
+  //id of the aws cloud account to be used for creating kube-cluster resources.
+  string aws_cloud_account_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true,
+    (planton.apis.proto.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // valid aws region in which to create the kube-cluster.
+  // warning: kube-cluster will recreated if this value is updated.
+  // https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
+  string region = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // (optional) id of the vpc to be used for creating kube-cluster.
+  // if an id is not provided, a new vpc will be created.
+  // warning: kube-cluster will be recreated if this is updated.
+  string vpc_id = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = false
+  ];
+
+  // aws eks worker node-groups management mode
+  planton.apis.proto.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums.AwsEksWorkersManagementMode workers_management_mode = 4 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+}
+
+// status of the kube-cluster in aws
+message KubeClusterAwsStatus {
+  // id of the vpc in which the kube-cluster is created
+  string cluster_vpc_id = 1;
+
+  // kube-cluster endpoint.
+  string cluster_endpoint = 2;
+
+  // kube-cluster certificate-authority-data.
+  // this value is updated upon successful kube-cluster creation stack-job.
+  string cluster_ca_data = 3;
+}
+
+// wrapper for kube-cluster id
+message KubeClusterId {
+  string value = 1;
+}
+
+//list of kube-clusters
+message KubeClusters {
+  repeated KubeCluster entries = 1;
+}
+
+//response for paginated query to list kube-clusters
+message KubeClusterList {
+  int32 total_pages = 1;
+  repeated KubeCluster entries = 2;
+}
+
+// list of kube-cluster ids
+message KubeClusterIds {
+  repeated string entries = 1;
+}
+
+// input for paginated rpc requests with kube-cluster-id filter
+message ListByKubeClusterIdInput {
+  //page info
+  planton.apis.proto.v1.commons.rpc.pagination.PageInfo page_info = 1;
+  //kube-cluster id
+  string kube_cluster_id = 2;
+}
+
+// google cloud region
+message GcpRegion {
+  //identifier for the region ex: us-central1
+  string identifier = 1;
+  // description for the region ex: US Ohio
+  string description = 2;
+}
+
+// list of gcp regions
+message GcpRegions {
+  repeated GcpRegion entries = 1;
+}
+
+//wrapper for google region identifier
+message GcpRegionIdentifier {
+  string value = 1;
+}
+
+// google cloud zone
+message GcpZone {
+  // identifier to which the zone belongs to
+  string region = 1;
+  //identifier for the zone ex: us-central1-1
+  string identifier = 2;
+  // description for the region ex: US Ohio AZ 1
+  string description = 3;
+}
+
+// wrapper for gcp zones
+message GcpZones {
+  repeated GcpZone entries = 1;
+}
+
+message KubeClusterGcpNodePoolCommandInput {
+  string kube_cluster_id = 1;
+  KubeClusterNodePoolGcp gcp_node_pool = 2;
+}
+
+// AddOrUpdateKubeClusterNodePoolGcpCommandInput is a protobuf message designed to add or update or restore a GCP Node Pool in a specific Hosting Cluster.
+message AddOrUpdateKubeClusterNodePoolGcpCommandInput {
+
+  // kube_cluster_id uniquely identifies the Hosting Cluster to which the operation applies.
+  string kube_cluster_id = 1;
+
+  // gcp_node_pool encapsulates the details about the Node Pool to be added or updated in the specified Hosting Cluster.
+  KubeClusterNodePoolGcp gcp_node_pool = 2;
+}
+
+// DeleteOrRestoreKubeClusterNodePoolGcpCommandInput is a protobuf message designed for operations that either
+// soft delete (i.e., set an 'inactive' flag) or restore a GCP Node Pool in a specific Hosting Cluster.
+// Soft deleting is typically used as a safer alternative to permanent deletion, providing an option for recovery.
+message DeleteKubeClusterNodePoolGcpCommandInput {
+  // kube_cluster_id is the unique identifier of the Hosting Cluster that contains the Node Pool
+  // which is targeted for deletion or restoration. This ID helps the server locate the specific Hosting Cluster.
+  string kube_cluster_id = 1;
+
+  // node_pool_id is the unique identifier of the Node Pool within the specified Hosting Cluster
+  // that needs to be deleted or restored. The server uses this ID to pinpoint the Node Pool for the operation.
+  string node_pool_id = 2;
+}
+
+// GetByKubeClusterNodePoolGcpIdInput is a protobuf message used to retrieve a specific GCP Node Pool within a particular Hosting Cluster.
+// This message requires a Hosting Cluster identifier and a Node Pool identifier to execute the retrievalue operation successfully.
+message GetByKubeClusterNodePoolGcpIdInput {
+
+  // kube_cluster_id is a unique identifier of the Hosting Cluster. This ID is used by the server to identify
+  // and locate the specific Hosting Cluster that contains the Node Pool of interest.
+  string kube_cluster_id = 1;
+
+  // node_pool_id is the unique identifier of the GCP Node Pool within the specified Hosting Cluster.
+  // The server uses this ID to locate the specific Node Pool to be retrieved.
+  string node_pool_id = 2;
+}
+
+// kubernetes-cluster components
+message KubeClusterComponents {
+  // kube-system
+  KubeSystem kube_system = 1;
+  // istio-system and istio-ingress
+  // https://github.com/istio/istio
+  Istio istio = 2;
+  // cert-manager https://github.com/cert-manager/cert-manager
+  CertManager cert_manager = 3;
+  // external-secrets https://github.com/external-secrets/external-secrets
+  ExternalSecrets external_secrets = 4;
+  // kafka-operator https://github.com/strimzi/strimzi-kafka-operator
+  KafkaOperator kafka_operator = 5;
+  // postgres-operator https://github.com/zalando/postgres-operator
+  PostgresOperator postgres_operator = 6;
+  // prometheus https://github.com/prometheus/prometheus
+  Prometheus prometheus = 7;
+  // open-cost https://github.com/opencost/opencost
+  OpenCost open_cost = 8;
+  // planton-cloud-kube-agent https://github.com/plantoncloud-inc/planton-cloud-kube-agent
+  PlantonCloudKubeAgent planton_cloud_kube_agent = 9;
+  // kube-cost https://www.kubecost.com/
+  KubeCost kube_cost = 10;
+  // solr-operator https://github.com/apache/solr-operator
+  SolrOperator solr_operator = 11;
+}
+
+// kube-system components
+message KubeSystem {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// istio https://github.com/istio/istio
+message Istio {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// cert-manager https://github.com/cert-manager/cert-manager
+message CertManager {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// external-secrets https://github.com/external-secrets/external-secrets
+message ExternalSecrets {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// kafka-operator https://github.com/strimzi/strimzi-kafka-operator
+message KafkaOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// postgres-operator https://github.com/zalando/postgres-operator
+message PostgresOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// prometheus https://github.com/prometheus/prometheus
+message Prometheus {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// open-cost https://github.com/opencost/opencost
+message OpenCost {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// planton-cloud-kube-agent https://github.com/plantoncloud-inc/planton-cloud-kube-agent
+message PlantonCloudKubeAgent {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// kube-cost https://www.kubecost.com/
+message KubeCost {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// solr-operator https://github.com/apache/solr-operator
+message SolrOperator {
+  repeated planton.apis.proto.v1.integration.kubernetes.resource.Pod pods = 1;
+}
+
+// input for rpc requests that require kubernetes-cluster id, namespace and pod id
+message ByKubeClusterByNamespaceByPodInput {
+  // id of the kubernetes-cluster
+  string kubernetes_cluster_id = 1;
+  // name of the kubernetes namespace
+  string namespace = 2;
+  // id of the kubernetes pod
+  string pod_id = 3;
+}
+
+// input for rpc requests that require kubernetes-cluster id, namespace
+message ByKubeClusterByNamespaceInput {
+  // id of the kubernetes-cluster
+  string kubernetes_cluster_id = 1;
+  // name of the kubernetes namespace
+  string namespace = 2;
+}

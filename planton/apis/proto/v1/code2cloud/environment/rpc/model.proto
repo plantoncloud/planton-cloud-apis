@@ -9,7 +9,7 @@ import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
 import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "planton/apis/proto/v1/commons/resource/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
-import "planton/apis/proto/v1/code2cloud/deploy/cloudinfra/kubecluster/rpc/enums/enums.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/kubecluster/rpc/enums/enums.proto";
 
 //environment
 message Environment {

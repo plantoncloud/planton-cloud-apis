@@ -4,7 +4,7 @@ package planton.apis.proto.v1.code2cloud.environment.rpc;
 
 import "planton/apis/proto/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
-import "planton/apis/proto/v1/code2cloud/deploy/cloudinfra/kubecluster/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/kubecluster/rpc/model.proto";
 import "planton/apis/proto/v1/integration/kubernetes/resource/namespace.proto";
 import "planton/apis/proto/v1/integration/kubernetes/resource/pod.proto";
 import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
