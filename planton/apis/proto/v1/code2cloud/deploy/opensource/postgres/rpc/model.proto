@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.opensource.postgres.rpc;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/kubernetes/model.proto";
+import "planton/apis/proto/v1/commons/resource/field/options/resource_field_options.proto";
+import "planton/apis/proto/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/environment/rpc/model.proto";
+import "planton/apis/proto/v1/commons/resource/owner/model.proto";
+
+//postgres-cluster
+message PostgresCluster {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = postgres_cluster;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = true;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = environment;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.id_prefix) = "pgc";
+  //id format "pgc-<environment-id>-<postgres-cluster-name>"
+  option (planton.apis.proto.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/QbMSjf/1
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_max_length) = 10;
+  option (planton.apis.proto.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
+
+  //resource api-version
+  string api_version = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  PostgresClusterSpec spec = 4;
+
+  //status
+  PostgresClusterStatus status = 5;
+}
+
+//postgres-cluster spec
+message PostgresClusterSpec {
+  //resource parent
+  planton.apis.proto.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  // kubernetes spec
+  PostgresClusterSpecKubernetesSpec kubernetes = 2;
+}
+
+//postgres-cluster status
+message PostgresClusterStatus {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.rpc.StackJob stack_job = 97;
+
+  //postgres-cluster kubernetes status
+  PostgresClusterStatusKubernetesStatus kubernetes = 1;
+}
+
+//postgres-cluster kubernetes spec
+message PostgresClusterSpecKubernetesSpec {
+  // postgres-container spec
+  PostgresClusterSpecKubernetesSpecPostgresContainerSpec postgres_container = 2;
+
+  //postgres-cluster ingress
+  PostgresClusterSpecKubernetesSpecIngressSpec ingress = 3;
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
+  //number of replicas of postgres pods
+  //recommended default is 1
+  int32 replicas = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //postgres container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  planton.apis.proto.v1.commons.kubernetes.ContainerResources resources = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //storage to allocate for each postgres instance in gb. ex: 1Gi
+  //default is set if the client does not provide a value.
+  string disk_size = 3 [
+    (planton.apis.proto.v1.commons.resource.field.options.string_default) = "1Gi"
+  ];
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecIngressSpec {
+  //standard-endpoint domain to be used for creating internal and external endpoints for postgres-cluster.
+  //only tls enabled standard-endpoints are eligible for creating postgres endpoints.
+  string standard_endpoint_id = 1 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //endpoint-domain-name used for creating postgres-cluster endpoints.
+  //value is computed from the configured standard-endpoint.
+  string endpoint_domain_name = 2 [
+    (planton.apis.proto.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//postgres-cluster kubernetes status
+message PostgresClusterStatusKubernetesStatus {
+  //name of the kubernetes namespace in which the postgres-cluster has been created.
+  string namespace = 1;
+
+  //name of the kubernetes service created for postgres-cluster.
+  string service = 2;
+
+  //command to setup port-forwarding to open postgres-cluster from developers laptop.
+  //this might come handy when postgres-cluster ingress is disabled for security reasons.
+  //this is rendered by combining kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
+  //running the command from this attribute makes it possible to access postgres-cluster using localhost:5432
+  string port_forward_command = 3;
+
+  //kubernetes endpoint for clients running in the same kubernetes cluster.
+  //ex: main-microservice-instance.namespace.svc.instance.local:8080
+  string kube_endpoint = 4;
+
+  //external postgres-cluster hostname. port is always 5432.
+  string external_cluster_hostname = 5;
+
+  //internal postgres-cluster hostname. port is always 5432.
+  string internal_cluster_hostname = 6;
+}
+
+//wrapper for id field of postgres-cluster
+message PostgresClusterId {
+  string value = 1;
+}
+
+//list of postgres-clusters
+message PostgresClusters {
+  repeated PostgresCluster entries = 1;
+}
+
+//response for paginated query to list postgres-clusters
+message PostgresClusterList {
+  int32 total_pages = 1;
+  repeated PostgresCluster entries = 2;
+}
+
+//wrapper for postgres-cluster password
+message PostgresClusterPassword {
+  string value = 1;
+}

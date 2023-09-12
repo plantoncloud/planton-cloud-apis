@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.code2cloud.environment.stack.gcpgke;
+
+import "planton/apis/proto/v1/commons/grpc/stream/model.proto";
+import "planton/apis/proto/v1/code2cloud/environment/stack/gcpgke/model.proto";
+
+//build environment secrets stack controller
+service EnvironmentGcpGkeStackController {
+  rpc execute(EnvironmentGcpGkeStackInput) returns (stream EnvironmentGcpGkeStackResponse);
+  rpc getStackOutputs(EnvironmentGcpGkeStackInput) returns (EnvironmentGcpGkeStackOutputs);
+}

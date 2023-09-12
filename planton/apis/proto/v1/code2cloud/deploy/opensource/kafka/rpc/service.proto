@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.opensource.kafka.rpc;
+
+import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/cloudinfra/kubecluster/rpc/model.proto";
+import "planton/apis/proto/v1/integration/kubernetes/resource/pod.proto";
+import "planton/apis/proto/v1/iam/authz/extensions/extensions.proto";
+import "planton/apis/proto/v1/code2cloud/environment/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/opensource/kafka/rpc/model.proto";
+import "planton/apis/proto/v1/resourcemanager/product/rpc/model.proto";
+
+//kafka-cluster command controller
+service KafkaClusterCommandController {
+  //create kafka-cluster
+  rpc create(KafkaCluster) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_create;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "spec.owner.environment_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka-cluster";
+  }
+  //update an existing kafka-cluster
+  rpc update(KafkaCluster) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka-cluster";
+  }
+  //delete an existing kafka-cluster
+  rpc delete(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_delete;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka-cluster";
+  }
+  //restore a deleted kafka-cluster
+  rpc restore(KafkaCluster) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_restore;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore kafka-cluster";
+  }
+  //restart a kafka-cluster running in a environment.
+  //kafka-cluster is restarted by deleting running "broker" pods which will be automatically recreated by kubernetes
+  //note: zookeeper pods are not deleted.
+  rpc restart(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restart kafka-cluster";
+  }
+  //pause a kafka-cluster running in a environment.
+  //kafka-cluster is paused by scaling down number of replicas of
+  //the kubernetes deployment/stateful sets to zero in the environment.
+  rpc pause(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause kafka-cluster";
+  }
+  //unpause a previously paused kafka-cluster running in a environment.
+  //unpause is done by scaling the number of pods back to the number of
+  //replicas configured for the kafka-cluster.
+  rpc unpause(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause kafka-cluster";
+  }
+}
+
+//kafka-cluster query controller
+service KafkaClusterQueryController {
+  //list all kafka-clusters on planton cloud for the requested page. This is intended for use on portal.
+  rpc list(planton.apis.proto.v1.commons.rpc.pagination.PageInfo) returns (KafkaClusterList);
+
+  //look up kafka-cluster using kafka-cluster id
+  rpc getById(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kafka-cluster";
+  }
+
+  //find kafka-clusters by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(planton.apis.proto.v1.resourcemanager.product.rpc.ProductId) returns (KafkaClusters);
+
+  //find kafka-clusters by environment
+  rpc findByEnvironmentId(planton.apis.proto.v1.code2cloud.environment.rpc.EnvironmentId) returns (KafkaClusters);
+
+  //find kafka-clusters by kube-cluster
+  rpc findByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (KafkaClusters);
+
+  //look up kafka-cluster sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(KafkaClusterId) returns (KafkaClusterPassword) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kafka-cluster password";
+  }
+
+  //lookup pods of a kafka-cluster deployed to a environment
+  rpc findPods(KafkaClusterId) returns (planton.apis.proto.v1.integration.kubernetes.resource.Pods) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kafka-cluster pods";
+  }
+}
+
+//kafka-topic command controller
+service KafkaTopicCommandController {
+  //add a single kafka topic to existing list of kafka topics of a kafka-cluster
+  rpc add(AddOrUpdateKafkaTopicCommandInput) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
+  }
+  //add multiple kafka topics to existing list of kafka topics of a kafka-cluster
+  rpc addMultiple(AddKafkaTopicsCommandInput) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
+  }
+  //update a kafka topic.
+  rpc update(AddOrUpdateKafkaTopicCommandInput) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka topic";
+  }
+  //delete a kafka topic.
+  rpc delete(DeleteOrRestoreKafkaTopicCommandInput) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka topic";
+  }
+}
+
+//kafka-topic query controller
+service KafkaTopicQueryController {
+  //find kafka topics by kafka-cluster id
+  rpc findByKafkaClusterId(KafkaClusterId) returns (KafkaTopics) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kafka topics";
+  }
+
+  //look up kafka topic using kafka topic id
+  rpc getById(KafkaTopicId) returns (KafkaTopic) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_get;
+    //note: field-path can not be added as the kafka-cluster-id is not present in the input.
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kafka topics";
+  }
+}
+
+//kafka-cluster stack controller
+service KafkaClusterStackController {
+  //preview kafka-cluster stack
+  rpc preview(KafkaCluster) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview kafka-cluster stack";
+  }
+  //apply kafka-cluster stack
+  rpc apply(KafkaClusterId) returns (KafkaCluster) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply kafka-cluster stack";
+  }
+}
