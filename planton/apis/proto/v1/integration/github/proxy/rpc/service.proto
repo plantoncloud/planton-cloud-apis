@@ -3,8 +3,8 @@ syntax = "proto3";
 package planton.apis.proto.v1.integration.github.proxy.rpc;
 
 import "planton/apis/proto/v1/integration/github/proxy/rpc/model.proto";
-import "planton/apis/proto/v1/develop/sourcecode/server/rpc/model.proto";
-import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/develop/sourcecode/server/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 
 //github proxy command controller
 service GithubProxyCommandController {

@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package planton.apis.proto.v1.deploy.cloudinfra.dnszone.state;
+
+import "planton/apis/proto/v1/commons/audit/model.proto";
+import "planton/apis/proto/v1/commons/resource/model.proto";
+import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
+import "planton/apis/proto/v1/stack/state/model.proto";
+import "planton/apis/proto/v1/code2cloud/deploy/cloudinfra/dnszone/state/enums/enums.proto";
+
+// dns-zone state
+message DnsZoneState {
+  option (planton.apis.proto.v1.commons.resource.options.resource_type) = dns_zone;
+  option (planton.apis.proto.v1.commons.resource.options.is_runnable) = false;
+  option (planton.apis.proto.v1.commons.resource.options.owner).type = company;
+  option (planton.apis.proto.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  // dns-zone event type
+  planton.apis.proto.v1.deploy.cloudinfra.dnszone.state.enums.DnsZoneEventType event_type = 99;
+
+  // api version for the resource
+  string api_version = 1;
+
+  // kind for the resource
+  string kind = 2;
+
+  // metadata for the resource
+  // Name is a valid, unique DNS domain name within the Platon Cloud.
+  // Id value is automatically computed in the format 'dns-<company_id>-<normalized-domain-name>',
+  // and its uniqueness is guaranteed by the backend.
+  planton.apis.proto.v1.commons.resource.Metadata metadata = 3;
+
+  //dns-zone spec
+  DnsZoneSpecState spec = 4;
+
+  //dns-zone status
+  DnsZoneStatusState status = 5;
+}
+
+// Specification for the DNS Domain
+message DnsZoneSpecState {
+  // The ID of the company that owns the DNS Zone. This is required and immutable.
+  string company_id = 1;
+
+  // The DNS records that are added to the Zone.
+  repeated DnsRecordState records = 2;
+
+  //provider for dns-zone
+  string zone_provider = 3;
+
+  // specification for zone to be created in google cloud dns.
+  // this attribute is only populated when zone provider is google cloud dns.
+  DnsZoneGcpSpecState gcp = 4;
+
+  // specification for zone to be created in aws route53.
+  // this attribute is only populated when zone provider is aws route53.
+  DnsZoneAwsSpecState aws = 5;
+}
+
+// Status for the DNS Domain
+message DnsZoneStatusState {
+  // resource lifecycle
+  planton.apis.proto.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  planton.apis.proto.v1.stack.state.StackJobState stack_job = 97;
+
+  //status for the zone created in google cloud dns.
+  //this attribute is populated only when the zone provider is google cloud dns
+  DnsZoneGcpStatusState gcp = 1;
+
+  //status for the zone created in aws route53.
+  //this attribute is populated only when the zone provider is aws route53
+  DnsZoneAwsStatusState aws = 2;
+}
+
+// specification for zone to be created in google cloud dns service
+message DnsZoneGcpSpecState {
+  // The ID of the GCP Cloud Account where the Managed Zone should be created.
+  // The Managed Zone is created in the core-infra project of the provided Cloud Account,
+  // necessary for delegating domain control to Platon Cloud.
+  string gcp_cloud_account_id = 1;
+
+  // The ID of the GCP Project where the Managed Zone is created.
+  string project_id = 2;
+
+  // An optional list of GCP service accounts to be granted permissions to manage DNS records in the Managed Zone.
+  // These accounts are primarily created as workload identities like cert-manager,
+  // and are added when new environments are created or updated.
+  repeated string iam_service_accounts = 3;
+}
+
+// status for zone created in google cloud dns service
+message DnsZoneGcpStatusState {
+  // The list of nameservers for the Managed Zone created for the DNS Domain.
+  repeated string nameservers = 1;
+}
+
+// specification for zone to be created in aws route53
+message DnsZoneAwsSpecState {
+  // The ID of the AWS Cloud Account where the Managed Zone should be created.
+  string aws_cloud_account_id = 1;
+}
+
+// status for zone created in aws route53
+message DnsZoneAwsStatusState {
+  // The list of nameservers for the Managed Zone created for the DNS Domain.
+  repeated string nameservers = 1;
+}
+
+// dns record state
+message DnsRecordState {
+  // The audit information for system tracking
+  planton.apis.proto.v1.commons.audit.SysAudit sys_audit = 99;
+  // dns-zone record type.
+  string record_type = 1;
+
+  // name of the dns-zone ex: example.com or dev.example.com.
+  // this value should always end with a dot.
+  string name = 2;
+
+  // values for the dns-zone record.
+  // if the dns_zone_record_type is cname then each value in the list should end with a dot.
+  repeated string values = 3;
+
+  // ttl for the domain record in seconds.
+  int32 ttl_seconds = 4;
+}

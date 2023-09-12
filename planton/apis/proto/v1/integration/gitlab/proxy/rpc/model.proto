@@ -4,7 +4,7 @@ package planton.apis.proto.v1.integration.gitlab.proxy.rpc;
 
 import "planton/apis/proto/v1/integration/gitlab/proxy/rpc/enums/enums.proto";
 import "planton/apis/proto/v1/integration/github/proxy/rpc/model.proto";
-import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
+import "planton/apis/proto/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 
 //gitlab client info
 message GitlabClientInfo {
