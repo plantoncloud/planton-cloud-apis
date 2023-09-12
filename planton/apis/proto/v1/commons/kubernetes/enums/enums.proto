@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.integration.kubernetes.enums;
+package planton.apis.proto.v1.commons.kubernetes.enums;
 
 enum PodControllerType {
   POD_CONTROLLER_TYPE_UNSPECIFIED = 0;

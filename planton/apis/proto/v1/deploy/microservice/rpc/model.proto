@@ -10,7 +10,7 @@ import "planton/apis/proto/v1/commons/resource/model.proto";
 import "planton/apis/proto/v1/commons/resource/options/resource_options.proto";
 import "planton/apis/proto/v1/commons/rpc/pagination/model.proto";
 import "planton/apis/proto/v1/stack/rpc/model.proto";
-import "planton/apis/proto/v1/integration/kubernetes/enums/enums.proto";
+import "planton/apis/proto/v1/commons/kubernetes/enums/enums.proto";
 import "planton/apis/proto/v1/commons/resource/owner/model.proto";
 
 //microservice-instance
@@ -72,7 +72,7 @@ message MicroserviceInstanceSpec {
 message MicroserviceInstanceSpecKubernetes {
   //(required) type of the pod controller to use for the microservice deployment.
   //default is set to "deployment".
-  planton.apis.proto.v1.integration.kubernetes.enums.PodControllerType pod_controller_type = 1;
+  planton.apis.proto.v1.commons.kubernetes.enums.PodControllerType pod_controller_type = 1;
 
   //number of replicas
   int32 min_replicas = 2;

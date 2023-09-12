@@ -65,6 +65,21 @@ service KubeClusterCommandController {
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause kube-cluster";
   }
+
+  // delete a namespace in kube-cluster kube-cluster
+  rpc deleteNamespace(ByKubeClusterByNamespaceInput) returns (planton.apis.proto.v1.integration.kubernetes.resource.WorkloadNamespace) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kube_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete namespace in kube-cluster";
+  }
+  // delete a pod in kube-cluster kube-cluster
+  rpc deletePod(ByKubeClusterByNamespaceByPodInput) returns (planton.apis.proto.v1.integration.kubernetes.resource.Pod) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kube_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete pod in kube-cluster";
+  }
 }
 
 // kube-cluster query controller
@@ -91,7 +106,56 @@ service KubeClusterQueryController {
   // the response should only include kube-clusters that a company is authorised to create environment.
   // the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
   rpc findEnvironmentCreateKubeClusters(planton.apis.proto.v1.resourcemanager.company.rpc.CompanyId) returns (KubeClusters);
+
+  // lookup components in a kube-cluster of a kube-cluster
+  rpc getKubeClusterComponentsByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (KubeClusterComponents) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view kube-cluster kube-cluster components";
+  }
+
+  // find workload namespaces in a kube-cluster.
+  rpc findWorkloadNamespacesByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (planton.apis.proto.v1.integration.kubernetes.resource.WorkloadNamespaces) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get workload namespaces in kube-cluster";
+  }
+
+  // find workload pods part of all environments hosted in a kube-cluster.
+  rpc findWorkloadPodsByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (planton.apis.proto.v1.integration.kubernetes.resource.WorkloadPods) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get workload pods in kube-cluster";
+  }
+
+  // find workload pods part of all environments hosted in a kube-cluster.
+  rpc findSslCertificatesByKubeClusterId(planton.apis.proto.v1.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (planton.apis.proto.v1.integration.kubernetes.resource.Certificates) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get workload pods in kube-cluster";
+  }
+
+  // get a pod details
+  rpc getPod(ByKubeClusterByNamespaceByPodInput) returns (planton.apis.proto.v1.integration.kubernetes.resource.Pod) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kube_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get pod in kube-cluster";
+  }
+
+  // get a log stream for a pod running in a kube-cluster kube-cluster
+  rpc getPodLogStream(ByKubeClusterByNamespaceByPodInput) returns (stream planton.apis.proto.v1.commons.grpc.stream.OutputLine) {
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).field_path = "kube_cluster_id";
+    option (planton.apis.proto.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to stream pod logs";
+  }
 }
+
 
 // gcp kube-cluster container node pool command controller
 service KubeClusterNodePoolGcpCommandController {
