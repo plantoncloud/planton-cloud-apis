@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.sourcecode.server.proxy.gitlab.rpc;
+package planton.apis.proto.v1.integration.gitlab.proxy.rpc;
 
-import "planton/apis/proto/v1/develop/sourcecode/server/proxy/gitlab/rpc/enums/enums.proto";
-import "planton/apis/proto/v1/develop/sourcecode/server/proxy/github/rpc/model.proto";
+import "planton/apis/proto/v1/integration/gitlab/proxy/rpc/enums/enums.proto";
+import "planton/apis/proto/v1/integration/github/proxy/rpc/model.proto";
 import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
 
 //gitlab client info
@@ -11,7 +11,7 @@ message GitlabClientInfo {
   //gitlab host to send the request to ex: https://gitlab.com
   string gitlab_host = 1;
   //gitlab authorization type
-  planton.apis.proto.v1.develop.sourcecode.server.proxy.gitlab.rpc.enums.GitlabApiAuthorizationType authorization_type = 2;
+  planton.apis.proto.v1.integration.gitlab.proxy.rpc.enums.GitlabApiAuthorizationType authorization_type = 2;
   //api or oauth token to be used to query gitlab server
   string token = 3;
 }
@@ -49,7 +49,7 @@ message CreProjectCommandInput {
 message GitlabApplyTemplateCommandInput {
   //github client info required to lookup template project info.
   //code project templates is only supported for template projects hosted on github
-  planton.apis.proto.v1.develop.sourcecode.server.proxy.github.rpc.GithubClientInfo template_project_github_client_info = 1;
+  planton.apis.proto.v1.integration.github.proxy.rpc.GithubClientInfo template_project_github_client_info = 1;
   //gitlab client info required to clone and publish template changes to target project
   GitlabClientInfo target_project_gitlab_client_info = 2;
   //template code project

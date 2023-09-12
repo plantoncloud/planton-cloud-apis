@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package planton.apis.proto.v1.develop.sourcecode.server.proxy.gitlab.rpc;
+package planton.apis.proto.v1.integration.gitlab.proxy.rpc;
 
-import "planton/apis/proto/v1/develop/sourcecode/server/proxy/gitlab/rpc/model.proto";
+import "planton/apis/proto/v1/integration/gitlab/proxy/rpc/model.proto";
 import "planton/apis/proto/v1/develop/sourcecode/server/rpc/model.proto";
 import "planton/apis/proto/v1/develop/sourcecode/project/rpc/model.proto";
 
