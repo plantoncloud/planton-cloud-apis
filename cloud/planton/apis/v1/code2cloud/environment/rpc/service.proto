@@ -1,0 +1,276 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.environment.rpc;
+
+import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/rpc/model.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/rpc/model.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/rpc/model.proto";
+
+//environment command controller
+service EnvironmentCommandController {
+  //create environment
+  rpc create(Environment) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create environment";
+  }
+
+  //update an existing environment
+  rpc update(Environment) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update environment";
+  }
+
+  //delete an existing environment
+  //deleting a environment involves cleaning of all product components deployed for that environment.
+  //microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
+  rpc delete(EnvironmentId) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete environment";
+  }
+
+  //restore a deleted environment
+  //restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
+  rpc restore(Environment) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore environment";
+  }
+
+  //clone an existing environment for a product
+  //a environment is cloned by creating the following resources with same spec as the source environment.
+  //1. microservice deployment environments
+  //2. secrets
+  //3. postgres-clusters
+  //4. kafka-clusters & kafka topics
+  rpc clone(CloneEnvironmentCommandInput) returns (Environment) {
+    //the permission checked against the id of the source environment
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_create;
+    //note: this rpc also requires that the principal should have environment_get permission on source_environment_id
+    //the additional permissions should be handled by the authorizer.
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "new_environment.spec.product_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to clone environment";
+  }
+  //set the provided environment as the build engine environment.
+  //setting a environment as build engine env requires that existing build engine env is
+  //unset followed by setting a new env as build engine env.
+  //this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
+  //the current build engine env and then to set a new env as build engine env.
+  //the implementation takes care of both the actions.
+  rpc setBuildEngineEnvironment(EnvironmentId) returns(Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to set build engine environment";
+  }
+
+  //pause a environment.
+  //a environment is paused by scaling down all the workloads to zero replicas.
+  //the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
+  rpc pause(EnvironmentId) returns(Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause environment";
+  }
+
+  //unpause a environment.
+  //a environment is unpause by scaling back all the workloads.
+  //all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
+  //postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
+  rpc unpause(EnvironmentId) returns(Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause environment";
+  }
+
+  //delete a namespace that is part of the environment running in a kube-cluster container cluster
+  rpc deleteNamespace(ByEnvironmentByNamespaceInput) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadNamespace) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete namespace in environment";
+  }
+}
+
+//environment query controller
+service EnvironmentQueryController {
+  //list all environments on planton cloud for the requested page. This is intended for use on portal.
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.PageInfo) returns (EnvironmentList);
+
+  //look up environment using environment id
+  rpc getById(EnvironmentId) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment";
+  }
+
+  //find environments by product id
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.rpc.ProductId) returns (Environments);
+
+  //find environments by kube-cluster id
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (Environments);
+
+  //look up environment using environment id
+  rpc getByProductIdAndEnvironmentName(GetByProductIdAndEnvironmentNameQueryInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    //field-path can not be added as the target resource-id is not present in the request input
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment";
+  }
+
+  //look up the build engine environment for the product required for launching the microservice in build engine
+  rpc getBuildEngineEnvironmentByProductId(cloud.planton.apis.v1.resourcemanager.product.rpc.ProductId) returns (Environment);
+
+  //look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
+  rpc getSecretsGcpProjectByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.commons.cloud.gcp.resource.project.rpc.GcpProject);
+
+  //find workload pods part of environment
+  rpc findWorkloadPodsByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadPods) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get workload pods in environment";
+  }
+
+  //find workload namespaces in a environment.
+  rpc findWorkloadNamespacesByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadNamespaces) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get workload namespaces in environment";
+  }
+}
+
+//environment secrets command controller
+service EnvironmentSecretCommandController {
+  //add a env secret to a environment
+  rpc add(AddEnvironmentSecretCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create environment secrets in environment";
+  }
+  //add multiple product secrets to existing list of product secrets of a environment
+  rpc addMultiple(AddEnvironmentSecretsCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create environment secrets in environment";
+  }
+  //delete a environment secret.
+  rpc delete(DeleteOrRestoreEnvironmentSecretCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete environment secret";
+  }
+  //update value of a product secret
+  rpc updateValue(UpdateEnvironmentSecretValueCommandInput) returns (EnvironmentSecret) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update environment secret value";
+  }
+}
+
+//environment secrets query controller
+service EnvironmentSecretQueryController {
+  //lookup product secrets using product secret id
+  rpc getById(GetByEnvironmentSecretIdInput) returns (EnvironmentSecret) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment secret";
+  }
+  //get value of a product secret
+  rpc getValue(GetByEnvironmentSecretIdInput) returns (EnvironmentSecretValue) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment secret value";
+  }
+}
+
+//environment variables command controller
+service EnvironmentVariableCommandController {
+  //add a environment variable to a product
+  rpc add(AddEnvironmentVariableCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create environment variable";
+  }
+  //add multiple environment variables to existing list of environment variables of a environment
+  rpc addMultiple(AddEnvironmentVariablesCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create environment variable";
+  }
+  //delete a environment variable.
+  rpc delete(DeleteOrRestoreEnvironmentVariableCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete environment variable";
+  }
+  //update value of a environment variable
+  rpc updateValue(UpdateEnvironmentVariableValueCommandInput) returns (EnvironmentVariable) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update environment variable value";
+  }
+}
+
+//environment variables query controller
+service EnvironmentVariableQueryController {
+  //lookup environment variables using environment variable id
+  rpc getById(GetByEnvironmentVariableIdInput) returns (EnvironmentVariable) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment variable";
+  }
+  //get value of a environment variable
+  rpc getValue(GetByEnvironmentVariableIdInput) returns (EnvironmentVariableValue) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view environment variable value";
+  }
+}
+
+//environment stack controller
+service EnvironmentStackController {
+  //preview environment secrets stack
+  rpc preview(Environment) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview environment secrets stack";
+  }
+
+  //apply environment secrets stack
+  rpc apply(EnvironmentId) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply environment secrets stack";
+  }
+}

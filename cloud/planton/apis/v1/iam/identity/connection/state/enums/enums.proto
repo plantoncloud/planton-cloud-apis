@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.identity.connection.state.enums;
+
+import "cloud/planton/apis/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum IdentityConnectionEventType {
+  IDENTITY_CONNECTION_EVENT_TYPE_UNSPECIFIED = 0;
+  IDENTITY_CONNECTION_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  IDENTITY_CONNECTION_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  IDENTITY_CONNECTION_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+  IDENTITY_CONNECTION_EVENT_TYPE_STATE_RESTORED = 4 [
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.state.enums.options.is_search_indexing_required) = true
+  ];
+}

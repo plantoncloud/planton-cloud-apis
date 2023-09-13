@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.rpc.enums;
+
+enum CodeServerProvider {
+  CODE_SERVER_PROVIDER_UNSPECIFIED = 0;
+  CODE_SERVER_PROVIDER_GITHUB = 1;
+  CODE_SERVER_PROVIDER_GITLAB = 2;
+}
+
+enum GithubAppInstallOwnerType {
+  GITHUB_APP_INSTALLATION_OWNER_TYPE_UNSPECIFIED = 0;
+  GITHUB_APP_INSTALLATION_OWNER_TYPE_USER = 1;
+  GITHUB_APP_INSTALLATION_OWNER_ORG = 2;
+}

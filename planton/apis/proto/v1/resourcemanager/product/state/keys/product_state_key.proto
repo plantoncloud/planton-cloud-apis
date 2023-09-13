@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.resourcemanager.product.state.keys;
-
-//wrapper for product id key to be used in kafka messages
-message ProductStateKey {
-  string value = 1;
-}

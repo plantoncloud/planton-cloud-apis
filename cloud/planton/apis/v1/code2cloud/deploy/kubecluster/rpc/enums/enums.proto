@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums;
+
+// provider for kubernetes
+enum KubernetesProvider {
+  KUBERNETES_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/kubernetes-engine
+  GCP_GKE = 1;
+  //https://aws.amazon.com/eks/
+  AWS_EKS = 2;
+  //https://azure.microsoft.com/en-us/products/kubernetes-service
+  AZURE_AKS = 3;
+  //https://docs.digitalocean.com/products/kubernetes/
+  DIGITAL_OCEAN_DOKS = 4;
+}
+
+// the recommended best practice to use uppercase entry names and prefix the entry with enum name have been intentionally ignored to as the values of the entries are intended to be used to name the gke release channel.
+enum GkeReleaseChannel {
+  GKE_RELEASE_CHANNEL_UNSPECIFIED = 0;
+  REGULAR = 1;
+  STABLE = 2;
+  RAPID = 3;
+}
+
+//https://jodies.de/ipcalc?host=10.0.0.0&mask1=10&mask2=15
+
+//10.0.0.0/15 // primary subnetwork cidr
+//10.32.0.0/15 //primary subnetwork cidr(reserve)
+
+//pod range
+//10.4.0.0/15
+//10.8.0.0/15
+//10.12.0.0/15
+//10.16.0.0/15
+//10.20.0.0/15
+//10.24.0.0/15
+//10.28.0.0/15
+
+//service range
+//10.36.0.0/15
+//10.40.0.0/15
+//10.44.0.0/15
+//10.48.0.0/15
+//10.52.0.0/15
+//10.56.0.0/15
+//10.60.0.0/15
+
+// a pair of cidr blocks is considered as a secondary range set
+// a given range set can only be used for creating one cluster
+// a maximum of 15 clusters can be created in each environment with this allocation
+// 15 clusters should meet all the near term requirements.
+// more enums can be added later using the left out cidr blocks from 10.0.0.0/15 chunk
+enum GkeKubePodServiceSecondaryRangeCidrSetNum {
+  GKE_KUBE_POD_SERVICE_SECONDARY_RANGE_CIDR_SET_NUM_UNSPECIFIED = 0;
+  ONE = 1;
+  TWO = 2;
+  THREE = 3;
+  FOUR = 4;
+  FIVE = 5;
+  SIX = 6;
+  SEVEN = 7;
+}
+
+enum AwsEksWorkersManagementMode {
+  AWS_EKA_WORKERS_MANAGEMENT_MODE_UNSPECIFIED = 0;
+  EC2 = 1;
+  FARGATE = 2;
+  MANAGED_NODE_GROUPS = 3;
+}

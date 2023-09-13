@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.product.rpc;
+
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/rpc/model.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/rpc/model.proto";
+
+//product command controller
+service ProductCommandController {
+  //add a new product to a company
+  rpc create(Product) returns (Product) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create product";
+  }
+  //update an existing product
+  rpc update(Product) returns (Product) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update product";
+  }
+  //delete an existing product
+  rpc delete(ProductId) returns (Product) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete product";
+  }
+  //restore a previously deleted product
+  rpc restore(Product) returns (Product) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore product";
+  }
+}
+
+//product query controller
+service ProductQueryController {
+  //list all products on planton cloud for the requested page. This is intended to be used on back-office portal.
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.PageInfo) returns (ProductList);
+
+  //get details of a product by product id
+  rpc getById(cloud.planton.apis.v1.resourcemanager.product.rpc.ProductId) returns(Product) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view product";
+  }
+
+  //find products by company id.
+  //the response should only include the products that the authenticated user has access to.
+  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.rpc.CompanyId) returns(Products);
+}

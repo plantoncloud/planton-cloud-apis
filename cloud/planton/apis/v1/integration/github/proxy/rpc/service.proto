@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.integration.github.proxy.rpc;
+
+import "cloud/planton/apis/v1/integration/github/proxy/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
+
+//github proxy command controller
+service GithubProxyCommandController {
+  //create a new repository on github
+  //https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
+  //https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
+  //https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
+  rpc creRepository(CreRepositoryCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  //apply a cookiecutter template on a code project created on github
+  rpc applyTemplate(GithubApplyTemplateCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
+  //add a list of secrets to a github repository
+  rpc addSecretsToRepo(AddSecretsToRepoCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  //add a list of secrets to a github organization
+  rpc addSecretsToOrg(AddSecretsToOrgCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.rpc.CodeServer);
+  //synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
+  //then add files in the input to .github/workflows directory.
+  rpc synchronizeMagicPipelineFiles(SynchronizeGithubMagicPipelineFilesCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+}
+
+//github proxy query controller
+service GithubProxyQueryController {
+  //list repositories for the requested organization or user on github
+  //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
+  //todo: we have to add pagination support for response.
+  rpc listRepositories(ListRepositoriesQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjects);
+  //get the details of a repository on github
+  rpc getRepository(GetRepositoryQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  //get details of a github app installation
+  rpc getGithubAppInstallation(GithubAppInstallation) returns (GithubAppInstallation);
+  //get code project profile of a code-project hosted on github
+  rpc getGithubCodeProjectProfile(GetGithubCodeProjectProfileQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
+}

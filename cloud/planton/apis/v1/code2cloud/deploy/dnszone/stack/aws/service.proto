@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.stack.aws;
+
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/stack/aws/model.proto";
+
+// dns-zone stack controller
+service DnsZoneAwsStackController {
+  rpc execute(DnsZoneAwsStackInput) returns (stream DnsZoneAwsStackResponse);
+  rpc getStackOutputs(DnsZoneAwsStackInput) returns (DnsZoneAwsStackOutputs);
+}

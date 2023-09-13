@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource.version.rpc;
+
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+
+// The ResourceVersion message represents a record of a resource state modification
+// in a system's resource. It stores the original and new states of the resource,
+// the differences between them in a unified diff format, as well as audit and
+// identification information.
+message ResourceVersion {
+  // System audit information, which typically includes data about
+  // when and by whom the version was created.
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  // A unique identifier (UUID) for the resource-version.
+  string id = 1;
+  // The ID of the company to which the resource-version belongs.
+  string company_id = 2;
+  // The ID of the product to which the resource-version belongs.
+  // This attribute is always empty for company level state.
+  string product_id = 3;
+  // The ID of the product environment to which the resource-version belongs.
+  // This attribute is always empty for company level state.
+  string environment_id = 4;
+  // The type of the resource for which the version was created.
+  // Resource types are defined in the ResourceType enum.
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  // The ID of the resource for which the version was created.
+  string resource_id = 6;
+  // The original state of the resource, represented as a YAML string.
+  string original_state_yaml = 7;
+  // The new state of the resource, represented as a YAML string.
+  string new_state_yaml = 8;
+  // The differences between the original and new state, represented in a unified diff format.
+  string diff_unified_format = 9;
+}
+
+
+// wrapper for resource-versions id
+message ResourceVersionId {
+  string value= 1;
+}
+
+// The StateCommitByIdWithContextSize message represents a specific
+// resource-version along with the context size associated with it. The context size
+// is typically used to control the amount of information or data surrounding a
+// particular point of interest in the resource-version.
+message ResourceVersionWithContextSizeInput {
+  // The unique identifier (usually a UUID) for the resource-version.
+  // It is used to look up or refer to a specific version.
+  string version_id = 1;
+  // The context size associated with the resource-version. This could represent
+  // the amount of surrounding data or metadata to include when fetching or
+  // working with the version. The meaning of this value can vary depending on
+  // the specifics of your application.
+  int32 context_size = 2;
+}
+
+// list resource-versions by resource type and id query input
+message ListResourceVersionsByFiltersQueryInput {
+  // page info
+  cloud.planton.apis.v1.commons.rpc.pagination.PageInfo page_info = 1;
+  // id of the company to filter the resource-versions
+  string company_id = 2;
+  // id of the product to filter the resource-versions
+  string product_id = 3;
+  // id of the product env to filter the resource-versions
+  string environment_id = 4;
+  // type of resource
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  // id of the resource
+  string resource_id = 6;
+
+}
+
+// paginated list of resource-versions
+message ResourceVersionList {
+  // total number of pages
+  int32 total_pages = 1;
+  // list of resource-versions
+  repeated ResourceVersion entries = 2;
+}

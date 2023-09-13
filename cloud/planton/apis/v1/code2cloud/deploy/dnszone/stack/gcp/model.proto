@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.stack.gcp;
+
+import "cloud/planton/apis/v1/commons/network/dns/domain/rpc/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/enums/enums.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/state/model.proto";
+
+// input for dns-zone stack
+message DnsZoneGcpStackInput {
+  // pulumi operation input
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  // pulumi stack credentials
+  DnsZoneGcpStackCredentialsInput credentials_input = 2;
+  // inputs used for creating stack resources
+  DnsZoneGcpStackResourceInput resource_input = 3;
+}
+
+// stack credentials input
+message DnsZoneGcpStackCredentialsInput {
+  //google provider credential input
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 1;
+}
+
+// stack resource input
+message DnsZoneGcpStackResourceInput {
+  // dns-zone to be added to the company
+  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state.DnsZoneState dns_zone = 1;
+}
+
+//the stack output only supports domains and their nameservers
+//the outputs exclude any dns records for the domains
+message DnsZoneGcpStackOutputs {
+  // zone status populated with the details of the zone created in google cloud dns
+  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state.DnsZoneStatusState zone_status = 2;
+}
+
+//stack response
+message DnsZoneGcpStackResponse {
+  //stack progress
+  cloud.planton.apis.v1.stack.rpc.StackProgress progress = 1;
+  //stack outputs
+  DnsZoneGcpStackOutputs outputs = 3;
+}

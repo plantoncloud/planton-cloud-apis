@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource;
+
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+
+//metadata for all resource objects on planton-cloud
+message Metadata {
+  // name of the resource
+  string name = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  // id of the resource
+  string id = 2;
+  // labels for the resource
+  map<string, string> labels = 3;
+}
+
+// wrapper for resource-id
+message ResourceId {
+  string value= 1;
+}
+
+// resource group version kind
+message ResourceGroupVersionKind {
+  string api_version = 1 [json_name = "apiVersion"];
+  string kind = 2;
+}
+
+// resource lifecycle
+message ResourceLifecycle {
+  // flag to indicate if the resource is not deleted and is active
+  bool is_active = 1;
+}
+
+// runnable resource lifecycle
+message RunnableResourceLifecycle {
+  // flag to indicate if the resource is not deleted and is active
+  bool is_active = 1;
+  // flag to indicate if the resource is paused
+  bool is_paused = 2;
+}

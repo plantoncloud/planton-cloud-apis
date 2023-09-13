@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.code2cloud.deploy.cloudinfra.storagebucket.state.keys;
-
-// key for storage-bucket state messages
-message StorageBucketStateKey {
-  string value = 1;
-}

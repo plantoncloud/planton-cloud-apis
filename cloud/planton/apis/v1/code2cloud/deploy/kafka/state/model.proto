@@ -1,0 +1,200 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.opensource.kafka.state;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/state/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kafka/state/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
+
+//kafka-cluster state
+message KafkaClusterState {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = kafka_cluster;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  //event-type
+  cloud.planton.apis.v1.code2cloud.deploy.opensource.kafka.state.enums.KafkaClusterEventType event_type = 99;
+
+  //resource api version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  KafkaClusterSpecState spec = 4;
+
+  //status
+  KafkaClusterStatusState status = 5;
+}
+
+//KafkaClusterSpecState
+message KafkaClusterSpecState {
+  //resource parent
+  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //list of kafka topics.
+  repeated KafkaTopicState kafka_topics = 2;
+
+  //kubernetes spec
+  KafkaClusterSpecKubernetesSpecState kubernetes = 3;
+}
+
+//kafka-cluster status state
+message KafkaClusterStatusState {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+
+  //kafka-cluster kubernetes status
+  KafkaClusterStatusKubernetesStatusState kubernetes = 1;
+}
+
+//kafka-cluster kubernetes spec
+message KafkaClusterSpecKubernetesSpecState {
+  //kafka-broker container spec
+  KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpecState kafka_broker_container = 1;
+
+  //zookeeper container spec
+  KafkaClusterSpecKubernetesSpecZookeeperContainerSpecState zookeeper_container = 2;
+
+  //schema-registry container spec
+  KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpecState schema_registry_container = 3;
+
+  //kafka-cluster ingress spec
+  KafkaClusterSpecKubernetesSpecIngressSpecState ingress = 4;
+
+  //flag to control if kowl dashboard is deployed for the kafka-cluster.
+  //defaults to "false".
+  bool is_kowl_dashboard_enabled = 5;
+}
+
+//kafka-cluster kubernetes kafka-broker spec
+message KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpecState {
+  //(optional for create) number of brokers required to setup kafka-cluster.
+  //defaults value "1" is set if client sets the value to 0.
+  //recommended default value is "1".
+  int32 replicas = 1;
+
+  //kafka broker container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.v1.commons.kubernetes.ContainerResources resources = 2;
+
+  //size of the disk to be attached to each broker instance. ex: 30Gi
+  //defaults value is set if not provided by the client.
+  string disk_size = 3;
+}
+
+//kafka-cluster kubernetes zookeeper spec
+message KafkaClusterSpecKubernetesSpecZookeeperContainerSpecState {
+  //number or zookeeper container replicas
+  //zookeeper requires latest 3 replicas for high availability(ha) mode.
+  //zookeeper is built using raft consensus algorithm.
+  //refer to https://raft.github.io/ to learn more on how replica count affect availability.
+  int32 replicas = 1;
+
+  //zookeeper container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.v1.commons.kubernetes.ContainerResources resources = 2;
+
+  //size of the disk to be attached to each zookeeper instance. ex: 30Gi
+  //defaults value is set if not provided by the client.
+  string disk_size = 3;
+}
+
+//kafka-cluster kubernetes schema-registry spec
+message KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpecState {
+  //flag to control if schema registry is created for the kafka-cluster.
+  //defaults to "false".
+  bool is_enabled = 1;
+
+  //number of schema registry replicas.
+  //recommended default value is "1".
+  //this value has no effect if the is_schema_registry_enabled is set to false.
+  int32 replicas = 2;
+
+  //schema-registry container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.v1.commons.kubernetes.ContainerResources resources = 3;
+}
+
+//kafka-cluster kubernetes ingress spec
+message KafkaClusterSpecKubernetesSpecIngressSpecState {
+  //standard-endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
+  //only tls enabled standard-endpoints are eligible for creating kafka endpoints.
+  string standard_endpoint_id = 1;
+
+  //endpoint-domain-name used for creating kafka-cluster endpoints.
+  //value is computed from the configured standard-endpoint.
+  string endpoint_domain_name = 2;
+}
+
+//kafka-cluster kubernetes status
+message KafkaClusterStatusKubernetesStatusState {
+  //name of the kubernetes namespace in which the kafka-cluster is created.
+  string namespace = 1;
+
+  //sasl user name of kafka-cluster.
+  //username will be automatically set as 'admin' while creating the kafka-cluster.
+  string kafka_sasl_username = 2;
+
+  //external hostname of kafka bootstrap server.
+  string external_bootstrap_server_hostname = 3;
+
+  //internal hostname of kafka bootstrap server.
+  string internal_bootstrap_server_hostname = 4;
+
+  //external url of schema registry.
+  //this is set to empty when schema registry is not enabled.
+  string external_schema_registry_url = 5;
+
+  //internal url of schema registry.
+  //this is set to empty when schema registry is not enabled.
+  string internal_schema_registry_url = 6;
+
+  //external url to access kowl dashboard.
+  //this is set to empty when kowl dashboard is not enabled.
+  string external_kowl_dashboard_url = 7;
+
+  //internal url to access kowl dashboard.
+  //this is set to empty when kowl dashboard is not enabled.
+  string internal_kowl_dashboard_url = 8;
+}
+
+//kafka-topic state
+message KafkaTopicState {
+  //system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+
+  //topic name
+  string name = 1;
+
+  //topic id
+  string id = 2;
+
+  //topic partitions.
+  //recommended default is 1.
+  int32 partitions = 4;
+
+  //topic replicas.
+  //recommended default is 1.
+  int32 replicas = 5;
+
+  //additional configuration of kafka topic
+  //if not provided then default values will be set
+  //for example default delete.policy is `delete` and can be set up as `compact`
+  map<string, string> config = 6;
+}

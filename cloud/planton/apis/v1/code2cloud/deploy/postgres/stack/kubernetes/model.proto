@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.stack.kubernetes;
+
+import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/postgres/state/model.proto";
+
+//input for postgres-cluster stack
+message PostgresClusterKubernetesStackInput {
+  //pulumi stack input
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  //pulumi stack credentials
+  PostgresClusterKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  PostgresClusterKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message PostgresClusterKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating postgres-cluster resources on container cluster
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message PostgresClusterKubernetesStackResourceInput {
+  //postgres-cluster
+  cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.state.PostgresClusterState postgres_cluster = 1;
+  //postgres-cluster config
+  PostgresClusterConfig postgres_cluster_config = 2;
+}
+
+//postgres-cluster config
+message PostgresClusterConfig {
+  //postgres parameters https://www.postgresql.org/docs/current/config-setting.html
+  map<string, string> postgres_parameters = 1;
+  //users
+  repeated PostgresUser users = 2;
+  //databases
+  repeated PostgresDatabase databases = 3;
+}
+
+//postgres database user
+message PostgresUser {
+  //user name
+  string name = 1;
+}
+
+//postgres database in the database server
+message PostgresDatabase {
+  //database name
+  string name = 1;
+  //database owner
+  PostgresUser owner = 2;
+}
+
+//stack outputs
+message PostgresClusterKubernetesStackOutputs {
+  //postgres-cluster status
+  cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.state.PostgresClusterStatusState postgres_cluster_status = 1;
+}
+
+//stack response
+message PostgresClusterKubernetesStackResponse {
+  //stack progress
+  cloud.planton.apis.v1.stack.rpc.StackProgress progress = 1;
+  //stack outputs
+  PostgresClusterKubernetesStackOutputs outputs = 3;
+}
