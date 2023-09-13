@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state;
+package cloud.planton.apis.v1.code2cloud.deploy.dnszone.state;
 
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
@@ -16,7 +16,7 @@ message DnsZoneState {
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
 
   // dns-zone event type
-  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state.enums.DnsZoneEventType event_type = 99;
+  cloud.planton.apis.v1.code2cloud.deploy.dnszone.state.enums.DnsZoneEventType event_type = 99;
 
   // api version for the resource
   string api_version = 1;

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums;
+package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.enums;
 
 // provider for kubernetes
 enum KubernetesProvider {

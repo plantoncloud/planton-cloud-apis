@@ -93,7 +93,7 @@ service MicroserviceInstanceQueryController {
   rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.rpc.EnvironmentId) returns (MicroserviceInstances);
 
   //find microservice-instances by kube-cluster
-  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (MicroserviceInstances);
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (MicroserviceInstances);
 
   //find microservice-instances in a environment for a code-project
   rpc findByEnvironmentIdByCodeProjectId(ByEnvironmentIdByCodeProjectIdInput) returns (MicroserviceInstances) {

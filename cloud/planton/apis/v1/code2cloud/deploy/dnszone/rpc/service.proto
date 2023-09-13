@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.rpc;
+package cloud.planton.apis.v1.code2cloud.deploy.dnszone.rpc;
 
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/resourcemanager/company/rpc/model.proto";

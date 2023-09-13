@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.opensource.redis.rpc;
+package cloud.planton.apis.v1.code2cloud.deploy.redis.rpc;
 
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/rpc/model.proto";
@@ -90,7 +90,7 @@ service RedisClusterQueryController {
   rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.rpc.EnvironmentId) returns (RedisClusters);
   //find redis-clusters by kube-cluster
 
-  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (RedisClusters);
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (RedisClusters);
 
   //look up redis-cluster sasl password
   //password is retrieved from the kubernetes cluster.

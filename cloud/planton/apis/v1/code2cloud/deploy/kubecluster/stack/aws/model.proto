@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.stack.aws;
+package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.stack.aws;
 
 import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
@@ -27,7 +27,7 @@ message KubeClusterAwsStackCredentialsInput {
 // stack resource input
 message KubeClusterAwsStackResourceInput {
   //details of the kube-cluster
-  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.state.KubeClusterState kube_cluster = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.state.KubeClusterState kube_cluster = 1;
 }
 
 // stack outputs

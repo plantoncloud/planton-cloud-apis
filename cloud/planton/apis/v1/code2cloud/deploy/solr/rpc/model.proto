@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.opensource.solr.rpc;
+package cloud.planton.apis.v1.code2cloud.deploy.solr.rpc;
 
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";

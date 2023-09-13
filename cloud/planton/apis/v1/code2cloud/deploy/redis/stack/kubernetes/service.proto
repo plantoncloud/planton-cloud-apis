@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.opensource.redis.stack.kubernetes;
+package cloud.planton.apis.v1.code2cloud.deploy.redis.stack.kubernetes;
 
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/stack/kubernetes/model.proto";

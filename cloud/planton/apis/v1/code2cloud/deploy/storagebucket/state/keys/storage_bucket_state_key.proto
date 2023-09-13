@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.storagebucket.state.keys;
+package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.state.keys;
 
 // key for storage-bucket state messages
 message StorageBucketStateKey {

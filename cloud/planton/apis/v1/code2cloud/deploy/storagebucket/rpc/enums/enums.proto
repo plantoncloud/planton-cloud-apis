@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.storagebucket.rpc.enums;
+package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.rpc.enums;
 
 //provider for storage-bucket
 enum StorageBucketProvider {

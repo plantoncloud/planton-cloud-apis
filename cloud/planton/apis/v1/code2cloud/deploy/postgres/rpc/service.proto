@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.rpc;
+package cloud.planton.apis.v1.code2cloud.deploy.postgres.rpc;
 
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/rpc/model.proto";
@@ -96,7 +96,7 @@ service PostgresClusterQueryController {
   rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.rpc.EnvironmentId) returns (PostgresClusters);
 
   //find postgres-clusters by kube-cluster
-  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (PostgresClusters);
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (PostgresClusters);
 
   //look up postgres-cluster password
   //password is retrieved from the kubernetes cluster.

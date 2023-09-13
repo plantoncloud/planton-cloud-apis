@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc;
+package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc;
 
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/protobuf/custom/model.proto";
@@ -85,7 +85,7 @@ service KubeClusterCommandController {
 // kube-cluster query controller
 service KubeClusterQueryController {
   // list all kube-clusters on planton cloud for the requested page. This is intended for use on portal.
-  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.PageInfo) returns (cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterList);
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.PageInfo) returns (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterList);
 
   // lookup kube-cluster using kube-cluster id
   rpc getById(KubeClusterId) returns (KubeCluster) {
@@ -108,7 +108,7 @@ service KubeClusterQueryController {
   rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.v1.resourcemanager.company.rpc.CompanyId) returns (KubeClusters);
 
   // lookup components in a kube-cluster of a kube-cluster
-  rpc getKubeClusterComponentsByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (KubeClusterComponents) {
+  rpc getKubeClusterComponentsByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (KubeClusterComponents) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -116,7 +116,7 @@ service KubeClusterQueryController {
   }
 
   // find workload namespaces in a kube-cluster.
-  rpc findWorkloadNamespacesByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadNamespaces) {
+  rpc findWorkloadNamespacesByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadNamespaces) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -124,7 +124,7 @@ service KubeClusterQueryController {
   }
 
   // find workload pods part of all environments hosted in a kube-cluster.
-  rpc findWorkloadPodsByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadPods) {
+  rpc findWorkloadPodsByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadPods) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -132,7 +132,7 @@ service KubeClusterQueryController {
   }
 
   // find workload pods part of all environments hosted in a kube-cluster.
-  rpc findSslCertificatesByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.Certificates) {
+  rpc findSslCertificatesByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.rpc.KubeClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.Certificates) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";

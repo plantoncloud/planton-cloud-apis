@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.stack.aws;
+package cloud.planton.apis.v1.code2cloud.deploy.dnszone.stack.aws;
 
 import "cloud/planton/apis/v1/commons/network/dns/domain/rpc/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
@@ -27,14 +27,14 @@ message DnsZoneAwsStackCredentialsInput {
 // stack resource input
 message DnsZoneAwsStackResourceInput {
   // dns-zone to be added to the company
-  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state.DnsZoneState dns_zone = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.dnszone.state.DnsZoneState dns_zone = 1;
 }
 
 //the stack output only supports domains and their nameservers
 //the outputs exclude any dns records for the domains
 message DnsZoneAwsStackOutputs {
   // zone status populated with the details of the zone created in google cloud dns
-  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.dnszone.state.DnsZoneStatusState zone_status = 2;
+  cloud.planton.apis.v1.code2cloud.deploy.dnszone.state.DnsZoneStatusState zone_status = 2;
 }
 
 //stack response
