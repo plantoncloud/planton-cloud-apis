@@ -52,8 +52,8 @@ message StackJobState {
 
 // resource-stack-job info contains minimum information embedded in the status for the resources that have stack.
 message ResourceStackJobInfoState {
-  //id of the stack job
+  //id of the stack-job
   string id = 1;
-  //status of the stack job
+  //status of the stack-job
   string status = 2;
 }

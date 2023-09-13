@@ -117,8 +117,10 @@ message StackProgress {
 
 // resource-stack-job info contains minimum information embedded in the status for the resources that have stack.
 message ResourceStackJobInfo {
-  //id of the stack job
+  //id of the stack-job
   string id = 1;
-  //status of the stack job
-  cloud.planton.apis.v1.stack.rpc.enums.StackJobStatus status = 2;
+  //stack-operation-type for the stack-job
+  cloud.planton.apis.v1.stack.rpc.enums.StackOperationType operation_type = 2;
+  //status of the stack-job
+  cloud.planton.apis.v1.stack.rpc.enums.StackJobStatus status = 3;
 }
