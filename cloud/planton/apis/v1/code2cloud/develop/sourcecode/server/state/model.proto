@@ -90,6 +90,6 @@ message CodeServerStatusState {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
-  // stack-job
-  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+  // stack-job info
+  cloud.planton.apis.v1.stack.state.ResourceStackJobInfoState stack_job_info = 97;
 }

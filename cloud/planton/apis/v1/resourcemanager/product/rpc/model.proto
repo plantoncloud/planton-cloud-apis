@@ -69,8 +69,8 @@ message ProductStatus {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
-  // stack-job
-  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 97;
+  // stack-job info
+  cloud.planton.apis.v1.stack.rpc.ResourceStackJobInfo stack_job_info = 97;
 }
 
 //list of products

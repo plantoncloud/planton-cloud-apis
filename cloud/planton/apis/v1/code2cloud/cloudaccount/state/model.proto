@@ -67,8 +67,8 @@ message CloudAccountStatusState {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
-  // stack-job
-  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+  // stack-job info
+  cloud.planton.apis.v1.stack.state.ResourceStackJobInfoState stack_job_info = 97;
 
   // status of a gcp cloud-account.
   // this is only populated when the parent cloud-account is a gcp cloud account and is set to nil otherwise.
