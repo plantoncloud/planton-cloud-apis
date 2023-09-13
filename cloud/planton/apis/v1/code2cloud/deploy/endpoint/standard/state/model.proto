@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.state;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/state/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/endpoint/standard/state/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
+
+//standard-endpoint state
+message StandardEndpointState {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = standard_endpoint;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  //event-type
+  cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.state.enums.StandardEndpointEventType event_type = 99;
+
+  //resource api version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  StandardEndpointSpecState spec = 4;
+
+  //status
+  StandardEndpointStatusState status = 5;
+}
+
+//standard-endpoint spec state
+message StandardEndpointSpecState {
+  //resource parent
+  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //flag to toggle tls for standard-endpoint.
+  //defaults to "false".
+  //(important note) certificates are not created for endpoints that do not need tls.
+  //(important note) endpoint domains with out tls enabled are not eligible to be used for
+  //creating endpoints for microservice-instances, postgres-clusters, kafka-clusters, redis-clusters or solr-clouds
+  bool is_tls_enabled = 2;
+
+  //flag to indicate if the standard-endpoint is to be considered as
+  //the primary endpoint domain for the environment.
+  //defaults to "false".
+  //(important note) there can only be one primary endpoint domain per environment.
+  //if there is already an endpoint domain marked as primary endpoint domain, then
+  //creation would fail if this value is set to true. Other endpoint domains should be updated to
+  //set this value to false before attempting to mark a new standard-endpoint as primary.
+  //this value is used in gitlab deployment pipelines to support environment url feature on gitlab.
+  //https://docs.gitlab.com/ee/ci/environments/#environment-url
+  bool is_primary_environment_endpoint_domain = 3;
+
+  //flag to indicate if the endpoint_domain is inherited from kube-cluster endpoint domains.
+  //this flag is necessary to always keep the endpoint domains inherited from kube-cluster.
+  //this attribute is populated by the system for the endpoints automatically created upon environment creation.
+  bool is_inherited = 4;
+
+  //id of the project on google cloud containing the dns zone for the endpoint-domain.
+  //this value is looked up from the dns-domains in the company dns data.
+  //this value is required for configuring the cert-issuer to perform dns validations.
+  string dns_zone_gcp_project_id = 5;
+
+  //external dns domain ex: dev.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string external_endpoint_domain_name = 6;
+
+  //internal dns domain ex: dev-internal.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string internal_endpoint_domain_name = 7;
+
+  //external ingress ip.
+  //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
+  //this value is computed from kube-cluster.
+  string external_ingress_ip = 8;
+
+  //internal ingress ip.
+  //this is the ip address to reach workloads like microservices from internal network like private vpc.
+  //this value is computed from kube-cluster.
+  string internal_ingress_ip = 9;
+
+  //email of the service account created for cert-manager component on the kube-cluster in which the
+  //environment that the standard-endpoint belongs to.
+  //this value is used for ensuring that the service account has required permissions to insert dns records in
+  //the dns zone to be able to complete dns01 challenges.
+  //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
+  //this value is computed from kube-cluster.
+  string cert_manager_gsa_email = 10;
+}
+
+//standard-endpoint status state
+message StandardEndpointStatusState {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+
+  //may be add certificate names?
+}

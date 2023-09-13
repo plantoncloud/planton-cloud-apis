@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.policy.rpc;
+
+import "cloud/planton/apis/v1/iam/authz/policy/rpc/model.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+
+// iam policy command controller
+service IamPolicyCommandController {
+  // add iam policies to a resource
+  rpc add(AddIamPolicyInput) returns (IamPoliciesByPrincipal) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to add iam policy";
+  }
+  // remove list of iam policies of a principal and resource
+  rpc removeMultiple(RemoveIamPoliciesInput) returns (IamPoliciesByPrincipal) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to remove iam policy";
+  }
+}
+
+// iam policy query controller
+service IamPolicyQueryController {
+  // retrieve iam policies by type and id
+  rpc getByResourceTypeAndResourceId(GetIamPolicyByResourceTypeAndResourceIdInput) returns (IamPoliciesByPrincipal) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view iam policy";
+  }
+
+  // retrieve iam policies by type and id grouped by role
+  rpc getByResourceTypeAndResourceIdGroupByRole(GetIamPolicyByResourceTypeAndResourceIdInput) returns (IamPoliciesByRole) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view iam policy";
+  }
+}
+

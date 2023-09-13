@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.kafka;
+
+import "google/protobuf/timestamp.proto";
+
+// this is used to get host information of the pod
+// ip address and port of the pod
+message HostInfo {
+    string host = 1;
+    int32 port = 2;
+}
+
+// this is used as input to pass state store name
+message StoreName {
+    string store_name = 1;
+}
+
+// this is used as get topic partition details
+message TopicPartition {
+    string topic = 1;
+    int32 partition = 2;
+}
+
+// this is used to get meta information of kafka streams instance
+message InstanceMeta {
+    HostInfo host_info = 1;
+    repeated string state_store_names = 2;
+    repeated TopicPartition topic_partitions = 3;
+    repeated string standby_state_store_names = 4;
+    repeated TopicPartition standby_topic_partitions = 5;
+}
+
+// this is used to get meta information of kafka streams pod based on key
+message KeyQueryMeta {
+    HostInfo host_info = 1;
+    repeated HostInfo standby_hosts = 2;
+    int32 partition = 3;
+}
+
+// this is used to get meta information of kafka streams pod
+message StreamsMeta {
+    repeated InstanceMeta instance_meta = 1;
+}
+
+// this is used to pass uuid as key
+message Uuid {
+    string uuid = 1;
+}

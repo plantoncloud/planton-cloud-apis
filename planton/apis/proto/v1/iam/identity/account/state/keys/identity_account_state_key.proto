@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.iam.identity.account.state.keys;
-
-// key for identity-account state messages
-message IdentityAccountStateKey {
-  string value = 1;
-}

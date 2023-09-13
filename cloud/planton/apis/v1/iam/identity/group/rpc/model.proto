@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.identity.group.rpc;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+
+//identity-group
+message IdentityGroup {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = identity_group;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+  // resource api version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2[
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource metadata
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  // resource spec
+  IdentityGroupSpec spec = 4;
+
+  // resource status
+  IdentityGroupStatus status = 5;
+}
+
+//specification for identity-group
+message IdentityGroupSpec {
+  // company id of the group
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+}
+
+//status for identity-group
+message IdentityGroupStatus {
+  // lifecycle of the resource
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job that produced the status
+  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 97;
+}
+
+//wrapper for iam group id
+message IdentityGroupId {
+  string value = 1;
+}
+
+// wrapper for iam group name
+message IdentityGroupName {
+  string value = 1;
+}
+
+// list of iam groups
+message IdentityGroups {
+  repeated IdentityGroup entries = 1;
+}
+
+// response for paginated rpc query to list iam groups.
+message IdentityGroupList {
+  repeated IdentityGroup entries = 1;
+  int32 total_pages = 2;
+}
+
+message ListWithCompanyIdReq {
+  // company id of the iam group
+  string company_id = 1;
+  // pagination input
+  cloud.planton.apis.v1.commons.rpc.pagination.PageInfo page = 2;
+}

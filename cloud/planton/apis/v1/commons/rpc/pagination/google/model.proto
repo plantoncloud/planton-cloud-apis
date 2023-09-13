@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.rpc.pagination.google;
+
+//google style of pagination
+message GooglePageInfo {
+  //google apis include a token to retrieve next page of results.
+  //if there are no more items to return, the next_page_token is empty
+  string page_token = 1;
+  //number of items to include in the result
+  int32 size = 2;
+}

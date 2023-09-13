@@ -1,0 +1,122 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.state;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/state/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/postgres/state/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
+
+//postgres-cluster state
+message PostgresClusterState {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = postgres_cluster;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+
+  //event-type
+  cloud.planton.apis.v1.code2cloud.deploy.opensource.postgres.state.enums.PostgresClusterEventType event_type = 99;
+
+  //resource api version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  PostgresClusterSpecState spec = 4;
+
+  //status
+  PostgresClusterStatusState status = 5;
+}
+
+//postgres-cluster spec
+message PostgresClusterSpecState {
+  //resource parent
+  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+
+  //kubernetes spec
+  PostgresClusterSpecKubernetesSpecState kubernetes = 2;
+}
+
+//postgres-cluster status
+message PostgresClusterStatusState {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+
+  //kubernetes status
+  PostgresClusterStatusKubernetesStatusState kubernetes = 1;
+}
+
+//postgres-cluster kubernetes status
+message PostgresClusterStatusKubernetesStatusState {
+  //name of the kubernetes namespace in which the postgres-cluster has been created.
+  string namespace = 1;
+
+  //name of the kubernetes service created for postgres-cluster.
+  string service = 2;
+
+  //command to setup port-forwarding to open postgres-cluster from developers laptop.
+  //this might come handy when postgres-cluster ingress is disabled for security reasons.
+  //this is rendered by combining kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
+  //running the command from this attribute makes it possible to access postgres-cluster using localhost:5432
+  string port_forward_command = 3;
+
+  //kubernetes endpoint for clients running in the same kubernetes cluster.
+  //ex: main-microservice-instance.namespace.svc.instance.local:8080
+  string kube_endpoint = 4;
+
+  //external postgres-cluster hostname. port is always 5432.
+  string external_cluster_hostname = 5;
+
+  //internal postgres-cluster hostname. port is always 5432.
+  string internal_cluster_hostname = 6;
+}
+
+//postgres-cluster kubernetes spec
+message PostgresClusterSpecKubernetesSpecState {
+  // postgres-container spec
+  PostgresClusterSpecKubernetesSpecPostgresContainerSpecState postgres_container = 2;
+
+  //postgres-cluster ingress
+  PostgresClusterSpecKubernetesSpecIngressSpecState ingress = 3;
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecPostgresContainerSpecState {
+  //number of replicas of postgres pods
+  //recommended default is 1
+  int32 replicas = 1;
+
+  //postgres container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.v1.commons.kubernetes.ContainerResources resources = 2;
+
+  //storage to allocate for each postgres instance in gb. ex: 1Gi
+  //default is set if the client does not provide a value.
+  string disk_size = 3;
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecIngressSpecState {
+  //standard-endpoint domain to be used for creating internal and external endpoints for postgres-cluster.
+  //only tls enabled standard-endpoints are eligible for creating postgres endpoints.
+  string standard_endpoint_id = 1;
+
+  //endpoint-domain-name used for creating postgres-cluster endpoints.
+  //value is computed from the configured standard-endpoint.
+  string endpoint_domain_name = 2;
+}

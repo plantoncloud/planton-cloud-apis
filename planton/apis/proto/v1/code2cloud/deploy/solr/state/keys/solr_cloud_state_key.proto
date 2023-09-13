@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.code2cloud.deploy.opensource.solr.state.keys;
-
-//wrapper for solr-cloud id used as key in solr messages
-message SolrCloudStateKey {
-  string value = 1;
-}

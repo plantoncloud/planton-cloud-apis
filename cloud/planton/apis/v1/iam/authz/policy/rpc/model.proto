@@ -1,0 +1,112 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.policy.rpc;
+
+import "cloud/planton/apis/v1/iam/authz/role/rpc/model.proto";
+
+// response of iam policy by principal
+message IamPolicyByPrincipal {
+  // id of the principal of the policy that is associated.
+  // principal could be email id of the user.
+  string principal = 1;
+  // type of the principal id
+  // example values could be user/ company etc.;
+  string principal_type = 2;
+  // iam role details assigned to principal
+  cloud.planton.apis.v1.iam.authz.role.rpc.IamRole role = 3;
+  // id of the owner resource if the relation is of owner.
+  // a part from the direct relations that we have on an resource we have to show the relations of the resources that are linked.
+  // for example cloud account and company has owner relation.
+  // we show the relations of the owner company as well.
+  string owner_id = 4;
+  // type of the owner id
+  // example values could be company/ product etc.;
+  string owner_type = 5;
+}
+
+// input message to get IAM policies of a resource.
+message GetIamPolicyByResourceTypeAndResourceIdInput {
+  // type of the resource for which we want to get iam policies
+  // example values could be company/ cloud_account etc.;
+  string resource_type = 1;
+  // id of the resource to get iam policy
+  string resource_id = 2;
+  // flag to get inherited policies from owner
+  bool show_inherited_policies = 3;
+}
+
+// response to return all iam policies by principal
+message IamPoliciesByPrincipal {
+  // list of iam policies
+  repeated IamPolicyByPrincipal entries = 1;
+}
+
+// input to add IAM policy of a resource
+message AddIamPolicyInput {
+  // list of principal ids that are meant to be linked with the resource
+  repeated string principal_ids = 1;
+  // type of the principal
+  // example could be user/ company etc.;
+  string principal_type = 2;
+  // list of roles to be assigned to the principal ids
+  repeated string roles = 3;
+  // type of the resource for which we want to add iam policies
+  // example values could be company/ cloud_account etc.;
+  string resource_type = 4;
+  // id of the resource to add iam policy
+  string resource_id = 5;
+}
+
+// input to remove IAM policy of a resource
+message RemoveIamPolicyInput {
+  // principal id for which the iam policy has to be removed
+  string principal_id = 1;
+  // type of the principal
+  // example could be user/ company etc.;
+  string principal_type = 2;
+  // role code to be removed for the principal with resource
+  string role = 3;
+  // type of the resource for which we want to remove iam policy
+  // example values could be company/ cloud_account etc.;
+  string resource_type = 4;
+  // id of the resource to remove iam policy
+  string resource_id = 5;
+}
+
+// input to remove multiple iam polices
+message RemoveIamPoliciesInput {
+  // list of remove iam policy inputs
+  repeated RemoveIamPolicyInput entries = 1;
+}
+
+// response of iam policy by role
+message IamPolicyByRole {
+  // iam role details assigned to principal
+  cloud.planton.apis.v1.iam.authz.role.rpc.IamRole role = 1;
+  // list of iam principals assigned with the role
+  repeated IamPrincipal iam_principals = 2;
+}
+
+message IamPrincipal {
+  // id of the principal of the policy that is associated.
+  // principal could be email id of the user.
+  string principal = 1;
+  // type of the principal id
+  // example values could be user/ company etc.;
+  string principal_type = 2;
+  // id of the owner resource if the relation is of owner.
+  // a part from the direct relations that we have on an resource we have to show the relations of the resources that are linked.
+  // for example cloud account and company has owner relation.
+  // we show the relations of the owner company as well.
+  string owner_id = 3;
+  // type of the owner id
+  // example values could be company/ product etc.;
+  string owner_type = 4;
+}
+
+// response to return all iam policies by role
+message IamPoliciesByRole {
+  // list of iam policies
+  repeated IamPolicyByRole entries = 1;
+}
+

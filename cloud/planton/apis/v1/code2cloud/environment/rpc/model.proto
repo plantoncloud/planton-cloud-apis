@@ -1,0 +1,479 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.environment.rpc;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/cloud/provider/rpc/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/rpc/enums/enums.proto";
+
+//environment
+message Environment {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = environment;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = product;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.product_id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  //id format "<product-id>-<environment-name>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+  //https://regex101.com/r/QbMSjf/1
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 10;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
+
+  //resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  //spec
+  EnvironmentSpec spec = 4;
+
+  //status
+  EnvironmentStatus status = 5;
+}
+
+//environment spec
+message EnvironmentSpec {
+  //company to which the environment belongs to.
+  //the value is computed from product.
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //product to which the environment belongs to
+  string product_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //kubernetes-provider for the configured kube-cluster
+  //the value is computed from kube-cluster.
+  cloud.planton.apis.v1.code2cloud.deploy.cloudinfra.kubecluster.rpc.enums.KubernetesProvider kubernetes_provider = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //target kube-cluster to which the workloads like microservice-instances, postgres databases,
+  //kafka-clusters etc are deployed to.
+  string kube_cluster_id = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //description for environment.
+  string description = 5;
+
+  //id of the environment from which this environment is created.
+  //value is ignored when the environment is not cloned from another environment.
+  string cloned_from = 6;
+
+  //list of environment variables for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentVariable variables = 7;
+
+  //list of environment secrets for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentSecret secrets = 8;
+
+  //flag to control inheritance of kube-cluster endpoint domains.
+  //new standard_endpoints are created for each endpoint_domain of the kube-cluster only when this flag is set.
+  bool is_inherit_endpoint_domains_enabled = 9;
+
+  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
+  string environment_secrets_gcp_project_id = 10;
+
+  //microservice-instance spec for environment
+  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 11;
+}
+
+//environment microservice-instance spec
+message EnvironmentSpecMicroserviceInstanceSpec {
+  //flag to indicate of this environment is to be used as the build engine environment.
+  //default value is set to "false".
+  //at any point, only one environment in a product can be configured as build-engine environment.
+  //if there is already a environment which is configured as the build engine environment,
+  //then that environment needs to be updated to disable that first before enabling it on the new environment.
+  bool is_build_engine_environment = 1;
+
+  //microservice-instance pipeline spec
+  EnvironmentSpecMicroserviceInstanceSpecPipelineSpec pipeline = 2;
+}
+
+//environment microservice-instance pipeline spec
+message EnvironmentSpecMicroserviceInstanceSpecPipelineSpec {
+  //toggle to enable or disable microservice-instance deployments to this environment.
+  //recommended default is "true"
+  bool is_enabled = 1;
+
+  //list of environment ids that are considered as lower environments to this environment.
+  //in deployment pipelines for microservice-instances a successful deployment of all lower environments
+  //is required before deploying to this environment.
+  //this is used for creating dependency requirements on github/gitlab pipelines between deployment pipeline jobs.
+  repeated string lower_environment_ids = 2;
+
+  //id of the artifact-store required to construct the container image name.
+  //a product can have multiple artifact-stores. The container images are published to all artifact-stores.
+  //when creating a Deployment resource on kubernetes, only one container image name is allowed.
+  //this attribute will provide the ability to determine the artifact-store to be used for constructing the container
+  //image name to be used in the kubernetes Deployment resource.
+  string container_image_artifact_store_id = 3;
+}
+
+//environment status
+message EnvironmentStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 97;
+}
+
+//list of environments
+message Environments {
+  repeated Environment entries = 1;
+}
+
+//wrapper for environment id field
+message EnvironmentId {
+  string value = 1;
+}
+
+//response for paginated query to list environments
+message EnvironmentList {
+  int32 total_pages = 1;
+  repeated Environment entries = 2;
+}
+
+message GetByProductIdAndEnvironmentNameQueryInput {
+  string product_id = 1;
+  string environment_name = 2;
+}
+
+//input for rpc requests that require environment id, namespace
+message ByEnvironmentByNamespaceInput {
+  //id of the environment
+  string environment_id = 1;
+  //name of the kubernetes namespace
+  string namespace = 2;
+}
+
+//input for command to clone environment
+message CloneEnvironmentCommandInput {
+  //id of the environment to clone
+  string source_environment_id = 1;
+  //spec for new environment
+  Environment new_environment = 2;
+}
+
+//environment-var
+message EnvironmentVariable {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = environment_variable;
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "var";
+
+  //system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  //the name must adhere to the following constraints:
+  // - it must be between 1 and 64 characters.
+  // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
+  // - it cannot start with a hyphen or underscore.
+  // - it cannot end with a hyphen.
+  // - it must be unique within the environment.
+  //
+  //this can be represented by the following regular expression:
+  // "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  //
+  //note: in the above regular expression, {0,62} ensures the total length of the string
+  //      is 64 characters or less, including the starting and ending characters.
+  string name = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  ];
+
+  //human readable identifier for environment variable unique on planton cloud.
+  //value is computed using 'var-<environment-id>-<secret-name>'.
+  string id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //value for the environment variable.
+  string value = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+}
+
+//wrapper for list of environment variables
+message EnvironmentVariables {
+  repeated EnvironmentVariable entries = 1;
+}
+
+//response for paginated query to list environment variables
+message EnvironmentVariableList {
+  int32 total_pages = 1;
+  repeated EnvironmentVariable entries = 2;
+}
+
+//wrapper for product var id
+message EnvironmentVariableId {
+  string value = 1;
+}
+
+//wrapper for environment var value
+message EnvironmentVariableValue {
+  string value = 1;
+}
+
+//input for command to add multiple environment variables to a environment
+message AddEnvironmentVariablesCommandInput {
+  //id of the environment to which the env variables are to be added
+  string environment_id = 1;
+  //key, value pairs of the variables to be added to the environment
+  map<string, string> environment_variables = 2;
+}
+
+//environment-secret
+message EnvironmentSecret {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = environment_secret;
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sec";
+  //system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  //the name must adhere to the following constraints:
+  // - it must be between 1 and 64 characters.
+  // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
+  // - it cannot start with a hyphen or underscore.
+  // - it cannot end with a hyphen.
+  // - it must be unique within the environment.
+  //
+  //this can be represented by the following regular expression:
+  // "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  //
+  //note: in the above regular expression, {0,62} ensures the total length of the string
+  //      is 64 characters or less, including the starting and ending characters.
+  string name = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+  ];
+
+  //human readable identifier for environment secret unique on planton cloud.
+  //value is computed using 'sec-<environment-id>-<secret-name>'.
+  string id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //id of the secret resource on the secrets management service provider ex: google cloud secrets manager.
+  //value is same as the secret-id for google cloud secrets-manager backend.
+  string provider_secret_id = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//wrapper for list of secrets
+message EnvironmentSecrets {
+  repeated EnvironmentSecret entries = 1;
+}
+
+//response for paginated query to list environment secrets
+message EnvironmentSecretList {
+  int32 total_pages = 1;
+  repeated EnvironmentSecret entries = 2;
+}
+
+//wrapper for environment secret id
+message EnvironmentSecretId {
+  string value = 1;
+}
+
+//wrapper for environment secret value
+message EnvironmentSecretValue {
+  string value = 1;
+}
+
+//AddEnvironmentSecretsCommandInput is used to encapsulate the details required
+//for adding multiple environment secrets to a environment. This
+//message is typically used to transmit data between client and server in
+//an add operation concerning multiple environment secrets associated
+//with a specific environment.
+message AddEnvironmentSecretsCommandInput {
+  //The unique identifier for the environment to which the environment
+  //secrets are being added. This field must be populated with a valid product
+  //environment ID, which can be obtained from the environment entity
+  //itself. The server uses this ID to identify the correct environment
+  //to which the secrets should be added.
+  string environment_id = 1;
+  //The list of environment secrets that need to be added to the specified product
+  //environment. Each entry in this list represents a single environment secret.
+  //This is a list of instances of the `EnvironmentSecret` message, each encapsulating
+  //the details of a single environment secret, such as its name and value. The server
+  //will iterate over this list and add each secret to the environment.
+  repeated EnvironmentSecret environment_secrets = 2;
+}
+
+//AddEnvironmentSecretCommandInput is used to encapsulate the details required
+//for adding secrets to a environment. This message is typically used to
+//transmit data between client and server in an add operation
+//concerning environment secret associated with a specific environment.
+message AddEnvironmentSecretCommandInput {
+  //The unique identifier for the environment to which the secrets are
+  //being added. This field must be populated with a valid environment id,
+  //which can be obtained from the environment entity itself. The server
+  //uses this ID to identify the correct environment to which the secrets should be added.
+  string environment_id = 1;
+  //secret that need to be added to the specified environment.
+  //This is an instance of the `EnvironmentSecret` message, which encapsulates the
+  //details of a single environment secret, such as its name and value.
+  EnvironmentSecret environment_secret = 2;
+}
+
+//UpdateEnvironmentSecretValCommandInput is used to encapsulate the details required
+//for updating the value of a secret in a environment. This
+//message is typically used to transmit data between client and server during
+//an update operation concerning the value of a specific environment secret
+//associated with a particular environment.
+message UpdateEnvironmentSecretValueCommandInput {
+  //The unique identifier for the environment in which the secret is located.
+  //This field must be populated with a valid environment ID, which can be
+  //obtained from the environment entity itself. The server uses this ID to
+  //identify the correct environment where the secret value needs to be updated.
+  string environment_id = 1;
+
+  //The unique identifier for the secret whose value is to be updated. This field
+  //must be populated with a valid secret id, which can be obtained from the
+  //EnvironmentSecret entity itself. The server uses this ID to identify the
+  //correct secret within the specified environment.
+  string secret_id = 2;
+
+  //The new value for the secret. This field should be populated with the updated
+  //value that needs to be set for the secret. This value will replace the existing
+  //secret value in the specified environment.
+  string secret_value = 3;
+}
+
+//DeleteOrRestoreEnvironmentSecretCommandInput is used to encapsulate the details required
+//for deleting or restoring a secret in a environment. This message is typically used
+//to transmit data between client and server during a delete or restore operation concerning
+//a specific environment secret associated with a particular environment.
+message DeleteOrRestoreEnvironmentSecretCommandInput {
+  //The unique identifier for the environment from which the secret is to be deleted.
+  //This field must be populated with a valid environment id, which can be
+  //obtained from the environment entity itself. The server uses this id to
+  //identify the correct environment where the secret needs to be deleted.
+  string environment_id = 1;
+
+  //The unique identifier for the secret to be deleted. This field
+  //must be populated with a valid secret ID, which can be obtained from the
+  //EnvironmentSecret entity itself. The server uses this ID to identify the
+  //correct secret within the specified environment that needs to be deleted.
+  string secret_id = 2;
+}
+
+//GetByEnvironmentSecretIdInput is used to encapsulate the details required
+//for retrieving a secret associated with a specific environment by its unique identifier.
+//This message is typically used to transmit data between client and server during a retrievalue operation
+//concerning a specific environment secret associated with a particular environment.
+message GetByEnvironmentSecretIdInput {
+  //The unique identifier for the environment in which the secret resides.
+  //This field must be populated with a valid environment ID, which can be
+  //obtained from the environment entity itself. The server uses this ID to
+  //identify the correct environment where the secret is located.
+  string environment_id = 1;
+
+  //The unique identifier for the secret to be retrieved. This field
+  //must be populated with a valid secret ID, which can be obtained from the
+  //EnvironmentSecret entity itself. The server uses this ID to identify the
+  //correct secret within the specified environment that needs to be retrieved.
+  string secret_id = 2;
+}
+
+//AddEnvironmentVariableCommandInput is used to encapsulate the details required
+//for adding a new environment variable to a specific environment, or updating
+//an existing one. This message is typically used to transmit data between the client and
+//server during an add operation concerning a specific environment variable
+//associated with a particular environment.
+message AddEnvironmentVariableCommandInput {
+  //The unique identifier for the environment to which the environment
+  //variable needs to be added. This field must be populated with a valid
+  //environment ID, which can be obtained from the environment entity itself.
+  //The server uses this ID to identify the correct environment where the
+  //environment variable needs to be added.
+  string environment_id = 1;
+
+  //The environment variable that needs to be added within the product
+  //environment. This field should be populated with a valid EnvironmentVariable object,
+  //which encapsulates the details of the environment variable.
+  EnvironmentVariable variable = 2;
+}
+
+//DeleteOrRestoreEnvironmentVariableCommandInput is used to encapsulate the details required for
+//deleting or restore an environment variable of a specific environment.
+//This message is typically used to transmit data between the client and the server
+//during a delete or restore operation concerning a specific environment variable associated
+//with a particular environment.
+message DeleteOrRestoreEnvironmentVariableCommandInput {
+  //The unique identifier for the environment from which the environment
+  //variable needs to be deleted. This field must be populated with a valid
+  //environment ID, which can be obtained from the environment entity itself.
+  //The server uses this ID to identify the correct environment from which
+  //the environment variable needs to be deleted.
+  string environment_id = 1;
+
+  //The unique identifier for the environment variable that needs to be deleted
+  //from the environment. This field should be populated with a valid
+  //environment variable ID, which can be obtained from the environment variable entity itself.
+  //The server uses this ID to identify the correct environment variable that
+  //needs to be deleted.
+  string variable_id = 2;
+}
+
+//UpdateEnvironmentVariableValueCommandInput is a protobuf message that is used when a request to update the value of a specific
+//environment variable in a environment is made. This message encapsulates all necessary details needed
+//to successfully execute this operation.
+message UpdateEnvironmentVariableValueCommandInput {
+
+  //environment_id is a string that uniquely identifies the environment in which the environment
+  //variable is to be updated. This ID is used by the server to locate the specific environment.
+  string environment_id = 1;
+
+  //environment_var_id is a string that uniquely identifies the environment variable within the environment
+  //that is to be updated. This ID is used by the server to locate the specific environment variable.
+  string variable_id = 2;
+
+  //_value is a string that represents the new value to be assigned to the specified environment variable.
+  //The server will update the current value of the environment variable with this new value.
+  string variable_value = 3;
+}
+
+//GetByEnvironmentVariableIdInput is a protobuf message designed to provide the necessary information
+//when retrieving a specific environment variable in a particular environment.
+//It encapsulates the identifying details required to locate and retrieve the required environment variable.
+message GetByEnvironmentVariableIdInput {
+
+  //environment_id is a string that uniquely identifies the environment where the target
+  //environment variable is located. This ID is essential for the server to locate the specific environment.
+  string environment_id = 1;
+
+  //var_id is a string that uniquely identifies the environment variable within the identified product
+  //environment that needs to be retrieved. This ID is used by the server to find the specific environment variable.
+  string variable_id = 2;
+}
+
+

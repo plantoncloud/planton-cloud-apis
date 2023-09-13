@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.network.dns.domain.rpc;
+
+import "cloud/planton/apis/v1/commons/network/dns/record/rpc/model.proto";
+import "cloud/planton/apis/v1/commons/network/dns/domain/rpc/enums/enums.proto";
+
+message DnsDomain {
+  // domain name example.com
+  string domain_name = 1;
+  // domain visibility. for private visibility internal reserved ips are added to the zone.
+  // for publicly visible domains external reserved domains are added to the zone.
+  cloud.planton.apis.v1.commons.network.dns.domain.rpc.enums.DnsDomainVisibility visibility = 2;
+  // dns records to be added to the zone
+  repeated cloud.planton.apis.v1.commons.network.dns.record.rpc.DnsRecord dns_records = 3;
+}

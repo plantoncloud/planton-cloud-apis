@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.pulumi.plugin.rpc;
+
+// pulumi plugin name
+// the recommended best practice to prefix the entry with enum name has been intentionally ignored to ensure that the enum's value matches the name of the pulumi plugin.
+enum PulumiPluginName {
+  PLUGIN_PLUGIN_NAME_UNSPECIFIED = 0;
+  RANDOM = 1;
+  KUBERNETES = 2;
+  GCP = 3;
+  GOOGLE_NATIVE = 4;
+  AWS = 5;
+  AWS_NATIVE = 6;
+  AZURE = 7;
+  AZURE_NATIVE = 8;
+}

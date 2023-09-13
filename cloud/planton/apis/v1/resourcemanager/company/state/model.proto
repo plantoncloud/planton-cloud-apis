@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.company.state;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/state/model.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/state/enums/enums.proto";
+
+// company state
+message CompanyState {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = company;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = identity_account;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "status.sys_audit.created_by";
+
+  // event type
+  cloud.planton.apis.v1.resourcemanager.company.state.enums.CompanyEventType event_type = 99;
+
+  // api version for the resource
+  string api_version = 1;
+
+  // kind for the resource
+  string kind = 2;
+
+  // metadata for the resource
+  // id for this resource should not exceed 9 characters.
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  // company spec state
+  CompanySpecState spec = 4;
+
+  // company status state
+  CompanyStatusState status = 5;
+}
+
+// company spec sate
+message CompanySpecState {
+  // description for the company
+  string description = 1;
+}
+
+// company status state
+message CompanyStatusState {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // stack-job
+  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+
+  // id of the service-account created on google-cloud for this company.
+  // this service-account should be granted the required roles for planton-cloud to
+  // be able to create resource in the customer's google-cloud account.
+  string gcp_service_account_id = 1;
+
+  // id of the secret on secrets-manager containing the service-account key credential.
+  string gcp_service_account_key_secret_name = 2;
+}

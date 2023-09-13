@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.kubernetes.enums;
+
+enum PodControllerType {
+  POD_CONTROLLER_TYPE_UNSPECIFIED = 0;
+  deployment = 1;
+  stateful_set = 2;
+  cron_job = 3;
+}
+
+// kubernetes resource kind
+enum ResourceKind {
+  RESOURCE_KIND_UNSPECIFIED = 0;
+  Namespace = 1;
+  Deployment = 2;
+  Service = 3;
+  Secret = 4;
+  Ingress = 5;
+  Issuer = 6;
+  Certificate = 7;
+}

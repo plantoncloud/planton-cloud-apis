@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.code2cloud.deploy.opensource.postgres.state.keys;
-
-// key for postgres-cluster state messages
-message PostgresClusterStateKey {
-  string value = 1;
-}

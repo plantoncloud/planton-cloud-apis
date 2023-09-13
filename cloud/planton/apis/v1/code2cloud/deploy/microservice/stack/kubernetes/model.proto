@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.microservice.stack.kubernetes;
+
+import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state/model.proto";
+
+//input for microservice-instance stack
+message MicroserviceInstanceKubernetesStackInput {
+  //pulumi stack input
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  //pulumi stack credentials
+  MicroserviceInstanceKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  MicroserviceInstanceKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message MicroserviceInstanceKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating microservice-instance resources on container instance
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.KubernetesProviderCredential kubernetes = 1;
+  //google provider credential for ensuring workload identity resources on google cloud
+  cloud.planton.apis.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 2;
+}
+
+//stack resource input
+message MicroserviceInstanceKubernetesStackResourceInput {
+  //microservice-instance
+  cloud.planton.apis.v1.code2cloud.deploy.microservice.state.MicroserviceInstanceState microservice_instance = 1;
+  //input required for creating kubernetes secret resources to be used by deployment resources to pull private
+  //container images.
+  //a product can have many artifact-stores. each artifact-store has a separate service account credential.
+  //for each microservice that belongs to a product, one microservice environment is created per environment.
+  //the microservice environment will be configured with secrets required to pull private images from any of the product's
+  //artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
+  //artifact-stores.
+  repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
+  //container cluster project required to configure workload identity
+  //service account is created in container cluster project and a binding created to workload identity pool.
+  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.rpc.GcpProject container_cluster_project = 3;
+}
+
+message KubernetesImagePullSecretInput {
+  //name of the image pull secret to be used for naming the kubernetes secret.
+  string image_pull_secret_name = 1;
+  //base64 encoded key for the artifact reader google service account
+  string artifact_reader_gsa_key_base64 = 2;
+  //hostname of the docker repo ex: us-central1-docker.pkg.dev
+  string docker_repo_hostname = 3;
+}
+
+//microservice-instance stack outputs
+message MicroserviceInstanceKubernetesStackOutputs {
+  //status of the microservice-instance upon stack-job
+  cloud.planton.apis.v1.code2cloud.deploy.microservice.state.MicroserviceInstanceStatusState microservice_instance_status = 1;
+}
+
+//stack response
+message MicroserviceInstanceKubernetesStackResponse {
+  //stack progress
+  cloud.planton.apis.v1.stack.rpc.StackProgress progress = 1;
+  //stack outputs
+  MicroserviceInstanceKubernetesStackOutputs outputs = 3;
+}

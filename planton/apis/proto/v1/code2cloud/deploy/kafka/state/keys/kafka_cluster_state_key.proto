@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.code2cloud.deploy.opensource.kafka.state.keys;
-
-// key for kafka-cluster state messages
-message KafkaClusterStateKey {
-  string value = 1;
-}

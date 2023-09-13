@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package planton.apis.proto.v1.code2cloud.deploy.endpoint.standard.state.keys;
-
-// key for standard-endpoint state messages
-message StandardEndpointStateKey {
-  string value = 1;
-}
