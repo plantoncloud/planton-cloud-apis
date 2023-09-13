@@ -35,8 +35,9 @@ message ResourceVersion {
   string new_state_yaml = 8;
   // The differences between the original and new state, represented in a unified diff format.
   string diff_unified_format = 9;
+  // id of the stack-job created for the version. this will only be populated for versions created for resources that have stack.
+  string stack_job_id = 10;
 }
-
 
 // wrapper for resource-versions id
 message ResourceVersionId {
@@ -72,7 +73,6 @@ message ListResourceVersionsByFiltersQueryInput {
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
   // id of the resource
   string resource_id = 6;
-
 }
 
 // paginated list of resource-versions

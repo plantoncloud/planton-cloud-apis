@@ -49,3 +49,11 @@ message StackJobState {
   // error message from stack-job. this attribute is only populated when stack-job-status is "failed"
   string error_message = 13;
 }
+
+// resource-stack-job info contains minimum information embedded in the status for the resources that have stack.
+message ResourceStackJobInfoState {
+  //id of the stack job
+  string id = 1;
+  //status of the stack job
+  string status = 2;
+}

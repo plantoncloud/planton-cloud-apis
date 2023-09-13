@@ -65,8 +65,8 @@ message DnsZoneStatusState {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
-  // stack-job
-  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+  // stack-job info
+  cloud.planton.apis.v1.stack.state.ResourceStackJobInfoState stack_job_info = 97;
 
   //status for the zone created in google cloud dns.
   //this attribute is populated only when the zone provider is google cloud dns
