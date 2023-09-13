@@ -33,27 +33,27 @@ enum KubeClusterEventType {
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = preview
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
   ];
-  KUBE_CLUSTER_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+  KUBE_CLUSTER_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
   KUBE_CLUSTER_EVENT_TYPE_STATE_PAUSED = 11 [

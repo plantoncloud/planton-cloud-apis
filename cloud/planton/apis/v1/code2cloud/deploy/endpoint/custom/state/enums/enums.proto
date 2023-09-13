@@ -33,27 +33,27 @@ enum CustomEndpointEventType {
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = preview
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
   ];
-  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+  CUSTOM_ENDPOINT_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
 }

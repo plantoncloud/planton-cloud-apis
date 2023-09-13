@@ -12,7 +12,7 @@ enum StackOperationType {
 }
 
 enum StackJobStatus {
-  STACK_EXECUTION_STATUS_UNSPECIFIED = 0;
+  STACK_JOB_STATUS_UNSPECIFIED = 0;
   pending = 1;
   running = 2;
   succeeded = 3;

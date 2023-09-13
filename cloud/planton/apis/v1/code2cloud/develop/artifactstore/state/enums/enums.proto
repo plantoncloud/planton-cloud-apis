@@ -30,27 +30,27 @@ enum ArtifactStoreEventType {
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_PROGRESS_UPDATED = 5 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_PREVIEW_REQUESTED = 6 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = preview
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_APPLY_REQUESTED = 7 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = apply
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_APPLY_COMPLETED = 8 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_DESTROY_REQUESTED = 9 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.state.enums.options.stack_operation_type) = destroy
   ];
-  ARTIFACT_STORE_EVENT_TYPE_STACK_DESTROY_COMPLETED = 10 [
+  ARTIFACT_STORE_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
     (cloud.planton.apis.v1.commons.resource.state.enums.options.is_persist_required) = true
   ];
 }
