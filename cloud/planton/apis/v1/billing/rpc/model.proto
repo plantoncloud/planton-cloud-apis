@@ -95,8 +95,8 @@ message BillingAccountStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-  // stack-job that produced the status
-  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 97;
+  // info of the stack-job that produced the status
+  cloud.planton.apis.v1.stack.rpc.ResourceStackJobInfo stack_job_info = 97;
 }
 
 // BillingItemState is a protocol message that represents the state of a billing item.
@@ -145,7 +145,6 @@ message StripeSubscriptionItem {
   // It is used for tracking the billing state of the item within its subscription.
   string subscription_item_id = 2;
 }
-
 
 //wrapper for id of the billing account.
 message BillingAccountId {

@@ -51,7 +51,6 @@ message BillingAccountSpecState {
   repeated BillingSubscriptionState subscriptions = 3;
 }
 
-
 message BillingSubscriptionState {
   // System audit information associated with this billing subscription.
   // SysAudit is a separate message defined elsewhere, which includes necessary system audit information.
@@ -70,8 +69,6 @@ message BillingSubscriptionState {
   repeated BillingItemState billing_items = 3;
 }
 
-
-
 message StripeCustomer {
   //id of the customer created for the company on stripe
   string customer_id = 1;
@@ -89,7 +86,7 @@ message BillingAccountStatusState {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
   // stack-job that produced the status
-  cloud.planton.apis.v1.stack.state.StackJobState stack_job = 97;
+  cloud.planton.apis.v1.stack.state.StackJobState stack_job_info = 97;
 }
 
 // BillingItemState is a protocol message that represents the state of a billing item.
