@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cloud.planton.apis.proto.v1.stack.rpc;
+
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+
+service StackExecutionCommandController {
+  //update stack-execution
+  rpc update(cloud.planton.apis.v1.stack.rpc.StackJob) returns (cloud.planton.apis.v1.stack.rpc.StackJob);
+}
+
+service StackExecutionQueryController {
+  //list of stack executions
+  //todo: need to add authorization
+  rpc listByFilters(cloud.planton.apis.v1.stack.rpc.ListStackJobsByFiltersQueryInput) returns(cloud.planton.apis.v1.stack.rpc.StackJobList);
+  //look up stack execution by stack-execution-id
+  //todo: need to add authorization
+  rpc getById(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(cloud.planton.apis.v1.stack.rpc.StackJob);
+  //todo: need to add authorization
+  //get stack-execution log stream for stacks that are in-progress
+  rpc getLogStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.commons.grpc.stream.OutputLine);
+}
+
