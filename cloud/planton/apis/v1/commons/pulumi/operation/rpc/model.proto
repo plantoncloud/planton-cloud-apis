@@ -10,8 +10,8 @@ message StackOperationInput {
   string company_id = 1;
   // id of the product for which the stack is executed. this field is only set for product stacks.
   string product_id = 2;
-  // stack-job details
-  cloud.planton.apis.v1.stack.state.ResourceStackJobInfoState stack_job_info = 3;
+  // id of the stack-job
+  string stack_job_id = 3;
 }
 
 // pulumi google provider credential
