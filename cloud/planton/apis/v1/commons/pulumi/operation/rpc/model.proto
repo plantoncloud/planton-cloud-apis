@@ -13,7 +13,7 @@ message StackOperationInput {
   // id of the resource for which the stack is executed.
   string resource_id = 3;
   // type of stack-operation for stack-job
-  string stack_operation_type = 4;
+  string stack_job_operation_type = 4;
   // id of the stack-job
   string stack_job_id = 5;
   // relative path of the file (includes file name) to be used when uploading the job log to gcs bucket
