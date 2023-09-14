@@ -48,6 +48,8 @@ message StackJob {
   string log_content = 12;
   // error message from stack-execution. this attribute is only populated when stack-execution-status is "failed"
   string error_message = 13;
+  // resource-count
+  int32 resource_count = 14;
 }
 
 // wrapper for stack-job id

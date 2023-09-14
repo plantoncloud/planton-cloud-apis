@@ -48,6 +48,8 @@ message StackJobState {
   string log_content = 12;
   // error message from stack-job. this attribute is only populated when stack-job-status is "failed"
   string error_message = 13;
+  // resource-count
+  int32 resource_count = 14;
 }
 
 // resource-stack-job info contains minimum information embedded in the status for the resources that have stack.
