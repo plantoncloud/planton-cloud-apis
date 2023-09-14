@@ -20,7 +20,7 @@ message EnvironmentResourceOwner {
 
   //kubernetes cluster in which the environment resource is created in.
   //value is computed from the environment.
-  string kubernetes_cluster_id = 3 [
+  string kube_cluster_id = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 

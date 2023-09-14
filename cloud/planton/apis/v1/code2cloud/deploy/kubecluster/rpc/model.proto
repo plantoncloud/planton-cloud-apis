@@ -517,7 +517,7 @@ message SolrOperator {
 // input for rpc requests that require kubernetes-cluster id, namespace and pod id
 message ByKubeClusterByNamespaceByPodInput {
   // id of the kubernetes-cluster
-  string kubernetes_cluster_id = 1;
+  string kube_cluster_id = 1;
   // name of the kubernetes namespace
   string namespace = 2;
   // id of the kubernetes pod
@@ -527,7 +527,7 @@ message ByKubeClusterByNamespaceByPodInput {
 // input for rpc requests that require kubernetes-cluster id, namespace
 message ByKubeClusterByNamespaceInput {
   // id of the kubernetes-cluster
-  string kubernetes_cluster_id = 1;
+  string kube_cluster_id = 1;
   // name of the kubernetes namespace
   string namespace = 2;
 }
