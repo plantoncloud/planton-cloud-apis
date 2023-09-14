@@ -6,13 +6,13 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 
-service StackExecutionCommandController {
+service StackJobCommandController {
   //update stack-execution
   rpc update(cloud.planton.apis.v1.stack.rpc.StackJob) returns (cloud.planton.apis.v1.stack.rpc.StackJob);
 }
 
-service StackExecutionQueryController {
-  //list of stack executions
+service StackJobQueryController {
+  //list of stack-jobs
   //todo: need to add authorization
   rpc listByFilters(cloud.planton.apis.v1.stack.rpc.ListStackJobsByFiltersQueryInput) returns(cloud.planton.apis.v1.stack.rpc.StackJobList);
   //look up stack execution by stack-execution-id

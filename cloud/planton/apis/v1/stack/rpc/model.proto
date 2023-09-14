@@ -81,7 +81,7 @@ message ListStackJobsByFiltersQueryInput {
 message StackJobList {
   // total number of pages
   int32 total_pages = 1;
-  // list of stack-executions
+  // list of stack-jobs
   repeated StackJob entries = 2;
 }
 
