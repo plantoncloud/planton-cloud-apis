@@ -171,7 +171,7 @@ message DnsRecord {
   // this value should always end with a dot.
   string name = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$",
+    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^(?:\\*\\.)?(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$",
     (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "Name should be any valid DNS Domain Name"
   ];
 
