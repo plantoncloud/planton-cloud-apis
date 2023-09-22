@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.integration.github.proxy.rpc;
+package cloud.planton.apis.v1.integration.github.proxy;
 
-import "cloud/planton/apis/v1/integration/github/proxy/rpc/model.proto";
+import "cloud/planton/apis/v1/integration/github/proxy/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 

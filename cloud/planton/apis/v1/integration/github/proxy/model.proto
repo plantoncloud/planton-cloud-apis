@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.integration.github.proxy.rpc;
+package cloud.planton.apis.v1.integration.github.proxy;
 
-import "cloud/planton/apis/v1/integration/github/proxy/rpc/enums/enums.proto";
+import "cloud/planton/apis/v1/integration/github/proxy/enums/enums.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc/enums/enums.proto";
 
@@ -11,7 +11,7 @@ message GithubClientInfo {
   //github host to send the request to ex: https://github.com
   string github_host = 1;
   //github authorization type
-  cloud.planton.apis.v1.integration.github.proxy.rpc.enums.GithubApiAuthorizationType authorization_type = 2;
+  cloud.planton.apis.v1.integration.github.proxy.enums.GithubApiAuthorizationType authorization_type = 2;
   //api token to be used to query github server when authorization type is api token
   string api_token = 3;
   //github app installation details to be used to query github server when authorization type is github app
