@@ -53,5 +53,5 @@ message IdentityGroupStatusState {
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
   // info of the stack-job that produced the status
-  cloud.planton.apis.v1.stack.state.ResourceStackJobInfoState stack_job_info = 97;
+    string stack_job_id = 97;
 }
