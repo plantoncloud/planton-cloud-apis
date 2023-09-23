@@ -11,8 +11,6 @@ service StackJobCommandController {
   rpc create(cloud.planton.apis.v1.stack.rpc.StackJob) returns (cloud.planton.apis.v1.stack.rpc.StackJob);
   //update stack-job
   rpc update(cloud.planton.apis.v1.stack.rpc.StackJob) returns (cloud.planton.apis.v1.stack.rpc.StackJob);
-  //delete stack-job
-  rpc delete(cloud.planton.apis.v1.stack.rpc.StackJobId) returns (cloud.planton.apis.v1.stack.rpc.StackJob);
 }
 
 service StackJobQueryController {
