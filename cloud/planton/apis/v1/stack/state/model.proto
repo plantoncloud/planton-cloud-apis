@@ -51,13 +51,3 @@ message StackJobState {
   // resource-count
   int32 resource_count = 14;
 }
-
-// resource-stack-job info contains minimum information embedded in the status for the resources that have stack.
-message ResourceStackJobInfoState {
-  //id of the stack-job
-  string id = 1;
-  //stack-operation-type for the stack-job
-  string operation_type = 2;
-  //status of the stack-job
-  string status = 3;
-}
