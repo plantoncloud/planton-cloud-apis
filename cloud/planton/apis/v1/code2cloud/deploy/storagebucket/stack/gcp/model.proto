@@ -8,8 +8,8 @@ import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state/model.proto"
 
 //input for storage-bucket stack
 message StorageBucketGcpStackInput {
-  //pulumi stack input
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  //stack job
+  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 1;
   //pulumi stack credentials
   StorageBucketGcpStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources

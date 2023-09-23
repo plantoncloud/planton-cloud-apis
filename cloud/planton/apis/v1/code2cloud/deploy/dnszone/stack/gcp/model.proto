@@ -10,8 +10,8 @@ import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/state/model.proto";
 
 // input for dns-zone stack
 message DnsZoneGcpStackInput {
-  // pulumi operation input
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.StackOperationInput operation_input = 1;
+  //stack job
+  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 1;
   // pulumi stack credentials
   DnsZoneGcpStackCredentialsInput credentials_input = 2;
   // inputs used for creating stack resources
