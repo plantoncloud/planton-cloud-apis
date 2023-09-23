@@ -44,9 +44,9 @@ message StackJob {
   string web_url = 11;
   // content of the log file.
   // note: log content is not persisted in the database.
-  // log-content will only be included in response for stack-execution details rpc calls.
+  // log-content will only be included in response for stack-job details rpc calls.
   string log_content = 12;
-  // error message from stack-execution. this attribute is only populated when stack-execution-status is "failed"
+  // error message from stack-job. this attribute is only populated when stack-job-status is "failed"
   string error_message = 13;
   // resource-count
   int32 resource_count = 14;
