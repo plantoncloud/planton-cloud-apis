@@ -156,7 +156,6 @@ service KubeClusterQueryController {
   }
 }
 
-
 // gcp kube-cluster container node pool command controller
 service KubeClusterNodePoolGcpCommandController {
   // add a node pool to a kube-cluster in a kube-cluster

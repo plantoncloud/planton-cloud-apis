@@ -127,8 +127,8 @@ message StandardEndpointStatus {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
 
-  // stack-job info
-  cloud.planton.apis.v1.stack.rpc.ResourceStackJobInfo stack_job_info = 97;
+  // id of the stack-job
+  string stack_job_id = 97;
 
   //may be add certificate names?
 }

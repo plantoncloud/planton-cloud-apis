@@ -96,7 +96,7 @@ message BillingAccountStatus {
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
   // info of the stack-job that produced the status
-  cloud.planton.apis.v1.stack.rpc.ResourceStackJobInfo stack_job_info = 97;
+  string stack_job_id = 97;
 }
 
 // BillingItemState is a protocol message that represents the state of a billing item.
