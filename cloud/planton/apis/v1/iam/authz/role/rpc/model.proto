@@ -7,7 +7,6 @@ import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
 
 // iam-role
 message IamRole {
@@ -55,9 +54,6 @@ message IamRoleStatus {
 
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-
-  // info of the stack-job that produced the status
-  string stack_job_id = 97;
 }
 
 // wrapper for iam role id

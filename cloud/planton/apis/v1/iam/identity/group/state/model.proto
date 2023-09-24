@@ -5,7 +5,6 @@ package cloud.planton.apis.v1.iam.identity.group.state;
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/state/model.proto";
 import "cloud/planton/apis/v1/iam/identity/group/state/enums/enums.proto";
 
 //identity-group state
@@ -51,7 +50,4 @@ message IdentityGroupStatusState {
 
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-
-  // info of the stack-job that produced the status
-    string stack_job_id = 97;
 }

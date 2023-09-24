@@ -8,7 +8,6 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
 
 //identity-group
 message IdentityGroup {
@@ -51,9 +50,6 @@ message IdentityGroupStatus {
 
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-
-  // info of the stack-job that produced the status
-  string stack_job_id = 97;
 }
 
 //wrapper for iam group id
