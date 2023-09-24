@@ -7,7 +7,6 @@ package cloud.planton.apis.v1.billing.state;
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/state/model.proto";
 import "cloud/planton/apis/v1/billing/state/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 
@@ -85,8 +84,6 @@ message BillingAccountStatusState {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-  // stack-job that produced the status
-  cloud.planton.apis.v1.stack.state.StackJobState stack_job_info = 97;
 }
 
 // BillingItemState is a protocol message that represents the state of a billing item.
