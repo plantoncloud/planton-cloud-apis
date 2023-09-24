@@ -19,13 +19,16 @@ message CloudAccount {
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = true;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "ca";
-  //https://regex101.com/r/Fd9d6S/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_regex) = "^(?=([a-z0-9-]*-){2})(ca-)([a-z0-9-]*[a-z0-9])?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_min_length) = 6;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_max_length) = 25;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description) = "Id should start with 'ca-', succeeded by the company id and a hyphen, concluding with a user-selected suffix of at least 1 character. Total length must be under 25 characters.";
+
+  //id format "ca-<company-id>-<cloud-account-name>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  //https://regex101.com/r/QbMSjf/1
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 10;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
 
   // resource api-version
   string api_version = 1 [
