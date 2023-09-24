@@ -7,7 +7,6 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/iam/identity/connection/rpc/enums/enums.proto";
 
 //identity-connection used for linking a company's identity provider with planton cloud
@@ -99,9 +98,6 @@ message IdentityConnectionStatus {
 
   // system audit info
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
-
-  // info of the stack-job that produced the status
-  string stack_job_id = 97;
 }
 
 message SamlConnection {
