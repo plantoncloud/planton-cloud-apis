@@ -19,7 +19,7 @@ message DnsZone {
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "dnszone";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "dns";
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
   //https://regex101.com/library/SEg6KL
