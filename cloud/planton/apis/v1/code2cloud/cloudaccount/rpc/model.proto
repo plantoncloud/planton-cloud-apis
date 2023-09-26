@@ -27,8 +27,8 @@ message CloudAccount {
   //https://regex101.com/r/QbMSjf/1
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 10;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 15;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.";
 
   // resource api-version
   string api_version = 1 [
