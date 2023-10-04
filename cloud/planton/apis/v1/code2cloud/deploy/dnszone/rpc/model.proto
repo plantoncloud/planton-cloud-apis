@@ -11,9 +11,16 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/rpc/enums/enums.proto";
+import "buf/validate/validate.proto";
 
 //dns-zone
 message DnsZone {
+  option (buf.validate.message).cel = {
+    id: "metadata.name",
+    message: "Name should be any valid DNS Domain Name",
+    //https://regex101.com/library/SEg6KL
+    expression: "matches(this.metadata.name, '^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$')"
+  };
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = dns_zone;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
@@ -22,9 +29,6 @@ message DnsZone {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "dns";
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/library/SEg6KL
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Name should be any valid DNS Domain Name";
 
   // resource api-version
   string api_version = 1 [
@@ -171,8 +175,11 @@ message DnsRecord {
   // this value should always end with a dot.
   string name = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^(?:\\*\\.)?(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "Name should be any valid DNS Domain Name"
+    (buf.validate.field).cel = {
+      id: "name",
+      message: "Name should be any valid DNS Domain Name",
+      expression: "matches(this, '^(?:\\*\\.)?(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$')"
+    }
   ];
 
   // values for the dns-zone record.

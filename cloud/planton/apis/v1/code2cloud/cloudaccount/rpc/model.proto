@@ -11,9 +11,17 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "buf/validate/validate.proto";
 
 // company cloud account
 message CloudAccount {
+  option (buf.validate.message).cel = {
+    id: "metadata.name",
+    message: "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.",
+    //https://regex101.com/r/QbMSjf/1
+    expression: "size(this.metadata.name) >= 1 && size(this.metadata.name) <= 15 && matches(this.metadata.name, '^[a-z][a-z0-9]*(-[a-z0-9]+)*$')"
+  };
+
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = cloud_account;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
@@ -23,12 +31,6 @@ message CloudAccount {
 
   //id format "ca-<company-id>-<cloud-account-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-
-  //https://regex101.com/r/QbMSjf/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 15;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.";
 
   // resource api-version
   string api_version = 1 [
@@ -123,8 +125,11 @@ message CloudAccountGcpSpec {
   string org_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[0-9]+$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "Only digits (0-9). Must be at least 1 character long."
+    (buf.validate.field).cel = {
+      id: "org_id",
+      message: "Only digits (0-9). Must be at least 1 character long.",
+      expression: "matches(this, '^[0-9]+$')"
+    }
   ];
 
   // The DNS domain of the Google Cloud Organization, optional during creation.
@@ -132,8 +137,11 @@ message CloudAccountGcpSpec {
 
   // The GCP Billing Account ID that will be linked to the projects created for shared services. Required during creation.
   string billing_account_id = 3 [
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[A-Za-z0-9]+([-A-Za-z0-9]*[A-Za-z0-9])?$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "only alphanumeric characters (a-z, a-z, 0-9) and hyphens. cannot start or end with a hyphen."
+    (buf.validate.field).cel = {
+      id: "billing_account_id",
+      message: "only alphanumeric characters (a-z, a-z, 0-9) and hyphens. cannot start or end with a hyphen.",
+      expression: "matches(this, '^[A-Za-z0-9]+([-A-Za-z0-9]*[A-Za-z0-9])?$')"
+    }
   ];
 
   // Name of the secret containing the value of the service-account key in the secrets manager.
@@ -162,23 +170,32 @@ message CloudAccountAwsSpec {
   // The ID of the AWS Account, required and immutable. For more information,
   string account_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[0-9]+$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "Only digits (0-9). Must be at least 1 character long."
+    (buf.validate.field).cel = {
+      id: "account_id",
+      message: "Only digits (0-9). Must be at least 1 character long.",
+      expression: "matches(this, '^[0-9]+$')"
+    }
   ];
 
   //AWS Access Key Id
   string access_key_id = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    //https://regex101.com/r/N0MQ4W/1
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^AKIA[0-9A-Z]{16}$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "The provided AWS Access Key ID is invalid. It must start with 'AKIA' followed by 16 alphanumeric characters. Please double-check your input and try again."
+    (buf.validate.field).cel = {
+      id: "access_key_id",
+      message: "The provided AWS Access Key ID is invalid. It must start with 'AKIA' followed by 16 alphanumeric characters. Please double-check your input and try again.",
+      //https://regex101.com/r/N0MQ4W/1
+      expression: "matches(this, '^AKIA[0-9A-Z]{16}$')"
+    }
   ];
 
   //AWS Secret Access Key
   string secret_access_key = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    //https://regex101.com/r/YlvVRM/1
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[0-9a-zA-Z/+]{40}$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "The provided AWS Secret Access Key is invalid. It must contain exactly 40 characters consisting of numbers, lowercase and uppercase letters, slashes (/), and plus signs (+). Please double-check your input and try again."
+    (buf.validate.field).cel = {
+      id: "secret_access_key",
+      message: "The provided AWS Secret Access Key is invalid. It must contain exactly 40 characters consisting of numbers, lowercase and uppercase letters, slashes (/), and plus signs (+). Please double-check your input and try again.",
+      //https://regex101.com/r/YlvVRM/1
+      expression: "matches(this, '^[0-9a-zA-Z/+]{40}$')"
+    }
   ];
 }
