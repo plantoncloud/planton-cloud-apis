@@ -3,7 +3,7 @@ managed:
   enabled: true
   optimize_for: SPEED
   java_package_prefix:
-    default: cloud
+    default: build.buf.gen
     except:
       - google/protobuf/empty
       - google/protobuf/timestamp
@@ -15,16 +15,3 @@ plugins:
     out: generated/java
   - plugin: buf.build/grpc/java:v1.57.1
     out: generated/java
-#  - plugin: buf.build/protocolbuffers/go:v1.31.0
-#    out: generated/go
-#  - plugin: buf.build/grpc/go:v1.3.0
-#    out: generated/go
-    opt: require_unimplemented_servers=false
-  - plugin: buf.build/bufbuild/connect-swift:v0.6.0
-    out: zzswift
-    opt: FileNaming=PathToUnderscores,Visibility=Public
-  - plugin: buf.build/apple/swift
-    out: zzswift
-    opt: FileNaming=PathToUnderscores,Visibility=Public
-  - plugin: buf.build/bufbuild/connect-kotlin:v0.1.8
-    out: generated/kotlin
