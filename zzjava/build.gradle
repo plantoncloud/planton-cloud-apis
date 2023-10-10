@@ -5,7 +5,7 @@ plugins {
     id "com.google.cloud.artifactregistry.gradle-plugin" version "2.2.0"
 }
 
-group 'cloud.planton.commons'
+group 'cloud.planton'
 version '0.0.001-SNAPSHOT'
 
 publishing {
