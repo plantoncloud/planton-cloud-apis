@@ -15,13 +15,6 @@ import "buf/validate/validate.proto";
 
 // company cloud account
 message CloudAccount {
-  option (buf.validate.message).cel = {
-    id: "metadata.name",
-    message: "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.",
-    //https://regex101.com/r/QbMSjf/1
-    expression: "size(this.metadata.name) >= 1 && size(this.metadata.name) <= 15 && matches(this.metadata.name, '^[a-z][a-z0-9]*(-[a-z0-9]+)*$')"
-  };
-
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = cloud_account;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
@@ -49,7 +42,14 @@ message CloudAccount {
   // 3. Once a cloud account is added to a company, the ID cannot be changed.
   // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
   // The constraints are enforced by the regular expression "^ca-.{1,22}$".
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).cel = {
+      id: "cloud_account.metadata.name",
+      message: "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.",
+      // https://regex101.com/r/ZWKrmF/1
+      expression: "this.name.matches('^[a-z0-9][a-z0-9-]{0,13}[a-z0-9]$')"
+    }
+  ];
 
   // cloud account spec
   CloudAccountSpec spec = 4;

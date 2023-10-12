@@ -16,6 +16,7 @@ message RegexFieldsTest {
   string no_regex_string_field = 2;
 }
 
+// A message with a string field that must match a regex, and a string field without regex.
 message RegexFieldsProtoValidateTest {
   string regex_string_field = 1 [
     (buf.validate.field).cel = {
