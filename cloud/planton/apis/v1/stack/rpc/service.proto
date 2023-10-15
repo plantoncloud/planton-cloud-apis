@@ -23,6 +23,4 @@ service StackJobQueryController {
   //todo: need to add authorization
   //get stack-job log stream for stacks that are in-progress
   rpc getLogStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.commons.grpc.stream.OutputLine);
-  //new temporary rpc to test progress snapshot
-  rpc getProgressSnapshotStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream StackProgressSnapshot);
 }
