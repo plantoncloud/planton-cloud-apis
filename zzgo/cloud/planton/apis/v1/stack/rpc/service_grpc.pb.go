@@ -149,9 +149,10 @@ var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	StackJobQueryController_ListByFilters_FullMethodName = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/listByFilters"
-	StackJobQueryController_GetById_FullMethodName       = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/getById"
-	StackJobQueryController_GetLogStream_FullMethodName  = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/getLogStream"
+	StackJobQueryController_ListByFilters_FullMethodName             = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/listByFilters"
+	StackJobQueryController_GetById_FullMethodName                   = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/getById"
+	StackJobQueryController_GetLogStream_FullMethodName              = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/getLogStream"
+	StackJobQueryController_GetProgressSnapshotStream_FullMethodName = "/cloud.planton.apis.v1.stack.rpc.StackJobQueryController/getProgressSnapshotStream"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -167,6 +168,8 @@ type StackJobQueryControllerClient interface {
 	// todo: need to add authorization
 	// get stack-job log stream for stacks that are in-progress
 	GetLogStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetLogStreamClient, error)
+	// new temporary rpc to test progress snapshot
+	GetProgressSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetProgressSnapshotStreamClient, error)
 }
 
 type stackJobQueryControllerClient struct {
@@ -227,6 +230,38 @@ func (x *stackJobQueryControllerGetLogStreamClient) Recv() (*stream.OutputLine, 
 	return m, nil
 }
 
+func (c *stackJobQueryControllerClient) GetProgressSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetProgressSnapshotStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[1], StackJobQueryController_GetProgressSnapshotStream_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &stackJobQueryControllerGetProgressSnapshotStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type StackJobQueryController_GetProgressSnapshotStreamClient interface {
+	Recv() (*StackProgressSnapshot, error)
+	grpc.ClientStream
+}
+
+type stackJobQueryControllerGetProgressSnapshotStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *stackJobQueryControllerGetProgressSnapshotStreamClient) Recv() (*StackProgressSnapshot, error) {
+	m := new(StackProgressSnapshot)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // StackJobQueryControllerServer is the server API for StackJobQueryController service.
 // All implementations should embed UnimplementedStackJobQueryControllerServer
 // for forward compatibility
@@ -240,6 +275,8 @@ type StackJobQueryControllerServer interface {
 	// todo: need to add authorization
 	// get stack-job log stream for stacks that are in-progress
 	GetLogStream(*StackJobId, StackJobQueryController_GetLogStreamServer) error
+	// new temporary rpc to test progress snapshot
+	GetProgressSnapshotStream(*StackJobId, StackJobQueryController_GetProgressSnapshotStreamServer) error
 }
 
 // UnimplementedStackJobQueryControllerServer should be embedded to have forward compatible implementations.
@@ -254,6 +291,9 @@ func (UnimplementedStackJobQueryControllerServer) GetById(context.Context, *Stac
 }
 func (UnimplementedStackJobQueryControllerServer) GetLogStream(*StackJobId, StackJobQueryController_GetLogStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetLogStream not implemented")
+}
+func (UnimplementedStackJobQueryControllerServer) GetProgressSnapshotStream(*StackJobId, StackJobQueryController_GetProgressSnapshotStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetProgressSnapshotStream not implemented")
 }
 
 // UnsafeStackJobQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -324,6 +364,27 @@ func (x *stackJobQueryControllerGetLogStreamServer) Send(m *stream.OutputLine) e
 	return x.ServerStream.SendMsg(m)
 }
 
+func _StackJobQueryController_GetProgressSnapshotStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StackJobId)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StackJobQueryControllerServer).GetProgressSnapshotStream(m, &stackJobQueryControllerGetProgressSnapshotStreamServer{stream})
+}
+
+type StackJobQueryController_GetProgressSnapshotStreamServer interface {
+	Send(*StackProgressSnapshot) error
+	grpc.ServerStream
+}
+
+type stackJobQueryControllerGetProgressSnapshotStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *stackJobQueryControllerGetProgressSnapshotStreamServer) Send(m *StackProgressSnapshot) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // StackJobQueryController_ServiceDesc is the grpc.ServiceDesc for StackJobQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -344,6 +405,11 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "getLogStream",
 			Handler:       _StackJobQueryController_GetLogStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "getProgressSnapshotStream",
+			Handler:       _StackJobQueryController_GetProgressSnapshotStream_Handler,
 			ServerStreams: true,
 		},
 	},

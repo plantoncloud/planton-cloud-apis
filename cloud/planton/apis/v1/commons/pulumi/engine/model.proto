@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.pulumi.engine;
+
+message EngineEvent {
+  int32 sequence = 1;
+  int32 timestamp = 2;
+  CancelEvent cancel_event = 3;
+  StdoutEngineEvent stdout_event = 4;
+  DiagnosticEvent diagnostic_event = 5;
+  PreludeEvent prelude_event = 6;
+  SummaryEvent summary_event = 7;
+  ResourcePreEvent resource_preEvent = 8;
+  ResOutputsEvent res_outputs_event = 9;
+  ResOpFailedEvent res_op_failed_event = 10;
+  PolicyEvent policy_event = 11;
+  PolicyRemediationEvent policy_remediation_event = 12;
+}
+
+message CancelEvent {}
+
+message StdoutEngineEvent {
+  string message = 1;
+  string color = 2;
+}
+
+message DiagnosticEvent {
+  string urn = 1;
+  string prefix = 2;
+  string message = 3;
+  string color = 4;
+  string severity = 5;
+  int32 streamID = 6;
+  bool ephemeral = 7;
+}
+
+message PolicyEvent {
+  string resource_urn = 1;
+  string message = 2;
+  string color = 3;
+  string policy_name = 4;
+  string policy_pack_name = 5;
+  string policy_pack_version = 6;
+  string policy_pack_version_tag = 7;
+  string enforcement_level = 8;
+}
+
+message PolicyRemediationEvent {
+  string resource_urn = 1;
+  string color = 2;
+  string policy_name = 3;
+  string policy_pack_name = 4;
+  string policy_pack_version = 5;
+  string policy_pack_version_tag = 6;
+  map<string, string> before = 7;
+  map<string, string> after = 8;
+}
+
+message PreludeEvent {
+  map<string, string> config = 1;
+}
+
+message SummaryEvent {
+  bool maybe_corrupt = 1;
+  int32 duration_seconds = 2;
+  map<string, int32> resource_changes = 3;
+  map<string, string> policy_packs = 4;
+}
+
+enum DiffKind {
+  DIFF_KIND_UNSPECIFIED = 0;
+  DIFF_ADD = 1;
+  DIFF_ADD_REPLACE = 2;
+  DIFF_DELETE = 3;
+  DIFF_DELETE_REPLACE = 4;
+  DIFF_UPDATE = 5;
+  DIFF_UPDATE_REPLACE = 6;
+}
+
+message PropertyDiff {
+  DiffKind diff_kind = 1;
+  bool input_diff = 2;
+}
+
+enum OpType {
+  // UNSPECIFIED as a default value
+  OP_TYPE_UNSPECIFIED = 0;
+  // OpSame indicates no change was made.
+  OP_TYPE_SAME = 1;
+  // OpCreate indicates a new resource was created.
+  OP_TYPE_CREATE = 2;
+  // OpUpdate indicates an existing resource was updated.
+  OP_TYPE_UPDATE = 3;
+  // OpDelete indicates an existing resource was deleted.
+  OP_TYPE_DELETE = 4;
+  // OpReplace indicates an existing resource was replaced with a new one.
+  OP_TYPE_REPLACE = 5;
+  // OpCreateReplacement indicates a new resource was created for a replacement.
+  OP_TYPE_CREATE_REPLACEMENT = 6;
+  // OpDeleteReplaced indicates an existing resource was deleted after replacement.
+  OP_TYPE_DELETE_REPLACED = 7;
+  // OpRead indicates reading an existing resource.
+  OP_TYPE_READ = 8;
+  // OpReadReplacement indicates reading an existing resource for a replacement.
+  OP_TYPE_READ_REPLACEMENT = 9;
+  // OpRefresh indicates refreshing an existing resource.
+  OP_TYPE_REFRESH = 10;
+  // OpReadDiscard indicates removing a resource that was read.
+  OP_TYPE_READ_DISCARD = 11;
+  // OpDiscardReplaced indicates discarding a read resource that was replaced.
+  OP_TYPE_DISCARD_REPLACED = 12;
+  // OpRemovePendingReplace indicates removing a pending replace resource.
+  OP_TYPE_REMOVE_PENDING_REPLACE = 13;
+  // OpImport indicates importing an existing resource.
+  OP_TYPE_IMPORT = 14;
+  // OpImportReplacement indicates replacement of an existing resource with an imported resource.
+  OP_TYPE_IMPORT_REPLACEMENT = 15;
+}
+
+message StepEventMetadata {
+  OpType op = 1;
+  string urn = 2;
+  string type = 3;
+  StepEventStateMetadata old = 4;
+  StepEventStateMetadata new = 5;
+  repeated string keys = 6;
+  repeated string diffs = 7;
+  map<string, PropertyDiff> detailed_diff = 8;
+  bool logical = 9;
+  string provider = 10;
+}
+
+message StepEventStateMetadata {
+  string type = 1;
+  string urn = 2;
+  bool custom = 3;
+  bool delete = 4;
+  string id = 5;
+  string parent = 6;
+  bool protect = 7;
+  bool retain_on_delete = 8;
+  map<string, string> inputs = 9;
+  map<string, string> outputs = 10;
+  string provider = 11;
+  repeated string init_errors = 12;
+}
+
+message ResourcePreEvent {
+  StepEventMetadata metadata = 1;
+  bool planning = 2;
+}
+
+message ResOutputsEvent {
+  StepEventMetadata metadata = 1;
+  bool planning = 2;
+}
+
+message ResOpFailedEvent {
+  StepEventMetadata metadata = 1;
+  int32 status = 2;
+  int32 steps = 3;
+}

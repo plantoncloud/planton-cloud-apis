@@ -116,3 +116,16 @@ message StackProgress {
   // error message for stack failures
   string error_message = 3;
 }
+
+message StackProgressSnapshot {
+  repeated StackProgressSnapshotResourceRow resource_rows = 1;
+}
+
+message StackProgressSnapshotResourceRow {
+  // resource type ex: gcp:container:Cluster
+  string type = 1;
+  // name of the pulumi-resource ex: k8s-cluster
+  string name = 2;
+  // status of the pulumi-resource
+  string status = 3;
+}
