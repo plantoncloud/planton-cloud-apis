@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.stack.rpc;
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/engine/model.proto";
 
 service StackJobCommandController {
   //create stack-job
@@ -25,4 +26,6 @@ service StackJobQueryController {
   rpc getLogStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.commons.grpc.stream.OutputLine);
   //new temporary rpc to test progress snapshot
   rpc getProgressSnapshotStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream StackProgressSnapshot);
+  //new temporary rpc to test event streaming
+  rpc getEngineEventStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.commons.pulumi.engine.EngineEvents);
 }

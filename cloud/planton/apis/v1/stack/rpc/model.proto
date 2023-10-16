@@ -6,6 +6,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/stack/rpc/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/engine/model.proto";
 
 // stack-job
 message StackJob {
@@ -115,6 +116,8 @@ message StackProgress {
   cloud.planton.apis.v1.stack.rpc.enums.StackJobStatus status = 2;
   // error message for stack failures
   string error_message = 3;
+  // pulumi engine event
+  cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent engine_event = 4;
 }
 
 message StackProgressSnapshot {

@@ -320,6 +320,54 @@ func (x *EngineEvent) GetPolicyRemediationEvent() *PolicyRemediationEvent {
 	return nil
 }
 
+// wrapper for list of pulumi engine-events
+type EngineEvents struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Items []*EngineEvent `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+}
+
+func (x *EngineEvents) Reset() {
+	*x = EngineEvents{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EngineEvents) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EngineEvents) ProtoMessage() {}
+
+func (x *EngineEvents) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EngineEvents.ProtoReflect.Descriptor instead.
+func (*EngineEvents) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *EngineEvents) GetItems() []*EngineEvent {
+	if x != nil {
+		return x.Items
+	}
+	return nil
+}
+
 type CancelEvent struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -329,7 +377,7 @@ type CancelEvent struct {
 func (x *CancelEvent) Reset() {
 	*x = CancelEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -342,7 +390,7 @@ func (x *CancelEvent) String() string {
 func (*CancelEvent) ProtoMessage() {}
 
 func (x *CancelEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -355,7 +403,7 @@ func (x *CancelEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelEvent.ProtoReflect.Descriptor instead.
 func (*CancelEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{2}
 }
 
 type StdoutEngineEvent struct {
@@ -370,7 +418,7 @@ type StdoutEngineEvent struct {
 func (x *StdoutEngineEvent) Reset() {
 	*x = StdoutEngineEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -383,7 +431,7 @@ func (x *StdoutEngineEvent) String() string {
 func (*StdoutEngineEvent) ProtoMessage() {}
 
 func (x *StdoutEngineEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -396,7 +444,7 @@ func (x *StdoutEngineEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StdoutEngineEvent.ProtoReflect.Descriptor instead.
 func (*StdoutEngineEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *StdoutEngineEvent) GetMessage() string {
@@ -430,7 +478,7 @@ type DiagnosticEvent struct {
 func (x *DiagnosticEvent) Reset() {
 	*x = DiagnosticEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -443,7 +491,7 @@ func (x *DiagnosticEvent) String() string {
 func (*DiagnosticEvent) ProtoMessage() {}
 
 func (x *DiagnosticEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -456,7 +504,7 @@ func (x *DiagnosticEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiagnosticEvent.ProtoReflect.Descriptor instead.
 func (*DiagnosticEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *DiagnosticEvent) GetUrn() string {
@@ -526,7 +574,7 @@ type PolicyEvent struct {
 func (x *PolicyEvent) Reset() {
 	*x = PolicyEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -539,7 +587,7 @@ func (x *PolicyEvent) String() string {
 func (*PolicyEvent) ProtoMessage() {}
 
 func (x *PolicyEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -552,7 +600,7 @@ func (x *PolicyEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PolicyEvent.ProtoReflect.Descriptor instead.
 func (*PolicyEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PolicyEvent) GetResourceUrn() string {
@@ -629,7 +677,7 @@ type PolicyRemediationEvent struct {
 func (x *PolicyRemediationEvent) Reset() {
 	*x = PolicyRemediationEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -642,7 +690,7 @@ func (x *PolicyRemediationEvent) String() string {
 func (*PolicyRemediationEvent) ProtoMessage() {}
 
 func (x *PolicyRemediationEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -655,7 +703,7 @@ func (x *PolicyRemediationEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PolicyRemediationEvent.ProtoReflect.Descriptor instead.
 func (*PolicyRemediationEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PolicyRemediationEvent) GetResourceUrn() string {
@@ -725,7 +773,7 @@ type PreludeEvent struct {
 func (x *PreludeEvent) Reset() {
 	*x = PreludeEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[6]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -738,7 +786,7 @@ func (x *PreludeEvent) String() string {
 func (*PreludeEvent) ProtoMessage() {}
 
 func (x *PreludeEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[6]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -751,7 +799,7 @@ func (x *PreludeEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PreludeEvent.ProtoReflect.Descriptor instead.
 func (*PreludeEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{6}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PreludeEvent) GetConfig() map[string]string {
@@ -775,7 +823,7 @@ type SummaryEvent struct {
 func (x *SummaryEvent) Reset() {
 	*x = SummaryEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[7]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -788,7 +836,7 @@ func (x *SummaryEvent) String() string {
 func (*SummaryEvent) ProtoMessage() {}
 
 func (x *SummaryEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[7]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -801,7 +849,7 @@ func (x *SummaryEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SummaryEvent.ProtoReflect.Descriptor instead.
 func (*SummaryEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{7}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *SummaryEvent) GetMaybeCorrupt() bool {
@@ -844,7 +892,7 @@ type PropertyDiff struct {
 func (x *PropertyDiff) Reset() {
 	*x = PropertyDiff{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[8]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -857,7 +905,7 @@ func (x *PropertyDiff) String() string {
 func (*PropertyDiff) ProtoMessage() {}
 
 func (x *PropertyDiff) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[8]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -870,7 +918,7 @@ func (x *PropertyDiff) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PropertyDiff.ProtoReflect.Descriptor instead.
 func (*PropertyDiff) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{8}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *PropertyDiff) GetDiffKind() DiffKind {
@@ -907,7 +955,7 @@ type StepEventMetadata struct {
 func (x *StepEventMetadata) Reset() {
 	*x = StepEventMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[9]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -920,7 +968,7 @@ func (x *StepEventMetadata) String() string {
 func (*StepEventMetadata) ProtoMessage() {}
 
 func (x *StepEventMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[9]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -933,7 +981,7 @@ func (x *StepEventMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StepEventMetadata.ProtoReflect.Descriptor instead.
 func (*StepEventMetadata) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{9}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *StepEventMetadata) GetOp() OpType {
@@ -1028,7 +1076,7 @@ type StepEventStateMetadata struct {
 func (x *StepEventStateMetadata) Reset() {
 	*x = StepEventStateMetadata{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[10]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1041,7 +1089,7 @@ func (x *StepEventStateMetadata) String() string {
 func (*StepEventStateMetadata) ProtoMessage() {}
 
 func (x *StepEventStateMetadata) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[10]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1054,7 +1102,7 @@ func (x *StepEventStateMetadata) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StepEventStateMetadata.ProtoReflect.Descriptor instead.
 func (*StepEventStateMetadata) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{10}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *StepEventStateMetadata) GetType() string {
@@ -1153,7 +1201,7 @@ type ResourcePreEvent struct {
 func (x *ResourcePreEvent) Reset() {
 	*x = ResourcePreEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[11]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1166,7 +1214,7 @@ func (x *ResourcePreEvent) String() string {
 func (*ResourcePreEvent) ProtoMessage() {}
 
 func (x *ResourcePreEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[11]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1179,7 +1227,7 @@ func (x *ResourcePreEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourcePreEvent.ProtoReflect.Descriptor instead.
 func (*ResourcePreEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{11}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ResourcePreEvent) GetMetadata() *StepEventMetadata {
@@ -1208,7 +1256,7 @@ type ResOutputsEvent struct {
 func (x *ResOutputsEvent) Reset() {
 	*x = ResOutputsEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[12]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1221,7 +1269,7 @@ func (x *ResOutputsEvent) String() string {
 func (*ResOutputsEvent) ProtoMessage() {}
 
 func (x *ResOutputsEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[12]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1234,7 +1282,7 @@ func (x *ResOutputsEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResOutputsEvent.ProtoReflect.Descriptor instead.
 func (*ResOutputsEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{12}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ResOutputsEvent) GetMetadata() *StepEventMetadata {
@@ -1264,7 +1312,7 @@ type ResOpFailedEvent struct {
 func (x *ResOpFailedEvent) Reset() {
 	*x = ResOpFailedEvent{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[13]
+		mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1277,7 +1325,7 @@ func (x *ResOpFailedEvent) String() string {
 func (*ResOpFailedEvent) ProtoMessage() {}
 
 func (x *ResOpFailedEvent) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[13]
+	mi := &file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1290,7 +1338,7 @@ func (x *ResOpFailedEvent) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResOpFailedEvent.ProtoReflect.Descriptor instead.
 func (*ResOpFailedEvent) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{13}
+	return file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ResOpFailedEvent) GetMetadata() *StepEventMetadata {
@@ -1392,7 +1440,13 @@ var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDesc = []byt
 	0x75, 0x6d, 0x69, 0x2e, 0x65, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x2e, 0x50, 0x6f, 0x6c, 0x69, 0x63,
 	0x79, 0x52, 0x65, 0x6d, 0x65, 0x64, 0x69, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x76, 0x65, 0x6e,
 	0x74, 0x52, 0x16, 0x70, 0x6f, 0x6c, 0x69, 0x63, 0x79, 0x52, 0x65, 0x6d, 0x65, 0x64, 0x69, 0x61,
-	0x74, 0x69, 0x6f, 0x6e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x0d, 0x0a, 0x0b, 0x43, 0x61, 0x6e,
+	0x74, 0x69, 0x6f, 0x6e, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x5e, 0x0a, 0x0c, 0x45, 0x6e, 0x67,
+	0x69, 0x6e, 0x65, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x4e, 0x0a, 0x05, 0x69, 0x74, 0x65,
+	0x6d, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x38, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31,
+	0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x2e,
+	0x65, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x2e, 0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x45, 0x76, 0x65,
+	0x6e, 0x74, 0x52, 0x05, 0x69, 0x74, 0x65, 0x6d, 0x73, 0x22, 0x0d, 0x0a, 0x0b, 0x43, 0x61, 0x6e,
 	0x63, 0x65, 0x6c, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x22, 0x43, 0x0a, 0x11, 0x53, 0x74, 0x64, 0x6f,
 	0x75, 0x74, 0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x12, 0x18, 0x0a,
 	0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07,
@@ -1696,65 +1750,67 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDescGZIP() 
 }
 
 var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes = make([]protoimpl.MessageInfo, 23)
 var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_goTypes = []interface{}{
 	(DiffKind)(0),                  // 0: cloud.planton.apis.v1.commons.pulumi.engine.DiffKind
 	(OpType)(0),                    // 1: cloud.planton.apis.v1.commons.pulumi.engine.OpType
 	(*EngineEvent)(nil),            // 2: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent
-	(*CancelEvent)(nil),            // 3: cloud.planton.apis.v1.commons.pulumi.engine.CancelEvent
-	(*StdoutEngineEvent)(nil),      // 4: cloud.planton.apis.v1.commons.pulumi.engine.StdoutEngineEvent
-	(*DiagnosticEvent)(nil),        // 5: cloud.planton.apis.v1.commons.pulumi.engine.DiagnosticEvent
-	(*PolicyEvent)(nil),            // 6: cloud.planton.apis.v1.commons.pulumi.engine.PolicyEvent
-	(*PolicyRemediationEvent)(nil), // 7: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent
-	(*PreludeEvent)(nil),           // 8: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent
-	(*SummaryEvent)(nil),           // 9: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent
-	(*PropertyDiff)(nil),           // 10: cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff
-	(*StepEventMetadata)(nil),      // 11: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
-	(*StepEventStateMetadata)(nil), // 12: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
-	(*ResourcePreEvent)(nil),       // 13: cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent
-	(*ResOutputsEvent)(nil),        // 14: cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent
-	(*ResOpFailedEvent)(nil),       // 15: cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent
-	nil,                            // 16: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.BeforeEntry
-	nil,                            // 17: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.AfterEntry
-	nil,                            // 18: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.ConfigEntry
-	nil,                            // 19: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.ResourceChangesEntry
-	nil,                            // 20: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.PolicyPacksEntry
-	nil,                            // 21: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry
-	nil,                            // 22: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.InputsEntry
-	nil,                            // 23: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.OutputsEntry
+	(*EngineEvents)(nil),           // 3: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvents
+	(*CancelEvent)(nil),            // 4: cloud.planton.apis.v1.commons.pulumi.engine.CancelEvent
+	(*StdoutEngineEvent)(nil),      // 5: cloud.planton.apis.v1.commons.pulumi.engine.StdoutEngineEvent
+	(*DiagnosticEvent)(nil),        // 6: cloud.planton.apis.v1.commons.pulumi.engine.DiagnosticEvent
+	(*PolicyEvent)(nil),            // 7: cloud.planton.apis.v1.commons.pulumi.engine.PolicyEvent
+	(*PolicyRemediationEvent)(nil), // 8: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent
+	(*PreludeEvent)(nil),           // 9: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent
+	(*SummaryEvent)(nil),           // 10: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent
+	(*PropertyDiff)(nil),           // 11: cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff
+	(*StepEventMetadata)(nil),      // 12: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
+	(*StepEventStateMetadata)(nil), // 13: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
+	(*ResourcePreEvent)(nil),       // 14: cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent
+	(*ResOutputsEvent)(nil),        // 15: cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent
+	(*ResOpFailedEvent)(nil),       // 16: cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent
+	nil,                            // 17: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.BeforeEntry
+	nil,                            // 18: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.AfterEntry
+	nil,                            // 19: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.ConfigEntry
+	nil,                            // 20: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.ResourceChangesEntry
+	nil,                            // 21: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.PolicyPacksEntry
+	nil,                            // 22: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry
+	nil,                            // 23: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.InputsEntry
+	nil,                            // 24: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.OutputsEntry
 }
 var file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_depIdxs = []int32{
-	3,  // 0: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.cancel_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.CancelEvent
-	4,  // 1: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.stdout_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StdoutEngineEvent
-	5,  // 2: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.diagnostic_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.DiagnosticEvent
-	8,  // 3: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.prelude_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent
-	9,  // 4: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.summary_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent
-	13, // 5: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.resource_preEvent:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent
-	14, // 6: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.res_outputs_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent
-	15, // 7: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.res_op_failed_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent
-	6,  // 8: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.policy_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyEvent
-	7,  // 9: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.policy_remediation_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent
-	16, // 10: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.before:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.BeforeEntry
-	17, // 11: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.after:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.AfterEntry
-	18, // 12: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.config:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.ConfigEntry
-	19, // 13: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.resource_changes:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.ResourceChangesEntry
-	20, // 14: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.policy_packs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.PolicyPacksEntry
-	0,  // 15: cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff.diff_kind:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.DiffKind
-	1,  // 16: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.op:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.OpType
-	12, // 17: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.old:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
-	12, // 18: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.new:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
-	21, // 19: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.detailed_diff:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry
-	22, // 20: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.inputs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.InputsEntry
-	23, // 21: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.outputs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.OutputsEntry
-	11, // 22: cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
-	11, // 23: cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
-	11, // 24: cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
-	10, // 25: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry.value:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff
-	26, // [26:26] is the sub-list for method output_type
-	26, // [26:26] is the sub-list for method input_type
-	26, // [26:26] is the sub-list for extension type_name
-	26, // [26:26] is the sub-list for extension extendee
-	0,  // [0:26] is the sub-list for field type_name
+	4,  // 0: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.cancel_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.CancelEvent
+	5,  // 1: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.stdout_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StdoutEngineEvent
+	6,  // 2: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.diagnostic_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.DiagnosticEvent
+	9,  // 3: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.prelude_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent
+	10, // 4: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.summary_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent
+	14, // 5: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.resource_preEvent:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent
+	15, // 6: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.res_outputs_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent
+	16, // 7: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.res_op_failed_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent
+	7,  // 8: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.policy_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyEvent
+	8,  // 9: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent.policy_remediation_event:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent
+	2,  // 10: cloud.planton.apis.v1.commons.pulumi.engine.EngineEvents.items:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent
+	17, // 11: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.before:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.BeforeEntry
+	18, // 12: cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.after:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PolicyRemediationEvent.AfterEntry
+	19, // 13: cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.config:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PreludeEvent.ConfigEntry
+	20, // 14: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.resource_changes:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.ResourceChangesEntry
+	21, // 15: cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.policy_packs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.SummaryEvent.PolicyPacksEntry
+	0,  // 16: cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff.diff_kind:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.DiffKind
+	1,  // 17: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.op:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.OpType
+	13, // 18: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.old:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
+	13, // 19: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.new:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata
+	22, // 20: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.detailed_diff:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry
+	23, // 21: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.inputs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.InputsEntry
+	24, // 22: cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.outputs:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventStateMetadata.OutputsEntry
+	12, // 23: cloud.planton.apis.v1.commons.pulumi.engine.ResourcePreEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
+	12, // 24: cloud.planton.apis.v1.commons.pulumi.engine.ResOutputsEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
+	12, // 25: cloud.planton.apis.v1.commons.pulumi.engine.ResOpFailedEvent.metadata:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata
+	11, // 26: cloud.planton.apis.v1.commons.pulumi.engine.StepEventMetadata.DetailedDiffEntry.value:type_name -> cloud.planton.apis.v1.commons.pulumi.engine.PropertyDiff
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() }
@@ -1776,7 +1832,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CancelEvent); i {
+			switch v := v.(*EngineEvents); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1788,7 +1844,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StdoutEngineEvent); i {
+			switch v := v.(*CancelEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1800,7 +1856,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DiagnosticEvent); i {
+			switch v := v.(*StdoutEngineEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1812,7 +1868,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PolicyEvent); i {
+			switch v := v.(*DiagnosticEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1824,7 +1880,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PolicyRemediationEvent); i {
+			switch v := v.(*PolicyEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1836,7 +1892,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PreludeEvent); i {
+			switch v := v.(*PolicyRemediationEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1848,7 +1904,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*SummaryEvent); i {
+			switch v := v.(*PreludeEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1860,7 +1916,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PropertyDiff); i {
+			switch v := v.(*SummaryEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1872,7 +1928,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StepEventMetadata); i {
+			switch v := v.(*PropertyDiff); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1884,7 +1940,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StepEventStateMetadata); i {
+			switch v := v.(*StepEventMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1896,7 +1952,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourcePreEvent); i {
+			switch v := v.(*StepEventStateMetadata); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1908,7 +1964,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResOutputsEvent); i {
+			switch v := v.(*ResourcePreEvent); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1920,6 +1976,18 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ResOutputsEvent); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResOpFailedEvent); i {
 			case 0:
 				return &v.state
@@ -1938,7 +2006,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_v1_commons_pulumi_engine_model_proto_rawDesc,
 			NumEnums:      2,
-			NumMessages:   22,
+			NumMessages:   23,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

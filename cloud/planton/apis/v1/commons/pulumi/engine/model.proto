@@ -17,6 +17,11 @@ message EngineEvent {
   PolicyRemediationEvent policy_remediation_event = 12;
 }
 
+// wrapper for list of pulumi engine-events
+message EngineEvents {
+  repeated EngineEvent items = 1;
+}
+
 message CancelEvent {}
 
 message StdoutEngineEvent {
