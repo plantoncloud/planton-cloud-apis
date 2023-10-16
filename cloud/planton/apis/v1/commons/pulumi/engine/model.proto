@@ -2,19 +2,22 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.commons.pulumi.engine;
 
+import "cloud/planton/apis/v1/commons/pulumi/engine/enums/enums.proto";
+
 message EngineEvent {
-  int32 sequence = 1;
-  int32 timestamp = 2;
-  CancelEvent cancel_event = 3;
-  StdoutEngineEvent stdout_event = 4;
-  DiagnosticEvent diagnostic_event = 5;
-  PreludeEvent prelude_event = 6;
-  SummaryEvent summary_event = 7;
-  ResourcePreEvent resource_preEvent = 8;
-  ResOutputsEvent res_outputs_event = 9;
-  ResOpFailedEvent res_op_failed_event = 10;
-  PolicyEvent policy_event = 11;
-  PolicyRemediationEvent policy_remediation_event = 12;
+  cloud.planton.apis.v1.commons.pulumi.engine.enums.PulumiEngineEventType event_type = 1;
+  int32 sequence = 2;
+  int32 timestamp = 3;
+  CancelEvent cancel_event = 4;
+  StdoutEngineEvent stdout_event = 5;
+  DiagnosticEvent diagnostic_event = 6;
+  PreludeEvent prelude_event = 7;
+  SummaryEvent summary_event = 8;
+  ResourcePreEvent resource_preEvent = 9;
+  ResOutputsEvent res_outputs_event = 10;
+  ResOpFailedEvent res_op_failed_event = 11;
+  PolicyEvent policy_event = 12;
+  PolicyRemediationEvent policy_remediation_event = 13;
 }
 
 // wrapper for list of pulumi engine-events
