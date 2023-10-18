@@ -174,7 +174,7 @@ message CloudAccountGcpSpec {
     (buf.validate.field).cel = {
       id: "spec.gcp.org_id",
       message: "Only numbers (0-9) are allowed",
-      expression: "matches(this, '^[0-9]+$')"
+      expression: "this.matches('^[0-9]+$')"
     }
   ];
 
@@ -188,19 +188,19 @@ message CloudAccountGcpSpec {
       id: "spec.gcp.billing_account_id",
       message: "Only alphanumeric characters (A-Z,a-z, 0-9) and hyphens are allowed",
       // https://regex101.com/r/NKTohE/1
-      expression: "this.name.matches('^[A-Za-z0-9-]+$')"
+      expression: "this.matches('^[A-Za-z0-9-]+$')"
     },
     (buf.validate.field).cel = {
       id: "spec.gcp.billing_account_id",
       message: "Must not start with a hyphen",
       // https://regex101.com/r/t1LOCE/1
-      expression: "this.name.matches('^[^-].*$')"
+      expression: "this.matches('^[^-].*$')"
     },
     (buf.validate.field).cel = {
       id: "spec.gcp.billing_account_id",
       message: "Must not end with a hyphen",
       // https://regex101.com/r/reQjcB/1
-      expression: "this.name.matches('[^-]$')"
+      expression: "this.matches('[^-]$')"
     }
   ];
 
@@ -236,7 +236,7 @@ message CloudAccountAwsSpec {
     (buf.validate.field).cel = {
       id: "spec.aws.account_id",
       message: "Only numbers (0-9) are allowed",
-      expression: "matches(this, '^[0-9]+$')"
+      expression: "this.matches('^[0-9]+$')"
     }
   ];
 
@@ -249,13 +249,13 @@ message CloudAccountAwsSpec {
       id: "spec.aws.access_key_id",
       message: "Must start with 'AKIA'",
       // https://regex101.com/r/QgVmCf/1
-      expression: "matches(this, '^AKIA.*')"
+      expression: "this.matches('^AKIA.*')"
     },
     (buf.validate.field).cel = {
       id: "spec.aws.access_key_id",
       message: "Must start with 'AKIA' followed by 16 alphanumeric characters'",
       // https://regex101.com/r/LybhZA/1
-      expression: "matches(this, '^.{4}[a-zA-Z0-9]{16}.*$')"
+      expression: "this.matches('^.{4}[a-zA-Z0-9]{16}.*$')"
     }
   ];
 
@@ -268,7 +268,7 @@ message CloudAccountAwsSpec {
       id: "spec.aws.secret_access_key",
       message: "The provided AWS Secret Access Key is invalid. It must contain exactly 40 characters consisting of numbers, lowercase and uppercase letters, slashes (/), and plus signs (+). Please double-check your input and try again.",
       //https://regex101.com/r/YlvVRM/1
-      expression: "matches(this, '^[0-9a-zA-Z/+]{40}$')"
+      expression: "this.matches('^[0-9a-zA-Z/+]{40}$')"
     }
   ];
 }
