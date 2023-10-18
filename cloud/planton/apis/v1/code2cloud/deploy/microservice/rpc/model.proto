@@ -16,13 +16,6 @@ import "buf/validate/validate.proto";
 
 //microservice-instance
 message MicroserviceInstance {
-    option (buf.validate.message).cel = {
-      id: "metadata.name",
-      message: "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen. Length must be under 20 characters.",
-      //https://regex101.com/r/QbMSjf/1
-      expression: "size(this.metadata.name) >= 1 && size(this.metadata.name) <= 20 && matches(this.metadata.name, '^[a-z][a-z0-9]*(-[a-z0-9]+)*$')"
-    };
-
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = microservice_instance;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
@@ -32,6 +25,12 @@ message MicroserviceInstance {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "msi";
   //id format "msi-<environment-id>-<microservice-instance-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  //https://regex101.com/r/QbMSjf/1
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 20;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen. Length must be under 20 characters.";
 
   //resource api-version
   string api_version = 1 [
