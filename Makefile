@@ -1,16 +1,17 @@
 version ?= local
 .PHONY: build
-build:	
+build:
 	rm -rf generated zzjava/src/main
 	mkdir -p generated zzjava/src/main/java
 	buf generate --include-imports
 	cp -R generated/java/. zzjava/src/main/java/
+	cp -R generated/go/github.com/plantoncloud/planton-cloud-apis/zzgo/. zzgo/
 .PHONY: deploy
 deploy:
 	buf push --tag ${version}
 	pushd zzjava;rm -rf build;./gradlew publish -Prevision=${version};popd
-.PHONY: deploy-local
-deploy-local:
+.PHONY: release-local
+release-local:
 	pushd zzjava;rm -rf build;./gradlew publishToMavenLocal -Prevision=${version};popd
 
 .PHONY: update
