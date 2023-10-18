@@ -108,27 +108,83 @@ message StackJobLogFileNameInfo {
   string timestamp = 5;
 }
 
-// stack progress
-message StackProgress {
-  // log line during the stack-job
-  string output_line = 1;
-  // status of the stack-job during the stack-job
-  cloud.planton.apis.v1.stack.rpc.enums.StackJobStatus status = 2;
-  // error message for stack failures
-  string error_message = 3;
-  // pulumi engine event
-  cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent engine_event = 4;
+// stack-job progress event
+message StackJobProgressEvent {
+  // type of the event
+  cloud.planton.apis.v1.stack.rpc.enums.StackJobProgressEventType event_type = 1;
+  // type of the stack operation
+  cloud.planton.apis.v1.stack.rpc.enums.StackOperationType operation_type = 2;
+  // stack-job progress status is populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT"
+  StackJobProgressStatusPayload progress_status_payload = 3;
+  // pulumi engine event is only populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT"
+  cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent engine_event_payload = 4;
 }
 
-message StackProgressSnapshot {
-  repeated StackProgressSnapshotResourceRow resource_rows = 1;
+// stack-job progress status payload
+message StackJobProgressStatusPayload {
+  // type of the stack-job progress status event
+  cloud.planton.apis.v1.stack.rpc.enums.StackJobProgressStatusEventType event_type = 1;
+  // error message is populated when event_type is "STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_FAILED"
+  string error_message = 2;
 }
 
-message StackProgressSnapshotResourceRow {
+// stack-job snapshot
+message StackJobSnapshot {
+  // id of the stack-job
+  string stack_job_id = 1;
+  // refresh snapshot
+  StackJobOperationSnapshot refresh_snapshot = 2;
+  // preview snapshot
+  StackJobOperationSnapshot preview_snapshot = 3;
+  // apply snapshot
+  StackJobOperationSnapshot apply_snapshot = 4;
+  // destroy snapshot
+  StackJobOperationSnapshot destroy_snapshot = 5;
+}
+
+// stack-job operation snapshot
+message StackJobOperationSnapshot {
+  // engine-events for the operation
+  repeated cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent events = 1;
+  // summary of the operation
+  StackJobOperationSummary summary = 2;
+  // resource outputs of the operation
+  string outputs = 3;
+  // detailed diff of the operation
+  string diff = 4;
+  // diagnostics of the operation
+  string diagnostics = 5;
+}
+
+// stack-job operation summary
+message StackJobOperationSummary {
+  // resource rows for the operation
+  repeated StackJobOperationSummaryResourceRow resource_rows = 1;
+  // resource changes for the operation
+  StackJobOperationSummaryResourceChanges resource_changes = 2;
+  // duration of the operation in seconds
+  int32 duration_seconds = 3;
+}
+
+message StackJobOperationSummaryResourceRow {
   // resource type ex: gcp:container:Cluster
   string type = 1;
   // name of the pulumi-resource ex: k8s-cluster
   string name = 2;
   // status of the pulumi-resource
   string status = 3;
+  // info of the pulumi-resource
+  string info = 4;
+}
+
+// stack-job operation summary resource changes
+message StackJobOperationSummaryResourceChanges {
+  // number of resources unchanged
+  int32 unchanged = 1;
+  // number of resources updated
+  int32 updated = 2;
+  // number of resources deleted
+  int32 deleted = 3;
+  // number of resources replaced
+  int32 replaced = 4;
 }

@@ -281,7 +281,7 @@ message KubeClusterGcpStackIamOutputs {
 //stack response
 message KubeClusterGcpStackResponse {
   //stack progress
-  cloud.planton.apis.v1.stack.rpc.StackProgress progress = 1;
+  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress = 1;
   //stack outputs
   KubeClusterGcpStackOutputs outputs = 3;
 }
