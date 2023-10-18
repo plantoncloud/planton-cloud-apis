@@ -6,8 +6,8 @@ build:
 	buf generate --include-imports
 	cp -R generated/java/. zzjava/src/main/java/
 	cp -R generated/go/github.com/plantoncloud/planton-cloud-apis/zzgo/. zzgo/
-.PHONY: deploy
-deploy:
+.PHONY: release
+release:
 	buf push --tag ${version}
 	pushd zzjava;rm -rf build;./gradlew publish -Prevision=${version};popd
 .PHONY: release-local
@@ -17,7 +17,3 @@ release-local:
 .PHONY: update
 update:
 	buf mod update
-
-.PHONY: release
-release:
-	buf push --tag ${version}
