@@ -74,6 +74,36 @@ message CloudAccount {
 
 // company cloud account
 message CloudAccountSpec {
+  option (buf.validate.message).cel = {
+    id: "spec.gcp.org_id",
+    expression: "this.cloud_provider == 2 && size(this.gcp.org_id) == 0"
+        "? 'gcp org id is mandatory'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.gcp.billing_account_id",
+    expression: "this.cloud_provider == 2 && size(this.gcp.billing_account_id) == 0"
+        "? 'gcp billing account id is mandatory'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.aws.account_id",
+    expression: "this.cloud_provider == 1 && size(this.aws.account_id) == 0"
+        "? 'aws account id is mandatory'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.aws.access_key_id",
+    expression: "this.cloud_provider == 1 && size(this.aws.access_key_id) == 0"
+        "? 'aws access key id is mandatory'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.aws.secret_access_key",
+    expression: "this.cloud_provider == 1 && size(this.aws.secret_access_key) == 0"
+        "? 'aws secret access key is mandatory'"
+        ": ''"
+  };
   // company to which company cloud account belongs to.
   string company_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true

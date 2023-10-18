@@ -23,3 +23,9 @@ enum TestEventType {
 message EnumFieldsTest {
   TestEventType event_type = 1;
 }
+
+enum CloudProviderTest {
+    CLOUD_PROVIDER_TEST_UNSPECIFIED = 0;
+    CLOUD_PROVIDER_TEST_GCP = 1;
+    CLOUD_PROVIDER_TEST_AWS = 2;
+}

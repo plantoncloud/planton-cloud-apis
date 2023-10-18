@@ -58,53 +58,11 @@ message SplitRegexNameFieldProtoValidateTest {
   ];
 }
 
-message MessageLevelProtoValidateConditionalTest {
-  option (buf.validate.message).cel = {
-    id: "validation.name",
-    expression: "this.event_type == 1 && has(this.validation.name)"
-    "? 'validation must have name'"
-    ": ''"
-  };
-  cloud.planton.apis.v1.commons.testing.resource.enums.TestEventType event_type = 1;
-  OptionalValidationTest validation = 2 [
-    (buf.validate.field).required = false,
-    (buf.validate.field).cel = {
-      id: "validation.name",
-      message: "Length must be between 1 to 15 characters",
-      // https://regex101.com/r/PpeOYd/1
-      expression: "this.name.matches('^.{1,15}$')"
-    },
-    (buf.validate.field).cel = {
-      id: "validation.name",
-      message: "Only lowercase letters, numbers, and hyphen are allowed",
-      // https://regex101.com/r/NKTohE/1
-      expression: "this.name.matches('^[a-z0-9-]+$')"
-    },
-    (buf.validate.field).cel = {
-      id: "validation.name",
-      message: "Must start with lowercase letter",
-      // https://regex101.com/r/qpK7XF/1
-      expression: "this.name.matches('^[a-z].*$')"
-    },
-    (buf.validate.field).cel = {
-      id: "validation.name",
-      message: "Must not end with hyphen",
-      // https://regex101.com/r/reQjcB/1
-      expression: "this.name.matches('[^-]$')"
-    }
-  ];
-}
-
 message MetadataTest {
   string name = 1;
   string id = 2;
 }
 
-message OptionalValidationTest {
-  string name = 1 [
-    (buf.validate.field).ignore_empty = true
-  ];
-  string id = 2;
-}
+
 
 
