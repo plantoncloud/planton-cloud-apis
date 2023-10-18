@@ -3,7 +3,6 @@ syntax = "proto3";
 package cloud.planton.apis.v1.stack.state;
 
 import "cloud/planton/apis/v1/commons/audit/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/engine/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/enums/enums.proto";

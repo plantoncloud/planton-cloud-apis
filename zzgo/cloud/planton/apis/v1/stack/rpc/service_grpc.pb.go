@@ -9,7 +9,7 @@ package rpc
 import (
 	context "context"
 	stream "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/grpc/stream"
-	engine "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/pulumi/engine"
+	engine "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/pulumi/engine"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

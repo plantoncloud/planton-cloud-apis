@@ -1,7 +1,8 @@
 version ?= local
 .PHONY: build
 build:
-	rm -rf generated zzjava/src/main
+	find zzgo -type f -name "*.go" -exec rm -f {} +
+	rm -rf generated zzjava/src/main zzjava/*.go
 	mkdir -p generated zzjava/src/main/java
 	buf generate --include-imports
 	cp -R generated/java/. zzjava/src/main/java/

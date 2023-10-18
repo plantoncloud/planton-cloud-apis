@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.stack.rpc;
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/engine/model.proto";
+import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 
 service StackJobCommandController {
   //create stack-job
@@ -29,5 +29,5 @@ service StackJobQueryController {
   rpc getSnapshotStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream StackJobSnapshot);
   //rpc to get engine event stream
   //this rpc is required to support pulumi progress or diff view in the cli client.
-  rpc getEngineEventStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.commons.pulumi.engine.EngineEvents);
+  rpc getEngineEventStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.stack.pulumi.engine.EngineEvents);
 }

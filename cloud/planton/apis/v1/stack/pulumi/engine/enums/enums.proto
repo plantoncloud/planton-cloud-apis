@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.commons.pulumi.engine.enums;
+package cloud.planton.apis.v1.stack.pulumi.engine.enums;
 
 enum PulumiEngineEventType {
   PULUMI_ENGINE_EVENT_TYPE_UNSPECIFIED = 0;

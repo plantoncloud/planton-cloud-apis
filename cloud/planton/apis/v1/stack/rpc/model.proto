@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/stack/rpc/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/engine/model.proto";
+import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 
 // stack-job
 message StackJob {
@@ -112,12 +112,10 @@ message StackJobLogFileNameInfo {
 message StackJobProgressEvent {
   // type of the event
   cloud.planton.apis.v1.stack.rpc.enums.StackJobProgressEventType event_type = 1;
-  // type of the stack operation
-  cloud.planton.apis.v1.stack.rpc.enums.StackOperationType operation_type = 2;
   // stack-job progress status is populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT"
-  StackJobProgressStatusPayload progress_status_payload = 3;
+  StackJobProgressStatusPayload progress_status_payload = 2;
   // pulumi engine event is only populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT"
-  cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent engine_event_payload = 4;
+  cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent engine_event_payload = 3;
 }
 
 // stack-job progress status payload
@@ -144,16 +142,14 @@ message StackJobSnapshot {
 
 // stack-job operation snapshot
 message StackJobOperationSnapshot {
-  // engine-events for the operation
-  repeated cloud.planton.apis.v1.commons.pulumi.engine.EngineEvent events = 1;
   // summary of the operation
-  StackJobOperationSummary summary = 2;
+  StackJobOperationSummary summary = 1;
   // resource outputs of the operation
-  string outputs = 3;
+  string outputs = 2;
   // detailed diff of the operation
-  string diff = 4;
+  string diff = 3;
   // diagnostics of the operation
-  string diagnostics = 5;
+  string diagnostics = 4;
 }
 
 // stack-job operation summary
