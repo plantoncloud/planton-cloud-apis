@@ -54,6 +54,12 @@ message SplitRegexNameFieldProtoValidateTest {
       message: "Must not end with hyphen",
       // https://regex101.com/r/reQjcB/1
       expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not contain '..'",
+      // https://regex101.com/r/ILMhoL/1
+      expression: "!this.name.contains('..')"
     }
   ];
 }
