@@ -10,6 +10,7 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
+import "buf/validate/validate.proto";
 
 //kafka-cluster
 message KafkaCluster {
@@ -22,11 +23,6 @@ message KafkaCluster {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "kfc";
   //id format "kfc-<environment-id>-<kafka-cluster-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/r/QbMSjf/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 10;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
 
   //resource api-version
   string api_version = 1 [
@@ -39,7 +35,28 @@ message KafkaCluster {
   ];
 
   //resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
 
   //spec
   KafkaClusterSpec spec = 4;
@@ -230,8 +247,38 @@ message KafkaTopic {
   string name = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^(?![-._])([a-zA-Z0-9._-]*[a-zA-Z0-9-])([a-zA-Z0-9._-]*[a-zA-Z0-9])$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "Topic names should start with an alphanumeric character, be 1-249 characters long, can include '.', '_', and '-' (but not at the start or end), and must not contain '..' or non-ASCII characters."
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 249,
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Should start with an alphanumeric character",
+      // https://regex101.com/r/cXprYc/1
+      expression: "this.matches('^[a-zA-Z0-9].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Only alphanumeric and ('.', '_' and '-') characters are allowed",
+      // https://regex101.com/r/hheWzb/1
+      expression: "this.matches('^[a-zA-Z0-9._-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Must not contain '..'",
+      // https://regex101.com/r/ILMhoL/1
+      expression: "!this.contains('..')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Must not contain non-ASCII characters",
+      // https://regex101.com/r/FhCKeZ/1
+      expression: "this.matches('^[\x00-\x7F]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Should end with an alphanumeric character",
+      // https://regex101.com/r/DEA7Of/1
+      expression: "this.matches('[a-zA-Z0-9]$')"
+    }
   ];
 
   //topic id
