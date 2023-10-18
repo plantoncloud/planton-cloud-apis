@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.commons.testing.resource.field.input;
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "buf/validate/validate.proto";
 
 // A message with a string field that must match a regex, and a string field without regex.
 message RegexFieldsTest {
@@ -14,6 +15,48 @@ message RegexFieldsTest {
   ];
   string no_regex_string_field = 2;
 }
+
+// A message with a string field that must match a regex, and a string field without regex.
+message RegexFieldsProtoValidateTest {
+  string regex_string_field = 1 [
+    (buf.validate.field).cel = {
+      id: "regex_string_field",
+      message: "only lowercase letters (a-z) and digits (0-9). length must be between 1 and 9 characters.",
+      expression: "this.matches('^[a-z0-9]{1,9}$')"
+    }
+  ];
+  string no_regex_string_field = 2;
+}
+
+// A message with a string field that must match a regex, and a string field without regex.
+message RegexSplitFieldsProtoValidateTest {
+  string regex_string_field = 1 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 9,
+    (buf.validate.field).cel = {
+      id: "regex_string_field",
+      message: "only lowercase letters (a-z) and digits (0-9)",
+      expression: "this.matches('^[a-z0-9]+$')"
+    }
+  ];
+  string no_regex_string_field = 2;
+}
+
+// A message with a string field that must match a regex, and a string field without regex.
+message RegexSplitWithNotRequiredFieldsProtoValidateTest {
+  string regex_string_field = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 9,
+    (buf.validate.field).cel = {
+      id: "regex_string_field",
+      message: "only lowercase letters (a-z) and digits (0-9)",
+      expression: "this.matches('^[a-z0-9]+$')"
+    }
+  ];
+  string no_regex_string_field = 2;
+}
+
 
 // A message with a string field that must match a regex, with no error message specified.
 message RegexFieldsTestNoErrorMessage {

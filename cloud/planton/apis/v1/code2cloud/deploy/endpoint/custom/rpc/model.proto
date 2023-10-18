@@ -8,6 +8,7 @@ import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "buf/validate/validate.proto";
 
 //custom-endpoint
 message CustomEndpoint {
@@ -20,9 +21,6 @@ message CustomEndpoint {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "cep";
   //id format "cep-<product-id>-<normalized-endpoint-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/library/SEg6KL
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Name should be any valid DNS Domain Name";
 
   //resource api-version
   string api_version = 1 [
@@ -35,7 +33,14 @@ message CustomEndpoint {
   ];
 
   //resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name should be any valid DNS Domain Name",
+      // https://regex101.com/library/SEg6KL
+      expression: "this.name.matches('^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?\\.)+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$')"
+    }
+  ];
 
   //spec
   CustomEndpointSpec spec = 4;
