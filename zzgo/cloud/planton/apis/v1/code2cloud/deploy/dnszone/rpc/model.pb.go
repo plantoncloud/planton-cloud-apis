@@ -7,7 +7,7 @@
 package rpc
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/buf/validate"
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/rpc/enums"
 	audit "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit"
 	enums1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/record/rpc/enums"
