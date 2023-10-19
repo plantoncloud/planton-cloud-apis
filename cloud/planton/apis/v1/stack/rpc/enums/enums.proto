@@ -4,11 +4,12 @@ package cloud.planton.apis.v1.stack.rpc.enums;
 
 enum StackOperationType {
   STACK_OPERATION_TYPE_UNSPECIFIED = 0;
-  preview = 1;
-  apply = 2;
-  destroy = 3;
-  cancel_pending = 4;
-  remove_pending = 5;
+  refresh = 1;
+  preview = 2;
+  apply = 3;
+  destroy = 4;
+  cancel_pending = 5;
+  remove_pending = 6;
 }
 
 enum StackJobStatus {
@@ -19,4 +20,27 @@ enum StackJobStatus {
   failed = 4;
   cancelled = 5;
   skipped = 6;
+}
+
+// The type of the stack job progress event.
+// These events are emitted while a stack job is running.
+enum StackJobProgressEventType {
+  STACK_JOB_PROGRESS_EVENT_TYPE_UNSPECIFIED = 0;
+  STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT = 1;
+  STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT = 12;
+}
+
+enum StackJobProgressStatusEventType {
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_UNSPECIFIED = 0;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_JOB_STARTED = 1;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_REFRESH_STARTED = 2;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_REFRESH_COMPLETED = 3;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_PREVIEW_STARTED = 4;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_PREVIEW_COMPLETED = 5;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_APPLY_STARTED = 6;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_APPLY_COMPLETED = 7;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_DESTROY_STARTED = 8;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_DESTROY_COMPLETED = 9;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_JOB_FAILED = 10;
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_JOB_SUCCEEDED = 11;
 }

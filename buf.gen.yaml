@@ -7,6 +7,7 @@ managed:
     except:
       - google/protobuf/empty
       - google/protobuf/timestamp
+      - buf.build/bufbuild/protovalidate
   java_package_prefix:
     default: build.buf.gen
     except:
@@ -17,11 +18,11 @@ managed:
   java_string_check_utf8: false
 plugins:
   - plugin: buf.build/protocolbuffers/go:v1.31.0
-    out: generated/go
+    out: internal/generated/go
   - plugin: buf.build/grpc/go:v1.3.0
-    out: generated/go
+    out: internal/generated/go
     opt: require_unimplemented_servers=false
   - plugin: buf.build/protocolbuffers/java
-    out: generated/java
+    out: internal/generated/java
   - plugin: buf.build/grpc/java:v1.57.1
-    out: generated/java
+    out: internal/generated/java

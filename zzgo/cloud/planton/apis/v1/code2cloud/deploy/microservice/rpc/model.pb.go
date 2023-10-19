@@ -7,7 +7,7 @@
 package rpc
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/buf/validate"
+	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	audit "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit"
 	kubernetes "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes"
 	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/enums"

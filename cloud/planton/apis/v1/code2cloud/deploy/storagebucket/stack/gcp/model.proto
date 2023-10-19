@@ -34,8 +34,8 @@ message StorageBucketGcpStackOutputs {
 
 //stack response
 message StorageBucketGcpStackResponse {
-  //stack progress
-  cloud.planton.apis.v1.stack.rpc.StackProgress progress = 1;
+//stack-job progress event
+  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress_event = 1;
   //stack outputs
   StorageBucketGcpStackOutputs outputs = 3;
 }

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.pulumi.engine.enums;
+
+enum PulumiEngineEventType {
+  PULUMI_ENGINE_EVENT_TYPE_UNSPECIFIED = 0;
+  CANCEL = 1;
+  STDOUT = 2;
+  DIAGNOSTIC = 3;
+  PRELUDE = 4;
+  SUMMARY = 5;
+  RESOURCE_PRE = 6;
+  RES_OUTPUTS = 7;
+  RES_OP_FAILED = 8;
+  POLICY = 9;
+  POLICY_REMEDIATION = 10;
+}
