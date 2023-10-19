@@ -8,6 +8,7 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "buf/validate/validate.proto";
 
 // company on planton-cloud
 message Company {
@@ -35,7 +36,16 @@ message Company {
 
   // metadata for the resource
   // id for this resource should not exceed 9 characters.
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 9,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters and numbers are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9]+$')"
+    }
+  ];
 
   // company spec
   CompanySpec spec = 4;

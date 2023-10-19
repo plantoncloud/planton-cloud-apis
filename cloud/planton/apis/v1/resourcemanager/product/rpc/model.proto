@@ -8,6 +8,7 @@ import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
+import "buf/validate/validate.proto";
 
 //product
 message Product {
@@ -52,9 +53,14 @@ message ProductSpec {
   //product key length should be minimum 2 chars and maximum of 4 chars.
   //product-key is suffixed to the company-id to create product-id
   string product_key = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[a-z0-9]{2,5}$"
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 5,
+    (buf.validate.field).cel = {
+      id: "spec.product_key",
+      message: "Only lowercase letters and numbers are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.matches('^[a-z0-9]+$')"
+    }
   ];
 
   //product description.

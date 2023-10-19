@@ -13,6 +13,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/rpc/enums/enums.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
+import "buf/validate/validate.proto";
 
 // kube-cluster
 message KubeCluster {
@@ -26,12 +27,6 @@ message KubeCluster {
   //id format "k8c-<company-id>-<kube-cluster-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
 
-  //https://regex101.com/r/QbMSjf/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 15;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 15 characters.";
-
   // resource api-version
   string api_version = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
@@ -43,7 +38,28 @@ message KubeCluster {
   ];
 
   // resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 15,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
 
   // resource spec
   KubeClusterSpec spec = 4;
@@ -136,9 +152,25 @@ message KubeClusterGcpSpec {
   // planton cloud creates one/two gcp projects per kube-cluster.
   // these projects will be linked to this billing account.
   string billing_account_id = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[A-Za-z0-9]+([-A-Za-z0-9]*[A-Za-z0-9])?$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "only alphanumeric characters (a-z, A-Z, 0-9) and hyphens (-). cannot start or end with a hyphen."
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).cel = {
+      id: "spec.gcp.billing_account_id",
+      message: "Only alphanumeric characters (A-Z,a-z, 0-9) and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.matches('^[A-Za-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "spec.gcp.billing_account_id",
+      message: "Must not start with a hyphen",
+      // https://regex101.com/r/t1LOCE/1
+      expression: "this.matches('^[^-].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "spec.gcp.billing_account_id",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.matches('[^-]$')"
+    }
   ];
 
   // valid gcp region in which to create the kube-cluster.
@@ -260,10 +292,26 @@ message KubeClusterNodePoolGcp  {
   cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
   // Name of the node pool. The name is added as a label to the node pool that can be used to schedule workloads.
   string name = 1[
-    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.string_regex) = "^[a-zA-Z0-9][a-zA-Z0-9-]{0,23}[a-zA-Z0-9]$",
-    (cloud.planton.apis.v1.commons.resource.field.options.field_constraints_description) = "NodePool name should be a-z, A-Z, 0-9, and internal hyphens; mustn't start/end with hyphen; 1-25 characters."
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 25,
+    (buf.validate.field).cel = {
+      id: "gcp.node_pool.name",
+      message: "Only alphanumeric characters (A-Z,a-z, 0-9) and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.matches('^[A-Za-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "gcp.node_pool.name",
+      message: "Must not start with a hyphen",
+      // https://regex101.com/r/t1LOCE/1
+      expression: "this.matches('^[^-].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "gcp.node_pool.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.matches('[^-]$')"
+    }
   ];
 
   // Unique ID of the node pool. Convention for the node-pool-id is 'np-<kube-cluster-id>-<node-pool-name>'.

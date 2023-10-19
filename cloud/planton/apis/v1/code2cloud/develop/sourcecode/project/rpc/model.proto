@@ -9,6 +9,7 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/enums/enums.proto";
+import "buf/validate/validate.proto";
 
 //code-project
 message CodeProject {
@@ -23,9 +24,6 @@ message CodeProject {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
   //https://regex101.com/r/Zxvqng/1
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,98}[a-zA-Z0-9_]?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  //the max length is because Github limits git repository names to 100 characters
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 99;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Must be a valid repository name on Github.";
 
   //resource api-version
@@ -39,7 +37,10 @@ message CodeProject {
   ];
 
   //resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3[
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 99
+  ];
 
   //spec
   CodeProjectSpec spec = 4;
