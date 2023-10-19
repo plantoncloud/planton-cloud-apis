@@ -35,4 +35,12 @@ dependencies {
     implementation("io.grpc:grpc-stub:1.55.1")
     implementation("io.grpc:grpc-protobuf:1.55.1")
     implementation("build.buf:protovalidate:0.1.4")
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }

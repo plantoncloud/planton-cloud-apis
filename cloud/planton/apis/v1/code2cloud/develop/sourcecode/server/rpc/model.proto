@@ -9,6 +9,7 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/rpc/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc/enums/enums.proto";
+import "buf/validate/validate.proto";
 
 //code-server
 message CodeServer {
@@ -21,11 +22,6 @@ message CodeServer {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "cs";
   //id format "cs-<product-id>-<code-server-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/r/QbMSjf/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z][a-z0-9]*(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length) = 1;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 10;
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must start with lowercase letter. Must not start or end with hyphen. Length must be under 10 characters.";
 
   //resource api-version
   string api_version = 1 [
@@ -38,7 +34,28 @@ message CodeServer {
   ];
 
   //resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
 
   //spec
   CodeServerSpec spec = 4;
