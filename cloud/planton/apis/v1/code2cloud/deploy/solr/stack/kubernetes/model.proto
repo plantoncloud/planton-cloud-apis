@@ -36,8 +36,8 @@ message SolrCloudKubernetesStackOutputs {
 
 //stack response
 message SolrCloudKubernetesStackResponse {
-  //stack progress
-  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress = 1;
+//stack-job progress event
+  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress_event = 1;
   //stack outputs
   SolrCloudKubernetesStackOutputs outputs = 3;
 }

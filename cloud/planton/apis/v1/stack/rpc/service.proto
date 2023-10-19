@@ -27,7 +27,7 @@ service StackJobQueryController {
   //rpc to get snapshot stream
   //this rpc is required to support pulumi progress or diff view web, desktop gui app or mobile apps.
   rpc getSnapshotStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream StackJobSnapshot);
-  //rpc to get engine event stream
+  //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client.
-  rpc getEngineEventStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.stack.pulumi.engine.EngineEvents);
+  rpc getProgressEventStream(cloud.planton.apis.v1.stack.rpc.StackJobId) returns(stream cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent);
 }
