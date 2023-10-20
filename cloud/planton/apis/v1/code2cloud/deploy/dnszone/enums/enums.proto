@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.dnszone.enums;
 
-import "cloud/planton/apis/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+ import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
 
 // dns-zone event types
 enum DnsZoneEventType {
