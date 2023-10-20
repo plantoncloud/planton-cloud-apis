@@ -14,6 +14,7 @@ import "buf/validate/validate.proto";
 //standard-endpoint
 message StandardEndpoint {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = standard_endpoint;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.enums.StandardEndpointEventType";
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";

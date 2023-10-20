@@ -12,6 +12,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 //identity-group
 message IdentityGroup {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = identity_group;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.iam.identity.group.enums.IdentityGroupEventType";
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
   // resource api version

@@ -14,6 +14,7 @@ import "buf/validate/validate.proto";
 //code-server
 message CodeServer {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = code_server;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.enums.CodeServerEventType";
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = product;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.product_id";

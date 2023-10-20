@@ -15,6 +15,7 @@ import "buf/validate/validate.proto";
 //kafka-cluster
 message KafkaCluster {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = kafka_cluster;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.code2cloud.deploy.kafka.enums.KafkaClusterEventType";
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";

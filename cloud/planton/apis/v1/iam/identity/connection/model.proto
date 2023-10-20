@@ -12,6 +12,7 @@ import "cloud/planton/apis/v1/iam/identity/connection/enums/enums.proto";
 //identity-connection used for linking a company's identity provider with planton cloud
 message IdentityConnection {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = identity_connection;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.iam.identity.connection.enums.IdentityConnectionEventType";
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
   option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
 

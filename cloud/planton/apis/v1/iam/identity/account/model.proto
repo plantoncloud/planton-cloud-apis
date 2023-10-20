@@ -12,6 +12,7 @@ import "cloud/planton/apis/v1/iam/identity/account/enums/enums.proto";
 // identity-account for user-account or machine-account
 message IdentityAccount {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = identity_account;
+  option (cloud.planton.apis.v1.commons.resource.options.event_type_enum) = "cloud.planton.apis.v1.iam.identity.account.enums.IdentityAccountEventType";
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
 
   // resource api version
