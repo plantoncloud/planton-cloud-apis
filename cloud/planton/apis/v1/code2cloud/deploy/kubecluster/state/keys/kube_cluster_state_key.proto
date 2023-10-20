@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.state.keys;
-
-// key for kube-cluster state messages
-message KubeClusterStateKey {
-  string value = 1;
-}

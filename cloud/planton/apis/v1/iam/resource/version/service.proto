@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.resource.version;
+
+import "cloud/planton/apis/v1/commons/resource/version/model.proto";
+
+//resource-version query controller
+service ResourceVersionQueryController {
+  // list of resource-versions
+  rpc listByFilters(cloud.planton.apis.v1.commons.resource.version.ListResourceVersionsByFiltersQueryInput)
+      returns(cloud.planton.apis.v1.commons.resource.version.ResourceVersionList);
+  // look up resource-version by version-id
+  rpc getByIdWithContextSize(cloud.planton.apis.v1.commons.resource.version.ResourceVersionWithContextSizeInput)
+      returns(cloud.planton.apis.v1.commons.resource.version.ResourceVersion);
+}

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.commons.rpc.pagination.google;
+package cloud.planton.apis.v1.commons.pagination.google;
 
 //google style of pagination
 message GooglePageInfo {

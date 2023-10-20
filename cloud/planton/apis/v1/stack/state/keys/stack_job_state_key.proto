@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.stack.state.keys;
-
-// key for stack-job state messages
-message StackJobStateKey {
-  string value= 1;
-}

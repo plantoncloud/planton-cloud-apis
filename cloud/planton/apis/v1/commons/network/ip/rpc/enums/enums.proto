@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.commons.network.ip.rpc.enums;
-
-enum IpAddressVisibility {
-  IP_ADDRESS_VISIBILITY_UNSPECIFIED = 0;
-  IP_ADDRESS_VISIBILITY_INTERNAL = 1;
-  IP_ADDRESS_VISIBILITY_EXTERNAL = 2;
-}

@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.postgres.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.postgres;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.postgres.rpc.PostgresCluster;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

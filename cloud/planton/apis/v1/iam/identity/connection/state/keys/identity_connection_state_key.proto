@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.iam.identity.connection.state.keys;
-
-// key for identity-connection state messages
-message IdentityConnectionStateKey {
-  string value = 1;
-}

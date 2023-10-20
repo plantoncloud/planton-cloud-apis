@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.identity.group.enums;
+
+import "cloud/planton/apis/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum IdentityGroupEventType {
+  IDENTITY_GROUP_EVENT_TYPE_UNSPECIFIED = 0;
+  IDENTITY_GROUP_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  IDENTITY_GROUP_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  IDENTITY_GROUP_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+}

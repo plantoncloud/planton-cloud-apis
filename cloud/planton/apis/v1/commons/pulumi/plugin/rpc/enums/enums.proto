@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.commons.pulumi.plugin.rpc;
+package cloud.planton.apis.v1.commons.pulumi.plugin;
 
 // pulumi plugin name
 // the recommended best practice to prefix the entry with enum name has been intentionally ignored to ensure that the enum's value matches the name of the pulumi plugin.

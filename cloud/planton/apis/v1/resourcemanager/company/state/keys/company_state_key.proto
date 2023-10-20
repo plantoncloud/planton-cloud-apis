@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.resourcemanager.company.state.keys;
-
-// key for company state messages
-message CompanyStateKey {
-  string value = 1;
-}

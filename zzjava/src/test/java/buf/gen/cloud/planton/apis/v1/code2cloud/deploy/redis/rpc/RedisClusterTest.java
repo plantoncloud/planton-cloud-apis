@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.rpc.RedisCluster;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.RedisCluster;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

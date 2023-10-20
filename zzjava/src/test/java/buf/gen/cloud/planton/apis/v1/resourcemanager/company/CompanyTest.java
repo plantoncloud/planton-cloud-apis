@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.v1.resourcemanager.company;
 
-import build.buf.gen.cloud.planton.apis.v1.resourcemanager.company.rpc.Company;
+import build.buf.gen.cloud.planton.apis.v1.resourcemanager.company.Company;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

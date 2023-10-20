@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.develop.buildengine.rpc;
+package cloud.planton.apis.v1.code2cloud.develop.buildengine;
 
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
 
 //build engine code project
 message BuildEngineProject {

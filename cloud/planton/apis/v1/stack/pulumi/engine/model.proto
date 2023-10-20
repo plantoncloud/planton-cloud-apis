@@ -3,10 +3,10 @@ syntax = "proto3";
 package cloud.planton.apis.v1.stack.pulumi.engine;
 
 import "cloud/planton/apis/v1/stack/pulumi/engine/enums/enums.proto";
-import "cloud/planton/apis/v1/stack/rpc/enums/enums.proto";
+import "cloud/planton/apis/v1/stack/enums/enums.proto";
 
 message EngineEvent {
-  cloud.planton.apis.v1.stack.rpc.enums.StackOperationType operation_type = 1;
+  cloud.planton.apis.v1.stack.enums.StackOperationType operation_type = 1;
   cloud.planton.apis.v1.stack.pulumi.engine.enums.PulumiEngineEventType event_type = 2;
   int32 sequence = 3;
   int32 timestamp = 4;

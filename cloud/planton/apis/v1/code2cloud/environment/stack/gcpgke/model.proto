@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.environment.stack.gcpgke;
 
-import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/state/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 
 message EnvironmentGcpGkeStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
   //pulumi stack credentials
   EnvironmentGcpGkeStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -18,25 +18,25 @@ message EnvironmentGcpGkeStackInput {
 //stack credentials input
 message EnvironmentGcpGkeStackCredentialsInput {
   //google provider credential input
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
 }
 
 //stack resource input
 message EnvironmentGcpGkeStackResourceInput {
   //environment
-  cloud.planton.apis.v1.code2cloud.environment.state.EnvironmentState environment = 1;
+  cloud.planton.apis.v1.code2cloud.environment.Environment environment = 1;
 }
 
 //environment secrets outputs
 message EnvironmentGcpGkeStackOutputs {
   //environment secrets
-  repeated cloud.planton.apis.v1.code2cloud.environment.state.EnvironmentSecretState environment_secrets = 1;
+  repeated cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret environment_secrets = 1;
 }
 
 //stack response
 message EnvironmentGcpGkeStackResponse {
 //stack-job progress event
-  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
   //stack outputs
   EnvironmentGcpGkeStackOutputs outputs = 3;
 }

@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.storagebucket.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.storagebucket;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.storagebucket.rpc.StorageBucket;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucket;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

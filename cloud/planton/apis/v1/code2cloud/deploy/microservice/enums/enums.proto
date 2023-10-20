@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.microservice.enums;
+
+import "cloud/planton/apis/v1/commons/resource/state/enums/options/resource_state_enums_options.proto";
+
+enum MicroserviceInstanceEventType {
+  MICROSERVICE_INSTANCE_EVENT_TYPE_UNSPECIFIED = 0;
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_RESTORED = 4 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = preview
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_PAUSED = 11 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  MICROSERVICE_INSTANCE_EVENT_TYPE_STATE_UNPAUSED = 12 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+}

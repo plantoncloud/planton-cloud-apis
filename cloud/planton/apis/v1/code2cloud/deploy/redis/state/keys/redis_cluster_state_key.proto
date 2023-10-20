@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.deploy.redis.state.keys;
-
-//wrapper for redis-cluster id used as key in redis messages
-message RedisClusterStateKey {
-  string value = 1;
-}

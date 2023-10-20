@@ -3,22 +3,22 @@ syntax = "proto3";
 package cloud.planton.apis.v1.integration.gitlab.proxy;
 
 import "cloud/planton/apis/v1/integration/gitlab/proxy/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
 
 //gitlab proxy command controller
 service GitlabProxyCommandController {
   //create new project on gitlab
   //https://docs.gitlab.com/ee/api/projects.html#create-project
-  rpc creProject(CreProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  rpc creProject(CreProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
   //apply a cookiecutter template on a code project created on gitlab
-  rpc applyTemplate(GitlabApplyTemplateCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
+  rpc applyTemplate(GitlabApplyTemplateCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
   //add a list of variables to a gitlab project
-  rpc addVariablesToProject(AddVariablesToProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  rpc addVariablesToProject(AddVariablesToProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
   //add a list of variables to a gitlab group
-  rpc addVariablesToGroup(AddVariablesToGroupCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.rpc.CodeServer);
+  rpc addVariablesToGroup(AddVariablesToGroupCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer);
   //add a list of files to a gitlab project
-  rpc addFilesToProject(AddFilesToGitlabProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  rpc addFilesToProject(AddFilesToGitlabProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
 }
 
 //gitlab proxy query controller
@@ -26,11 +26,11 @@ service GitlabProxyQueryController {
   //list projects for the requested group, including projects in sub-groups on gitlab
   //https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
   //todo: we have to add pagination support for response.
-  rpc listProjects(ListProjectsQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjects);
+  rpc listProjects(ListProjectsQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjects);
   //get details of a project on gitlab
-  rpc getProject(GetProjectQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProject);
+  rpc getProject(GetProjectQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
   //get details of a group on gitlab
-  rpc getGroup(GetGroupQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.rpc.CodeServer);
+  rpc getGroup(GetGroupQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer);
   //get code project profile of a code-project hosted on gitlab
-  rpc getGitlabCodeProjectProfile(GetGitlabCodeProjectProfileQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.rpc.CodeProjectProfile);
+  rpc getGitlabCodeProjectProfile(GetGitlabCodeProjectProfileQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
 }

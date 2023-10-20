@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.state.keys;
-
-// key for code-server state messages
-message CodeServerStateKey {
-  string value = 1;
-}

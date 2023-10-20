@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.state.keys;
-
-// key for custom-endpoint state messages
-message CustomEndpointStateKey {
-  string value = 1;
-}
