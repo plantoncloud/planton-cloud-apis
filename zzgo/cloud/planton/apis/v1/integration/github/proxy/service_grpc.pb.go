@@ -8,8 +8,8 @@ package proxy
 
 import (
 	context "context"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc"
-	rpc1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc"
+	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project"
+	server "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/server"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -36,16 +36,16 @@ type GithubProxyCommandControllerClient interface {
 	// https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
 	// https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
 	// https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
-	CreRepository(ctx context.Context, in *CreRepositoryCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	CreRepository(ctx context.Context, in *CreRepositoryCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// apply a cookiecutter template on a code project created on github
-	ApplyTemplate(ctx context.Context, in *GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error)
+	ApplyTemplate(ctx context.Context, in *GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error)
 	// add a list of secrets to a github repository
-	AddSecretsToRepo(ctx context.Context, in *AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	AddSecretsToRepo(ctx context.Context, in *AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// add a list of secrets to a github organization
-	AddSecretsToOrg(ctx context.Context, in *AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error)
+	AddSecretsToOrg(ctx context.Context, in *AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*server.CodeServer, error)
 	// synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
 	// then add files in the input to .github/workflows directory.
-	SynchronizeMagicPipelineFiles(ctx context.Context, in *SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	SynchronizeMagicPipelineFiles(ctx context.Context, in *SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 }
 
 type githubProxyCommandControllerClient struct {
@@ -56,8 +56,8 @@ func NewGithubProxyCommandControllerClient(cc grpc.ClientConnInterface) GithubPr
 	return &githubProxyCommandControllerClient{cc}
 }
 
-func (c *githubProxyCommandControllerClient) CreRepository(ctx context.Context, in *CreRepositoryCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *githubProxyCommandControllerClient) CreRepository(ctx context.Context, in *CreRepositoryCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GithubProxyCommandController_CreRepository_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -65,8 +65,8 @@ func (c *githubProxyCommandControllerClient) CreRepository(ctx context.Context, 
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error) {
-	out := new(rpc.CodeProjectProfile)
+func (c *githubProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error) {
+	out := new(project.CodeProjectProfile)
 	err := c.cc.Invoke(ctx, GithubProxyCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +74,8 @@ func (c *githubProxyCommandControllerClient) ApplyTemplate(ctx context.Context, 
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) AddSecretsToRepo(ctx context.Context, in *AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *githubProxyCommandControllerClient) AddSecretsToRepo(ctx context.Context, in *AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GithubProxyCommandController_AddSecretsToRepo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +83,8 @@ func (c *githubProxyCommandControllerClient) AddSecretsToRepo(ctx context.Contex
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) AddSecretsToOrg(ctx context.Context, in *AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error) {
-	out := new(rpc1.CodeServer)
+func (c *githubProxyCommandControllerClient) AddSecretsToOrg(ctx context.Context, in *AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*server.CodeServer, error) {
+	out := new(server.CodeServer)
 	err := c.cc.Invoke(ctx, GithubProxyCommandController_AddSecretsToOrg_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +92,8 @@ func (c *githubProxyCommandControllerClient) AddSecretsToOrg(ctx context.Context
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) SynchronizeMagicPipelineFiles(ctx context.Context, in *SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *githubProxyCommandControllerClient) SynchronizeMagicPipelineFiles(ctx context.Context, in *SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GithubProxyCommandController_SynchronizeMagicPipelineFiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -109,35 +109,35 @@ type GithubProxyCommandControllerServer interface {
 	// https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
 	// https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
 	// https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
-	CreRepository(context.Context, *CreRepositoryCommandInput) (*rpc.CodeProject, error)
+	CreRepository(context.Context, *CreRepositoryCommandInput) (*project.CodeProject, error)
 	// apply a cookiecutter template on a code project created on github
-	ApplyTemplate(context.Context, *GithubApplyTemplateCommandInput) (*rpc.CodeProjectProfile, error)
+	ApplyTemplate(context.Context, *GithubApplyTemplateCommandInput) (*project.CodeProjectProfile, error)
 	// add a list of secrets to a github repository
-	AddSecretsToRepo(context.Context, *AddSecretsToRepoCommandInput) (*rpc.CodeProject, error)
+	AddSecretsToRepo(context.Context, *AddSecretsToRepoCommandInput) (*project.CodeProject, error)
 	// add a list of secrets to a github organization
-	AddSecretsToOrg(context.Context, *AddSecretsToOrgCommandInput) (*rpc1.CodeServer, error)
+	AddSecretsToOrg(context.Context, *AddSecretsToOrgCommandInput) (*server.CodeServer, error)
 	// synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
 	// then add files in the input to .github/workflows directory.
-	SynchronizeMagicPipelineFiles(context.Context, *SynchronizeGithubMagicPipelineFilesCommandInput) (*rpc.CodeProject, error)
+	SynchronizeMagicPipelineFiles(context.Context, *SynchronizeGithubMagicPipelineFilesCommandInput) (*project.CodeProject, error)
 }
 
 // UnimplementedGithubProxyCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGithubProxyCommandControllerServer struct {
 }
 
-func (UnimplementedGithubProxyCommandControllerServer) CreRepository(context.Context, *CreRepositoryCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGithubProxyCommandControllerServer) CreRepository(context.Context, *CreRepositoryCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreRepository not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) ApplyTemplate(context.Context, *GithubApplyTemplateCommandInput) (*rpc.CodeProjectProfile, error) {
+func (UnimplementedGithubProxyCommandControllerServer) ApplyTemplate(context.Context, *GithubApplyTemplateCommandInput) (*project.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApplyTemplate not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToRepo(context.Context, *AddSecretsToRepoCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToRepo(context.Context, *AddSecretsToRepoCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecretsToRepo not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToOrg(context.Context, *AddSecretsToOrgCommandInput) (*rpc1.CodeServer, error) {
+func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToOrg(context.Context, *AddSecretsToOrgCommandInput) (*server.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecretsToOrg not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) SynchronizeMagicPipelineFiles(context.Context, *SynchronizeGithubMagicPipelineFilesCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGithubProxyCommandControllerServer) SynchronizeMagicPipelineFiles(context.Context, *SynchronizeGithubMagicPipelineFilesCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeMagicPipelineFiles not implemented")
 }
 
@@ -288,13 +288,13 @@ type GithubProxyQueryControllerClient interface {
 	// list repositories for the requested organization or user on github
 	// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
 	// todo: we have to add pagination support for response.
-	ListRepositories(ctx context.Context, in *ListRepositoriesQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjects, error)
+	ListRepositories(ctx context.Context, in *ListRepositoriesQueryInput, opts ...grpc.CallOption) (*project.CodeProjects, error)
 	// get the details of a repository on github
-	GetRepository(ctx context.Context, in *GetRepositoryQueryInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	GetRepository(ctx context.Context, in *GetRepositoryQueryInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// get details of a github app installation
 	GetGithubAppInstallation(ctx context.Context, in *GithubAppInstallation, opts ...grpc.CallOption) (*GithubAppInstallation, error)
 	// get code project profile of a code-project hosted on github
-	GetGithubCodeProjectProfile(ctx context.Context, in *GetGithubCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error)
+	GetGithubCodeProjectProfile(ctx context.Context, in *GetGithubCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error)
 }
 
 type githubProxyQueryControllerClient struct {
@@ -305,8 +305,8 @@ func NewGithubProxyQueryControllerClient(cc grpc.ClientConnInterface) GithubProx
 	return &githubProxyQueryControllerClient{cc}
 }
 
-func (c *githubProxyQueryControllerClient) ListRepositories(ctx context.Context, in *ListRepositoriesQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjects, error) {
-	out := new(rpc.CodeProjects)
+func (c *githubProxyQueryControllerClient) ListRepositories(ctx context.Context, in *ListRepositoriesQueryInput, opts ...grpc.CallOption) (*project.CodeProjects, error) {
+	out := new(project.CodeProjects)
 	err := c.cc.Invoke(ctx, GithubProxyQueryController_ListRepositories_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -314,8 +314,8 @@ func (c *githubProxyQueryControllerClient) ListRepositories(ctx context.Context,
 	return out, nil
 }
 
-func (c *githubProxyQueryControllerClient) GetRepository(ctx context.Context, in *GetRepositoryQueryInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *githubProxyQueryControllerClient) GetRepository(ctx context.Context, in *GetRepositoryQueryInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GithubProxyQueryController_GetRepository_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -332,8 +332,8 @@ func (c *githubProxyQueryControllerClient) GetGithubAppInstallation(ctx context.
 	return out, nil
 }
 
-func (c *githubProxyQueryControllerClient) GetGithubCodeProjectProfile(ctx context.Context, in *GetGithubCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error) {
-	out := new(rpc.CodeProjectProfile)
+func (c *githubProxyQueryControllerClient) GetGithubCodeProjectProfile(ctx context.Context, in *GetGithubCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error) {
+	out := new(project.CodeProjectProfile)
 	err := c.cc.Invoke(ctx, GithubProxyQueryController_GetGithubCodeProjectProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -348,29 +348,29 @@ type GithubProxyQueryControllerServer interface {
 	// list repositories for the requested organization or user on github
 	// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
 	// todo: we have to add pagination support for response.
-	ListRepositories(context.Context, *ListRepositoriesQueryInput) (*rpc.CodeProjects, error)
+	ListRepositories(context.Context, *ListRepositoriesQueryInput) (*project.CodeProjects, error)
 	// get the details of a repository on github
-	GetRepository(context.Context, *GetRepositoryQueryInput) (*rpc.CodeProject, error)
+	GetRepository(context.Context, *GetRepositoryQueryInput) (*project.CodeProject, error)
 	// get details of a github app installation
 	GetGithubAppInstallation(context.Context, *GithubAppInstallation) (*GithubAppInstallation, error)
 	// get code project profile of a code-project hosted on github
-	GetGithubCodeProjectProfile(context.Context, *GetGithubCodeProjectProfileQueryInput) (*rpc.CodeProjectProfile, error)
+	GetGithubCodeProjectProfile(context.Context, *GetGithubCodeProjectProfileQueryInput) (*project.CodeProjectProfile, error)
 }
 
 // UnimplementedGithubProxyQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGithubProxyQueryControllerServer struct {
 }
 
-func (UnimplementedGithubProxyQueryControllerServer) ListRepositories(context.Context, *ListRepositoriesQueryInput) (*rpc.CodeProjects, error) {
+func (UnimplementedGithubProxyQueryControllerServer) ListRepositories(context.Context, *ListRepositoriesQueryInput) (*project.CodeProjects, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRepositories not implemented")
 }
-func (UnimplementedGithubProxyQueryControllerServer) GetRepository(context.Context, *GetRepositoryQueryInput) (*rpc.CodeProject, error) {
+func (UnimplementedGithubProxyQueryControllerServer) GetRepository(context.Context, *GetRepositoryQueryInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRepository not implemented")
 }
 func (UnimplementedGithubProxyQueryControllerServer) GetGithubAppInstallation(context.Context, *GithubAppInstallation) (*GithubAppInstallation, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGithubAppInstallation not implemented")
 }
-func (UnimplementedGithubProxyQueryControllerServer) GetGithubCodeProjectProfile(context.Context, *GetGithubCodeProjectProfileQueryInput) (*rpc.CodeProjectProfile, error) {
+func (UnimplementedGithubProxyQueryControllerServer) GetGithubCodeProjectProfile(context.Context, *GetGithubCodeProjectProfileQueryInput) (*project.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGithubCodeProjectProfile not implemented")
 }
 

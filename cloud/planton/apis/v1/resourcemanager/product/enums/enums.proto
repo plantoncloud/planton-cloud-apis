@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.product.enums;
+
+ import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+
+enum ProductEventType {
+  PRODUCT_EVENT_TYPE_UNSPECIFIED = 0;
+  PRODUCT_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  PRODUCT_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  PRODUCT_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  PRODUCT_EVENT_TYPE_STATE_RESTORED = 4 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+}

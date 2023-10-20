@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.rpc.StandardEndpoint;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.standard.StandardEndpoint;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

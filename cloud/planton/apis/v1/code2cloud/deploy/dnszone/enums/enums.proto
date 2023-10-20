@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.dnszone.enums;
+
+ import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+
+// dns-zone event types
+enum DnsZoneEventType {
+  DNS_ZONE_EVENT_TYPE_UNSPECIFIED = 0;
+  DNS_ZONE_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  DNS_ZONE_EVENT_TYPE_STATE_RESTORED = 4 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = preview
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  DNS_ZONE_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+}
+
+// provider for dns-zone
+enum DnsZoneProvider {
+  DNS_ZONE_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/dns
+  GCP_CLOUD_DNS = 1;
+  //https://aws.amazon.com/route53/
+  AWS_ROUTE53 = 2;
+  //https://azure.microsoft.com/en-us/products/dns
+  AZURE_DNS = 3;
+  //https://docs.digitalocean.com/products/networking/dns/
+  DIGITAL_OCEAN_DNS = 4;
+}

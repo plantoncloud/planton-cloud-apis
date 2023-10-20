@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.microservice.stack.kubernetes;
 
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/rpc/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state/model.proto";
+import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
 
 //input for microservice-instance stack
 message MicroserviceInstanceKubernetesStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
   //pulumi stack credentials
   MicroserviceInstanceKubernetesStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -20,15 +20,15 @@ message MicroserviceInstanceKubernetesStackInput {
 //stack credentials input
 message MicroserviceInstanceKubernetesStackCredentialsInput {
   //kubernetes provider credential for creating microservice-instance resources on container instance
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.KubernetesProviderCredential kubernetes = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 1;
   //google provider credential for ensuring workload identity resources on google cloud
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 2;
+  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 2;
 }
 
 //stack resource input
 message MicroserviceInstanceKubernetesStackResourceInput {
   //microservice-instance
-  cloud.planton.apis.v1.code2cloud.deploy.microservice.state.MicroserviceInstanceState microservice_instance = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstance microservice_instance = 1;
   //input required for creating kubernetes secret resources to be used by deployment resources to pull private
   //container images.
   //a product can have many artifact-stores. each artifact-store has a separate service account credential.
@@ -39,7 +39,7 @@ message MicroserviceInstanceKubernetesStackResourceInput {
   repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
   //container cluster project required to configure workload identity
   //service account is created in container cluster project and a binding created to workload identity pool.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.rpc.GcpProject container_cluster_project = 3;
+  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject container_cluster_project = 3;
 }
 
 message KubernetesImagePullSecretInput {
@@ -54,13 +54,13 @@ message KubernetesImagePullSecretInput {
 //microservice-instance stack outputs
 message MicroserviceInstanceKubernetesStackOutputs {
   //status of the microservice-instance upon stack-job
-  cloud.planton.apis.v1.code2cloud.deploy.microservice.state.MicroserviceInstanceStatusState microservice_instance_status = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceStatus microservice_instance_status = 1;
 }
 
 //stack response
 message MicroserviceInstanceKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
   //stack outputs
   MicroserviceInstanceKubernetesStackOutputs outputs = 2;
 }

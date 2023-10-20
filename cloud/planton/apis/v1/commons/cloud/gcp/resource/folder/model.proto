@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.cloud.gcp.resource.folder;
+
+// gcp project
+// https://cloud.google.com/resource-manager/reference/rest/v2/folders
+message GcpFolder {
+  // id of the gcp project.
+  // ex: 498520640386.
+  string id = 1;
+  // display name for the folder.
+  // (important) a two character suffix starting with a hyphen is added at the end of the
+  // display name to allow recreating folders with same resource identifier on planton cloud.
+  string display_name = 2;
+  // parent of the folder.
+  // parent can be either a gcp organization or another gcp folder.
+  string parent = 3;
+}
+
+// list of gcp folder
+message GcpFolders {
+  repeated GcpFolder entries = 1;
+}

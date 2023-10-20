@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.v1.code2cloud.develop.sourcecode.server;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.rpc.CodeServer;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.stack.gcp;
 
-import "cloud/planton/apis/v1/commons/pulumi/operation/rpc/model.proto";
-import "cloud/planton/apis/v1/stack/rpc/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model.proto";
 
 //input for storage-bucket stack
 message StorageBucketGcpStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.rpc.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
   //pulumi stack credentials
   StorageBucketGcpStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -19,13 +19,13 @@ message StorageBucketGcpStackInput {
 //stack credentials input
 message StorageBucketGcpStackCredentialsInput {
   //google provider credential input
-  cloud.planton.apis.v1.commons.pulumi.operation.rpc.GoogleProviderCredential google = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
 }
 
 //stack resource input
 message StorageBucketGcpStackResourceInput {
   //storage-bucket
-  cloud.planton.apis.v1.code2cloud.deploy.storagebucket.state.StorageBucketState storage_bucket = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucket storage_bucket = 1;
 }
 
 //storage-bucket stack outputs
@@ -35,7 +35,7 @@ message StorageBucketGcpStackOutputs {
 //stack response
 message StorageBucketGcpStackResponse {
 //stack-job progress event
-  cloud.planton.apis.v1.stack.rpc.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
   //stack outputs
   StorageBucketGcpStackOutputs outputs = 3;
 }

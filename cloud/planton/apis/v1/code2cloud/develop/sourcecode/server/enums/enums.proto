@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.enums;
+
+ import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+
+enum CodeServerEventType {
+  CODE_SERVER_EVENT_TYPE_UNSPECIFIED = 0;
+  CODE_SERVER_EVENT_TYPE_STATE_CREATED = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_UPDATED = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_DELETED = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  CODE_SERVER_EVENT_TYPE_STATE_RESTORED = 4 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+}
+
+enum CodeServerProvider {
+  CODE_SERVER_PROVIDER_UNSPECIFIED = 0;
+  CODE_SERVER_PROVIDER_GITHUB = 1;
+  CODE_SERVER_PROVIDER_GITLAB = 2;
+}
+
+enum GithubAppInstallOwnerType {
+  GITHUB_APP_INSTALLATION_OWNER_TYPE_UNSPECIFIED = 0;
+  GITHUB_APP_INSTALLATION_OWNER_TYPE_USER = 1;
+  GITHUB_APP_INSTALLATION_OWNER_ORG = 2;
+}

@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.dnszone;
+
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/network/dns/record/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/enums/enums.proto";
+import "buf/validate/validate.proto";
+
+//dns-zone
+message DnsZone {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = dns_zone;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = company;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.company_id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "dns";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // metadata for the resource
+  // Name is a valid, unique DNS domain name within the Platon Cloud.
+  // Id value is automatically computed in the format 'dns-<company_id>-<normalized-domain-name>',
+  // and its uniqueness is guaranteed by the backend.
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name should be any valid DNS Domain Name",
+      // https://regex101.com/library/SEg6KL
+      expression: "this.name.matches('^(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?[.])+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$')"
+    }
+  ];
+
+  //dns-zone spec
+  DnsZoneSpec spec = 4;
+
+  //dns-zone status
+  DnsZoneStatus status = 5;
+}
+
+// Specification for the DNS Zone
+message DnsZoneSpec {
+  // The ID of the company that owns the DNS Zone. This is required and immutable.
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // The DNS records that are added to the Zone.
+  repeated DnsRecord records = 2;
+
+  //provider for dns-zone
+  cloud.planton.apis.v1.code2cloud.deploy.dnszone.enums.DnsZoneProvider zone_provider = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // specification for zone to be created in google cloud dns.
+  // this attribute is only populated when zone provider is google cloud dns.
+  DnsZoneGcpSpec gcp = 4;
+
+  // specification for zone to be created in aws route53.
+  // this attribute is only populated when zone provider is aws route53.
+  DnsZoneAwsSpec aws = 5;
+}
+
+// Status for the DNS Zone
+message DnsZoneStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // system audit info
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  //status for the zone created in google cloud dns.
+  //this attribute is populated only when the zone provider is google cloud dns
+  DnsZoneGcpStatus gcp = 1;
+
+  //status for the zone created in aws route53.
+  //this attribute is populated only when the zone provider is aws route53
+  DnsZoneAwsStatus aws = 2;
+}
+
+// specification for zone to be created in google cloud dns service
+message DnsZoneGcpSpec {
+  // The ID of the GCP Cloud Account where the Managed Zone should be created.
+  // The Managed Zone is created in the core-infra project of the provided Cloud Account,
+  // necessary for delegating domain control to Platon Cloud.
+  string gcp_cloud_account_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // The ID of the GCP Project where the Managed Zone is created.
+  string project_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // An optional list of GCP service accounts to be granted permissions to manage DNS records in the Managed Zone.
+  // These accounts are primarily created as workload identities like cert-manager,
+  // and are added when new environments are created or updated.
+  repeated string iam_service_accounts = 3;
+}
+
+// status for zone created in google cloud dns service
+message DnsZoneGcpStatus {
+  // The list of nameservers for the Managed Zone created for the DNS Domain.
+  repeated string nameservers = 1;
+}
+
+// specification for zone to be created in aws route53
+message DnsZoneAwsSpec {
+  // The ID of the AWS Cloud Account where the Managed Zone should be created.
+  string aws_cloud_account_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+}
+
+// status for zone created in aws route53
+message DnsZoneAwsStatus {
+  // The list of nameservers for the Managed Zone created for the DNS Domain.
+  repeated string nameservers = 1;
+}
+
+// list of dns-zones
+message DnsZones {
+  repeated DnsZone entries = 1;
+}
+
+// response for paginated query to list dns-zones
+message DnsZoneList {
+  int32 total_pages = 1;
+  repeated DnsZone entries = 2;
+}
+
+// wrapper for dns-zone name
+message DnsDomainName {
+  string value = 1;
+}
+
+// wrapper for dns-zone id
+message DnsZoneId {
+  string value = 1;
+}
+
+// dns-record
+message DnsRecord {
+  // The audit information for system tracking
+  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  // dns-zone record type.
+  cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType record_type = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // name of the dns-zone ex: example.com or dev.example.com.
+  // this value should always end with a dot.
+  string name = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (buf.validate.field).cel = {
+      id: "name",
+      message: "Name should be any valid DNS Domain Name",
+      expression: "this.matches('^(?:[*][.])?(?:[_a-z0-9](?:[_a-z0-9-]{0,61}[a-z0-9])?[.])+(?:[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?)?$')"
+    }
+  ];
+
+  // values for the dns-zone record.
+  // if the dns_zone_record_type is cname then each value in the list should end with a dot.
+  repeated string values = 3;
+
+  // ttl for the domain record in seconds.
+  int32 ttl_seconds = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.int32_default) = 60
+  ];
+}
+
+// list of dns-records
+message DnsRecords {
+  repeated DnsRecord entries = 1;
+}
+
+// AddOrUpdateDnsRecordCommandInput is used to encapsulate the details needed to either add
+// a new DNS record or update an existing one within a specific DNS zone.
+// This message is typically used to transmit data from the client to the server
+// during an add or update or restore operation on a DNS record within a specified DNS zone.
+message AddOrUpdateDnsRecordCommandInput {
+  // This field contains the unique identifier of the DNS zone within which the DNS record
+  // is to be added or updated. The ID should be a valid DNS zone ID, typically obtained
+  // from the DNS zone entity itself. This field is used by the server to determine
+  // the correct DNS zone where the DNS record is to be added or updated.
+  string dns_zone_id = 1;
+
+  // This field contains the actual DNS record that is to be added or updated. The DNS record
+  // object should be populated with all necessary fields (like name, type, TTL, data etc.),
+  // which the server uses to create a new DNS record or update an existing one.
+  DnsRecord dns_record = 2;
+}
+
+// DeleteOrRestoreDnsRecordCommandInput is a protobuf message that encapsulates the data
+// necessary for either soft deleting or restoring a specific DNS record within a DNS zone.
+// This message is typically used to send the relevant details from the client to the server.
+message DeleteDnsRecordCommandInput {
+
+  // This field carries the unique identifier of the DNS zone from which the DNS record
+  // is to be either soft deleted or restored. The server uses this ID to find the appropriate DNS zone.
+  // This is a required field.
+  string dns_zone_id = 1;
+
+  // This field holds the type of the DNS record that is to be either soft deleted or restored.
+  // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
+  // The server uses this information to find the DNS record of the correct type within the
+  // specified DNS zone. This is a required field.
+  cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType record_type = 2;
+
+  // This field contains the name of the DNS record that is to be either soft deleted or restored.
+  // The DNS record name is a significant identifier used by the server to find the specific record
+  // within the specified DNS zone and of the provided type to either soft delete or restore.
+  // This is a required field.
+  string record_name = 3;
+}
+
+

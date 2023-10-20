@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.develop.artifactstore.state.keys;
-
-// key for artifact-store state messages
-message ArtifactStoreStateKey {
-  string value = 1;
-}

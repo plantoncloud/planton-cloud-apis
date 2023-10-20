@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource.enums.options;
+
+import "google/protobuf/descriptor.proto";
+import "cloud/planton/apis/v1/stack/enums/enums.proto";
+
+extend google.protobuf.EnumValueOptions {
+  optional bool is_fga_required = 90000;
+  optional bool is_persist_required = 90001;
+  optional bool is_search_indexing_required = 90002;
+  optional bool is_stack_job_required = 90003;
+  optional cloud.planton.apis.v1.stack.enums.StackOperationType stack_operation_type = 90004;
+  optional bool is_stripe_subscription_required = 90005;
+}

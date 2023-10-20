@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.deploy.dnszone.state.keys;
-
-// key for dns-zone state messages
-message DnsZoneStateKey {
-  string value = 1;
-}

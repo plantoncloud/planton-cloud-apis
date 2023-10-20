@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource.list.enums;
+
+enum StatusFilter {
+  STATUS_FILTER_UNSPECIFIED = 0;
+  //  When this value is used, the search operation will only return resources that are currently active.
+  //  This is suitable for scenarios where the client is only interested in resources that are in use or available for use
+  STATUS_FILTER_ACTIVE_ONLY = 1;
+  // When this value is selected, the search operation will return only resources that are currently inactive.
+  // This option is particularly useful when the client wants to review or clean up resources that are no longer in use
+  STATUS_FILTER_INACTIVE_ONLY = 2;
+  // This value indicates that the search operation should return all resources, regardless of their active status.
+  // This option allows clients to see a complete overview of resources, both active and inactive.
+  STATUS_FILTER_ALL = 3;
+}

@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.buildengine;
+
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
+
+//build engine code project
+message BuildEngineProject {
+  //code project directory
+  string code_project_dir = 1;
+  //company id
+  string company_id = 2;
+  //product key
+  string product_key = 3;
+  //product id
+  string product_id = 4;
+  //code project id
+  string code_project_id = 5;
+  //code project name
+  string code_project_name = 6;
+  //git remote origin url.
+  //either https or ssh url depending on the method supported for cloning the git project.
+  //this is the same url that should added to the code project that is linked to microservice resources.
+  string git_remote_url = 7;
+  //name of the git branch checked out when code project profile is loaded
+  string git_branch = 8;
+  //name of the git branch checked out when code project profile is loaded
+  string git_commit_sha = 9;
+  //normalized code project path used for ensuring uniqueness in tilt resources in build engine.
+  string code_project_normalized_path = 10;
+  //name of the environment to look up the deployment config for setting up dot-env
+  //this value is to be fetched from planton backend
+  //when planton backend is not available(offline mode), value for this attribute is set to "dev".
+  string environment_name = 11;
+  //id of the environment to look up the deployment config for setting up dot-env
+  //this value is to be fetched from planton backend
+  //when planton backend is not available(offline mode), value for this attribute is set to "<product-id>-dev".
+  string environment_id = 12;
+  //flag to indicate if project is required to be built before deployed to build engine environment.
+  //this flag is used to ensure link between build step and deployment step in tilt config file.
+  bool is_build_required = 13;
+  //is code project deployable to a environment.
+  bool is_deployable = 14;
+  //project tilt config snippet
+  string tilt_config_snippet = 15;
+}

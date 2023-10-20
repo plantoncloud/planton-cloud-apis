@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack;
+
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
+
+service StackJobCommandController {
+  //create stack-job
+  rpc create(cloud.planton.apis.v1.stack.StackJob) returns (cloud.planton.apis.v1.stack.StackJob);
+  //update stack-job
+  rpc update(cloud.planton.apis.v1.stack.StackJob) returns (cloud.planton.apis.v1.stack.StackJob);
+}
+
+service StackJobQueryController {
+  //list of stack-jobs
+  //todo: need to add authorization
+  rpc listByFilters(cloud.planton.apis.v1.stack.ListStackJobsByFiltersQueryInput) returns(cloud.planton.apis.v1.stack.StackJobList);
+  //look up stack-job by stack-job-id
+  //todo: need to add authorization
+  rpc getById(cloud.planton.apis.v1.stack.StackJobId) returns(cloud.planton.apis.v1.stack.StackJob);
+  //todo: need to add authorization
+  //get stack-job log stream for stacks that are in-progress
+  rpc getLogStream(cloud.planton.apis.v1.stack.StackJobId) returns(stream cloud.planton.apis.v1.commons.grpc.stream.OutputLine);
+  //rpc  to get snapshot stream
+  //this rpc is required to support pulumi progress or diff view web, desktop gui app or mobile apps.
+  rpc getSnapshotStream(cloud.planton.apis.v1.stack.StackJobId) returns(stream StackJobSnapshot);
+  //rpc to get stack-job progress event stream
+  //this rpc is required to support pulumi progress or diff view in the cli client.
+  rpc getProgressEventStream(cloud.planton.apis.v1.stack.StackJobId) returns(stream cloud.planton.apis.v1.stack.StackJobProgressEvent);
+}

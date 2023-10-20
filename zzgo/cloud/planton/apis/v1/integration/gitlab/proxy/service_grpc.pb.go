@@ -8,8 +8,8 @@ package proxy
 
 import (
 	context "context"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/rpc"
-	rpc1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/rpc"
+	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project"
+	server "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/server"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -34,15 +34,15 @@ const (
 type GitlabProxyCommandControllerClient interface {
 	// create new project on gitlab
 	// https://docs.gitlab.com/ee/api/projects.html#create-project
-	CreProject(ctx context.Context, in *CreProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	CreProject(ctx context.Context, in *CreProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// apply a cookiecutter template on a code project created on gitlab
-	ApplyTemplate(ctx context.Context, in *GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error)
+	ApplyTemplate(ctx context.Context, in *GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error)
 	// add a list of variables to a gitlab project
-	AddVariablesToProject(ctx context.Context, in *AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	AddVariablesToProject(ctx context.Context, in *AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// add a list of variables to a gitlab group
-	AddVariablesToGroup(ctx context.Context, in *AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error)
+	AddVariablesToGroup(ctx context.Context, in *AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*server.CodeServer, error)
 	// add a list of files to a gitlab project
-	AddFilesToProject(ctx context.Context, in *AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	AddFilesToProject(ctx context.Context, in *AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 }
 
 type gitlabProxyCommandControllerClient struct {
@@ -53,8 +53,8 @@ func NewGitlabProxyCommandControllerClient(cc grpc.ClientConnInterface) GitlabPr
 	return &gitlabProxyCommandControllerClient{cc}
 }
 
-func (c *gitlabProxyCommandControllerClient) CreProject(ctx context.Context, in *CreProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *gitlabProxyCommandControllerClient) CreProject(ctx context.Context, in *CreProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GitlabProxyCommandController_CreProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -62,8 +62,8 @@ func (c *gitlabProxyCommandControllerClient) CreProject(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error) {
-	out := new(rpc.CodeProjectProfile)
+func (c *gitlabProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error) {
+	out := new(project.CodeProjectProfile)
 	err := c.cc.Invoke(ctx, GitlabProxyCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +71,8 @@ func (c *gitlabProxyCommandControllerClient) ApplyTemplate(ctx context.Context, 
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddVariablesToProject(ctx context.Context, in *AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *gitlabProxyCommandControllerClient) AddVariablesToProject(ctx context.Context, in *AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddVariablesToProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (c *gitlabProxyCommandControllerClient) AddVariablesToProject(ctx context.C
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddVariablesToGroup(ctx context.Context, in *AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error) {
-	out := new(rpc1.CodeServer)
+func (c *gitlabProxyCommandControllerClient) AddVariablesToGroup(ctx context.Context, in *AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*server.CodeServer, error) {
+	out := new(server.CodeServer)
 	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddVariablesToGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,8 @@ func (c *gitlabProxyCommandControllerClient) AddVariablesToGroup(ctx context.Con
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddFilesToProject(ctx context.Context, in *AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *gitlabProxyCommandControllerClient) AddFilesToProject(ctx context.Context, in *AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddFilesToProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -104,34 +104,34 @@ func (c *gitlabProxyCommandControllerClient) AddFilesToProject(ctx context.Conte
 type GitlabProxyCommandControllerServer interface {
 	// create new project on gitlab
 	// https://docs.gitlab.com/ee/api/projects.html#create-project
-	CreProject(context.Context, *CreProjectCommandInput) (*rpc.CodeProject, error)
+	CreProject(context.Context, *CreProjectCommandInput) (*project.CodeProject, error)
 	// apply a cookiecutter template on a code project created on gitlab
-	ApplyTemplate(context.Context, *GitlabApplyTemplateCommandInput) (*rpc.CodeProjectProfile, error)
+	ApplyTemplate(context.Context, *GitlabApplyTemplateCommandInput) (*project.CodeProjectProfile, error)
 	// add a list of variables to a gitlab project
-	AddVariablesToProject(context.Context, *AddVariablesToProjectCommandInput) (*rpc.CodeProject, error)
+	AddVariablesToProject(context.Context, *AddVariablesToProjectCommandInput) (*project.CodeProject, error)
 	// add a list of variables to a gitlab group
-	AddVariablesToGroup(context.Context, *AddVariablesToGroupCommandInput) (*rpc1.CodeServer, error)
+	AddVariablesToGroup(context.Context, *AddVariablesToGroupCommandInput) (*server.CodeServer, error)
 	// add a list of files to a gitlab project
-	AddFilesToProject(context.Context, *AddFilesToGitlabProjectCommandInput) (*rpc.CodeProject, error)
+	AddFilesToProject(context.Context, *AddFilesToGitlabProjectCommandInput) (*project.CodeProject, error)
 }
 
 // UnimplementedGitlabProxyCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGitlabProxyCommandControllerServer struct {
 }
 
-func (UnimplementedGitlabProxyCommandControllerServer) CreProject(context.Context, *CreProjectCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGitlabProxyCommandControllerServer) CreProject(context.Context, *CreProjectCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreProject not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) ApplyTemplate(context.Context, *GitlabApplyTemplateCommandInput) (*rpc.CodeProjectProfile, error) {
+func (UnimplementedGitlabProxyCommandControllerServer) ApplyTemplate(context.Context, *GitlabApplyTemplateCommandInput) (*project.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApplyTemplate not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToProject(context.Context, *AddVariablesToProjectCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToProject(context.Context, *AddVariablesToProjectCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddVariablesToProject not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToGroup(context.Context, *AddVariablesToGroupCommandInput) (*rpc1.CodeServer, error) {
+func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToGroup(context.Context, *AddVariablesToGroupCommandInput) (*server.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddVariablesToGroup not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddFilesToProject(context.Context, *AddFilesToGitlabProjectCommandInput) (*rpc.CodeProject, error) {
+func (UnimplementedGitlabProxyCommandControllerServer) AddFilesToProject(context.Context, *AddFilesToGitlabProjectCommandInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFilesToProject not implemented")
 }
 
@@ -282,13 +282,13 @@ type GitlabProxyQueryControllerClient interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
-	ListProjects(ctx context.Context, in *ListProjectsQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjects, error)
+	ListProjects(ctx context.Context, in *ListProjectsQueryInput, opts ...grpc.CallOption) (*project.CodeProjects, error)
 	// get details of a project on gitlab
-	GetProject(ctx context.Context, in *GetProjectQueryInput, opts ...grpc.CallOption) (*rpc.CodeProject, error)
+	GetProject(ctx context.Context, in *GetProjectQueryInput, opts ...grpc.CallOption) (*project.CodeProject, error)
 	// get details of a group on gitlab
-	GetGroup(ctx context.Context, in *GetGroupQueryInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error)
+	GetGroup(ctx context.Context, in *GetGroupQueryInput, opts ...grpc.CallOption) (*server.CodeServer, error)
 	// get code project profile of a code-project hosted on gitlab
-	GetGitlabCodeProjectProfile(ctx context.Context, in *GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error)
+	GetGitlabCodeProjectProfile(ctx context.Context, in *GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error)
 }
 
 type gitlabProxyQueryControllerClient struct {
@@ -299,8 +299,8 @@ func NewGitlabProxyQueryControllerClient(cc grpc.ClientConnInterface) GitlabProx
 	return &gitlabProxyQueryControllerClient{cc}
 }
 
-func (c *gitlabProxyQueryControllerClient) ListProjects(ctx context.Context, in *ListProjectsQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjects, error) {
-	out := new(rpc.CodeProjects)
+func (c *gitlabProxyQueryControllerClient) ListProjects(ctx context.Context, in *ListProjectsQueryInput, opts ...grpc.CallOption) (*project.CodeProjects, error) {
+	out := new(project.CodeProjects)
 	err := c.cc.Invoke(ctx, GitlabProxyQueryController_ListProjects_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -308,8 +308,8 @@ func (c *gitlabProxyQueryControllerClient) ListProjects(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetProject(ctx context.Context, in *GetProjectQueryInput, opts ...grpc.CallOption) (*rpc.CodeProject, error) {
-	out := new(rpc.CodeProject)
+func (c *gitlabProxyQueryControllerClient) GetProject(ctx context.Context, in *GetProjectQueryInput, opts ...grpc.CallOption) (*project.CodeProject, error) {
+	out := new(project.CodeProject)
 	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -317,8 +317,8 @@ func (c *gitlabProxyQueryControllerClient) GetProject(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetGroup(ctx context.Context, in *GetGroupQueryInput, opts ...grpc.CallOption) (*rpc1.CodeServer, error) {
-	out := new(rpc1.CodeServer)
+func (c *gitlabProxyQueryControllerClient) GetGroup(ctx context.Context, in *GetGroupQueryInput, opts ...grpc.CallOption) (*server.CodeServer, error) {
+	out := new(server.CodeServer)
 	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -326,8 +326,8 @@ func (c *gitlabProxyQueryControllerClient) GetGroup(ctx context.Context, in *Get
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetGitlabCodeProjectProfile(ctx context.Context, in *GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*rpc.CodeProjectProfile, error) {
-	out := new(rpc.CodeProjectProfile)
+func (c *gitlabProxyQueryControllerClient) GetGitlabCodeProjectProfile(ctx context.Context, in *GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*project.CodeProjectProfile, error) {
+	out := new(project.CodeProjectProfile)
 	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetGitlabCodeProjectProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -342,29 +342,29 @@ type GitlabProxyQueryControllerServer interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
-	ListProjects(context.Context, *ListProjectsQueryInput) (*rpc.CodeProjects, error)
+	ListProjects(context.Context, *ListProjectsQueryInput) (*project.CodeProjects, error)
 	// get details of a project on gitlab
-	GetProject(context.Context, *GetProjectQueryInput) (*rpc.CodeProject, error)
+	GetProject(context.Context, *GetProjectQueryInput) (*project.CodeProject, error)
 	// get details of a group on gitlab
-	GetGroup(context.Context, *GetGroupQueryInput) (*rpc1.CodeServer, error)
+	GetGroup(context.Context, *GetGroupQueryInput) (*server.CodeServer, error)
 	// get code project profile of a code-project hosted on gitlab
-	GetGitlabCodeProjectProfile(context.Context, *GetGitlabCodeProjectProfileQueryInput) (*rpc.CodeProjectProfile, error)
+	GetGitlabCodeProjectProfile(context.Context, *GetGitlabCodeProjectProfileQueryInput) (*project.CodeProjectProfile, error)
 }
 
 // UnimplementedGitlabProxyQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGitlabProxyQueryControllerServer struct {
 }
 
-func (UnimplementedGitlabProxyQueryControllerServer) ListProjects(context.Context, *ListProjectsQueryInput) (*rpc.CodeProjects, error) {
+func (UnimplementedGitlabProxyQueryControllerServer) ListProjects(context.Context, *ListProjectsQueryInput) (*project.CodeProjects, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProjects not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetProject(context.Context, *GetProjectQueryInput) (*rpc.CodeProject, error) {
+func (UnimplementedGitlabProxyQueryControllerServer) GetProject(context.Context, *GetProjectQueryInput) (*project.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProject not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetGroup(context.Context, *GetGroupQueryInput) (*rpc1.CodeServer, error) {
+func (UnimplementedGitlabProxyQueryControllerServer) GetGroup(context.Context, *GetGroupQueryInput) (*server.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGroup not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetGitlabCodeProjectProfile(context.Context, *GetGitlabCodeProjectProfileQueryInput) (*rpc.CodeProjectProfile, error) {
+func (UnimplementedGitlabProxyQueryControllerServer) GetGitlabCodeProjectProfile(context.Context, *GetGitlabCodeProjectProfileQueryInput) (*project.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGitlabCodeProjectProfile not implemented")
 }
 

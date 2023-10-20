@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.kafka.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.kafka;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.kafka.rpc.KafkaCluster;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaCluster;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

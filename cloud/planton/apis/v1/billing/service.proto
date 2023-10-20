@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.billing;
+
+import "google/protobuf/empty.proto";
+
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+
+import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
+import "cloud/planton/apis/v1/billing/model.proto";
+
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+
+//billing command controller contains rpc definitions for operations that perform mutating/update operations on the billing domain objects.
+service BillingCommandController {
+  //update an existing billing account.
+  rpc updBillingAccount(cloud.planton.apis.v1.billing.BillingAccount) returns (BillingAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = billing;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = billing_account_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update billing account";
+  }
+  //delete an existing billing account.
+  //a billing account can not be deleted without deleting all the subscriptions linked to the billing account.
+  rpc delBillingAccount(cloud.planton.apis.v1.billing.BillingAccountId) returns (BillingAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = billing;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = billing_account_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete billing account";
+  }
+
+  //restore a previously deleted billing account.
+  rpc restoreBillingAccount(BillingAccountId) returns (BillingAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = billing;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = billing_account_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore billing account";
+  }
+}
+
+//billing account query controller contains rpc definitions for operations that perform read only operations on the billing domain objects.
+service BillingQueryController {
+  //retrieve paginated list of all billing accounts on planton cloud. this is intended to be used on portal.
+  rpc listBillingAccounts(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (BillingAccountList);
+  //lookup billing account using billing account id.
+  rpc getBillingAccountByBillingAccountId(BillingAccountId) returns (BillingAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = billing;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = billing_account_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view billing account details";
+  }
+  //lookup billing account using company id.
+  rpc getBillingAccountByCompanyId(cloud.planton.apis.v1.resourcemanager.company.CompanyId) returns (BillingAccount);
+
+  //get customer portal session.
+  //https://stripe.com/docs/api/customer_portal/sessions/create
+  rpc getCustomerPortalSessionByCompanyId(cloud.planton.apis.v1.resourcemanager.company.CompanyId) returns (GetCustomerPortalSessionQueryResp);
+}

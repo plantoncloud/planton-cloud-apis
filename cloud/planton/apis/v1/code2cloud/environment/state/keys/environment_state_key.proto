@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.code2cloud.environment.state.keys;
-
-// key for environment state messages
-message EnvironmentStateKey {
-  string value = 1;
-}

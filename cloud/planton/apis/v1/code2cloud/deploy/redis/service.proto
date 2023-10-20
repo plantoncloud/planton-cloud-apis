@@ -1,0 +1,129 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.redis;
+
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/redis/model.proto";
+
+//redis-cluster command controller
+service RedisClusterCommandController {
+  //create redis-cluster
+  rpc create(RedisCluster) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.owner.environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create redis-cluster";
+  }
+  //update an existing redis-cluster
+  rpc update(RedisCluster) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update redis-cluster";
+  }
+  //delete an existing redis-cluster
+  rpc delete(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete redis-cluster";
+  }
+  //restore a previously deleted redis-cluster
+  rpc restore(RedisCluster) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore redis-cluster";
+  }
+
+  //restart a redis-cluster running in a environment.
+  //redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
+  rpc restart(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restart redis-cluster";
+  }
+  //pause a redis-cluster running in a environment.
+  //redis-cluster is paused by scaling down number of replicas of
+  //the kubernetes stateful sets to zero in the environment.
+  rpc pause(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause redis-cluster";
+  }
+  //unpause a previously paused redis-cluster running in a environment.
+  //unpause is done by scaling the number of pods back to the number of
+  //replicas configured for the redis-cluster.
+  rpc unpause(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause redis-cluster";
+  }
+}
+
+//redis-cluster query controller
+service RedisClusterQueryController {
+  //list all redis-clusters on planton cluster for the requested page. This is intended for use on portal.
+  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (RedisClusterList);
+
+  //look up redis-cluster using redis-cluster id
+  rpc getById(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view redis-cluster";
+  }
+
+  //find redis-clusters by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (RedisClusters);
+
+  //find redis-clusters by environment
+  rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.EnvironmentId) returns (RedisClusters);
+  //find redis-clusters by kube-cluster
+
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterId) returns (RedisClusters);
+
+  //look up redis-cluster sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(RedisClusterId) returns (RedisClusterPassword) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view redis-cluster password";
+  }
+
+  //lookup pods of a redis-cluster deployed to a environment
+  rpc findPods(RedisClusterId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.Pods) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view redis-cluster pods";
+  }
+}
+
+//redis-cluster stack controller
+service RedisClusterStackController {
+  //preview redis-cluster stack
+  rpc preview(RedisCluster) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview redis-cluster stack";
+  }
+  //apply redis-cluster stack
+  rpc apply(RedisClusterId) returns (RedisCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply redis-cluster stack";
+  }
+}

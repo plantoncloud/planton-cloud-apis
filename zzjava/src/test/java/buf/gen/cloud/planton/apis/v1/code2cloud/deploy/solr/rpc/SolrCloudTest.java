@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.solr.rpc;
+package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.solr;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.solr.rpc.SolrCloud;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloud;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 
