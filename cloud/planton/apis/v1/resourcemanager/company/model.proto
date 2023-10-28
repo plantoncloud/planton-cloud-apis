@@ -58,6 +58,8 @@ message Company {
 message CompanySpec {
   // description for the company
   string description = 1;
+  // public url for the company logo
+  string logo_url = 2;
 }
 
 // company status
