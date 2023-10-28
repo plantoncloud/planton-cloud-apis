@@ -11,9 +11,9 @@ import "cloud/planton/apis/v1/commons/audit/model.proto";
 // the differences between them in a unified diff format, as well as audit and
 // identification information.
 message ResourceVersion {
-  // System audit information, which typically includes data about
+  // Resource audit information, which typically includes data about
   // when and by whom the version was created.
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   // A unique identifier (UUID) for the resource-version.
   string id = 1;
   // The ID of the company to which the resource-version belongs.

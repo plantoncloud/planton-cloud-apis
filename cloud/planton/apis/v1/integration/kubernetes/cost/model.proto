@@ -9,8 +9,8 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 //cost allocation
 message CostAllocation {
-  // system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 99;
 
   string company_id = 1;
   string product_id = 2;
