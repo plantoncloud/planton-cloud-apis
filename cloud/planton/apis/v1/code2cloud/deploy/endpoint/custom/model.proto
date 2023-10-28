@@ -135,7 +135,7 @@ message CustomEndpointStatus {
 //custom-endpoint route
 message CustomEndpointRoute {
   //resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
 
   //url path for the custom-endpoint route.
   //(important) url path prefix combined with custom_endpoint_id combined form the composite key.

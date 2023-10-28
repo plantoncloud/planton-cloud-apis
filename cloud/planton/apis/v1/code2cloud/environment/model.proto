@@ -206,7 +206,7 @@ message EnvironmentVariable {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "var";
 
   //resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -272,7 +272,7 @@ message EnvironmentSecret {
 
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sec";
   //resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
