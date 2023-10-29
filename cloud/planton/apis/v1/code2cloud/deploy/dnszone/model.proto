@@ -85,8 +85,8 @@ message DnsZoneStatus {
   // resource lifecycle
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
-  // system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -166,7 +166,7 @@ message DnsZoneId {
 // dns-record
 message DnsRecord {
   // The audit information for system tracking
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   // dns-zone record type.
   cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType record_type = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true

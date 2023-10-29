@@ -11,7 +11,7 @@ import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 // stack-job
 message StackJob {
   // system-audit information
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   // unique identifier(uuid) for stack-job
   string id = 1;
   // id of the company to which the stack-job belongs to

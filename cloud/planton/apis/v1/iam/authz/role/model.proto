@@ -52,8 +52,8 @@ message IamRoleStatus {
   // lifecycle of the resource
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
-  // system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 }
 
 // wrapper for iam role id

@@ -15,8 +15,8 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 // such as its id, name, type, and the associated company, product, and
 // product environment identifiers.
 message Record {
-  // system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 98;
   // Unique identifier for the resource.
   // example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;

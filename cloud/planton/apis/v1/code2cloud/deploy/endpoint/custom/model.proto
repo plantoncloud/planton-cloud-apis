@@ -123,8 +123,8 @@ message CustomEndpointStatus {
   // resource lifecycle
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
-  // system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 98;
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -134,8 +134,8 @@ message CustomEndpointStatus {
 
 //custom-endpoint route
 message CustomEndpointRoute {
-  //system audit info
-  cloud.planton.apis.v1.commons.audit.SysAudit sys_audit = 99;
+  //resource audit info
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
 
   //url path for the custom-endpoint route.
   //(important) url path prefix combined with custom_endpoint_id combined form the composite key.

@@ -4,10 +4,20 @@ package cloud.planton.apis.v1.commons.audit;
 
 import "google/protobuf/timestamp.proto";
 
-// SysAudit represents the system-level auditing information for an object.
+// ResourceAudit represents auditing information for a resource,
+// containing both specification-level and status-level audit details.
+message ResourceAudit {
+    // spec_audit holds the auditing information related to the resource's desired state or specification.
+    AuditInfo spec_audit = 1;
+
+    // status_audit holds the auditing information related to the resource's status.
+    AuditInfo status_audit = 2;
+}
+
+// Audit represents the system-level auditing information for an object.
 // This includes details about the creation and last update of the object,
 // as well as the type of the last event associated with the object.
-message SysAudit {
+message AuditInfo {
     // created_by is the identifier of the user or system process that created the object.
     string created_by = 1;
 
@@ -24,3 +34,6 @@ message SysAudit {
     // This is typically a string code representing specific events in the system.
     string event_type = 5;
 }
+
+
+
