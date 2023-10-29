@@ -115,6 +115,9 @@ message EnvironmentSpec {
 
   //microservice-instance spec for environment
   EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 11;
+
+  // list of endpoint domains for the environment
+  repeated EnvironmentEndpointDomain endpoint_domains = 12;
 }
 
 //environment microservice-instance spec
@@ -493,48 +496,52 @@ message GetByEnvironmentVariableIdInput {
   string variable_id = 2;
 }
 
-//standard-endpoint spec
+//environment endpoint-domain spec
 message EnvironmentEndpointDomain {
+  //audit info
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+  // unique identifier of endpoint domain
+  string endpoint_domain_id = 1;
   // environment endpoint dns domain name
-  string dns_domain_name = 1;
+  string dns_domain_name = 2;
 
-  //flag to toggle tls for standard-endpoint.
+  //flag to toggle tls for endpoint-domain.
   //defaults to "false".
   //(important note) certificates are not created for endpoints that do not need tls.
   //(important note) endpoint domains with out tls enabled are not eligible to be used for
   //creating endpoints for microservice-instances, postgres-clusters, kafka-clusters, redis-clusters or solr-clouds
-  bool is_tls_enabled = 2;
+  bool is_tls_enabled = 3;
 
   //id of the project on google cloud containing the dns zone for the endpoint-domain.
   //this value is looked up from the dns-domains in the company dns data.
   //this value is required for configuring the cert-issuer to perform dns validations.
-  string dns_zone_gcp_project_id = 3 [
+  string dns_zone_gcp_project_id = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   //external dns domain ex: dev.example.com.
   //this value is computed by combining the environment-name with the endpoint-domain-name.
-  string external_endpoint_domain_name = 4 [
+  string external_endpoint_domain_name = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   //internal dns domain ex: dev-internal.example.com.
   //this value is computed by combining the environment-name with the endpoint-domain-name.
-  string internal_endpoint_domain_name = 5 [
+  string internal_endpoint_domain_name = 6 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   //external ingress ip.
   //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
   //this value is computed from kube-cluster.
-  string external_ingress_ip = 6 [
+  string external_ingress_ip = 7 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   //internal ingress ip.
   //this is the ip address to reach workloads like microservices from internal network like private vpc.
   //this value is computed from kube-cluster.
-  string internal_ingress_ip = 7 [
+  string internal_ingress_ip = 8 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
@@ -544,7 +551,28 @@ message EnvironmentEndpointDomain {
   //the dns zone to be able to complete dns01 challenges.
   //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
   //this value is computed from kube-cluster.
-  string cert_manager_gsa_email = 8 [
+  string cert_manager_gsa_email = 9 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
+
+// Command input for adding or updating an endpoint domain in a specific environment.
+// It contains the environment ID and details about the endpoint domain to be managed.
+message AddOrUpdateEndpointDomainCommandInput {
+  // The unique identifier for the environment in which the endpoint domain will be added or updated.
+  string environment_id = 1;
+
+  // Details about the endpoint domain that is to be added or updated.
+  EnvironmentEndpointDomain endpoint_domain = 2;
+}
+
+// Command input for deleting an endpoint domain in a specific environment.
+// It contains the environment ID and the unique identifier for the endpoint domain to be deleted.
+message DeleteEndpointDomainCommandInput {
+  // The unique identifier for the environment in which the endpoint domain is to be deleted.
+  string environment_id = 1;
+
+  // Unique identifier for the endpoint domain that is to be deleted.
+  string endpoint_domain_id = 2;
+}
+

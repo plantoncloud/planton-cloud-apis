@@ -274,3 +274,28 @@ service EnvironmentStackController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply environment secrets stack";
   }
 }
+
+//environment endpoint-domain command controller
+service EnvironmentEndpointDomainCommandController {
+  // add a new endpoint-domain to a environment
+  rpc add(AddOrUpdateEndpointDomainCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to add environment endpoint-domain";
+  }
+  // update an existing endpoint-domain to a environment
+  rpc update(AddOrUpdateEndpointDomainCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update environment endpoint-domain";
+  }
+  // delete an dns-zone of a company
+  rpc delete(DeleteEndpointDomainCommandInput) returns (Environment) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete environment endpoint-domain";
+  }
+}
