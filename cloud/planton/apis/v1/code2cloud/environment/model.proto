@@ -493,4 +493,58 @@ message GetByEnvironmentVariableIdInput {
   string variable_id = 2;
 }
 
+//standard-endpoint spec
+message EnvironmentEndpointDomain {
+  // environment endpoint dns domain name
+  string dns_domain_name = 1;
 
+  //flag to toggle tls for standard-endpoint.
+  //defaults to "false".
+  //(important note) certificates are not created for endpoints that do not need tls.
+  //(important note) endpoint domains with out tls enabled are not eligible to be used for
+  //creating endpoints for microservice-instances, postgres-clusters, kafka-clusters, redis-clusters or solr-clouds
+  bool is_tls_enabled = 2;
+
+  //id of the project on google cloud containing the dns zone for the endpoint-domain.
+  //this value is looked up from the dns-domains in the company dns data.
+  //this value is required for configuring the cert-issuer to perform dns validations.
+  string dns_zone_gcp_project_id = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //external dns domain ex: dev.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string external_endpoint_domain_name = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //internal dns domain ex: dev-internal.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string internal_endpoint_domain_name = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //external ingress ip.
+  //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
+  //this value is computed from kube-cluster.
+  string external_ingress_ip = 6 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //internal ingress ip.
+  //this is the ip address to reach workloads like microservices from internal network like private vpc.
+  //this value is computed from kube-cluster.
+  string internal_ingress_ip = 7 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //email of the service account created for cert-manager component on the kube-cluster in which the
+  //environment that the standard-endpoint belongs to.
+  //this value is used for ensuring that the service account has required permissions to insert dns records in
+  //the dns zone to be able to complete dns01 challenges.
+  //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
+  //this value is computed from kube-cluster.
+  string cert_manager_gsa_email = 8 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
