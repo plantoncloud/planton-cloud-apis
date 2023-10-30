@@ -500,10 +500,16 @@ message GetByEnvironmentVariableIdInput {
 message EnvironmentEndpointDomain {
   //audit info
   cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+
   // unique identifier of endpoint domain
-  string endpoint_domain_id = 1;
+  string endpoint_domain_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
   // environment endpoint dns domain name
-  string dns_domain_name = 2;
+  string dns_domain_name = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
 
   //flag to toggle tls for endpoint-domain.
   //defaults to "false".
