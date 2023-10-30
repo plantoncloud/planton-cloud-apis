@@ -165,16 +165,10 @@ message SolrCloudSpecKubernetesSpecZookeeperContainerSpec {
 
 //solr-cloud kubernetes ingress spec
 message SolrCloudSpecKubernetesSpecIngressSpec {
-  //standard-endpoint domain to be used for creating internal and external endpoints for solr-cloud.
-  //only tls enabled standard-endpoints are eligible for creating solr endpoints.
-  string standard_endpoint_id = 1 [
+  //endpoint domain to be used for creating internal and external endpoints for solr-cloud.
+  //only tls enabled endpoint-domains are eligible for creating solr endpoints.
+  string endpoint_domain_name = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
-  ];
-
-  //endpoint-domain-name used for creating solr-cloud endpoints.
-  //value is computed from the configured standard-endpoint.
-  string endpoint_domain_name = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
 
