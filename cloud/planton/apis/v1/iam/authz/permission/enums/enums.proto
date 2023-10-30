@@ -156,17 +156,10 @@ enum IamPermission {
   solr_cloud_restore = 104;
   solr_cloud_update = 105;
 
-  // standard_endpoint
-  standard_endpoint_create = 106;
-  standard_endpoint_delete = 107;
-  standard_endpoint_get = 108;
-  standard_endpoint_restore = 109;
-  standard_endpoint_update = 110;
-
   // storage_bucket
-  storage_bucket_create = 111;
-  storage_bucket_delete = 112;
-  storage_bucket_get = 113;
-  storage_bucket_restore = 114;
-  storage_bucket_update = 115;
+  storage_bucket_create = 106;
+  storage_bucket_delete = 107;
+  storage_bucket_get = 108;
+  storage_bucket_restore = 109;
+  storage_bucket_update = 110;
 }

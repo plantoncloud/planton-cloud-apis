@@ -118,7 +118,7 @@ type CustomEndpointSpec struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// the company to which the standard-endpoint belongs to.
+	// the company to which the custom-endpoint belongs to.
 	// value is computed from the product.
 	CompanyId string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	// the product to which the custom-endpoint to be added.
@@ -128,7 +128,7 @@ type CustomEndpointSpec struct {
 	KubeClusterId string `protobuf:"bytes,3,opt,name=kube_cluster_id,json=kubeClusterId,proto3" json:"kube_cluster_id,omitempty"`
 	// custom-endpoint to which the requests to the endpoint domain are to be routed to.
 	BackendEnvironmentId string `protobuf:"bytes,4,opt,name=backend_environment_id,json=backendEnvironmentId,proto3" json:"backend_environment_id,omitempty"`
-	// (optional for create) flag to toggle tls for standard-endpoint.
+	// (optional for create) flag to toggle tls for custom-endpoint.
 	// defaults to "false".
 	// (important note) certificates are not created for endpoints that do not need tls.
 	// (important note) endpoint domains with out tls enabled are not eligible to be used for
@@ -146,7 +146,7 @@ type CustomEndpointSpec struct {
 	// this value is computed from the kube-cluster.
 	ExternalIngressIp string `protobuf:"bytes,8,opt,name=external_ingress_ip,json=externalIngressIp,proto3" json:"external_ingress_ip,omitempty"`
 	// email of the service account created for cert-manager component on the kube-cluster in which the
-	// custom-endpoint that the standard-endpoint belongs to.
+	// custom-endpoint that the custom-endpoint belongs to.
 	// this value is used for ensuring that the service account has required permissions to insert dns records in
 	// the dns zone to be able to complete dns01 challenges.
 	// this attribute is only populated if the custom-endpoint is hosted in a gcp kube-cluster.

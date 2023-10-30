@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.redis;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
@@ -9,8 +11,6 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
-import "buf/validate/validate.proto";
 
 //redis-cluster
 message RedisCluster {
@@ -68,7 +68,7 @@ message RedisCluster {
 //redis-cluster spec
 message RedisClusterSpec {
   //resource parent
-  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+  cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
   RedisClusterSpecKubernetesSpec kubernetes = 2;
@@ -129,16 +129,10 @@ message RedisClusterSpecKubernetesSpecRedisContainerSpec {
 
 // redis-cluster kubernetes ingress spec
 message RedisClusterSpecKubernetesSpecIngressSpec {
-  //standard-endpoint domain to be used for creating internal and external endpoints for redis-cluster.
-  //only tls enabled standard-endpoints are eligible for creating redis endpoints.
-  string standard_endpoint_id = 1 [
+  //endpoint domain to be used for creating internal and external endpoints for redis-cluster.
+  //only tls enabled endpoint-domains are eligible for creating solr endpoints.
+  string endpoint_domain_name = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
-  ];
-
-  //endpoint-domain-name used for creating redis-cluster endpoints.
-  //value is computed from the configured standard-endpoint.
-  string endpoint_domain_name = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
 

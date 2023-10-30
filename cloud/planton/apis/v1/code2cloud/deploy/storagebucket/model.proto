@@ -9,7 +9,6 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/enums/enums.proto";
 import "buf/validate/validate.proto";
 
@@ -54,7 +53,7 @@ message StorageBucket {
 //storage-bucket spec
 message StorageBucketSpec {
   //resource parent
-  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+  cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo environment_info = 1;
 
   //(optional for create) flag to indicate if storage-bucket should have external(public) access.
   //defaults to "false"

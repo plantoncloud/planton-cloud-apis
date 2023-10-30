@@ -10,7 +10,6 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
 import "buf/validate/validate.proto";
 
 //postgres-cluster
@@ -69,7 +68,7 @@ message PostgresCluster {
 //postgres-cluster spec
 message PostgresClusterSpec {
   //resource parent
-  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+  cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo environment_info = 1;
 
   // kubernetes spec
   PostgresClusterSpecKubernetesSpec kubernetes = 2;
@@ -122,16 +121,10 @@ message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
 
 //postgres-cluster kubernetes ingress spec
 message PostgresClusterSpecKubernetesSpecIngressSpec {
-  //standard-endpoint domain to be used for creating internal and external endpoints for postgres-cluster.
-  //only tls enabled standard-endpoints are eligible for creating postgres endpoints.
-  string standard_endpoint_id = 1 [
+  //endpoint domain to be used for creating internal and external endpoints for postgres-cluster.
+  //only tls enabled endpoint-domains are eligible for creating solr endpoints.
+  string endpoint_domain_name = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
-  ];
-
-  //endpoint-domain-name used for creating postgres-cluster endpoints.
-  //value is computed from the configured standard-endpoint.
-  string endpoint_domain_name = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
 
