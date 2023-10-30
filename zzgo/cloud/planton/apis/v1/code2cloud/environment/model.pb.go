@@ -2091,7 +2091,7 @@ type EnvironmentEndpointDomain struct {
 	// this value is computed from kube-cluster.
 	InternalIngressIp string `protobuf:"bytes,8,opt,name=internal_ingress_ip,json=internalIngressIp,proto3" json:"internal_ingress_ip,omitempty"`
 	// email of the service account created for cert-manager component on the kube-cluster in which the
-	// environment that the standard-endpoint belongs to.
+	// environment that the endpoint-domain belongs to.
 	// this value is used for ensuring that the service account has required permissions to insert dns records in
 	// the dns zone to be able to complete dns01 challenges.
 	// this attribute is only populated if the environment is hosted in a gcp kube-cluster.

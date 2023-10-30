@@ -51,7 +51,7 @@ message CustomEndpoint {
 
 //custom-endpoint spec
 message CustomEndpointSpec {
-  //the company to which the standard-endpoint belongs to.
+  //the company to which the custom-endpoint belongs to.
   //value is computed from the product.
   string company_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
@@ -75,7 +75,7 @@ message CustomEndpointSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  //(optional for create) flag to toggle tls for standard-endpoint.
+  //(optional for create) flag to toggle tls for custom-endpoint.
   //defaults to "false".
   //(important note) certificates are not created for endpoints that do not need tls.
   //(important note) endpoint domains with out tls enabled are not eligible to be used for
@@ -101,7 +101,7 @@ message CustomEndpointSpec {
   ];
 
   //email of the service account created for cert-manager component on the kube-cluster in which the
-  //custom-endpoint that the standard-endpoint belongs to.
+  //custom-endpoint that the custom-endpoint belongs to.
   //this value is used for ensuring that the service account has required permissions to insert dns records in
   //the dns zone to be able to complete dns01 challenges.
   //this attribute is only populated if the custom-endpoint is hosted in a gcp kube-cluster.

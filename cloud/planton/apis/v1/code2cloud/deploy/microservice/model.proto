@@ -167,7 +167,7 @@ message MicroserviceInstanceSpecKubernetesNetwork {
   ];
 
   //ingress-domain names.
-  //each ingress-domain name should already exist as a standard-endpoint domain for the product.
+  //each ingress-domain name should already exist as a endpoint-domains for the environment.
   //endpoints will only created if the pod_controller_type is either deployment or stateful-set.
   repeated string ingress_domains = 4;
 }

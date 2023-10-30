@@ -496,7 +496,7 @@ type MicroserviceInstanceSpecKubernetesNetwork struct {
 	// kubernetes service port
 	ServicePort int32 `protobuf:"varint,3,opt,name=service_port,json=servicePort,proto3" json:"service_port,omitempty"`
 	// ingress-domain names.
-	// each ingress-domain name should already exist as a standard-endpoint domain for the product.
+	// each ingress-domain name should already exist as a endpoint-domains for the environment.
 	// endpoints will only created if the pod_controller_type is either deployment or stateful-set.
 	IngressDomains []string `protobuf:"bytes,4,rep,name=ingress_domains,json=ingressDomains,proto3" json:"ingress_domains,omitempty"`
 }
