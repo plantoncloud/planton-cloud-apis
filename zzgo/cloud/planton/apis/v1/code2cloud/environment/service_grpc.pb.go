@@ -1663,3 +1663,171 @@ var EnvironmentStackController_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/v1/code2cloud/environment/service.proto",
 }
+
+const (
+	EnvironmentEndpointDomainCommandController_Add_FullMethodName    = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomainCommandController/add"
+	EnvironmentEndpointDomainCommandController_Update_FullMethodName = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomainCommandController/update"
+	EnvironmentEndpointDomainCommandController_Delete_FullMethodName = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomainCommandController/delete"
+)
+
+// EnvironmentEndpointDomainCommandControllerClient is the client API for EnvironmentEndpointDomainCommandController service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EnvironmentEndpointDomainCommandControllerClient interface {
+	// add a new endpoint-domain to a environment
+	Add(ctx context.Context, in *AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error)
+	// update an existing endpoint-domain to a environment
+	Update(ctx context.Context, in *AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error)
+	// delete an dns-zone of a company
+	Delete(ctx context.Context, in *DeleteEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error)
+}
+
+type environmentEndpointDomainCommandControllerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEnvironmentEndpointDomainCommandControllerClient(cc grpc.ClientConnInterface) EnvironmentEndpointDomainCommandControllerClient {
+	return &environmentEndpointDomainCommandControllerClient{cc}
+}
+
+func (c *environmentEndpointDomainCommandControllerClient) Add(ctx context.Context, in *AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentEndpointDomainCommandController_Add_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentEndpointDomainCommandControllerClient) Update(ctx context.Context, in *AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentEndpointDomainCommandController_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentEndpointDomainCommandControllerClient) Delete(ctx context.Context, in *DeleteEndpointDomainCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentEndpointDomainCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EnvironmentEndpointDomainCommandControllerServer is the server API for EnvironmentEndpointDomainCommandController service.
+// All implementations should embed UnimplementedEnvironmentEndpointDomainCommandControllerServer
+// for forward compatibility
+type EnvironmentEndpointDomainCommandControllerServer interface {
+	// add a new endpoint-domain to a environment
+	Add(context.Context, *AddOrUpdateEndpointDomainCommandInput) (*Environment, error)
+	// update an existing endpoint-domain to a environment
+	Update(context.Context, *AddOrUpdateEndpointDomainCommandInput) (*Environment, error)
+	// delete an dns-zone of a company
+	Delete(context.Context, *DeleteEndpointDomainCommandInput) (*Environment, error)
+}
+
+// UnimplementedEnvironmentEndpointDomainCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedEnvironmentEndpointDomainCommandControllerServer struct {
+}
+
+func (UnimplementedEnvironmentEndpointDomainCommandControllerServer) Add(context.Context, *AddOrUpdateEndpointDomainCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (UnimplementedEnvironmentEndpointDomainCommandControllerServer) Update(context.Context, *AddOrUpdateEndpointDomainCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedEnvironmentEndpointDomainCommandControllerServer) Delete(context.Context, *DeleteEndpointDomainCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+
+// UnsafeEnvironmentEndpointDomainCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EnvironmentEndpointDomainCommandControllerServer will
+// result in compilation errors.
+type UnsafeEnvironmentEndpointDomainCommandControllerServer interface {
+	mustEmbedUnimplementedEnvironmentEndpointDomainCommandControllerServer()
+}
+
+func RegisterEnvironmentEndpointDomainCommandControllerServer(s grpc.ServiceRegistrar, srv EnvironmentEndpointDomainCommandControllerServer) {
+	s.RegisterService(&EnvironmentEndpointDomainCommandController_ServiceDesc, srv)
+}
+
+func _EnvironmentEndpointDomainCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddOrUpdateEndpointDomainCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Add(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentEndpointDomainCommandController_Add_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Add(ctx, req.(*AddOrUpdateEndpointDomainCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentEndpointDomainCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddOrUpdateEndpointDomainCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentEndpointDomainCommandController_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Update(ctx, req.(*AddOrUpdateEndpointDomainCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentEndpointDomainCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteEndpointDomainCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentEndpointDomainCommandController_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentEndpointDomainCommandControllerServer).Delete(ctx, req.(*DeleteEndpointDomainCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EnvironmentEndpointDomainCommandController_ServiceDesc is the grpc.ServiceDesc for EnvironmentEndpointDomainCommandController service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EnvironmentEndpointDomainCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomainCommandController",
+	HandlerType: (*EnvironmentEndpointDomainCommandControllerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "add",
+			Handler:    _EnvironmentEndpointDomainCommandController_Add_Handler,
+		},
+		{
+			MethodName: "update",
+			Handler:    _EnvironmentEndpointDomainCommandController_Update_Handler,
+		},
+		{
+			MethodName: "delete",
+			Handler:    _EnvironmentEndpointDomainCommandController_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "cloud/planton/apis/v1/code2cloud/environment/service.proto",
+}
