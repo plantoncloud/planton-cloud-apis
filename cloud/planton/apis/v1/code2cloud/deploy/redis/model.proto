@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.redis;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
@@ -9,8 +11,6 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
-import "buf/validate/validate.proto";
 
 //redis-cluster
 message RedisCluster {
@@ -68,7 +68,7 @@ message RedisCluster {
 //redis-cluster spec
 message RedisClusterSpec {
   //resource parent
-  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+  cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
   RedisClusterSpecKubernetesSpec kubernetes = 2;

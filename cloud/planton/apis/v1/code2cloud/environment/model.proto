@@ -78,46 +78,75 @@ message EnvironmentSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
+  //description for environment.
+  string description = 3;
+
+  //id of the environment from which this environment is created.
+  //value is ignored when the environment is not cloned from another environment.
+  string cloned_from = 4;
+
+  //list of environment variables for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentVariable variables = 5;
+
+  //list of environment secrets for the environment
+  //this attribute is ignored for environment creation.
+  repeated EnvironmentSecret secrets = 6;
+
+  // list of endpoint domains for the environment
+  repeated EnvironmentEndpointDomain endpoint_domains = 7;
+
+  //kube-cluster spec for environment
+  EnvironmentSpecKubeClusterSpec kube_cluster = 8;
+
+  //microservice-instance spec for environment
+  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 9;
+
+  bool is_inherit_endpoint_domains_enabled = 10;
+
+  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
+  string environment_secrets_gcp_project_id = 11 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+message EnvironmentSpecKubeClusterSpec {
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 3 [
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   //target kube-cluster to which the workloads like microservice-instances, postgres databases,
   //kafka-clusters etc are deployed to.
-  string kube_cluster_id = 4 [
+  string kube_cluster_id = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  //description for environment.
-  string description = 5;
+  //external ingress ip.
+  //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
+  //this value is computed from kube-cluster.
+  string external_ingress_ip = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
-  //id of the environment from which this environment is created.
-  //value is ignored when the environment is not cloned from another environment.
-  string cloned_from = 6;
+  //internal ingress ip.
+  //this is the ip address to reach workloads like microservices from internal network like private vpc.
+  //this value is computed from kube-cluster.
+  string internal_ingress_ip = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
-  //list of environment variables for the environment
-  //this attribute is ignored for environment creation.
-  repeated EnvironmentVariable variables = 7;
-
-  //list of environment secrets for the environment
-  //this attribute is ignored for environment creation.
-  repeated EnvironmentSecret secrets = 8;
-
-  //flag to control inheritance of kube-cluster endpoint domains.
-  //new standard_endpoints are created for each endpoint_domain of the kube-cluster only when this flag is set.
-  bool is_inherit_endpoint_domains_enabled = 9;
-
-  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
-  string environment_secrets_gcp_project_id = 10;
-
-  //microservice-instance spec for environment
-  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 11;
-
-  // list of endpoint domains for the environment
-  repeated EnvironmentEndpointDomain endpoint_domains = 12;
+  //email of the service account created for cert-manager component on the kube-cluster in which the
+  //environment that the endpoint-domain belongs to.
+  //this value is used for ensuring that the service account has required permissions to insert dns records in
+  //the dns zone to be able to complete dns01 challenges.
+  //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
+  //this value is computed from kube-cluster.
+  string cert_manager_gsa_email = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }
 
 //environment microservice-instance spec
@@ -502,12 +531,12 @@ message EnvironmentEndpointDomain {
   cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
 
   // unique identifier of endpoint domain
-  string endpoint_domain_id = 1 [
+  string id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
   // environment endpoint dns domain name
-  string dns_domain_name = 2 [
+  string name = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 
@@ -536,30 +565,6 @@ message EnvironmentEndpointDomain {
   string internal_endpoint_domain_name = 6 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
-
-  //external ingress ip.
-  //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
-  //this value is computed from kube-cluster.
-  string external_ingress_ip = 7 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
-
-  //internal ingress ip.
-  //this is the ip address to reach workloads like microservices from internal network like private vpc.
-  //this value is computed from kube-cluster.
-  string internal_ingress_ip = 8 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
-
-  //email of the service account created for cert-manager component on the kube-cluster in which the
-  //environment that the endpoint-domain belongs to.
-  //this value is used for ensuring that the service account has required permissions to insert dns records in
-  //the dns zone to be able to complete dns01 challenges.
-  //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
-  //this value is computed from kube-cluster.
-  string cert_manager_gsa_email = 9 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
 }
 
 // Command input for adding or updating an endpoint domain in a specific environment.
@@ -582,3 +587,36 @@ message DeleteEndpointDomainCommandInput {
   string endpoint_domain_id = 2;
 }
 
+// owner details common for all environment level resources
+message ResourceEnvironmentInfo {
+  //company to which the environment resource belongs to.
+  //value is computed from the environment.
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //product to which the environment resource belongs to.
+  //value is computed from the environment.
+  string product_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //environment id
+  //this value should be provided by the client.
+  string environment_id = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //environment name
+  //value is computed from the environment.
+  string environment_name = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //kubernetes cluster in which the environment resource is created in.
+  //value is computed from the environment.
+  string kube_cluster_id = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}

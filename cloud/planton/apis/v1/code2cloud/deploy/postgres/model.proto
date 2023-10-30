@@ -10,7 +10,6 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "cloud/planton/apis/v1/commons/resource/owner/model.proto";
 import "buf/validate/validate.proto";
 
 //postgres-cluster
@@ -69,7 +68,7 @@ message PostgresCluster {
 //postgres-cluster spec
 message PostgresClusterSpec {
   //resource parent
-  cloud.planton.apis.v1.commons.resource.owner.EnvironmentResourceOwner owner = 1;
+  cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo environment_info = 1;
 
   // kubernetes spec
   PostgresClusterSpecKubernetesSpec kubernetes = 2;
