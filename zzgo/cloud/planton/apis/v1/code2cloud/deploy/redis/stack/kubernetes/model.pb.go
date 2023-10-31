@@ -97,7 +97,7 @@ type RedisClusterKubernetesStackCredentialsInput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// kubernetes provider credential for creating redis-cluster resources on container cluster
+	// kubernetes provider credential for creating redis-cluster resources on kubernetes cluster
 	Kubernetes *operation.KubernetesProviderCredential `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 

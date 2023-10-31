@@ -73,7 +73,7 @@ type EnvironmentCommandControllerClient interface {
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
-	// delete a namespace that is part of the environment running in a kube-cluster container cluster
+	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
 	DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error)
 }
 
@@ -204,7 +204,7 @@ type EnvironmentCommandControllerServer interface {
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(context.Context, *EnvironmentId) (*Environment, error)
-	// delete a namespace that is part of the environment running in a kube-cluster container cluster
+	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
 	DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource.WorkloadNamespace, error)
 }
 

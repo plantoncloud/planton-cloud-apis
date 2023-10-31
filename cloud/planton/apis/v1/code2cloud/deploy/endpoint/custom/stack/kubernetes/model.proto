@@ -20,7 +20,7 @@ message CustomEndpointKubernetesStackInput {
 
 //custom-endpoint container stack credentials input
 message CustomEndpointKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating endpoint domain resources on container cluster
+  //kubernetes provider credential for creating endpoint domain resources on kubernetes cluster
   cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 1;
 }
 

@@ -97,7 +97,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause environment";
   }
 
-  //delete a namespace that is part of the environment running in a kube-cluster container cluster
+  //delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
   rpc deleteNamespace(ByEnvironmentByNamespaceInput) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadNamespace) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;

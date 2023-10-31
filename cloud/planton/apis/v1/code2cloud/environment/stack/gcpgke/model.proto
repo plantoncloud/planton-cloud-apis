@@ -17,8 +17,10 @@ message EnvironmentGcpGkeStackInput {
 
 //stack credentials input
 message EnvironmentGcpGkeStackCredentialsInput {
-  //google provider credential input
+  //google provider credential input required to create secret-resources on gcp
   cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
+  //kubernetes provider credential for creating endpoint-domain resources on kubernetes cluster
+  cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 2;
 }
 
 //stack resource input

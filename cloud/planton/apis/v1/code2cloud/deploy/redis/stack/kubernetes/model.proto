@@ -19,7 +19,7 @@ message RedisClusterKubernetesStackInput {
 
 //stack credentials input
 message RedisClusterKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating redis-cluster resources on container cluster
+  //kubernetes provider credential for creating redis-cluster resources on kubernetes cluster
   cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 1;
 }
 

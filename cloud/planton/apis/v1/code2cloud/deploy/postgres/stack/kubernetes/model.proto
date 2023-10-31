@@ -18,7 +18,7 @@ message PostgresClusterKubernetesStackInput {
 
 //stack credentials input
 message PostgresClusterKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating postgres-cluster resources on container cluster
+  //kubernetes provider credential for creating postgres-cluster resources on kubernetes cluster
   cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 1;
 }
 

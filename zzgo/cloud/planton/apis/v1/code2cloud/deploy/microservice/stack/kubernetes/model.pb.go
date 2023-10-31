@@ -165,8 +165,8 @@ type MicroserviceInstanceKubernetesStackResourceInput struct {
 	// artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
 	// artifact-stores.
 	KubernetesImagePullSecrets []*KubernetesImagePullSecretInput `protobuf:"bytes,2,rep,name=kubernetes_image_pull_secrets,json=kubernetesImagePullSecrets,proto3" json:"kubernetes_image_pull_secrets,omitempty"`
-	// container cluster project required to configure workload identity
-	// service account is created in container cluster project and a binding created to workload identity pool.
+	// kubernetes cluster project required to configure workload identity
+	// service account is created in kubernetes cluster project and a binding created to workload identity pool.
 	ContainerClusterProject *project.GcpProject `protobuf:"bytes,3,opt,name=container_cluster_project,json=containerClusterProject,proto3" json:"container_cluster_project,omitempty"`
 }
 

@@ -37,8 +37,8 @@ message MicroserviceInstanceKubernetesStackResourceInput {
   //artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
   //artifact-stores.
   repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
-  //container cluster project required to configure workload identity
-  //service account is created in container cluster project and a binding created to workload identity pool.
+  //kubernetes cluster project required to configure workload identity
+  //service account is created in kubernetes cluster project and a binding created to workload identity pool.
   cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject container_cluster_project = 3;
 }
 
