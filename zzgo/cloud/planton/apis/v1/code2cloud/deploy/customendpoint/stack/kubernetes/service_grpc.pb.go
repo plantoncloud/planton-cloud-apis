@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/stack/kubernetes/service.proto
+// source: cloud/planton/apis/v1/code2cloud/deploy/customendpoint/stack/kubernetes/service.proto
 
 package kubernetes
 
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CustomEndpointKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes.CustomEndpointKubernetesStackController/execute"
-	CustomEndpointKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes.CustomEndpointKubernetesStackController/getStackOutputs"
+	CustomEndpointKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes.CustomEndpointKubernetesStackController/execute"
+	CustomEndpointKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes.CustomEndpointKubernetesStackController/getStackOutputs"
 )
 
 // CustomEndpointKubernetesStackControllerClient is the client API for CustomEndpointKubernetesStackController service.
@@ -153,7 +153,7 @@ func _CustomEndpointKubernetesStackController_GetStackOutputs_Handler(srv interf
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomEndpointKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes.CustomEndpointKubernetesStackController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes.CustomEndpointKubernetesStackController",
 	HandlerType: (*CustomEndpointKubernetesStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -168,5 +168,5 @@ var CustomEndpointKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/stack/kubernetes/service.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/stack/kubernetes/service.proto",
 }

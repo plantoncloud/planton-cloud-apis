@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.stack.kubernetes;
+package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes;
 
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/stack/kubernetes/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/stack/kubernetes/model.proto";
 
 service CustomEndpointKubernetesStackController {
   rpc execute(CustomEndpointKubernetesStackInput) returns (stream CustomEndpointKubernetesStackResponse);
