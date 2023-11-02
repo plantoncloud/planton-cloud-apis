@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/service.proto
+// source: cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto
 
-package custom
+package customendpoint
 
 import (
 	context "context"
@@ -22,10 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CustomEndpointCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointCommandController/create"
-	CustomEndpointCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointCommandController/update"
-	CustomEndpointCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointCommandController/delete"
-	CustomEndpointCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointCommandController/restore"
+	CustomEndpointCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/create"
+	CustomEndpointCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/update"
+	CustomEndpointCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/delete"
+	CustomEndpointCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/restore"
 )
 
 // CustomEndpointCommandControllerClient is the client API for CustomEndpointCommandController service.
@@ -204,7 +204,7 @@ func _CustomEndpointCommandController_Restore_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointCommandController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController",
 	HandlerType: (*CustomEndpointCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -225,16 +225,16 @@ var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/service.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto",
 }
 
 const (
-	CustomEndpointQueryController_List_FullMethodName                                 = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/list"
-	CustomEndpointQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/getById"
-	CustomEndpointQueryController_FindByProductId_FullMethodName                      = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/findByProductId"
-	CustomEndpointQueryController_GetCustomEndpointCertStatus_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/getCustomEndpointCertStatus"
-	CustomEndpointQueryController_GetCustomEndpointDsnResolutionStatus_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/getCustomEndpointDsnResolutionStatus"
-	CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName       = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController/findCustomEndpointCertificates"
+	CustomEndpointQueryController_List_FullMethodName                                 = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/list"
+	CustomEndpointQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/getById"
+	CustomEndpointQueryController_FindByProductId_FullMethodName                      = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/findByProductId"
+	CustomEndpointQueryController_GetCustomEndpointCertStatus_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/getCustomEndpointCertStatus"
+	CustomEndpointQueryController_GetCustomEndpointDsnResolutionStatus_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/getCustomEndpointDsnResolutionStatus"
+	CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName       = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController/findCustomEndpointCertificates"
 )
 
 // CustomEndpointQueryControllerClient is the client API for CustomEndpointQueryController service.
@@ -485,7 +485,7 @@ func _CustomEndpointQueryController_FindCustomEndpointCertificates_Handler(srv i
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomEndpointQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointQueryController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointQueryController",
 	HandlerType: (*CustomEndpointQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -514,13 +514,13 @@ var CustomEndpointQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/service.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto",
 }
 
 const (
-	CustomEndpointRouteCommandController_Add_FullMethodName    = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointRouteCommandController/add"
-	CustomEndpointRouteCommandController_Update_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointRouteCommandController/update"
-	CustomEndpointRouteCommandController_Delete_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointRouteCommandController/delete"
+	CustomEndpointRouteCommandController_Add_FullMethodName    = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointRouteCommandController/add"
+	CustomEndpointRouteCommandController_Update_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointRouteCommandController/update"
+	CustomEndpointRouteCommandController_Delete_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointRouteCommandController/delete"
 )
 
 // CustomEndpointRouteCommandControllerClient is the client API for CustomEndpointRouteCommandController service.
@@ -665,7 +665,7 @@ func _CustomEndpointRouteCommandController_Delete_Handler(srv interface{}, ctx c
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomEndpointRouteCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointRouteCommandController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointRouteCommandController",
 	HandlerType: (*CustomEndpointRouteCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -682,12 +682,12 @@ var CustomEndpointRouteCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/service.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto",
 }
 
 const (
-	CustomEndpointStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointStackController/preview"
-	CustomEndpointStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointStackController/apply"
+	CustomEndpointStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController/preview"
+	CustomEndpointStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController/apply"
 )
 
 // CustomEndpointStackControllerClient is the client API for CustomEndpointStackController service.
@@ -798,7 +798,7 @@ func _CustomEndpointStackController_Apply_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var CustomEndpointStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpointStackController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController",
 	HandlerType: (*CustomEndpointStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -811,5 +811,5 @@ var CustomEndpointStackController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/endpoint/custom/service.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto",
 }

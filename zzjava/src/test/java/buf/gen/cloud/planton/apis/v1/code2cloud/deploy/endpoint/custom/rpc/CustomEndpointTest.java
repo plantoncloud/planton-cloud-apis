@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.endpoint.custom.CustomEndpoint;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpoint;
 import build.buf.gen.cloud.planton.apis.v1.commons.resource.Metadata;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
