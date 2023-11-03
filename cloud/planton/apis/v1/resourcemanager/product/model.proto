@@ -65,6 +65,9 @@ message ProductSpec {
 
   //product description.
   string description = 3;
+
+  // public url for the product logo
+  string logo_url = 4;
 }
 
 //product status

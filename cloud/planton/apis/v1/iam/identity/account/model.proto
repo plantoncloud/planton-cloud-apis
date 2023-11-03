@@ -84,6 +84,10 @@ message IdentityAccountSpec {
   string idp_url = 6 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
+  //url of the profile picture for the user on auth0
+  string picture_url = 7 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }
 
 // resource status for identity-account
