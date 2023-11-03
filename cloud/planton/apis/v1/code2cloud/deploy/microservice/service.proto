@@ -18,7 +18,7 @@ service MicroserviceInstanceCommandController {
   rpc create(MicroserviceInstance) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.owner.environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create microservice-instance";
   }
   //update microservice-instance

@@ -19,7 +19,7 @@ message MicroserviceInstance {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = microservice_instance;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
-  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.owner.environment_id";
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.environment_info.environment_id";
 
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "msi";
