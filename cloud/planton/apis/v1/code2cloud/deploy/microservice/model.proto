@@ -156,8 +156,12 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
   string name = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
+  //container port
+  int32 container_port = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
   //network protocol for the port ex: TCP
-  string network_protocol = 2 [
+  string network_protocol = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
   //(required) application protocol for the microservice.
@@ -166,11 +170,11 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
   //this field is used for setting up the name of the service port in kubernetes.
   //this attribute is used during microservice deployment.
   //this attribute is only relevant for deployment and stateful-set pod_controllers.
-  string app_protocol = 3 [
+  string app_protocol = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
   //kubernetes service port
-  string service_port = 4 [
+  int32 service_port = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }
