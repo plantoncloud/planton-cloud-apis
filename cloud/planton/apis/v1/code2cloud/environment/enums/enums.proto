@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.environment.enums;
 
- import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
 
 enum EnvironmentEventType {
   ENVIRONMENT_EVENT_TYPE_UNSPECIFIED = 0;
@@ -69,4 +69,11 @@ enum EnvironmentEventType {
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
   ];
+}
+
+// ingress type for workload deployed to kubernetes cluster
+enum KubernetesWorkloadIngressType {
+  KUBERNETES_WORKLOAD_INGRESS_TYPE_UNSPECIFIED = 0;
+  KUBERNETES_WORKLOAD_INGRESS_TYPE_LOAD_BALANCER = 1;
+  KUBERNETES_WORKLOAD_INGRESS_TYPE_INGRESS_CONTROLLER = 2;
 }

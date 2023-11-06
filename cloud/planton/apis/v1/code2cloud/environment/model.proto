@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.environment;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/cloud/provider/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/enums.proto";
-import "buf/validate/validate.proto";
 
 //environment
 message Environment {
