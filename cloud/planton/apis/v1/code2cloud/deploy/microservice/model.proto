@@ -93,21 +93,18 @@ message MicroserviceInstanceSpecKubernetes {
   //default is set to "deployment".
   cloud.planton.apis.v1.commons.kubernetes.enums.PodControllerType pod_controller_type = 1;
 
-  //number of replicas
-  int32 min_replicas = 2;
-
   //container spec
-  MicroserviceInstanceSpecKubernetesContainer container = 3;
+  MicroserviceInstanceSpecKubernetesContainer container = 2;
 
   //microservice instance ingress configuration on kubernetes
-  MicroserviceInstanceSpecKubernetesIngress ingress = 4;
+  MicroserviceInstanceSpecKubernetesIngress ingress = 3;
 
   //microservice instance availability configuration on kubernetes
-  MicroserviceInstanceSpecKubernetesAvailability availability = 5;
+  MicroserviceInstanceSpecKubernetesAvailability availability = 4;
 
   //flag to toggle workload identity for the microservice
   //default is set to "false".
-  bool is_workload_identity_enabled = 6;
+  bool is_workload_identity_enabled = 5;
 }
 
 //microservice-instance-spec kubernetes container spec
