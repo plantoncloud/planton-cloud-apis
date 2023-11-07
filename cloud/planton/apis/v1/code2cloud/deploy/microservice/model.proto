@@ -136,7 +136,7 @@ message MicroserviceInstanceSpecKubernetesAppContainer {
   repeated MicroserviceInstanceSpecKubernetesContainerPort ports = 4;
 
   //list of container volume mounts
-  repeated MicroserviceInstanceSpecKubernetesContainerVolumeMount volumes = 5;
+  repeated MicroserviceInstanceSpecKubernetesContainerVolumeMount volume_mounts = 5;
 }
 
 //microservice-instance-spec kubernetes app container environment variables spec
