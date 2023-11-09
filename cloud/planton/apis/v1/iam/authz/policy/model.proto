@@ -42,6 +42,14 @@ message IamPolicyByPrincipal {
   IamPrincipal principal = 1;
 
   // The mapping of IAM roles to their respective owner principals.
+  repeated RoleAndOwnerMapping role_owner_mapping = 2;
+}
+
+message IamPolicy {
+  // The principal for whom the IAM policy is being retrieved.
+  IamPrincipal principal = 1;
+
+  // The mapping of IAM roles to their respective owner principals.
   RoleAndOwnerMapping role_owner_mapping = 2;
 }
 
