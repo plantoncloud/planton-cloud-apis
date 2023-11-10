@@ -191,7 +191,9 @@ message MicroserviceInstanceSpecKubernetesIngress {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
   //selected endpoint-domain from the environment endpoint-domains to configure dns
   string endpoint_domain_name = 3;
   //port on which the ingress requests are sent by the clients
