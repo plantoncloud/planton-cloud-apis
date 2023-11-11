@@ -619,4 +619,9 @@ message ResourceEnvironmentInfo {
   string kube_cluster_id = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
+
+  // kubernetes provider is derived from the connected kube-cluster
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 6 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }

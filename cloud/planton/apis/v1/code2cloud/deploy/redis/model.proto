@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.deploy.redis;
 
 import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/enums/enums.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
@@ -129,9 +130,15 @@ message RedisClusterSpecKubernetesSpecRedisContainerSpec {
 
 // redis-cluster kubernetes ingress spec
 message RedisClusterSpecKubernetesSpecIngressSpec {
-  //endpoint domain to be used for creating internal and external endpoints for redis-cluster.
-  //only tls enabled endpoint-domains are eligible for creating solr endpoints.
-  string endpoint_domain_name = 1 [
+  //toggle to control ingress
+  bool is_enabled = 1;
+  //ingress type
+  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating redis endpoints.
+  string endpoint_domain_name = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }
