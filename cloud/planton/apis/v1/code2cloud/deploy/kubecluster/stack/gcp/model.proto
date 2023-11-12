@@ -280,10 +280,12 @@ message KubeClusterGcpStackIamOutputs {
   string cert_manager_gsa_email = 1;
   // email of the google service account created for external-secrets addon to setup workload identity
   string external_secrets_gsa_email = 2;
+  // email of the google service account created for external-dns addon to setup workload identity
+  string external_dns_gsa_email = 3;
   // email of the google service account created for deploying workloads to kube-cluster
-  string workload_deployer_gsa_email = 3;
+  string workload_deployer_gsa_email = 4;
   // base64 encoded key of workload deployer google service account
-  string workload_deployer_gsa_key_base64 = 4;
+  string workload_deployer_gsa_key_base64 = 5;
 }
 
 //stack response

@@ -138,13 +138,21 @@ message EnvironmentSpecKubeClusterSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
-  //email of the service account created for cert-manager component on the kube-cluster in which the
-  //environment that the endpoint-domain belongs to.
+  //email of the service account created for cert-manager component on the kube-cluster configured for the environment.
   //this value is used for ensuring that the service account has required permissions to insert dns records in
   //the dns zone to be able to complete dns01 challenges.
   //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
   //this value is computed from kube-cluster.
   string cert_manager_gsa_email = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //email of the service account created for external-dns component on the kube-cluster configured for the environment.
+  //this value is used for ensuring that the service account has required permissions to insert dns records in
+  //the dns zone by external-dns component running on the kubernetes cluster.
+  //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
+  //this value is computed from kube-cluster.
+  string external_dns_gsa_email = 6 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
