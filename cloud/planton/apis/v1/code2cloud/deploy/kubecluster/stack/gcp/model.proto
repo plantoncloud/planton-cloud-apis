@@ -111,6 +111,8 @@ message Addons {
   // inputs for solr-operator addon
   // https://github.com/apache/solr-operator
   AddonsSolrOperator solr_operator = 13;
+  // inputs for cert-manager addon
+  AddonsExternalDns external_dns = 14;
 }
 
 message AddonsIstio {
@@ -232,6 +234,13 @@ message AddonsKubeCost {
 // https://github.com/apache/solr-operator
 message AddonsSolrOperator {
   // toggle to deploy solr-operator
+  bool enabled = 1;
+}
+
+// configuration for extnernal-dns addon
+// https://github.com/kubernetes-sigs/external-dns
+message AddonsExternalDns {
+  // toggle to deploy external-dns
   bool enabled = 1;
 }
 
