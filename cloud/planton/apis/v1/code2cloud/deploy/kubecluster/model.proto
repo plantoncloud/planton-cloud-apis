@@ -284,6 +284,11 @@ message KubeClusterGcpStatus {
   // this service account key is used as a credential for deploying workloads like microservices,
   // postgres clusters, kafka clusters onto the kube-cluster kube-cluster/s.
   string workload_deployer_gsa_key_base64 = 12;
+
+  // google service account email created for external-dns addon workload identity.
+  // this is the service account that is used by external-dns component to insert dns records in
+  // google cloud dns when selected services or ingress resources are created on the GKE cluster.
+  string external_dns_gsa_email = 13;
 }
 
 // gcp kube-cluster node pool
