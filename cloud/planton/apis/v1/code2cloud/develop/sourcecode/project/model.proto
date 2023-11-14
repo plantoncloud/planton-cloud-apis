@@ -22,9 +22,6 @@ message CodeProject {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "cp";
   //id format "cp-<product-id>-<normalized-git-repo-url>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/r/Zxvqng/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,98}[a-zA-Z0-9_]?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Must be a valid repository name on Github.";
 
   //resource api-version
   string api_version = 1 [
@@ -37,10 +34,15 @@ message CodeProject {
   ];
 
   //resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3[
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 99
-  ];
+    (buf.validate.field).string.max_len = 99,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must be a valid repository name on Github.",
+      // https://regex101.com/r/Zxvqng/1
+      expression: "this.name.matches('^[a-zA-Z0-9][a-zA-Z0-9_-]{0,98}[a-zA-Z0-9_]?$')"
+    }];
 
   //spec
   CodeProjectSpec spec = 4;
