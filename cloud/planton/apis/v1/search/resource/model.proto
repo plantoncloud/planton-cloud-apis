@@ -46,6 +46,8 @@ message Resource {
   google.protobuf.Timestamp created_at = 9;
   // flag to indicate if the resource is deleted.
   bool is_active = 10;
+  // this field is specific to identity account resource and it represents the email of the identity account
+  string email = 11;
 }
 
 // ResourceList is a message type that represents a paginated list of Resource objects.
