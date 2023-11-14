@@ -37,6 +37,8 @@ message ResourceVersion {
   string diff_unified_format = 9;
   // id of the stack-job created for the version. this will only be populated for versions created for resources that have stack.
   string stack_job_id = 10;
+  // operation done on the state which ended up in creating this new version.
+  string operation_type = 11;
 }
 
 // wrapper for resource-versions id
