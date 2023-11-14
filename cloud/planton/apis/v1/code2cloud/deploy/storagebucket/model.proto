@@ -23,9 +23,6 @@ message StorageBucket {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "bkt";
   //id format "bkt-<environment-id>-<normalized-storage-bucket-name>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
-  //https://regex101.com/r/d1Viju/1
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_regex) = "^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$";
-  option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others";
 
   //resource api-version
   string api_version = 1 [
@@ -39,9 +36,14 @@ message StorageBucket {
 
   //resource metadata
   cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
-    (buf.validate.field).string.min_len = 3,
-    (buf.validate.field).string.max_len = 63
-  ];
+  (buf.validate.field).string.min_len = 3,
+  (buf.validate.field).string.max_len = 63,
+  (buf.validate.field).cel = {
+  id: "metadata.name",
+      message: "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others",
+    //https://regex101.com/r/d1Viju/1
+      expression: "this.name.matches('^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$')"
+}];
 
   //spec
   StorageBucketSpec spec = 4;
