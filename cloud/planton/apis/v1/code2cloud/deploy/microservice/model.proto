@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
 import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/enums/enums.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/enums/enums.proto";
@@ -92,14 +93,14 @@ message MicroserviceInstanceSpecKubernetes {
   //default is set to "deployment".
   cloud.planton.apis.v1.commons.kubernetes.enums.PodControllerType pod_controller_type = 1;
 
-  //number of replicas
-  int32 min_replicas = 2;
-
   //container spec
-  MicroserviceInstanceSpecKubernetesContainer container = 3;
+  MicroserviceInstanceSpecKubernetesContainer container = 2;
 
-  //microservice instance network configuration on kubernetes
-  MicroserviceInstanceSpecKubernetesNetwork network = 4;
+  //microservice instance ingress configuration on kubernetes
+  MicroserviceInstanceSpecKubernetesIngress ingress = 3;
+
+  //microservice instance availability configuration on kubernetes
+  MicroserviceInstanceSpecKubernetesAvailability availability = 4;
 
   //flag to toggle workload identity for the microservice
   //default is set to "false".
@@ -131,9 +132,11 @@ message MicroserviceInstanceSpecKubernetesAppContainer {
   //microservice-instance environment variables and secrets.
   MicroserviceInstanceSpecKubernetesAppContainerEnv env = 3;
 
-  //container volumes
-  //key is the mount path and value is size of the volume
-  map<string, string> volumes = 4;
+  //list of ports to be configured for the app container
+  repeated MicroserviceInstanceSpecKubernetesContainerPort ports = 4;
+
+  //list of container volume mounts
+  repeated MicroserviceInstanceSpecKubernetesContainerVolumeMount volume_mounts = 5;
 }
 
 //microservice-instance-spec kubernetes app container environment variables spec
@@ -144,32 +147,77 @@ message MicroserviceInstanceSpecKubernetesAppContainerEnv {
   map<string, string> secrets = 2;
 }
 
-//microservice-instance-spec kubernetes network spec
-message MicroserviceInstanceSpecKubernetesNetwork {
+//microservice-instance-spec kubernetes container port spec
+message MicroserviceInstanceSpecKubernetesContainerPort {
+  //name for the port ex: http, grpc
+  string name = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  //container port
+  int32 container_port = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  //network protocol for the port ex: TCP
+  string network_protocol = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
   //(required) application protocol for the microservice.
   //the default is set to "http"
   //https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol.
   //this field is used for setting up the name of the service port in kubernetes.
   //this attribute is used during microservice deployment.
   //this attribute is only relevant for deployment and stateful-set pod_controllers.
-  string app_protocol = 1 [
+  string app_protocol = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
-
-  //container port
-  int32 container_port = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.int32_default) = 8080
-  ];
-
   //kubernetes service port
-  int32 service_port = 3 [
-    (cloud.planton.apis.v1.commons.resource.field.options.int32_default) = 80
+  int32 service_port = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
+}
 
-  //ingress-domain names.
-  //each ingress-domain name should already exist as a endpoint-domains for the environment.
-  //endpoints will only created if the pod_controller_type is either deployment or stateful-set.
-  repeated string ingress_domains = 4;
+//microservice-instance-spec kubernetes container volume mount spec
+message MicroserviceInstanceSpecKubernetesContainerVolumeMount {
+  // name for the volume mount ex: solr-collection
+  string name = 1;
+  // path to mount the volume inside the container
+  string mount_path = 2;
+  // size of the volume mount ex: 1Gi
+  string size = 3;
+}
+
+//microservice-instance-spec kubernetes ingress spec
+message MicroserviceInstanceSpecKubernetesIngress {
+  //toggle to control ingress
+  bool is_enabled = 1;
+  //ingress type
+  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  //selected endpoint-domain from the environment endpoint-domains to configure dns
+  string endpoint_domain_name = 3;
+  //port on which the ingress requests are sent by the clients
+  int32 listener_ingress_port = 4;
+  //kubernetes service port to which the incoming ingress requests are forwarded
+  int32 forward_service_port = 5;
+}
+
+//microservice-instance-spec kubernetes availability spec
+message MicroserviceInstanceSpecKubernetesAvailability {
+  //minimum number of pod replicas
+  int32 min_replicas = 1;
+  //horizontal pod autoscaling configuration
+  MicroserviceInstanceSpecKubernetesAvailabilityHorizontalPodAutoscaling horizontal_pod_autoscaling = 2;
+}
+
+//microservice-instance-spec kubernetes availability spec horizontal pod autoscaling
+message MicroserviceInstanceSpecKubernetesAvailabilityHorizontalPodAutoscaling {
+  //flag to toggle horizontal pod autoscaling
+  bool is_enabled = 1;
+  //percentage for target cpu utilization to trigger auto scaling. ex: 60.0
+  double target_cpu_utilization_percent = 2;
+  //target memory utilization to trigger auto scaling. ex: 1Gi
+  string target_memory_utilization = 3;
 }
 
 //microservice-instance-spec pipeline configuration

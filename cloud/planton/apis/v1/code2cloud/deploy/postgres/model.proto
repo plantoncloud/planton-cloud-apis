@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.postgres;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/enums/enums.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
@@ -9,8 +12,6 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "buf/validate/validate.proto";
 
 //postgres-cluster
 message PostgresCluster {
@@ -121,9 +122,15 @@ message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
 
 //postgres-cluster kubernetes ingress spec
 message PostgresClusterSpecKubernetesSpecIngressSpec {
-  //endpoint domain to be used for creating internal and external endpoints for postgres-cluster.
-  //only tls enabled endpoint-domains are eligible for creating solr endpoints.
-  string endpoint_domain_name = 1 [
+  //toggle to control ingress
+  bool is_enabled = 1;
+  //ingress type
+  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating postgres endpoints.
+  string endpoint_domain_name = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }

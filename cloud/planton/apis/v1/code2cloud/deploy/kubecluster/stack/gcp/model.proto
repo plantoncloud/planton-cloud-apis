@@ -111,6 +111,8 @@ message Addons {
   // inputs for solr-operator addon
   // https://github.com/apache/solr-operator
   AddonsSolrOperator solr_operator = 13;
+  // inputs for cert-manager addon
+  AddonsExternalDns external_dns = 14;
 }
 
 message AddonsIstio {
@@ -235,6 +237,13 @@ message AddonsSolrOperator {
   bool enabled = 1;
 }
 
+// configuration for extnernal-dns addon
+// https://github.com/kubernetes-sigs/external-dns
+message AddonsExternalDns {
+  // toggle to deploy external-dns
+  bool enabled = 1;
+}
+
 // kube-cluster gcp stack outputs
 message KubeClusterGcpStackOutputs {
   KubeClusterGcpStackProjectsOutputs projects = 1;
@@ -271,10 +280,12 @@ message KubeClusterGcpStackIamOutputs {
   string cert_manager_gsa_email = 1;
   // email of the google service account created for external-secrets addon to setup workload identity
   string external_secrets_gsa_email = 2;
+  // email of the google service account created for external-dns addon to setup workload identity
+  string external_dns_gsa_email = 3;
   // email of the google service account created for deploying workloads to kube-cluster
-  string workload_deployer_gsa_email = 3;
+  string workload_deployer_gsa_email = 4;
   // base64 encoded key of workload deployer google service account
-  string workload_deployer_gsa_key_base64 = 4;
+  string workload_deployer_gsa_key_base64 = 5;
 }
 
 //stack response

@@ -4,25 +4,55 @@ package cloud.planton.apis.v1.iam.authz.policy;
 
 import "cloud/planton/apis/v1/iam/authz/role/model.proto";
 
-// response of iam policy by principal
-message IamPolicyByPrincipal {
+
+message IamPrincipal {
   // id of the principal of the policy that is associated.
   // principal could be email id of the user.
-  string principal = 1;
-  // type of the principal id
-  // example values could be user/ company etc.;
-  string principal_type = 2;
-  // iam role details assigned to principal
-  cloud.planton.apis.v1.iam.authz.role.IamRole role = 3;
-  // id of the owner resource if the relation is of owner.
-  // a part from the direct relations that we have on an resource we have to show the relations of the resources that are linked.
-  // for example cloud account and company has owner relation.
-  // we show the relations of the owner company as well.
-  string owner_id = 4;
-  // type of the owner id
-  // example values could be company/ product etc.;
-  string owner_type = 5;
+  string id = 1;
+  // The name of the principal. This is the full name of the
+  // individual or entity that the principal represents.
+  string name = 2;
+  // The email address of the principal. It is used as a contact
+  // reference and possibly as an identifier for login or
+  // communication purposes.
+  string email = 3;
+  // Indicates the category of the principal. The type field can
+  // help in distinguishing between different entities that could be
+  // associated with policies, such as 'user', 'company', 'group', etc.
+  string type = 4;
+  // The URL to a picture associated with the principal. This URL points
+  // to an image resource that can be used to visually represent the
+  // principal in the user interface.
+  string picture_url = 5;
 }
+
+// Represents the association of an IAM role and an owner principal.
+message RoleAndOwnerMapping {
+  // The IAM role assigned to a principal for authorization.
+  cloud.planton.apis.v1.iam.authz.role.IamRole role = 1;
+
+  // The owner principal responsible for the role and associated permissions.
+  IamPrincipal owner_principal = 2;
+}
+
+
+// Represents the response of an IAM policy associated with a principal.
+message IamPolicyByPrincipal {
+  // The principal for whom the IAM policy is being retrieved.
+  IamPrincipal principal = 1;
+
+  // The mapping of IAM roles to their respective owner principals.
+  repeated RoleAndOwnerMapping role_owner_mapping = 2;
+}
+
+message IamPolicy {
+  // The principal for whom the IAM policy is being retrieved.
+  IamPrincipal principal = 1;
+
+  // The mapping of IAM roles to their respective owner principals.
+  RoleAndOwnerMapping role_owner_mapping = 2;
+}
+
 
 // input message to get IAM policies of a resource.
 message GetIamPolicyByResourceTypeAndResourceIdInput {
@@ -41,37 +71,40 @@ message IamPoliciesByPrincipal {
   repeated IamPolicyByPrincipal entries = 1;
 }
 
-// input to add IAM policy of a resource
+// Input message for adding IAM policies to a resource.
 message AddIamPolicyInput {
-  // list of principal ids that are meant to be linked with the resource
-  repeated string principal_ids = 1;
-  // type of the principal
-  // example could be user/ company etc.;
-  string principal_type = 2;
-  // list of roles to be assigned to the principal ids
-  repeated string roles = 3;
-  // type of the resource for which we want to add iam policies
-  // example values could be company/ cloud_account etc.;
+  // Principals associated with the IAM policy to be added to the resource.
+  // This is a list, as multiple principals can be associated with the same resource.
+  repeated IamPrincipal principals = 1;
+
+  // Roles to be assigned to the principals for the given resource.
+  // Multiple roles can be assigned to the principals, defining their access level and permissions.
+  repeated cloud.planton.apis.v1.iam.authz.role.IamRole roles = 2;
+
+  // The type of resource that the IAM policy is to be associated with.
+  // Valid values include 'company', 'cloud_account', and other resource types.
+  string resource_type = 3;
+
+  // The unique identifier for the resource which the IAM policy will be added to.
+  // This ID should correspond to the actual resource entity in the system.
+  string resource_id = 4;
+}
+
+// Input message for removing IAM policies from a resource.
+message RemoveIamPolicyInput {
+  // The principal for whom the IAM policy belongs to, indicating the entity from which policies will be removed.
+  IamPrincipal principal = 1;
+  // Roles to be removed from the principal's IAM policies for the given resource.
+  // Multiple roles can be specified for removal, adjusting the principal's access and permissions.
+  repeated cloud.planton.apis.v1.iam.authz.role.IamRole roles = 2;
+  // The type of resource from which IAM policies are to be removed.
+  // Valid values include 'company', 'cloud_account', and other resource types.
   string resource_type = 4;
-  // id of the resource to add iam policy
+  // The unique identifier for the resource from which IAM policies will be removed.
+  // This ID should correspond to the actual resource entity in the system.
   string resource_id = 5;
 }
 
-// input to remove IAM policy of a resource
-message RemoveIamPolicyInput {
-  // principal id for which the iam policy has to be removed
-  string principal_id = 1;
-  // type of the principal
-  // example could be user/ company etc.;
-  string principal_type = 2;
-  // role code to be removed for the principal with resource
-  string role = 3;
-  // type of the resource for which we want to remove iam policy
-  // example values could be company/ cloud_account etc.;
-  string resource_type = 4;
-  // id of the resource to remove iam policy
-  string resource_id = 5;
-}
 
 // input to remove multiple iam polices
 message RemoveIamPoliciesInput {
@@ -81,27 +114,10 @@ message RemoveIamPoliciesInput {
 
 // response of iam policy by role
 message IamPolicyByRole {
-  // iam role details assigned to principal
-  cloud.planton.apis.v1.iam.authz.role.IamRole role = 1;
+  // The mapping of IAM roles to their respective owner principals.
+  RoleAndOwnerMapping role_owner_mapping = 1;
   // list of iam principals assigned with the role
-  repeated IamPrincipal iam_principals = 2;
-}
-
-message IamPrincipal {
-  // id of the principal of the policy that is associated.
-  // principal could be email id of the user.
-  string principal = 1;
-  // type of the principal id
-  // example values could be user/ company etc.;
-  string principal_type = 2;
-  // id of the owner resource if the relation is of owner.
-  // a part from the direct relations that we have on an resource we have to show the relations of the resources that are linked.
-  // for example cloud account and company has owner relation.
-  // we show the relations of the owner company as well.
-  string owner_id = 3;
-  // type of the owner id
-  // example values could be company/ product etc.;
-  string owner_type = 4;
+  repeated IamPrincipal principals = 2;
 }
 
 // response to return all iam policies by role
