@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.artifactstore.enums;
 
- import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
 
 enum ArtifactStoreEventType {
   ARTIFACT_STORE_EVENT_TYPE_UNSPECIFIED = 0;
@@ -76,4 +76,10 @@ enum GcpArtifactRegistryRepoType {
   MAVEN = 3;
   PYTHON = 4;
   GO = 5;
+}
+
+enum ArtifactStoreRepoIntegrationMode {
+  ARTIFACT_STORE_REPO_INTEGRATION_MODE_UNSPECIFIED = 0;
+  ARTIFACT_STORE_REPO_INTEGRATION_MODE_CREATE = 1;
+  ARTIFACT_STORE_REPO_INTEGRATION_MODE_CONNECT = 2;
 }
