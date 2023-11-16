@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.postgres.enums.event;
 
-import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_enum_options.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
 
 enum PostgresClusterEventType {
   POSTGRES_CLUSTER_EVENT_TYPE_UNSPECIFIED = 0;
