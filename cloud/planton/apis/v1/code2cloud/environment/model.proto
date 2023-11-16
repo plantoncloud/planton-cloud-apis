@@ -107,8 +107,14 @@ message EnvironmentSpec {
   //secrets-backend spec for the environment secrets
   EnvironmentSpecSecretsBackendSpec secrets_backend = 10;
 
+  //provider for storage-buckets created in this environment.
+  //this value is computed based on the cloud-provider.
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 11 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
   //microservice-instance spec for the environment
-  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 11;
+  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 12;
 }
 
 // information about the cloud-account configured for the environment
@@ -179,11 +185,11 @@ message EnvironmentSpecSecretsBackendSpec {
   cloud.planton.apis.v1.code2cloud.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider provider = 1;
 
   //gcp secrets-manager spec
-  EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec gcp_secrets_manager_spec = 2;
+  EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec gcp_secrets_manager = 2;
 }
 
 // gcp secrets-manager spec
-message EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec {
+message EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec {
   //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
   string project_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
