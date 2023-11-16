@@ -32,7 +32,7 @@ message AuditInfo {
 
     // event_type is the type of the last event associated with the object.
     // This is typically a string code representing specific events in the system.
-    string event_type = 5;
+    string event = 5;
 }
 
 
