@@ -99,22 +99,22 @@ message EnvironmentSpec {
   repeated EnvironmentEndpointDomain endpoint_domains = 7;
 
   //cloud-account spec for the environment
-  EnvironmentSpecCloudAccountSpec cloud_account_spec = 8;
+  EnvironmentSpecCloudAccountSpec cloud_account = 8;
 
   //kube-cluster spec for then environment
-  EnvironmentSpecKubeClusterSpec kube_cluster_spec = 9;
+  EnvironmentSpecKubeClusterSpec kube_cluster = 9;
 
   //secrets-backend spec for the environment secrets
-  EnvironmentSpecSecretsBackendSpec secrets_backend_spec = 10;
+  EnvironmentSpecSecretsBackendSpec secrets_backend = 10;
 
   //microservice-instance spec for the environment
-  EnvironmentSpecMicroserviceInstanceSpec microservice_instance_spec = 11;
+  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 11;
 }
 
 // information about the cloud-account configured for the environment
 message EnvironmentSpecCloudAccountSpec {
   //cloud-provider
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProviderType provider = 1 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider provider = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
   //id of the cloud-account
@@ -176,7 +176,7 @@ message EnvironmentSpecKubeClusterSpec {
 // information about the secrets provider for the environment
 message EnvironmentSpecSecretsBackendSpec {
   //secrets management provider
-  cloud.planton.apis.v1.code2cloud.environment.enums.secretsbackendprovider.EnvironmentSecretsBackendProviderType provider = 1;
+  cloud.planton.apis.v1.code2cloud.environment.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider provider = 1;
 
   //gcp secrets-manager spec
   EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec gcp_secrets_manager_spec = 2;
@@ -656,7 +656,7 @@ message ResourceEnvironmentInfo {
   ];
 
   //provider for the cloud-account configured for the environment.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProviderType cloud_provider = 5 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
@@ -677,7 +677,7 @@ message ResourceEnvironmentInfo {
 
   //storage provider on which the storage-bucket is to be created.
   //the value is computed from environment.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProviderType storage_bucket_provider = 9 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 9 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }

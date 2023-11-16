@@ -80,10 +80,10 @@ message ArtifactStoreSpec {
   ];
 
   //Buf Schema Registry repo
-  ArtifactStoreSpecBsrRepoSpec bsr_repo_spec = 3;
+  ArtifactStoreSpecBsrRepoSpec bsr_repo = 3;
 
   //Golang Repo with Git Provider
-  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo_spec = 4;
+  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo = 4;
 
   //provider for the artifact-store repositories
   cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider repo_provider = 5 [

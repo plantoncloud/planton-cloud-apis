@@ -111,7 +111,7 @@ message CloudAccountSpec {
 
   // cloud provider.
   // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProviderType cloud_provider = 2 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];

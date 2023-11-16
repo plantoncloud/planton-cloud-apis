@@ -6,82 +6,67 @@ import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type
 
 enum EnvironmentEventType {
   ENVIRONMENT_EVENT_TYPE_UNSPECIFIED = 0;
-  ENVIRONMENT_EVENT_TYPE_STATE_CREATED = 1 [
+  created = 1 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_UPDATED = 2 [
+  updated = 2 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_DELETED = 3 [
+  deleted = 3 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_RESTORED = 4 [
+  restored = 4 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_PROGRESS_UPDATED = 5 [
+  stack_job_progress_updated = 5 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_PREVIEW_REQUESTED = 6 [
+  stack_job_preview_requested = 6 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = preview
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_APPLY_REQUESTED = 7 [
+  stack_job_apply_requested = 7 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_APPLY_COMPLETED = 8 [
+  stack_job_apply_completed = 8 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_DESTROY_REQUESTED = 9 [
+  stack_job_destroy_requested = 9 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy
   ];
-  ENVIRONMENT_EVENT_TYPE_STACK_JOB_DESTROY_COMPLETED = 10 [
+  stack_job_destroy_completed = 10 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_PAUSED = 11 [
+  paused = 11 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_UNPAUSED = 12 [
+  unpaused = 12 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  ENVIRONMENT_EVENT_TYPE_STATE_CLONED = 13 [
+  cloned = 13 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-}
-
-// ingress type for workload deployed to kubernetes cluster
-enum KubernetesWorkloadIngressType {
-  KUBERNETES_WORKLOAD_INGRESS_TYPE_UNSPECIFIED = 0;
-  KUBERNETES_WORKLOAD_INGRESS_TYPE_LOAD_BALANCER = 1;
-  KUBERNETES_WORKLOAD_INGRESS_TYPE_INGRESS_CONTROLLER = 2;
-}
-
-// environment secrets-backend provider
-enum EnvironmentSecretsBackendProviderType {
-  ENVIRONMENT_SECRETS_BACKEND_PROVIDER_TYPE_UNSPECIFIED = 0;
-  ENVIRONMENT_SECRETS_BACKEND_PROVIDER_TYPE_GCP_SECRETS_MANAGER = 1;
-  ENVIRONMENT_SECRETS_BACKEND_PROVIDER_TYPE_AWS_SECRETS_MANAGER = 2;
-  ENVIRONMENT_SECRETS_BACKEND_PROVIDER_TYPE_AZURE_KEY_VAULT = 3;
 }

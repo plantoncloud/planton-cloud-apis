@@ -34,6 +34,3 @@ message AuditInfo {
     // This is typically a string code representing specific events in the system.
     string event = 5;
 }
-
-
-
