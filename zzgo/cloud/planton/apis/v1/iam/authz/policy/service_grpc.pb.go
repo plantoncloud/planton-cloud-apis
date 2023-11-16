@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	IamPolicyCommandController_Add_FullMethodName            = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/add"
 	IamPolicyCommandController_RemoveMultiple_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/removeMultiple"
+	IamPolicyCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/update"
 )
 
 // IamPolicyCommandControllerClient is the client API for IamPolicyCommandController service.
@@ -31,6 +32,7 @@ type IamPolicyCommandControllerClient interface {
 	Add(ctx context.Context, in *AddIamPolicyInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
 	RemoveMultiple(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
+	Update(ctx context.Context, in *UpdateIamPolicyInput, opts ...grpc.CallOption) (*IamPolicyByPrincipal, error)
 }
 
 type iamPolicyCommandControllerClient struct {
@@ -59,6 +61,15 @@ func (c *iamPolicyCommandControllerClient) RemoveMultiple(ctx context.Context, i
 	return out, nil
 }
 
+func (c *iamPolicyCommandControllerClient) Update(ctx context.Context, in *UpdateIamPolicyInput, opts ...grpc.CallOption) (*IamPolicyByPrincipal, error) {
+	out := new(IamPolicyByPrincipal)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IamPolicyCommandControllerServer is the server API for IamPolicyCommandController service.
 // All implementations should embed UnimplementedIamPolicyCommandControllerServer
 // for forward compatibility
@@ -67,6 +78,7 @@ type IamPolicyCommandControllerServer interface {
 	Add(context.Context, *AddIamPolicyInput) (*IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
 	RemoveMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error)
+	Update(context.Context, *UpdateIamPolicyInput) (*IamPolicyByPrincipal, error)
 }
 
 // UnimplementedIamPolicyCommandControllerServer should be embedded to have forward compatible implementations.
@@ -78,6 +90,9 @@ func (UnimplementedIamPolicyCommandControllerServer) Add(context.Context, *AddIa
 }
 func (UnimplementedIamPolicyCommandControllerServer) RemoveMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveMultiple not implemented")
+}
+func (UnimplementedIamPolicyCommandControllerServer) Update(context.Context, *UpdateIamPolicyInput) (*IamPolicyByPrincipal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
 // UnsafeIamPolicyCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -127,6 +142,24 @@ func _IamPolicyCommandController_RemoveMultiple_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IamPolicyCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateIamPolicyInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyCommandControllerServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyCommandController_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyCommandControllerServer).Update(ctx, req.(*UpdateIamPolicyInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IamPolicyCommandController_ServiceDesc is the grpc.ServiceDesc for IamPolicyCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -141,6 +174,10 @@ var IamPolicyCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "removeMultiple",
 			Handler:    _IamPolicyCommandController_RemoveMultiple_Handler,
+		},
+		{
+			MethodName: "update",
+			Handler:    _IamPolicyCommandController_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

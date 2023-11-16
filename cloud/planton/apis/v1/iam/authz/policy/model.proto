@@ -126,3 +126,22 @@ message IamPoliciesByRole {
   repeated IamPolicyByRole entries = 1;
 }
 
+// Input message for updating IAM policies to a resource.
+message UpdateIamPolicyInput {
+  // Principals associated with the IAM policy to be added to the resource.
+  // This is a list, as multiple principals can be associated with the same resource.
+  IamPrincipal principal = 1;
+
+  // Roles to be assigned to the principals for the given resource.
+  // Multiple roles can be assigned to the principals, defining their access level and permissions.
+  repeated cloud.planton.apis.v1.iam.authz.role.IamRole roles = 2;
+
+  // The type of resource that the IAM policy is to be associated with.
+  // Valid values include 'company', 'cloud_account', and other resource types.
+  string resource_type = 3;
+
+  // The unique identifier for the resource which the IAM policy will be added to.
+  // This ID should correspond to the actual resource entity in the system.
+  string resource_id = 4;
+}
+

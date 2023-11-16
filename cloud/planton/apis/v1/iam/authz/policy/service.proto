@@ -17,6 +17,11 @@ service IamPolicyCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to remove iam policy";
   }
+
+  rpc update(UpdateIamPolicyInput) returns (IamPolicyByPrincipal) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update iam policy";
+  }
 }
 
 // iam policy query controller
