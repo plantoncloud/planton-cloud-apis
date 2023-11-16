@@ -8,9 +8,10 @@ package environment
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums"
+	enums1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums"
+	enums2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/enums"
 	audit "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/cloud/provider/enums"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/cloud/provider/enums"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
@@ -138,13 +139,14 @@ type EnvironmentSpec struct {
 	Secrets []*EnvironmentSecret `protobuf:"bytes,6,rep,name=secrets,proto3" json:"secrets,omitempty"`
 	// list of endpoint domains for the environment
 	EndpointDomains []*EnvironmentEndpointDomain `protobuf:"bytes,7,rep,name=endpoint_domains,json=endpointDomains,proto3" json:"endpoint_domains,omitempty"`
-	// kube-cluster spec for environment
-	KubeCluster *EnvironmentSpecKubeClusterSpec `protobuf:"bytes,8,opt,name=kube_cluster,json=kubeCluster,proto3" json:"kube_cluster,omitempty"`
-	// microservice-instance spec for environment
-	MicroserviceInstance            *EnvironmentSpecMicroserviceInstanceSpec `protobuf:"bytes,9,opt,name=microservice_instance,json=microserviceInstance,proto3" json:"microservice_instance,omitempty"`
-	IsInheritEndpointDomainsEnabled bool                                     `protobuf:"varint,10,opt,name=is_inherit_endpoint_domains_enabled,json=isInheritEndpointDomainsEnabled,proto3" json:"is_inherit_endpoint_domains_enabled,omitempty"`
-	// id of the gcp project in which the environment-secrets are to be created in secrets-manager.
-	EnvironmentSecretsGcpProjectId string `protobuf:"bytes,11,opt,name=environment_secrets_gcp_project_id,json=environmentSecretsGcpProjectId,proto3" json:"environment_secrets_gcp_project_id,omitempty"`
+	// cloud-account spec for the environment
+	CloudAccountSpec *EnvironmentSpecCloudAccountSpec `protobuf:"bytes,8,opt,name=cloud_account_spec,json=cloudAccountSpec,proto3" json:"cloud_account_spec,omitempty"`
+	// kube-cluster spec for then environment
+	KubeClusterSpec *EnvironmentSpecKubeClusterSpec `protobuf:"bytes,9,opt,name=kube_cluster_spec,json=kubeClusterSpec,proto3" json:"kube_cluster_spec,omitempty"`
+	// secrets-backend spec for the environment secrets
+	SecretsBackendSpec *EnvironmentSpecSecretsBackendSpec `protobuf:"bytes,10,opt,name=secrets_backend_spec,json=secretsBackendSpec,proto3" json:"secrets_backend_spec,omitempty"`
+	// microservice-instance spec for the environment
+	MicroserviceInstanceSpec *EnvironmentSpecMicroserviceInstanceSpec `protobuf:"bytes,11,opt,name=microservice_instance_spec,json=microserviceInstanceSpec,proto3" json:"microservice_instance_spec,omitempty"`
 }
 
 func (x *EnvironmentSpec) Reset() {
@@ -228,34 +230,93 @@ func (x *EnvironmentSpec) GetEndpointDomains() []*EnvironmentEndpointDomain {
 	return nil
 }
 
-func (x *EnvironmentSpec) GetKubeCluster() *EnvironmentSpecKubeClusterSpec {
+func (x *EnvironmentSpec) GetCloudAccountSpec() *EnvironmentSpecCloudAccountSpec {
 	if x != nil {
-		return x.KubeCluster
+		return x.CloudAccountSpec
 	}
 	return nil
 }
 
-func (x *EnvironmentSpec) GetMicroserviceInstance() *EnvironmentSpecMicroserviceInstanceSpec {
+func (x *EnvironmentSpec) GetKubeClusterSpec() *EnvironmentSpecKubeClusterSpec {
 	if x != nil {
-		return x.MicroserviceInstance
+		return x.KubeClusterSpec
 	}
 	return nil
 }
 
-func (x *EnvironmentSpec) GetIsInheritEndpointDomainsEnabled() bool {
+func (x *EnvironmentSpec) GetSecretsBackendSpec() *EnvironmentSpecSecretsBackendSpec {
 	if x != nil {
-		return x.IsInheritEndpointDomainsEnabled
+		return x.SecretsBackendSpec
 	}
-	return false
+	return nil
 }
 
-func (x *EnvironmentSpec) GetEnvironmentSecretsGcpProjectId() string {
+func (x *EnvironmentSpec) GetMicroserviceInstanceSpec() *EnvironmentSpecMicroserviceInstanceSpec {
 	if x != nil {
-		return x.EnvironmentSecretsGcpProjectId
+		return x.MicroserviceInstanceSpec
+	}
+	return nil
+}
+
+// information about the cloud-account configured for the environment
+type EnvironmentSpecCloudAccountSpec struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// cloud-provider
+	Provider enums.CloudProvider `protobuf:"varint,1,opt,name=provider,proto3,enum=cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider" json:"provider,omitempty"`
+	// id of the cloud-account
+	CloudAccountId string `protobuf:"bytes,2,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
+}
+
+func (x *EnvironmentSpecCloudAccountSpec) Reset() {
+	*x = EnvironmentSpecCloudAccountSpec{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EnvironmentSpecCloudAccountSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnvironmentSpecCloudAccountSpec) ProtoMessage() {}
+
+func (x *EnvironmentSpecCloudAccountSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnvironmentSpecCloudAccountSpec.ProtoReflect.Descriptor instead.
+func (*EnvironmentSpecCloudAccountSpec) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *EnvironmentSpecCloudAccountSpec) GetProvider() enums.CloudProvider {
+	if x != nil {
+		return x.Provider
+	}
+	return enums.CloudProvider(0)
+}
+
+func (x *EnvironmentSpecCloudAccountSpec) GetCloudAccountId() string {
+	if x != nil {
+		return x.CloudAccountId
 	}
 	return ""
 }
 
+// information about the kube-cluster configured for the environment
 type EnvironmentSpecKubeClusterSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -263,7 +324,8 @@ type EnvironmentSpecKubeClusterSpec struct {
 
 	// kubernetes-provider for the configured kube-cluster
 	// the value is computed from kube-cluster.
-	KubernetesProvider enums.KubernetesProvider `protobuf:"varint,1,opt,name=kubernetes_provider,json=kubernetesProvider,proto3,enum=cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider" json:"kubernetes_provider,omitempty"`
+	Provider enums1.KubernetesProvider `protobuf:"varint,1,opt,name=provider,proto3,enum=cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider" json:"provider,omitempty"`
+	// kube-cluster deployed to the cloud-account configured for the environment.
 	// target kube-cluster to which the workloads like microservice-instances, postgres databases,
 	// kafka-clusters etc are deployed to.
 	KubeClusterId string `protobuf:"bytes,2,opt,name=kube_cluster_id,json=kubeClusterId,proto3" json:"kube_cluster_id,omitempty"`
@@ -292,7 +354,7 @@ type EnvironmentSpecKubeClusterSpec struct {
 func (x *EnvironmentSpecKubeClusterSpec) Reset() {
 	*x = EnvironmentSpecKubeClusterSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -305,7 +367,7 @@ func (x *EnvironmentSpecKubeClusterSpec) String() string {
 func (*EnvironmentSpecKubeClusterSpec) ProtoMessage() {}
 
 func (x *EnvironmentSpecKubeClusterSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,14 +380,14 @@ func (x *EnvironmentSpecKubeClusterSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSpecKubeClusterSpec.ProtoReflect.Descriptor instead.
 func (*EnvironmentSpecKubeClusterSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *EnvironmentSpecKubeClusterSpec) GetKubernetesProvider() enums.KubernetesProvider {
+func (x *EnvironmentSpecKubeClusterSpec) GetProvider() enums1.KubernetesProvider {
 	if x != nil {
-		return x.KubernetesProvider
+		return x.Provider
 	}
-	return enums.KubernetesProvider(0)
+	return enums1.KubernetesProvider(0)
 }
 
 func (x *EnvironmentSpecKubeClusterSpec) GetKubeClusterId() string {
@@ -363,6 +425,113 @@ func (x *EnvironmentSpecKubeClusterSpec) GetExternalDnsGsaEmail() string {
 	return ""
 }
 
+// information about the secrets provider for the environment
+type EnvironmentSpecSecretsBackendSpec struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// secrets management provider
+	Provider enums2.EnvironmentSecretsBackendProviderType `protobuf:"varint,1,opt,name=provider,proto3,enum=cloud.planton.apis.v1.code2cloud.environment.enums.EnvironmentSecretsBackendProviderType" json:"provider,omitempty"`
+	// gcp secrets-manager spec
+	GcpSecretsManagerSpec *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec `protobuf:"bytes,2,opt,name=gcp_secrets_manager_spec,json=gcpSecretsManagerSpec,proto3" json:"gcp_secrets_manager_spec,omitempty"`
+}
+
+func (x *EnvironmentSpecSecretsBackendSpec) Reset() {
+	*x = EnvironmentSpecSecretsBackendSpec{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EnvironmentSpecSecretsBackendSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnvironmentSpecSecretsBackendSpec) ProtoMessage() {}
+
+func (x *EnvironmentSpecSecretsBackendSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnvironmentSpecSecretsBackendSpec.ProtoReflect.Descriptor instead.
+func (*EnvironmentSpecSecretsBackendSpec) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *EnvironmentSpecSecretsBackendSpec) GetProvider() enums2.EnvironmentSecretsBackendProviderType {
+	if x != nil {
+		return x.Provider
+	}
+	return enums2.EnvironmentSecretsBackendProviderType(0)
+}
+
+func (x *EnvironmentSpecSecretsBackendSpec) GetGcpSecretsManagerSpec() *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec {
+	if x != nil {
+		return x.GcpSecretsManagerSpec
+	}
+	return nil
+}
+
+// gcp secrets-manager spec
+type EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// id of the gcp project in which the environment-secrets are to be created in secrets-manager.
+	ProjectId string `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+}
+
+func (x *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) Reset() {
+	*x = EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) ProtoMessage() {}
+
+func (x *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec.ProtoReflect.Descriptor instead.
+func (*EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
 // environment microservice-instance spec
 type EnvironmentSpecMicroserviceInstanceSpec struct {
 	state         protoimpl.MessageState
@@ -382,7 +551,7 @@ type EnvironmentSpecMicroserviceInstanceSpec struct {
 func (x *EnvironmentSpecMicroserviceInstanceSpec) Reset() {
 	*x = EnvironmentSpecMicroserviceInstanceSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -395,7 +564,7 @@ func (x *EnvironmentSpecMicroserviceInstanceSpec) String() string {
 func (*EnvironmentSpecMicroserviceInstanceSpec) ProtoMessage() {}
 
 func (x *EnvironmentSpecMicroserviceInstanceSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -408,7 +577,7 @@ func (x *EnvironmentSpecMicroserviceInstanceSpec) ProtoReflect() protoreflect.Me
 
 // Deprecated: Use EnvironmentSpecMicroserviceInstanceSpec.ProtoReflect.Descriptor instead.
 func (*EnvironmentSpecMicroserviceInstanceSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *EnvironmentSpecMicroserviceInstanceSpec) GetIsBuildEngineEnvironment() bool {
@@ -450,7 +619,7 @@ type EnvironmentSpecMicroserviceInstanceSpecPipelineSpec struct {
 func (x *EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) Reset() {
 	*x = EnvironmentSpecMicroserviceInstanceSpecPipelineSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -463,7 +632,7 @@ func (x *EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) String() string {
 func (*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) ProtoMessage() {}
 
 func (x *EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +645,7 @@ func (x *EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) ProtoReflect() pro
 
 // Deprecated: Use EnvironmentSpecMicroserviceInstanceSpecPipelineSpec.ProtoReflect.Descriptor instead.
 func (*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *EnvironmentSpecMicroserviceInstanceSpecPipelineSpec) GetIsEnabled() bool {
@@ -517,7 +686,7 @@ type EnvironmentStatus struct {
 func (x *EnvironmentStatus) Reset() {
 	*x = EnvironmentStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -530,7 +699,7 @@ func (x *EnvironmentStatus) String() string {
 func (*EnvironmentStatus) ProtoMessage() {}
 
 func (x *EnvironmentStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -543,7 +712,7 @@ func (x *EnvironmentStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentStatus.ProtoReflect.Descriptor instead.
 func (*EnvironmentStatus) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *EnvironmentStatus) GetLifecycle() *resource.RunnableResourceLifecycle {
@@ -579,7 +748,7 @@ type Environments struct {
 func (x *Environments) Reset() {
 	*x = Environments{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[6]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -592,7 +761,7 @@ func (x *Environments) String() string {
 func (*Environments) ProtoMessage() {}
 
 func (x *Environments) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[6]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -605,7 +774,7 @@ func (x *Environments) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Environments.ProtoReflect.Descriptor instead.
 func (*Environments) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{6}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Environments) GetEntries() []*Environment {
@@ -627,7 +796,7 @@ type EnvironmentId struct {
 func (x *EnvironmentId) Reset() {
 	*x = EnvironmentId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[7]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -640,7 +809,7 @@ func (x *EnvironmentId) String() string {
 func (*EnvironmentId) ProtoMessage() {}
 
 func (x *EnvironmentId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[7]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -653,7 +822,7 @@ func (x *EnvironmentId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentId.ProtoReflect.Descriptor instead.
 func (*EnvironmentId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{7}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *EnvironmentId) GetValue() string {
@@ -676,7 +845,7 @@ type EnvironmentList struct {
 func (x *EnvironmentList) Reset() {
 	*x = EnvironmentList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[8]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -689,7 +858,7 @@ func (x *EnvironmentList) String() string {
 func (*EnvironmentList) ProtoMessage() {}
 
 func (x *EnvironmentList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[8]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -702,7 +871,7 @@ func (x *EnvironmentList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentList.ProtoReflect.Descriptor instead.
 func (*EnvironmentList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{8}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *EnvironmentList) GetTotalPages() int32 {
@@ -731,7 +900,7 @@ type GetByProductIdAndEnvironmentNameQueryInput struct {
 func (x *GetByProductIdAndEnvironmentNameQueryInput) Reset() {
 	*x = GetByProductIdAndEnvironmentNameQueryInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[9]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -744,7 +913,7 @@ func (x *GetByProductIdAndEnvironmentNameQueryInput) String() string {
 func (*GetByProductIdAndEnvironmentNameQueryInput) ProtoMessage() {}
 
 func (x *GetByProductIdAndEnvironmentNameQueryInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[9]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -757,7 +926,7 @@ func (x *GetByProductIdAndEnvironmentNameQueryInput) ProtoReflect() protoreflect
 
 // Deprecated: Use GetByProductIdAndEnvironmentNameQueryInput.ProtoReflect.Descriptor instead.
 func (*GetByProductIdAndEnvironmentNameQueryInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{9}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetByProductIdAndEnvironmentNameQueryInput) GetProductId() string {
@@ -789,7 +958,7 @@ type ByEnvironmentByNamespaceInput struct {
 func (x *ByEnvironmentByNamespaceInput) Reset() {
 	*x = ByEnvironmentByNamespaceInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[10]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -802,7 +971,7 @@ func (x *ByEnvironmentByNamespaceInput) String() string {
 func (*ByEnvironmentByNamespaceInput) ProtoMessage() {}
 
 func (x *ByEnvironmentByNamespaceInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[10]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -815,7 +984,7 @@ func (x *ByEnvironmentByNamespaceInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ByEnvironmentByNamespaceInput.ProtoReflect.Descriptor instead.
 func (*ByEnvironmentByNamespaceInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{10}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ByEnvironmentByNamespaceInput) GetEnvironmentId() string {
@@ -847,7 +1016,7 @@ type CloneEnvironmentCommandInput struct {
 func (x *CloneEnvironmentCommandInput) Reset() {
 	*x = CloneEnvironmentCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[11]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -860,7 +1029,7 @@ func (x *CloneEnvironmentCommandInput) String() string {
 func (*CloneEnvironmentCommandInput) ProtoMessage() {}
 
 func (x *CloneEnvironmentCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[11]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -873,7 +1042,7 @@ func (x *CloneEnvironmentCommandInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CloneEnvironmentCommandInput.ProtoReflect.Descriptor instead.
 func (*CloneEnvironmentCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{11}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CloneEnvironmentCommandInput) GetSourceEnvironmentId() string {
@@ -922,7 +1091,7 @@ type EnvironmentVariable struct {
 func (x *EnvironmentVariable) Reset() {
 	*x = EnvironmentVariable{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[12]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -935,7 +1104,7 @@ func (x *EnvironmentVariable) String() string {
 func (*EnvironmentVariable) ProtoMessage() {}
 
 func (x *EnvironmentVariable) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[12]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -948,7 +1117,7 @@ func (x *EnvironmentVariable) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentVariable.ProtoReflect.Descriptor instead.
 func (*EnvironmentVariable) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{12}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *EnvironmentVariable) GetAudit() *audit.AuditInfo {
@@ -991,7 +1160,7 @@ type EnvironmentVariables struct {
 func (x *EnvironmentVariables) Reset() {
 	*x = EnvironmentVariables{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[13]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1004,7 +1173,7 @@ func (x *EnvironmentVariables) String() string {
 func (*EnvironmentVariables) ProtoMessage() {}
 
 func (x *EnvironmentVariables) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[13]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1017,7 +1186,7 @@ func (x *EnvironmentVariables) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentVariables.ProtoReflect.Descriptor instead.
 func (*EnvironmentVariables) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{13}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *EnvironmentVariables) GetEntries() []*EnvironmentVariable {
@@ -1040,7 +1209,7 @@ type EnvironmentVariableList struct {
 func (x *EnvironmentVariableList) Reset() {
 	*x = EnvironmentVariableList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[14]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1053,7 +1222,7 @@ func (x *EnvironmentVariableList) String() string {
 func (*EnvironmentVariableList) ProtoMessage() {}
 
 func (x *EnvironmentVariableList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[14]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1066,7 +1235,7 @@ func (x *EnvironmentVariableList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentVariableList.ProtoReflect.Descriptor instead.
 func (*EnvironmentVariableList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{14}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *EnvironmentVariableList) GetTotalPages() int32 {
@@ -1095,7 +1264,7 @@ type EnvironmentVariableId struct {
 func (x *EnvironmentVariableId) Reset() {
 	*x = EnvironmentVariableId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[15]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1108,7 +1277,7 @@ func (x *EnvironmentVariableId) String() string {
 func (*EnvironmentVariableId) ProtoMessage() {}
 
 func (x *EnvironmentVariableId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[15]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1121,7 +1290,7 @@ func (x *EnvironmentVariableId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentVariableId.ProtoReflect.Descriptor instead.
 func (*EnvironmentVariableId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{15}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *EnvironmentVariableId) GetValue() string {
@@ -1143,7 +1312,7 @@ type EnvironmentVariableValue struct {
 func (x *EnvironmentVariableValue) Reset() {
 	*x = EnvironmentVariableValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[16]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1156,7 +1325,7 @@ func (x *EnvironmentVariableValue) String() string {
 func (*EnvironmentVariableValue) ProtoMessage() {}
 
 func (x *EnvironmentVariableValue) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[16]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1169,7 +1338,7 @@ func (x *EnvironmentVariableValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentVariableValue.ProtoReflect.Descriptor instead.
 func (*EnvironmentVariableValue) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{16}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *EnvironmentVariableValue) GetValue() string {
@@ -1194,7 +1363,7 @@ type AddEnvironmentVariablesCommandInput struct {
 func (x *AddEnvironmentVariablesCommandInput) Reset() {
 	*x = AddEnvironmentVariablesCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[17]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1207,7 +1376,7 @@ func (x *AddEnvironmentVariablesCommandInput) String() string {
 func (*AddEnvironmentVariablesCommandInput) ProtoMessage() {}
 
 func (x *AddEnvironmentVariablesCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[17]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1220,7 +1389,7 @@ func (x *AddEnvironmentVariablesCommandInput) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use AddEnvironmentVariablesCommandInput.ProtoReflect.Descriptor instead.
 func (*AddEnvironmentVariablesCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{17}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *AddEnvironmentVariablesCommandInput) GetEnvironmentId() string {
@@ -1270,7 +1439,7 @@ type EnvironmentSecret struct {
 func (x *EnvironmentSecret) Reset() {
 	*x = EnvironmentSecret{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[18]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[21]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1283,7 +1452,7 @@ func (x *EnvironmentSecret) String() string {
 func (*EnvironmentSecret) ProtoMessage() {}
 
 func (x *EnvironmentSecret) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[18]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[21]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1296,7 +1465,7 @@ func (x *EnvironmentSecret) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSecret.ProtoReflect.Descriptor instead.
 func (*EnvironmentSecret) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{18}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *EnvironmentSecret) GetAudit() *audit.AuditInfo {
@@ -1339,7 +1508,7 @@ type EnvironmentSecrets struct {
 func (x *EnvironmentSecrets) Reset() {
 	*x = EnvironmentSecrets{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[19]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[22]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1352,7 +1521,7 @@ func (x *EnvironmentSecrets) String() string {
 func (*EnvironmentSecrets) ProtoMessage() {}
 
 func (x *EnvironmentSecrets) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[19]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[22]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1365,7 +1534,7 @@ func (x *EnvironmentSecrets) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSecrets.ProtoReflect.Descriptor instead.
 func (*EnvironmentSecrets) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{19}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *EnvironmentSecrets) GetEntries() []*EnvironmentSecret {
@@ -1388,7 +1557,7 @@ type EnvironmentSecretList struct {
 func (x *EnvironmentSecretList) Reset() {
 	*x = EnvironmentSecretList{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[20]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[23]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1401,7 +1570,7 @@ func (x *EnvironmentSecretList) String() string {
 func (*EnvironmentSecretList) ProtoMessage() {}
 
 func (x *EnvironmentSecretList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[20]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[23]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1414,7 +1583,7 @@ func (x *EnvironmentSecretList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSecretList.ProtoReflect.Descriptor instead.
 func (*EnvironmentSecretList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{20}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *EnvironmentSecretList) GetTotalPages() int32 {
@@ -1443,7 +1612,7 @@ type EnvironmentSecretId struct {
 func (x *EnvironmentSecretId) Reset() {
 	*x = EnvironmentSecretId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[21]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[24]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1456,7 +1625,7 @@ func (x *EnvironmentSecretId) String() string {
 func (*EnvironmentSecretId) ProtoMessage() {}
 
 func (x *EnvironmentSecretId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[21]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[24]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1469,7 +1638,7 @@ func (x *EnvironmentSecretId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSecretId.ProtoReflect.Descriptor instead.
 func (*EnvironmentSecretId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{21}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *EnvironmentSecretId) GetValue() string {
@@ -1491,7 +1660,7 @@ type EnvironmentSecretValue struct {
 func (x *EnvironmentSecretValue) Reset() {
 	*x = EnvironmentSecretValue{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[22]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[25]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1504,7 +1673,7 @@ func (x *EnvironmentSecretValue) String() string {
 func (*EnvironmentSecretValue) ProtoMessage() {}
 
 func (x *EnvironmentSecretValue) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[22]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[25]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1517,7 +1686,7 @@ func (x *EnvironmentSecretValue) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentSecretValue.ProtoReflect.Descriptor instead.
 func (*EnvironmentSecretValue) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{22}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *EnvironmentSecretValue) GetValue() string {
@@ -1554,7 +1723,7 @@ type AddEnvironmentSecretsCommandInput struct {
 func (x *AddEnvironmentSecretsCommandInput) Reset() {
 	*x = AddEnvironmentSecretsCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[23]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[26]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1567,7 +1736,7 @@ func (x *AddEnvironmentSecretsCommandInput) String() string {
 func (*AddEnvironmentSecretsCommandInput) ProtoMessage() {}
 
 func (x *AddEnvironmentSecretsCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[23]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[26]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1580,7 +1749,7 @@ func (x *AddEnvironmentSecretsCommandInput) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use AddEnvironmentSecretsCommandInput.ProtoReflect.Descriptor instead.
 func (*AddEnvironmentSecretsCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{23}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *AddEnvironmentSecretsCommandInput) GetEnvironmentId() string {
@@ -1620,7 +1789,7 @@ type AddEnvironmentSecretCommandInput struct {
 func (x *AddEnvironmentSecretCommandInput) Reset() {
 	*x = AddEnvironmentSecretCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[24]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[27]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1633,7 +1802,7 @@ func (x *AddEnvironmentSecretCommandInput) String() string {
 func (*AddEnvironmentSecretCommandInput) ProtoMessage() {}
 
 func (x *AddEnvironmentSecretCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[24]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[27]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1646,7 +1815,7 @@ func (x *AddEnvironmentSecretCommandInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddEnvironmentSecretCommandInput.ProtoReflect.Descriptor instead.
 func (*AddEnvironmentSecretCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{24}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *AddEnvironmentSecretCommandInput) GetEnvironmentId() string {
@@ -1692,7 +1861,7 @@ type UpdateEnvironmentSecretValueCommandInput struct {
 func (x *UpdateEnvironmentSecretValueCommandInput) Reset() {
 	*x = UpdateEnvironmentSecretValueCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[25]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[28]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1705,7 +1874,7 @@ func (x *UpdateEnvironmentSecretValueCommandInput) String() string {
 func (*UpdateEnvironmentSecretValueCommandInput) ProtoMessage() {}
 
 func (x *UpdateEnvironmentSecretValueCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[25]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[28]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1718,7 +1887,7 @@ func (x *UpdateEnvironmentSecretValueCommandInput) ProtoReflect() protoreflect.M
 
 // Deprecated: Use UpdateEnvironmentSecretValueCommandInput.ProtoReflect.Descriptor instead.
 func (*UpdateEnvironmentSecretValueCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{25}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *UpdateEnvironmentSecretValueCommandInput) GetEnvironmentId() string {
@@ -1766,7 +1935,7 @@ type DeleteOrRestoreEnvironmentSecretCommandInput struct {
 func (x *DeleteOrRestoreEnvironmentSecretCommandInput) Reset() {
 	*x = DeleteOrRestoreEnvironmentSecretCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[26]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[29]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1779,7 +1948,7 @@ func (x *DeleteOrRestoreEnvironmentSecretCommandInput) String() string {
 func (*DeleteOrRestoreEnvironmentSecretCommandInput) ProtoMessage() {}
 
 func (x *DeleteOrRestoreEnvironmentSecretCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[26]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[29]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1792,7 +1961,7 @@ func (x *DeleteOrRestoreEnvironmentSecretCommandInput) ProtoReflect() protorefle
 
 // Deprecated: Use DeleteOrRestoreEnvironmentSecretCommandInput.ProtoReflect.Descriptor instead.
 func (*DeleteOrRestoreEnvironmentSecretCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{26}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *DeleteOrRestoreEnvironmentSecretCommandInput) GetEnvironmentId() string {
@@ -1833,7 +2002,7 @@ type GetByEnvironmentSecretIdInput struct {
 func (x *GetByEnvironmentSecretIdInput) Reset() {
 	*x = GetByEnvironmentSecretIdInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[27]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[30]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1846,7 +2015,7 @@ func (x *GetByEnvironmentSecretIdInput) String() string {
 func (*GetByEnvironmentSecretIdInput) ProtoMessage() {}
 
 func (x *GetByEnvironmentSecretIdInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[27]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[30]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1859,7 +2028,7 @@ func (x *GetByEnvironmentSecretIdInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetByEnvironmentSecretIdInput.ProtoReflect.Descriptor instead.
 func (*GetByEnvironmentSecretIdInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{27}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *GetByEnvironmentSecretIdInput) GetEnvironmentId() string {
@@ -1901,7 +2070,7 @@ type AddEnvironmentVariableCommandInput struct {
 func (x *AddEnvironmentVariableCommandInput) Reset() {
 	*x = AddEnvironmentVariableCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[28]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[31]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1914,7 +2083,7 @@ func (x *AddEnvironmentVariableCommandInput) String() string {
 func (*AddEnvironmentVariableCommandInput) ProtoMessage() {}
 
 func (x *AddEnvironmentVariableCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[28]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[31]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1927,7 +2096,7 @@ func (x *AddEnvironmentVariableCommandInput) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use AddEnvironmentVariableCommandInput.ProtoReflect.Descriptor instead.
 func (*AddEnvironmentVariableCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{28}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *AddEnvironmentVariableCommandInput) GetEnvironmentId() string {
@@ -1971,7 +2140,7 @@ type DeleteOrRestoreEnvironmentVariableCommandInput struct {
 func (x *DeleteOrRestoreEnvironmentVariableCommandInput) Reset() {
 	*x = DeleteOrRestoreEnvironmentVariableCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[29]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[32]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1984,7 +2153,7 @@ func (x *DeleteOrRestoreEnvironmentVariableCommandInput) String() string {
 func (*DeleteOrRestoreEnvironmentVariableCommandInput) ProtoMessage() {}
 
 func (x *DeleteOrRestoreEnvironmentVariableCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[29]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[32]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1997,7 +2166,7 @@ func (x *DeleteOrRestoreEnvironmentVariableCommandInput) ProtoReflect() protoref
 
 // Deprecated: Use DeleteOrRestoreEnvironmentVariableCommandInput.ProtoReflect.Descriptor instead.
 func (*DeleteOrRestoreEnvironmentVariableCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{29}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *DeleteOrRestoreEnvironmentVariableCommandInput) GetEnvironmentId() string {
@@ -2036,7 +2205,7 @@ type UpdateEnvironmentVariableValueCommandInput struct {
 func (x *UpdateEnvironmentVariableValueCommandInput) Reset() {
 	*x = UpdateEnvironmentVariableValueCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[30]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[33]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2049,7 +2218,7 @@ func (x *UpdateEnvironmentVariableValueCommandInput) String() string {
 func (*UpdateEnvironmentVariableValueCommandInput) ProtoMessage() {}
 
 func (x *UpdateEnvironmentVariableValueCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[30]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[33]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2062,7 +2231,7 @@ func (x *UpdateEnvironmentVariableValueCommandInput) ProtoReflect() protoreflect
 
 // Deprecated: Use UpdateEnvironmentVariableValueCommandInput.ProtoReflect.Descriptor instead.
 func (*UpdateEnvironmentVariableValueCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{30}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *UpdateEnvironmentVariableValueCommandInput) GetEnvironmentId() string {
@@ -2105,7 +2274,7 @@ type GetByEnvironmentVariableIdInput struct {
 func (x *GetByEnvironmentVariableIdInput) Reset() {
 	*x = GetByEnvironmentVariableIdInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[31]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[34]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2118,7 +2287,7 @@ func (x *GetByEnvironmentVariableIdInput) String() string {
 func (*GetByEnvironmentVariableIdInput) ProtoMessage() {}
 
 func (x *GetByEnvironmentVariableIdInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[31]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[34]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2131,7 +2300,7 @@ func (x *GetByEnvironmentVariableIdInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetByEnvironmentVariableIdInput.ProtoReflect.Descriptor instead.
 func (*GetByEnvironmentVariableIdInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{31}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *GetByEnvironmentVariableIdInput) GetEnvironmentId() string {
@@ -2181,7 +2350,7 @@ type EnvironmentEndpointDomain struct {
 func (x *EnvironmentEndpointDomain) Reset() {
 	*x = EnvironmentEndpointDomain{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[32]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[35]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2194,7 +2363,7 @@ func (x *EnvironmentEndpointDomain) String() string {
 func (*EnvironmentEndpointDomain) ProtoMessage() {}
 
 func (x *EnvironmentEndpointDomain) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[32]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[35]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2207,7 +2376,7 @@ func (x *EnvironmentEndpointDomain) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EnvironmentEndpointDomain.ProtoReflect.Descriptor instead.
 func (*EnvironmentEndpointDomain) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{32}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *EnvironmentEndpointDomain) GetAudit() *audit.AuditInfo {
@@ -2275,7 +2444,7 @@ type AddOrUpdateEndpointDomainCommandInput struct {
 func (x *AddOrUpdateEndpointDomainCommandInput) Reset() {
 	*x = AddOrUpdateEndpointDomainCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[33]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[36]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2288,7 +2457,7 @@ func (x *AddOrUpdateEndpointDomainCommandInput) String() string {
 func (*AddOrUpdateEndpointDomainCommandInput) ProtoMessage() {}
 
 func (x *AddOrUpdateEndpointDomainCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[33]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[36]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2301,7 +2470,7 @@ func (x *AddOrUpdateEndpointDomainCommandInput) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use AddOrUpdateEndpointDomainCommandInput.ProtoReflect.Descriptor instead.
 func (*AddOrUpdateEndpointDomainCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{33}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *AddOrUpdateEndpointDomainCommandInput) GetEnvironmentId() string {
@@ -2334,7 +2503,7 @@ type DeleteEndpointDomainCommandInput struct {
 func (x *DeleteEndpointDomainCommandInput) Reset() {
 	*x = DeleteEndpointDomainCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[34]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[37]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2347,7 +2516,7 @@ func (x *DeleteEndpointDomainCommandInput) String() string {
 func (*DeleteEndpointDomainCommandInput) ProtoMessage() {}
 
 func (x *DeleteEndpointDomainCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[34]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[37]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2360,7 +2529,7 @@ func (x *DeleteEndpointDomainCommandInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteEndpointDomainCommandInput.ProtoReflect.Descriptor instead.
 func (*DeleteEndpointDomainCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{34}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *DeleteEndpointDomainCommandInput) GetEnvironmentId() string {
@@ -2395,17 +2564,20 @@ type ResourceEnvironmentInfo struct {
 	// environment name
 	// value is computed from the environment.
 	EnvironmentName string `protobuf:"bytes,4,opt,name=environment_name,json=environmentName,proto3" json:"environment_name,omitempty"`
-	// kubernetes cluster in which the environment resource is created in.
-	// value is computed from the environment.
-	KubeClusterId string `protobuf:"bytes,5,opt,name=kube_cluster_id,json=kubeClusterId,proto3" json:"kube_cluster_id,omitempty"`
-	// kubernetes provider is derived from the connected kube-cluster
-	KubernetesProvider enums.KubernetesProvider `protobuf:"varint,6,opt,name=kubernetes_provider,json=kubernetesProvider,proto3,enum=cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider" json:"kubernetes_provider,omitempty"`
+	// provider for the cloud-account configured for the environment.
+	CloudProvider enums.CloudProvider `protobuf:"varint,5,opt,name=cloud_provider,json=cloudProvider,proto3,enum=cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider" json:"cloud_provider,omitempty"`
+	// id of the cloud-account configured for the environment.
+	CloudAccountId string `protobuf:"bytes,6,opt,name=cloud_account_id,json=cloudAccountId,proto3" json:"cloud_account_id,omitempty"`
+	// provider for the kube-cluster configured for the environment.
+	KubernetesProvider enums1.KubernetesProvider `protobuf:"varint,7,opt,name=kubernetes_provider,json=kubernetesProvider,proto3,enum=cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider" json:"kubernetes_provider,omitempty"`
+	// id of the kube-cluster configured for the environment.
+	KubeClusterId string `protobuf:"bytes,8,opt,name=kube_cluster_id,json=kubeClusterId,proto3" json:"kube_cluster_id,omitempty"`
 }
 
 func (x *ResourceEnvironmentInfo) Reset() {
 	*x = ResourceEnvironmentInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[35]
+		mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[38]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -2418,7 +2590,7 @@ func (x *ResourceEnvironmentInfo) String() string {
 func (*ResourceEnvironmentInfo) ProtoMessage() {}
 
 func (x *ResourceEnvironmentInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[35]
+	mi := &file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[38]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2431,7 +2603,7 @@ func (x *ResourceEnvironmentInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceEnvironmentInfo.ProtoReflect.Descriptor instead.
 func (*ResourceEnvironmentInfo) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{35}
+	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *ResourceEnvironmentInfo) GetCompanyId() string {
@@ -2462,18 +2634,32 @@ func (x *ResourceEnvironmentInfo) GetEnvironmentName() string {
 	return ""
 }
 
+func (x *ResourceEnvironmentInfo) GetCloudProvider() enums.CloudProvider {
+	if x != nil {
+		return x.CloudProvider
+	}
+	return enums.CloudProvider(0)
+}
+
+func (x *ResourceEnvironmentInfo) GetCloudAccountId() string {
+	if x != nil {
+		return x.CloudAccountId
+	}
+	return ""
+}
+
+func (x *ResourceEnvironmentInfo) GetKubernetesProvider() enums1.KubernetesProvider {
+	if x != nil {
+		return x.KubernetesProvider
+	}
+	return enums1.KubernetesProvider(0)
+}
+
 func (x *ResourceEnvironmentInfo) GetKubeClusterId() string {
 	if x != nil {
 		return x.KubeClusterId
 	}
 	return ""
-}
-
-func (x *ResourceEnvironmentInfo) GetKubernetesProvider() enums.KubernetesProvider {
-	if x != nil {
-		return x.KubernetesProvider
-	}
-	return enums.KubernetesProvider(0)
 }
 
 var File_cloud_planton_apis_v1_code2cloud_environment_model_proto protoreflect.FileDescriptor
@@ -2491,6 +2677,10 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc = []by
 	0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64,
 	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2f, 0x6b,
 	0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2f, 0x65, 0x6e, 0x75, 0x6d, 0x73,
+	0x2f, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x3e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73,
+	0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x65,
+	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2f, 0x65, 0x6e, 0x75, 0x6d, 0x73,
 	0x2f, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x2f, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73,
 	0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x75, 0x64, 0x69,
@@ -2560,8 +2750,8 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc = []by
 	0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73,
 	0x74, 0x61, 0x74, 0x75, 0x73, 0x3a, 0x27, 0x90, 0xb5, 0x18, 0x00, 0x98, 0xb5, 0x18, 0x01, 0x88,
 	0xa6, 0x1d, 0x09, 0x90, 0xa6, 0x1d, 0x01, 0x9a, 0xa6, 0x1d, 0x13, 0x08, 0x14, 0x12, 0x0f, 0x73,
-	0x70, 0x65, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x22, 0xf0,
-	0x06, 0x0a, 0x0f, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70,
+	0x70, 0x65, 0x63, 0x2e, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x22, 0xe3,
+	0x07, 0x0a, 0x0f, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70,
 	0x65, 0x63, 0x12, 0x23, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x09, 0x63, 0x6f,
 	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x12, 0x27, 0x0a, 0x0a, 0x70, 0x72, 0x6f, 0x64, 0x75,
@@ -2590,60 +2780,104 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc = []by
 	0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e,
 	0x6d, 0x65, 0x6e, 0x74, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x44, 0x6f, 0x6d, 0x61,
 	0x69, 0x6e, 0x52, 0x0f, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x44, 0x6f, 0x6d, 0x61,
-	0x69, 0x6e, 0x73, 0x12, 0x6f, 0x0a, 0x0c, 0x6b, 0x75, 0x62, 0x65, 0x5f, 0x63, 0x6c, 0x75, 0x73,
-	0x74, 0x65, 0x72, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4c, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x69, 0x6e, 0x73, 0x12, 0x7b, 0x0a, 0x12, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x61, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x73, 0x70, 0x65, 0x63, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x4d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
+	0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x45,
+	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x43, 0x6c,
+	0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x52, 0x10,
+	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63,
+	0x12, 0x78, 0x0a, 0x11, 0x6b, 0x75, 0x62, 0x65, 0x5f, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x5f, 0x73, 0x70, 0x65, 0x63, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4c, 0x2e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65,
+	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72,
+	0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x52, 0x0f, 0x6b, 0x75, 0x62, 0x65, 0x43,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x81, 0x01, 0x0a, 0x14, 0x73,
+	0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x5f, 0x62, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x5f, 0x73,
+	0x70, 0x65, 0x63, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4f, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76,
 	0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76,
 	0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e,
-	0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75, 0x73,
-	0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x52, 0x0b, 0x6b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75,
-	0x73, 0x74, 0x65, 0x72, 0x12, 0x8a, 0x01, 0x0a, 0x15, 0x6d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x18, 0x09,
-	0x20, 0x01, 0x28, 0x0b, 0x32, 0x55, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64,
-	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d,
-	0x65, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53,
-	0x70, 0x65, 0x63, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49,
-	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x52, 0x14, 0x6d, 0x69, 0x63,
-	0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
-	0x65, 0x12, 0x4c, 0x0a, 0x23, 0x69, 0x73, 0x5f, 0x69, 0x6e, 0x68, 0x65, 0x72, 0x69, 0x74, 0x5f,
-	0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x5f, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73,
-	0x5f, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x08, 0x52, 0x1f,
-	0x69, 0x73, 0x49, 0x6e, 0x68, 0x65, 0x72, 0x69, 0x74, 0x45, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e,
-	0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x73, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x12,
-	0x50, 0x0a, 0x22, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x73,
-	0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x5f, 0x67, 0x63, 0x70, 0x5f, 0x70, 0x72, 0x6f, 0x6a, 0x65,
-	0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x0b, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18,
-	0x01, 0x52, 0x1e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x65,
-	0x63, 0x72, 0x65, 0x74, 0x73, 0x47, 0x63, 0x70, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x49,
-	0x64, 0x22, 0xbb, 0x03, 0x0a, 0x1e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e,
+	0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x42,
+	0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x53, 0x70, 0x65, 0x63, 0x52, 0x12, 0x73, 0x65, 0x63, 0x72,
+	0x65, 0x74, 0x73, 0x42, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x53, 0x70, 0x65, 0x63, 0x12, 0x93,
+	0x01, 0x0a, 0x1a, 0x6d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f,
+	0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x73, 0x70, 0x65, 0x63, 0x18, 0x0b, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x55, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
+	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65,
+	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65,
+	0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70,
+	0x65, 0x63, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x52, 0x18, 0x6d, 0x69, 0x63, 0x72,
+	0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x53, 0x70, 0x65, 0x63, 0x22, 0xba, 0x01, 0x0a, 0x1f, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e,
+	0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63,
+	0x6f, 0x75, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x12, 0x63, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76,
+	0x69, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x41, 0x2e, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
+	0x76, 0x31, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2e, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e,
+	0x43, 0x6c, 0x6f, 0x75, 0x64, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8,
+	0xb8, 0x18, 0x01, 0x52, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x32, 0x0a,
+	0x10, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69,
+	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xc0, 0xb8, 0x18, 0x01, 0xd0, 0xb8, 0x18,
+	0x01, 0x52, 0x0e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49,
+	0x64, 0x22, 0xa5, 0x03, 0x0a, 0x1e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e,
 	0x74, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x53, 0x70, 0x65, 0x63, 0x12, 0x84, 0x01, 0x0a, 0x13, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
-	0x74, 0x65, 0x73, 0x5f, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0e, 0x32, 0x4d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32,
-	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x6b, 0x75, 0x62,
-	0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x4b,
-	0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
-	0x72, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x12, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
-	0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x30, 0x0a, 0x0f, 0x6b,
-	0x75, 0x62, 0x65, 0x5f, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x08, 0xc0, 0xb8, 0x18, 0x01, 0xd0, 0xb8, 0x18, 0x01, 0x52, 0x0d,
-	0x6b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x34, 0x0a,
-	0x13, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73,
-	0x73, 0x5f, 0x69, 0x70, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01,
-	0x52, 0x11, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73,
-	0x73, 0x49, 0x70, 0x12, 0x34, 0x0a, 0x13, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f,
-	0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
-	0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x11, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
-	0x49, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x49, 0x70, 0x12, 0x39, 0x0a, 0x16, 0x63, 0x65, 0x72,
-	0x74, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x5f, 0x67, 0x73, 0x61, 0x5f, 0x65, 0x6d,
-	0x61, 0x69, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52,
-	0x13, 0x63, 0x65, 0x72, 0x74, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x47, 0x73, 0x61, 0x45,
-	0x6d, 0x61, 0x69, 0x6c, 0x12, 0x39, 0x0a, 0x16, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c,
-	0x5f, 0x64, 0x6e, 0x73, 0x5f, 0x67, 0x73, 0x61, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x06,
-	0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x13, 0x65, 0x78, 0x74, 0x65,
-	0x72, 0x6e, 0x61, 0x6c, 0x44, 0x6e, 0x73, 0x47, 0x73, 0x61, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x22,
+	0x53, 0x70, 0x65, 0x63, 0x12, 0x6f, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
+	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63,
+	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79,
+	0x2e, 0x6b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75,
+	0x6d, 0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f,
+	0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x08, 0x70, 0x72, 0x6f,
+	0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x30, 0x0a, 0x0f, 0x6b, 0x75, 0x62, 0x65, 0x5f, 0x63, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x08,
+	0xc0, 0xb8, 0x18, 0x01, 0xd0, 0xb8, 0x18, 0x01, 0x52, 0x0d, 0x6b, 0x75, 0x62, 0x65, 0x43, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x34, 0x0a, 0x13, 0x65, 0x78, 0x74, 0x65, 0x72,
+	0x6e, 0x61, 0x6c, 0x5f, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x69, 0x70, 0x18, 0x03,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x11, 0x65, 0x78, 0x74, 0x65,
+	0x72, 0x6e, 0x61, 0x6c, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x49, 0x70, 0x12, 0x34, 0x0a,
+	0x13, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73,
+	0x73, 0x5f, 0x69, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01,
+	0x52, 0x11, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73,
+	0x73, 0x49, 0x70, 0x12, 0x39, 0x0a, 0x16, 0x63, 0x65, 0x72, 0x74, 0x5f, 0x6d, 0x61, 0x6e, 0x61,
+	0x67, 0x65, 0x72, 0x5f, 0x67, 0x73, 0x61, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x05, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x13, 0x63, 0x65, 0x72, 0x74, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x47, 0x73, 0x61, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x39,
+	0x0a, 0x16, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f, 0x64, 0x6e, 0x73, 0x5f, 0x67,
+	0x73, 0x61, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04,
+	0xc8, 0xb8, 0x18, 0x01, 0x52, 0x13, 0x65, 0x78, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x44, 0x6e,
+	0x73, 0x47, 0x73, 0x61, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x22, 0xbf, 0x02, 0x0a, 0x21, 0x45, 0x6e,
+	0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x53, 0x65, 0x63,
+	0x72, 0x65, 0x74, 0x73, 0x42, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64, 0x53, 0x70, 0x65, 0x63, 0x12,
+	0x75, 0x0a, 0x08, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x0e, 0x32, 0x59, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
+	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74,
+	0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65,
+	0x6e, 0x74, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x42, 0x61, 0x63, 0x6b, 0x65, 0x6e, 0x64,
+	0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x54, 0x79, 0x70, 0x65, 0x52, 0x08, 0x70, 0x72,
+	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0xa2, 0x01, 0x0a, 0x18, 0x67, 0x63, 0x70, 0x5f, 0x73,
+	0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x5f, 0x73,
+	0x70, 0x65, 0x63, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x69, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76,
+	0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e,
+	0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x50,
+	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x6e, 0x66, 0x6f, 0x53, 0x70, 0x65, 0x63, 0x47,
+	0x63, 0x70, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72,
+	0x53, 0x70, 0x65, 0x63, 0x52, 0x15, 0x67, 0x63, 0x70, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73,
+	0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x22, 0x62, 0x0a, 0x3b, 0x45,
+	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53, 0x70, 0x65, 0x63, 0x53, 0x65,
+	0x63, 0x72, 0x65, 0x74, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x49, 0x6e, 0x66,
+	0x6f, 0x53, 0x70, 0x65, 0x63, 0x47, 0x63, 0x70, 0x53, 0x65, 0x63, 0x72, 0x65, 0x74, 0x73, 0x4d,
+	0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x23, 0x0a, 0x0a, 0x70, 0x72,
+	0x6f, 0x6a, 0x65, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04,
+	0xc8, 0xb8, 0x18, 0x01, 0x52, 0x09, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x49, 0x64, 0x22,
 	0xe7, 0x01, 0x0a, 0x27, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x53,
 	0x70, 0x65, 0x63, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49,
 	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x12, 0x3d, 0x0a, 0x1b, 0x69,
@@ -2950,7 +3184,7 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc = []by
 	0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x2c, 0x0a, 0x12, 0x65,
 	0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e, 0x74, 0x5f, 0x64, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x5f, 0x69,
 	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x65, 0x6e, 0x64, 0x70, 0x6f, 0x69, 0x6e,
-	0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0xfa, 0x02, 0x0a, 0x17, 0x52, 0x65,
+	0x74, 0x44, 0x6f, 0x6d, 0x61, 0x69, 0x6e, 0x49, 0x64, 0x22, 0x9a, 0x04, 0x0a, 0x17, 0x52, 0x65,
 	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e,
 	0x74, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x23, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79,
 	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52,
@@ -2963,18 +3197,28 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc = []by
 	0x12, 0x2f, 0x0a, 0x10, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f,
 	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01,
 	0x52, 0x0f, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d,
-	0x65, 0x12, 0x2c, 0x0a, 0x0f, 0x6b, 0x75, 0x62, 0x65, 0x5f, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x5f, 0x69, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01,
-	0x52, 0x0d, 0x6b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12,
-	0x84, 0x01, 0x0a, 0x13, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x5f, 0x70,
-	0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4d, 0x2e,
-	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70,
-	0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73,
-	0x74, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e,
-	0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xb8,
-	0x18, 0x01, 0x52, 0x12, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72,
-	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0xfe, 0x02, 0x0a, 0x3a, 0x62, 0x75, 0x69, 0x6c, 0x64,
+	0x65, 0x12, 0x6e, 0x0a, 0x0e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x70, 0x72, 0x6f, 0x76, 0x69,
+	0x64, 0x65, 0x72, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
+	0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x43,
+	0x6c, 0x6f, 0x75, 0x64, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x04, 0xc8, 0xb8,
+	0x18, 0x01, 0x52, 0x0d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65,
+	0x72, 0x12, 0x2e, 0x0a, 0x10, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18,
+	0x01, 0x52, 0x0e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49,
+	0x64, 0x12, 0x84, 0x01, 0x0a, 0x13, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
+	0x5f, 0x70, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x4d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
+	0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x63, 0x6c,
+	0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65,
+	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x42, 0x04,
+	0xc8, 0xb8, 0x18, 0x01, 0x52, 0x12, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
+	0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x12, 0x2c, 0x0a, 0x0f, 0x6b, 0x75, 0x62, 0x65,
+	0x5f, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x08, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x04, 0xc8, 0xb8, 0x18, 0x01, 0x52, 0x0d, 0x6b, 0x75, 0x62, 0x65, 0x43, 0x6c, 0x75,
+	0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x42, 0xfe, 0x02, 0x0a, 0x3a, 0x62, 0x75, 0x69, 0x6c, 0x64,
 	0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
 	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63,
 	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f,
@@ -3013,85 +3257,96 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescGZIP()
 	return file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes = make([]protoimpl.MessageInfo, 37)
+var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes = make([]protoimpl.MessageInfo, 40)
 var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_goTypes = []interface{}{
-	(*Environment)(nil),                                         // 0: cloud.planton.apis.v1.code2cloud.environment.Environment
-	(*EnvironmentSpec)(nil),                                     // 1: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec
-	(*EnvironmentSpecKubeClusterSpec)(nil),                      // 2: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec
-	(*EnvironmentSpecMicroserviceInstanceSpec)(nil),             // 3: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec
-	(*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec)(nil), // 4: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpecPipelineSpec
-	(*EnvironmentStatus)(nil),                                   // 5: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus
-	(*Environments)(nil),                                        // 6: cloud.planton.apis.v1.code2cloud.environment.Environments
-	(*EnvironmentId)(nil),                                       // 7: cloud.planton.apis.v1.code2cloud.environment.EnvironmentId
-	(*EnvironmentList)(nil),                                     // 8: cloud.planton.apis.v1.code2cloud.environment.EnvironmentList
-	(*GetByProductIdAndEnvironmentNameQueryInput)(nil),          // 9: cloud.planton.apis.v1.code2cloud.environment.GetByProductIdAndEnvironmentNameQueryInput
-	(*ByEnvironmentByNamespaceInput)(nil),                       // 10: cloud.planton.apis.v1.code2cloud.environment.ByEnvironmentByNamespaceInput
-	(*CloneEnvironmentCommandInput)(nil),                        // 11: cloud.planton.apis.v1.code2cloud.environment.CloneEnvironmentCommandInput
-	(*EnvironmentVariable)(nil),                                 // 12: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
-	(*EnvironmentVariables)(nil),                                // 13: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariables
-	(*EnvironmentVariableList)(nil),                             // 14: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableList
-	(*EnvironmentVariableId)(nil),                               // 15: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableId
-	(*EnvironmentVariableValue)(nil),                            // 16: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableValue
-	(*AddEnvironmentVariablesCommandInput)(nil),                 // 17: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput
-	(*EnvironmentSecret)(nil),                                   // 18: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	(*EnvironmentSecrets)(nil),                                  // 19: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecrets
-	(*EnvironmentSecretList)(nil),                               // 20: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretList
-	(*EnvironmentSecretId)(nil),                                 // 21: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretId
-	(*EnvironmentSecretValue)(nil),                              // 22: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretValue
-	(*AddEnvironmentSecretsCommandInput)(nil),                   // 23: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretsCommandInput
-	(*AddEnvironmentSecretCommandInput)(nil),                    // 24: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretCommandInput
-	(*UpdateEnvironmentSecretValueCommandInput)(nil),            // 25: cloud.planton.apis.v1.code2cloud.environment.UpdateEnvironmentSecretValueCommandInput
-	(*DeleteOrRestoreEnvironmentSecretCommandInput)(nil),        // 26: cloud.planton.apis.v1.code2cloud.environment.DeleteOrRestoreEnvironmentSecretCommandInput
-	(*GetByEnvironmentSecretIdInput)(nil),                       // 27: cloud.planton.apis.v1.code2cloud.environment.GetByEnvironmentSecretIdInput
-	(*AddEnvironmentVariableCommandInput)(nil),                  // 28: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariableCommandInput
-	(*DeleteOrRestoreEnvironmentVariableCommandInput)(nil),      // 29: cloud.planton.apis.v1.code2cloud.environment.DeleteOrRestoreEnvironmentVariableCommandInput
-	(*UpdateEnvironmentVariableValueCommandInput)(nil),          // 30: cloud.planton.apis.v1.code2cloud.environment.UpdateEnvironmentVariableValueCommandInput
-	(*GetByEnvironmentVariableIdInput)(nil),                     // 31: cloud.planton.apis.v1.code2cloud.environment.GetByEnvironmentVariableIdInput
-	(*EnvironmentEndpointDomain)(nil),                           // 32: cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
-	(*AddOrUpdateEndpointDomainCommandInput)(nil),               // 33: cloud.planton.apis.v1.code2cloud.environment.AddOrUpdateEndpointDomainCommandInput
-	(*DeleteEndpointDomainCommandInput)(nil),                    // 34: cloud.planton.apis.v1.code2cloud.environment.DeleteEndpointDomainCommandInput
-	(*ResourceEnvironmentInfo)(nil),                             // 35: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
-	nil,                                                         // 36: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.EnvironmentVariablesEntry
-	(*resource.Metadata)(nil),                                   // 37: cloud.planton.apis.v1.commons.resource.Metadata
-	(enums.KubernetesProvider)(0),                               // 38: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
-	(*resource.RunnableResourceLifecycle)(nil),                  // 39: cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
-	(*audit.ResourceAudit)(nil),                                 // 40: cloud.planton.apis.v1.commons.audit.ResourceAudit
-	(*audit.AuditInfo)(nil),                                     // 41: cloud.planton.apis.v1.commons.audit.AuditInfo
+	(*Environment)(nil),                                                 // 0: cloud.planton.apis.v1.code2cloud.environment.Environment
+	(*EnvironmentSpec)(nil),                                             // 1: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec
+	(*EnvironmentSpecCloudAccountSpec)(nil),                             // 2: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecCloudAccountSpec
+	(*EnvironmentSpecKubeClusterSpec)(nil),                              // 3: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec
+	(*EnvironmentSpecSecretsBackendSpec)(nil),                           // 4: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsBackendSpec
+	(*EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec)(nil), // 5: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec
+	(*EnvironmentSpecMicroserviceInstanceSpec)(nil),                     // 6: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec
+	(*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec)(nil),         // 7: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpecPipelineSpec
+	(*EnvironmentStatus)(nil),                                           // 8: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus
+	(*Environments)(nil),                                                // 9: cloud.planton.apis.v1.code2cloud.environment.Environments
+	(*EnvironmentId)(nil),                                               // 10: cloud.planton.apis.v1.code2cloud.environment.EnvironmentId
+	(*EnvironmentList)(nil),                                             // 11: cloud.planton.apis.v1.code2cloud.environment.EnvironmentList
+	(*GetByProductIdAndEnvironmentNameQueryInput)(nil),                  // 12: cloud.planton.apis.v1.code2cloud.environment.GetByProductIdAndEnvironmentNameQueryInput
+	(*ByEnvironmentByNamespaceInput)(nil),                               // 13: cloud.planton.apis.v1.code2cloud.environment.ByEnvironmentByNamespaceInput
+	(*CloneEnvironmentCommandInput)(nil),                                // 14: cloud.planton.apis.v1.code2cloud.environment.CloneEnvironmentCommandInput
+	(*EnvironmentVariable)(nil),                                         // 15: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
+	(*EnvironmentVariables)(nil),                                        // 16: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariables
+	(*EnvironmentVariableList)(nil),                                     // 17: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableList
+	(*EnvironmentVariableId)(nil),                                       // 18: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableId
+	(*EnvironmentVariableValue)(nil),                                    // 19: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableValue
+	(*AddEnvironmentVariablesCommandInput)(nil),                         // 20: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput
+	(*EnvironmentSecret)(nil),                                           // 21: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	(*EnvironmentSecrets)(nil),                                          // 22: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecrets
+	(*EnvironmentSecretList)(nil),                                       // 23: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretList
+	(*EnvironmentSecretId)(nil),                                         // 24: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretId
+	(*EnvironmentSecretValue)(nil),                                      // 25: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretValue
+	(*AddEnvironmentSecretsCommandInput)(nil),                           // 26: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretsCommandInput
+	(*AddEnvironmentSecretCommandInput)(nil),                            // 27: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretCommandInput
+	(*UpdateEnvironmentSecretValueCommandInput)(nil),                    // 28: cloud.planton.apis.v1.code2cloud.environment.UpdateEnvironmentSecretValueCommandInput
+	(*DeleteOrRestoreEnvironmentSecretCommandInput)(nil),                // 29: cloud.planton.apis.v1.code2cloud.environment.DeleteOrRestoreEnvironmentSecretCommandInput
+	(*GetByEnvironmentSecretIdInput)(nil),                               // 30: cloud.planton.apis.v1.code2cloud.environment.GetByEnvironmentSecretIdInput
+	(*AddEnvironmentVariableCommandInput)(nil),                          // 31: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariableCommandInput
+	(*DeleteOrRestoreEnvironmentVariableCommandInput)(nil),              // 32: cloud.planton.apis.v1.code2cloud.environment.DeleteOrRestoreEnvironmentVariableCommandInput
+	(*UpdateEnvironmentVariableValueCommandInput)(nil),                  // 33: cloud.planton.apis.v1.code2cloud.environment.UpdateEnvironmentVariableValueCommandInput
+	(*GetByEnvironmentVariableIdInput)(nil),                             // 34: cloud.planton.apis.v1.code2cloud.environment.GetByEnvironmentVariableIdInput
+	(*EnvironmentEndpointDomain)(nil),                                   // 35: cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
+	(*AddOrUpdateEndpointDomainCommandInput)(nil),                       // 36: cloud.planton.apis.v1.code2cloud.environment.AddOrUpdateEndpointDomainCommandInput
+	(*DeleteEndpointDomainCommandInput)(nil),                            // 37: cloud.planton.apis.v1.code2cloud.environment.DeleteEndpointDomainCommandInput
+	(*ResourceEnvironmentInfo)(nil),                                     // 38: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
+	nil,                                                                 // 39: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.EnvironmentVariablesEntry
+	(*resource.Metadata)(nil),                                           // 40: cloud.planton.apis.v1.commons.resource.Metadata
+	(enums.CloudProvider)(0),                                            // 41: cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider
+	(enums1.KubernetesProvider)(0),                                      // 42: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
+	(enums2.EnvironmentSecretsBackendProviderType)(0),                   // 43: cloud.planton.apis.v1.code2cloud.environment.enums.EnvironmentSecretsBackendProviderType
+	(*resource.RunnableResourceLifecycle)(nil),                          // 44: cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
+	(*audit.ResourceAudit)(nil),                                         // 45: cloud.planton.apis.v1.commons.audit.ResourceAudit
+	(*audit.AuditInfo)(nil),                                             // 46: cloud.planton.apis.v1.commons.audit.AuditInfo
 }
 var file_cloud_planton_apis_v1_code2cloud_environment_model_proto_depIdxs = []int32{
-	37, // 0: cloud.planton.apis.v1.code2cloud.environment.Environment.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
+	40, // 0: cloud.planton.apis.v1.code2cloud.environment.Environment.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.environment.Environment.spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec
-	5,  // 2: cloud.planton.apis.v1.code2cloud.environment.Environment.status:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus
-	12, // 3: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.variables:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
-	18, // 4: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.secrets:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	32, // 5: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.endpoint_domains:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
-	2,  // 6: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.kube_cluster:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec
-	3,  // 7: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.microservice_instance:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec
-	38, // 8: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec.kubernetes_provider:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
-	4,  // 9: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec.pipeline:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpecPipelineSpec
-	39, // 10: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
-	40, // 11: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
-	0,  // 12: cloud.planton.apis.v1.code2cloud.environment.Environments.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
-	0,  // 13: cloud.planton.apis.v1.code2cloud.environment.EnvironmentList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
-	0,  // 14: cloud.planton.apis.v1.code2cloud.environment.CloneEnvironmentCommandInput.new_environment:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
-	41, // 15: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	12, // 16: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariables.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
-	12, // 17: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
-	36, // 18: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.environment_variables:type_name -> cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.EnvironmentVariablesEntry
-	41, // 19: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	18, // 20: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecrets.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	18, // 21: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	18, // 22: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretsCommandInput.environment_secrets:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	18, // 23: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretCommandInput.environment_secret:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
-	12, // 24: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariableCommandInput.variable:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
-	41, // 25: cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	32, // 26: cloud.planton.apis.v1.code2cloud.environment.AddOrUpdateEndpointDomainCommandInput.endpoint_domain:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
-	38, // 27: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo.kubernetes_provider:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
-	28, // [28:28] is the sub-list for method output_type
-	28, // [28:28] is the sub-list for method input_type
-	28, // [28:28] is the sub-list for extension type_name
-	28, // [28:28] is the sub-list for extension extendee
-	0,  // [0:28] is the sub-list for field type_name
+	8,  // 2: cloud.planton.apis.v1.code2cloud.environment.Environment.status:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus
+	15, // 3: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.variables:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
+	21, // 4: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.secrets:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	35, // 5: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.endpoint_domains:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
+	2,  // 6: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.cloud_account_spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecCloudAccountSpec
+	3,  // 7: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.kube_cluster_spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec
+	4,  // 8: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.secrets_backend_spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsBackendSpec
+	6,  // 9: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpec.microservice_instance_spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec
+	41, // 10: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecCloudAccountSpec.provider:type_name -> cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider
+	42, // 11: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecKubeClusterSpec.provider:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
+	43, // 12: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsBackendSpec.provider:type_name -> cloud.planton.apis.v1.code2cloud.environment.enums.EnvironmentSecretsBackendProviderType
+	5,  // 13: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsBackendSpec.gcp_secrets_manager_spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec
+	7,  // 14: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpec.pipeline:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSpecMicroserviceInstanceSpecPipelineSpec
+	44, // 15: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
+	45, // 16: cloud.planton.apis.v1.code2cloud.environment.EnvironmentStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
+	0,  // 17: cloud.planton.apis.v1.code2cloud.environment.Environments.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
+	0,  // 18: cloud.planton.apis.v1.code2cloud.environment.EnvironmentList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
+	0,  // 19: cloud.planton.apis.v1.code2cloud.environment.CloneEnvironmentCommandInput.new_environment:type_name -> cloud.planton.apis.v1.code2cloud.environment.Environment
+	46, // 20: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	15, // 21: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariables.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
+	15, // 22: cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariableList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
+	39, // 23: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.environment_variables:type_name -> cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariablesCommandInput.EnvironmentVariablesEntry
+	46, // 24: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	21, // 25: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecrets.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	21, // 26: cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecretList.entries:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	21, // 27: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretsCommandInput.environment_secrets:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	21, // 28: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentSecretCommandInput.environment_secret:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentSecret
+	15, // 29: cloud.planton.apis.v1.code2cloud.environment.AddEnvironmentVariableCommandInput.variable:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentVariable
+	46, // 30: cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	35, // 31: cloud.planton.apis.v1.code2cloud.environment.AddOrUpdateEndpointDomainCommandInput.endpoint_domain:type_name -> cloud.planton.apis.v1.code2cloud.environment.EnvironmentEndpointDomain
+	41, // 32: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo.cloud_provider:type_name -> cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider
+	42, // 33: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo.kubernetes_provider:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider
+	34, // [34:34] is the sub-list for method output_type
+	34, // [34:34] is the sub-list for method input_type
+	34, // [34:34] is the sub-list for extension type_name
+	34, // [34:34] is the sub-list for extension extendee
+	0,  // [0:34] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() }
@@ -3125,7 +3380,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSpecKubeClusterSpec); i {
+			switch v := v.(*EnvironmentSpecCloudAccountSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3137,7 +3392,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSpecMicroserviceInstanceSpec); i {
+			switch v := v.(*EnvironmentSpecKubeClusterSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3149,7 +3404,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec); i {
+			switch v := v.(*EnvironmentSpecSecretsBackendSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3161,7 +3416,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentStatus); i {
+			switch v := v.(*EnvironmentSpecSecretsProviderInfoSpecGcpSecretsManagerSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3173,7 +3428,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Environments); i {
+			switch v := v.(*EnvironmentSpecMicroserviceInstanceSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3185,7 +3440,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentId); i {
+			switch v := v.(*EnvironmentSpecMicroserviceInstanceSpecPipelineSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3197,7 +3452,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentList); i {
+			switch v := v.(*EnvironmentStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3209,7 +3464,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetByProductIdAndEnvironmentNameQueryInput); i {
+			switch v := v.(*Environments); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3221,7 +3476,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ByEnvironmentByNamespaceInput); i {
+			switch v := v.(*EnvironmentId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3233,7 +3488,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CloneEnvironmentCommandInput); i {
+			switch v := v.(*EnvironmentList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3245,7 +3500,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentVariable); i {
+			switch v := v.(*GetByProductIdAndEnvironmentNameQueryInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3257,7 +3512,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentVariables); i {
+			switch v := v.(*ByEnvironmentByNamespaceInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3269,7 +3524,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentVariableList); i {
+			switch v := v.(*CloneEnvironmentCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3281,7 +3536,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentVariableId); i {
+			switch v := v.(*EnvironmentVariable); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3293,7 +3548,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentVariableValue); i {
+			switch v := v.(*EnvironmentVariables); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3305,7 +3560,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddEnvironmentVariablesCommandInput); i {
+			switch v := v.(*EnvironmentVariableList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3317,7 +3572,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSecret); i {
+			switch v := v.(*EnvironmentVariableId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3329,7 +3584,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSecrets); i {
+			switch v := v.(*EnvironmentVariableValue); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3341,7 +3596,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSecretList); i {
+			switch v := v.(*AddEnvironmentVariablesCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3353,7 +3608,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSecretId); i {
+			switch v := v.(*EnvironmentSecret); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3365,7 +3620,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentSecretValue); i {
+			switch v := v.(*EnvironmentSecrets); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3377,7 +3632,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddEnvironmentSecretsCommandInput); i {
+			switch v := v.(*EnvironmentSecretList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3389,7 +3644,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddEnvironmentSecretCommandInput); i {
+			switch v := v.(*EnvironmentSecretId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3401,7 +3656,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateEnvironmentSecretValueCommandInput); i {
+			switch v := v.(*EnvironmentSecretValue); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3413,7 +3668,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteOrRestoreEnvironmentSecretCommandInput); i {
+			switch v := v.(*AddEnvironmentSecretsCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3425,7 +3680,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetByEnvironmentSecretIdInput); i {
+			switch v := v.(*AddEnvironmentSecretCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3437,7 +3692,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddEnvironmentVariableCommandInput); i {
+			switch v := v.(*UpdateEnvironmentSecretValueCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3449,7 +3704,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteOrRestoreEnvironmentVariableCommandInput); i {
+			switch v := v.(*DeleteOrRestoreEnvironmentSecretCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3461,7 +3716,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*UpdateEnvironmentVariableValueCommandInput); i {
+			switch v := v.(*GetByEnvironmentSecretIdInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3473,7 +3728,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetByEnvironmentVariableIdInput); i {
+			switch v := v.(*AddEnvironmentVariableCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3485,7 +3740,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*EnvironmentEndpointDomain); i {
+			switch v := v.(*DeleteOrRestoreEnvironmentVariableCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3497,7 +3752,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AddOrUpdateEndpointDomainCommandInput); i {
+			switch v := v.(*UpdateEnvironmentVariableValueCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3509,7 +3764,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*DeleteEndpointDomainCommandInput); i {
+			switch v := v.(*GetByEnvironmentVariableIdInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -3521,6 +3776,42 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EnvironmentEndpointDomain); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[36].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddOrUpdateEndpointDomainCommandInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[37].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteEndpointDomainCommandInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_code2cloud_environment_model_proto_msgTypes[38].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceEnvironmentInfo); i {
 			case 0:
 				return &v.state
@@ -3539,7 +3830,7 @@ func file_cloud_planton_apis_v1_code2cloud_environment_model_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_v1_code2cloud_environment_model_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   37,
+			NumMessages:   40,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

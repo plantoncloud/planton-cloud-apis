@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider;
+
+//cloud provider type
+enum CloudProviderType {
+  // default value when cloud provider name is not set
+  CLOUD_PROVIDER_TYPE_UNSPECIFIED = 0;
+  // amazon web services cloud provider
+  aws = 1;
+  // google cloud platform cloud provider
+  gcp = 2;
+  // microsoft azure cloud provider
+  azure = 3;
+  // alibaba cloud provider
+  alibaba = 4;
+  // oracle cloud provider
+  oracle = 5;
+}

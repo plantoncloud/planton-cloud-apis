@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.dnszoneprovider;
+
+// dns-zone provider
+enum DnsZoneProvider {
+  DNS_ZONE_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/dns
+  gcp_cloud_dns = 1;
+  //https://aws.amazon.com/route53/
+  aws_route53 = 2;
+  //https://azure.microsoft.com/en-us/products/dns
+  azure_dns = 3;
+  //https://docs.digitalocean.com/products/networking/dns/
+  digital_ocean_dns = 4;
+}

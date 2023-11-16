@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.enums.event;
+
+import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+
+enum StorageBucketEventType {
+  STORAGE_BUCKET_EVENT_TYPE_UNSPECIFIED = 0;
+  created = 1 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  updated = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  deleted = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  restored = 4 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  refreshed = 5 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = false,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  stack_job_progress_updated = 6 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  stack_job_refresh_requested = 7 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = refresh
+  ];
+  stack_job_refresh_completed = 8 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  stack_job_preview_requested = 9 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = preview
+  ];
+  stack_job_apply_requested = 10 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = apply
+  ];
+  stack_job_apply_completed = 11 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  stack_job_destroy_requested = 12 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_operation_type) = destroy
+  ];
+  stack_job_destroy_completed = 13 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+}

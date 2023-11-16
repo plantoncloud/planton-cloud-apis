@@ -79,28 +79,37 @@ message ArtifactStoreSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  //username used to pull and push changes to/from a repository on buf.build registry.
-  //this value is used in ci/cd pipelines of code-projects
-  string buf_username = 3;
+  //Buf Schema Registry repo
+  ArtifactStoreSpecBsrRepoSpec bsr_repo_spec = 3;
 
-  //token used to pull and push changes to/from a repository on buf.build registry.
-  //this value is used in ci/cd pipelines of code-projects
-  string buf_token = 4;
-
-  //base64 encoded git ssh key to clone golang code projects as part of code pipeline executions.
-  //used in code pipelines which would require git authentication to fetch dependencies that rely on git.
-  //both golang and swift code projects use git for dependency management.
-  string go_module_fetch_git_ssh_key_base64 = 5;
+  //Golang Repo with Git Provider
+  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo_spec = 4;
 
   //provider for the artifact-store repositories
-  cloud.planton.apis.v1.code2cloud.develop.artifactstore.enums.ArtifactStoreRepoProvider repo_provider = 6 [
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.enums.ArtifactStoreRepoProvider repo_provider = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   //specification for google cloud artifact registry.
   //this attribute is only populated when the artifact-store repo provider is artifact-registry on google cloud.
-  ArtifactStoreGcpArtifactRegistrySpec gcp_artifact_registry = 7;
+  ArtifactStoreGcpArtifactRegistrySpec gcp_artifact_registry = 6;
+}
+
+// artifact-store Buf Schema Registry(buf.build) repo spec
+message ArtifactStoreSpecBsrRepoSpec {
+  // username to authenticate with buf schema registry
+  string username = 1;
+  // token to be used in combination with username to authenticate with buf schema registry
+  string token = 2;
+}
+
+// artifact-store golang repository spec for git provider
+message ArtifactStoreSpecGolangRepoGitProviderSpec {
+  //base64 encoded git ssh key to clone golang code projects as part of code pipeline executions.
+  //used in code pipelines which would require git authentication to fetch dependencies that rely on git.
+  //both golang and swift code projects use git for dependency management.
+  string ssh_key_base64 = 1;
 }
 
 //artifact-store status

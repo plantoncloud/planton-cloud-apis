@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.progress.enums.statusevent;
+
+enum StackJobProgressStatusEventType {
+  STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_UNSPECIFIED = 0;
+  job_started = 1;
+  refresh_started = 2;
+  refresh_completed = 3;
+  preview_started = 4;
+  preview_completed = 5;
+  apply_started = 6;
+  apply_completed = 7;
+  destroy_started = 8;
+  destroy_completed = 9;
+  job_failed = 10;
+  job_succeeded = 11;
+}
