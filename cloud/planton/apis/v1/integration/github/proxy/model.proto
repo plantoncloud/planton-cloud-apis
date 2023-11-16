@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.integration.github.proxy;
 
 import "cloud/planton/apis/v1/integration/github/proxy/enums/enums.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/enums/enums.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto";
 
 //github client info
 message GithubClientInfo {
@@ -27,7 +27,7 @@ message GithubAppInstallation {
   //id of the github app installation
   int64 github_app_install_id = 3;
   //type of the account of the github app installation
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.enums.GithubAppInstallOwnerType install_owner_type = 4;
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType install_owner_type = 4;
   //id of the github app installation.
   //this is the name of the organization when the app is installed on an organization and id of the user when
   //the app is installed on a personal user account.
