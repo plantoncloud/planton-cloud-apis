@@ -2,16 +2,15 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.dnszone.stack.aws;
 
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model.proto";
 import "cloud/planton/apis/v1/commons/network/dns/domain/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/enums/enums.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 // input for dns-zone stack
 message DnsZoneAwsStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
   // pulumi stack credentials
   DnsZoneAwsStackCredentialsInput credentials_input = 2;
   // inputs used for creating stack resources
@@ -39,8 +38,8 @@ message DnsZoneAwsStackOutputs {
 
 //stack response
 message DnsZoneAwsStackResponse {
-//stack-job progress event
-  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
   //stack outputs
   DnsZoneAwsStackOutputs outputs = 3;
 }

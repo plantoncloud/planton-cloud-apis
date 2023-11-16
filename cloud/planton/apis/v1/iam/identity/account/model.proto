@@ -7,7 +7,7 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/iam/identity/account/enums/enums.proto";
+import "cloud/planton/apis/v1/iam/identity/account/enums/accounttype/account_type.proto";
 
 // identity-account for user-account or machine-account
 message IdentityAccount {
@@ -56,7 +56,7 @@ message IdentityAccountSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
   // identity account type to identify with the account is for a machine or user
-  cloud.planton.apis.v1.iam.identity.account.enums.IdentityAccountType identity_account_type = 2 [
+  cloud.planton.apis.v1.iam.identity.account.enums.accounttype.IdentityAccountType identity_account_type = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];

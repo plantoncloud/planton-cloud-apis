@@ -2,12 +2,14 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.pulumi.engine;
 
-import "cloud/planton/apis/v1/stack/pulumi/engine/enums/enums.proto";
-import "cloud/planton/apis/v1/stack/enums/enums.proto";
+import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
+import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
+import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
+import "cloud/planton/apis/v1/stack/pulumi/engine/enums/event/event.proto";
 
 message EngineEvent {
-  cloud.planton.apis.v1.stack.enums.StackOperationType operation_type = 1;
-  cloud.planton.apis.v1.stack.pulumi.engine.enums.PulumiEngineEventType event_type = 2;
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 1;
+  cloud.planton.apis.v1.stack.pulumi.engine.enums.event.PulumiEngineEventType event_type = 2;
   int32 sequence = 3;
   int32 timestamp = 4;
   CancelEvent cancel_event = 5;

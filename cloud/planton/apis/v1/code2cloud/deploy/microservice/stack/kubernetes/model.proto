@@ -2,15 +2,15 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.microservice.stack.kubernetes;
 
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //input for microservice-instance stack
 message MicroserviceInstanceKubernetesStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
   //pulumi stack credentials
   MicroserviceInstanceKubernetesStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -39,7 +39,7 @@ message MicroserviceInstanceKubernetesStackResourceInput {
   repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
   //kubernetes cluster project required to configure workload identity
   //service account is created in kubernetes cluster project and a binding created to workload identity pool.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject container_cluster_project = 3;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 3;
 }
 
 message KubernetesImagePullSecretInput {
@@ -60,7 +60,7 @@ message MicroserviceInstanceKubernetesStackOutputs {
 //stack response
 message MicroserviceInstanceKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
   //stack outputs
   MicroserviceInstanceKubernetesStackOutputs outputs = 2;
 }

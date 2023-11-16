@@ -2,14 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.billing;
 
-import "google/protobuf/empty.proto";
-
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-
-import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
 import "cloud/planton/apis/v1/billing/model.proto";
-
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
+import "google/protobuf/empty.proto";
 
 //billing command controller contains rpc definitions for operations that perform mutating/update operations on the billing domain objects.
 service BillingCommandController {

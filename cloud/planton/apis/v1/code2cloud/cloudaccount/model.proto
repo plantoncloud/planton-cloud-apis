@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.cloudaccount;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/cloudprovider/cloud_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/provider/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 // company cloud account
 message CloudAccount {
@@ -111,7 +111,7 @@ message CloudAccountSpec {
 
   // cloud provider.
   // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
-  cloud.planton.apis.v1.commons.cloud.provider.enums.CloudProvider cloud_provider = 2 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProviderType cloud_provider = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
@@ -217,12 +217,12 @@ message CloudAccountGcpSpec {
 message CloudAccountGcpStatus {
   // The GCP Project created to host shared services resources (e.g., artifact-store, DNS managed zones).
   // This is updated after the successful execution of a shared services stack.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject shared_services_project = 1;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject shared_services_project = 1;
 
   // A GCP Folder is created within the GCP Organization for each Cloud Account added to Platon Cloud.
   // Multiple Cloud Accounts can share the same Organization ID. Resources created for each Cloud Account are linked to this Folder.
   // Each Cloud Account's children include the shared services project and one Folder per kube-cluster.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.folder.GcpFolder cloud_account_folder = 2;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.folder.GcpFolder cloud_account_folder = 2;
 }
 
 // Specification for the Cloud Account in Amazon Web Services (AWS)

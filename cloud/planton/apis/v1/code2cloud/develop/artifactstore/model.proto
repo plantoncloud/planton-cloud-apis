@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.artifactstore;
 
-import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/provider/enums/repoprovider/repo_provider.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/google/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/enums/enums.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
+import "google/protobuf/timestamp.proto";
 
 //artifact-store
 message ArtifactStore {
@@ -86,7 +86,7 @@ message ArtifactStoreSpec {
   ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo_spec = 4;
 
   //provider for the artifact-store repositories
-  cloud.planton.apis.v1.code2cloud.develop.artifactstore.enums.ArtifactStoreRepoProvider repo_provider = 5 [
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];

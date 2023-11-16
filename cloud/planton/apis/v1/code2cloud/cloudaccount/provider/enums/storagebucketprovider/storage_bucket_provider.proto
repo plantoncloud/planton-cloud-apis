@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider;
 
 //provider for storage-bucket
-enum StorageBucketProviderTYPE {
+enum StorageBucketProviderType {
   STORAGE_BUCKET_PROVIDER_TYPE_UNSPECIFIED = 0;
   //https://cloud.google.com/storage
   gcp_gcs = 1;

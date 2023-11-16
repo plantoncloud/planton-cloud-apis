@@ -2,18 +2,19 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kubecluster;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/provider/awsaks/enums/workersmanagementmode/workers_management_mode.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/enums.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 // kube-cluster
 message KubeCluster {
@@ -83,7 +84,7 @@ message KubeClusterSpec {
   KubeClusterAddonsSpec kubernetes_addons = 3;
 
   // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 4 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
@@ -232,18 +233,18 @@ message KubeClusterGcpStatus {
   // a folder is created with the cloud account folder as parent for the kube-cluster.
   // resources created for kube-cluster are linked to this folder as the parent.
   // children for a cloud account are the gcp projects in the kube-cluster.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.folder.GcpFolder folder = 1;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.folder.GcpFolder folder = 1;
 
   // projects created on google cloud for this kube-cluster
   // this value is updated upon successful kube-cluster creation stack-job.
   // gcp project info for the kube-cluster project
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject container_cluster_project = 2;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 2;
 
   // gcp project info for vpc-network project
   // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
   // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
   // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
-  cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject vpc_network_project = 3;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject vpc_network_project = 3;
 
   // kube-cluster endpoint.
   string cluster_endpoint = 4;
@@ -367,7 +368,7 @@ message KubeClusterAwsSpec {
   ];
 
   // aws eks worker node-groups management mode
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.AwsEksWorkersManagementMode workers_management_mode = 4 [
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.provider.awsaks.enums.workersmanagementmode.AwsEksWorkersManagementMode workers_management_mode = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }
@@ -452,38 +453,38 @@ message KubeClusterGcpNodePoolCommandInput {
   KubeClusterNodePoolGcp gcp_node_pool = 2;
 }
 
-// AddOrUpdateKubeClusterNodePoolGcpCommandInput is a protobuf message designed to add or update or restore a GCP Node Pool in a specific Hosting Cluster.
+// AddOrUpdateKubeClusterNodePoolGcpCommandInput is a protobuf message designed to add or update or restore a GCP Node Pool in a specific Kube Cluster.
 message AddOrUpdateKubeClusterNodePoolGcpCommandInput {
 
-  // kube_cluster_id uniquely identifies the Hosting Cluster to which the operation applies.
+  // kube_cluster_id uniquely identifies the Kube Cluster to which the operation applies.
   string kube_cluster_id = 1;
 
-  // gcp_node_pool encapsulates the details about the Node Pool to be added or updated in the specified Hosting Cluster.
+  // gcp_node_pool encapsulates the details about the Node Pool to be added or updated in the specified Kube Cluster.
   KubeClusterNodePoolGcp gcp_node_pool = 2;
 }
 
 // DeleteOrRestoreKubeClusterNodePoolGcpCommandInput is a protobuf message designed for operations that either
-// soft delete (i.e., set an 'inactive' flag) or restore a GCP Node Pool in a specific Hosting Cluster.
+// soft delete (i.e., set an 'inactive' flag) or restore a GCP Node Pool in a specific Kube Cluster.
 // Soft deleting is typically used as a safer alternative to permanent deletion, providing an option for recovery.
 message DeleteKubeClusterNodePoolGcpCommandInput {
-  // kube_cluster_id is the unique identifier of the Hosting Cluster that contains the Node Pool
-  // which is targeted for deletion or restoration. This ID helps the server locate the specific Hosting Cluster.
+  // kube_cluster_id is the unique identifier of the Kube Cluster that contains the Node Pool
+  // which is targeted for deletion or restoration. This ID helps the server locate the specific Kube Cluster.
   string kube_cluster_id = 1;
 
-  // node_pool_id is the unique identifier of the Node Pool within the specified Hosting Cluster
+  // node_pool_id is the unique identifier of the Node Pool within the specified Kube Cluster
   // that needs to be deleted or restored. The server uses this ID to pinpoint the Node Pool for the operation.
   string node_pool_id = 2;
 }
 
-// GetByKubeClusterNodePoolGcpIdInput is a protobuf message used to retrieve a specific GCP Node Pool within a particular Hosting Cluster.
-// This message requires a Hosting Cluster identifier and a Node Pool identifier to execute the retrievalue operation successfully.
+// GetByKubeClusterNodePoolGcpIdInput is a protobuf message used to retrieve a specific GCP Node Pool within a particular Kube Cluster.
+// This message requires a Kube Cluster identifier and a Node Pool identifier to execute the retrieve value operation successfully.
 message GetByKubeClusterNodePoolGcpIdInput {
 
-  // kube_cluster_id is a unique identifier of the Hosting Cluster. This ID is used by the server to identify
-  // and locate the specific Hosting Cluster that contains the Node Pool of interest.
+  // kube_cluster_id is a unique identifier of the Kube Cluster. This ID is used by the server to identify
+  // and locate the specific Kube Cluster that contains the Node Pool of interest.
   string kube_cluster_id = 1;
 
-  // node_pool_id is the unique identifier of the GCP Node Pool within the specified Hosting Cluster.
+  // node_pool_id is the unique identifier of the GCP Node Pool within the specified Kube Cluster.
   // The server uses this ID to locate the specific Node Pool to be retrieved.
   string node_pool_id = 2;
 }

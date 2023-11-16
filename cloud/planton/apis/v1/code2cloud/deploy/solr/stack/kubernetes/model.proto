@@ -3,13 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes;
 
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/solr/model.proto";
 
 //input for solr-cloud stack
 message SolrCloudKubernetesStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
   //pulumi stack credentials
   SolrCloudKubernetesStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -36,8 +36,8 @@ message SolrCloudKubernetesStackOutputs {
 
 //stack response
 message SolrCloudKubernetesStackResponse {
-//stack-job progress event
-  cloud.planton.apis.v1.stack.StackJobProgressEvent progress_event = 1;
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
   //stack outputs
   SolrCloudKubernetesStackOutputs outputs = 3;
 }

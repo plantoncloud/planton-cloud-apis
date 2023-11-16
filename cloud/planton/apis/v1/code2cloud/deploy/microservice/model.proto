@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/enums/enums.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress/workload_ingress.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/enums/enums.proto";
@@ -13,7 +13,7 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -191,7 +191,7 @@ message MicroserviceInstanceSpecKubernetesIngress {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.environment.enums.KubernetesWorkloadIngressType ingress_type = 2 [
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
   //selected endpoint-domain from the environment endpoint-domains to configure dns
