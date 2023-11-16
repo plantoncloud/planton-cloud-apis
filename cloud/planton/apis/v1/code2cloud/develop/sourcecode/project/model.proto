@@ -2,14 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.project;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/enums/enums.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/enums/profile/profile.proto";
 
 //code-project
 message CodeProject {
@@ -144,9 +143,6 @@ message CodeProjectStatus {
 
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
-
-  // id of the stack-job
-  string stack_job_id = 97;
 }
 
 //wrapper for code project id
@@ -206,17 +202,17 @@ message CodeProjectProfile {
   //this field is only used in the local context and is ignored for operations performed on the server.
   bool is_deployable = 2;
   //code project language
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectLang lang = 3;
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectLang lang = 3;
   //code project category library vs cli vs microservice
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectCat cat = 4;
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectCat cat = 4;
   //code project sub category
   oneof sub_cat {
-    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectCatLibSubCat lib_sub_cat = 5;
-    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
   }
   //code project sub-sub category
   oneof sub_sub_cat {
-    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
-    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.enums.profile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
   }
 }

@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.solr;
 
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
-import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/solr/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
 
 //solr-cloud command controller
 service SolrCloudCommandController {

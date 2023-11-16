@@ -7,7 +7,7 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/iam/identity/connection/enums/enums.proto";
+import "cloud/planton/apis/v1/iam/identity/connection/provider/enums/enums.proto";
 
 //identity-connection used for linking a company's identity provider with planton cloud
 message IdentityConnection {
@@ -50,7 +50,7 @@ message IdentityConnectionSpec {
   string company_id = 1;
 
   // type of the identity connection.
-  cloud.planton.apis.v1.iam.identity.connection.enums.IdentityConnectionType connection_type = 2;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.IdentityConnectionType connection_type = 2;
 
   // (read-only) id assigned by auth0 upon successful creation of the enterprise connection.
   // this value is required to query auth0 system to get the details of the connection.
@@ -107,17 +107,17 @@ message SamlConnection {
   string sign_out_url = 4;
   string user_id_attribute = 5;
   bool sign_request = 6;
-  cloud.planton.apis.v1.iam.identity.connection.enums.SamlSignRequestAlgorithm sign_request_algorithm = 7;
-  cloud.planton.apis.v1.iam.identity.connection.enums.SamlSignRequestAlgorithmDigest sign_request_algorithm_digest = 8;
-  cloud.planton.apis.v1.iam.identity.connection.enums.SamlProtocolBinding protocol_binding = 9;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithm sign_request_algorithm = 7;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithmDigest sign_request_algorithm_digest = 8;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlProtocolBinding protocol_binding = 9;
 }
 
 message PingFederateConnection {
   string server_url = 1;
   string x509_signing_cert_base64 = 2;
   bool sign_request = 3;
-  cloud.planton.apis.v1.iam.identity.connection.enums.SamlSignRequestAlgorithm sign_request_algorithm = 4;
-  cloud.planton.apis.v1.iam.identity.connection.enums.SamlSignRequestAlgorithmDigest sign_request_algorithm_digest = 5;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithm sign_request_algorithm = 4;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithmDigest sign_request_algorithm_digest = 5;
 }
 
 message LdapConnection {
@@ -151,7 +151,7 @@ message AzureActiveDirectoryNativeConnection {
   string client_id = 2;
   string client_secret = 3;
   bool use_common_endpoint = 4;
-  cloud.planton.apis.v1.iam.identity.connection.enums.MicrosoftIdentityApi identity_api = 5;
+  cloud.planton.apis.v1.iam.identity.connection.provider.enums.MicrosoftIdentityApi identity_api = 5;
 }
 
 // wrapper to get list of identity connections

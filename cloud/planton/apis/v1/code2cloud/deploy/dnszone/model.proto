@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.dnszone;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/dnszoneprovider/dns_zone_provder.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/network/dns/record/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
@@ -9,9 +11,7 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/enums/enums.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //dns-zone
 message DnsZone {
@@ -66,7 +66,7 @@ message DnsZoneSpec {
   repeated DnsRecord records = 2;
 
   //provider for dns-zone
-  cloud.planton.apis.v1.code2cloud.deploy.dnszone.enums.DnsZoneProvider zone_provider = 3 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.dnszoneprovider.DnsZoneProvider zone_provider = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];

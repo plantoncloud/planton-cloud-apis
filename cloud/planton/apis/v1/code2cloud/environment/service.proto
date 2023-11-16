@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.environment;
 
-import "cloud/planton/apis/v1/commons/cloud/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
 
 //environment command controller
@@ -137,7 +137,7 @@ service EnvironmentQueryController {
   rpc getBuildEngineEnvironmentByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (Environment);
 
   //look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
-  rpc getSecretsGcpProjectByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.commons.cloud.gcp.resource.project.GcpProject);
+  rpc getSecretsGcpProjectByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject);
 
   //find workload pods part of environment
   rpc findWorkloadPodsByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.integration.kubernetes.resource.WorkloadPods) {

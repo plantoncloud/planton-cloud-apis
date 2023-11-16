@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider;
+
+// kubernetes provider
+enum KubernetesProvider {
+  KUBERNETES_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/kubernetes-engine
+  gcp_gke = 1;
+  //https://aws.amazon.com/eks/
+  aws_eks = 2;
+  //https://azure.microsoft.com/en-us/products/kubernetes-service
+  azure_aks = 3;
+  //https://docs.digitalocean.com/products/kubernetes/
+  digital_ocean_doks = 4;
+}

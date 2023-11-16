@@ -2,14 +2,15 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/codeserverprovider/code_server_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/enums/enums.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //code-server
 message CodeServer {
@@ -85,7 +86,7 @@ message CodeServerSpec {
   ];
 
   //Specifies the provider for the code server.
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.enums.CodeServerProvider code_server_provider = 4 [
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
@@ -110,7 +111,7 @@ message CodeServerGithubSpec {
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.enums.GithubAppInstallOwnerType app_install_owner_type = 3 [
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }

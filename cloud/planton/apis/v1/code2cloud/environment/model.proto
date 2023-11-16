@@ -3,14 +3,16 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.environment;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/enums.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/cloudprovider/cloud_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/storagebucketprovider/storage_bucket_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/provider/enums/secretsbackendprovider/secrets_backend_provider.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
-import "cloud/planton/apis/v1/commons/cloud/provider/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //environment
 message Environment {
@@ -96,27 +98,47 @@ message EnvironmentSpec {
   // list of endpoint domains for the environment
   repeated EnvironmentEndpointDomain endpoint_domains = 7;
 
-  //kube-cluster spec for environment
-  EnvironmentSpecKubeClusterSpec kube_cluster = 8;
+  //cloud-account spec for the environment
+  EnvironmentSpecCloudAccountSpec cloud_account = 8;
 
-  //microservice-instance spec for environment
-  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 9;
+  //kube-cluster spec for then environment
+  EnvironmentSpecKubeClusterSpec kube_cluster = 9;
 
-  bool is_inherit_endpoint_domains_enabled = 10;
+  //secrets-backend spec for the environment secrets
+  EnvironmentSpecSecretsBackendSpec secrets_backend = 10;
 
-  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
-  string environment_secrets_gcp_project_id = 11 [
+  //provider for storage-buckets created in this environment.
+  //this value is computed based on the cloud-provider.
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 11 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //microservice-instance spec for the environment
+  EnvironmentSpecMicroserviceInstanceSpec microservice_instance = 12;
+}
+
+// information about the cloud-account configured for the environment
+message EnvironmentSpecCloudAccountSpec {
+  //cloud-provider
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider provider = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+  //id of the cloud-account
+  string cloud_account_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 }
 
+// information about the kube-cluster configured for the environment
 message EnvironmentSpecKubeClusterSpec {
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 1 [
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider provider = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
+  //kube-cluster deployed to the cloud-account configured for the environment.
   //target kube-cluster to which the workloads like microservice-instances, postgres databases,
   //kafka-clusters etc are deployed to.
   string kube_cluster_id = 2 [
@@ -153,6 +175,23 @@ message EnvironmentSpecKubeClusterSpec {
   //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
   //this value is computed from kube-cluster.
   string external_dns_gsa_email = 6 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+// information about the secrets provider for the environment
+message EnvironmentSpecSecretsBackendSpec {
+  //secrets management provider
+  cloud.planton.apis.v1.code2cloud.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider provider = 1;
+
+  //gcp secrets-manager spec
+  EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec gcp_secrets_manager = 2;
+}
+
+// gcp secrets-manager spec
+message EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec {
+  //id of the gcp project in which the environment-secrets are to be created in secrets-manager.
+  string project_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
@@ -622,14 +661,29 @@ message ResourceEnvironmentInfo {
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
-  //kubernetes cluster in which the environment resource is created in.
-  //value is computed from the environment.
-  string kube_cluster_id = 5 [
+  //provider for the cloud-account configured for the environment.
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 5 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
-  // kubernetes provider is derived from the connected kube-cluster
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.KubernetesProvider kubernetes_provider = 6 [
+  //id of the cloud-account configured for the environment.
+  string cloud_account_id = 6 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // provider for the kube-cluster configured for the environment.
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 7 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //id of the kube-cluster configured for the environment.
+  string kube_cluster_id = 8 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //storage provider on which the storage-bucket is to be created.
+  //the value is computed from environment.
+  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 9 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }
