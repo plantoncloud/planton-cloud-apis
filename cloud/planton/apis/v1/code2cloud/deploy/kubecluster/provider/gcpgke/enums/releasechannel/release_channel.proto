@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.provider.gcpgke.enums.releasechannel;
 
-// the recommended best practice to use uppercase entry names and prefix the entry with enum name have been intentionally ignored to as the values of the entries are intended to be used to name the gke release channel.
+// note: using uppercase for values since this enum is used as input for google cloud apis
 enum GkeReleaseChannel {
   GKE_RELEASE_CHANNEL_UNSPECIFIED = 0;
-  regular = 1;
-  stable = 2;
-  rapid = 3;
+  REGULAR = 1;
+  STABLE = 2;
+  RAPID = 3;
 }
