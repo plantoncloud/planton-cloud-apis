@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.commons.resource.list.enums;
+package cloud.planton.apis.v1.commons.resource.list.enums.statusfilter;
 
 enum StatusFilter {
   STATUS_FILTER_UNSPECIFIED = 0;
