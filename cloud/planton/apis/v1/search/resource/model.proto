@@ -4,8 +4,8 @@ package cloud.planton.apis.v1.search.resource;
 
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/list/enums/statusfilter/status_filter.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/search/resource/enums/statusfilter/status_filter.proto";
 import "google/protobuf/timestamp.proto";
 
 // Resource is a message type that represents a single resource object.
@@ -91,7 +91,7 @@ message SearchByResourceTypeInput {
   cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 4;
   //  this field is an enumeration used to dictate the active status of the resources
   //  included in the search results.
-  cloud.planton.apis.v1.search.resource.enums.statusfilter.StatusFilter status_filter = 5;
+  cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter status_filter = 5;
 }
 
 // SearchIdentityAccountByEmail is a message type that represents the input parameters
