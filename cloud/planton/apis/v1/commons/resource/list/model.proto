@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.commons.resource.list;
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/list/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/list/enums/statusfilter/status_filter.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 // Record is a message type that represents a single record object in list view.
@@ -63,5 +63,5 @@ message GetByResourceTypeInput {
   cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 4;
   //  this field is an enumeration used to dictate the active status of the resources
   //  included in the search results.
-  cloud.planton.apis.v1.commons.resource.list.enums.StatusFilter status_filter = 5;
+  cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter status_filter = 5;
 }
