@@ -28,4 +28,5 @@ enum ResourceType {
   solr_cloud = 22;
   standard_endpoint = 23;
   storage_bucket = 24;
+  stack = 25;
 }

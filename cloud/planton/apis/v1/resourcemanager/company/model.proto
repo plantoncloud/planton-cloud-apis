@@ -15,7 +15,7 @@ message Company {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = company;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
   option (cloud.planton.apis.v1.commons.resource.options.owner).type = identity_account;
-  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "status.sys_audit.created_by";
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "status.audit.spec_audit.created_by";
 
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = true;
 
