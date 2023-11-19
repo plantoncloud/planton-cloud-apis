@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack;
+
+import "cloud/planton/apis/v1/stack/model.proto";
+
+service StackCommandController {
+  //create stack
+  rpc create(cloud.planton.apis.v1.stack.Stack) returns (cloud.planton.apis.v1.stack.Stack);
+  //update stack
+  rpc update(cloud.planton.apis.v1.stack.Stack) returns (cloud.planton.apis.v1.stack.Stack);
+  //delete stack
+  rpc delete(cloud.planton.apis.v1.stack.StackId) returns (cloud.planton.apis.v1.stack.Stack);
+  //delete stack on pulumi cloud
+  rpc deleteOnPulumiCloud(cloud.planton.apis.v1.stack.StackId) returns (cloud.planton.apis.v1.stack.Stack);
+}
+
+service StackQueryController {
+  //look up stack by stack-id
+  rpc getById(cloud.planton.apis.v1.stack.StackId) returns(cloud.planton.apis.v1.stack.Stack);
+}

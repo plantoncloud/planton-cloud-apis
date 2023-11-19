@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+
+// stack
+message Stack {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = stack;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "st";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+
+  //stack spec
+  StackSpec spec = 4;
+
+  //stack status
+  StackStatus status = 5;
+}
+
+// stack spec
+message StackSpec {
+  string pulumi_cloud_url = 1;
+}
+
+// stack status
+message StackStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+}
+
+// list of stacks
+message Stacks {
+  repeated Stack entries = 1;
+}
+
+//response for paginated list query
+message StackList {
+  int32 total_pages = 1;
+  repeated Stack entries = 2;
+}
+
+// wrapper for stack identifier
+message StackId {
+  string value = 1;
+}
