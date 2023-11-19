@@ -4,6 +4,7 @@ package cloud.planton.apis.v1.stack;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
@@ -39,7 +40,14 @@ message Stack {
 
 // stack spec
 message StackSpec {
-  string pulumi_cloud_url = 1;
+  // type of the resource for which the stack belongs to.
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 1;
+  // id of the resource for which the stack belongs to.
+  string resource_id = 2;
+  // pulumi cloud url
+  string pulumi_cloud_url = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }
 
 // stack status
