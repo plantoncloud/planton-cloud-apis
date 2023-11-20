@@ -39,6 +39,14 @@ service CloudAccountCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore cloud account";
   }
+  // refresh a cloud account that was previously created
+  // refreshing cloud account will regenerate the computed fields
+  rpc refresh(CloudAccountId) returns (CloudAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh cloud account";
+  }
 }
 
 // cloud account query controller

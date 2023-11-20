@@ -25,6 +25,7 @@ const (
 	CloudAccountCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/update"
 	CloudAccountCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/delete"
 	CloudAccountCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/restore"
+	CloudAccountCommandController_Refresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/refresh"
 )
 
 // CloudAccountCommandControllerClient is the client API for CloudAccountCommandController service.
@@ -40,6 +41,9 @@ type CloudAccountCommandControllerClient interface {
 	Delete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
 	// restore a deleted cloud account.
 	Restore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
+	// refresh a cloud account that was previously created
+	// refreshing cloud account will regenerate the computed fields
+	Refresh(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
 }
 
 type cloudAccountCommandControllerClient struct {
@@ -86,6 +90,15 @@ func (c *cloudAccountCommandControllerClient) Restore(ctx context.Context, in *C
 	return out, nil
 }
 
+func (c *cloudAccountCommandControllerClient) Refresh(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CloudAccountCommandControllerServer is the server API for CloudAccountCommandController service.
 // All implementations should embed UnimplementedCloudAccountCommandControllerServer
 // for forward compatibility
@@ -99,6 +112,9 @@ type CloudAccountCommandControllerServer interface {
 	Delete(context.Context, *CloudAccountId) (*CloudAccount, error)
 	// restore a deleted cloud account.
 	Restore(context.Context, *CloudAccount) (*CloudAccount, error)
+	// refresh a cloud account that was previously created
+	// refreshing cloud account will regenerate the computed fields
+	Refresh(context.Context, *CloudAccountId) (*CloudAccount, error)
 }
 
 // UnimplementedCloudAccountCommandControllerServer should be embedded to have forward compatible implementations.
@@ -116,6 +132,9 @@ func (UnimplementedCloudAccountCommandControllerServer) Delete(context.Context, 
 }
 func (UnimplementedCloudAccountCommandControllerServer) Restore(context.Context, *CloudAccount) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedCloudAccountCommandControllerServer) Refresh(context.Context, *CloudAccountId) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeCloudAccountCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -201,6 +220,24 @@ func _CloudAccountCommandController_Restore_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudAccountCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudAccountId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).Refresh(ctx, req.(*CloudAccountId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CloudAccountCommandController_ServiceDesc is the grpc.ServiceDesc for CloudAccountCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -223,6 +260,10 @@ var CloudAccountCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _CloudAccountCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _CloudAccountCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

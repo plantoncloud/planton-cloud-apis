@@ -46,7 +46,7 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_proto_rawDesc = [
 	0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73,
 	0x2f, 0x76, 0x31, 0x2f, 0x69, 0x61, 0x6d, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x7a, 0x2f, 0x65, 0x78,
 	0x74, 0x65, 0x6e, 0x73, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x65, 0x78, 0x74, 0x65, 0x6e, 0x73, 0x69,
-	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xa6, 0x06, 0x0a, 0x1d, 0x43, 0x6c,
+	0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xe6, 0x07, 0x0a, 0x1d, 0x43, 0x6c,
 	0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e,
 	0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0xc0, 0x01, 0x0a, 0x06,
 	0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x3b, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
@@ -97,6 +97,18 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_proto_rawDesc = [
 	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x2e, 0x69, 0x64, 0x22, 0x25, 0x75, 0x6e, 0x61,
 	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x72, 0x65, 0x73,
 	0x74, 0x6f, 0x72, 0x65, 0x20, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x20, 0x61, 0x63, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x12, 0xbd, 0x01, 0x0a, 0x07, 0x72, 0x65, 0x66, 0x72, 0x65, 0x73, 0x68, 0x12, 0x3d,
+	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
+	0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x43,
+	0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49, 0x64, 0x1a, 0x3b, 0x2e,
+	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70,
+	0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x2e, 0x43, 0x6c,
+	0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x36, 0xc2, 0xb8, 0x18, 0x32,
+	0x08, 0x13, 0x10, 0x03, 0x1a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x25, 0x75, 0x6e, 0x61,
+	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x72, 0x65, 0x66,
+	0x72, 0x65, 0x73, 0x68, 0x20, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x20, 0x61, 0x63, 0x63, 0x6f, 0x75,
 	0x6e, 0x74, 0x32, 0xbe, 0x07, 0x0a, 0x1b, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x41, 0x63, 0x63, 0x6f,
 	0x75, 0x6e, 0x74, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c,
 	0x65, 0x72, 0x12, 0xba, 0x01, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x42, 0x79, 0x49, 0x64, 0x12, 0x3d,
@@ -224,28 +236,30 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_proto_depIdxs = [
 	0,  // 1: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
 	1,  // 2: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.delete:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
 	0,  // 3: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	1,  // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
-	2,  // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
-	3,  // 6: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.list:input_type -> cloud.planton.apis.v1.commons.pagination.PageInfo
-	2,  // 7: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findArtifactStoreCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
-	2,  // 8: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findKubeClusterCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
-	2,  // 9: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findDnsZoneCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
-	0,  // 10: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.preview:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	1,  // 11: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.apply:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
-	0,  // 12: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.create:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	0,  // 13: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.update:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	0,  // 14: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.delete:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	0,  // 15: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.restore:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	0,  // 16: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.getById:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	4,  // 17: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findByCompanyId:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
-	5,  // 18: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.list:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountList
-	4,  // 19: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findArtifactStoreCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
-	4,  // 20: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findKubeClusterCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
-	4,  // 21: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findDnsZoneCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
-	0,  // 22: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.preview:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	0,  // 23: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.apply:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
-	12, // [12:24] is the sub-list for method output_type
-	0,  // [0:12] is the sub-list for method input_type
+	1,  // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.refresh:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
+	1,  // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
+	2,  // 6: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
+	3,  // 7: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.list:input_type -> cloud.planton.apis.v1.commons.pagination.PageInfo
+	2,  // 8: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findArtifactStoreCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
+	2,  // 9: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findKubeClusterCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
+	2,  // 10: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findDnsZoneCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.CompanyId
+	0,  // 11: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.preview:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	1,  // 12: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.apply:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId
+	0,  // 13: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.create:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 14: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.update:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 15: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.delete:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 16: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.restore:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 17: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController.refresh:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 18: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.getById:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	4,  // 19: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findByCompanyId:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
+	5,  // 20: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.list:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountList
+	4,  // 21: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findArtifactStoreCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
+	4,  // 22: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findKubeClusterCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
+	4,  // 23: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountQueryController.findDnsZoneCreateCloudAccounts:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccounts
+	0,  // 24: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.preview:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	0,  // 25: cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController.apply:output_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount
+	13, // [13:26] is the sub-list for method output_type
+	0,  // [0:13] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
