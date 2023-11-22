@@ -129,61 +129,28 @@ message StackJobProgressStatusPayload {
   string error_message = 2;
 }
 
-// stack-job snapshot
-message StackJobSnapshot {
-  // id of the stack-job
-  string stack_job_id = 1;
-  // refresh snapshot
-  StackJobOperationSnapshot refresh_snapshot = 2;
-  // preview snapshot
-  StackJobOperationSnapshot preview_snapshot = 3;
-  // apply snapshot
-  StackJobOperationSnapshot apply_snapshot = 4;
-  // destroy snapshot
-  StackJobOperationSnapshot destroy_snapshot = 5;
+message StackJobLogSnapshot {
+  StackJobLogPulumiOperationSnapshot refresh_snapshot = 1;
+  StackJobLogPulumiOperationSnapshot preview_snapshot = 2;
+  StackJobLogPulumiOperationSnapshot apply_snapshot = 3;
+  StackJobLogPulumiOperationSnapshot destroy_snapshot = 4;
 }
 
-// stack-job operation snapshot
-message StackJobOperationSnapshot {
-  // summary of the operation
-  StackJobOperationSummary summary = 1;
-  // resource outputs of the operation
-  string outputs = 2;
-  // detailed diff of the operation
-  string diff = 3;
-  // diagnostics of the operation
-  string diagnostics = 4;
+message StackJobLogPulumiOperationSnapshot {
+  PulumiOperationResourceChangesSnapshot resource_changes = 1;
+  PulumiOperationDiffSnapshot diff = 2;
 }
 
-// stack-job operation summary
-message StackJobOperationSummary {
-  // resource rows for the operation
-  repeated StackJobOperationSummaryResourceRow resource_rows = 1;
-  // resource changes for the operation
-  StackJobOperationSummaryResourceChanges resource_changes = 2;
-  // duration of the operation in seconds
-  int32 duration_seconds = 3;
+message PulumiOperationResourceChangesSnapshot {
+  map<string,PulumiOperationResourceChangesSnapshotRow> urn_to_row_map = 1;
 }
 
-message StackJobOperationSummaryResourceRow {
-  // resource type ex: gcp:container:Cluster
-  string type = 1;
-  // name of the pulumi-resource ex: k8s-cluster
-  string name = 2;
-  // status of the pulumi-resource
+message PulumiOperationDiffSnapshot {
+  repeated string resource_diff = 2;
+}
+
+message PulumiOperationResourceChangesSnapshotRow {
+  string resource_type = 1;
+  string resource_name = 2;
   string status = 3;
-  // info of the pulumi-resource
-  string info = 4;
-}
-
-// stack-job operation summary resource changes
-message StackJobOperationSummaryResourceChanges {
-  // number of resources unchanged
-  int32 unchanged = 1;
-  // number of resources updated
-  int32 updated = 2;
-  // number of resources deleted
-  int32 deleted = 3;
-  // number of resources replaced
-  int32 replaced = 4;
 }
