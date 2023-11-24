@@ -278,14 +278,9 @@ message CloneEnvironmentCommandInput {
   Environment new_environment = 2;
 }
 
-//environment-var
+//environment-variable
 message EnvironmentVariable {
-  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = environment_variable;
-
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "var";
-
-  //resource audit info
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -347,11 +342,7 @@ message AddEnvironmentVariablesCommandInput {
 
 //environment-secret
 message EnvironmentSecret {
-  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = environment_secret;
-
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sec";
-  //resource audit info
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -574,9 +565,6 @@ message GetByEnvironmentVariableIdInput {
 
 //environment endpoint-domain spec
 message EnvironmentEndpointDomain {
-  //audit info
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
-
   // unique identifier of endpoint domain
   string id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
