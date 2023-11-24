@@ -294,8 +294,6 @@ message KubeClusterGcpStatus {
 
 // gcp kube-cluster node pool
 message KubeClusterNodePoolGcp  {
-  // The audit information for system tracking
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
   // Name of the node pool. The name is added as a label to the node pool that can be used to schedule workloads.
   string name = 1[
     (buf.validate.field).string.min_len = 1,
