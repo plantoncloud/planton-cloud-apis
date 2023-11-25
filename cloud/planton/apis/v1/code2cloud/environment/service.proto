@@ -260,9 +260,9 @@ service EnvironmentVariableQueryController {
 service EnvironmentStackController {
   //preview environment secrets stack
   rpc preview(Environment) returns (Environment) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.product_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview environment secrets stack";
   }
 

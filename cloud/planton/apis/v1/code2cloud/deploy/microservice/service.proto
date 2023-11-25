@@ -140,9 +140,9 @@ service MicroserviceInstanceQueryController {
 service MicroserviceInstanceStackController {
   //preview microservice-instance stack
   rpc preview(MicroserviceInstance) returns (MicroserviceInstance) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview microservice-instance stack";
   }
   //apply microservice-instance stack

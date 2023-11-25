@@ -165,9 +165,9 @@ service KafkaTopicQueryController {
 service KafkaClusterStackController {
   //preview kafka-cluster stack
   rpc preview(KafkaCluster) returns (KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview kafka-cluster stack";
   }
   //apply kafka-cluster stack

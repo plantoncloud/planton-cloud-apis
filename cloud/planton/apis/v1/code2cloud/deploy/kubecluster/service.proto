@@ -209,9 +209,9 @@ service GcpQueryController {
 service KubeClusterStackController {
   //preview kube-cluster stack with provided spec
   rpc preview(KubeCluster) returns (KubeCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.company_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview kube-cluster stack";
   }
 

@@ -114,9 +114,9 @@ service SolrCloudQueryController {
 service SolrCloudStackController {
   //preview solr-cloud stack
   rpc preview(SolrCloud) returns (SolrCloud) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview solr-cloud stack";
   }
   //apply solr-cloud stack

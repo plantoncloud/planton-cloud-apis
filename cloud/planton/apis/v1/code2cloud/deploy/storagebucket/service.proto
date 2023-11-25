@@ -71,9 +71,9 @@ service StorageBucketQueryController {
 service StorageBucketStackController {
   //preview storage-bucket stack
   rpc preview(StorageBucket) returns (StorageBucket) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview storage-bucket stack";
   }
   //apply storage-bucket stack

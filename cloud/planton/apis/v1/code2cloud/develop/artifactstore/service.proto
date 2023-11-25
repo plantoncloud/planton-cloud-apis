@@ -81,9 +81,9 @@ service ArtifactStoreQueryController {
 service ArtifactStoreStackController {
   //preview artifact-store stack
   rpc preview(ArtifactStore) returns (ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.product_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview artifact-store stack";
   }
 

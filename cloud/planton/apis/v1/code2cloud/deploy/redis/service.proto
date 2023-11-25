@@ -114,9 +114,9 @@ service RedisClusterQueryController {
 service RedisClusterStackController {
   //preview redis-cluster stack
   rpc preview(RedisCluster) returns (RedisCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview redis-cluster stack";
   }
   //apply redis-cluster stack
