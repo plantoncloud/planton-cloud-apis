@@ -98,9 +98,9 @@ service DnsRecordCommandController {
 service DnsZoneStackController {
   //preview dns-zone stack
   rpc preview(DnsZone) returns (DnsZone) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.company_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview dnszone-zone stack";
   }
   //apply dns-zone stack

@@ -89,9 +89,9 @@ service CloudAccountQueryController {
 service CloudAccountStackController {
   //preview stack-job for cloud-account spec
   rpc preview(CloudAccount) returns (CloudAccount) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.company_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview cloud-account stack";
   }
 
