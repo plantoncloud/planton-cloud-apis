@@ -42,10 +42,20 @@ message Stack {
 message StackSpec {
   // type of the resource for which the stack belongs to.
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 1;
+
   // id of the resource for which the stack belongs to.
   string resource_id = 2;
-  // pulumi cloud url
+
+  // url of the stack-job on pulumi web console.
+  // note: this value is not persisted in the database.
+  // the value of this attributes is rendered by replacing the placeholders in
+  // "https://app.pulumi.com/${pulumiOrgName}/${pulumiProject}/${pulumiStackName}"
+  // value of pulumiOrgName is same for every single stack for each planton-cloud environment.
+  // value of pulumiProject is the company-id on planton-cloud.
+  // value of pulumiStack is stack_name attribute in this object.
+  // ex: https://app.pulumi.com/plantonstack-prod/cookie/afs-cookie-shop-main.ca-planton-hosting-gcp-main.artifact-store
   string pulumi_cloud_url = 3 [
+    (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 }

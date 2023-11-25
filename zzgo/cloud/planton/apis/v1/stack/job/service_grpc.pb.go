@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackJobCommandController_Create_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/create"
-	StackJobCommandController_Update_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/update"
+	StackJobCommandController_Create_FullMethodName             = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/create"
+	StackJobCommandController_Update_FullMethodName             = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/update"
+	StackJobCommandController_SetExecutionStatus_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/setExecutionStatus"
 )
 
 // StackJobCommandControllerClient is the client API for StackJobCommandController service.
@@ -31,6 +32,9 @@ type StackJobCommandControllerClient interface {
 	Create(ctx context.Context, in *StackJob, opts ...grpc.CallOption) (*StackJob, error)
 	// update stack-job
 	Update(ctx context.Context, in *StackJob, opts ...grpc.CallOption) (*StackJob, error)
+	// rpc to set execution-status for a stack-job.
+	// since execution-status is an attribute in status of stack-job, it is not possible to update it using update rpc.
+	SetExecutionStatus(ctx context.Context, in *SetStackJobExecutionStatusCommandInput, opts ...grpc.CallOption) (*StackJob, error)
 }
 
 type stackJobCommandControllerClient struct {
@@ -59,6 +63,15 @@ func (c *stackJobCommandControllerClient) Update(ctx context.Context, in *StackJ
 	return out, nil
 }
 
+func (c *stackJobCommandControllerClient) SetExecutionStatus(ctx context.Context, in *SetStackJobExecutionStatusCommandInput, opts ...grpc.CallOption) (*StackJob, error) {
+	out := new(StackJob)
+	err := c.cc.Invoke(ctx, StackJobCommandController_SetExecutionStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StackJobCommandControllerServer is the server API for StackJobCommandController service.
 // All implementations should embed UnimplementedStackJobCommandControllerServer
 // for forward compatibility
@@ -67,6 +80,9 @@ type StackJobCommandControllerServer interface {
 	Create(context.Context, *StackJob) (*StackJob, error)
 	// update stack-job
 	Update(context.Context, *StackJob) (*StackJob, error)
+	// rpc to set execution-status for a stack-job.
+	// since execution-status is an attribute in status of stack-job, it is not possible to update it using update rpc.
+	SetExecutionStatus(context.Context, *SetStackJobExecutionStatusCommandInput) (*StackJob, error)
 }
 
 // UnimplementedStackJobCommandControllerServer should be embedded to have forward compatible implementations.
@@ -78,6 +94,9 @@ func (UnimplementedStackJobCommandControllerServer) Create(context.Context, *Sta
 }
 func (UnimplementedStackJobCommandControllerServer) Update(context.Context, *StackJob) (*StackJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedStackJobCommandControllerServer) SetExecutionStatus(context.Context, *SetStackJobExecutionStatusCommandInput) (*StackJob, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetExecutionStatus not implemented")
 }
 
 // UnsafeStackJobCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -127,6 +146,24 @@ func _StackJobCommandController_Update_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StackJobCommandController_SetExecutionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetStackJobExecutionStatusCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StackJobCommandControllerServer).SetExecutionStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StackJobCommandController_SetExecutionStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StackJobCommandControllerServer).SetExecutionStatus(ctx, req.(*SetStackJobExecutionStatusCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StackJobCommandController_ServiceDesc is the grpc.ServiceDesc for StackJobCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -141,6 +178,10 @@ var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "update",
 			Handler:    _StackJobCommandController_Update_Handler,
+		},
+		{
+			MethodName: "setExecutionStatus",
+			Handler:    _StackJobCommandController_SetExecutionStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
