@@ -28,3 +28,4 @@ enum StackEventType {
     (cloud.planton.apis.v1.commons.resource.enums.options.is_create_stack_required) = false
   ];
 }
+

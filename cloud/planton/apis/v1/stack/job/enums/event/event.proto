@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.enums.event;
+
+enum StackJobEventType {
+  STACK_JOB_EVENT_TYPE_UNSPECIFIED = 0;
+  created = 1;
+  updated = 2;
+  deleted = 3;
+}
