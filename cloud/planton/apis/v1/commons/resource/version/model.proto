@@ -2,15 +2,18 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.commons.resource.version;
 
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 // The ResourceVersion message represents a record of a resource state modification
 // in a system's resource. It stores the original and new states of the resource,
 // the differences between them in a unified diff format, as well as audit and
 // identification information.
 message ResourceVersion {
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "ver";
+
   // Resource audit information, which typically includes data about
   // when and by whom the version was created.
   cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
