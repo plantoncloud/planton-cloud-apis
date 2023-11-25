@@ -67,6 +67,7 @@ message StackJob {
   StackJobStatus status = 5;
 }
 
+// stack-job spec
 message StackJobSpec {
   // id of the company to which the stack-job belongs to.
   //value is computed from stack
@@ -89,59 +90,41 @@ message StackJobSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  // id of the stack to which the stack-job belongs to
-  // value is computed based on resource-id.
-  string stack_id = 4 [
-    (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
-
   // resource type for which the stack-job is executed.
   //value is computed from stack.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5 [
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 4 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   // id of the resource for which the stack is executed
-  string resource_id = 6 [
+  string resource_id = 5 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the stack to which the stack-job belongs to
+  // value is computed based on resource-id.
+  string stack_id = 6 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // stack-job operation type
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 7 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   // name of the pulumi-stack.
   // this value is computed by stack service.
-  string pulumi_stack_name = 7 [
-    (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
-
-  // stack-job operation type
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8 [
+  string pulumi_stack_name = 8 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
-
-  // path of the log file in the storage bucket
-  string log_file = 9 [
-    (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
-
-  // url of the stack-job on pulumi web console.
-  // note: this value is not persisted in the database.
-  // the value of this attributes is rendered by replacing the placeholders in
-  // "https://app.pulumi.com/${pulumiOrgName}/${pulumiProject}/${pulumiStackName}"
-  // value of pulumiOrgName is same for every single stack for each planton-cloud environment.
-  // value of pulumiProject is the company-id on planton-cloud.
-  // value of pulumiStack is stack_name attribute in this object.
-  // ex: https://app.pulumi.com/plantonstack-prod/cookie/afs-cookie-shop-main.ca-planton-hosting-gcp-main.artifact-store
-  string web_url = 10 [
-    (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
-  ];
 }
 
+// stack-job status
 message StackJobStatus {
   // resource lifecycle
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
