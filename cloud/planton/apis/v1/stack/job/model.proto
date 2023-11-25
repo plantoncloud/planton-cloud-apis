@@ -39,11 +39,32 @@ message StackJob {
     (buf.validate.field).string.const = "StackJob"
   ];
 
+  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3 [
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
+
   //spec
-  StackJobSpec spec = 3;
+  StackJobSpec spec = 4;
 
   //status
-  StackJobStatus status = 4;
+  StackJobStatus status = 5;
 }
 
 message StackJobSpec {
@@ -126,7 +147,7 @@ message StackJobStatus {
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
   // status of the stack-job
-  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus status = 1;
+  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus job_status = 1;
 }
 
 // wrapper for stack-job id
