@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.enums.executionstatus;
+
+enum StackJobExecutionStatus {
+  STACK_JOB_EXECUTION_STATUS_UNSPECIFIED = 0;
+  pending = 1;
+  running = 2;
+  succeeded = 3;
+  failed = 4;
+  cancelled = 5;
+  skipped = 6;
+}

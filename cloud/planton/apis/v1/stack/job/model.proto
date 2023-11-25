@@ -7,22 +7,22 @@ import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
-import "cloud/planton/apis/v1/stack/job/enums/status/status.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 // stack-job
 message StackJob {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = stack_job;
-  option (cloud.planton.apis.v1.commons.resource.options.owner).type = stack;
-
-  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.stack_id";
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sj";
+
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = stack;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.stack_id";
 
   //id format "sj-<ulid>"
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
@@ -69,32 +69,35 @@ message StackJob {
 
 message StackJobSpec {
   // id of the company to which the stack-job belongs to.
+  //value is computed from stack
   string company_id = 1 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  // id of the product to which the stack-job belongs to.
-  // this attribute is empty for non-product stacks.
+  //id of the product to which the stack-job belongs to.
+  //value is empty for non-product specific resources
   string product_id = 2 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   // id of the environment to which the stack-job belongs to.
-  // this attribute is empty for non-environment level stacks.
+  //value is empty for non-environment specific resources
   string environment_id = 3 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   // id of the stack to which the stack-job belongs to
+  // value is computed based on resource-id.
   string stack_id = 4 [
-    (buf.validate.field).ignore_empty = false,
-    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
-  // resource type for which the stack is executed
+  // resource type for which the stack-job is executed.
+  //value is computed from stack.
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
@@ -147,7 +150,7 @@ message StackJobStatus {
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
   // status of the stack-job
-  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus job_status = 1;
+  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;
 }
 
 // wrapper for stack-job id
@@ -171,8 +174,8 @@ message ListStackJobsByFiltersQueryInput {
   string resource_id = 6;
   // stack operation type
   cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 7;
-  // status of the stack-job
-  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus status = 8;
+  // execution status of the stack-job
+  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 8;
 }
 
 // paginated list of stack-jobs
@@ -183,9 +186,17 @@ message StackJobList {
   repeated StackJob entries = 2;
 }
 
-// wrapper for stack-job log content
-message StackJobLogContent {
-  string value= 1;
+// input for rpc to set stack-job execution status
+message SetStackJobExecutionStatusCommandInput {
+  //id of the stack-job
+  string stack_job_id = 1 [
+    (buf.validate.field).ignore_empty = false
+  ];
+
+  //execution-status to be set for the stack-job
+  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 2 [
+    (buf.validate.field).ignore_empty = false
+  ];
 }
 
 // information required to build log file name for company or product level stacks.

@@ -12,6 +12,9 @@ service StackJobCommandController {
   rpc create(cloud.planton.apis.v1.stack.job.StackJob) returns (cloud.planton.apis.v1.stack.job.StackJob);
   //update stack-job
   rpc update(cloud.planton.apis.v1.stack.job.StackJob) returns (cloud.planton.apis.v1.stack.job.StackJob);
+  //rpc to set execution-status for a stack-job.
+  //since execution-status is an attribute in status of stack-job, it is not possible to update it using update rpc.
+  rpc setExecutionStatus(cloud.planton.apis.v1.stack.job.SetStackJobExecutionStatusCommandInput) returns (cloud.planton.apis.v1.stack.job.StackJob);
 }
 
 service StackJobQueryController {
