@@ -2,41 +2,108 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.job;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/enums/status/status.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 // stack-job
 message StackJob {
-  // system-audit information
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
-  // unique identifier(uuid) for stack-job
-  string id = 1;
-  // id of the company to which the stack-job belongs to
-  string company_id = 2;
-  // id of the product to which the stack-job belongs to
-  // note: this attribute is always empty for company level stacks
-  string product_id = 3;
-  // id of the product-env to which the stack-job belongs to
-  // note: this attribute is always empty for company level stacks
-  string environment_id = 4;
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = stack_job;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = stack;
+
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.stack_id";
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sj";
+
+  //id format "sj-<ulid>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (buf.validate.field).string.const = "stack.planton.cloud/v1"
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (buf.validate.field).string.const = "StackJob"
+  ];
+
+  //spec
+  StackJobSpec spec = 3;
+
+  //status
+  StackJobStatus status = 4;
+}
+
+message StackJobSpec {
+  // id of the company to which the stack-job belongs to.
+  string company_id = 1 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the product to which the stack-job belongs to.
+  // this attribute is empty for non-product stacks.
+  string product_id = 2 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the environment to which the stack-job belongs to.
+  // this attribute is empty for non-environment level stacks.
+  string environment_id = 3 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the stack to which the stack-job belongs to
+  string stack_id = 4 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
   // resource type for which the stack is executed
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
   // id of the resource for which the stack is executed
-  string resource_id = 6;
-  // name of the stack
-  string stack_name = 7;
-  // (required) stack operation type
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8;
+  string resource_id = 6 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // name of the pulumi-stack.
+  // this value is computed by stack service.
+  string pulumi_stack_name = 7 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // stack-job operation type
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
   // path of the log file in the storage bucket
-  string log_file = 9;
-  // status of the stack-job
-  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus status = 10;
+  string log_file = 9 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
   // url of the stack-job on pulumi web console.
   // note: this value is not persisted in the database.
   // the value of this attributes is rendered by replacing the placeholders in
@@ -45,15 +112,21 @@ message StackJob {
   // value of pulumiProject is the company-id on planton-cloud.
   // value of pulumiStack is stack_name attribute in this object.
   // ex: https://app.pulumi.com/plantonstack-prod/cookie/afs-cookie-shop-main.ca-planton-hosting-gcp-main.artifact-store
-  string web_url = 11;
-  // content of the log file.
-  // note: log content is not persisted in the database.
-  // log-content will only be included in response for stack-job details rpc calls.
-  string log_content = 12;
-  // error message from stack-job. this attribute is only populated when stack-job-status is "failed"
-  string error_message = 13;
-  // resource-count
-  int32 resource_count = 14;
+  string web_url = 10 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+message StackJobStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+
+  // status of the stack-job
+  cloud.planton.apis.v1.stack.job.enums.status.StackJobStatus status = 1;
 }
 
 // wrapper for stack-job id

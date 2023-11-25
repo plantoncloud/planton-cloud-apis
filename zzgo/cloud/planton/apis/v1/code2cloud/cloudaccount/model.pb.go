@@ -30,7 +30,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// company cloud account
+// cloud-account
 type CloudAccount struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

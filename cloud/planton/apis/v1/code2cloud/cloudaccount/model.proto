@@ -13,7 +13,7 @@ import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
 
-// company cloud account
+// cloud-account
 message CloudAccount {
   option (cloud.planton.apis.v1.commons.resource.options.resource_type) = cloud_account;
   option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
