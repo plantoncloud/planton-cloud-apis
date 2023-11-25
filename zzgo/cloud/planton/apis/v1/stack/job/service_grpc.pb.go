@@ -8,7 +8,6 @@ package job
 
 import (
 	context "context"
-	stream "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/grpc/stream"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -149,11 +148,10 @@ var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	StackJobQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/listByFilters"
-	StackJobQueryController_GetById_FullMethodName                = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getById"
-	StackJobQueryController_GetLogStream_FullMethodName           = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getLogStream"
-	StackJobQueryController_GetSnapshotStream_FullMethodName      = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getSnapshotStream"
-	StackJobQueryController_GetProgressEventStream_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getProgressEventStream"
+	StackJobQueryController_ListByFilters_FullMethodName                = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/listByFilters"
+	StackJobQueryController_GetById_FullMethodName                      = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getById"
+	StackJobQueryController_GetProgressEventStream_FullMethodName       = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getProgressEventStream"
+	StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobLogSnapshotStream"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -166,15 +164,12 @@ type StackJobQueryControllerClient interface {
 	// look up stack-job by stack-job-id
 	// todo: need to add authorization
 	GetById(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (*StackJob, error)
-	// todo: need to add authorization
-	// get stack-job log stream for stacks that are in-progress
-	GetLogStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetLogStreamClient, error)
-	// rpc  to get snapshot stream
-	// this rpc is required to support pulumi progress or diff view web, desktop gui app or mobile apps.
-	GetSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetSnapshotStreamClient, error)
 	// rpc to get stack-job progress event stream
-	// this rpc is required to support pulumi progress or diff view in the cli client.
+	// this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
 	GetProgressEventStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetProgressEventStreamClient, error)
+	// rpc to get snapshot of stack-job log
+	// response is optimized to display the stack-job log on non-interactive client-apps
+	GetStackJobLogSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetStackJobLogSnapshotStreamClient, error)
 }
 
 type stackJobQueryControllerClient struct {
@@ -203,72 +198,8 @@ func (c *stackJobQueryControllerClient) GetById(ctx context.Context, in *StackJo
 	return out, nil
 }
 
-func (c *stackJobQueryControllerClient) GetLogStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetLogStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[0], StackJobQueryController_GetLogStream_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &stackJobQueryControllerGetLogStreamClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type StackJobQueryController_GetLogStreamClient interface {
-	Recv() (*stream.OutputLine, error)
-	grpc.ClientStream
-}
-
-type stackJobQueryControllerGetLogStreamClient struct {
-	grpc.ClientStream
-}
-
-func (x *stackJobQueryControllerGetLogStreamClient) Recv() (*stream.OutputLine, error) {
-	m := new(stream.OutputLine)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *stackJobQueryControllerClient) GetSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetSnapshotStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[1], StackJobQueryController_GetSnapshotStream_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &stackJobQueryControllerGetSnapshotStreamClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type StackJobQueryController_GetSnapshotStreamClient interface {
-	Recv() (*StackJobSnapshot, error)
-	grpc.ClientStream
-}
-
-type stackJobQueryControllerGetSnapshotStreamClient struct {
-	grpc.ClientStream
-}
-
-func (x *stackJobQueryControllerGetSnapshotStreamClient) Recv() (*StackJobSnapshot, error) {
-	m := new(StackJobSnapshot)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *stackJobQueryControllerClient) GetProgressEventStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetProgressEventStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[2], StackJobQueryController_GetProgressEventStream_FullMethodName, opts...)
+	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[0], StackJobQueryController_GetProgressEventStream_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -299,6 +230,38 @@ func (x *stackJobQueryControllerGetProgressEventStreamClient) Recv() (*StackJobP
 	return m, nil
 }
 
+func (c *stackJobQueryControllerClient) GetStackJobLogSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetStackJobLogSnapshotStreamClient, error) {
+	stream, err := c.cc.NewStream(ctx, &StackJobQueryController_ServiceDesc.Streams[1], StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &stackJobQueryControllerGetStackJobLogSnapshotStreamClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type StackJobQueryController_GetStackJobLogSnapshotStreamClient interface {
+	Recv() (*StackJobLogSnapshot, error)
+	grpc.ClientStream
+}
+
+type stackJobQueryControllerGetStackJobLogSnapshotStreamClient struct {
+	grpc.ClientStream
+}
+
+func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamClient) Recv() (*StackJobLogSnapshot, error) {
+	m := new(StackJobLogSnapshot)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // StackJobQueryControllerServer is the server API for StackJobQueryController service.
 // All implementations should embed UnimplementedStackJobQueryControllerServer
 // for forward compatibility
@@ -309,15 +272,12 @@ type StackJobQueryControllerServer interface {
 	// look up stack-job by stack-job-id
 	// todo: need to add authorization
 	GetById(context.Context, *StackJobId) (*StackJob, error)
-	// todo: need to add authorization
-	// get stack-job log stream for stacks that are in-progress
-	GetLogStream(*StackJobId, StackJobQueryController_GetLogStreamServer) error
-	// rpc  to get snapshot stream
-	// this rpc is required to support pulumi progress or diff view web, desktop gui app or mobile apps.
-	GetSnapshotStream(*StackJobId, StackJobQueryController_GetSnapshotStreamServer) error
 	// rpc to get stack-job progress event stream
-	// this rpc is required to support pulumi progress or diff view in the cli client.
+	// this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
 	GetProgressEventStream(*StackJobId, StackJobQueryController_GetProgressEventStreamServer) error
+	// rpc to get snapshot of stack-job log
+	// response is optimized to display the stack-job log on non-interactive client-apps
+	GetStackJobLogSnapshotStream(*StackJobId, StackJobQueryController_GetStackJobLogSnapshotStreamServer) error
 }
 
 // UnimplementedStackJobQueryControllerServer should be embedded to have forward compatible implementations.
@@ -330,14 +290,11 @@ func (UnimplementedStackJobQueryControllerServer) ListByFilters(context.Context,
 func (UnimplementedStackJobQueryControllerServer) GetById(context.Context, *StackJobId) (*StackJob, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedStackJobQueryControllerServer) GetLogStream(*StackJobId, StackJobQueryController_GetLogStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetLogStream not implemented")
-}
-func (UnimplementedStackJobQueryControllerServer) GetSnapshotStream(*StackJobId, StackJobQueryController_GetSnapshotStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetSnapshotStream not implemented")
-}
 func (UnimplementedStackJobQueryControllerServer) GetProgressEventStream(*StackJobId, StackJobQueryController_GetProgressEventStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetProgressEventStream not implemented")
+}
+func (UnimplementedStackJobQueryControllerServer) GetStackJobLogSnapshotStream(*StackJobId, StackJobQueryController_GetStackJobLogSnapshotStreamServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetStackJobLogSnapshotStream not implemented")
 }
 
 // UnsafeStackJobQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -387,48 +344,6 @@ func _StackJobQueryController_GetById_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StackJobQueryController_GetLogStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StackJobId)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(StackJobQueryControllerServer).GetLogStream(m, &stackJobQueryControllerGetLogStreamServer{stream})
-}
-
-type StackJobQueryController_GetLogStreamServer interface {
-	Send(*stream.OutputLine) error
-	grpc.ServerStream
-}
-
-type stackJobQueryControllerGetLogStreamServer struct {
-	grpc.ServerStream
-}
-
-func (x *stackJobQueryControllerGetLogStreamServer) Send(m *stream.OutputLine) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _StackJobQueryController_GetSnapshotStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(StackJobId)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(StackJobQueryControllerServer).GetSnapshotStream(m, &stackJobQueryControllerGetSnapshotStreamServer{stream})
-}
-
-type StackJobQueryController_GetSnapshotStreamServer interface {
-	Send(*StackJobSnapshot) error
-	grpc.ServerStream
-}
-
-type stackJobQueryControllerGetSnapshotStreamServer struct {
-	grpc.ServerStream
-}
-
-func (x *stackJobQueryControllerGetSnapshotStreamServer) Send(m *StackJobSnapshot) error {
-	return x.ServerStream.SendMsg(m)
-}
-
 func _StackJobQueryController_GetProgressEventStream_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(StackJobId)
 	if err := stream.RecvMsg(m); err != nil {
@@ -450,6 +365,27 @@ func (x *stackJobQueryControllerGetProgressEventStreamServer) Send(m *StackJobPr
 	return x.ServerStream.SendMsg(m)
 }
 
+func _StackJobQueryController_GetStackJobLogSnapshotStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StackJobId)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StackJobQueryControllerServer).GetStackJobLogSnapshotStream(m, &stackJobQueryControllerGetStackJobLogSnapshotStreamServer{stream})
+}
+
+type StackJobQueryController_GetStackJobLogSnapshotStreamServer interface {
+	Send(*StackJobLogSnapshot) error
+	grpc.ServerStream
+}
+
+type stackJobQueryControllerGetStackJobLogSnapshotStreamServer struct {
+	grpc.ServerStream
+}
+
+func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamServer) Send(m *StackJobLogSnapshot) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // StackJobQueryController_ServiceDesc is the grpc.ServiceDesc for StackJobQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -468,18 +404,13 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "getLogStream",
-			Handler:       _StackJobQueryController_GetLogStream_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "getSnapshotStream",
-			Handler:       _StackJobQueryController_GetSnapshotStream_Handler,
-			ServerStreams: true,
-		},
-		{
 			StreamName:    "getProgressEventStream",
 			Handler:       _StackJobQueryController_GetProgressEventStream_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "getStackJobLogSnapshotStream",
+			Handler:       _StackJobQueryController_GetStackJobLogSnapshotStream_Handler,
 			ServerStreams: true,
 		},
 	},

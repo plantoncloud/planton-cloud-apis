@@ -21,13 +21,10 @@ service StackJobQueryController {
   //look up stack-job by stack-job-id
   //todo: need to add authorization
   rpc getById(cloud.planton.apis.v1.stack.job.StackJobId) returns(cloud.planton.apis.v1.stack.job.StackJob);
-  //todo: need to add authorization
-  //get stack-job log stream for stacks that are in-progress
-  rpc getLogStream(cloud.planton.apis.v1.stack.job.StackJobId) returns(stream cloud.planton.apis.v1.commons.grpc.stream.OutputLine);
-  //rpc  to get snapshot stream
-  //this rpc is required to support pulumi progress or diff view web, desktop gui app or mobile apps.
-  rpc getSnapshotStream(cloud.planton.apis.v1.stack.job.StackJobId) returns(stream StackJobSnapshot);
   //rpc to get stack-job progress event stream
-  //this rpc is required to support pulumi progress or diff view in the cli client.
+  //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
   rpc getProgressEventStream(cloud.planton.apis.v1.stack.job.StackJobId) returns(stream cloud.planton.apis.v1.stack.job.StackJobProgressEvent);
+  //rpc to get snapshot of stack-job log
+  //response is optimized to display the stack-job log on non-interactive client-apps
+  rpc getStackJobLogSnapshotStream(cloud.planton.apis.v1.stack.job.StackJobId) returns (stream cloud.planton.apis.v1.stack.job.StackJobLogSnapshot);
 }

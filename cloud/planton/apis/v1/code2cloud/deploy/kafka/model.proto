@@ -238,11 +238,7 @@ message KafkaClusters {
 
 //kafka-topic
 message KafkaTopic {
-  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = RESOURCE_TYPE_UNSPECIFIED;
-
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "kft";
-
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
 
   //topic name
   string name = 1 [
