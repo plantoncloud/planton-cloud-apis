@@ -13,6 +13,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,27 +25,42 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SolrCloudCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/create"
-	SolrCloudCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/update"
-	SolrCloudCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/delete"
-	SolrCloudCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/restore"
-	SolrCloudCommandController_Restart_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/restart"
-	SolrCloudCommandController_Pause_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/pause"
-	SolrCloudCommandController_Unpause_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/unpause"
+	SolrCloudCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/previewCreate"
+	SolrCloudCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/create"
+	SolrCloudCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/previewUpdate"
+	SolrCloudCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/update"
+	SolrCloudCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/previewDelete"
+	SolrCloudCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/delete"
+	SolrCloudCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/previewRestore"
+	SolrCloudCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/restore"
+	SolrCloudCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/createStackJob"
+	SolrCloudCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/restart"
+	SolrCloudCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/pause"
+	SolrCloudCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/unpause"
 )
 
 // SolrCloudCommandControllerClient is the client API for SolrCloudCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SolrCloudCommandControllerClient interface {
+	// preview create solr-cloud
+	PreviewCreate(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
 	// create solr-cloud
 	Create(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
+	// preview update an existing solr-cloud
+	PreviewUpdate(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
 	// update an existing solr-cloud
 	Update(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
+	// preview deleting an existing solr-cloud
+	PreviewDelete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
 	// delete an existing solr-cloud
 	Delete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
+	// preview restoring a deleted solr-cloud
+	PreviewRestore(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
 	// restore a deleted solr-cloud
 	Restore(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
+	// create-stack-job for solr-cloud
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 	// restart a solr-cloud running in a environment.
 	// solr-cloud is restarted by deleting running "solr" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
@@ -66,9 +82,27 @@ func NewSolrCloudCommandControllerClient(cc grpc.ClientConnInterface) SolrCloudC
 	return &solrCloudCommandControllerClient{cc}
 }
 
+func (c *solrCloudCommandControllerClient) PreviewCreate(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *solrCloudCommandControllerClient) Create(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *solrCloudCommandControllerClient) PreviewUpdate(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +118,15 @@ func (c *solrCloudCommandControllerClient) Update(ctx context.Context, in *SolrC
 	return out, nil
 }
 
+func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Delete_FullMethodName, in, out, opts...)
@@ -93,9 +136,27 @@ func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *SolrC
 	return out, nil
 }
 
+func (c *solrCloudCommandControllerClient) PreviewRestore(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *solrCloudCommandControllerClient) Restore(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *solrCloudCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,14 +194,24 @@ func (c *solrCloudCommandControllerClient) Unpause(ctx context.Context, in *Solr
 // All implementations should embed UnimplementedSolrCloudCommandControllerServer
 // for forward compatibility
 type SolrCloudCommandControllerServer interface {
+	// preview create solr-cloud
+	PreviewCreate(context.Context, *SolrCloud) (*SolrCloud, error)
 	// create solr-cloud
 	Create(context.Context, *SolrCloud) (*SolrCloud, error)
+	// preview update an existing solr-cloud
+	PreviewUpdate(context.Context, *SolrCloud) (*SolrCloud, error)
 	// update an existing solr-cloud
 	Update(context.Context, *SolrCloud) (*SolrCloud, error)
+	// preview deleting an existing solr-cloud
+	PreviewDelete(context.Context, *SolrCloudId) (*SolrCloud, error)
 	// delete an existing solr-cloud
 	Delete(context.Context, *SolrCloudId) (*SolrCloud, error)
+	// preview restoring a deleted solr-cloud
+	PreviewRestore(context.Context, *SolrCloud) (*SolrCloud, error)
 	// restore a deleted solr-cloud
 	Restore(context.Context, *SolrCloud) (*SolrCloud, error)
+	// create-stack-job for solr-cloud
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*SolrCloud, error)
 	// restart a solr-cloud running in a environment.
 	// solr-cloud is restarted by deleting running "solr" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *SolrCloudId) (*SolrCloud, error)
@@ -158,17 +229,32 @@ type SolrCloudCommandControllerServer interface {
 type UnimplementedSolrCloudCommandControllerServer struct {
 }
 
+func (UnimplementedSolrCloudCommandControllerServer) PreviewCreate(context.Context, *SolrCloud) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedSolrCloudCommandControllerServer) Create(context.Context, *SolrCloud) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedSolrCloudCommandControllerServer) PreviewUpdate(context.Context, *SolrCloud) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedSolrCloudCommandControllerServer) Update(context.Context, *SolrCloud) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedSolrCloudCommandControllerServer) PreviewDelete(context.Context, *SolrCloudId) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedSolrCloudCommandControllerServer) Delete(context.Context, *SolrCloudId) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedSolrCloudCommandControllerServer) PreviewRestore(context.Context, *SolrCloud) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedSolrCloudCommandControllerServer) Restore(context.Context, *SolrCloud) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedSolrCloudCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedSolrCloudCommandControllerServer) Restart(context.Context, *SolrCloudId) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -191,6 +277,24 @@ func RegisterSolrCloudCommandControllerServer(s grpc.ServiceRegistrar, srv SolrC
 	s.RegisterService(&SolrCloudCommandController_ServiceDesc, srv)
 }
 
+func _SolrCloudCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SolrCloud)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).PreviewCreate(ctx, req.(*SolrCloud))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SolrCloudCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SolrCloud)
 	if err := dec(in); err != nil {
@@ -205,6 +309,24 @@ func _SolrCloudCommandController_Create_Handler(srv interface{}, ctx context.Con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SolrCloudCommandControllerServer).Create(ctx, req.(*SolrCloud))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SolrCloudCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SolrCloud)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).PreviewUpdate(ctx, req.(*SolrCloud))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,6 +349,24 @@ func _SolrCloudCommandController_Update_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SolrCloudCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SolrCloudId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, req.(*SolrCloudId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SolrCloudId)
 	if err := dec(in); err != nil {
@@ -245,6 +385,24 @@ func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SolrCloudCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SolrCloud)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).PreviewRestore(ctx, req.(*SolrCloud))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SolrCloudCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SolrCloud)
 	if err := dec(in); err != nil {
@@ -259,6 +417,24 @@ func _SolrCloudCommandController_Restore_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SolrCloudCommandControllerServer).Restore(ctx, req.(*SolrCloud))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SolrCloudCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -325,20 +501,40 @@ var SolrCloudCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SolrCloudCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _SolrCloudCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _SolrCloudCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _SolrCloudCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _SolrCloudCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _SolrCloudCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _SolrCloudCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _SolrCloudCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _SolrCloudCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _SolrCloudCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
@@ -679,135 +875,6 @@ var SolrCloudQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findPods",
 			Handler:    _SolrCloudQueryController_FindPods_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/solr/service.proto",
-}
-
-const (
-	SolrCloudStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudStackController/preview"
-	SolrCloudStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudStackController/apply"
-)
-
-// SolrCloudStackControllerClient is the client API for SolrCloudStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SolrCloudStackControllerClient interface {
-	// preview solr-cloud stack
-	Preview(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
-	// apply solr-cloud stack
-	Apply(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
-}
-
-type solrCloudStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewSolrCloudStackControllerClient(cc grpc.ClientConnInterface) SolrCloudStackControllerClient {
-	return &solrCloudStackControllerClient{cc}
-}
-
-func (c *solrCloudStackControllerClient) Preview(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error) {
-	out := new(SolrCloud)
-	err := c.cc.Invoke(ctx, SolrCloudStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *solrCloudStackControllerClient) Apply(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
-	out := new(SolrCloud)
-	err := c.cc.Invoke(ctx, SolrCloudStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// SolrCloudStackControllerServer is the server API for SolrCloudStackController service.
-// All implementations should embed UnimplementedSolrCloudStackControllerServer
-// for forward compatibility
-type SolrCloudStackControllerServer interface {
-	// preview solr-cloud stack
-	Preview(context.Context, *SolrCloud) (*SolrCloud, error)
-	// apply solr-cloud stack
-	Apply(context.Context, *SolrCloudId) (*SolrCloud, error)
-}
-
-// UnimplementedSolrCloudStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedSolrCloudStackControllerServer struct {
-}
-
-func (UnimplementedSolrCloudStackControllerServer) Preview(context.Context, *SolrCloud) (*SolrCloud, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedSolrCloudStackControllerServer) Apply(context.Context, *SolrCloudId) (*SolrCloud, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeSolrCloudStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SolrCloudStackControllerServer will
-// result in compilation errors.
-type UnsafeSolrCloudStackControllerServer interface {
-	mustEmbedUnimplementedSolrCloudStackControllerServer()
-}
-
-func RegisterSolrCloudStackControllerServer(s grpc.ServiceRegistrar, srv SolrCloudStackControllerServer) {
-	s.RegisterService(&SolrCloudStackController_ServiceDesc, srv)
-}
-
-func _SolrCloudStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloud)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudStackControllerServer).Preview(ctx, req.(*SolrCloud))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SolrCloudStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloudId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudStackControllerServer).Apply(ctx, req.(*SolrCloudId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// SolrCloudStackController_ServiceDesc is the grpc.ServiceDesc for SolrCloudStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var SolrCloudStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudStackController",
-	HandlerType: (*SolrCloudStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _SolrCloudStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _SolrCloudStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
