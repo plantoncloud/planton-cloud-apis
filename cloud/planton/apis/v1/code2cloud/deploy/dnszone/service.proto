@@ -112,26 +112,25 @@ service DnsZoneQueryController {
 
 //dns-record command controller
 service DnsRecordCommandController {
-  // add a new dns-zone to a company
+  // add a new dns-record to dns-zone
   rpc add(AddOrUpdateDnsRecordCommandInput) returns (DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "dns_zone_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create dnszone record";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to add dns-record";
   }
-  // update an existing dns-zone
-  // only dns-zone records can be updated as part of this operations
+  // update an existing dns-record in dns-zone
   rpc update(AddOrUpdateDnsRecordCommandInput) returns (DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "dns_zone_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update dnszone record";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update dns-record";
   }
-  // delete an dns-zone
+  // delete a dns-record from a dns-zone
   rpc delete(DeleteDnsRecordCommandInput) returns (DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "dns_zone_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete dnszone record";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete dns-record";
   }
 }

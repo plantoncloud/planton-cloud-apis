@@ -13,6 +13,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,27 +25,42 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KafkaClusterCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/create"
-	KafkaClusterCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/update"
-	KafkaClusterCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/delete"
-	KafkaClusterCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/restore"
-	KafkaClusterCommandController_Restart_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/restart"
-	KafkaClusterCommandController_Pause_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/pause"
-	KafkaClusterCommandController_Unpause_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/unpause"
+	KafkaClusterCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/previewCreate"
+	KafkaClusterCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/create"
+	KafkaClusterCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/previewUpdate"
+	KafkaClusterCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/update"
+	KafkaClusterCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/previewDelete"
+	KafkaClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/delete"
+	KafkaClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/previewRestore"
+	KafkaClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/restore"
+	KafkaClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/createStackJob"
+	KafkaClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/restart"
+	KafkaClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/pause"
+	KafkaClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/unpause"
 )
 
 // KafkaClusterCommandControllerClient is the client API for KafkaClusterCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KafkaClusterCommandControllerClient interface {
+	// preview create kafka-cluster
+	PreviewCreate(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// create kafka-cluster
 	Create(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// preview update an existing kafka-cluster
+	PreviewUpdate(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// update an existing kafka-cluster
 	Update(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// preview deleting an existing kafka-cluster
+	PreviewDelete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// delete an existing kafka-cluster
 	Delete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// preview restoring a deleted kafka-cluster
+	PreviewRestore(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// restore a deleted kafka-cluster
 	Restore(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// create-stack-job for kafka-cluster
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// restart a kafka-cluster running in a environment.
 	// kafka-cluster is restarted by deleting running "broker" pods which will be automatically recreated by kubernetes
 	// note: zookeeper pods are not deleted.
@@ -67,9 +83,27 @@ func NewKafkaClusterCommandControllerClient(cc grpc.ClientConnInterface) KafkaCl
 	return &kafkaClusterCommandControllerClient{cc}
 }
 
+func (c *kafkaClusterCommandControllerClient) PreviewCreate(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kafkaClusterCommandControllerClient) Create(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kafkaClusterCommandControllerClient) PreviewUpdate(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,6 +119,15 @@ func (c *kafkaClusterCommandControllerClient) Update(ctx context.Context, in *Ka
 	return out, nil
 }
 
+func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Delete_FullMethodName, in, out, opts...)
@@ -94,9 +137,27 @@ func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *Ka
 	return out, nil
 }
 
+func (c *kafkaClusterCommandControllerClient) PreviewRestore(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kafkaClusterCommandControllerClient) Restore(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kafkaClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -134,14 +195,24 @@ func (c *kafkaClusterCommandControllerClient) Unpause(ctx context.Context, in *K
 // All implementations should embed UnimplementedKafkaClusterCommandControllerServer
 // for forward compatibility
 type KafkaClusterCommandControllerServer interface {
+	// preview create kafka-cluster
+	PreviewCreate(context.Context, *KafkaCluster) (*KafkaCluster, error)
 	// create kafka-cluster
 	Create(context.Context, *KafkaCluster) (*KafkaCluster, error)
+	// preview update an existing kafka-cluster
+	PreviewUpdate(context.Context, *KafkaCluster) (*KafkaCluster, error)
 	// update an existing kafka-cluster
 	Update(context.Context, *KafkaCluster) (*KafkaCluster, error)
+	// preview deleting an existing kafka-cluster
+	PreviewDelete(context.Context, *KafkaClusterId) (*KafkaCluster, error)
 	// delete an existing kafka-cluster
 	Delete(context.Context, *KafkaClusterId) (*KafkaCluster, error)
+	// preview restoring a deleted kafka-cluster
+	PreviewRestore(context.Context, *KafkaCluster) (*KafkaCluster, error)
 	// restore a deleted kafka-cluster
 	Restore(context.Context, *KafkaCluster) (*KafkaCluster, error)
+	// create-stack-job for kafka-cluster
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*KafkaCluster, error)
 	// restart a kafka-cluster running in a environment.
 	// kafka-cluster is restarted by deleting running "broker" pods which will be automatically recreated by kubernetes
 	// note: zookeeper pods are not deleted.
@@ -160,17 +231,32 @@ type KafkaClusterCommandControllerServer interface {
 type UnimplementedKafkaClusterCommandControllerServer struct {
 }
 
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewCreate(context.Context, *KafkaCluster) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedKafkaClusterCommandControllerServer) Create(context.Context, *KafkaCluster) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewUpdate(context.Context, *KafkaCluster) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedKafkaClusterCommandControllerServer) Update(context.Context, *KafkaCluster) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewDelete(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedKafkaClusterCommandControllerServer) Delete(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewRestore(context.Context, *KafkaCluster) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedKafkaClusterCommandControllerServer) Restore(context.Context, *KafkaCluster) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedKafkaClusterCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedKafkaClusterCommandControllerServer) Restart(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -193,6 +279,24 @@ func RegisterKafkaClusterCommandControllerServer(s grpc.ServiceRegistrar, srv Ka
 	s.RegisterService(&KafkaClusterCommandController_ServiceDesc, srv)
 }
 
+func _KafkaClusterCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KafkaCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).PreviewCreate(ctx, req.(*KafkaCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KafkaClusterCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KafkaCluster)
 	if err := dec(in); err != nil {
@@ -207,6 +311,24 @@ func _KafkaClusterCommandController_Create_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KafkaClusterCommandControllerServer).Create(ctx, req.(*KafkaCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KafkaClusterCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KafkaCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).PreviewUpdate(ctx, req.(*KafkaCluster))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -229,6 +351,24 @@ func _KafkaClusterCommandController_Update_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KafkaClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KafkaClusterId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, req.(*KafkaClusterId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KafkaClusterId)
 	if err := dec(in); err != nil {
@@ -247,6 +387,24 @@ func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KafkaClusterCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KafkaCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).PreviewRestore(ctx, req.(*KafkaCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KafkaClusterCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KafkaCluster)
 	if err := dec(in); err != nil {
@@ -261,6 +419,24 @@ func _KafkaClusterCommandController_Restore_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KafkaClusterCommandControllerServer).Restore(ctx, req.(*KafkaCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KafkaClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -327,20 +503,40 @@ var KafkaClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*KafkaClusterCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _KafkaClusterCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _KafkaClusterCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _KafkaClusterCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _KafkaClusterCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _KafkaClusterCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _KafkaClusterCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _KafkaClusterCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _KafkaClusterCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _KafkaClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
@@ -1017,135 +1213,6 @@ var KafkaTopicQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _KafkaTopicQueryController_GetById_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/kafka/service.proto",
-}
-
-const (
-	KafkaClusterStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterStackController/preview"
-	KafkaClusterStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterStackController/apply"
-)
-
-// KafkaClusterStackControllerClient is the client API for KafkaClusterStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type KafkaClusterStackControllerClient interface {
-	// preview kafka-cluster stack
-	Preview(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
-	// apply kafka-cluster stack
-	Apply(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
-}
-
-type kafkaClusterStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewKafkaClusterStackControllerClient(cc grpc.ClientConnInterface) KafkaClusterStackControllerClient {
-	return &kafkaClusterStackControllerClient{cc}
-}
-
-func (c *kafkaClusterStackControllerClient) Preview(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error) {
-	out := new(KafkaCluster)
-	err := c.cc.Invoke(ctx, KafkaClusterStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kafkaClusterStackControllerClient) Apply(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
-	out := new(KafkaCluster)
-	err := c.cc.Invoke(ctx, KafkaClusterStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// KafkaClusterStackControllerServer is the server API for KafkaClusterStackController service.
-// All implementations should embed UnimplementedKafkaClusterStackControllerServer
-// for forward compatibility
-type KafkaClusterStackControllerServer interface {
-	// preview kafka-cluster stack
-	Preview(context.Context, *KafkaCluster) (*KafkaCluster, error)
-	// apply kafka-cluster stack
-	Apply(context.Context, *KafkaClusterId) (*KafkaCluster, error)
-}
-
-// UnimplementedKafkaClusterStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedKafkaClusterStackControllerServer struct {
-}
-
-func (UnimplementedKafkaClusterStackControllerServer) Preview(context.Context, *KafkaCluster) (*KafkaCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedKafkaClusterStackControllerServer) Apply(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeKafkaClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to KafkaClusterStackControllerServer will
-// result in compilation errors.
-type UnsafeKafkaClusterStackControllerServer interface {
-	mustEmbedUnimplementedKafkaClusterStackControllerServer()
-}
-
-func RegisterKafkaClusterStackControllerServer(s grpc.ServiceRegistrar, srv KafkaClusterStackControllerServer) {
-	s.RegisterService(&KafkaClusterStackController_ServiceDesc, srv)
-}
-
-func _KafkaClusterStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaCluster)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterStackControllerServer).Preview(ctx, req.(*KafkaCluster))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KafkaClusterStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterStackControllerServer).Apply(ctx, req.(*KafkaClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// KafkaClusterStackController_ServiceDesc is the grpc.ServiceDesc for KafkaClusterStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var KafkaClusterStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterStackController",
-	HandlerType: (*KafkaClusterStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _KafkaClusterStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _KafkaClusterStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

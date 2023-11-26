@@ -692,12 +692,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DnsRecordCommandControllerClient interface {
-	// add a new dns-zone to a company
+	// add a new dns-record to dns-zone
 	Add(ctx context.Context, in *AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
-	// update an existing dns-zone
-	// only dns-zone records can be updated as part of this operations
+	// update an existing dns-record in dns-zone
 	Update(ctx context.Context, in *AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
-	// delete an dns-zone
+	// delete a dns-record from a dns-zone
 	Delete(ctx context.Context, in *DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 }
 
@@ -740,12 +739,11 @@ func (c *dnsRecordCommandControllerClient) Delete(ctx context.Context, in *Delet
 // All implementations should embed UnimplementedDnsRecordCommandControllerServer
 // for forward compatibility
 type DnsRecordCommandControllerServer interface {
-	// add a new dns-zone to a company
+	// add a new dns-record to dns-zone
 	Add(context.Context, *AddOrUpdateDnsRecordCommandInput) (*DnsZone, error)
-	// update an existing dns-zone
-	// only dns-zone records can be updated as part of this operations
+	// update an existing dns-record in dns-zone
 	Update(context.Context, *AddOrUpdateDnsRecordCommandInput) (*DnsZone, error)
-	// delete an dns-zone
+	// delete a dns-record from a dns-zone
 	Delete(context.Context, *DeleteDnsRecordCommandInput) (*DnsZone, error)
 }
 
