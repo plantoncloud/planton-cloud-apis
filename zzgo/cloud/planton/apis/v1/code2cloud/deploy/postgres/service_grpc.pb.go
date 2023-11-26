@@ -13,6 +13,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,27 +25,42 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PostgresClusterCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/create"
-	PostgresClusterCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/update"
-	PostgresClusterCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/delete"
-	PostgresClusterCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/restore"
-	PostgresClusterCommandController_Restart_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/restart"
-	PostgresClusterCommandController_Pause_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/pause"
-	PostgresClusterCommandController_Unpause_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/unpause"
+	PostgresClusterCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/previewCreate"
+	PostgresClusterCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/create"
+	PostgresClusterCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/previewUpdate"
+	PostgresClusterCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/update"
+	PostgresClusterCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/previewDelete"
+	PostgresClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/delete"
+	PostgresClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/previewRestore"
+	PostgresClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/restore"
+	PostgresClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/createStackJob"
+	PostgresClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/restart"
+	PostgresClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/pause"
+	PostgresClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/unpause"
 )
 
 // PostgresClusterCommandControllerClient is the client API for PostgresClusterCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PostgresClusterCommandControllerClient interface {
+	// preview create postgres-cluster
+	PreviewCreate(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// create postgres-cluster
 	Create(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// preview updating an existing postgres-cluster
+	PreviewUpdate(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// update an existing postgres-cluster
 	Update(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// preview deleting an existing postgres-cluster
+	PreviewDelete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// delete an existing postgres-cluster
 	Delete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// preview restoring a deleted postgres-cluster in a environment
+	PreviewRestore(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
 	Restore(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// create-stack-job for postgres-cluster
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// restart a postgres-cluster running in a environment.
 	// postgres-cluster is restarted by deleting running pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
@@ -66,9 +82,27 @@ func NewPostgresClusterCommandControllerClient(cc grpc.ClientConnInterface) Post
 	return &postgresClusterCommandControllerClient{cc}
 }
 
+func (c *postgresClusterCommandControllerClient) PreviewCreate(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresClusterCommandControllerClient) Create(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresClusterCommandControllerClient) PreviewUpdate(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +118,15 @@ func (c *postgresClusterCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Delete_FullMethodName, in, out, opts...)
@@ -93,9 +136,27 @@ func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *postgresClusterCommandControllerClient) PreviewRestore(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *postgresClusterCommandControllerClient) Restore(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,14 +194,24 @@ func (c *postgresClusterCommandControllerClient) Unpause(ctx context.Context, in
 // All implementations should embed UnimplementedPostgresClusterCommandControllerServer
 // for forward compatibility
 type PostgresClusterCommandControllerServer interface {
+	// preview create postgres-cluster
+	PreviewCreate(context.Context, *PostgresCluster) (*PostgresCluster, error)
 	// create postgres-cluster
 	Create(context.Context, *PostgresCluster) (*PostgresCluster, error)
+	// preview updating an existing postgres-cluster
+	PreviewUpdate(context.Context, *PostgresCluster) (*PostgresCluster, error)
 	// update an existing postgres-cluster
 	Update(context.Context, *PostgresCluster) (*PostgresCluster, error)
+	// preview deleting an existing postgres-cluster
+	PreviewDelete(context.Context, *PostgresClusterId) (*PostgresCluster, error)
 	// delete an existing postgres-cluster
 	Delete(context.Context, *PostgresClusterId) (*PostgresCluster, error)
+	// preview restoring a deleted postgres-cluster in a environment
+	PreviewRestore(context.Context, *PostgresCluster) (*PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
 	Restore(context.Context, *PostgresCluster) (*PostgresCluster, error)
+	// create-stack-job for postgres-cluster
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*PostgresCluster, error)
 	// restart a postgres-cluster running in a environment.
 	// postgres-cluster is restarted by deleting running pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *PostgresClusterId) (*PostgresCluster, error)
@@ -158,17 +229,32 @@ type PostgresClusterCommandControllerServer interface {
 type UnimplementedPostgresClusterCommandControllerServer struct {
 }
 
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewCreate(context.Context, *PostgresCluster) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedPostgresClusterCommandControllerServer) Create(context.Context, *PostgresCluster) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewUpdate(context.Context, *PostgresCluster) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedPostgresClusterCommandControllerServer) Update(context.Context, *PostgresCluster) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewDelete(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedPostgresClusterCommandControllerServer) Delete(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewRestore(context.Context, *PostgresCluster) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedPostgresClusterCommandControllerServer) Restore(context.Context, *PostgresCluster) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedPostgresClusterCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedPostgresClusterCommandControllerServer) Restart(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -191,6 +277,24 @@ func RegisterPostgresClusterCommandControllerServer(s grpc.ServiceRegistrar, srv
 	s.RegisterService(&PostgresClusterCommandController_ServiceDesc, srv)
 }
 
+func _PostgresClusterCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostgresCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).PreviewCreate(ctx, req.(*PostgresCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresClusterCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PostgresCluster)
 	if err := dec(in); err != nil {
@@ -205,6 +309,24 @@ func _PostgresClusterCommandController_Create_Handler(srv interface{}, ctx conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresClusterCommandControllerServer).Create(ctx, req.(*PostgresCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresClusterCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostgresCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).PreviewUpdate(ctx, req.(*PostgresCluster))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,6 +349,24 @@ func _PostgresClusterCommandController_Update_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostgresClusterId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, req.(*PostgresClusterId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PostgresClusterId)
 	if err := dec(in); err != nil {
@@ -245,6 +385,24 @@ func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresClusterCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PostgresCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).PreviewRestore(ctx, req.(*PostgresCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _PostgresClusterCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PostgresCluster)
 	if err := dec(in); err != nil {
@@ -259,6 +417,24 @@ func _PostgresClusterCommandController_Restore_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresClusterCommandControllerServer).Restore(ctx, req.(*PostgresCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -325,20 +501,40 @@ var PostgresClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*PostgresClusterCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _PostgresClusterCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _PostgresClusterCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _PostgresClusterCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _PostgresClusterCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _PostgresClusterCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _PostgresClusterCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _PostgresClusterCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _PostgresClusterCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _PostgresClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
@@ -681,135 +877,6 @@ var PostgresClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findPods",
 			Handler:    _PostgresClusterQueryController_FindPods_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/postgres/service.proto",
-}
-
-const (
-	PostgresClusterStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStackController/preview"
-	PostgresClusterStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStackController/apply"
-)
-
-// PostgresClusterStackControllerClient is the client API for PostgresClusterStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PostgresClusterStackControllerClient interface {
-	// preview postgres-cluster stack
-	Preview(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
-	// apply postgres-cluster stack
-	Apply(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
-}
-
-type postgresClusterStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewPostgresClusterStackControllerClient(cc grpc.ClientConnInterface) PostgresClusterStackControllerClient {
-	return &postgresClusterStackControllerClient{cc}
-}
-
-func (c *postgresClusterStackControllerClient) Preview(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error) {
-	out := new(PostgresCluster)
-	err := c.cc.Invoke(ctx, PostgresClusterStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *postgresClusterStackControllerClient) Apply(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
-	out := new(PostgresCluster)
-	err := c.cc.Invoke(ctx, PostgresClusterStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// PostgresClusterStackControllerServer is the server API for PostgresClusterStackController service.
-// All implementations should embed UnimplementedPostgresClusterStackControllerServer
-// for forward compatibility
-type PostgresClusterStackControllerServer interface {
-	// preview postgres-cluster stack
-	Preview(context.Context, *PostgresCluster) (*PostgresCluster, error)
-	// apply postgres-cluster stack
-	Apply(context.Context, *PostgresClusterId) (*PostgresCluster, error)
-}
-
-// UnimplementedPostgresClusterStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedPostgresClusterStackControllerServer struct {
-}
-
-func (UnimplementedPostgresClusterStackControllerServer) Preview(context.Context, *PostgresCluster) (*PostgresCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedPostgresClusterStackControllerServer) Apply(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafePostgresClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PostgresClusterStackControllerServer will
-// result in compilation errors.
-type UnsafePostgresClusterStackControllerServer interface {
-	mustEmbedUnimplementedPostgresClusterStackControllerServer()
-}
-
-func RegisterPostgresClusterStackControllerServer(s grpc.ServiceRegistrar, srv PostgresClusterStackControllerServer) {
-	s.RegisterService(&PostgresClusterStackController_ServiceDesc, srv)
-}
-
-func _PostgresClusterStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresCluster)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterStackControllerServer).Preview(ctx, req.(*PostgresCluster))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PostgresClusterStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterStackControllerServer).Apply(ctx, req.(*PostgresClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// PostgresClusterStackController_ServiceDesc is the grpc.ServiceDesc for PostgresClusterStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var PostgresClusterStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStackController",
-	HandlerType: (*PostgresClusterStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _PostgresClusterStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _PostgresClusterStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
