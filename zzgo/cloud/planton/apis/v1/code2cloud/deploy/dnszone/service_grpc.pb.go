@@ -10,6 +10,7 @@ import (
 	context "context"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,25 +23,39 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DnsZoneCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/create"
-	DnsZoneCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/update"
-	DnsZoneCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/delete"
-	DnsZoneCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/restore"
+	DnsZoneCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewCreate"
+	DnsZoneCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/create"
+	DnsZoneCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewUpdate"
+	DnsZoneCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/update"
+	DnsZoneCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewDelete"
+	DnsZoneCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/delete"
+	DnsZoneCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewRestore"
+	DnsZoneCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/restore"
+	DnsZoneCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/createStackJob"
 )
 
 // DnsZoneCommandControllerClient is the client API for DnsZoneCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DnsZoneCommandControllerClient interface {
-	// add a new dns-zone to a company
+	// preview dns-zone before creating
+	PreviewCreate(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
+	// create a dns-zone
 	Create(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
-	// update an existing dns-zone of a company
-	// only dns-zone records can be updated as part of this operations
+	// preview updates to a dns-zone
+	PreviewUpdate(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
+	// update an existing dns-zone
 	Update(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
-	// delete an dns-zone of a company
+	// preview deleting a dns-zone
+	PreviewDelete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error)
+	// delete a dns-zone
 	Delete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error)
-	// restore a delete dns-zone
+	// preview restoring a deleted dns-zone
+	PreviewRestore(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
+	// restore a deleted dns-zone
 	Restore(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
+	// create-stack-job for dns-zone
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 }
 
 type dnsZoneCommandControllerClient struct {
@@ -51,9 +66,27 @@ func NewDnsZoneCommandControllerClient(cc grpc.ClientConnInterface) DnsZoneComma
 	return &dnsZoneCommandControllerClient{cc}
 }
 
+func (c *dnsZoneCommandControllerClient) PreviewCreate(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dnsZoneCommandControllerClient) Create(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error) {
 	out := new(DnsZone)
 	err := c.cc.Invoke(ctx, DnsZoneCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dnsZoneCommandControllerClient) PreviewUpdate(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -69,9 +102,27 @@ func (c *dnsZoneCommandControllerClient) Update(ctx context.Context, in *DnsZone
 	return out, nil
 }
 
+func (c *dnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *dnsZoneCommandControllerClient) Delete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error) {
 	out := new(DnsZone)
 	err := c.cc.Invoke(ctx, DnsZoneCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dnsZoneCommandControllerClient) PreviewRestore(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,36 +138,69 @@ func (c *dnsZoneCommandControllerClient) Restore(ctx context.Context, in *DnsZon
 	return out, nil
 }
 
+func (c *dnsZoneCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_CreateStackJob_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DnsZoneCommandControllerServer is the server API for DnsZoneCommandController service.
 // All implementations should embed UnimplementedDnsZoneCommandControllerServer
 // for forward compatibility
 type DnsZoneCommandControllerServer interface {
-	// add a new dns-zone to a company
+	// preview dns-zone before creating
+	PreviewCreate(context.Context, *DnsZone) (*DnsZone, error)
+	// create a dns-zone
 	Create(context.Context, *DnsZone) (*DnsZone, error)
-	// update an existing dns-zone of a company
-	// only dns-zone records can be updated as part of this operations
+	// preview updates to a dns-zone
+	PreviewUpdate(context.Context, *DnsZone) (*DnsZone, error)
+	// update an existing dns-zone
 	Update(context.Context, *DnsZone) (*DnsZone, error)
-	// delete an dns-zone of a company
+	// preview deleting a dns-zone
+	PreviewDelete(context.Context, *DnsZoneId) (*DnsZone, error)
+	// delete a dns-zone
 	Delete(context.Context, *DnsZoneId) (*DnsZone, error)
-	// restore a delete dns-zone
+	// preview restoring a deleted dns-zone
+	PreviewRestore(context.Context, *DnsZone) (*DnsZone, error)
+	// restore a deleted dns-zone
 	Restore(context.Context, *DnsZone) (*DnsZone, error)
+	// create-stack-job for dns-zone
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*DnsZone, error)
 }
 
 // UnimplementedDnsZoneCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedDnsZoneCommandControllerServer struct {
 }
 
+func (UnimplementedDnsZoneCommandControllerServer) PreviewCreate(context.Context, *DnsZone) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedDnsZoneCommandControllerServer) Create(context.Context, *DnsZone) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedDnsZoneCommandControllerServer) PreviewUpdate(context.Context, *DnsZone) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedDnsZoneCommandControllerServer) Update(context.Context, *DnsZone) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedDnsZoneCommandControllerServer) PreviewDelete(context.Context, *DnsZoneId) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedDnsZoneCommandControllerServer) Delete(context.Context, *DnsZoneId) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedDnsZoneCommandControllerServer) PreviewRestore(context.Context, *DnsZone) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedDnsZoneCommandControllerServer) Restore(context.Context, *DnsZone) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedDnsZoneCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
 // UnsafeDnsZoneCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -128,6 +212,24 @@ type UnsafeDnsZoneCommandControllerServer interface {
 
 func RegisterDnsZoneCommandControllerServer(s grpc.ServiceRegistrar, srv DnsZoneCommandControllerServer) {
 	s.RegisterService(&DnsZoneCommandController_ServiceDesc, srv)
+}
+
+func _DnsZoneCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DnsZone)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).PreviewCreate(ctx, req.(*DnsZone))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DnsZoneCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -144,6 +246,24 @@ func _DnsZoneCommandController_Create_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DnsZoneCommandControllerServer).Create(ctx, req.(*DnsZone))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DnsZoneCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DnsZone)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).PreviewUpdate(ctx, req.(*DnsZone))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -166,6 +286,24 @@ func _DnsZoneCommandController_Update_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DnsZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DnsZoneId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).PreviewDelete(ctx, req.(*DnsZoneId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DnsZoneCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DnsZoneId)
 	if err := dec(in); err != nil {
@@ -180,6 +318,24 @@ func _DnsZoneCommandController_Delete_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DnsZoneCommandControllerServer).Delete(ctx, req.(*DnsZoneId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DnsZoneCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DnsZone)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).PreviewRestore(ctx, req.(*DnsZone))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -202,6 +358,24 @@ func _DnsZoneCommandController_Restore_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DnsZoneCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DnsZoneCommandController_ServiceDesc is the grpc.ServiceDesc for DnsZoneCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -210,20 +384,40 @@ var DnsZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DnsZoneCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _DnsZoneCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _DnsZoneCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _DnsZoneCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _DnsZoneCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _DnsZoneCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _DnsZoneCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _DnsZoneCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _DnsZoneCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _DnsZoneCommandController_CreateStackJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -498,12 +692,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DnsRecordCommandControllerClient interface {
-	// add a new dns-zone to a company
+	// add a new dns-record to dns-zone
 	Add(ctx context.Context, in *AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
-	// update an existing dns-zone of a company
-	// only dns-zone records can be updated as part of this operations
+	// update an existing dns-record in dns-zone
 	Update(ctx context.Context, in *AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
-	// delete an dns-zone of a company
+	// delete a dns-record from a dns-zone
 	Delete(ctx context.Context, in *DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 }
 
@@ -546,12 +739,11 @@ func (c *dnsRecordCommandControllerClient) Delete(ctx context.Context, in *Delet
 // All implementations should embed UnimplementedDnsRecordCommandControllerServer
 // for forward compatibility
 type DnsRecordCommandControllerServer interface {
-	// add a new dns-zone to a company
+	// add a new dns-record to dns-zone
 	Add(context.Context, *AddOrUpdateDnsRecordCommandInput) (*DnsZone, error)
-	// update an existing dns-zone of a company
-	// only dns-zone records can be updated as part of this operations
+	// update an existing dns-record in dns-zone
 	Update(context.Context, *AddOrUpdateDnsRecordCommandInput) (*DnsZone, error)
-	// delete an dns-zone of a company
+	// delete a dns-record from a dns-zone
 	Delete(context.Context, *DeleteDnsRecordCommandInput) (*DnsZone, error)
 }
 
@@ -652,135 +844,6 @@ var DnsRecordCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _DnsRecordCommandController_Delete_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/dnszone/service.proto",
-}
-
-const (
-	DnsZoneStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneStackController/preview"
-	DnsZoneStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneStackController/apply"
-)
-
-// DnsZoneStackControllerClient is the client API for DnsZoneStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type DnsZoneStackControllerClient interface {
-	// preview dns-zone stack
-	Preview(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
-	// apply dns-zone stack
-	Apply(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error)
-}
-
-type dnsZoneStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewDnsZoneStackControllerClient(cc grpc.ClientConnInterface) DnsZoneStackControllerClient {
-	return &dnsZoneStackControllerClient{cc}
-}
-
-func (c *dnsZoneStackControllerClient) Preview(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error) {
-	out := new(DnsZone)
-	err := c.cc.Invoke(ctx, DnsZoneStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *dnsZoneStackControllerClient) Apply(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error) {
-	out := new(DnsZone)
-	err := c.cc.Invoke(ctx, DnsZoneStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// DnsZoneStackControllerServer is the server API for DnsZoneStackController service.
-// All implementations should embed UnimplementedDnsZoneStackControllerServer
-// for forward compatibility
-type DnsZoneStackControllerServer interface {
-	// preview dns-zone stack
-	Preview(context.Context, *DnsZone) (*DnsZone, error)
-	// apply dns-zone stack
-	Apply(context.Context, *DnsZoneId) (*DnsZone, error)
-}
-
-// UnimplementedDnsZoneStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedDnsZoneStackControllerServer struct {
-}
-
-func (UnimplementedDnsZoneStackControllerServer) Preview(context.Context, *DnsZone) (*DnsZone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedDnsZoneStackControllerServer) Apply(context.Context, *DnsZoneId) (*DnsZone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeDnsZoneStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to DnsZoneStackControllerServer will
-// result in compilation errors.
-type UnsafeDnsZoneStackControllerServer interface {
-	mustEmbedUnimplementedDnsZoneStackControllerServer()
-}
-
-func RegisterDnsZoneStackControllerServer(s grpc.ServiceRegistrar, srv DnsZoneStackControllerServer) {
-	s.RegisterService(&DnsZoneStackController_ServiceDesc, srv)
-}
-
-func _DnsZoneStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DnsZone)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DnsZoneStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DnsZoneStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneStackControllerServer).Preview(ctx, req.(*DnsZone))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DnsZoneStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DnsZoneId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DnsZoneStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DnsZoneStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneStackControllerServer).Apply(ctx, req.(*DnsZoneId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// DnsZoneStackController_ServiceDesc is the grpc.ServiceDesc for DnsZoneStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var DnsZoneStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneStackController",
-	HandlerType: (*DnsZoneStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _DnsZoneStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _DnsZoneStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -12,14 +12,12 @@ enum KafkaClusterEventType {
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_create_stack_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
   updated = 2 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_stripe_subscription_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
   deleted = 3 [

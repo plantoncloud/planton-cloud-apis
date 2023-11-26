@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.rpc.method.options;
+
+import "google/protobuf/descriptor.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/event/event.proto";
+
+extend google.protobuf.MethodOptions {
+  cloud.planton.apis.v1.commons.resource.enums.event.ApiResourceEventType event_type = 90100;
+}

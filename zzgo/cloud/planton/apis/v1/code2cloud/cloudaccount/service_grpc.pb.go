@@ -10,6 +10,7 @@ import (
 	context "context"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,25 +22,40 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CloudAccountCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/create"
-	CloudAccountCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/update"
-	CloudAccountCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/delete"
-	CloudAccountCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/restore"
+	CloudAccountCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewCreate"
+	CloudAccountCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/create"
+	CloudAccountCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewUpdate"
+	CloudAccountCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/update"
+	CloudAccountCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewDelete"
+	CloudAccountCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/delete"
+	CloudAccountCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewRestore"
+	CloudAccountCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/restore"
+	CloudAccountCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/createStackJob"
 )
 
 // CloudAccountCommandControllerClient is the client API for CloudAccountCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CloudAccountCommandControllerClient interface {
-	// create a cloud account resource
+	// preview create cloud-account resource
+	PreviewCreate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
+	// create a cloud-account resource
 	Create(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// update an existing cloud account
+	// preview update on existing cloud-account
+	PreviewUpdate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
+	// update an existing cloud-account
 	Update(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// delete a cloud account that was previously created
-	// warning: deleting a cloud account from planton cloud destroys the resources created by planton cloud in the account
+	// preview delete a cloud-account that was previously created
+	PreviewDelete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
+	// delete a cloud-account that was previously created
+	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
 	Delete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
-	// restore a deleted cloud account.
+	// preview restoring a deleted cloud-account.
+	PreviewRestore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
+	// restore a deleted cloud-account.
 	Restore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
+	// create-stack-job for cloud-account
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
 }
 
 type cloudAccountCommandControllerClient struct {
@@ -50,9 +66,27 @@ func NewCloudAccountCommandControllerClient(cc grpc.ClientConnInterface) CloudAc
 	return &cloudAccountCommandControllerClient{cc}
 }
 
+func (c *cloudAccountCommandControllerClient) PreviewCreate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cloudAccountCommandControllerClient) Create(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error) {
 	out := new(CloudAccount)
 	err := c.cc.Invoke(ctx, CloudAccountCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountCommandControllerClient) PreviewUpdate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,9 +102,27 @@ func (c *cloudAccountCommandControllerClient) Update(ctx context.Context, in *Cl
 	return out, nil
 }
 
+func (c *cloudAccountCommandControllerClient) PreviewDelete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cloudAccountCommandControllerClient) Delete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error) {
 	out := new(CloudAccount)
 	err := c.cc.Invoke(ctx, CloudAccountCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountCommandControllerClient) PreviewRestore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,36 +138,70 @@ func (c *cloudAccountCommandControllerClient) Restore(ctx context.Context, in *C
 	return out, nil
 }
 
+func (c *cloudAccountCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_CreateStackJob_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CloudAccountCommandControllerServer is the server API for CloudAccountCommandController service.
 // All implementations should embed UnimplementedCloudAccountCommandControllerServer
 // for forward compatibility
 type CloudAccountCommandControllerServer interface {
-	// create a cloud account resource
+	// preview create cloud-account resource
+	PreviewCreate(context.Context, *CloudAccount) (*CloudAccount, error)
+	// create a cloud-account resource
 	Create(context.Context, *CloudAccount) (*CloudAccount, error)
-	// update an existing cloud account
+	// preview update on existing cloud-account
+	PreviewUpdate(context.Context, *CloudAccount) (*CloudAccount, error)
+	// update an existing cloud-account
 	Update(context.Context, *CloudAccount) (*CloudAccount, error)
-	// delete a cloud account that was previously created
-	// warning: deleting a cloud account from planton cloud destroys the resources created by planton cloud in the account
+	// preview delete a cloud-account that was previously created
+	PreviewDelete(context.Context, *CloudAccountId) (*CloudAccount, error)
+	// delete a cloud-account that was previously created
+	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
 	Delete(context.Context, *CloudAccountId) (*CloudAccount, error)
-	// restore a deleted cloud account.
+	// preview restoring a deleted cloud-account.
+	PreviewRestore(context.Context, *CloudAccount) (*CloudAccount, error)
+	// restore a deleted cloud-account.
 	Restore(context.Context, *CloudAccount) (*CloudAccount, error)
+	// create-stack-job for cloud-account
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CloudAccount, error)
 }
 
 // UnimplementedCloudAccountCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedCloudAccountCommandControllerServer struct {
 }
 
+func (UnimplementedCloudAccountCommandControllerServer) PreviewCreate(context.Context, *CloudAccount) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedCloudAccountCommandControllerServer) Create(context.Context, *CloudAccount) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCloudAccountCommandControllerServer) PreviewUpdate(context.Context, *CloudAccount) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedCloudAccountCommandControllerServer) Update(context.Context, *CloudAccount) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedCloudAccountCommandControllerServer) PreviewDelete(context.Context, *CloudAccountId) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedCloudAccountCommandControllerServer) Delete(context.Context, *CloudAccountId) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedCloudAccountCommandControllerServer) PreviewRestore(context.Context, *CloudAccount) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedCloudAccountCommandControllerServer) Restore(context.Context, *CloudAccount) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedCloudAccountCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
 // UnsafeCloudAccountCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -127,6 +213,24 @@ type UnsafeCloudAccountCommandControllerServer interface {
 
 func RegisterCloudAccountCommandControllerServer(s grpc.ServiceRegistrar, srv CloudAccountCommandControllerServer) {
 	s.RegisterService(&CloudAccountCommandController_ServiceDesc, srv)
+}
+
+func _CloudAccountCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).PreviewCreate(ctx, req.(*CloudAccount))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CloudAccountCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -143,6 +247,24 @@ func _CloudAccountCommandController_Create_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CloudAccountCommandControllerServer).Create(ctx, req.(*CloudAccount))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).PreviewUpdate(ctx, req.(*CloudAccount))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -165,6 +287,24 @@ func _CloudAccountCommandController_Update_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudAccountCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudAccountId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).PreviewDelete(ctx, req.(*CloudAccountId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CloudAccountCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CloudAccountId)
 	if err := dec(in); err != nil {
@@ -179,6 +319,24 @@ func _CloudAccountCommandController_Delete_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CloudAccountCommandControllerServer).Delete(ctx, req.(*CloudAccountId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloudAccount)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).PreviewRestore(ctx, req.(*CloudAccount))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -201,6 +359,24 @@ func _CloudAccountCommandController_Restore_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudAccountCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CloudAccountCommandController_ServiceDesc is the grpc.ServiceDesc for CloudAccountCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -209,20 +385,40 @@ var CloudAccountCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CloudAccountCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _CloudAccountCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _CloudAccountCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _CloudAccountCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _CloudAccountCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _CloudAccountCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _CloudAccountCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _CloudAccountCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _CloudAccountCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _CloudAccountCommandController_CreateStackJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -242,35 +438,35 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CloudAccountQueryControllerClient interface {
-	// look up a cloud account by id
+	// look up a cloud-account by id
 	GetById(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
 	// todo: add authorization
-	// find cloud accounts by company id.
-	// the response should only include cloud accounts in a company that the authenticated user account has viewer access to.
+	// find cloud-accounts by company id.
+	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
 	List(ctx context.Context, in *pagination.PageInfo, opts ...grpc.CallOption) (*CloudAccountList, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create artifact store.
-	// this will be used to populate drop down of cloud accounts in create artifact store form.
-	// the response should only include cloud accounts that a company is authorised to create artifact stores.
-	// the authorization is verified by looking up cloud accounts with `company-artifact-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create artifact store.
+	// this will be used to populate drop down of cloud-accounts in create artifact store form.
+	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
+	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create kube-cluster.
-	// this will be used to populate drop down of cloud accounts in create kube-cluster form.
-	// the response should only include cloud accounts that a company is authorised to create kube-cluster.
-	// the authorization is verified by looking up cloud accounts with `company-kube-cluster-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create kube-cluster.
+	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
+	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
+	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create dns managed zone.
-	// this will be used to populate drop down of cloud accounts in create dns managed zone form.
-	// the response should only include cloud accounts that a company is authorised to create dns managed zone.
-	// the authorization is verified by looking up cloud accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create dns managed zone.
+	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
+	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
+	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 }
 
@@ -340,35 +536,35 @@ func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx c
 // All implementations should embed UnimplementedCloudAccountQueryControllerServer
 // for forward compatibility
 type CloudAccountQueryControllerServer interface {
-	// look up a cloud account by id
+	// look up a cloud-account by id
 	GetById(context.Context, *CloudAccountId) (*CloudAccount, error)
 	// todo: add authorization
-	// find cloud accounts by company id.
-	// the response should only include cloud accounts in a company that the authenticated user account has viewer access to.
+	// find cloud-accounts by company id.
+	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
 	List(context.Context, *pagination.PageInfo) (*CloudAccountList, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create artifact store.
-	// this will be used to populate drop down of cloud accounts in create artifact store form.
-	// the response should only include cloud accounts that a company is authorised to create artifact stores.
-	// the authorization is verified by looking up cloud accounts with `company-artifact-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create artifact store.
+	// this will be used to populate drop down of cloud-accounts in create artifact store form.
+	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
+	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create kube-cluster.
-	// this will be used to populate drop down of cloud accounts in create kube-cluster form.
-	// the response should only include cloud accounts that a company is authorised to create kube-cluster.
-	// the authorization is verified by looking up cloud accounts with `company-kube-cluster-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create kube-cluster.
+	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
+	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
+	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create dns managed zone.
-	// this will be used to populate drop down of cloud accounts in create dns managed zone form.
-	// the response should only include cloud accounts that a company is authorised to create dns managed zone.
-	// the authorization is verified by looking up cloud accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create dns managed zone.
+	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
+	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
+	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindDnsZoneCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 }
 
@@ -544,135 +740,6 @@ var CloudAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findDnsZoneCreateCloudAccounts",
 			Handler:    _CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/cloudaccount/service.proto",
-}
-
-const (
-	CloudAccountStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController/preview"
-	CloudAccountStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController/apply"
-)
-
-// CloudAccountStackControllerClient is the client API for CloudAccountStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CloudAccountStackControllerClient interface {
-	// preview stack-job for cloud-account spec
-	Preview(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// apply stack for a cloud-account
-	Apply(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
-}
-
-type cloudAccountStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewCloudAccountStackControllerClient(cc grpc.ClientConnInterface) CloudAccountStackControllerClient {
-	return &cloudAccountStackControllerClient{cc}
-}
-
-func (c *cloudAccountStackControllerClient) Preview(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error) {
-	out := new(CloudAccount)
-	err := c.cc.Invoke(ctx, CloudAccountStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cloudAccountStackControllerClient) Apply(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error) {
-	out := new(CloudAccount)
-	err := c.cc.Invoke(ctx, CloudAccountStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// CloudAccountStackControllerServer is the server API for CloudAccountStackController service.
-// All implementations should embed UnimplementedCloudAccountStackControllerServer
-// for forward compatibility
-type CloudAccountStackControllerServer interface {
-	// preview stack-job for cloud-account spec
-	Preview(context.Context, *CloudAccount) (*CloudAccount, error)
-	// apply stack for a cloud-account
-	Apply(context.Context, *CloudAccountId) (*CloudAccount, error)
-}
-
-// UnimplementedCloudAccountStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedCloudAccountStackControllerServer struct {
-}
-
-func (UnimplementedCloudAccountStackControllerServer) Preview(context.Context, *CloudAccount) (*CloudAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedCloudAccountStackControllerServer) Apply(context.Context, *CloudAccountId) (*CloudAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeCloudAccountStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CloudAccountStackControllerServer will
-// result in compilation errors.
-type UnsafeCloudAccountStackControllerServer interface {
-	mustEmbedUnimplementedCloudAccountStackControllerServer()
-}
-
-func RegisterCloudAccountStackControllerServer(s grpc.ServiceRegistrar, srv CloudAccountStackControllerServer) {
-	s.RegisterService(&CloudAccountStackController_ServiceDesc, srv)
-}
-
-func _CloudAccountStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloudAccount)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CloudAccountStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CloudAccountStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountStackControllerServer).Preview(ctx, req.(*CloudAccount))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CloudAccountStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloudAccountId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CloudAccountStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CloudAccountStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountStackControllerServer).Apply(ctx, req.(*CloudAccountId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// CloudAccountStackController_ServiceDesc is the grpc.ServiceDesc for CloudAccountStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var CloudAccountStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountStackController",
-	HandlerType: (*CloudAccountStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _CloudAccountStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _CloudAccountStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

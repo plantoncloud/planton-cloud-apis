@@ -11,6 +11,7 @@ import (
 	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,10 +23,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	ArtifactStoreCommandController_PreviewCreate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/previewCreate"
 	ArtifactStoreCommandController_Create_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/create"
+	ArtifactStoreCommandController_PreviewUpdate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/previewUpdate"
 	ArtifactStoreCommandController_Update_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/update"
+	ArtifactStoreCommandController_PreviewDelete_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/previewDelete"
 	ArtifactStoreCommandController_Delete_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/delete"
+	ArtifactStoreCommandController_PreviewRestore_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/previewRestore"
 	ArtifactStoreCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/restore"
+	ArtifactStoreCommandController_CreateStackJob_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/createStackJob"
 	ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_FullMethodName = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreCommandController/deleteArtifactStorePackageVersion"
 )
 
@@ -33,14 +39,24 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ArtifactStoreCommandControllerClient interface {
+	// preview create artifact-store
+	PreviewCreate(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// create artifact-store
 	Create(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
+	// preview update artifact-store
+	PreviewUpdate(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// update artifact-store
 	Update(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
+	// preview delete an artifact-store.
+	PreviewDelete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// delete an artifact-store.
 	Delete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error)
+	// preview restoring a deleted artifact-store.
+	PreviewRestore(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
 	Restore(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
+	// create-stack-job for artifact-store
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
 	DeleteArtifactStorePackageVersion(ctx context.Context, in *DelArtifactStorePackageVersionCommandInput, opts ...grpc.CallOption) (*ArtifactStorePackageVersion, error)
 }
@@ -53,9 +69,27 @@ func NewArtifactStoreCommandControllerClient(cc grpc.ClientConnInterface) Artifa
 	return &artifactStoreCommandControllerClient{cc}
 }
 
+func (c *artifactStoreCommandControllerClient) PreviewCreate(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
+	out := new(ArtifactStore)
+	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactStoreCommandControllerClient) Create(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
 	out := new(ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactStoreCommandControllerClient) PreviewUpdate(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
+	out := new(ArtifactStore)
+	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -71,6 +105,15 @@ func (c *artifactStoreCommandControllerClient) Update(ctx context.Context, in *A
 	return out, nil
 }
 
+func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error) {
+	out := new(ArtifactStore)
+	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error) {
 	out := new(ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_Delete_FullMethodName, in, out, opts...)
@@ -80,9 +123,27 @@ func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *A
 	return out, nil
 }
 
+func (c *artifactStoreCommandControllerClient) PreviewRestore(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
+	out := new(ArtifactStore)
+	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *artifactStoreCommandControllerClient) Restore(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
 	out := new(ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *artifactStoreCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error) {
+	out := new(ArtifactStore)
+	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,14 +163,24 @@ func (c *artifactStoreCommandControllerClient) DeleteArtifactStorePackageVersion
 // All implementations should embed UnimplementedArtifactStoreCommandControllerServer
 // for forward compatibility
 type ArtifactStoreCommandControllerServer interface {
+	// preview create artifact-store
+	PreviewCreate(context.Context, *ArtifactStore) (*ArtifactStore, error)
 	// create artifact-store
 	Create(context.Context, *ArtifactStore) (*ArtifactStore, error)
+	// preview update artifact-store
+	PreviewUpdate(context.Context, *ArtifactStore) (*ArtifactStore, error)
 	// update artifact-store
 	Update(context.Context, *ArtifactStore) (*ArtifactStore, error)
+	// preview delete an artifact-store.
+	PreviewDelete(context.Context, *ArtifactStoreId) (*ArtifactStore, error)
 	// delete an artifact-store.
 	Delete(context.Context, *ArtifactStoreId) (*ArtifactStore, error)
+	// preview restoring a deleted artifact-store.
+	PreviewRestore(context.Context, *ArtifactStore) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
 	Restore(context.Context, *ArtifactStore) (*ArtifactStore, error)
+	// create-stack-job for artifact-store
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
 	DeleteArtifactStorePackageVersion(context.Context, *DelArtifactStorePackageVersionCommandInput) (*ArtifactStorePackageVersion, error)
 }
@@ -118,17 +189,32 @@ type ArtifactStoreCommandControllerServer interface {
 type UnimplementedArtifactStoreCommandControllerServer struct {
 }
 
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewCreate(context.Context, *ArtifactStore) (*ArtifactStore, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedArtifactStoreCommandControllerServer) Create(context.Context, *ArtifactStore) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewUpdate(context.Context, *ArtifactStore) (*ArtifactStore, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedArtifactStoreCommandControllerServer) Update(context.Context, *ArtifactStore) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewDelete(context.Context, *ArtifactStoreId) (*ArtifactStore, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedArtifactStoreCommandControllerServer) Delete(context.Context, *ArtifactStoreId) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewRestore(context.Context, *ArtifactStore) (*ArtifactStore, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedArtifactStoreCommandControllerServer) Restore(context.Context, *ArtifactStore) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedArtifactStoreCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*ArtifactStore, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedArtifactStoreCommandControllerServer) DeleteArtifactStorePackageVersion(context.Context, *DelArtifactStorePackageVersionCommandInput) (*ArtifactStorePackageVersion, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteArtifactStorePackageVersion not implemented")
@@ -145,6 +231,24 @@ func RegisterArtifactStoreCommandControllerServer(s grpc.ServiceRegistrar, srv A
 	s.RegisterService(&ArtifactStoreCommandController_ServiceDesc, srv)
 }
 
+func _ArtifactStoreCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactStore)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewCreate(ctx, req.(*ArtifactStore))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactStoreCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ArtifactStore)
 	if err := dec(in); err != nil {
@@ -159,6 +263,24 @@ func _ArtifactStoreCommandController_Create_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactStoreCommandControllerServer).Create(ctx, req.(*ArtifactStore))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactStoreCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactStore)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewUpdate(ctx, req.(*ArtifactStore))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -181,6 +303,24 @@ func _ArtifactStoreCommandController_Update_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactStoreCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactStoreId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, req.(*ArtifactStoreId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ArtifactStoreId)
 	if err := dec(in); err != nil {
@@ -199,6 +339,24 @@ func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactStoreCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ArtifactStore)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreCommandControllerServer).PreviewRestore(ctx, req.(*ArtifactStore))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ArtifactStoreCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ArtifactStore)
 	if err := dec(in); err != nil {
@@ -213,6 +371,24 @@ func _ArtifactStoreCommandController_Restore_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ArtifactStoreCommandControllerServer).Restore(ctx, req.(*ArtifactStore))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ArtifactStoreCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -243,20 +419,40 @@ var ArtifactStoreCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ArtifactStoreCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _ArtifactStoreCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _ArtifactStoreCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _ArtifactStoreCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _ArtifactStoreCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _ArtifactStoreCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _ArtifactStoreCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _ArtifactStoreCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _ArtifactStoreCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _ArtifactStoreCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "deleteArtifactStorePackageVersion",
@@ -591,135 +787,6 @@ var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listArtifactStorePackageVersions",
 			Handler:    _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/develop/artifactstore/service.proto",
-}
-
-const (
-	ArtifactStoreStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreStackController/preview"
-	ArtifactStoreStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreStackController/apply"
-)
-
-// ArtifactStoreStackControllerClient is the client API for ArtifactStoreStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ArtifactStoreStackControllerClient interface {
-	// preview artifact-store stack
-	Preview(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
-	// apply artifact-store stack
-	Apply(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error)
-}
-
-type artifactStoreStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewArtifactStoreStackControllerClient(cc grpc.ClientConnInterface) ArtifactStoreStackControllerClient {
-	return &artifactStoreStackControllerClient{cc}
-}
-
-func (c *artifactStoreStackControllerClient) Preview(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error) {
-	out := new(ArtifactStore)
-	err := c.cc.Invoke(ctx, ArtifactStoreStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactStoreStackControllerClient) Apply(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error) {
-	out := new(ArtifactStore)
-	err := c.cc.Invoke(ctx, ArtifactStoreStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// ArtifactStoreStackControllerServer is the server API for ArtifactStoreStackController service.
-// All implementations should embed UnimplementedArtifactStoreStackControllerServer
-// for forward compatibility
-type ArtifactStoreStackControllerServer interface {
-	// preview artifact-store stack
-	Preview(context.Context, *ArtifactStore) (*ArtifactStore, error)
-	// apply artifact-store stack
-	Apply(context.Context, *ArtifactStoreId) (*ArtifactStore, error)
-}
-
-// UnimplementedArtifactStoreStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedArtifactStoreStackControllerServer struct {
-}
-
-func (UnimplementedArtifactStoreStackControllerServer) Preview(context.Context, *ArtifactStore) (*ArtifactStore, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedArtifactStoreStackControllerServer) Apply(context.Context, *ArtifactStoreId) (*ArtifactStore, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeArtifactStoreStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ArtifactStoreStackControllerServer will
-// result in compilation errors.
-type UnsafeArtifactStoreStackControllerServer interface {
-	mustEmbedUnimplementedArtifactStoreStackControllerServer()
-}
-
-func RegisterArtifactStoreStackControllerServer(s grpc.ServiceRegistrar, srv ArtifactStoreStackControllerServer) {
-	s.RegisterService(&ArtifactStoreStackController_ServiceDesc, srv)
-}
-
-func _ArtifactStoreStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ArtifactStore)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactStoreStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactStoreStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreStackControllerServer).Preview(ctx, req.(*ArtifactStore))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArtifactStoreStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ArtifactStoreId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactStoreStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactStoreStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreStackControllerServer).Apply(ctx, req.(*ArtifactStoreId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// ArtifactStoreStackController_ServiceDesc is the grpc.ServiceDesc for ArtifactStoreStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var ArtifactStoreStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.develop.artifactstore.ArtifactStoreStackController",
-	HandlerType: (*ArtifactStoreStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _ArtifactStoreStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _ArtifactStoreStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

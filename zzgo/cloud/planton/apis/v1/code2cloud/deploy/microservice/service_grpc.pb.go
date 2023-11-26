@@ -15,6 +15,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -26,27 +27,42 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MicroserviceInstanceCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/create"
-	MicroserviceInstanceCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/update"
-	MicroserviceInstanceCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/delete"
-	MicroserviceInstanceCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/restore"
-	MicroserviceInstanceCommandController_Restart_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/restart"
-	MicroserviceInstanceCommandController_Pause_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/pause"
-	MicroserviceInstanceCommandController_Unpause_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/unpause"
+	MicroserviceInstanceCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/previewCreate"
+	MicroserviceInstanceCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/create"
+	MicroserviceInstanceCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/previewUpdate"
+	MicroserviceInstanceCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/update"
+	MicroserviceInstanceCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/previewDelete"
+	MicroserviceInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/delete"
+	MicroserviceInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/previewRestore"
+	MicroserviceInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/restore"
+	MicroserviceInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/createStackJob"
+	MicroserviceInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/restart"
+	MicroserviceInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/pause"
+	MicroserviceInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/unpause"
 )
 
 // MicroserviceInstanceCommandControllerClient is the client API for MicroserviceInstanceCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MicroserviceInstanceCommandControllerClient interface {
+	// preview create microservice-instance
+	PreviewCreate(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// create microservice-instance
 	Create(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// preview update microservice-instance
+	PreviewUpdate(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// update microservice-instance
 	Update(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// preview delete microservice-instance
+	PreviewDelete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// delete microservice-instance
 	Delete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// preview restoring a deleted microservice-instance
+	PreviewRestore(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
 	Restore(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// create-stack-job for microservice-instance
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// restart a microservice-instance running in a environment.
 	// microservice-instance is restarted by deleting running pods which will be automatically recreated by kubernetes.
 	Restart(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
@@ -68,9 +84,27 @@ func NewMicroserviceInstanceCommandControllerClient(cc grpc.ClientConnInterface)
 	return &microserviceInstanceCommandControllerClient{cc}
 }
 
+func (c *microserviceInstanceCommandControllerClient) PreviewCreate(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *microserviceInstanceCommandControllerClient) Create(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *microserviceInstanceCommandControllerClient) PreviewUpdate(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,6 +120,15 @@ func (c *microserviceInstanceCommandControllerClient) Update(ctx context.Context
 	return out, nil
 }
 
+func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Delete_FullMethodName, in, out, opts...)
@@ -95,9 +138,27 @@ func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context
 	return out, nil
 }
 
+func (c *microserviceInstanceCommandControllerClient) PreviewRestore(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *microserviceInstanceCommandControllerClient) Restore(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *microserviceInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -135,14 +196,24 @@ func (c *microserviceInstanceCommandControllerClient) Unpause(ctx context.Contex
 // All implementations should embed UnimplementedMicroserviceInstanceCommandControllerServer
 // for forward compatibility
 type MicroserviceInstanceCommandControllerServer interface {
+	// preview create microservice-instance
+	PreviewCreate(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
 	// create microservice-instance
 	Create(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
+	// preview update microservice-instance
+	PreviewUpdate(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
 	// update microservice-instance
 	Update(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
+	// preview delete microservice-instance
+	PreviewDelete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
 	// delete microservice-instance
 	Delete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
+	// preview restoring a deleted microservice-instance
+	PreviewRestore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
 	Restore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
+	// create-stack-job for microservice-instance
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*MicroserviceInstance, error)
 	// restart a microservice-instance running in a environment.
 	// microservice-instance is restarted by deleting running pods which will be automatically recreated by kubernetes.
 	Restart(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
@@ -160,17 +231,32 @@ type MicroserviceInstanceCommandControllerServer interface {
 type UnimplementedMicroserviceInstanceCommandControllerServer struct {
 }
 
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewCreate(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Create(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewUpdate(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Update(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewDelete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Delete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewRestore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Restore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedMicroserviceInstanceCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Restart(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -193,6 +279,24 @@ func RegisterMicroserviceInstanceCommandControllerServer(s grpc.ServiceRegistrar
 	s.RegisterService(&MicroserviceInstanceCommandController_ServiceDesc, srv)
 }
 
+func _MicroserviceInstanceCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MicroserviceInstance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewCreate(ctx, req.(*MicroserviceInstance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MicroserviceInstanceCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MicroserviceInstance)
 	if err := dec(in); err != nil {
@@ -207,6 +311,24 @@ func _MicroserviceInstanceCommandController_Create_Handler(srv interface{}, ctx 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MicroserviceInstanceCommandControllerServer).Create(ctx, req.(*MicroserviceInstance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MicroserviceInstanceCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MicroserviceInstance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewUpdate(ctx, req.(*MicroserviceInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -229,6 +351,24 @@ func _MicroserviceInstanceCommandController_Update_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MicroserviceInstanceCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MicroserviceInstanceId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, req.(*MicroserviceInstanceId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MicroserviceInstanceId)
 	if err := dec(in); err != nil {
@@ -247,6 +387,24 @@ func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MicroserviceInstanceCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MicroserviceInstance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewRestore(ctx, req.(*MicroserviceInstance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _MicroserviceInstanceCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MicroserviceInstance)
 	if err := dec(in); err != nil {
@@ -261,6 +419,24 @@ func _MicroserviceInstanceCommandController_Restore_Handler(srv interface{}, ctx
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MicroserviceInstanceCommandControllerServer).Restore(ctx, req.(*MicroserviceInstance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MicroserviceInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -327,20 +503,40 @@ var MicroserviceInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*MicroserviceInstanceCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _MicroserviceInstanceCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _MicroserviceInstanceCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _MicroserviceInstanceCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _MicroserviceInstanceCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _MicroserviceInstanceCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _MicroserviceInstanceCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _MicroserviceInstanceCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _MicroserviceInstanceCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _MicroserviceInstanceCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
@@ -864,134 +1060,5 @@ var MicroserviceInstanceQueryController_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/microservice/service.proto",
-}
-
-const (
-	MicroserviceInstanceStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceStackController/preview"
-	MicroserviceInstanceStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceStackController/apply"
-)
-
-// MicroserviceInstanceStackControllerClient is the client API for MicroserviceInstanceStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MicroserviceInstanceStackControllerClient interface {
-	// preview microservice-instance stack
-	Preview(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
-	// apply microservice-instance stack
-	Apply(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
-}
-
-type microserviceInstanceStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewMicroserviceInstanceStackControllerClient(cc grpc.ClientConnInterface) MicroserviceInstanceStackControllerClient {
-	return &microserviceInstanceStackControllerClient{cc}
-}
-
-func (c *microserviceInstanceStackControllerClient) Preview(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
-	out := new(MicroserviceInstance)
-	err := c.cc.Invoke(ctx, MicroserviceInstanceStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *microserviceInstanceStackControllerClient) Apply(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
-	out := new(MicroserviceInstance)
-	err := c.cc.Invoke(ctx, MicroserviceInstanceStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// MicroserviceInstanceStackControllerServer is the server API for MicroserviceInstanceStackController service.
-// All implementations should embed UnimplementedMicroserviceInstanceStackControllerServer
-// for forward compatibility
-type MicroserviceInstanceStackControllerServer interface {
-	// preview microservice-instance stack
-	Preview(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
-	// apply microservice-instance stack
-	Apply(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
-}
-
-// UnimplementedMicroserviceInstanceStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedMicroserviceInstanceStackControllerServer struct {
-}
-
-func (UnimplementedMicroserviceInstanceStackControllerServer) Preview(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedMicroserviceInstanceStackControllerServer) Apply(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeMicroserviceInstanceStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MicroserviceInstanceStackControllerServer will
-// result in compilation errors.
-type UnsafeMicroserviceInstanceStackControllerServer interface {
-	mustEmbedUnimplementedMicroserviceInstanceStackControllerServer()
-}
-
-func RegisterMicroserviceInstanceStackControllerServer(s grpc.ServiceRegistrar, srv MicroserviceInstanceStackControllerServer) {
-	s.RegisterService(&MicroserviceInstanceStackController_ServiceDesc, srv)
-}
-
-func _MicroserviceInstanceStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstance)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceInstanceStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceInstanceStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceStackControllerServer).Preview(ctx, req.(*MicroserviceInstance))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MicroserviceInstanceStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstanceId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceInstanceStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceInstanceStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceStackControllerServer).Apply(ctx, req.(*MicroserviceInstanceId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// MicroserviceInstanceStackController_ServiceDesc is the grpc.ServiceDesc for MicroserviceInstanceStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var MicroserviceInstanceStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceStackController",
-	HandlerType: (*MicroserviceInstanceStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _MicroserviceInstanceStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _MicroserviceInstanceStackController_Apply_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/microservice/service.proto",
 }

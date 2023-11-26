@@ -13,6 +13,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,27 +25,42 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RedisClusterCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/create"
-	RedisClusterCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/update"
-	RedisClusterCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/delete"
-	RedisClusterCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/restore"
-	RedisClusterCommandController_Restart_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/restart"
-	RedisClusterCommandController_Pause_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/pause"
-	RedisClusterCommandController_Unpause_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/unpause"
+	RedisClusterCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/previewCreate"
+	RedisClusterCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/create"
+	RedisClusterCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/previewUpdate"
+	RedisClusterCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/update"
+	RedisClusterCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/previewDelete"
+	RedisClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/delete"
+	RedisClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/previewRestore"
+	RedisClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/restore"
+	RedisClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/createStackJob"
+	RedisClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/restart"
+	RedisClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/pause"
+	RedisClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/unpause"
 )
 
 // RedisClusterCommandControllerClient is the client API for RedisClusterCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RedisClusterCommandControllerClient interface {
+	// preview creating redis-cluster
+	PreviewCreate(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
 	// create redis-cluster
 	Create(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
+	// preview updating an existing redis-cluster
+	PreviewUpdate(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
 	// update an existing redis-cluster
 	Update(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
+	// preview deleting an existing redis-cluster
+	PreviewDelete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
 	// delete an existing redis-cluster
 	Delete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
+	// preview restoring a previously deleted redis-cluster
+	PreviewRestore(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
 	// restore a previously deleted redis-cluster
 	Restore(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
+	// create-stack-job for redis-cluster
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 	// restart a redis-cluster running in a environment.
 	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
@@ -66,9 +82,27 @@ func NewRedisClusterCommandControllerClient(cc grpc.ClientConnInterface) RedisCl
 	return &redisClusterCommandControllerClient{cc}
 }
 
+func (c *redisClusterCommandControllerClient) PreviewCreate(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *redisClusterCommandControllerClient) Create(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redisClusterCommandControllerClient) PreviewUpdate(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,6 +118,15 @@ func (c *redisClusterCommandControllerClient) Update(ctx context.Context, in *Re
 	return out, nil
 }
 
+func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Delete_FullMethodName, in, out, opts...)
@@ -93,9 +136,27 @@ func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *Re
 	return out, nil
 }
 
+func (c *redisClusterCommandControllerClient) PreviewRestore(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *redisClusterCommandControllerClient) Restore(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redisClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -133,14 +194,24 @@ func (c *redisClusterCommandControllerClient) Unpause(ctx context.Context, in *R
 // All implementations should embed UnimplementedRedisClusterCommandControllerServer
 // for forward compatibility
 type RedisClusterCommandControllerServer interface {
+	// preview creating redis-cluster
+	PreviewCreate(context.Context, *RedisCluster) (*RedisCluster, error)
 	// create redis-cluster
 	Create(context.Context, *RedisCluster) (*RedisCluster, error)
+	// preview updating an existing redis-cluster
+	PreviewUpdate(context.Context, *RedisCluster) (*RedisCluster, error)
 	// update an existing redis-cluster
 	Update(context.Context, *RedisCluster) (*RedisCluster, error)
+	// preview deleting an existing redis-cluster
+	PreviewDelete(context.Context, *RedisClusterId) (*RedisCluster, error)
 	// delete an existing redis-cluster
 	Delete(context.Context, *RedisClusterId) (*RedisCluster, error)
+	// preview restoring a previously deleted redis-cluster
+	PreviewRestore(context.Context, *RedisCluster) (*RedisCluster, error)
 	// restore a previously deleted redis-cluster
 	Restore(context.Context, *RedisCluster) (*RedisCluster, error)
+	// create-stack-job for redis-cluster
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*RedisCluster, error)
 	// restart a redis-cluster running in a environment.
 	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *RedisClusterId) (*RedisCluster, error)
@@ -158,17 +229,32 @@ type RedisClusterCommandControllerServer interface {
 type UnimplementedRedisClusterCommandControllerServer struct {
 }
 
+func (UnimplementedRedisClusterCommandControllerServer) PreviewCreate(context.Context, *RedisCluster) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedRedisClusterCommandControllerServer) Create(context.Context, *RedisCluster) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedRedisClusterCommandControllerServer) PreviewUpdate(context.Context, *RedisCluster) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedRedisClusterCommandControllerServer) Update(context.Context, *RedisCluster) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedRedisClusterCommandControllerServer) PreviewDelete(context.Context, *RedisClusterId) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedRedisClusterCommandControllerServer) Delete(context.Context, *RedisClusterId) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedRedisClusterCommandControllerServer) PreviewRestore(context.Context, *RedisCluster) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedRedisClusterCommandControllerServer) Restore(context.Context, *RedisCluster) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedRedisClusterCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedRedisClusterCommandControllerServer) Restart(context.Context, *RedisClusterId) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -191,6 +277,24 @@ func RegisterRedisClusterCommandControllerServer(s grpc.ServiceRegistrar, srv Re
 	s.RegisterService(&RedisClusterCommandController_ServiceDesc, srv)
 }
 
+func _RedisClusterCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RedisCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).PreviewCreate(ctx, req.(*RedisCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RedisClusterCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RedisCluster)
 	if err := dec(in); err != nil {
@@ -205,6 +309,24 @@ func _RedisClusterCommandController_Create_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RedisClusterCommandControllerServer).Create(ctx, req.(*RedisCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedisClusterCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RedisCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).PreviewUpdate(ctx, req.(*RedisCluster))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,6 +349,24 @@ func _RedisClusterCommandController_Update_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RedisClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RedisClusterId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, req.(*RedisClusterId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RedisClusterId)
 	if err := dec(in); err != nil {
@@ -245,6 +385,24 @@ func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RedisClusterCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RedisCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).PreviewRestore(ctx, req.(*RedisCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _RedisClusterCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RedisCluster)
 	if err := dec(in); err != nil {
@@ -259,6 +417,24 @@ func _RedisClusterCommandController_Restore_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RedisClusterCommandControllerServer).Restore(ctx, req.(*RedisCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedisClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -325,20 +501,40 @@ var RedisClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RedisClusterCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _RedisClusterCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _RedisClusterCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _RedisClusterCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _RedisClusterCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _RedisClusterCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _RedisClusterCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _RedisClusterCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _RedisClusterCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _RedisClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
@@ -677,135 +873,6 @@ var RedisClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findPods",
 			Handler:    _RedisClusterQueryController_FindPods_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/redis/service.proto",
-}
-
-const (
-	RedisClusterStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterStackController/preview"
-	RedisClusterStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterStackController/apply"
-)
-
-// RedisClusterStackControllerClient is the client API for RedisClusterStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type RedisClusterStackControllerClient interface {
-	// preview redis-cluster stack
-	Preview(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
-	// apply redis-cluster stack
-	Apply(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
-}
-
-type redisClusterStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewRedisClusterStackControllerClient(cc grpc.ClientConnInterface) RedisClusterStackControllerClient {
-	return &redisClusterStackControllerClient{cc}
-}
-
-func (c *redisClusterStackControllerClient) Preview(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error) {
-	out := new(RedisCluster)
-	err := c.cc.Invoke(ctx, RedisClusterStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *redisClusterStackControllerClient) Apply(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
-	out := new(RedisCluster)
-	err := c.cc.Invoke(ctx, RedisClusterStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// RedisClusterStackControllerServer is the server API for RedisClusterStackController service.
-// All implementations should embed UnimplementedRedisClusterStackControllerServer
-// for forward compatibility
-type RedisClusterStackControllerServer interface {
-	// preview redis-cluster stack
-	Preview(context.Context, *RedisCluster) (*RedisCluster, error)
-	// apply redis-cluster stack
-	Apply(context.Context, *RedisClusterId) (*RedisCluster, error)
-}
-
-// UnimplementedRedisClusterStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedRedisClusterStackControllerServer struct {
-}
-
-func (UnimplementedRedisClusterStackControllerServer) Preview(context.Context, *RedisCluster) (*RedisCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedRedisClusterStackControllerServer) Apply(context.Context, *RedisClusterId) (*RedisCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeRedisClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to RedisClusterStackControllerServer will
-// result in compilation errors.
-type UnsafeRedisClusterStackControllerServer interface {
-	mustEmbedUnimplementedRedisClusterStackControllerServer()
-}
-
-func RegisterRedisClusterStackControllerServer(s grpc.ServiceRegistrar, srv RedisClusterStackControllerServer) {
-	s.RegisterService(&RedisClusterStackController_ServiceDesc, srv)
-}
-
-func _RedisClusterStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisCluster)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterStackControllerServer).Preview(ctx, req.(*RedisCluster))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RedisClusterStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterStackControllerServer).Apply(ctx, req.(*RedisClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// RedisClusterStackController_ServiceDesc is the grpc.ServiceDesc for RedisClusterStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var RedisClusterStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterStackController",
-	HandlerType: (*RedisClusterStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _RedisClusterStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _RedisClusterStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
