@@ -85,8 +85,8 @@ service CustomEndpointCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
 
-  //run-stack for custom-endpoint stack
-  rpc runStack(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (CustomEndpoint) {
+  //create-stack-job for custom-endpoint
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";

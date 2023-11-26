@@ -31,7 +31,7 @@ const (
 	CustomEndpointCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/delete"
 	CustomEndpointCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewRestore"
 	CustomEndpointCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/restore"
-	CustomEndpointCommandController_RunStack_FullMethodName       = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/runStack"
+	CustomEndpointCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/createStackJob"
 )
 
 // CustomEndpointCommandControllerClient is the client API for CustomEndpointCommandController service.
@@ -54,8 +54,8 @@ type CustomEndpointCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
-	// run-stack for custom-endpoint stack
-	RunStack(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// create-stack-job for custom-endpoint
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 }
 
 type customEndpointCommandControllerClient struct {
@@ -138,9 +138,9 @@ func (c *customEndpointCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) RunStack(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
-	err := c.cc.Invoke(ctx, CustomEndpointCommandController_RunStack_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -167,8 +167,8 @@ type CustomEndpointCommandControllerServer interface {
 	PreviewRestore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
-	// run-stack for custom-endpoint stack
-	RunStack(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error)
+	// create-stack-job for custom-endpoint
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error)
 }
 
 // UnimplementedCustomEndpointCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,8 +199,8 @@ func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context
 func (UnimplementedCustomEndpointCommandControllerServer) Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) RunStack(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RunStack not implemented")
+func (UnimplementedCustomEndpointCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
 // UnsafeCustomEndpointCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -358,20 +358,20 @@ func _CustomEndpointCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CustomEndpointCommandController_RunStack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CustomEndpointCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(job.CreateStackJobCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, in)
+		return srv.(CustomEndpointCommandControllerServer).CreateStackJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CustomEndpointCommandController_RunStack_FullMethodName,
+		FullMethod: CustomEndpointCommandController_CreateStackJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, req.(*job.CreateStackJobCommandInput))
+		return srv.(CustomEndpointCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -416,8 +416,8 @@ var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CustomEndpointCommandController_Restore_Handler,
 		},
 		{
-			MethodName: "runStack",
-			Handler:    _CustomEndpointCommandController_RunStack_Handler,
+			MethodName: "createStackJob",
+			Handler:    _CustomEndpointCommandController_CreateStackJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
