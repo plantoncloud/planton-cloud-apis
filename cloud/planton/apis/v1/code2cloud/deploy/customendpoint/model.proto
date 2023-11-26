@@ -232,8 +232,3 @@ message CustomEndpointDnsResolutionStatus {
   //flag to indicate if the dns is resolving to the correct ingress address(ip or cname).
   bool is_resolving_to_ingress_address = 1;
 }
-
-message CreateStackJobInput {
-  string resource_id = 1;
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
-}

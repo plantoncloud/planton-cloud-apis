@@ -11,6 +11,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -54,7 +55,7 @@ type CustomEndpointCommandControllerClient interface {
 	// restore a deleted custom-endpoint
 	Restore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// run-stack for custom-endpoint stack
-	RunStack(ctx context.Context, in *CreateStackJobInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	RunStack(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 }
 
 type customEndpointCommandControllerClient struct {
@@ -137,7 +138,7 @@ func (c *customEndpointCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) RunStack(ctx context.Context, in *CreateStackJobInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) RunStack(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_RunStack_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -167,7 +168,7 @@ type CustomEndpointCommandControllerServer interface {
 	// restore a deleted custom-endpoint
 	Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// run-stack for custom-endpoint stack
-	RunStack(context.Context, *CreateStackJobInput) (*CustomEndpoint, error)
+	RunStack(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error)
 }
 
 // UnimplementedCustomEndpointCommandControllerServer should be embedded to have forward compatible implementations.
@@ -198,7 +199,7 @@ func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context
 func (UnimplementedCustomEndpointCommandControllerServer) Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) RunStack(context.Context, *CreateStackJobInput) (*CustomEndpoint, error) {
+func (UnimplementedCustomEndpointCommandControllerServer) RunStack(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RunStack not implemented")
 }
 
@@ -358,7 +359,7 @@ func _CustomEndpointCommandController_Restore_Handler(srv interface{}, ctx conte
 }
 
 func _CustomEndpointCommandController_RunStack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateStackJobInput)
+	in := new(job.CreateStackJobCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -370,7 +371,7 @@ func _CustomEndpointCommandController_RunStack_Handler(srv interface{}, ctx cont
 		FullMethod: CustomEndpointCommandController_RunStack_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, req.(*CreateStackJobInput))
+		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

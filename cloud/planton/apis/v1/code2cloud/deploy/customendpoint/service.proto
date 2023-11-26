@@ -9,6 +9,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //custom-endpoint command controller
 service CustomEndpointCommandController {
@@ -85,7 +86,7 @@ service CustomEndpointCommandController {
   }
 
   //run-stack for custom-endpoint stack
-  rpc runStack(CreateStackJobInput) returns (CustomEndpoint) {
+  rpc runStack(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -136,7 +137,7 @@ service CustomEndpointQueryController {
   }
 }
 
-//custom-endpoint routes command controller
+//custom-endpoint route command controller
 service  CustomEndpointRouteCommandController {
   //add a route to a custom-endpoint
   rpc add(AddOrUpdateCustomEndpointRouteCommandInput) returns (CustomEndpoint) {
@@ -160,4 +161,3 @@ service  CustomEndpointRouteCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete custom-endpoint route";
   }
 }
-
