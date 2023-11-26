@@ -13,6 +13,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,10 +25,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	EnvironmentCommandController_PreviewCreate_FullMethodName             = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/previewCreate"
 	EnvironmentCommandController_Create_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/create"
+	EnvironmentCommandController_PreviewUpdate_FullMethodName             = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/previewUpdate"
 	EnvironmentCommandController_Update_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/update"
+	EnvironmentCommandController_PreviewDelete_FullMethodName             = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/previewDelete"
 	EnvironmentCommandController_Delete_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/delete"
+	EnvironmentCommandController_PreviewRestore_FullMethodName            = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/previewRestore"
 	EnvironmentCommandController_Restore_FullMethodName                   = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/restore"
+	EnvironmentCommandController_CreateStackJob_FullMethodName            = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/createStackJob"
 	EnvironmentCommandController_Clone_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/clone"
 	EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/setBuildEngineEnvironment"
 	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/pause"
@@ -39,17 +45,27 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnvironmentCommandControllerClient interface {
+	// preview creating environment
+	PreviewCreate(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
 	// create environment
 	Create(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
+	// preview updating an existing environment
+	PreviewUpdate(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
 	// update an existing environment
 	Update(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
+	// preview deleting an environment
+	PreviewDelete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
+	// preview restoring a deleted environment
+	PreviewRestore(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
+	// create-stack-job for environment
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// clone an existing environment for a product
 	// a environment is cloned by creating the following resources with same spec as the source environment.
 	// 1. microservice deployment environments
@@ -85,9 +101,27 @@ func NewEnvironmentCommandControllerClient(cc grpc.ClientConnInterface) Environm
 	return &environmentCommandControllerClient{cc}
 }
 
+func (c *environmentCommandControllerClient) PreviewCreate(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *environmentCommandControllerClient) Create(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentCommandControllerClient) PreviewUpdate(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -103,6 +137,15 @@ func (c *environmentCommandControllerClient) Update(ctx context.Context, in *Env
 	return out, nil
 }
 
+func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Delete_FullMethodName, in, out, opts...)
@@ -112,9 +155,27 @@ func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *Env
 	return out, nil
 }
 
+func (c *environmentCommandControllerClient) PreviewRestore(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *environmentCommandControllerClient) Restore(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -170,17 +231,27 @@ func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context
 // All implementations should embed UnimplementedEnvironmentCommandControllerServer
 // for forward compatibility
 type EnvironmentCommandControllerServer interface {
+	// preview creating environment
+	PreviewCreate(context.Context, *Environment) (*Environment, error)
 	// create environment
 	Create(context.Context, *Environment) (*Environment, error)
+	// preview updating an existing environment
+	PreviewUpdate(context.Context, *Environment) (*Environment, error)
 	// update an existing environment
 	Update(context.Context, *Environment) (*Environment, error)
+	// preview deleting an environment
+	PreviewDelete(context.Context, *EnvironmentId) (*Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(context.Context, *EnvironmentId) (*Environment, error)
+	// preview restoring a deleted environment
+	PreviewRestore(context.Context, *Environment) (*Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(context.Context, *Environment) (*Environment, error)
+	// create-stack-job for environment
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*Environment, error)
 	// clone an existing environment for a product
 	// a environment is cloned by creating the following resources with same spec as the source environment.
 	// 1. microservice deployment environments
@@ -212,17 +283,32 @@ type EnvironmentCommandControllerServer interface {
 type UnimplementedEnvironmentCommandControllerServer struct {
 }
 
+func (UnimplementedEnvironmentCommandControllerServer) PreviewCreate(context.Context, *Environment) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedEnvironmentCommandControllerServer) Create(context.Context, *Environment) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedEnvironmentCommandControllerServer) PreviewUpdate(context.Context, *Environment) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) Update(context.Context, *Environment) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *EnvironmentId) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *EnvironmentId) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Context, *Environment) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *Environment) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedEnvironmentCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) Clone(context.Context, *CloneEnvironmentCommandInput) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Clone not implemented")
@@ -251,6 +337,24 @@ func RegisterEnvironmentCommandControllerServer(s grpc.ServiceRegistrar, srv Env
 	s.RegisterService(&EnvironmentCommandController_ServiceDesc, srv)
 }
 
+func _EnvironmentCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Environment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).PreviewCreate(ctx, req.(*Environment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EnvironmentCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Environment)
 	if err := dec(in); err != nil {
@@ -265,6 +369,24 @@ func _EnvironmentCommandController_Create_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentCommandControllerServer).Create(ctx, req.(*Environment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Environment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).PreviewUpdate(ctx, req.(*Environment))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -287,6 +409,24 @@ func _EnvironmentCommandController_Update_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EnvironmentId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*EnvironmentId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(EnvironmentId)
 	if err := dec(in); err != nil {
@@ -305,6 +445,24 @@ func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnvironmentCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Environment)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).PreviewRestore(ctx, req.(*Environment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Environment)
 	if err := dec(in); err != nil {
@@ -319,6 +477,24 @@ func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentCommandControllerServer).Restore(ctx, req.(*Environment))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -421,20 +597,40 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*EnvironmentCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _EnvironmentCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _EnvironmentCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _EnvironmentCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _EnvironmentCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _EnvironmentCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _EnvironmentCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _EnvironmentCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _EnvironmentCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _EnvironmentCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "clone",
@@ -1529,135 +1725,6 @@ var EnvironmentVariableQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getValue",
 			Handler:    _EnvironmentVariableQueryController_GetValue_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/environment/service.proto",
-}
-
-const (
-	EnvironmentStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentStackController/preview"
-	EnvironmentStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentStackController/apply"
-)
-
-// EnvironmentStackControllerClient is the client API for EnvironmentStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EnvironmentStackControllerClient interface {
-	// preview environment secrets stack
-	Preview(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
-	// apply environment secrets stack
-	Apply(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
-}
-
-type environmentStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewEnvironmentStackControllerClient(cc grpc.ClientConnInterface) EnvironmentStackControllerClient {
-	return &environmentStackControllerClient{cc}
-}
-
-func (c *environmentStackControllerClient) Preview(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error) {
-	out := new(Environment)
-	err := c.cc.Invoke(ctx, EnvironmentStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentStackControllerClient) Apply(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
-	out := new(Environment)
-	err := c.cc.Invoke(ctx, EnvironmentStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// EnvironmentStackControllerServer is the server API for EnvironmentStackController service.
-// All implementations should embed UnimplementedEnvironmentStackControllerServer
-// for forward compatibility
-type EnvironmentStackControllerServer interface {
-	// preview environment secrets stack
-	Preview(context.Context, *Environment) (*Environment, error)
-	// apply environment secrets stack
-	Apply(context.Context, *EnvironmentId) (*Environment, error)
-}
-
-// UnimplementedEnvironmentStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedEnvironmentStackControllerServer struct {
-}
-
-func (UnimplementedEnvironmentStackControllerServer) Preview(context.Context, *Environment) (*Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedEnvironmentStackControllerServer) Apply(context.Context, *EnvironmentId) (*Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeEnvironmentStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EnvironmentStackControllerServer will
-// result in compilation errors.
-type UnsafeEnvironmentStackControllerServer interface {
-	mustEmbedUnimplementedEnvironmentStackControllerServer()
-}
-
-func RegisterEnvironmentStackControllerServer(s grpc.ServiceRegistrar, srv EnvironmentStackControllerServer) {
-	s.RegisterService(&EnvironmentStackController_ServiceDesc, srv)
-}
-
-func _EnvironmentStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Environment)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentStackControllerServer).Preview(ctx, req.(*Environment))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentStackControllerServer).Apply(ctx, req.(*EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// EnvironmentStackController_ServiceDesc is the grpc.ServiceDesc for EnvironmentStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var EnvironmentStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.environment.EnvironmentStackController",
-	HandlerType: (*EnvironmentStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _EnvironmentStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _EnvironmentStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
