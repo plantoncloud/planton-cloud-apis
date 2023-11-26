@@ -9,6 +9,7 @@ import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadat
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 
 //custom-endpoint
 message CustomEndpoint {
@@ -230,4 +231,9 @@ message CustomEndpointCertStatus {
 message CustomEndpointDnsResolutionStatus {
   //flag to indicate if the dns is resolving to the correct ingress address(ip or cname).
   bool is_resolving_to_ingress_address = 1;
+}
+
+message CreateStackJobInput {
+  string resource_id = 1;
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
 }

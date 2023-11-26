@@ -22,24 +22,39 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CustomEndpointCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/create"
-	CustomEndpointCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/update"
-	CustomEndpointCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/delete"
-	CustomEndpointCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/restore"
+	CustomEndpointCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewCreate"
+	CustomEndpointCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/create"
+	CustomEndpointCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewUpdate"
+	CustomEndpointCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/update"
+	CustomEndpointCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewDelete"
+	CustomEndpointCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/delete"
+	CustomEndpointCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewRestore"
+	CustomEndpointCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/restore"
+	CustomEndpointCommandController_RunStack_FullMethodName       = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/runStack"
 )
 
 // CustomEndpointCommandControllerClient is the client API for CustomEndpointCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CustomEndpointCommandControllerClient interface {
+	// preview create custom-endpoint
+	PreviewCreate(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// create custom-endpoint
 	Create(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// preview update an existing custom-endpoint
+	PreviewUpdate(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// update an existing custom-endpoint
 	Update(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// preview delete custom-endpoint
+	PreviewDelete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// delete custom-endpoint
 	Delete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// preview restoring a deleted custom-endpoint
+	PreviewRestore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// run-stack for custom-endpoint stack
+	RunStack(ctx context.Context, in *CreateStackJobInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 }
 
 type customEndpointCommandControllerClient struct {
@@ -50,9 +65,27 @@ func NewCustomEndpointCommandControllerClient(cc grpc.ClientConnInterface) Custo
 	return &customEndpointCommandControllerClient{cc}
 }
 
+func (c *customEndpointCommandControllerClient) PreviewCreate(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *customEndpointCommandControllerClient) Create(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customEndpointCommandControllerClient) PreviewUpdate(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,9 +101,27 @@ func (c *customEndpointCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *customEndpointCommandControllerClient) Delete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customEndpointCommandControllerClient) PreviewRestore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,35 +137,69 @@ func (c *customEndpointCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *customEndpointCommandControllerClient) RunStack(ctx context.Context, in *CreateStackJobInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_RunStack_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CustomEndpointCommandControllerServer is the server API for CustomEndpointCommandController service.
 // All implementations should embed UnimplementedCustomEndpointCommandControllerServer
 // for forward compatibility
 type CustomEndpointCommandControllerServer interface {
+	// preview create custom-endpoint
+	PreviewCreate(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// create custom-endpoint
 	Create(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
+	// preview update an existing custom-endpoint
+	PreviewUpdate(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// update an existing custom-endpoint
 	Update(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
+	// preview delete custom-endpoint
+	PreviewDelete(context.Context, *CustomEndpointId) (*CustomEndpoint, error)
 	// delete custom-endpoint
 	Delete(context.Context, *CustomEndpointId) (*CustomEndpoint, error)
+	// preview restoring a deleted custom-endpoint
+	PreviewRestore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
+	// run-stack for custom-endpoint stack
+	RunStack(context.Context, *CreateStackJobInput) (*CustomEndpoint, error)
 }
 
 // UnimplementedCustomEndpointCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedCustomEndpointCommandControllerServer struct {
 }
 
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewCreate(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedCustomEndpointCommandControllerServer) Create(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewUpdate(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedCustomEndpointCommandControllerServer) Update(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewDelete(context.Context, *CustomEndpointId) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedCustomEndpointCommandControllerServer) Delete(context.Context, *CustomEndpointId) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedCustomEndpointCommandControllerServer) Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedCustomEndpointCommandControllerServer) RunStack(context.Context, *CreateStackJobInput) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RunStack not implemented")
 }
 
 // UnsafeCustomEndpointCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -126,6 +211,24 @@ type UnsafeCustomEndpointCommandControllerServer interface {
 
 func RegisterCustomEndpointCommandControllerServer(s grpc.ServiceRegistrar, srv CustomEndpointCommandControllerServer) {
 	s.RegisterService(&CustomEndpointCommandController_ServiceDesc, srv)
+}
+
+func _CustomEndpointCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomEndpoint)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).PreviewCreate(ctx, req.(*CustomEndpoint))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _CustomEndpointCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -142,6 +245,24 @@ func _CustomEndpointCommandController_Create_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CustomEndpointCommandControllerServer).Create(ctx, req.(*CustomEndpoint))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomEndpointCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomEndpoint)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).PreviewUpdate(ctx, req.(*CustomEndpoint))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -164,6 +285,24 @@ func _CustomEndpointCommandController_Update_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomEndpointId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, req.(*CustomEndpointId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CustomEndpointId)
 	if err := dec(in); err != nil {
@@ -178,6 +317,24 @@ func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CustomEndpointCommandControllerServer).Delete(ctx, req.(*CustomEndpointId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomEndpointCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomEndpoint)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).PreviewRestore(ctx, req.(*CustomEndpoint))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -200,6 +357,24 @@ func _CustomEndpointCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomEndpointCommandController_RunStack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateStackJobInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_RunStack_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).RunStack(ctx, req.(*CreateStackJobInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CustomEndpointCommandController_ServiceDesc is the grpc.ServiceDesc for CustomEndpointCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -208,20 +383,40 @@ var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*CustomEndpointCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _CustomEndpointCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _CustomEndpointCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _CustomEndpointCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _CustomEndpointCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _CustomEndpointCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _CustomEndpointCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _CustomEndpointCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _CustomEndpointCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "runStack",
+			Handler:    _CustomEndpointCommandController_RunStack_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -679,135 +874,6 @@ var CustomEndpointRouteCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "delete",
 			Handler:    _CustomEndpointRouteCommandController_Delete_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/service.proto",
-}
-
-const (
-	CustomEndpointStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController/preview"
-	CustomEndpointStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController/apply"
-)
-
-// CustomEndpointStackControllerClient is the client API for CustomEndpointStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CustomEndpointStackControllerClient interface {
-	// preview custom-endpoint stack
-	Preview(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
-	// apply custom-endpoint stack
-	Apply(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error)
-}
-
-type customEndpointStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewCustomEndpointStackControllerClient(cc grpc.ClientConnInterface) CustomEndpointStackControllerClient {
-	return &customEndpointStackControllerClient{cc}
-}
-
-func (c *customEndpointStackControllerClient) Preview(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error) {
-	out := new(CustomEndpoint)
-	err := c.cc.Invoke(ctx, CustomEndpointStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *customEndpointStackControllerClient) Apply(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error) {
-	out := new(CustomEndpoint)
-	err := c.cc.Invoke(ctx, CustomEndpointStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// CustomEndpointStackControllerServer is the server API for CustomEndpointStackController service.
-// All implementations should embed UnimplementedCustomEndpointStackControllerServer
-// for forward compatibility
-type CustomEndpointStackControllerServer interface {
-	// preview custom-endpoint stack
-	Preview(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
-	// apply custom-endpoint stack
-	Apply(context.Context, *CustomEndpointId) (*CustomEndpoint, error)
-}
-
-// UnimplementedCustomEndpointStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedCustomEndpointStackControllerServer struct {
-}
-
-func (UnimplementedCustomEndpointStackControllerServer) Preview(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedCustomEndpointStackControllerServer) Apply(context.Context, *CustomEndpointId) (*CustomEndpoint, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeCustomEndpointStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CustomEndpointStackControllerServer will
-// result in compilation errors.
-type UnsafeCustomEndpointStackControllerServer interface {
-	mustEmbedUnimplementedCustomEndpointStackControllerServer()
-}
-
-func RegisterCustomEndpointStackControllerServer(s grpc.ServiceRegistrar, srv CustomEndpointStackControllerServer) {
-	s.RegisterService(&CustomEndpointStackController_ServiceDesc, srv)
-}
-
-func _CustomEndpointStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CustomEndpoint)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CustomEndpointStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CustomEndpointStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointStackControllerServer).Preview(ctx, req.(*CustomEndpoint))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CustomEndpointStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CustomEndpointId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CustomEndpointStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CustomEndpointStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointStackControllerServer).Apply(ctx, req.(*CustomEndpointId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// CustomEndpointStackController_ServiceDesc is the grpc.ServiceDesc for CustomEndpointStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var CustomEndpointStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointStackController",
-	HandlerType: (*CustomEndpointStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _CustomEndpointStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _CustomEndpointStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
