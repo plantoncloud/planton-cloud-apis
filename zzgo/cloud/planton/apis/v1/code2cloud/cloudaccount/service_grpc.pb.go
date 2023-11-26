@@ -37,22 +37,22 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CloudAccountCommandControllerClient interface {
-	// preview create cloud account resource
+	// preview create cloud-account resource
 	PreviewCreate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// create a cloud account resource
+	// create a cloud-account resource
 	Create(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// preview update on existing cloud account
+	// preview update on existing cloud-account
 	PreviewUpdate(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// update an existing cloud account
+	// update an existing cloud-account
 	Update(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// preview delete a cloud account that was previously created
+	// preview delete a cloud-account that was previously created
 	PreviewDelete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
-	// delete a cloud account that was previously created
-	// warning: deleting a cloud account from planton cloud destroys the resources created by planton cloud in the account
+	// delete a cloud-account that was previously created
+	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
 	Delete(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
-	// preview restoring a deleted cloud account.
+	// preview restoring a deleted cloud-account.
 	PreviewRestore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
-	// restore a deleted cloud account.
+	// restore a deleted cloud-account.
 	Restore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
 	// create-stack-job for cloud-account
 	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
@@ -151,22 +151,22 @@ func (c *cloudAccountCommandControllerClient) CreateStackJob(ctx context.Context
 // All implementations should embed UnimplementedCloudAccountCommandControllerServer
 // for forward compatibility
 type CloudAccountCommandControllerServer interface {
-	// preview create cloud account resource
+	// preview create cloud-account resource
 	PreviewCreate(context.Context, *CloudAccount) (*CloudAccount, error)
-	// create a cloud account resource
+	// create a cloud-account resource
 	Create(context.Context, *CloudAccount) (*CloudAccount, error)
-	// preview update on existing cloud account
+	// preview update on existing cloud-account
 	PreviewUpdate(context.Context, *CloudAccount) (*CloudAccount, error)
-	// update an existing cloud account
+	// update an existing cloud-account
 	Update(context.Context, *CloudAccount) (*CloudAccount, error)
-	// preview delete a cloud account that was previously created
+	// preview delete a cloud-account that was previously created
 	PreviewDelete(context.Context, *CloudAccountId) (*CloudAccount, error)
-	// delete a cloud account that was previously created
-	// warning: deleting a cloud account from planton cloud destroys the resources created by planton cloud in the account
+	// delete a cloud-account that was previously created
+	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
 	Delete(context.Context, *CloudAccountId) (*CloudAccount, error)
-	// preview restoring a deleted cloud account.
+	// preview restoring a deleted cloud-account.
 	PreviewRestore(context.Context, *CloudAccount) (*CloudAccount, error)
-	// restore a deleted cloud account.
+	// restore a deleted cloud-account.
 	Restore(context.Context, *CloudAccount) (*CloudAccount, error)
 	// create-stack-job for cloud-account
 	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CloudAccount, error)
@@ -438,35 +438,35 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CloudAccountQueryControllerClient interface {
-	// look up a cloud account by id
+	// look up a cloud-account by id
 	GetById(ctx context.Context, in *CloudAccountId, opts ...grpc.CallOption) (*CloudAccount, error)
 	// todo: add authorization
-	// find cloud accounts by company id.
-	// the response should only include cloud accounts in a company that the authenticated user account has viewer access to.
+	// find cloud-accounts by company id.
+	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
 	List(ctx context.Context, in *pagination.PageInfo, opts ...grpc.CallOption) (*CloudAccountList, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create artifact store.
-	// this will be used to populate drop down of cloud accounts in create artifact store form.
-	// the response should only include cloud accounts that a company is authorised to create artifact stores.
-	// the authorization is verified by looking up cloud accounts with `company-artifact-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create artifact store.
+	// this will be used to populate drop down of cloud-accounts in create artifact store form.
+	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
+	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create kube-cluster.
-	// this will be used to populate drop down of cloud accounts in create kube-cluster form.
-	// the response should only include cloud accounts that a company is authorised to create kube-cluster.
-	// the authorization is verified by looking up cloud accounts with `company-kube-cluster-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create kube-cluster.
+	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
+	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
+	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create dns managed zone.
-	// this will be used to populate drop down of cloud accounts in create dns managed zone form.
-	// the response should only include cloud accounts that a company is authorised to create dns managed zone.
-	// the authorization is verified by looking up cloud accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create dns managed zone.
+	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
+	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
+	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *company.CompanyId, opts ...grpc.CallOption) (*CloudAccounts, error)
 }
 
@@ -536,35 +536,35 @@ func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx c
 // All implementations should embed UnimplementedCloudAccountQueryControllerServer
 // for forward compatibility
 type CloudAccountQueryControllerServer interface {
-	// look up a cloud account by id
+	// look up a cloud-account by id
 	GetById(context.Context, *CloudAccountId) (*CloudAccount, error)
 	// todo: add authorization
-	// find cloud accounts by company id.
-	// the response should only include cloud accounts in a company that the authenticated user account has viewer access to.
+	// find cloud-accounts by company id.
+	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
 	List(context.Context, *pagination.PageInfo) (*CloudAccountList, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create artifact store.
-	// this will be used to populate drop down of cloud accounts in create artifact store form.
-	// the response should only include cloud accounts that a company is authorised to create artifact stores.
-	// the authorization is verified by looking up cloud accounts with `company-artifact-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create artifact store.
+	// this will be used to populate drop down of cloud-accounts in create artifact store form.
+	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
+	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create kube-cluster.
-	// this will be used to populate drop down of cloud accounts in create kube-cluster form.
-	// the response should only include cloud accounts that a company is authorised to create kube-cluster.
-	// the authorization is verified by looking up cloud accounts with `company-kube-cluster-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create kube-cluster.
+	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
+	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
+	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 	// todo: add authorization
-	// find cloud accounts by company id to create dns managed zone.
-	// this will be used to populate drop down of cloud accounts in create dns managed zone form.
-	// the response should only include cloud accounts that a company is authorised to create dns managed zone.
-	// the authorization is verified by looking up cloud accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
-	// the response should only include public attributes of a cloud account. all non-public attributes should be excluded from the response.
+	// find cloud-accounts by company id to create dns managed zone.
+	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
+	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
+	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
+	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindDnsZoneCreateCloudAccounts(context.Context, *company.CompanyId) (*CloudAccounts, error)
 }
 

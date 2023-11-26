@@ -5,10 +5,12 @@ package cloud.planton.apis.v1.code2cloud.deploy.postgres;
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/postgres/model.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //postgres-cluster command controller
 service PostgresClusterCommandController {

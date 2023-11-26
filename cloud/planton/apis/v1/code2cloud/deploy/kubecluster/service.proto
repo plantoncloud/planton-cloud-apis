@@ -6,12 +6,14 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/protobuf/custom/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
 import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
+import "cloud/planton/apis/v1/stack/job/model.proto";
 
 // kube-cluster command controller
 service KubeClusterCommandController {
