@@ -14,6 +14,7 @@ import (
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,10 +26,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	KubeClusterCommandController_PreviewCreate_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/previewCreate"
 	KubeClusterCommandController_Create_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/create"
+	KubeClusterCommandController_PreviewUpdate_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/previewUpdate"
 	KubeClusterCommandController_Update_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/update"
+	KubeClusterCommandController_PreviewDelete_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/previewDelete"
 	KubeClusterCommandController_Delete_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/delete"
+	KubeClusterCommandController_PreviewRestore_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/previewRestore"
 	KubeClusterCommandController_Restore_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/restore"
+	KubeClusterCommandController_CreateStackJob_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/createStackJob"
 	KubeClusterCommandController_Pause_FullMethodName           = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/pause"
 	KubeClusterCommandController_Unpause_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/unpause"
 	KubeClusterCommandController_DeleteNamespace_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/deleteNamespace"
@@ -39,14 +45,24 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubeClusterCommandControllerClient interface {
-	// create a new kube-cluster.
+	// preview create a kube-cluster.
+	PreviewCreate(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
+	// create a kube-cluster.
 	Create(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
+	// preview updating an existing kube-cluster.
+	PreviewUpdate(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
 	// update an existing kube-cluster.
 	Update(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
+	// preview deleting a kube-cluster.
+	PreviewDelete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
 	// delete a kube-cluster.
 	Delete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
+	// preview restoring a deleted kube-cluster.
+	PreviewRestore(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
 	// restore a deleted kube-cluster.
 	Restore(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
+	// create-stack-job for kube-cluster
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 	// pause a kube-cluster.
 	// a kube-cluster is paused by setting the number of nodes in each node pool of the kube-cluster to zero.
 	// microservice, database and kafka cluster workload pods will be deleted as there wont be any nodes to run on.
@@ -73,9 +89,27 @@ func NewKubeClusterCommandControllerClient(cc grpc.ClientConnInterface) KubeClus
 	return &kubeClusterCommandControllerClient{cc}
 }
 
+func (c *kubeClusterCommandControllerClient) PreviewCreate(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kubeClusterCommandControllerClient) Create(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClusterCommandControllerClient) PreviewUpdate(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,6 +125,15 @@ func (c *kubeClusterCommandControllerClient) Update(ctx context.Context, in *Kub
 	return out, nil
 }
 
+func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Delete_FullMethodName, in, out, opts...)
@@ -100,9 +143,27 @@ func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *Kub
 	return out, nil
 }
 
+func (c *kubeClusterCommandControllerClient) PreviewRestore(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kubeClusterCommandControllerClient) Restore(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Restore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,14 +210,24 @@ func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *
 // All implementations should embed UnimplementedKubeClusterCommandControllerServer
 // for forward compatibility
 type KubeClusterCommandControllerServer interface {
-	// create a new kube-cluster.
+	// preview create a kube-cluster.
+	PreviewCreate(context.Context, *KubeCluster) (*KubeCluster, error)
+	// create a kube-cluster.
 	Create(context.Context, *KubeCluster) (*KubeCluster, error)
+	// preview updating an existing kube-cluster.
+	PreviewUpdate(context.Context, *KubeCluster) (*KubeCluster, error)
 	// update an existing kube-cluster.
 	Update(context.Context, *KubeCluster) (*KubeCluster, error)
+	// preview deleting a kube-cluster.
+	PreviewDelete(context.Context, *KubeClusterId) (*KubeCluster, error)
 	// delete a kube-cluster.
 	Delete(context.Context, *KubeClusterId) (*KubeCluster, error)
+	// preview restoring a deleted kube-cluster.
+	PreviewRestore(context.Context, *KubeCluster) (*KubeCluster, error)
 	// restore a deleted kube-cluster.
 	Restore(context.Context, *KubeCluster) (*KubeCluster, error)
+	// create-stack-job for kube-cluster
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*KubeCluster, error)
 	// pause a kube-cluster.
 	// a kube-cluster is paused by setting the number of nodes in each node pool of the kube-cluster to zero.
 	// microservice, database and kafka cluster workload pods will be deleted as there wont be any nodes to run on.
@@ -179,17 +250,32 @@ type KubeClusterCommandControllerServer interface {
 type UnimplementedKubeClusterCommandControllerServer struct {
 }
 
+func (UnimplementedKubeClusterCommandControllerServer) PreviewCreate(context.Context, *KubeCluster) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedKubeClusterCommandControllerServer) Create(context.Context, *KubeCluster) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedKubeClusterCommandControllerServer) PreviewUpdate(context.Context, *KubeCluster) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) Update(context.Context, *KubeCluster) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedKubeClusterCommandControllerServer) PreviewDelete(context.Context, *KubeClusterId) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedKubeClusterCommandControllerServer) Delete(context.Context, *KubeClusterId) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedKubeClusterCommandControllerServer) PreviewRestore(context.Context, *KubeCluster) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedKubeClusterCommandControllerServer) Restore(context.Context, *KubeCluster) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedKubeClusterCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *KubeClusterId) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
@@ -215,6 +301,24 @@ func RegisterKubeClusterCommandControllerServer(s grpc.ServiceRegistrar, srv Kub
 	s.RegisterService(&KubeClusterCommandController_ServiceDesc, srv)
 }
 
+func _KubeClusterCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KubeCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).PreviewCreate(ctx, req.(*KubeCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KubeClusterCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KubeCluster)
 	if err := dec(in); err != nil {
@@ -229,6 +333,24 @@ func _KubeClusterCommandController_Create_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubeClusterCommandControllerServer).Create(ctx, req.(*KubeCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusterCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KubeCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).PreviewUpdate(ctx, req.(*KubeCluster))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -251,6 +373,24 @@ func _KubeClusterCommandController_Update_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KubeClusterId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, req.(*KubeClusterId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KubeClusterId)
 	if err := dec(in); err != nil {
@@ -269,6 +409,24 @@ func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KubeCluster)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).PreviewRestore(ctx, req.(*KubeCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KubeClusterCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(KubeCluster)
 	if err := dec(in); err != nil {
@@ -283,6 +441,24 @@ func _KubeClusterCommandController_Restore_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubeClusterCommandControllerServer).Restore(ctx, req.(*KubeCluster))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -367,20 +543,40 @@ var KubeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*KubeClusterCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _KubeClusterCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _KubeClusterCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _KubeClusterCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _KubeClusterCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _KubeClusterCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _KubeClusterCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _KubeClusterCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _KubeClusterCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _KubeClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "pause",
@@ -1298,135 +1494,6 @@ var GcpQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findZonesByRegionIdentifier",
 			Handler:    _GcpQueryController_FindZonesByRegionIdentifier_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/service.proto",
-}
-
-const (
-	KubeClusterStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterStackController/preview"
-	KubeClusterStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterStackController/apply"
-)
-
-// KubeClusterStackControllerClient is the client API for KubeClusterStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type KubeClusterStackControllerClient interface {
-	// preview kube-cluster stack with provided spec
-	Preview(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
-	// apply kube-cluster stack
-	Apply(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
-}
-
-type kubeClusterStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewKubeClusterStackControllerClient(cc grpc.ClientConnInterface) KubeClusterStackControllerClient {
-	return &kubeClusterStackControllerClient{cc}
-}
-
-func (c *kubeClusterStackControllerClient) Preview(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error) {
-	out := new(KubeCluster)
-	err := c.cc.Invoke(ctx, KubeClusterStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClusterStackControllerClient) Apply(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
-	out := new(KubeCluster)
-	err := c.cc.Invoke(ctx, KubeClusterStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// KubeClusterStackControllerServer is the server API for KubeClusterStackController service.
-// All implementations should embed UnimplementedKubeClusterStackControllerServer
-// for forward compatibility
-type KubeClusterStackControllerServer interface {
-	// preview kube-cluster stack with provided spec
-	Preview(context.Context, *KubeCluster) (*KubeCluster, error)
-	// apply kube-cluster stack
-	Apply(context.Context, *KubeClusterId) (*KubeCluster, error)
-}
-
-// UnimplementedKubeClusterStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedKubeClusterStackControllerServer struct {
-}
-
-func (UnimplementedKubeClusterStackControllerServer) Preview(context.Context, *KubeCluster) (*KubeCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedKubeClusterStackControllerServer) Apply(context.Context, *KubeClusterId) (*KubeCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeKubeClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to KubeClusterStackControllerServer will
-// result in compilation errors.
-type UnsafeKubeClusterStackControllerServer interface {
-	mustEmbedUnimplementedKubeClusterStackControllerServer()
-}
-
-func RegisterKubeClusterStackControllerServer(s grpc.ServiceRegistrar, srv KubeClusterStackControllerServer) {
-	s.RegisterService(&KubeClusterStackController_ServiceDesc, srv)
-}
-
-func _KubeClusterStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeCluster)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterStackControllerServer).Preview(ctx, req.(*KubeCluster))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusterStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterStackControllerServer).Apply(ctx, req.(*KubeClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// KubeClusterStackController_ServiceDesc is the grpc.ServiceDesc for KubeClusterStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var KubeClusterStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterStackController",
-	HandlerType: (*KubeClusterStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _KubeClusterStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _KubeClusterStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
