@@ -16,12 +16,29 @@ import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //microservice-instance command controller
 service MicroserviceInstanceCommandController {
+  //preview create microservice-instance
+  rpc previewCreate(MicroserviceInstance) returns (MicroserviceInstance) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview create microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+  }
   //create microservice-instance
   rpc create(MicroserviceInstance) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_create;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = created;
+  }
+  //preview update microservice-instance
+  rpc previewUpdate(MicroserviceInstance) returns (MicroserviceInstance) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview update microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
   }
   //update microservice-instance
   rpc update(MicroserviceInstance) returns (MicroserviceInstance) {
@@ -29,6 +46,15 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
+  }
+  //preview delete microservice-instance
+  rpc previewDelete(MicroserviceInstanceId) returns (MicroserviceInstance) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
   }
   //delete microservice-instance
   rpc delete(MicroserviceInstanceId) returns (MicroserviceInstance) {
@@ -36,6 +62,15 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
+  }
+  //preview restoring a deleted microservice-instance
+  rpc previewRestore(MicroserviceInstance) returns (MicroserviceInstance) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
   }
   //restore a deleted microservice-instance of a environment.
   rpc restore(MicroserviceInstance) returns (MicroserviceInstance) {
@@ -43,8 +78,15 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_restore;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
-
+  //create-stack-job for microservice-instance
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (MicroserviceInstance) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for microservice-instance";
+  }
   //restart a microservice-instance running in a environment.
   //microservice-instance is restarted by deleting running pods which will be automatically recreated by kubernetes.
   rpc restart(MicroserviceInstanceId) returns (MicroserviceInstance) {
@@ -53,7 +95,6 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restart microservice-instance";
   }
-
   //pause a microservice-instance running in a environment.
   //microservice-instance is paused by scaling down number of replicas of
   //the kubernetes deployment/stateful sets to zero in the environment.
@@ -62,6 +103,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
   }
   //unpause a previously paused microservice-instance running in a environment.
   //unpause is done by scaling the number of pods back to the number of
@@ -71,6 +113,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause microservice-instance";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }
 }
 
@@ -135,23 +178,5 @@ service MicroserviceInstanceQueryController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get environment variables of microservice-instance";
-  }
-}
-
-//microservice-instance stack controller
-service MicroserviceInstanceStackController {
-  //preview microservice-instance stack
-  rpc preview(MicroserviceInstance) returns (MicroserviceInstance) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview microservice-instance stack";
-  }
-  //apply microservice-instance stack
-  rpc apply(MicroserviceInstanceId) returns (MicroserviceInstance) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to apply microservice-instance stack";
   }
 }
