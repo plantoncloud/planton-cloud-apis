@@ -11,6 +11,7 @@ import (
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
+	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,24 +23,39 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StorageBucketCommandController_Create_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/create"
-	StorageBucketCommandController_Update_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/update"
-	StorageBucketCommandController_Delete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/delete"
-	StorageBucketCommandController_Restore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/restore"
+	StorageBucketCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewCreate"
+	StorageBucketCommandController_Create_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/create"
+	StorageBucketCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewUpdate"
+	StorageBucketCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/update"
+	StorageBucketCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewDelete"
+	StorageBucketCommandController_Delete_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/delete"
+	StorageBucketCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewRestore"
+	StorageBucketCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/restore"
+	StorageBucketCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/createStackJob"
 )
 
 // StorageBucketCommandControllerClient is the client API for StorageBucketCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StorageBucketCommandControllerClient interface {
+	// preview create storage-bucket
+	PreviewCreate(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// create storage-bucket
 	Create(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
+	// preview update an existing storage-bucket
+	PreviewUpdate(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// update an existing storage-bucket
 	Update(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
+	// preview delete an existing storage-bucket
+	PreviewDelete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error)
 	// delete an existing storage-bucket
 	Delete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error)
+	// preview restore a deleted storage-bucket
+	PreviewRestore(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// restore a deleted storage-bucket
 	Restore(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
+	// create-stack-job for storage-bucket
+	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
 }
 
 type storageBucketCommandControllerClient struct {
@@ -50,9 +66,27 @@ func NewStorageBucketCommandControllerClient(cc grpc.ClientConnInterface) Storag
 	return &storageBucketCommandControllerClient{cc}
 }
 
+func (c *storageBucketCommandControllerClient) PreviewCreate(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *storageBucketCommandControllerClient) Create(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error) {
 	out := new(StorageBucket)
 	err := c.cc.Invoke(ctx, StorageBucketCommandController_Create_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storageBucketCommandControllerClient) PreviewUpdate(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -68,9 +102,27 @@ func (c *storageBucketCommandControllerClient) Update(ctx context.Context, in *S
 	return out, nil
 }
 
+func (c *storageBucketCommandControllerClient) PreviewDelete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *storageBucketCommandControllerClient) Delete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error) {
 	out := new(StorageBucket)
 	err := c.cc.Invoke(ctx, StorageBucketCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storageBucketCommandControllerClient) PreviewRestore(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,35 +138,69 @@ func (c *storageBucketCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *storageBucketCommandControllerClient) CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_CreateStackJob_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StorageBucketCommandControllerServer is the server API for StorageBucketCommandController service.
 // All implementations should embed UnimplementedStorageBucketCommandControllerServer
 // for forward compatibility
 type StorageBucketCommandControllerServer interface {
+	// preview create storage-bucket
+	PreviewCreate(context.Context, *StorageBucket) (*StorageBucket, error)
 	// create storage-bucket
 	Create(context.Context, *StorageBucket) (*StorageBucket, error)
+	// preview update an existing storage-bucket
+	PreviewUpdate(context.Context, *StorageBucket) (*StorageBucket, error)
 	// update an existing storage-bucket
 	Update(context.Context, *StorageBucket) (*StorageBucket, error)
+	// preview delete an existing storage-bucket
+	PreviewDelete(context.Context, *StorageBucketId) (*StorageBucket, error)
 	// delete an existing storage-bucket
 	Delete(context.Context, *StorageBucketId) (*StorageBucket, error)
+	// preview restore a deleted storage-bucket
+	PreviewRestore(context.Context, *StorageBucket) (*StorageBucket, error)
 	// restore a deleted storage-bucket
 	Restore(context.Context, *StorageBucket) (*StorageBucket, error)
+	// create-stack-job for storage-bucket
+	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*StorageBucket, error)
 }
 
 // UnimplementedStorageBucketCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedStorageBucketCommandControllerServer struct {
 }
 
+func (UnimplementedStorageBucketCommandControllerServer) PreviewCreate(context.Context, *StorageBucket) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
+}
 func (UnimplementedStorageBucketCommandControllerServer) Create(context.Context, *StorageBucket) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (UnimplementedStorageBucketCommandControllerServer) PreviewUpdate(context.Context, *StorageBucket) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedStorageBucketCommandControllerServer) Update(context.Context, *StorageBucket) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
+func (UnimplementedStorageBucketCommandControllerServer) PreviewDelete(context.Context, *StorageBucketId) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
+}
 func (UnimplementedStorageBucketCommandControllerServer) Delete(context.Context, *StorageBucketId) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
+func (UnimplementedStorageBucketCommandControllerServer) PreviewRestore(context.Context, *StorageBucket) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
+}
 func (UnimplementedStorageBucketCommandControllerServer) Restore(context.Context, *StorageBucket) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
+}
+func (UnimplementedStorageBucketCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
 // UnsafeStorageBucketCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -126,6 +212,24 @@ type UnsafeStorageBucketCommandControllerServer interface {
 
 func RegisterStorageBucketCommandControllerServer(s grpc.ServiceRegistrar, srv StorageBucketCommandControllerServer) {
 	s.RegisterService(&StorageBucketCommandController_ServiceDesc, srv)
+}
+
+func _StorageBucketCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StorageBucket)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).PreviewCreate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_PreviewCreate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).PreviewCreate(ctx, req.(*StorageBucket))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _StorageBucketCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -142,6 +246,24 @@ func _StorageBucketCommandController_Create_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StorageBucketCommandControllerServer).Create(ctx, req.(*StorageBucket))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageBucketCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StorageBucket)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).PreviewUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_PreviewUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).PreviewUpdate(ctx, req.(*StorageBucket))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -164,6 +286,24 @@ func _StorageBucketCommandController_Update_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StorageBucketCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StorageBucketId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).PreviewDelete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_PreviewDelete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).PreviewDelete(ctx, req.(*StorageBucketId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _StorageBucketCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StorageBucketId)
 	if err := dec(in); err != nil {
@@ -178,6 +318,24 @@ func _StorageBucketCommandController_Delete_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StorageBucketCommandControllerServer).Delete(ctx, req.(*StorageBucketId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageBucketCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StorageBucket)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).PreviewRestore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_PreviewRestore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).PreviewRestore(ctx, req.(*StorageBucket))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -200,6 +358,24 @@ func _StorageBucketCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StorageBucketCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(job.CreateStackJobCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).CreateStackJob(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_CreateStackJob_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).CreateStackJob(ctx, req.(*job.CreateStackJobCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StorageBucketCommandController_ServiceDesc is the grpc.ServiceDesc for StorageBucketCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -208,20 +384,40 @@ var StorageBucketCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StorageBucketCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
+			MethodName: "previewCreate",
+			Handler:    _StorageBucketCommandController_PreviewCreate_Handler,
+		},
+		{
 			MethodName: "create",
 			Handler:    _StorageBucketCommandController_Create_Handler,
+		},
+		{
+			MethodName: "previewUpdate",
+			Handler:    _StorageBucketCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _StorageBucketCommandController_Update_Handler,
 		},
 		{
+			MethodName: "previewDelete",
+			Handler:    _StorageBucketCommandController_PreviewDelete_Handler,
+		},
+		{
 			MethodName: "delete",
 			Handler:    _StorageBucketCommandController_Delete_Handler,
 		},
 		{
+			MethodName: "previewRestore",
+			Handler:    _StorageBucketCommandController_PreviewRestore_Handler,
+		},
+		{
 			MethodName: "restore",
 			Handler:    _StorageBucketCommandController_Restore_Handler,
+		},
+		{
+			MethodName: "createStackJob",
+			Handler:    _StorageBucketCommandController_CreateStackJob_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -433,135 +629,6 @@ var StorageBucketQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findByEnvironmentId",
 			Handler:    _StorageBucketQueryController_FindByEnvironmentId_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/service.proto",
-}
-
-const (
-	StorageBucketStackController_Preview_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketStackController/preview"
-	StorageBucketStackController_Apply_FullMethodName   = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketStackController/apply"
-)
-
-// StorageBucketStackControllerClient is the client API for StorageBucketStackController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type StorageBucketStackControllerClient interface {
-	// preview storage-bucket stack
-	Preview(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
-	// apply storage-bucket stack
-	Apply(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error)
-}
-
-type storageBucketStackControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewStorageBucketStackControllerClient(cc grpc.ClientConnInterface) StorageBucketStackControllerClient {
-	return &storageBucketStackControllerClient{cc}
-}
-
-func (c *storageBucketStackControllerClient) Preview(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error) {
-	out := new(StorageBucket)
-	err := c.cc.Invoke(ctx, StorageBucketStackController_Preview_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *storageBucketStackControllerClient) Apply(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error) {
-	out := new(StorageBucket)
-	err := c.cc.Invoke(ctx, StorageBucketStackController_Apply_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// StorageBucketStackControllerServer is the server API for StorageBucketStackController service.
-// All implementations should embed UnimplementedStorageBucketStackControllerServer
-// for forward compatibility
-type StorageBucketStackControllerServer interface {
-	// preview storage-bucket stack
-	Preview(context.Context, *StorageBucket) (*StorageBucket, error)
-	// apply storage-bucket stack
-	Apply(context.Context, *StorageBucketId) (*StorageBucket, error)
-}
-
-// UnimplementedStorageBucketStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedStorageBucketStackControllerServer struct {
-}
-
-func (UnimplementedStorageBucketStackControllerServer) Preview(context.Context, *StorageBucket) (*StorageBucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Preview not implemented")
-}
-func (UnimplementedStorageBucketStackControllerServer) Apply(context.Context, *StorageBucketId) (*StorageBucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Apply not implemented")
-}
-
-// UnsafeStorageBucketStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to StorageBucketStackControllerServer will
-// result in compilation errors.
-type UnsafeStorageBucketStackControllerServer interface {
-	mustEmbedUnimplementedStorageBucketStackControllerServer()
-}
-
-func RegisterStorageBucketStackControllerServer(s grpc.ServiceRegistrar, srv StorageBucketStackControllerServer) {
-	s.RegisterService(&StorageBucketStackController_ServiceDesc, srv)
-}
-
-func _StorageBucketStackController_Preview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StorageBucket)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketStackControllerServer).Preview(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketStackController_Preview_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketStackControllerServer).Preview(ctx, req.(*StorageBucket))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _StorageBucketStackController_Apply_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StorageBucketId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketStackControllerServer).Apply(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketStackController_Apply_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketStackControllerServer).Apply(ctx, req.(*StorageBucketId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// StorageBucketStackController_ServiceDesc is the grpc.ServiceDesc for StorageBucketStackController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var StorageBucketStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketStackController",
-	HandlerType: (*StorageBucketStackControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "preview",
-			Handler:    _StorageBucketStackController_Preview_Handler,
-		},
-		{
-			MethodName: "apply",
-			Handler:    _StorageBucketStackController_Apply_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
