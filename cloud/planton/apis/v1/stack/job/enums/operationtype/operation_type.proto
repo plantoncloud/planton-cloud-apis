@@ -5,9 +5,10 @@ package cloud.planton.apis.v1.stack.job.enums.operationtype;
 enum StackJobOperationType {
   STACK_JOB_OPERATION_TYPE_UNSPECIFIED = 0;
   refresh = 1;
-  preview = 2;
+  apply_preview = 2;
   apply = 3;
-  destroy = 4;
-  cancel_pending = 5;
-  remove_pending = 6;
+  destroy_preview = 4;
+  destroy = 5;
+  cancel_pending = 6;
+  remove_pending = 7;
 }
