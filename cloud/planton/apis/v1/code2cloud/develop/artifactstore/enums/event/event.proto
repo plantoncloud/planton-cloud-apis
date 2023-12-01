@@ -48,9 +48,10 @@ enum ArtifactStoreEventType {
   stack_job_refresh_completed = 8 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
-  stack_job_preview_requested = 9 [
+  stack_job_apply_preview_requested = 9 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = false,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = preview
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply_preview
   ];
   stack_job_apply_requested = 10 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
@@ -60,12 +61,17 @@ enum ArtifactStoreEventType {
   stack_job_apply_completed = 11 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
-  stack_job_destroy_requested = 12 [
+  stack_job_destroy_preview_requested = 12 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = false,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy_preview
+  ];
+  stack_job_destroy_requested = 13 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy
   ];
-  stack_job_destroy_completed = 13 [
+  stack_job_destroy_completed = 14 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
 }

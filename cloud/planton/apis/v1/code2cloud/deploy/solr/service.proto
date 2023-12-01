@@ -20,7 +20,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_create;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview create solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //create solr-cloud
   rpc create(SolrCloud) returns (SolrCloud) {
@@ -36,7 +36,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview update solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing solr-cloud
   rpc update(SolrCloud) returns (SolrCloud) {
@@ -52,7 +52,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing solr-cloud
   rpc delete(SolrCloudId) returns (SolrCloud) {
@@ -68,7 +68,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_restore;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted solr-cloud
   rpc restore(SolrCloud) returns (SolrCloud) {
@@ -101,7 +101,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //unpause a previously paused solr-cloud running in a environment.
   //unpause is done by scaling the number of pods back to the number of
@@ -111,7 +111,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause solr-cloud";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
 }
 

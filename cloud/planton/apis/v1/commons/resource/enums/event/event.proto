@@ -20,9 +20,10 @@ enum ApiResourceEventType {
   stack_job_progress_updated = 8;
   stack_job_refresh_requested = 9;
   stack_job_refresh_completed = 10;
-  stack_job_preview_requested = 11;
+  stack_job_apply_preview_requested = 11;
   stack_job_apply_requested = 12;
   stack_job_apply_completed = 13;
-  stack_job_destroy_requested = 14;
-  stack_job_destroy_completed = 15;
+  stack_job_destroy_preview_requested = 14;
+  stack_job_destroy_requested = 15;
+  stack_job_destroy_completed = 16;
 }
