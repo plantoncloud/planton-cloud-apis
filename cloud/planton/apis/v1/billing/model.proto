@@ -92,8 +92,12 @@ message StripeSubscription {
 message BillingAccountStatus {
   // resource lifecycle
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+
+  // resource version-id
+  string version_id = 97;
 }
 
 // BillingItem is a protocol message that represents the state of a billing item.

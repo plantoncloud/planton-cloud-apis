@@ -114,6 +114,9 @@ message StackJobStatus {
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
+  // resource version-id
+  string version_id = 97;
+
   // execution status of the stack-job
   cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;
 }

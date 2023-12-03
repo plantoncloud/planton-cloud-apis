@@ -120,8 +120,11 @@ message ArtifactStoreStatus {
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
+  // resource version-id
+  string version_id = 97;
+
   // id of the stack-job
-  string stack_job_id = 97;
+  string stack_job_id = 96;
 
   //status for artifact-store repositories created on gcp artifact-registry.
   //this is only populated when the gcp artifact-registry is configured as the repo-provider.
