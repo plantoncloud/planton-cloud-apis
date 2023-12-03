@@ -72,35 +72,42 @@ message StackJobSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  // resource type for which the stack-job is executed.
+  // resource type for which the stack-job is created
   //value is computed from stack.
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 4 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  // id of the resource for which the stack is executed
+  // id of the resource for which the stack-job is created.
   string resource_id = 5 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
-  // id of the stack to which the stack-job belongs to
+  // id of the resource version for which the stack-job is created.
+  string resource_version_id = 6 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the stack to which the stack-job belongs to.
   // value is computed based on resource-id.
-  string stack_id = 6 [
+  string stack_id = 7 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
+
   // stack-job operation type
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 7 [
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
   // name of the pulumi-stack.
   // this value is computed by stack service.
-  string pulumi_stack_name = 8 [
+  string pulumi_stack_name = 9 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
