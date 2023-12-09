@@ -14,11 +14,13 @@ message Metadata {
   string id = 2;
   // labels for the resource
   map<string, string> labels = 3;
+  //metadata for resource version
+  MetadataResourceVersion version = 4;
 }
 
 // wrapper for resource-id
 message ResourceId {
-  string value= 1;
+  string value = 1;
 }
 
 // resource group version kind
@@ -39,4 +41,15 @@ message RunnableResourceLifecycle {
   bool is_active = 1;
   // flag to indicate if the resource is paused
   bool is_paused = 2;
+}
+
+// version information for api-resource
+message MetadataResourceVersion {
+  string id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = false
+  ];
+  string description = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
 }
