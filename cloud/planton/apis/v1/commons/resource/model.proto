@@ -49,7 +49,7 @@ message MetadataResourceVersion {
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = false
   ];
-  string description = 2 [
+  string message = 2 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }
