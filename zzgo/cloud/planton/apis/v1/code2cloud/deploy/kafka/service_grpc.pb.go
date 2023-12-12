@@ -10,8 +10,9 @@ import (
 	context "context"
 	kubecluster "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -52,9 +53,9 @@ type KafkaClusterCommandControllerClient interface {
 	// update an existing kafka-cluster
 	Update(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// preview deleting an existing kafka-cluster
-	PreviewDelete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// delete an existing kafka-cluster
-	Delete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// preview restoring a deleted kafka-cluster
 	PreviewRestore(ctx context.Context, in *KafkaCluster, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// restore a deleted kafka-cluster
@@ -68,11 +69,11 @@ type KafkaClusterCommandControllerClient interface {
 	// pause a kafka-cluster running in a environment.
 	// kafka-cluster is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 	// unpause a previously paused kafka-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-cluster.
-	Unpause(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 }
 
 type kafkaClusterCommandControllerClient struct {
@@ -119,7 +120,7 @@ func (c *kafkaClusterCommandControllerClient) Update(ctx context.Context, in *Ka
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -128,7 +129,7 @@ func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context,
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -173,7 +174,7 @@ func (c *kafkaClusterCommandControllerClient) Restart(ctx context.Context, in *K
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) Pause(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -182,7 +183,7 @@ func (c *kafkaClusterCommandControllerClient) Pause(ctx context.Context, in *Kaf
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) Unpause(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
 	out := new(KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -204,9 +205,9 @@ type KafkaClusterCommandControllerServer interface {
 	// update an existing kafka-cluster
 	Update(context.Context, *KafkaCluster) (*KafkaCluster, error)
 	// preview deleting an existing kafka-cluster
-	PreviewDelete(context.Context, *KafkaClusterId) (*KafkaCluster, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KafkaCluster, error)
 	// delete an existing kafka-cluster
-	Delete(context.Context, *KafkaClusterId) (*KafkaCluster, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KafkaCluster, error)
 	// preview restoring a deleted kafka-cluster
 	PreviewRestore(context.Context, *KafkaCluster) (*KafkaCluster, error)
 	// restore a deleted kafka-cluster
@@ -220,11 +221,11 @@ type KafkaClusterCommandControllerServer interface {
 	// pause a kafka-cluster running in a environment.
 	// kafka-cluster is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *KafkaClusterId) (*KafkaCluster, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*KafkaCluster, error)
 	// unpause a previously paused kafka-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-cluster.
-	Unpause(context.Context, *KafkaClusterId) (*KafkaCluster, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KafkaCluster, error)
 }
 
 // UnimplementedKafkaClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -243,10 +244,10 @@ func (UnimplementedKafkaClusterCommandControllerServer) PreviewUpdate(context.Co
 func (UnimplementedKafkaClusterCommandControllerServer) Update(context.Context, *KafkaCluster) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) PreviewDelete(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) Delete(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKafkaClusterCommandControllerServer) PreviewRestore(context.Context, *KafkaCluster) (*KafkaCluster, error) {
@@ -261,10 +262,10 @@ func (UnimplementedKafkaClusterCommandControllerServer) CreateStackJob(context.C
 func (UnimplementedKafkaClusterCommandControllerServer) Restart(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) Pause(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) Unpause(context.Context, *KafkaClusterId) (*KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 
@@ -352,7 +353,7 @@ func _KafkaClusterCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _KafkaClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -364,13 +365,13 @@ func _KafkaClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx c
 		FullMethod: KafkaClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, req.(*KafkaClusterId))
+		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -382,7 +383,7 @@ func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: KafkaClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).Delete(ctx, req.(*KafkaClusterId))
+		return srv.(KafkaClusterCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -460,7 +461,7 @@ func _KafkaClusterCommandController_Restart_Handler(srv interface{}, ctx context
 }
 
 func _KafkaClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaClusterId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,13 +473,13 @@ func _KafkaClusterCommandController_Pause_Handler(srv interface{}, ctx context.C
 		FullMethod: KafkaClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).Pause(ctx, req.(*KafkaClusterId))
+		return srv.(KafkaClusterCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KafkaClusterId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -490,7 +491,7 @@ func _KafkaClusterCommandController_Unpause_Handler(srv interface{}, ctx context
 		FullMethod: KafkaClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).Unpause(ctx, req.(*KafkaClusterId))
+		return srv.(KafkaClusterCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -584,7 +585,7 @@ type KafkaClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*KafkaClusterPassword, error)
 	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*resource1.Pods, error)
 }
 
 type kafkaClusterQueryControllerClient struct {
@@ -649,8 +650,8 @@ func (c *kafkaClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *KafkaClusterId, opts ...grpc.CallOption) (*resource1.Pods, error) {
+	out := new(resource1.Pods)
 	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -677,7 +678,7 @@ type KafkaClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *KafkaClusterId) (*KafkaClusterPassword, error)
 	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(context.Context, *KafkaClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *KafkaClusterId) (*resource1.Pods, error)
 }
 
 // UnimplementedKafkaClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -702,7 +703,7 @@ func (UnimplementedKafkaClusterQueryControllerServer) FindByKubeClusterId(contex
 func (UnimplementedKafkaClusterQueryControllerServer) GetPassword(context.Context, *KafkaClusterId) (*KafkaClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedKafkaClusterQueryControllerServer) FindPods(context.Context, *KafkaClusterId) (*resource.Pods, error) {
+func (UnimplementedKafkaClusterQueryControllerServer) FindPods(context.Context, *KafkaClusterId) (*resource1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

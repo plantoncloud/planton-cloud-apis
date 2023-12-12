@@ -275,15 +275,3 @@ message CloudAccountAwsSpec {
     }
   ];
 }
-
-// CloudAccountIdCommandInput is a wrapper for inputting a cloud account ID along with an associated version message.
-// This message is typically used for command operations that require identifying a specific cloud account and logging the reason for the operation.
-message CloudAccountIdCommandInput {
-  // The unique identifier for the cloud account.
-  string value = 1;
-
-  // A descriptive message explaining the reason for the change or operation. This is used for history logging purposes.
-  // For example, "Updated account settings for new billing plan".
-  string version_message = 2;
-}
-

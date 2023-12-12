@@ -9,6 +9,7 @@ package storagebucket
 import (
 	context "context"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
@@ -47,9 +48,9 @@ type StorageBucketCommandControllerClient interface {
 	// update an existing storage-bucket
 	Update(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// preview delete an existing storage-bucket
-	PreviewDelete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
 	// delete an existing storage-bucket
-	Delete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
 	// preview restore a deleted storage-bucket
 	PreviewRestore(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// restore a deleted storage-bucket
@@ -102,7 +103,7 @@ func (c *storageBucketCommandControllerClient) Update(ctx context.Context, in *S
 	return out, nil
 }
 
-func (c *storageBucketCommandControllerClient) PreviewDelete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error) {
+func (c *storageBucketCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*StorageBucket, error) {
 	out := new(StorageBucket)
 	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -111,7 +112,7 @@ func (c *storageBucketCommandControllerClient) PreviewDelete(ctx context.Context
 	return out, nil
 }
 
-func (c *storageBucketCommandControllerClient) Delete(ctx context.Context, in *StorageBucketId, opts ...grpc.CallOption) (*StorageBucket, error) {
+func (c *storageBucketCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*StorageBucket, error) {
 	out := new(StorageBucket)
 	err := c.cc.Invoke(ctx, StorageBucketCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -160,9 +161,9 @@ type StorageBucketCommandControllerServer interface {
 	// update an existing storage-bucket
 	Update(context.Context, *StorageBucket) (*StorageBucket, error)
 	// preview delete an existing storage-bucket
-	PreviewDelete(context.Context, *StorageBucketId) (*StorageBucket, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*StorageBucket, error)
 	// delete an existing storage-bucket
-	Delete(context.Context, *StorageBucketId) (*StorageBucket, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*StorageBucket, error)
 	// preview restore a deleted storage-bucket
 	PreviewRestore(context.Context, *StorageBucket) (*StorageBucket, error)
 	// restore a deleted storage-bucket
@@ -187,10 +188,10 @@ func (UnimplementedStorageBucketCommandControllerServer) PreviewUpdate(context.C
 func (UnimplementedStorageBucketCommandControllerServer) Update(context.Context, *StorageBucket) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedStorageBucketCommandControllerServer) PreviewDelete(context.Context, *StorageBucketId) (*StorageBucket, error) {
+func (UnimplementedStorageBucketCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedStorageBucketCommandControllerServer) Delete(context.Context, *StorageBucketId) (*StorageBucket, error) {
+func (UnimplementedStorageBucketCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedStorageBucketCommandControllerServer) PreviewRestore(context.Context, *StorageBucket) (*StorageBucket, error) {
@@ -287,7 +288,7 @@ func _StorageBucketCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _StorageBucketCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StorageBucketId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -299,13 +300,13 @@ func _StorageBucketCommandController_PreviewDelete_Handler(srv interface{}, ctx 
 		FullMethod: StorageBucketCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketCommandControllerServer).PreviewDelete(ctx, req.(*StorageBucketId))
+		return srv.(StorageBucketCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _StorageBucketCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StorageBucketId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -317,7 +318,7 @@ func _StorageBucketCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: StorageBucketCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketCommandControllerServer).Delete(ctx, req.(*StorageBucketId))
+		return srv.(StorageBucketCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

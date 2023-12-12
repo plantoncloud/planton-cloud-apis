@@ -8,6 +8,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 // cloud-account command controller
 service CloudAccountCommandController {
@@ -44,7 +45,7 @@ service CloudAccountCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete a cloud-account that was previously created
-  rpc previewDelete(CloudAccountIdCommandInput) returns (CloudAccount) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CloudAccount) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
@@ -53,7 +54,7 @@ service CloudAccountCommandController {
   }
   //delete a cloud-account that was previously created
   //warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
-  rpc delete(CloudAccountIdCommandInput) returns (CloudAccount) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CloudAccount) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";

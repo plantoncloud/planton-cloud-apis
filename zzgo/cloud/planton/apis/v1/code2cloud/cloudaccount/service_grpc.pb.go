@@ -8,6 +8,7 @@ package cloudaccount
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
@@ -46,10 +47,10 @@ type CloudAccountCommandControllerClient interface {
 	// update an existing cloud-account
 	Update(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
 	// preview delete a cloud-account that was previously created
-	PreviewDelete(ctx context.Context, in *CloudAccountIdCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
 	// delete a cloud-account that was previously created
 	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
-	Delete(ctx context.Context, in *CloudAccountIdCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
 	// preview restoring a deleted cloud-account.
 	PreviewRestore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
 	// restore a deleted cloud-account.
@@ -102,7 +103,7 @@ func (c *cloudAccountCommandControllerClient) Update(ctx context.Context, in *Cl
 	return out, nil
 }
 
-func (c *cloudAccountCommandControllerClient) PreviewDelete(ctx context.Context, in *CloudAccountIdCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
+func (c *cloudAccountCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
 	out := new(CloudAccount)
 	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -111,7 +112,7 @@ func (c *cloudAccountCommandControllerClient) PreviewDelete(ctx context.Context,
 	return out, nil
 }
 
-func (c *cloudAccountCommandControllerClient) Delete(ctx context.Context, in *CloudAccountIdCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
+func (c *cloudAccountCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
 	out := new(CloudAccount)
 	err := c.cc.Invoke(ctx, CloudAccountCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -160,10 +161,10 @@ type CloudAccountCommandControllerServer interface {
 	// update an existing cloud-account
 	Update(context.Context, *CloudAccount) (*CloudAccount, error)
 	// preview delete a cloud-account that was previously created
-	PreviewDelete(context.Context, *CloudAccountIdCommandInput) (*CloudAccount, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CloudAccount, error)
 	// delete a cloud-account that was previously created
 	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
-	Delete(context.Context, *CloudAccountIdCommandInput) (*CloudAccount, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CloudAccount, error)
 	// preview restoring a deleted cloud-account.
 	PreviewRestore(context.Context, *CloudAccount) (*CloudAccount, error)
 	// restore a deleted cloud-account.
@@ -188,10 +189,10 @@ func (UnimplementedCloudAccountCommandControllerServer) PreviewUpdate(context.Co
 func (UnimplementedCloudAccountCommandControllerServer) Update(context.Context, *CloudAccount) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCloudAccountCommandControllerServer) PreviewDelete(context.Context, *CloudAccountIdCommandInput) (*CloudAccount, error) {
+func (UnimplementedCloudAccountCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedCloudAccountCommandControllerServer) Delete(context.Context, *CloudAccountIdCommandInput) (*CloudAccount, error) {
+func (UnimplementedCloudAccountCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCloudAccountCommandControllerServer) PreviewRestore(context.Context, *CloudAccount) (*CloudAccount, error) {
@@ -288,7 +289,7 @@ func _CloudAccountCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _CloudAccountCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloudAccountIdCommandInput)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -300,13 +301,13 @@ func _CloudAccountCommandController_PreviewDelete_Handler(srv interface{}, ctx c
 		FullMethod: CloudAccountCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountCommandControllerServer).PreviewDelete(ctx, req.(*CloudAccountIdCommandInput))
+		return srv.(CloudAccountCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CloudAccountCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CloudAccountIdCommandInput)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -318,7 +319,7 @@ func _CloudAccountCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: CloudAccountCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountCommandControllerServer).Delete(ctx, req.(*CloudAccountIdCommandInput))
+		return srv.(CloudAccountCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

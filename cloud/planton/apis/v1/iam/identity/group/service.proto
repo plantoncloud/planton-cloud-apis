@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.iam.identity.group;
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 import "cloud/planton/apis/v1/iam/identity/group/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //iam command controller
 service IdentityGroupCommandController {
@@ -13,7 +14,7 @@ service IdentityGroupCommandController {
   // update iam group
   rpc update(IdentityGroup) returns (IdentityGroup);
   // delete iam group
-  rpc delete(IdentityGroupId) returns (IdentityGroup);
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IdentityGroup);
 }
 
 //iam query controller

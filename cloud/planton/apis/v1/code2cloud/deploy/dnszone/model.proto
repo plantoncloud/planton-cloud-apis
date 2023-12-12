@@ -214,6 +214,10 @@ message AddOrUpdateDnsRecordCommandInput {
   // object should be populated with all necessary fields (like name, type, TTL, data etc.),
   // which the server uses to create a new DNS record or update an existing one.
   DnsRecord dns_record = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 // DeleteOrRestoreDnsRecordCommandInput is a protobuf message that encapsulates the data
@@ -237,6 +241,8 @@ message DeleteDnsRecordCommandInput {
   // within the specified DNS zone and of the provided type to either soft delete or restore.
   // This is a required field.
   string record_name = 3;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 4;
 }
-
-

@@ -10,8 +10,9 @@ import (
 	context "context"
 	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project"
 	kubecluster "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -54,11 +55,11 @@ type EnvironmentCommandControllerClient interface {
 	// update an existing environment
 	Update(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
 	// preview deleting an environment
-	PreviewDelete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// preview restoring a deleted environment
 	PreviewRestore(ctx context.Context, in *Environment, opts ...grpc.CallOption) (*Environment, error)
 	// restore a deleted environment
@@ -83,14 +84,14 @@ type EnvironmentCommandControllerClient interface {
 	// pause a environment.
 	// a environment is paused by scaling down all the workloads to zero replicas.
 	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
-	Pause(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// unpause a environment.
 	// a environment is unpause by scaling back all the workloads.
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
-	Unpause(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error)
 }
 
 type environmentCommandControllerClient struct {
@@ -137,7 +138,7 @@ func (c *environmentCommandControllerClient) Update(ctx context.Context, in *Env
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
+func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
+func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -200,7 +201,7 @@ func (c *environmentCommandControllerClient) SetBuildEngineEnvironment(ctx conte
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Pause(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
+func (c *environmentCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -209,7 +210,7 @@ func (c *environmentCommandControllerClient) Pause(ctx context.Context, in *Envi
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*Environment, error) {
+func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*Environment, error) {
 	out := new(Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -218,8 +219,8 @@ func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *En
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error) {
-	out := new(resource.WorkloadNamespace)
+func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error) {
+	out := new(resource1.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -240,11 +241,11 @@ type EnvironmentCommandControllerServer interface {
 	// update an existing environment
 	Update(context.Context, *Environment) (*Environment, error)
 	// preview deleting an environment
-	PreviewDelete(context.Context, *EnvironmentId) (*Environment, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(context.Context, *EnvironmentId) (*Environment, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Environment, error)
 	// preview restoring a deleted environment
 	PreviewRestore(context.Context, *Environment) (*Environment, error)
 	// restore a deleted environment
@@ -269,14 +270,14 @@ type EnvironmentCommandControllerServer interface {
 	// pause a environment.
 	// a environment is paused by scaling down all the workloads to zero replicas.
 	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
-	Pause(context.Context, *EnvironmentId) (*Environment, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*Environment, error)
 	// unpause a environment.
 	// a environment is unpause by scaling back all the workloads.
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
-	Unpause(context.Context, *EnvironmentId) (*Environment, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource1.WorkloadNamespace, error)
 }
 
 // UnimplementedEnvironmentCommandControllerServer should be embedded to have forward compatible implementations.
@@ -295,10 +296,10 @@ func (UnimplementedEnvironmentCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedEnvironmentCommandControllerServer) Update(context.Context, *Environment) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *EnvironmentId) (*Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *EnvironmentId) (*Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Context, *Environment) (*Environment, error) {
@@ -316,13 +317,13 @@ func (UnimplementedEnvironmentCommandControllerServer) Clone(context.Context, *C
 func (UnimplementedEnvironmentCommandControllerServer) SetBuildEngineEnvironment(context.Context, *EnvironmentId) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBuildEngineEnvironment not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *EnvironmentId) (*Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *EnvironmentId) (*Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource.WorkloadNamespace, error) {
+func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource1.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
 
@@ -410,7 +411,7 @@ func _EnvironmentCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnvironmentId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -422,13 +423,13 @@ func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: EnvironmentCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*EnvironmentId))
+		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnvironmentId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -440,7 +441,7 @@ func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: EnvironmentCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*EnvironmentId))
+		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -536,7 +537,7 @@ func _EnvironmentCommandController_SetBuildEngineEnvironment_Handler(srv interfa
 }
 
 func _EnvironmentCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnvironmentId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -548,13 +549,13 @@ func _EnvironmentCommandController_Pause_Handler(srv interface{}, ctx context.Co
 		FullMethod: EnvironmentCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Pause(ctx, req.(*EnvironmentId))
+		return srv.(EnvironmentCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EnvironmentCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EnvironmentId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -566,7 +567,7 @@ func _EnvironmentCommandController_Unpause_Handler(srv interface{}, ctx context.
 		FullMethod: EnvironmentCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Unpause(ctx, req.(*EnvironmentId))
+		return srv.(EnvironmentCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -688,9 +689,9 @@ type EnvironmentQueryControllerClient interface {
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*project.GcpProject, error)
 	// find workload pods part of environment
-	FindWorkloadPodsByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource1.WorkloadPods, error)
 	// find workload namespaces in a environment.
-	FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource1.WorkloadNamespaces, error)
 }
 
 type environmentQueryControllerClient struct {
@@ -764,8 +765,8 @@ func (c *environmentQueryControllerClient) GetSecretsGcpProjectByEnvironmentId(c
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadPods, error) {
-	out := new(resource.WorkloadPods)
+func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource1.WorkloadPods, error) {
+	out := new(resource1.WorkloadPods)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindWorkloadPodsByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -773,8 +774,8 @@ func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx c
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error) {
-	out := new(resource.WorkloadNamespaces)
+func (c *environmentQueryControllerClient) FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *EnvironmentId, opts ...grpc.CallOption) (*resource1.WorkloadNamespaces, error) {
+	out := new(resource1.WorkloadNamespaces)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindWorkloadNamespacesByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -801,9 +802,9 @@ type EnvironmentQueryControllerServer interface {
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(context.Context, *EnvironmentId) (*project.GcpProject, error)
 	// find workload pods part of environment
-	FindWorkloadPodsByEnvironmentId(context.Context, *EnvironmentId) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByEnvironmentId(context.Context, *EnvironmentId) (*resource1.WorkloadPods, error)
 	// find workload namespaces in a environment.
-	FindWorkloadNamespacesByEnvironmentId(context.Context, *EnvironmentId) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByEnvironmentId(context.Context, *EnvironmentId) (*resource1.WorkloadNamespaces, error)
 }
 
 // UnimplementedEnvironmentQueryControllerServer should be embedded to have forward compatible implementations.
@@ -831,10 +832,10 @@ func (UnimplementedEnvironmentQueryControllerServer) GetBuildEngineEnvironmentBy
 func (UnimplementedEnvironmentQueryControllerServer) GetSecretsGcpProjectByEnvironmentId(context.Context, *EnvironmentId) (*project.GcpProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSecretsGcpProjectByEnvironmentId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadPodsByEnvironmentId(context.Context, *EnvironmentId) (*resource.WorkloadPods, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadPodsByEnvironmentId(context.Context, *EnvironmentId) (*resource1.WorkloadPods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadPodsByEnvironmentId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadNamespacesByEnvironmentId(context.Context, *EnvironmentId) (*resource.WorkloadNamespaces, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadNamespacesByEnvironmentId(context.Context, *EnvironmentId) (*resource1.WorkloadNamespaces, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadNamespacesByEnvironmentId not implemented")
 }
 

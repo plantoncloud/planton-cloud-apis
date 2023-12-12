@@ -8,6 +8,7 @@ package server
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	grpc "google.golang.org/grpc"
@@ -38,7 +39,7 @@ type CodeServerCommandControllerClient interface {
 	// update an existing code-server
 	Update(ctx context.Context, in *CodeServer, opts ...grpc.CallOption) (*CodeServer, error)
 	// delete an existing code-server
-	Delete(ctx context.Context, in *CodeServerId, opts ...grpc.CallOption) (*CodeServer, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CodeServer, error)
 	// restore a deleted code server
 	Restore(ctx context.Context, in *CodeServer, opts ...grpc.CallOption) (*CodeServer, error)
 	// synchronize code projects from the server.
@@ -74,7 +75,7 @@ func (c *codeServerCommandControllerClient) Update(ctx context.Context, in *Code
 	return out, nil
 }
 
-func (c *codeServerCommandControllerClient) Delete(ctx context.Context, in *CodeServerId, opts ...grpc.CallOption) (*CodeServer, error) {
+func (c *codeServerCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CodeServer, error) {
 	out := new(CodeServer)
 	err := c.cc.Invoke(ctx, CodeServerCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -119,7 +120,7 @@ type CodeServerCommandControllerServer interface {
 	// update an existing code-server
 	Update(context.Context, *CodeServer) (*CodeServer, error)
 	// delete an existing code-server
-	Delete(context.Context, *CodeServerId) (*CodeServer, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CodeServer, error)
 	// restore a deleted code server
 	Restore(context.Context, *CodeServer) (*CodeServer, error)
 	// synchronize code projects from the server.
@@ -139,7 +140,7 @@ func (UnimplementedCodeServerCommandControllerServer) Create(context.Context, *C
 func (UnimplementedCodeServerCommandControllerServer) Update(context.Context, *CodeServer) (*CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCodeServerCommandControllerServer) Delete(context.Context, *CodeServerId) (*CodeServer, error) {
+func (UnimplementedCodeServerCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCodeServerCommandControllerServer) Restore(context.Context, *CodeServer) (*CodeServer, error) {
@@ -200,7 +201,7 @@ func _CodeServerCommandController_Update_Handler(srv interface{}, ctx context.Co
 }
 
 func _CodeServerCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CodeServerId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -212,7 +213,7 @@ func _CodeServerCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: CodeServerCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeServerCommandControllerServer).Delete(ctx, req.(*CodeServerId))
+		return srv.(CodeServerCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.iam.authz.role;
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 import "cloud/planton/apis/v1/iam/authz/role/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //iam role command controller
 service IamRoleCommandController {
@@ -13,7 +14,7 @@ service IamRoleCommandController {
   // update iam role
   rpc update(IamRole) returns (IamRole);
   // delete iam role
-  rpc delete(IamRoleId) returns (IamRole);
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IamRole);
 }
 
 // iam role query controller

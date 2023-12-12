@@ -61,7 +61,7 @@ type ResourceVersion struct {
 	StackJobId string `protobuf:"bytes,10,opt,name=stack_job_id,json=stackJobId,proto3" json:"stack_job_id,omitempty"`
 	// operation done on the state which ended up in creating this new version.
 	OperationType string `protobuf:"bytes,11,opt,name=operation_type,json=operationType,proto3" json:"operation_type,omitempty"`
-	// version description provided during resource update operation.
+	// version message provided during resource update operation.
 	Message string `protobuf:"bytes,12,opt,name=message,proto3" json:"message,omitempty"`
 }
 
