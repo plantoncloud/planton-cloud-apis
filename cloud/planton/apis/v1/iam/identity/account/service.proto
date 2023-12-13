@@ -25,7 +25,7 @@ service MachineAccountCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update machine account";
   }
   // delete an existing machine account
-  rpc delete(IdentityAccountEmail) returns (IdentityAccount) {
+  rpc delete(IdentityAccountEmailCommandInput) returns (IdentityAccount) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_account;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_account_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";

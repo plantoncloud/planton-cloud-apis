@@ -42,6 +42,8 @@ message ResourceVersion {
   string stack_job_id = 10;
   // operation done on the state which ended up in creating this new version.
   string operation_type = 11;
+  // version message provided during resource update operation.
+  string message = 12;
 }
 
 // wrapper for resource-versions id

@@ -9,6 +9,7 @@ package artifactstore
 import (
 	context "context"
 	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
@@ -48,9 +49,9 @@ type ArtifactStoreCommandControllerClient interface {
 	// update artifact-store
 	Update(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// preview delete an artifact-store.
-	PreviewDelete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// delete an artifact-store.
-	Delete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// preview restoring a deleted artifact-store.
 	PreviewRestore(ctx context.Context, in *ArtifactStore, opts ...grpc.CallOption) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
@@ -105,7 +106,7 @@ func (c *artifactStoreCommandControllerClient) Update(ctx context.Context, in *A
 	return out, nil
 }
 
-func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error) {
+func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error) {
 	out := new(ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -114,7 +115,7 @@ func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context
 	return out, nil
 }
 
-func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *ArtifactStoreId, opts ...grpc.CallOption) (*ArtifactStore, error) {
+func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*ArtifactStore, error) {
 	out := new(ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -172,9 +173,9 @@ type ArtifactStoreCommandControllerServer interface {
 	// update artifact-store
 	Update(context.Context, *ArtifactStore) (*ArtifactStore, error)
 	// preview delete an artifact-store.
-	PreviewDelete(context.Context, *ArtifactStoreId) (*ArtifactStore, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*ArtifactStore, error)
 	// delete an artifact-store.
-	Delete(context.Context, *ArtifactStoreId) (*ArtifactStore, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*ArtifactStore, error)
 	// preview restoring a deleted artifact-store.
 	PreviewRestore(context.Context, *ArtifactStore) (*ArtifactStore, error)
 	// restore a deleted artifact-store.
@@ -201,10 +202,10 @@ func (UnimplementedArtifactStoreCommandControllerServer) PreviewUpdate(context.C
 func (UnimplementedArtifactStoreCommandControllerServer) Update(context.Context, *ArtifactStore) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedArtifactStoreCommandControllerServer) PreviewDelete(context.Context, *ArtifactStoreId) (*ArtifactStore, error) {
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedArtifactStoreCommandControllerServer) Delete(context.Context, *ArtifactStoreId) (*ArtifactStore, error) {
+func (UnimplementedArtifactStoreCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedArtifactStoreCommandControllerServer) PreviewRestore(context.Context, *ArtifactStore) (*ArtifactStore, error) {
@@ -304,7 +305,7 @@ func _ArtifactStoreCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _ArtifactStoreCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ArtifactStoreId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -316,13 +317,13 @@ func _ArtifactStoreCommandController_PreviewDelete_Handler(srv interface{}, ctx 
 		FullMethod: ArtifactStoreCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, req.(*ArtifactStoreId))
+		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ArtifactStoreId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -334,7 +335,7 @@ func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: ArtifactStoreCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreCommandControllerServer).Delete(ctx, req.(*ArtifactStoreId))
+		return srv.(ArtifactStoreCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -462,6 +462,10 @@ message AddOrUpdateKubeClusterNodePoolGcpCommandInput {
 
   // gcp_node_pool encapsulates the details about the Node Pool to be added or updated in the specified Kube Cluster.
   KubeClusterNodePoolGcp gcp_node_pool = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 // DeleteOrRestoreKubeClusterNodePoolGcpCommandInput is a protobuf message designed for operations that either
@@ -475,6 +479,10 @@ message DeleteKubeClusterNodePoolGcpCommandInput {
   // node_pool_id is the unique identifier of the Node Pool within the specified Kube Cluster
   // that needs to be deleted or restored. The server uses this ID to pinpoint the Node Pool for the operation.
   string node_pool_id = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 // GetByKubeClusterNodePoolGcpIdInput is a protobuf message used to retrieve a specific GCP Node Pool within a particular Kube Cluster.

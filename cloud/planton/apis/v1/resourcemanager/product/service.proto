@@ -6,6 +6,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/resourcemanager/company/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //product command controller
 service ProductCommandController {
@@ -24,10 +25,10 @@ service ProductCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update product";
   }
   //delete an existing product
-  rpc delete(ProductId) returns (Product) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Product) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete product";
   }
   //restore a previously deleted product

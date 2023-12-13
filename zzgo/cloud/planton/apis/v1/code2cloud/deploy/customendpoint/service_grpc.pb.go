@@ -8,8 +8,9 @@ package customendpoint
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -47,9 +48,9 @@ type CustomEndpointCommandControllerClient interface {
 	// update an existing custom-endpoint
 	Update(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// preview delete custom-endpoint
-	PreviewDelete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// delete custom-endpoint
-	Delete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// preview restoring a deleted custom-endpoint
 	PreviewRestore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
@@ -102,7 +103,7 @@ func (c *customEndpointCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -111,7 +112,7 @@ func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Contex
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) Delete(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
 	out := new(CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -160,9 +161,9 @@ type CustomEndpointCommandControllerServer interface {
 	// update an existing custom-endpoint
 	Update(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// preview delete custom-endpoint
-	PreviewDelete(context.Context, *CustomEndpointId) (*CustomEndpoint, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CustomEndpoint, error)
 	// delete custom-endpoint
-	Delete(context.Context, *CustomEndpointId) (*CustomEndpoint, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CustomEndpoint, error)
 	// preview restoring a deleted custom-endpoint
 	PreviewRestore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// restore a deleted custom-endpoint
@@ -187,10 +188,10 @@ func (UnimplementedCustomEndpointCommandControllerServer) PreviewUpdate(context.
 func (UnimplementedCustomEndpointCommandControllerServer) Update(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) PreviewDelete(context.Context, *CustomEndpointId) (*CustomEndpoint, error) {
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) Delete(context.Context, *CustomEndpointId) (*CustomEndpoint, error) {
+func (UnimplementedCustomEndpointCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context.Context, *CustomEndpoint) (*CustomEndpoint, error) {
@@ -287,7 +288,7 @@ func _CustomEndpointCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _CustomEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CustomEndpointId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -299,13 +300,13 @@ func _CustomEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx
 		FullMethod: CustomEndpointCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, req.(*CustomEndpointId))
+		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CustomEndpointId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -317,7 +318,7 @@ func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: CustomEndpointCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).Delete(ctx, req.(*CustomEndpointId))
+		return srv.(CustomEndpointCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -450,7 +451,7 @@ type CustomEndpointQueryControllerClient interface {
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*CustomEndpointDnsResolutionStatus, error)
 	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*resource.Certificates, error)
+	FindCustomEndpointCertificates(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*resource1.Certificates, error)
 }
 
 type customEndpointQueryControllerClient struct {
@@ -506,8 +507,8 @@ func (c *customEndpointQueryControllerClient) GetCustomEndpointDsnResolutionStat
 	return out, nil
 }
 
-func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*resource.Certificates, error) {
-	out := new(resource.Certificates)
+func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx context.Context, in *CustomEndpointId, opts ...grpc.CallOption) (*resource1.Certificates, error) {
+	out := new(resource1.Certificates)
 	err := c.cc.Invoke(ctx, CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -532,7 +533,7 @@ type CustomEndpointQueryControllerServer interface {
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(context.Context, *CustomEndpointId) (*CustomEndpointDnsResolutionStatus, error)
 	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(context.Context, *CustomEndpointId) (*resource.Certificates, error)
+	FindCustomEndpointCertificates(context.Context, *CustomEndpointId) (*resource1.Certificates, error)
 }
 
 // UnimplementedCustomEndpointQueryControllerServer should be embedded to have forward compatible implementations.
@@ -554,7 +555,7 @@ func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointCertSta
 func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointDsnResolutionStatus(context.Context, *CustomEndpointId) (*CustomEndpointDnsResolutionStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCustomEndpointDsnResolutionStatus not implemented")
 }
-func (UnimplementedCustomEndpointQueryControllerServer) FindCustomEndpointCertificates(context.Context, *CustomEndpointId) (*resource.Certificates, error) {
+func (UnimplementedCustomEndpointQueryControllerServer) FindCustomEndpointCertificates(context.Context, *CustomEndpointId) (*resource1.Certificates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindCustomEndpointCertificates not implemented")
 }
 

@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.iam.identity.connection;
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/iam/identity/connection/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 // identity connection command controller
 service IdentityConnectionCommandController {
@@ -23,10 +24,10 @@ service IdentityConnectionCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update identity connection";
   }
   // delete an existing identity connection
-  rpc delete(IdentityConnectionId) returns (IdentityConnection) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IdentityConnection) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_connection;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_connection_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete identity connection";
   }
   // restore an existing identity connection

@@ -341,6 +341,10 @@ message AddEnvironmentVariablesCommandInput {
   string environment_id = 1;
   //key, value pairs of the variables to be added to the environment
   map<string, string> environment_variables = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //environment-secret
@@ -416,6 +420,10 @@ message AddEnvironmentSecretsCommandInput {
   //the details of a single environment secret, such as its name and value. The server
   //will iterate over this list and add each secret to the environment.
   repeated EnvironmentSecret environment_secrets = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //AddEnvironmentSecretCommandInput is used to encapsulate the details required
@@ -432,6 +440,10 @@ message AddEnvironmentSecretCommandInput {
   //This is an instance of the `EnvironmentSecret` message, which encapsulates the
   //details of a single environment secret, such as its name and value.
   EnvironmentSecret environment_secret = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //UpdateEnvironmentSecretValCommandInput is used to encapsulate the details required
@@ -456,6 +468,10 @@ message UpdateEnvironmentSecretValueCommandInput {
   //value that needs to be set for the secret. This value will replace the existing
   //secret value in the specified environment.
   string secret_value = 3;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 4;
 }
 
 //DeleteOrRestoreEnvironmentSecretCommandInput is used to encapsulate the details required
@@ -474,6 +490,10 @@ message DeleteOrRestoreEnvironmentSecretCommandInput {
   //EnvironmentSecret entity itself. The server uses this ID to identify the
   //correct secret within the specified environment that needs to be deleted.
   string secret_id = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //GetByEnvironmentSecretIdInput is used to encapsulate the details required
@@ -511,6 +531,10 @@ message AddEnvironmentVariableCommandInput {
   //environment. This field should be populated with a valid EnvironmentVariable object,
   //which encapsulates the details of the environment variable.
   EnvironmentVariable variable = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //DeleteOrRestoreEnvironmentVariableCommandInput is used to encapsulate the details required for
@@ -532,6 +556,10 @@ message DeleteOrRestoreEnvironmentVariableCommandInput {
   //The server uses this ID to identify the correct environment variable that
   //needs to be deleted.
   string variable_id = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //UpdateEnvironmentVariableValueCommandInput is a protobuf message that is used when a request to update the value of a specific
@@ -550,6 +578,10 @@ message UpdateEnvironmentVariableValueCommandInput {
   //_value is a string that represents the new value to be assigned to the specified environment variable.
   //The server will update the current value of the environment variable with this new value.
   string variable_value = 3;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 4;
 }
 
 //GetByEnvironmentVariableIdInput is a protobuf message designed to provide the necessary information
@@ -613,6 +645,10 @@ message AddOrUpdateEndpointDomainCommandInput {
 
   // Details about the endpoint domain that is to be added or updated.
   EnvironmentEndpointDomain endpoint_domain = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 // Command input for deleting an endpoint domain in a specific environment.
@@ -623,6 +659,10 @@ message DeleteEndpointDomainCommandInput {
 
   // Unique identifier for the endpoint domain that is to be deleted.
   string endpoint_domain_id = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 // owner details common for all environment level resources

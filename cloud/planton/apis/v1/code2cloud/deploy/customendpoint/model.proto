@@ -201,6 +201,10 @@ message AddOrUpdateCustomEndpointRouteCommandInput {
   //with the same url path prefix already exists in the custom-endpoint, the value will be updated.
   //Otherwise, a new route will be created with the provided details.
   CustomEndpointRoute route = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //DeleteOrRestoreCustomEndpointRouteCommandInput is used to encapsulate the details required for
@@ -222,6 +226,10 @@ message DeleteOrRestoreCustomEndpointRouteCommandInput {
   //The server uses this url path prefix to identify the correct route that
   //needs to be deleted.
   string url_path_prefix = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
 }
 
 //ssl certificate status of custom-endpoint

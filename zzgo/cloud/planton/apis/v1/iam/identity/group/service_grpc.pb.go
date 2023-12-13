@@ -8,6 +8,7 @@ package group
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -34,7 +35,7 @@ type IdentityGroupCommandControllerClient interface {
 	// update iam group
 	Update(ctx context.Context, in *IdentityGroup, opts ...grpc.CallOption) (*IdentityGroup, error)
 	// delete iam group
-	Delete(ctx context.Context, in *IdentityGroupId, opts ...grpc.CallOption) (*IdentityGroup, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityGroup, error)
 }
 
 type identityGroupCommandControllerClient struct {
@@ -63,7 +64,7 @@ func (c *identityGroupCommandControllerClient) Update(ctx context.Context, in *I
 	return out, nil
 }
 
-func (c *identityGroupCommandControllerClient) Delete(ctx context.Context, in *IdentityGroupId, opts ...grpc.CallOption) (*IdentityGroup, error) {
+func (c *identityGroupCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityGroup, error) {
 	out := new(IdentityGroup)
 	err := c.cc.Invoke(ctx, IdentityGroupCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -81,7 +82,7 @@ type IdentityGroupCommandControllerServer interface {
 	// update iam group
 	Update(context.Context, *IdentityGroup) (*IdentityGroup, error)
 	// delete iam group
-	Delete(context.Context, *IdentityGroupId) (*IdentityGroup, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityGroup, error)
 }
 
 // UnimplementedIdentityGroupCommandControllerServer should be embedded to have forward compatible implementations.
@@ -94,7 +95,7 @@ func (UnimplementedIdentityGroupCommandControllerServer) Create(context.Context,
 func (UnimplementedIdentityGroupCommandControllerServer) Update(context.Context, *IdentityGroup) (*IdentityGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIdentityGroupCommandControllerServer) Delete(context.Context, *IdentityGroupId) (*IdentityGroup, error) {
+func (UnimplementedIdentityGroupCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityGroup, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -146,7 +147,7 @@ func _IdentityGroupCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _IdentityGroupCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentityGroupId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -158,7 +159,7 @@ func _IdentityGroupCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: IdentityGroupCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityGroupCommandControllerServer).Delete(ctx, req.(*IdentityGroupId))
+		return srv.(IdentityGroupCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
