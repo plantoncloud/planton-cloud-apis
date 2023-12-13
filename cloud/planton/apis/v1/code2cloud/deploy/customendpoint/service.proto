@@ -50,7 +50,7 @@ service CustomEndpointCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete custom-endpoint";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -58,7 +58,7 @@ service CustomEndpointCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete custom-endpoint";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }

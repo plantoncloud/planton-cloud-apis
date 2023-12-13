@@ -51,7 +51,7 @@ service PostgresClusterCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete postgres-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -59,7 +59,7 @@ service PostgresClusterCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete postgres-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }
@@ -100,7 +100,7 @@ service PostgresClusterCommandController {
   rpc pause(cloud.planton.apis.v1.commons.resource.ApiResourcePauseCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause postgres-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
   }
@@ -110,7 +110,7 @@ service PostgresClusterCommandController {
   rpc unpause(cloud.planton.apis.v1.commons.resource.ApiResourceUnPauseCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause postgres-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }

@@ -51,7 +51,7 @@ service RedisClusterCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete redis-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -59,7 +59,7 @@ service RedisClusterCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete redis-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }
@@ -100,7 +100,7 @@ service RedisClusterCommandController {
   rpc pause(cloud.planton.apis.v1.commons.resource.ApiResourcePauseCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause redis-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
   }
@@ -110,7 +110,7 @@ service RedisClusterCommandController {
   rpc unpause(cloud.planton.apis.v1.commons.resource.ApiResourceUnPauseCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause redis-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }

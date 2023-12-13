@@ -49,7 +49,7 @@ service DnsZoneCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete dns-zone";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -57,7 +57,7 @@ service DnsZoneCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete dns-zone";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }

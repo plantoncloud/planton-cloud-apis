@@ -53,7 +53,7 @@ service MicroserviceInstanceCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete microservice-instance";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -61,7 +61,7 @@ service MicroserviceInstanceCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete microservice-instance";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }
@@ -102,7 +102,7 @@ service MicroserviceInstanceCommandController {
   rpc pause(cloud.planton.apis.v1.commons.resource.ApiResourcePauseCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause microservice-instance";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
   }
@@ -112,7 +112,7 @@ service MicroserviceInstanceCommandController {
   rpc unpause(cloud.planton.apis.v1.commons.resource.ApiResourceUnPauseCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause microservice-instance";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }

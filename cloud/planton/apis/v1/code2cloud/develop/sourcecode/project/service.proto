@@ -40,7 +40,7 @@ service CodeProjectCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CodeProject) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = code_project;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete code project";
   }
 

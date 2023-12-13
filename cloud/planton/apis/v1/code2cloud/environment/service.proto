@@ -52,7 +52,7 @@ service EnvironmentCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete environment";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -62,7 +62,7 @@ service EnvironmentCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete environment";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }
@@ -124,7 +124,7 @@ service EnvironmentCommandController {
   rpc pause(cloud.planton.apis.v1.commons.resource.ApiResourcePauseCommandInput) returns(Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause environment";
   }
 
@@ -135,7 +135,7 @@ service EnvironmentCommandController {
   rpc unpause(cloud.planton.apis.v1.commons.resource.ApiResourceUnPauseCommandInput) returns(Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause environment";
   }
 

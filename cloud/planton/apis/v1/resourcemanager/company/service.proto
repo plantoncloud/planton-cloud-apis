@@ -23,7 +23,7 @@ service CompanyCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Company) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = company_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete company";
   }
   //restore a previously deleted company.

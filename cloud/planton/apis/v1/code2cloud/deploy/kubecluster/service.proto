@@ -54,7 +54,7 @@ service KubeClusterCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete kube-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -62,7 +62,7 @@ service KubeClusterCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete kube-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }
@@ -98,7 +98,7 @@ service KubeClusterCommandController {
   rpc pause(cloud.planton.apis.v1.commons.resource.ApiResourcePauseCommandInput) returns(KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause kube-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
   }
@@ -109,7 +109,7 @@ service KubeClusterCommandController {
   rpc unpause(cloud.planton.apis.v1.commons.resource.ApiResourceUnPauseCommandInput) returns (KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause kube-cluster";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }

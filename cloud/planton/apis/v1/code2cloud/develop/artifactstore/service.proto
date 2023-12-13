@@ -50,7 +50,7 @@ service ArtifactStoreCommandController {
   rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete artifact-store";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
@@ -58,7 +58,7 @@ service ArtifactStoreCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete artifact-store";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }

@@ -27,7 +27,7 @@ service IdentityConnectionCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IdentityConnection) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_connection;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_connection_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete identity connection";
   }
   // restore an existing identity connection
