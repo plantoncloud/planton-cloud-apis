@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.iam.authz.permission;
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 
 import "cloud/planton/apis/v1/iam/authz/permission/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //iam command controller
 service IamPermissionCommandController {
@@ -13,7 +14,7 @@ service IamPermissionCommandController {
   // update iam permission
   rpc update(IamPermission) returns (IamPermission);
   // delete iam permission
-  rpc delete(IamPermissionId) returns (IamPermission);
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IamPermission);
 }
 
 // iam query controller

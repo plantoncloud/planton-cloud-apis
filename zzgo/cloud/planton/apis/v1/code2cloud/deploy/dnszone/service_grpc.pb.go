@@ -8,6 +8,7 @@ package dnszone
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
@@ -47,9 +48,9 @@ type DnsZoneCommandControllerClient interface {
 	// update an existing dns-zone
 	Update(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
 	// preview deleting a dns-zone
-	PreviewDelete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 	// delete a dns-zone
-	Delete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 	// preview restoring a deleted dns-zone
 	PreviewRestore(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
 	// restore a deleted dns-zone
@@ -102,7 +103,7 @@ func (c *dnsZoneCommandControllerClient) Update(ctx context.Context, in *DnsZone
 	return out, nil
 }
 
-func (c *dnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error) {
+func (c *dnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*DnsZone, error) {
 	out := new(DnsZone)
 	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -111,7 +112,7 @@ func (c *dnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *dnsZoneCommandControllerClient) Delete(ctx context.Context, in *DnsZoneId, opts ...grpc.CallOption) (*DnsZone, error) {
+func (c *dnsZoneCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*DnsZone, error) {
 	out := new(DnsZone)
 	err := c.cc.Invoke(ctx, DnsZoneCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -160,9 +161,9 @@ type DnsZoneCommandControllerServer interface {
 	// update an existing dns-zone
 	Update(context.Context, *DnsZone) (*DnsZone, error)
 	// preview deleting a dns-zone
-	PreviewDelete(context.Context, *DnsZoneId) (*DnsZone, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*DnsZone, error)
 	// delete a dns-zone
-	Delete(context.Context, *DnsZoneId) (*DnsZone, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*DnsZone, error)
 	// preview restoring a deleted dns-zone
 	PreviewRestore(context.Context, *DnsZone) (*DnsZone, error)
 	// restore a deleted dns-zone
@@ -187,10 +188,10 @@ func (UnimplementedDnsZoneCommandControllerServer) PreviewUpdate(context.Context
 func (UnimplementedDnsZoneCommandControllerServer) Update(context.Context, *DnsZone) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedDnsZoneCommandControllerServer) PreviewDelete(context.Context, *DnsZoneId) (*DnsZone, error) {
+func (UnimplementedDnsZoneCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedDnsZoneCommandControllerServer) Delete(context.Context, *DnsZoneId) (*DnsZone, error) {
+func (UnimplementedDnsZoneCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedDnsZoneCommandControllerServer) PreviewRestore(context.Context, *DnsZone) (*DnsZone, error) {
@@ -287,7 +288,7 @@ func _DnsZoneCommandController_Update_Handler(srv interface{}, ctx context.Conte
 }
 
 func _DnsZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DnsZoneId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -299,13 +300,13 @@ func _DnsZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx contex
 		FullMethod: DnsZoneCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneCommandControllerServer).PreviewDelete(ctx, req.(*DnsZoneId))
+		return srv.(DnsZoneCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _DnsZoneCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DnsZoneId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -317,7 +318,7 @@ func _DnsZoneCommandController_Delete_Handler(srv interface{}, ctx context.Conte
 		FullMethod: DnsZoneCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneCommandControllerServer).Delete(ctx, req.(*DnsZoneId))
+		return srv.(DnsZoneCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

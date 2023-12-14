@@ -8,6 +8,7 @@ package permission
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -34,7 +35,7 @@ type IamPermissionCommandControllerClient interface {
 	// update iam permission
 	Update(ctx context.Context, in *IamPermission, opts ...grpc.CallOption) (*IamPermission, error)
 	// delete iam permission
-	Delete(ctx context.Context, in *IamPermissionId, opts ...grpc.CallOption) (*IamPermission, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IamPermission, error)
 }
 
 type iamPermissionCommandControllerClient struct {
@@ -63,7 +64,7 @@ func (c *iamPermissionCommandControllerClient) Update(ctx context.Context, in *I
 	return out, nil
 }
 
-func (c *iamPermissionCommandControllerClient) Delete(ctx context.Context, in *IamPermissionId, opts ...grpc.CallOption) (*IamPermission, error) {
+func (c *iamPermissionCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IamPermission, error) {
 	out := new(IamPermission)
 	err := c.cc.Invoke(ctx, IamPermissionCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -81,7 +82,7 @@ type IamPermissionCommandControllerServer interface {
 	// update iam permission
 	Update(context.Context, *IamPermission) (*IamPermission, error)
 	// delete iam permission
-	Delete(context.Context, *IamPermissionId) (*IamPermission, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IamPermission, error)
 }
 
 // UnimplementedIamPermissionCommandControllerServer should be embedded to have forward compatible implementations.
@@ -94,7 +95,7 @@ func (UnimplementedIamPermissionCommandControllerServer) Create(context.Context,
 func (UnimplementedIamPermissionCommandControllerServer) Update(context.Context, *IamPermission) (*IamPermission, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIamPermissionCommandControllerServer) Delete(context.Context, *IamPermissionId) (*IamPermission, error) {
+func (UnimplementedIamPermissionCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IamPermission, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -146,7 +147,7 @@ func _IamPermissionCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _IamPermissionCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IamPermissionId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -158,7 +159,7 @@ func _IamPermissionCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: IamPermissionCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamPermissionCommandControllerServer).Delete(ctx, req.(*IamPermissionId))
+		return srv.(IamPermissionCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

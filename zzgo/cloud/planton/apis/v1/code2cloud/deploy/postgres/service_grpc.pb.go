@@ -10,8 +10,9 @@ import (
 	context "context"
 	kubecluster "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -52,9 +53,9 @@ type PostgresClusterCommandControllerClient interface {
 	// update an existing postgres-cluster
 	Update(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// preview deleting an existing postgres-cluster
-	PreviewDelete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// delete an existing postgres-cluster
-	Delete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// preview restoring a deleted postgres-cluster in a environment
 	PreviewRestore(ctx context.Context, in *PostgresCluster, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
@@ -67,11 +68,11 @@ type PostgresClusterCommandControllerClient interface {
 	// pause a postgres-cluster running in a environment.
 	// postgres-cluster is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 	// unpause a previously paused postgres-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-cluster.
-	Unpause(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 }
 
 type postgresClusterCommandControllerClient struct {
@@ -118,7 +119,7 @@ func (c *postgresClusterCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -127,7 +128,7 @@ func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Conte
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ func (c *postgresClusterCommandControllerClient) Restart(ctx context.Context, in
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) Pause(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -181,7 +182,7 @@ func (c *postgresClusterCommandControllerClient) Pause(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) Unpause(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
 	out := new(PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -203,9 +204,9 @@ type PostgresClusterCommandControllerServer interface {
 	// update an existing postgres-cluster
 	Update(context.Context, *PostgresCluster) (*PostgresCluster, error)
 	// preview deleting an existing postgres-cluster
-	PreviewDelete(context.Context, *PostgresClusterId) (*PostgresCluster, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*PostgresCluster, error)
 	// delete an existing postgres-cluster
-	Delete(context.Context, *PostgresClusterId) (*PostgresCluster, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*PostgresCluster, error)
 	// preview restoring a deleted postgres-cluster in a environment
 	PreviewRestore(context.Context, *PostgresCluster) (*PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
@@ -218,11 +219,11 @@ type PostgresClusterCommandControllerServer interface {
 	// pause a postgres-cluster running in a environment.
 	// postgres-cluster is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *PostgresClusterId) (*PostgresCluster, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*PostgresCluster, error)
 	// unpause a previously paused postgres-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-cluster.
-	Unpause(context.Context, *PostgresClusterId) (*PostgresCluster, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*PostgresCluster, error)
 }
 
 // UnimplementedPostgresClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -241,10 +242,10 @@ func (UnimplementedPostgresClusterCommandControllerServer) PreviewUpdate(context
 func (UnimplementedPostgresClusterCommandControllerServer) Update(context.Context, *PostgresCluster) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) PreviewDelete(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) Delete(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedPostgresClusterCommandControllerServer) PreviewRestore(context.Context, *PostgresCluster) (*PostgresCluster, error) {
@@ -259,10 +260,10 @@ func (UnimplementedPostgresClusterCommandControllerServer) CreateStackJob(contex
 func (UnimplementedPostgresClusterCommandControllerServer) Restart(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) Pause(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) Unpause(context.Context, *PostgresClusterId) (*PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 
@@ -350,7 +351,7 @@ func _PostgresClusterCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _PostgresClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -362,13 +363,13 @@ func _PostgresClusterCommandController_PreviewDelete_Handler(srv interface{}, ct
 		FullMethod: PostgresClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, req.(*PostgresClusterId))
+		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -380,7 +381,7 @@ func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: PostgresClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).Delete(ctx, req.(*PostgresClusterId))
+		return srv.(PostgresClusterCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -458,7 +459,7 @@ func _PostgresClusterCommandController_Restart_Handler(srv interface{}, ctx cont
 }
 
 func _PostgresClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresClusterId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -470,13 +471,13 @@ func _PostgresClusterCommandController_Pause_Handler(srv interface{}, ctx contex
 		FullMethod: PostgresClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).Pause(ctx, req.(*PostgresClusterId))
+		return srv.(PostgresClusterCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PostgresClusterId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -488,7 +489,7 @@ func _PostgresClusterCommandController_Unpause_Handler(srv interface{}, ctx cont
 		FullMethod: PostgresClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).Unpause(ctx, req.(*PostgresClusterId))
+		return srv.(PostgresClusterCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -583,7 +584,7 @@ type PostgresClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*resource1.Pods, error)
 }
 
 type postgresClusterQueryControllerClient struct {
@@ -648,8 +649,8 @@ func (c *postgresClusterQueryControllerClient) GetPassword(ctx context.Context, 
 	return out, nil
 }
 
-func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *PostgresClusterId, opts ...grpc.CallOption) (*resource1.Pods, error) {
+	out := new(resource1.Pods)
 	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -677,7 +678,7 @@ type PostgresClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *PostgresClusterId) (*PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(context.Context, *PostgresClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *PostgresClusterId) (*resource1.Pods, error)
 }
 
 // UnimplementedPostgresClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -702,7 +703,7 @@ func (UnimplementedPostgresClusterQueryControllerServer) FindByKubeClusterId(con
 func (UnimplementedPostgresClusterQueryControllerServer) GetPassword(context.Context, *PostgresClusterId) (*PostgresClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *PostgresClusterId) (*resource.Pods, error) {
+func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *PostgresClusterId) (*resource1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

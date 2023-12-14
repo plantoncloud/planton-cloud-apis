@@ -11,6 +11,7 @@ import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //storage-bucket command controller
 service StorageBucketCommandController {
@@ -47,18 +48,18 @@ service StorageBucketCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete an existing storage-bucket
-  rpc previewDelete(StorageBucketId) returns (StorageBucket) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (StorageBucket) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete storage-bucket";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing storage-bucket
-  rpc delete(StorageBucketId) returns (StorageBucket) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (StorageBucket) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete storage-bucket";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
   }

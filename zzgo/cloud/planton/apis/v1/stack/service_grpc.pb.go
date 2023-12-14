@@ -35,7 +35,7 @@ type StackCommandControllerClient interface {
 	// update stack
 	Update(ctx context.Context, in *Stack, opts ...grpc.CallOption) (*Stack, error)
 	// delete stack
-	Delete(ctx context.Context, in *StackId, opts ...grpc.CallOption) (*Stack, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Stack, error)
 	// delete stack on pulumi cloud
 	DeleteOnPulumiCloud(ctx context.Context, in *StackId, opts ...grpc.CallOption) (*Stack, error)
 }
@@ -66,7 +66,7 @@ func (c *stackCommandControllerClient) Update(ctx context.Context, in *Stack, op
 	return out, nil
 }
 
-func (c *stackCommandControllerClient) Delete(ctx context.Context, in *StackId, opts ...grpc.CallOption) (*Stack, error) {
+func (c *stackCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*Stack, error) {
 	out := new(Stack)
 	err := c.cc.Invoke(ctx, StackCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -93,7 +93,7 @@ type StackCommandControllerServer interface {
 	// update stack
 	Update(context.Context, *Stack) (*Stack, error)
 	// delete stack
-	Delete(context.Context, *StackId) (*Stack, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Stack, error)
 	// delete stack on pulumi cloud
 	DeleteOnPulumiCloud(context.Context, *StackId) (*Stack, error)
 }
@@ -108,7 +108,7 @@ func (UnimplementedStackCommandControllerServer) Create(context.Context, *Stack)
 func (UnimplementedStackCommandControllerServer) Update(context.Context, *Stack) (*Stack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedStackCommandControllerServer) Delete(context.Context, *StackId) (*Stack, error) {
+func (UnimplementedStackCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*Stack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedStackCommandControllerServer) DeleteOnPulumiCloud(context.Context, *StackId) (*Stack, error) {
@@ -163,7 +163,7 @@ func _StackCommandController_Update_Handler(srv interface{}, ctx context.Context
 }
 
 func _StackCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StackId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -175,7 +175,7 @@ func _StackCommandController_Delete_Handler(srv interface{}, ctx context.Context
 		FullMethod: StackCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackCommandControllerServer).Delete(ctx, req.(*StackId))
+		return srv.(StackCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

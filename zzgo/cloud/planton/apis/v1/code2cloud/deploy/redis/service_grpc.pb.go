@@ -10,8 +10,9 @@ import (
 	context "context"
 	kubecluster "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -52,9 +53,9 @@ type RedisClusterCommandControllerClient interface {
 	// update an existing redis-cluster
 	Update(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
 	// preview deleting an existing redis-cluster
-	PreviewDelete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 	// delete an existing redis-cluster
-	Delete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 	// preview restoring a previously deleted redis-cluster
 	PreviewRestore(ctx context.Context, in *RedisCluster, opts ...grpc.CallOption) (*RedisCluster, error)
 	// restore a previously deleted redis-cluster
@@ -67,11 +68,11 @@ type RedisClusterCommandControllerClient interface {
 	// pause a redis-cluster running in a environment.
 	// redis-cluster is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 	// unpause a previously paused redis-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-cluster.
-	Unpause(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 }
 
 type redisClusterCommandControllerClient struct {
@@ -118,7 +119,7 @@ func (c *redisClusterCommandControllerClient) Update(ctx context.Context, in *Re
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -127,7 +128,7 @@ func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context,
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ func (c *redisClusterCommandControllerClient) Restart(ctx context.Context, in *R
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) Pause(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -181,7 +182,7 @@ func (c *redisClusterCommandControllerClient) Pause(ctx context.Context, in *Red
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) Unpause(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
 	out := new(RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -203,9 +204,9 @@ type RedisClusterCommandControllerServer interface {
 	// update an existing redis-cluster
 	Update(context.Context, *RedisCluster) (*RedisCluster, error)
 	// preview deleting an existing redis-cluster
-	PreviewDelete(context.Context, *RedisClusterId) (*RedisCluster, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*RedisCluster, error)
 	// delete an existing redis-cluster
-	Delete(context.Context, *RedisClusterId) (*RedisCluster, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*RedisCluster, error)
 	// preview restoring a previously deleted redis-cluster
 	PreviewRestore(context.Context, *RedisCluster) (*RedisCluster, error)
 	// restore a previously deleted redis-cluster
@@ -218,11 +219,11 @@ type RedisClusterCommandControllerServer interface {
 	// pause a redis-cluster running in a environment.
 	// redis-cluster is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *RedisClusterId) (*RedisCluster, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*RedisCluster, error)
 	// unpause a previously paused redis-cluster running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-cluster.
-	Unpause(context.Context, *RedisClusterId) (*RedisCluster, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*RedisCluster, error)
 }
 
 // UnimplementedRedisClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -241,10 +242,10 @@ func (UnimplementedRedisClusterCommandControllerServer) PreviewUpdate(context.Co
 func (UnimplementedRedisClusterCommandControllerServer) Update(context.Context, *RedisCluster) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) PreviewDelete(context.Context, *RedisClusterId) (*RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) Delete(context.Context, *RedisClusterId) (*RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedRedisClusterCommandControllerServer) PreviewRestore(context.Context, *RedisCluster) (*RedisCluster, error) {
@@ -259,10 +260,10 @@ func (UnimplementedRedisClusterCommandControllerServer) CreateStackJob(context.C
 func (UnimplementedRedisClusterCommandControllerServer) Restart(context.Context, *RedisClusterId) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) Pause(context.Context, *RedisClusterId) (*RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) Unpause(context.Context, *RedisClusterId) (*RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 
@@ -350,7 +351,7 @@ func _RedisClusterCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _RedisClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -362,13 +363,13 @@ func _RedisClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx c
 		FullMethod: RedisClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, req.(*RedisClusterId))
+		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -380,7 +381,7 @@ func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: RedisClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).Delete(ctx, req.(*RedisClusterId))
+		return srv.(RedisClusterCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -458,7 +459,7 @@ func _RedisClusterCommandController_Restart_Handler(srv interface{}, ctx context
 }
 
 func _RedisClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisClusterId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -470,13 +471,13 @@ func _RedisClusterCommandController_Pause_Handler(srv interface{}, ctx context.C
 		FullMethod: RedisClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).Pause(ctx, req.(*RedisClusterId))
+		return srv.(RedisClusterCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RedisClusterId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -488,7 +489,7 @@ func _RedisClusterCommandController_Unpause_Handler(srv interface{}, ctx context
 		FullMethod: RedisClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).Unpause(ctx, req.(*RedisClusterId))
+		return srv.(RedisClusterCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -581,7 +582,7 @@ type RedisClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*resource1.Pods, error)
 }
 
 type redisClusterQueryControllerClient struct {
@@ -646,8 +647,8 @@ func (c *redisClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *RedisClusterId, opts ...grpc.CallOption) (*resource1.Pods, error) {
+	out := new(resource1.Pods)
 	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -673,7 +674,7 @@ type RedisClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *RedisClusterId) (*RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(context.Context, *RedisClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *RedisClusterId) (*resource1.Pods, error)
 }
 
 // UnimplementedRedisClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -698,7 +699,7 @@ func (UnimplementedRedisClusterQueryControllerServer) FindByKubeClusterId(contex
 func (UnimplementedRedisClusterQueryControllerServer) GetPassword(context.Context, *RedisClusterId) (*RedisClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *RedisClusterId) (*resource.Pods, error) {
+func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *RedisClusterId) (*resource1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

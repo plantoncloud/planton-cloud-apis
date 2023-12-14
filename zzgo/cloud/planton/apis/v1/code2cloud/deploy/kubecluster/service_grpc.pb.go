@@ -11,8 +11,9 @@ import (
 	cloudaccount "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount"
 	stream "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/grpc/stream"
 	custom "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/protobuf/custom"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	company "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -54,9 +55,9 @@ type KubeClusterCommandControllerClient interface {
 	// update an existing kube-cluster.
 	Update(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
 	// preview deleting a kube-cluster.
-	PreviewDelete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 	// delete a kube-cluster.
-	Delete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 	// preview restoring a deleted kube-cluster.
 	PreviewRestore(ctx context.Context, in *KubeCluster, opts ...grpc.CallOption) (*KubeCluster, error)
 	// restore a deleted kube-cluster.
@@ -69,16 +70,16 @@ type KubeClusterCommandControllerClient interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a kube-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 	// unpause a kube-cluster.
 	// a kube-cluster is resumed by setting the number of nodes in each node pool of the kube-cluster to the
 	// values configured for the kube-cluster.
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(ctx context.Context, in *ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error)
+	DeletePod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource1.Pod, error)
 }
 
 type kubeClusterCommandControllerClient struct {
@@ -125,7 +126,7 @@ func (c *kubeClusterCommandControllerClient) Update(ctx context.Context, in *Kub
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -134,7 +135,7 @@ func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,7 +171,7 @@ func (c *kubeClusterCommandControllerClient) CreateStackJob(ctx context.Context,
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) Pause(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -179,7 +180,7 @@ func (c *kubeClusterCommandControllerClient) Pause(ctx context.Context, in *Kube
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
 	out := new(KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -188,8 +189,8 @@ func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *Ku
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error) {
-	out := new(resource.WorkloadNamespace)
+func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error) {
+	out := new(resource1.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -197,8 +198,8 @@ func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error) {
-	out := new(resource.Pod)
+func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource1.Pod, error) {
+	out := new(resource1.Pod)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeletePod_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -219,9 +220,9 @@ type KubeClusterCommandControllerServer interface {
 	// update an existing kube-cluster.
 	Update(context.Context, *KubeCluster) (*KubeCluster, error)
 	// preview deleting a kube-cluster.
-	PreviewDelete(context.Context, *KubeClusterId) (*KubeCluster, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KubeCluster, error)
 	// delete a kube-cluster.
-	Delete(context.Context, *KubeClusterId) (*KubeCluster, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KubeCluster, error)
 	// preview restoring a deleted kube-cluster.
 	PreviewRestore(context.Context, *KubeCluster) (*KubeCluster, error)
 	// restore a deleted kube-cluster.
@@ -234,16 +235,16 @@ type KubeClusterCommandControllerServer interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a kube-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(context.Context, *KubeClusterId) (*KubeCluster, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*KubeCluster, error)
 	// unpause a kube-cluster.
 	// a kube-cluster is resumed by setting the number of nodes in each node pool of the kube-cluster to the
 	// values configured for the kube-cluster.
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(context.Context, *KubeClusterId) (*KubeCluster, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(context.Context, *ByKubeClusterByNamespaceInput) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *ByKubeClusterByNamespaceInput) (*resource1.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error)
+	DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error)
 }
 
 // UnimplementedKubeClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -262,10 +263,10 @@ func (UnimplementedKubeClusterCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedKubeClusterCommandControllerServer) Update(context.Context, *KubeCluster) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) PreviewDelete(context.Context, *KubeClusterId) (*KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) Delete(context.Context, *KubeClusterId) (*KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) PreviewRestore(context.Context, *KubeCluster) (*KubeCluster, error) {
@@ -277,16 +278,16 @@ func (UnimplementedKubeClusterCommandControllerServer) Restore(context.Context, 
 func (UnimplementedKubeClusterCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *KubeClusterId) (*KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) Unpause(context.Context, *KubeClusterId) (*KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *ByKubeClusterByNamespaceInput) (*resource.WorkloadNamespace, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *ByKubeClusterByNamespaceInput) (*resource1.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
 }
 
@@ -374,7 +375,7 @@ func _KubeClusterCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _KubeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +387,13 @@ func _KubeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: KubeClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, req.(*KubeClusterId))
+		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeClusterId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +405,7 @@ func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: KubeClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).Delete(ctx, req.(*KubeClusterId))
+		return srv.(KubeClusterCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -464,7 +465,7 @@ func _KubeClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx c
 }
 
 func _KubeClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeClusterId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -476,13 +477,13 @@ func _KubeClusterCommandController_Pause_Handler(srv interface{}, ctx context.Co
 		FullMethod: KubeClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).Pause(ctx, req.(*KubeClusterId))
+		return srv.(KubeClusterCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KubeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(KubeClusterId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -494,7 +495,7 @@ func _KubeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.
 		FullMethod: KubeClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).Unpause(ctx, req.(*KubeClusterId))
+		return srv.(KubeClusterCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -633,13 +634,13 @@ type KubeClusterQueryControllerClient interface {
 	// lookup components in a kube-cluster of a kube-cluster
 	GetKubeClusterComponentsByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*KubeClusterComponents, error)
 	// find workload namespaces in a kube-cluster.
-	FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.WorkloadNamespaces, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindWorkloadPodsByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.WorkloadPods, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindSslCertificatesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.Certificates, error)
+	FindSslCertificatesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.Certificates, error)
 	// get a pod details
-	GetPod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error)
+	GetPod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource1.Pod, error)
 	// get a log stream for a pod running in a kube-cluster kube-cluster
 	GetPodLogStream(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (KubeClusterQueryController_GetPodLogStreamClient, error)
 }
@@ -706,8 +707,8 @@ func (c *kubeClusterQueryControllerClient) GetKubeClusterComponentsByKubeCluster
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error) {
-	out := new(resource.WorkloadNamespaces)
+func (c *kubeClusterQueryControllerClient) FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.WorkloadNamespaces, error) {
+	out := new(resource1.WorkloadNamespaces)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -715,8 +716,8 @@ func (c *kubeClusterQueryControllerClient) FindWorkloadNamespacesByKubeClusterId
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindWorkloadPodsByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.WorkloadPods, error) {
-	out := new(resource.WorkloadPods)
+func (c *kubeClusterQueryControllerClient) FindWorkloadPodsByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.WorkloadPods, error) {
+	out := new(resource1.WorkloadPods)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -724,8 +725,8 @@ func (c *kubeClusterQueryControllerClient) FindWorkloadPodsByKubeClusterId(ctx c
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindSslCertificatesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource.Certificates, error) {
-	out := new(resource.Certificates)
+func (c *kubeClusterQueryControllerClient) FindSslCertificatesByKubeClusterId(ctx context.Context, in *KubeClusterId, opts ...grpc.CallOption) (*resource1.Certificates, error) {
+	out := new(resource1.Certificates)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindSslCertificatesByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -733,8 +734,8 @@ func (c *kubeClusterQueryControllerClient) FindSslCertificatesByKubeClusterId(ct
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) GetPod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error) {
-	out := new(resource.Pod)
+func (c *kubeClusterQueryControllerClient) GetPod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource1.Pod, error) {
+	out := new(resource1.Pod)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_GetPod_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -794,13 +795,13 @@ type KubeClusterQueryControllerServer interface {
 	// lookup components in a kube-cluster of a kube-cluster
 	GetKubeClusterComponentsByKubeClusterId(context.Context, *KubeClusterId) (*KubeClusterComponents, error)
 	// find workload namespaces in a kube-cluster.
-	FindWorkloadNamespacesByKubeClusterId(context.Context, *KubeClusterId) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByKubeClusterId(context.Context, *KubeClusterId) (*resource1.WorkloadNamespaces, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindWorkloadPodsByKubeClusterId(context.Context, *KubeClusterId) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByKubeClusterId(context.Context, *KubeClusterId) (*resource1.WorkloadPods, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindSslCertificatesByKubeClusterId(context.Context, *KubeClusterId) (*resource.Certificates, error)
+	FindSslCertificatesByKubeClusterId(context.Context, *KubeClusterId) (*resource1.Certificates, error)
 	// get a pod details
-	GetPod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error)
+	GetPod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error)
 	// get a log stream for a pod running in a kube-cluster kube-cluster
 	GetPodLogStream(*ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error
 }
@@ -827,16 +828,16 @@ func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeCl
 func (UnimplementedKubeClusterQueryControllerServer) GetKubeClusterComponentsByKubeClusterId(context.Context, *KubeClusterId) (*KubeClusterComponents, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKubeClusterComponentsByKubeClusterId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadNamespacesByKubeClusterId(context.Context, *KubeClusterId) (*resource.WorkloadNamespaces, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadNamespacesByKubeClusterId(context.Context, *KubeClusterId) (*resource1.WorkloadNamespaces, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadNamespacesByKubeClusterId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadPodsByKubeClusterId(context.Context, *KubeClusterId) (*resource.WorkloadPods, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadPodsByKubeClusterId(context.Context, *KubeClusterId) (*resource1.WorkloadPods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadPodsByKubeClusterId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindSslCertificatesByKubeClusterId(context.Context, *KubeClusterId) (*resource.Certificates, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindSslCertificatesByKubeClusterId(context.Context, *KubeClusterId) (*resource1.Certificates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindSslCertificatesByKubeClusterId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) GetPod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error) {
+func (UnimplementedKubeClusterQueryControllerServer) GetPod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPod not implemented")
 }
 func (UnimplementedKubeClusterQueryControllerServer) GetPodLogStream(*ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error {

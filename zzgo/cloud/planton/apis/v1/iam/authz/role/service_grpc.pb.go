@@ -8,6 +8,7 @@ package role
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -34,7 +35,7 @@ type IamRoleCommandControllerClient interface {
 	// update iam role
 	Update(ctx context.Context, in *IamRole, opts ...grpc.CallOption) (*IamRole, error)
 	// delete iam role
-	Delete(ctx context.Context, in *IamRoleId, opts ...grpc.CallOption) (*IamRole, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IamRole, error)
 }
 
 type iamRoleCommandControllerClient struct {
@@ -63,7 +64,7 @@ func (c *iamRoleCommandControllerClient) Update(ctx context.Context, in *IamRole
 	return out, nil
 }
 
-func (c *iamRoleCommandControllerClient) Delete(ctx context.Context, in *IamRoleId, opts ...grpc.CallOption) (*IamRole, error) {
+func (c *iamRoleCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IamRole, error) {
 	out := new(IamRole)
 	err := c.cc.Invoke(ctx, IamRoleCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -81,7 +82,7 @@ type IamRoleCommandControllerServer interface {
 	// update iam role
 	Update(context.Context, *IamRole) (*IamRole, error)
 	// delete iam role
-	Delete(context.Context, *IamRoleId) (*IamRole, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IamRole, error)
 }
 
 // UnimplementedIamRoleCommandControllerServer should be embedded to have forward compatible implementations.
@@ -94,7 +95,7 @@ func (UnimplementedIamRoleCommandControllerServer) Create(context.Context, *IamR
 func (UnimplementedIamRoleCommandControllerServer) Update(context.Context, *IamRole) (*IamRole, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIamRoleCommandControllerServer) Delete(context.Context, *IamRoleId) (*IamRole, error) {
+func (UnimplementedIamRoleCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IamRole, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -146,7 +147,7 @@ func _IamRoleCommandController_Update_Handler(srv interface{}, ctx context.Conte
 }
 
 func _IamRoleCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IamRoleId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -158,7 +159,7 @@ func _IamRoleCommandController_Delete_Handler(srv interface{}, ctx context.Conte
 		FullMethod: IamRoleCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamRoleCommandControllerServer).Delete(ctx, req.(*IamRoleId))
+		return srv.(IamRoleCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

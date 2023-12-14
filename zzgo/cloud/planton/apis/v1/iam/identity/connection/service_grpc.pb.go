@@ -8,6 +8,7 @@ package connection
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -34,7 +35,7 @@ type IdentityConnectionCommandControllerClient interface {
 	// update an existing identity connection
 	Update(ctx context.Context, in *IdentityConnection, opts ...grpc.CallOption) (*IdentityConnection, error)
 	// delete an existing identity connection
-	Delete(ctx context.Context, in *IdentityConnectionId, opts ...grpc.CallOption) (*IdentityConnection, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityConnection, error)
 	// restore an existing identity connection
 	Restore(ctx context.Context, in *IdentityConnection, opts ...grpc.CallOption) (*IdentityConnection, error)
 }
@@ -65,7 +66,7 @@ func (c *identityConnectionCommandControllerClient) Update(ctx context.Context, 
 	return out, nil
 }
 
-func (c *identityConnectionCommandControllerClient) Delete(ctx context.Context, in *IdentityConnectionId, opts ...grpc.CallOption) (*IdentityConnection, error) {
+func (c *identityConnectionCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityConnection, error) {
 	out := new(IdentityConnection)
 	err := c.cc.Invoke(ctx, IdentityConnectionCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -92,7 +93,7 @@ type IdentityConnectionCommandControllerServer interface {
 	// update an existing identity connection
 	Update(context.Context, *IdentityConnection) (*IdentityConnection, error)
 	// delete an existing identity connection
-	Delete(context.Context, *IdentityConnectionId) (*IdentityConnection, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityConnection, error)
 	// restore an existing identity connection
 	Restore(context.Context, *IdentityConnection) (*IdentityConnection, error)
 }
@@ -107,7 +108,7 @@ func (UnimplementedIdentityConnectionCommandControllerServer) Create(context.Con
 func (UnimplementedIdentityConnectionCommandControllerServer) Update(context.Context, *IdentityConnection) (*IdentityConnection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIdentityConnectionCommandControllerServer) Delete(context.Context, *IdentityConnectionId) (*IdentityConnection, error) {
+func (UnimplementedIdentityConnectionCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityConnection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedIdentityConnectionCommandControllerServer) Restore(context.Context, *IdentityConnection) (*IdentityConnection, error) {
@@ -162,7 +163,7 @@ func _IdentityConnectionCommandController_Update_Handler(srv interface{}, ctx co
 }
 
 func _IdentityConnectionCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentityConnectionId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -174,7 +175,7 @@ func _IdentityConnectionCommandController_Delete_Handler(srv interface{}, ctx co
 		FullMethod: IdentityConnectionCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityConnectionCommandControllerServer).Delete(ctx, req.(*IdentityConnectionId))
+		return srv.(IdentityConnectionCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

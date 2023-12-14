@@ -10,8 +10,9 @@ import (
 	context "context"
 	kubecluster "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -52,9 +53,9 @@ type SolrCloudCommandControllerClient interface {
 	// update an existing solr-cloud
 	Update(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
 	// preview deleting an existing solr-cloud
-	PreviewDelete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 	// delete an existing solr-cloud
-	Delete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 	// preview restoring a deleted solr-cloud
 	PreviewRestore(ctx context.Context, in *SolrCloud, opts ...grpc.CallOption) (*SolrCloud, error)
 	// restore a deleted solr-cloud
@@ -67,11 +68,11 @@ type SolrCloudCommandControllerClient interface {
 	// pause a solr-cloud running in a environment.
 	// solr-cloud is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 	// unpause a previously paused solr-cloud running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-cloud.
-	Unpause(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 }
 
 type solrCloudCommandControllerClient struct {
@@ -118,7 +119,7 @@ func (c *solrCloudCommandControllerClient) Update(ctx context.Context, in *SolrC
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -127,7 +128,7 @@ func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ func (c *solrCloudCommandControllerClient) Restart(ctx context.Context, in *Solr
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) Pause(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -181,7 +182,7 @@ func (c *solrCloudCommandControllerClient) Pause(ctx context.Context, in *SolrCl
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) Unpause(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
 	out := new(SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -203,9 +204,9 @@ type SolrCloudCommandControllerServer interface {
 	// update an existing solr-cloud
 	Update(context.Context, *SolrCloud) (*SolrCloud, error)
 	// preview deleting an existing solr-cloud
-	PreviewDelete(context.Context, *SolrCloudId) (*SolrCloud, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*SolrCloud, error)
 	// delete an existing solr-cloud
-	Delete(context.Context, *SolrCloudId) (*SolrCloud, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*SolrCloud, error)
 	// preview restoring a deleted solr-cloud
 	PreviewRestore(context.Context, *SolrCloud) (*SolrCloud, error)
 	// restore a deleted solr-cloud
@@ -218,11 +219,11 @@ type SolrCloudCommandControllerServer interface {
 	// pause a solr-cloud running in a environment.
 	// solr-cloud is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *SolrCloudId) (*SolrCloud, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*SolrCloud, error)
 	// unpause a previously paused solr-cloud running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-cloud.
-	Unpause(context.Context, *SolrCloudId) (*SolrCloud, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*SolrCloud, error)
 }
 
 // UnimplementedSolrCloudCommandControllerServer should be embedded to have forward compatible implementations.
@@ -241,10 +242,10 @@ func (UnimplementedSolrCloudCommandControllerServer) PreviewUpdate(context.Conte
 func (UnimplementedSolrCloudCommandControllerServer) Update(context.Context, *SolrCloud) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) PreviewDelete(context.Context, *SolrCloudId) (*SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) Delete(context.Context, *SolrCloudId) (*SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedSolrCloudCommandControllerServer) PreviewRestore(context.Context, *SolrCloud) (*SolrCloud, error) {
@@ -259,10 +260,10 @@ func (UnimplementedSolrCloudCommandControllerServer) CreateStackJob(context.Cont
 func (UnimplementedSolrCloudCommandControllerServer) Restart(context.Context, *SolrCloudId) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) Pause(context.Context, *SolrCloudId) (*SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) Unpause(context.Context, *SolrCloudId) (*SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 
@@ -350,7 +351,7 @@ func _SolrCloudCommandController_Update_Handler(srv interface{}, ctx context.Con
 }
 
 func _SolrCloudCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloudId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -362,13 +363,13 @@ func _SolrCloudCommandController_PreviewDelete_Handler(srv interface{}, ctx cont
 		FullMethod: SolrCloudCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, req.(*SolrCloudId))
+		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloudId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -380,7 +381,7 @@ func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Con
 		FullMethod: SolrCloudCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).Delete(ctx, req.(*SolrCloudId))
+		return srv.(SolrCloudCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -458,7 +459,7 @@ func _SolrCloudCommandController_Restart_Handler(srv interface{}, ctx context.Co
 }
 
 func _SolrCloudCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloudId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -470,13 +471,13 @@ func _SolrCloudCommandController_Pause_Handler(srv interface{}, ctx context.Cont
 		FullMethod: SolrCloudCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).Pause(ctx, req.(*SolrCloudId))
+		return srv.(SolrCloudCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrCloudCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SolrCloudId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -488,7 +489,7 @@ func _SolrCloudCommandController_Unpause_Handler(srv interface{}, ctx context.Co
 		FullMethod: SolrCloudCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).Unpause(ctx, req.(*SolrCloudId))
+		return srv.(SolrCloudCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -582,7 +583,7 @@ type SolrCloudQueryControllerClient interface {
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*resource1.Pods, error)
 }
 
 type solrCloudQueryControllerClient struct {
@@ -647,8 +648,8 @@ func (c *solrCloudQueryControllerClient) GetPassword(ctx context.Context, in *So
 	return out, nil
 }
 
-func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *SolrCloudId, opts ...grpc.CallOption) (*resource1.Pods, error) {
+	out := new(resource1.Pods)
 	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -675,7 +676,7 @@ type SolrCloudQueryControllerServer interface {
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(context.Context, *SolrCloudId) (*SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(context.Context, *SolrCloudId) (*resource.Pods, error)
+	FindPods(context.Context, *SolrCloudId) (*resource1.Pods, error)
 }
 
 // UnimplementedSolrCloudQueryControllerServer should be embedded to have forward compatible implementations.
@@ -700,7 +701,7 @@ func (UnimplementedSolrCloudQueryControllerServer) FindByKubeClusterId(context.C
 func (UnimplementedSolrCloudQueryControllerServer) GetPassword(context.Context, *SolrCloudId) (*SolrCloudPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *SolrCloudId) (*resource.Pods, error) {
+func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *SolrCloudId) (*resource1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

@@ -12,8 +12,9 @@ import (
 	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project"
 	environment "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment"
 	stream "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/grpc/stream"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
+	resource1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	product "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product"
 	job "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job"
 	grpc "google.golang.org/grpc"
@@ -54,9 +55,9 @@ type MicroserviceInstanceCommandControllerClient interface {
 	// update microservice-instance
 	Update(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// preview delete microservice-instance
-	PreviewDelete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// delete microservice-instance
-	Delete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// preview restoring a deleted microservice-instance
 	PreviewRestore(ctx context.Context, in *MicroserviceInstance, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
@@ -69,11 +70,11 @@ type MicroserviceInstanceCommandControllerClient interface {
 	// pause a microservice-instance running in a environment.
 	// microservice-instance is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 	// unpause a previously paused microservice-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-instance.
-	Unpause(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 }
 
 type microserviceInstanceCommandControllerClient struct {
@@ -120,7 +121,7 @@ func (c *microserviceInstanceCommandControllerClient) Update(ctx context.Context
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -129,7 +130,7 @@ func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -174,7 +175,7 @@ func (c *microserviceInstanceCommandControllerClient) Restart(ctx context.Contex
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) Pause(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) Pause(ctx context.Context, in *resource.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ func (c *microserviceInstanceCommandControllerClient) Pause(ctx context.Context,
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) Unpause(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
 	out := new(MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -205,9 +206,9 @@ type MicroserviceInstanceCommandControllerServer interface {
 	// update microservice-instance
 	Update(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
 	// preview delete microservice-instance
-	PreviewDelete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
+	PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*MicroserviceInstance, error)
 	// delete microservice-instance
-	Delete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*MicroserviceInstance, error)
 	// preview restoring a deleted microservice-instance
 	PreviewRestore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
@@ -220,11 +221,11 @@ type MicroserviceInstanceCommandControllerServer interface {
 	// pause a microservice-instance running in a environment.
 	// microservice-instance is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
+	Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*MicroserviceInstance, error)
 	// unpause a previously paused microservice-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-instance.
-	Unpause(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error)
+	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*MicroserviceInstance, error)
 }
 
 // UnimplementedMicroserviceInstanceCommandControllerServer should be embedded to have forward compatible implementations.
@@ -243,10 +244,10 @@ func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewUpdate(co
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Update(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewDelete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewDelete(context.Context, *resource.ApiResourceDeleteCommandInput) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) Delete(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewRestore(context.Context, *MicroserviceInstance) (*MicroserviceInstance, error) {
@@ -261,10 +262,10 @@ func (UnimplementedMicroserviceInstanceCommandControllerServer) CreateStackJob(c
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Restart(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) Pause(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) Pause(context.Context, *resource.ApiResourcePauseCommandInput) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) Unpause(context.Context, *MicroserviceInstanceId) (*MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 
@@ -352,7 +353,7 @@ func _MicroserviceInstanceCommandController_Update_Handler(srv interface{}, ctx 
 }
 
 func _MicroserviceInstanceCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstanceId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -364,13 +365,13 @@ func _MicroserviceInstanceCommandController_PreviewDelete_Handler(srv interface{
 		FullMethod: MicroserviceInstanceCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, req.(*MicroserviceInstanceId))
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstanceId)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -382,7 +383,7 @@ func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx 
 		FullMethod: MicroserviceInstanceCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).Delete(ctx, req.(*MicroserviceInstanceId))
+		return srv.(MicroserviceInstanceCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -460,7 +461,7 @@ func _MicroserviceInstanceCommandController_Restart_Handler(srv interface{}, ctx
 }
 
 func _MicroserviceInstanceCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstanceId)
+	in := new(resource.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,13 +473,13 @@ func _MicroserviceInstanceCommandController_Pause_Handler(srv interface{}, ctx c
 		FullMethod: MicroserviceInstanceCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).Pause(ctx, req.(*MicroserviceInstanceId))
+		return srv.(MicroserviceInstanceCommandControllerServer).Pause(ctx, req.(*resource.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceInstanceCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MicroserviceInstanceId)
+	in := new(resource.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -490,7 +491,7 @@ func _MicroserviceInstanceCommandController_Unpause_Handler(srv interface{}, ctx
 		FullMethod: MicroserviceInstanceCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).Unpause(ctx, req.(*MicroserviceInstanceId))
+		return srv.(MicroserviceInstanceCommandControllerServer).Unpause(ctx, req.(*resource.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -587,7 +588,7 @@ type MicroserviceInstanceQueryControllerClient interface {
 	// find microservice-instances in a environment for a code-project
 	FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*MicroserviceInstances, error)
 	// lookup pods of a microservice-instance deployed to a environment
-	FindPods(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*resource1.Pods, error)
 	// get a log stream for a running instance of a microservice-instance
 	GetLogStream(ctx context.Context, in *GetMicroserviceInstanceLogStreamQueryInput, opts ...grpc.CallOption) (MicroserviceInstanceQueryController_GetLogStreamClient, error)
 	// lookup a microservice-instance by code project id
@@ -659,8 +660,8 @@ func (c *microserviceInstanceQueryControllerClient) FindByEnvironmentIdByCodePro
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) FindPods(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *microserviceInstanceQueryControllerClient) FindPods(ctx context.Context, in *MicroserviceInstanceId, opts ...grpc.CallOption) (*resource1.Pods, error) {
+	out := new(resource1.Pods)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -745,7 +746,7 @@ type MicroserviceInstanceQueryControllerServer interface {
 	// find microservice-instances in a environment for a code-project
 	FindByEnvironmentIdByCodeProjectId(context.Context, *ByEnvironmentIdByCodeProjectIdInput) (*MicroserviceInstances, error)
 	// lookup pods of a microservice-instance deployed to a environment
-	FindPods(context.Context, *MicroserviceInstanceId) (*resource.Pods, error)
+	FindPods(context.Context, *MicroserviceInstanceId) (*resource1.Pods, error)
 	// get a log stream for a running instance of a microservice-instance
 	GetLogStream(*GetMicroserviceInstanceLogStreamQueryInput, MicroserviceInstanceQueryController_GetLogStreamServer) error
 	// lookup a microservice-instance by code project id
@@ -777,7 +778,7 @@ func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByKubeClusterI
 func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByEnvironmentIdByCodeProjectId(context.Context, *ByEnvironmentIdByCodeProjectIdInput) (*MicroserviceInstances, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentIdByCodeProjectId not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) FindPods(context.Context, *MicroserviceInstanceId) (*resource.Pods, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) FindPods(context.Context, *MicroserviceInstanceId) (*resource1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetLogStream(*GetMicroserviceInstanceLogStreamQueryInput, MicroserviceInstanceQueryController_GetLogStreamServer) error {

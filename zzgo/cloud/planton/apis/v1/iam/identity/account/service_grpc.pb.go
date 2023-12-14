@@ -37,7 +37,7 @@ type MachineAccountCommandControllerClient interface {
 	// update an existing machine account
 	Update(ctx context.Context, in *IdentityAccount, opts ...grpc.CallOption) (*IdentityAccount, error)
 	// delete an existing machine account
-	Delete(ctx context.Context, in *IdentityAccountEmail, opts ...grpc.CallOption) (*IdentityAccount, error)
+	Delete(ctx context.Context, in *IdentityAccountEmailCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error)
 	// restore an existing machine account
 	Restore(ctx context.Context, in *IdentityAccount, opts ...grpc.CallOption) (*IdentityAccount, error)
 }
@@ -68,7 +68,7 @@ func (c *machineAccountCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *IdentityAccountEmail, opts ...grpc.CallOption) (*IdentityAccount, error) {
+func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *IdentityAccountEmailCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error) {
 	out := new(IdentityAccount)
 	err := c.cc.Invoke(ctx, MachineAccountCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -95,7 +95,7 @@ type MachineAccountCommandControllerServer interface {
 	// update an existing machine account
 	Update(context.Context, *IdentityAccount) (*IdentityAccount, error)
 	// delete an existing machine account
-	Delete(context.Context, *IdentityAccountEmail) (*IdentityAccount, error)
+	Delete(context.Context, *IdentityAccountEmailCommandInput) (*IdentityAccount, error)
 	// restore an existing machine account
 	Restore(context.Context, *IdentityAccount) (*IdentityAccount, error)
 }
@@ -110,7 +110,7 @@ func (UnimplementedMachineAccountCommandControllerServer) Create(context.Context
 func (UnimplementedMachineAccountCommandControllerServer) Update(context.Context, *IdentityAccount) (*IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *IdentityAccountEmail) (*IdentityAccount, error) {
+func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *IdentityAccountEmailCommandInput) (*IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMachineAccountCommandControllerServer) Restore(context.Context, *IdentityAccount) (*IdentityAccount, error) {
@@ -165,7 +165,7 @@ func _MachineAccountCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentityAccountEmail)
+	in := new(IdentityAccountEmailCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: MachineAccountCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*IdentityAccountEmail))
+		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*IdentityAccountEmailCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
