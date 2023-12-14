@@ -29,7 +29,7 @@ service MachineAccountCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IdentityAccount) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_account;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_account_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete machine account";
   }
   // restore an existing machine account
