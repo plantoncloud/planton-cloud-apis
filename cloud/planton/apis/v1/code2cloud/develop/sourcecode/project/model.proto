@@ -143,9 +143,6 @@ message CodeProjectStatus {
 
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
-
-  // resource version-id
-  string version_id = 97;
 }
 
 //wrapper for code project id
