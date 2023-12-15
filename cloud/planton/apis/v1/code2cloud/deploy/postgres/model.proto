@@ -83,11 +83,8 @@ message PostgresClusterStatus {
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
-  // resource version-id
-  string version_id = 97;
-
   // id of the stack-job
-  string stack_job_id = 96;
+  string stack_job_id = 97;
 
   //postgres-cluster kubernetes status
   PostgresClusterStatusKubernetesStatus kubernetes = 1;

@@ -131,11 +131,8 @@ message KubeClusterStatus {
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
 
-  // resource version-id
-  string version_id = 97;
-
   // id of the stack-job
-  string stack_job_id = 96;
+  string stack_job_id = 97;
 
   // status of the kube-cluster in gcp
   KubeClusterGcpStatus gcp = 1;

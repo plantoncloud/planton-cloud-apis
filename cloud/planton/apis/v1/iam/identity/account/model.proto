@@ -97,9 +97,6 @@ message IdentityAccountStatus {
 
   // resource audit info
   cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
-
-  // resource version-id
-  string version_id = 97;
 }
 
 // wrapper to get list of identity accounts
@@ -165,11 +162,4 @@ message Auth0Webhook {
   string ip = 6;
   string user_agent = 7;
   string user_id = 8;
-}
-
-// wrapper for email of the identity account.
-message IdentityAccountEmailCommandInput {
-  string value = 1;
-  // A descriptive message explaining the reason for the resource command. This is used for audit purposes.
-  string version_message = 2;
 }

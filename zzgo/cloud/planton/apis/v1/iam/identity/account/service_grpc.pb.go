@@ -8,6 +8,7 @@ package account
 
 import (
 	context "context"
+	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
 	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -37,7 +38,7 @@ type MachineAccountCommandControllerClient interface {
 	// update an existing machine account
 	Update(ctx context.Context, in *IdentityAccount, opts ...grpc.CallOption) (*IdentityAccount, error)
 	// delete an existing machine account
-	Delete(ctx context.Context, in *IdentityAccountEmailCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error)
+	Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error)
 	// restore an existing machine account
 	Restore(ctx context.Context, in *IdentityAccount, opts ...grpc.CallOption) (*IdentityAccount, error)
 }
@@ -68,7 +69,7 @@ func (c *machineAccountCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *IdentityAccountEmailCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error) {
+func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *resource.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*IdentityAccount, error) {
 	out := new(IdentityAccount)
 	err := c.cc.Invoke(ctx, MachineAccountCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -95,7 +96,7 @@ type MachineAccountCommandControllerServer interface {
 	// update an existing machine account
 	Update(context.Context, *IdentityAccount) (*IdentityAccount, error)
 	// delete an existing machine account
-	Delete(context.Context, *IdentityAccountEmailCommandInput) (*IdentityAccount, error)
+	Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityAccount, error)
 	// restore an existing machine account
 	Restore(context.Context, *IdentityAccount) (*IdentityAccount, error)
 }
@@ -110,7 +111,7 @@ func (UnimplementedMachineAccountCommandControllerServer) Create(context.Context
 func (UnimplementedMachineAccountCommandControllerServer) Update(context.Context, *IdentityAccount) (*IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *IdentityAccountEmailCommandInput) (*IdentityAccount, error) {
+func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *resource.ApiResourceDeleteCommandInput) (*IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMachineAccountCommandControllerServer) Restore(context.Context, *IdentityAccount) (*IdentityAccount, error) {
@@ -165,7 +166,7 @@ func _MachineAccountCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(IdentityAccountEmailCommandInput)
+	in := new(resource.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -177,7 +178,7 @@ func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: MachineAccountCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*IdentityAccountEmailCommandInput))
+		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*resource.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
