@@ -40,5 +40,5 @@ message ResourceAuditActor {
     //id of the actor
     string id = 1;
     //avatar url of the actor
-    string avtar = 2;
+    string avatar = 2;
 }
