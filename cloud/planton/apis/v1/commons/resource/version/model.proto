@@ -67,19 +67,13 @@ message ResourceVersionWithContextSizeInput {
 }
 
 // list resource-versions by resource type and id query input
-message ListResourceVersionsByFiltersQueryInput {
+message ListResourceVersionsInput {
   // page info
   cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 1;
-  // id of the company to filter the resource-versions
-  string company_id = 2;
-  // id of the product to filter the resource-versions
-  string product_id = 3;
-  // id of the product env to filter the resource-versions
-  string environment_id = 4;
   // type of resource
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 2;
   // id of the resource
-  string resource_id = 6;
+  string resource_id = 3;
 }
 
 // paginated list of resource-versions
@@ -88,4 +82,18 @@ message ResourceVersionList {
   int32 total_pages = 1;
   // list of resource-versions
   repeated ResourceVersion entries = 2;
+}
+
+// count resource-versions by resource type and id query input
+message GetResourceVersionCountInput {
+  // type of resource
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  // id of the resource
+  string resource_id = 6;
+}
+
+// response to return number of resource versions are available
+message ResourceVersionCount {
+  // value for the count of resource versions
+  int32 count = 1;
 }
