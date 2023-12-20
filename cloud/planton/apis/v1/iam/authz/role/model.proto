@@ -45,6 +45,8 @@ message IamRoleSpec {
   string principal_type = 2;
   // type of the resource the role belongs to
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 3;
+  // description of iam role
+  string description = 4;
 }
 
 //status for iam-role
