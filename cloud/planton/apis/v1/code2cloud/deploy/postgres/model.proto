@@ -122,17 +122,23 @@ message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
 
 //postgres-cluster kubernetes ingress spec
 message PostgresClusterSpecKubernetesSpecIngressSpec {
+  option (buf.validate.message).cel = {
+    id: "ingres.enabled.endpoint_domain_name.mandatory",
+    message: "endpoint domain name is mandatory to enable ingress",
+    expression: "this.is_enabled == true && size(this.endpoint_domain_name) == 0";
+  };
+  option (buf.validate.message).cel = {
+    id: "ingres.enabled.ingress_type.mandatory",
+    message: "ingress type is mandatory to enable ingress",
+    expression: "this.is_enabled == true && this.ingress_type == 0";
+  };
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
-  ];
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
   //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating postgres endpoints.
-  string endpoint_domain_name = 3 [
-    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
-  ];
+  string endpoint_domain_name = 3;
 }
 
 //postgres-cluster kubernetes status
