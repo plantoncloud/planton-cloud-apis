@@ -190,13 +190,15 @@ message MicroserviceInstanceSpecKubernetesContainerVolumeMount {
 message MicroserviceInstanceSpecKubernetesIngress {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
-    message: "endpoint domain name is mandatory to enable ingress",
-    expression: "this.is_enabled == true && size(this.endpoint_domain_name) == 0";
+    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
+        "? 'endpoint domain name is mandatory to enable ingress'"
+        ": ''"
   };
   option (buf.validate.message).cel = {
     id: "ingres.enabled.ingress_type.mandatory",
-    message: "ingress type is mandatory to enable ingress",
-    expression: "this.is_enabled == true && this.ingress_type == 0";
+    expression: "this.is_enabled && this.ingress_type == 0"
+        "? 'ingress type is mandatory to enable ingress'"
+        ": ''"
   };
   //toggle to control ingress
   bool is_enabled = 1;
