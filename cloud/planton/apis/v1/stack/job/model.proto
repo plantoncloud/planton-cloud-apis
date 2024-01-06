@@ -111,6 +111,12 @@ message StackJobSpec {
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
+
+  // event type of the resource that triggered the stack job
+  string resource_event = 10 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
 }
 
 // stack-job status
