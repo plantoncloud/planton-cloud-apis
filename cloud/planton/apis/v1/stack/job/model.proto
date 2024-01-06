@@ -238,4 +238,8 @@ message CreateStackJobCommandInput {
   string resource_id = 1;
   //operation-type to be used for creating the stack-job.
   cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
+  // reason for creating the stack job
+  string message = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
 }
