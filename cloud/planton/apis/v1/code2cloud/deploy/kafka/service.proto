@@ -29,7 +29,7 @@ service KafkaClusterCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_create;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka-cluster";
-    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = created;
   }
   //preview update an existing kafka-cluster
   rpc previewUpdate(KafkaCluster) returns (KafkaCluster) {
