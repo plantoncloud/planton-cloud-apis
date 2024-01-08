@@ -19,9 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IamPolicyCommandController_Add_FullMethodName            = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/add"
-	IamPolicyCommandController_RemoveMultiple_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/removeMultiple"
-	IamPolicyCommandController_Update_FullMethodName         = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/update"
+	IamPolicyCommandController_Add_FullMethodName                   = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/add"
+	IamPolicyCommandController_RemoveMultiple_FullMethodName        = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/removeMultiple"
+	IamPolicyCommandController_Update_FullMethodName                = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/update"
+	IamPolicyCommandController_AddCompany_FullMethodName            = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/addCompany"
+	IamPolicyCommandController_RemoveCompanyMultiple_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/removeCompanyMultiple"
 )
 
 // IamPolicyCommandControllerClient is the client API for IamPolicyCommandController service.
@@ -33,6 +35,10 @@ type IamPolicyCommandControllerClient interface {
 	// remove list of iam policies of a principal and resource
 	RemoveMultiple(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
 	Update(ctx context.Context, in *UpdateIamPolicyInput, opts ...grpc.CallOption) (*IamPolicyByPrincipal, error)
+	// add iam policies to a resource
+	AddCompany(ctx context.Context, in *AddIamPolicyInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
+	// remove list of iam policies of a principal and resource
+	RemoveCompanyMultiple(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
 }
 
 type iamPolicyCommandControllerClient struct {
@@ -70,6 +76,24 @@ func (c *iamPolicyCommandControllerClient) Update(ctx context.Context, in *Updat
 	return out, nil
 }
 
+func (c *iamPolicyCommandControllerClient) AddCompany(ctx context.Context, in *AddIamPolicyInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error) {
+	out := new(IamPoliciesByPrincipal)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_AddCompany_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *iamPolicyCommandControllerClient) RemoveCompanyMultiple(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error) {
+	out := new(IamPoliciesByPrincipal)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_RemoveCompanyMultiple_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IamPolicyCommandControllerServer is the server API for IamPolicyCommandController service.
 // All implementations should embed UnimplementedIamPolicyCommandControllerServer
 // for forward compatibility
@@ -79,6 +103,10 @@ type IamPolicyCommandControllerServer interface {
 	// remove list of iam policies of a principal and resource
 	RemoveMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error)
 	Update(context.Context, *UpdateIamPolicyInput) (*IamPolicyByPrincipal, error)
+	// add iam policies to a resource
+	AddCompany(context.Context, *AddIamPolicyInput) (*IamPoliciesByPrincipal, error)
+	// remove list of iam policies of a principal and resource
+	RemoveCompanyMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error)
 }
 
 // UnimplementedIamPolicyCommandControllerServer should be embedded to have forward compatible implementations.
@@ -93,6 +121,12 @@ func (UnimplementedIamPolicyCommandControllerServer) RemoveMultiple(context.Cont
 }
 func (UnimplementedIamPolicyCommandControllerServer) Update(context.Context, *UpdateIamPolicyInput) (*IamPolicyByPrincipal, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedIamPolicyCommandControllerServer) AddCompany(context.Context, *AddIamPolicyInput) (*IamPoliciesByPrincipal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddCompany not implemented")
+}
+func (UnimplementedIamPolicyCommandControllerServer) RemoveCompanyMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveCompanyMultiple not implemented")
 }
 
 // UnsafeIamPolicyCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -160,6 +194,42 @@ func _IamPolicyCommandController_Update_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IamPolicyCommandController_AddCompany_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddIamPolicyInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyCommandControllerServer).AddCompany(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyCommandController_AddCompany_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyCommandControllerServer).AddCompany(ctx, req.(*AddIamPolicyInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IamPolicyCommandController_RemoveCompanyMultiple_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveIamPoliciesInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyCommandControllerServer).RemoveCompanyMultiple(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyCommandController_RemoveCompanyMultiple_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyCommandControllerServer).RemoveCompanyMultiple(ctx, req.(*RemoveIamPoliciesInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IamPolicyCommandController_ServiceDesc is the grpc.ServiceDesc for IamPolicyCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -179,14 +249,23 @@ var IamPolicyCommandController_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "update",
 			Handler:    _IamPolicyCommandController_Update_Handler,
 		},
+		{
+			MethodName: "addCompany",
+			Handler:    _IamPolicyCommandController_AddCompany_Handler,
+		},
+		{
+			MethodName: "removeCompanyMultiple",
+			Handler:    _IamPolicyCommandController_RemoveCompanyMultiple_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/v1/iam/authz/policy/service.proto",
 }
 
 const (
-	IamPolicyQueryController_GetByResourceTypeAndResourceId_FullMethodName            = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceId"
-	IamPolicyQueryController_GetByResourceTypeAndResourceIdGroupByRole_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceIdGroupByRole"
+	IamPolicyQueryController_GetByResourceTypeAndResourceId_FullMethodName                   = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceId"
+	IamPolicyQueryController_GetByResourceTypeAndResourceIdGroupByRole_FullMethodName        = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceIdGroupByRole"
+	IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getCompanyByResourceTypeAndResourceIdGroupByRole"
 )
 
 // IamPolicyQueryControllerClient is the client API for IamPolicyQueryController service.
@@ -197,6 +276,8 @@ type IamPolicyQueryControllerClient interface {
 	GetByResourceTypeAndResourceId(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
 	// retrieve iam policies by type and id grouped by role
 	GetByResourceTypeAndResourceIdGroupByRole(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByRole, error)
+	// retrieve iam policies by type and id grouped by role
+	GetCompanyByResourceTypeAndResourceIdGroupByRole(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByRole, error)
 }
 
 type iamPolicyQueryControllerClient struct {
@@ -225,6 +306,15 @@ func (c *iamPolicyQueryControllerClient) GetByResourceTypeAndResourceIdGroupByRo
 	return out, nil
 }
 
+func (c *iamPolicyQueryControllerClient) GetCompanyByResourceTypeAndResourceIdGroupByRole(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByRole, error) {
+	out := new(IamPoliciesByRole)
+	err := c.cc.Invoke(ctx, IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IamPolicyQueryControllerServer is the server API for IamPolicyQueryController service.
 // All implementations should embed UnimplementedIamPolicyQueryControllerServer
 // for forward compatibility
@@ -233,6 +323,8 @@ type IamPolicyQueryControllerServer interface {
 	GetByResourceTypeAndResourceId(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByPrincipal, error)
 	// retrieve iam policies by type and id grouped by role
 	GetByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error)
+	// retrieve iam policies by type and id grouped by role
+	GetCompanyByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error)
 }
 
 // UnimplementedIamPolicyQueryControllerServer should be embedded to have forward compatible implementations.
@@ -244,6 +336,9 @@ func (UnimplementedIamPolicyQueryControllerServer) GetByResourceTypeAndResourceI
 }
 func (UnimplementedIamPolicyQueryControllerServer) GetByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByResourceTypeAndResourceIdGroupByRole not implemented")
+}
+func (UnimplementedIamPolicyQueryControllerServer) GetCompanyByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyByResourceTypeAndResourceIdGroupByRole not implemented")
 }
 
 // UnsafeIamPolicyQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -293,6 +388,24 @@ func _IamPolicyQueryController_GetByResourceTypeAndResourceIdGroupByRole_Handler
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetIamPolicyByResourceTypeAndResourceIdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyQueryControllerServer).GetCompanyByResourceTypeAndResourceIdGroupByRole(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyQueryControllerServer).GetCompanyByResourceTypeAndResourceIdGroupByRole(ctx, req.(*GetIamPolicyByResourceTypeAndResourceIdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IamPolicyQueryController_ServiceDesc is the grpc.ServiceDesc for IamPolicyQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -307,6 +420,10 @@ var IamPolicyQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getByResourceTypeAndResourceIdGroupByRole",
 			Handler:    _IamPolicyQueryController_GetByResourceTypeAndResourceIdGroupByRole_Handler,
+		},
+		{
+			MethodName: "getCompanyByResourceTypeAndResourceIdGroupByRole",
+			Handler:    _IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
