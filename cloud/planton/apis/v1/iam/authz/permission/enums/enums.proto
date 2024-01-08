@@ -38,128 +38,129 @@ enum IamPermission {
   code_project_delete = 22;
   code_project_restore = 23;
   code_project_update = 24;
+  code_project_create_template_get = 25;
 
   // code_server
-  code_server_create = 25;
-  code_server_delete = 26;
-  code_server_get = 27;
-  code_server_restore = 28;
-  code_server_synchronize = 29;
-  code_server_update = 30;
+  code_server_create = 26;
+  code_server_delete = 27;
+  code_server_get = 28;
+  code_server_restore = 29;
+  code_server_synchronize = 30;
+  code_server_update = 31;
 
   // company
-  company_delete = 31;
-  company_get = 32;
-  company_restore = 33;
-  company_update = 34;
+  company_delete = 32;
+  company_get = 33;
+  company_restore = 34;
+  company_update = 35;
 
   // custom_endpoint
-  custom_endpoint_create = 35;
-  custom_endpoint_delete = 36;
-  custom_endpoint_get = 37;
-  custom_endpoint_restore = 38;
-  custom_endpoint_update = 39;
+  custom_endpoint_create = 36;
+  custom_endpoint_delete = 37;
+  custom_endpoint_get = 38;
+  custom_endpoint_restore = 39;
+  custom_endpoint_update = 40;
 
   // dns_zone
-  dns_zone_create_cloud_account_get = 40;
-  dns_zone_create = 41;
-  dns_zone_delete = 42;
-  dns_zone_get = 43;
-  dns_zone_restore = 44;
-  dns_zone_update = 45;
+  dns_zone_create_cloud_account_get = 41;
+  dns_zone_create = 42;
+  dns_zone_delete = 43;
+  dns_zone_get = 44;
+  dns_zone_restore = 45;
+  dns_zone_update = 46;
 
   // environment
-  environment_create_kube_cluster_get = 46;
-  environment_create = 47;
-  environment_delete = 48;
-  environment_get = 49;
-  environment_update = 50;
-  environment_restore = 51;
+  environment_create_kube_cluster_get = 47;
+  environment_create = 48;
+  environment_delete = 49;
+  environment_get = 50;
+  environment_update = 51;
+  environment_restore = 52;
 
   // identity_group
-  identity_group_create = 52;
-  identity_group_delete = 53;
-  identity_group_get = 54;
-  identity_group_update = 55;
+  identity_group_create = 53;
+  identity_group_delete = 54;
+  identity_group_get = 55;
+  identity_group_update = 56;
 
   // kube_cluster
-  kube_cluster_create = 56;
-  kube_cluster_create_cloud_account_get = 57;
-  kube_cluster_delete = 58;
-  kube_cluster_get = 59;
-  kube_cluster_restore = 60;
-  kube_cluster_update = 61;
+  kube_cluster_create = 57;
+  kube_cluster_create_cloud_account_get = 58;
+  kube_cluster_delete = 59;
+  kube_cluster_get = 60;
+  kube_cluster_restore = 61;
+  kube_cluster_update = 62;
 
   // iam_policy
-  iam_policy_get = 62;
-  iam_policy_update = 63;
+  iam_policy_get = 63;
+  iam_policy_update = 64;
 
   // identity_account
-  identity_account_create = 64;
-  identity_account_delete = 65;
-  identity_account_get = 66;
-  identity_account_restore = 67;
-  identity_account_update = 68;
+  identity_account_create = 65;
+  identity_account_delete = 66;
+  identity_account_get = 67;
+  identity_account_restore = 68;
+  identity_account_update = 69;
 
   // identity_connection
-  identity_connection_create = 69;
-  identity_connection_delete = 70;
-  identity_connection_get = 71;
-  identity_connection_restore = 72;
-  identity_connection_update = 73;
+  identity_connection_create = 70;
+  identity_connection_delete = 71;
+  identity_connection_get = 72;
+  identity_connection_restore = 73;
+  identity_connection_update = 74;
 
   // kafka_cluster
-  kafka_cluster_create = 74;
-  kafka_cluster_delete = 75;
-  kafka_cluster_get = 76;
-  kafka_cluster_restore = 77;
-  kafka_cluster_update = 78;
+  kafka_cluster_create = 75;
+  kafka_cluster_delete = 76;
+  kafka_cluster_get = 77;
+  kafka_cluster_restore = 78;
+  kafka_cluster_update = 79;
 
   // list_associates
-  list_associates = 79;
+  list_associates = 80;
 
   // login_to_back_office
-  login_to_back_office = 80;
+  login_to_back_office = 81;
 
   // microservice_instance
-  microservice_instance_create = 81;
-  microservice_instance_delete = 82;
-  microservice_instance_get = 83;
-  microservice_instance_restore = 84;
-  microservice_instance_update = 85;
+  microservice_instance_create = 82;
+  microservice_instance_delete = 83;
+  microservice_instance_get = 84;
+  microservice_instance_restore = 85;
+  microservice_instance_update = 86;
 
   // postgres_cluster
-  postgres_cluster_create = 86;
-  postgres_cluster_delete = 87;
-  postgres_cluster_get = 88;
-  postgres_cluster_restore = 89;
-  postgres_cluster_update = 90;
+  postgres_cluster_create = 87;
+  postgres_cluster_delete = 88;
+  postgres_cluster_get = 89;
+  postgres_cluster_restore = 90;
+  postgres_cluster_update = 91;
 
   // product
-  product_create = 91;
-  product_get = 92;
-  product_update = 93;
-  product_delete = 94;
-  product_restore = 95;
+  product_create = 92;
+  product_get = 93;
+  product_update = 94;
+  product_delete = 95;
+  product_restore = 96;
 
   // redis_cluster
-  redis_cluster_create = 96;
-  redis_cluster_delete = 97;
-  redis_cluster_get = 98;
-  redis_cluster_restore = 99;
-  redis_cluster_update = 100;
+  redis_cluster_create = 97;
+  redis_cluster_delete = 98;
+  redis_cluster_get = 99;
+  redis_cluster_restore = 100;
+  redis_cluster_update = 101;
 
   // solr_cloud
-  solr_cloud_create = 101;
-  solr_cloud_delete = 102;
-  solr_cloud_get = 103;
-  solr_cloud_restore = 104;
-  solr_cloud_update = 105;
+  solr_cloud_create = 102;
+  solr_cloud_delete = 103;
+  solr_cloud_get = 104;
+  solr_cloud_restore = 105;
+  solr_cloud_update = 106;
 
   // storage_bucket
-  storage_bucket_create = 106;
-  storage_bucket_delete = 107;
-  storage_bucket_get = 108;
-  storage_bucket_restore = 109;
-  storage_bucket_update = 110;
+  storage_bucket_create = 107;
+  storage_bucket_delete = 108;
+  storage_bucket_get = 109;
+  storage_bucket_restore = 110;
+  storage_bucket_update = 111;
 }

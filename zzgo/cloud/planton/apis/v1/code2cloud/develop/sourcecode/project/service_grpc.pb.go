@@ -415,10 +415,10 @@ type CodeProjectQueryControllerClient interface {
 	FindByCodeServerId(ctx context.Context, in *server.CodeServerId, opts ...grpc.CallOption) (*CodeProjects, error)
 	// look up all code projects by code project url
 	FindByCodeProjectUrl(ctx context.Context, in *CodeProjectUrl, opts ...grpc.CallOption) (*CodeProjects, error)
-	// find code project templates by product id to create new code project.
+	// find code project templates by company id to create new code project.
 	// this will be used to populate drop down of code project templates in create code project form.
-	// the response should only include code project templates that a product is authorised to use for creating new code projects.
-	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the product id provided in input.
+	// the response should only include code project templates that a company is authorised to use for creating new code projects.
+	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
 	FindTemplateCodeProjectsByProductId(ctx context.Context, in *product.ProductId, opts ...grpc.CallOption) (*CodeProjects, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(ctx context.Context, in *CodeProjectId, opts ...grpc.CallOption) (*CodeProjectProfile, error)
@@ -509,10 +509,10 @@ type CodeProjectQueryControllerServer interface {
 	FindByCodeServerId(context.Context, *server.CodeServerId) (*CodeProjects, error)
 	// look up all code projects by code project url
 	FindByCodeProjectUrl(context.Context, *CodeProjectUrl) (*CodeProjects, error)
-	// find code project templates by product id to create new code project.
+	// find code project templates by company id to create new code project.
 	// this will be used to populate drop down of code project templates in create code project form.
-	// the response should only include code project templates that a product is authorised to use for creating new code projects.
-	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the product id provided in input.
+	// the response should only include code project templates that a company is authorised to use for creating new code projects.
+	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
 	FindTemplateCodeProjectsByProductId(context.Context, *product.ProductId) (*CodeProjects, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(context.Context, *CodeProjectId) (*CodeProjectProfile, error)
