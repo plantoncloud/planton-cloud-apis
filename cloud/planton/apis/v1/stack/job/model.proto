@@ -15,6 +15,7 @@ import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
+import "google/protobuf/timestamp.proto";
 
 // stack-job
 message StackJob {
@@ -129,6 +130,12 @@ message StackJobStatus {
 
   // execution status of the stack-job
   cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;
+
+  // execution start time of stack job
+  google.protobuf.Timestamp execution_start_time = 2;
+
+  // execution end time of stack job
+  google.protobuf.Timestamp execution_end_time = 3;
 }
 
 // wrapper for stack-job id
