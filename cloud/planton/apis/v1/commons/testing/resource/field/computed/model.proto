@@ -18,3 +18,8 @@ message ComputedFieldsTest {
 message NestedComputedFieldsTest {
   ComputedFieldsTest nested_computed_field = 1;
 }
+
+// A message with a repeated message containing computed fields.
+message RepeatedComputedFieldsTest {
+  repeated ComputedFieldsTest repeated_computed_field = 1;
+}
