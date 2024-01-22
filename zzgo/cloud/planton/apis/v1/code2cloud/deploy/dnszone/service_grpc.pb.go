@@ -33,6 +33,8 @@ const (
 	DnsZoneCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewRestore"
 	DnsZoneCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/restore"
 	DnsZoneCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/createStackJob"
+	DnsZoneCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/previewRefresh"
+	DnsZoneCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.dnszone.DnsZoneCommandController/refresh"
 )
 
 // DnsZoneCommandControllerClient is the client API for DnsZoneCommandController service.
@@ -57,6 +59,10 @@ type DnsZoneCommandControllerClient interface {
 	Restore(ctx context.Context, in *DnsZone, opts ...grpc.CallOption) (*DnsZone, error)
 	// create-stack-job for dns-zone
 	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
+	// preview refresh a dns-zone that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
+	// refresh a dns-zone that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*DnsZone, error)
 }
 
 type dnsZoneCommandControllerClient struct {
@@ -148,6 +154,24 @@ func (c *dnsZoneCommandControllerClient) CreateStackJob(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *dnsZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dnsZoneCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*DnsZone, error) {
+	out := new(DnsZone)
+	err := c.cc.Invoke(ctx, DnsZoneCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DnsZoneCommandControllerServer is the server API for DnsZoneCommandController service.
 // All implementations should embed UnimplementedDnsZoneCommandControllerServer
 // for forward compatibility
@@ -170,6 +194,10 @@ type DnsZoneCommandControllerServer interface {
 	Restore(context.Context, *DnsZone) (*DnsZone, error)
 	// create-stack-job for dns-zone
 	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*DnsZone, error)
+	// preview refresh a dns-zone that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*DnsZone, error)
+	// refresh a dns-zone that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*DnsZone, error)
 }
 
 // UnimplementedDnsZoneCommandControllerServer should be embedded to have forward compatible implementations.
@@ -202,6 +230,12 @@ func (UnimplementedDnsZoneCommandControllerServer) Restore(context.Context, *Dns
 }
 func (UnimplementedDnsZoneCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
+}
+func (UnimplementedDnsZoneCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedDnsZoneCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*DnsZone, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeDnsZoneCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -377,6 +411,42 @@ func _DnsZoneCommandController_CreateStackJob_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DnsZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DnsZoneCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DnsZoneCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DnsZoneCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DnsZoneCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DnsZoneCommandController_ServiceDesc is the grpc.ServiceDesc for DnsZoneCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -419,6 +489,14 @@ var DnsZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createStackJob",
 			Handler:    _DnsZoneCommandController_CreateStackJob_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _DnsZoneCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _DnsZoneCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

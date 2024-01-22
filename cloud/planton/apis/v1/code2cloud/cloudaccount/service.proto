@@ -84,6 +84,23 @@ service CloudAccountCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for cloud-account";
   }
+
+  //preview refresh a cloud-account that was previously created
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (CloudAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh cloud-account";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a cloud-account that was previously created
+  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (CloudAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = cloud_account;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh cloud-account";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = refreshed;
+  }
 }
 
 // cloud-account query controller

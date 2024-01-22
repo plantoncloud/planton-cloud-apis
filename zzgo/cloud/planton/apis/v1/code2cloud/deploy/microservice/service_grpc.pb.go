@@ -40,6 +40,8 @@ const (
 	MicroserviceInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/restart"
 	MicroserviceInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/pause"
 	MicroserviceInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/unpause"
+	MicroserviceInstanceCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/previewRefresh"
+	MicroserviceInstanceCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstanceCommandController/refresh"
 )
 
 // MicroserviceInstanceCommandControllerClient is the client API for MicroserviceInstanceCommandController service.
@@ -75,6 +77,10 @@ type MicroserviceInstanceCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-instance.
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// preview refresh a microservice-instance that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
+	// refresh a microservice-instance that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error)
 }
 
 type microserviceInstanceCommandControllerClient struct {
@@ -193,6 +199,24 @@ func (c *microserviceInstanceCommandControllerClient) Unpause(ctx context.Contex
 	return out, nil
 }
 
+func (c *microserviceInstanceCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *microserviceInstanceCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*MicroserviceInstance, error) {
+	out := new(MicroserviceInstance)
+	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MicroserviceInstanceCommandControllerServer is the server API for MicroserviceInstanceCommandController service.
 // All implementations should embed UnimplementedMicroserviceInstanceCommandControllerServer
 // for forward compatibility
@@ -226,6 +250,10 @@ type MicroserviceInstanceCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-instance.
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*MicroserviceInstance, error)
+	// preview refresh a microservice-instance that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*MicroserviceInstance, error)
+	// refresh a microservice-instance that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*MicroserviceInstance, error)
 }
 
 // UnimplementedMicroserviceInstanceCommandControllerServer should be embedded to have forward compatible implementations.
@@ -267,6 +295,12 @@ func (UnimplementedMicroserviceInstanceCommandControllerServer) Pause(context.Co
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
+}
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedMicroserviceInstanceCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*MicroserviceInstance, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeMicroserviceInstanceCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -496,6 +530,42 @@ func _MicroserviceInstanceCommandController_Unpause_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MicroserviceInstanceCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _MicroserviceInstanceCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MicroserviceInstanceCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MicroserviceInstanceCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MicroserviceInstanceCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MicroserviceInstanceCommandController_ServiceDesc is the grpc.ServiceDesc for MicroserviceInstanceCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -550,6 +620,14 @@ var MicroserviceInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _MicroserviceInstanceCommandController_Unpause_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _MicroserviceInstanceCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _MicroserviceInstanceCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -128,6 +128,22 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete pod in kube-cluster";
   }
+  //preview refresh a kube-cluster that was previously created
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (KubeCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh kube-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a kube-cluster that was previously created
+  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (KubeCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh kube-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = refreshed;
+  }
 }
 
 // kube-cluster query controller

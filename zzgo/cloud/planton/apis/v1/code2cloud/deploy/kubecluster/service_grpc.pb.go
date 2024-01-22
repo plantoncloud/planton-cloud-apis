@@ -40,6 +40,8 @@ const (
 	KubeClusterCommandController_Unpause_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/unpause"
 	KubeClusterCommandController_DeleteNamespace_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/deleteNamespace"
 	KubeClusterCommandController_DeletePod_FullMethodName       = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/deletePod"
+	KubeClusterCommandController_PreviewRefresh_FullMethodName  = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/previewRefresh"
+	KubeClusterCommandController_Refresh_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterCommandController/refresh"
 )
 
 // KubeClusterCommandControllerClient is the client API for KubeClusterCommandController service.
@@ -80,6 +82,10 @@ type KubeClusterCommandControllerClient interface {
 	DeleteNamespace(ctx context.Context, in *ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
 	DeletePod(ctx context.Context, in *ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource1.Pod, error)
+	// preview refresh a kube-cluster that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
+	// refresh a kube-cluster that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KubeCluster, error)
 }
 
 type kubeClusterCommandControllerClient struct {
@@ -207,6 +213,24 @@ func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *
 	return out, nil
 }
 
+func (c *kubeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kubeClusterCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KubeCluster, error) {
+	out := new(KubeCluster)
+	err := c.cc.Invoke(ctx, KubeClusterCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubeClusterCommandControllerServer is the server API for KubeClusterCommandController service.
 // All implementations should embed UnimplementedKubeClusterCommandControllerServer
 // for forward compatibility
@@ -245,6 +269,10 @@ type KubeClusterCommandControllerServer interface {
 	DeleteNamespace(context.Context, *ByKubeClusterByNamespaceInput) (*resource1.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
 	DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error)
+	// preview refresh a kube-cluster that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KubeCluster, error)
+	// refresh a kube-cluster that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KubeCluster, error)
 }
 
 // UnimplementedKubeClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -289,6 +317,12 @@ func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.C
 }
 func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *ByKubeClusterByNamespaceByPodInput) (*resource1.Pod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
+}
+func (UnimplementedKubeClusterCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedKubeClusterCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KubeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeKubeClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -536,6 +570,42 @@ func _KubeClusterCommandController_DeletePod_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KubeClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubeClusterCommandController_ServiceDesc is the grpc.ServiceDesc for KubeClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -594,6 +664,14 @@ var KubeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deletePod",
 			Handler:    _KubeClusterCommandController_DeletePod_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _KubeClusterCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _KubeClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -38,6 +38,8 @@ const (
 	RedisClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/restart"
 	RedisClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/pause"
 	RedisClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/unpause"
+	RedisClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/previewRefresh"
+	RedisClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterCommandController/refresh"
 )
 
 // RedisClusterCommandControllerClient is the client API for RedisClusterCommandController service.
@@ -73,6 +75,10 @@ type RedisClusterCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-cluster.
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
+	// preview refresh a redis-cluster that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
+	// refresh a redis-cluster that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*RedisCluster, error)
 }
 
 type redisClusterCommandControllerClient struct {
@@ -191,6 +197,24 @@ func (c *redisClusterCommandControllerClient) Unpause(ctx context.Context, in *r
 	return out, nil
 }
 
+func (c *redisClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *redisClusterCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*RedisCluster, error) {
+	out := new(RedisCluster)
+	err := c.cc.Invoke(ctx, RedisClusterCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // RedisClusterCommandControllerServer is the server API for RedisClusterCommandController service.
 // All implementations should embed UnimplementedRedisClusterCommandControllerServer
 // for forward compatibility
@@ -224,6 +248,10 @@ type RedisClusterCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-cluster.
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*RedisCluster, error)
+	// preview refresh a redis-cluster that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*RedisCluster, error)
+	// refresh a redis-cluster that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*RedisCluster, error)
 }
 
 // UnimplementedRedisClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -265,6 +293,12 @@ func (UnimplementedRedisClusterCommandControllerServer) Pause(context.Context, *
 }
 func (UnimplementedRedisClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
+}
+func (UnimplementedRedisClusterCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedRedisClusterCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*RedisCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeRedisClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -494,6 +528,42 @@ func _RedisClusterCommandController_Unpause_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _RedisClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _RedisClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RedisClusterCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: RedisClusterCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RedisClusterCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // RedisClusterCommandController_ServiceDesc is the grpc.ServiceDesc for RedisClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -548,6 +618,14 @@ var RedisClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _RedisClusterCommandController_Unpause_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _RedisClusterCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _RedisClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

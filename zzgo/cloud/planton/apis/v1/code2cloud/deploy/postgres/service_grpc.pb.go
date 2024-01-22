@@ -38,6 +38,8 @@ const (
 	PostgresClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/restart"
 	PostgresClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/pause"
 	PostgresClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/unpause"
+	PostgresClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/previewRefresh"
+	PostgresClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterCommandController/refresh"
 )
 
 // PostgresClusterCommandControllerClient is the client API for PostgresClusterCommandController service.
@@ -73,6 +75,10 @@ type PostgresClusterCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-cluster.
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// preview refresh a postgres-cluster that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
+	// refresh a postgres-cluster that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error)
 }
 
 type postgresClusterCommandControllerClient struct {
@@ -191,6 +197,24 @@ func (c *postgresClusterCommandControllerClient) Unpause(ctx context.Context, in
 	return out, nil
 }
 
+func (c *postgresClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postgresClusterCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*PostgresCluster, error) {
+	out := new(PostgresCluster)
+	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostgresClusterCommandControllerServer is the server API for PostgresClusterCommandController service.
 // All implementations should embed UnimplementedPostgresClusterCommandControllerServer
 // for forward compatibility
@@ -224,6 +248,10 @@ type PostgresClusterCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-cluster.
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*PostgresCluster, error)
+	// preview refresh a postgres-cluster that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*PostgresCluster, error)
+	// refresh a postgres-cluster that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*PostgresCluster, error)
 }
 
 // UnimplementedPostgresClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -265,6 +293,12 @@ func (UnimplementedPostgresClusterCommandControllerServer) Pause(context.Context
 }
 func (UnimplementedPostgresClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
+}
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedPostgresClusterCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*PostgresCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafePostgresClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -494,6 +528,42 @@ func _PostgresClusterCommandController_Unpause_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostgresClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostgresClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostgresClusterCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PostgresClusterCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostgresClusterCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PostgresClusterCommandController_ServiceDesc is the grpc.ServiceDesc for PostgresClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -548,6 +618,14 @@ var PostgresClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _PostgresClusterCommandController_Unpause_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _PostgresClusterCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _PostgresClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

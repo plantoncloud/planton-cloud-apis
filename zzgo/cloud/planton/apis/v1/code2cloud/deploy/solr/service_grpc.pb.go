@@ -38,6 +38,8 @@ const (
 	SolrCloudCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/restart"
 	SolrCloudCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/pause"
 	SolrCloudCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/unpause"
+	SolrCloudCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/previewRefresh"
+	SolrCloudCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.solr.SolrCloudCommandController/refresh"
 )
 
 // SolrCloudCommandControllerClient is the client API for SolrCloudCommandController service.
@@ -73,6 +75,10 @@ type SolrCloudCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-cloud.
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
+	// preview refresh a solr-cloud that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
+	// refresh a solr-cloud that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*SolrCloud, error)
 }
 
 type solrCloudCommandControllerClient struct {
@@ -191,6 +197,24 @@ func (c *solrCloudCommandControllerClient) Unpause(ctx context.Context, in *reso
 	return out, nil
 }
 
+func (c *solrCloudCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *solrCloudCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*SolrCloud, error) {
+	out := new(SolrCloud)
+	err := c.cc.Invoke(ctx, SolrCloudCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SolrCloudCommandControllerServer is the server API for SolrCloudCommandController service.
 // All implementations should embed UnimplementedSolrCloudCommandControllerServer
 // for forward compatibility
@@ -224,6 +248,10 @@ type SolrCloudCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-cloud.
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*SolrCloud, error)
+	// preview refresh a solr-cloud that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*SolrCloud, error)
+	// refresh a solr-cloud that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*SolrCloud, error)
 }
 
 // UnimplementedSolrCloudCommandControllerServer should be embedded to have forward compatible implementations.
@@ -265,6 +293,12 @@ func (UnimplementedSolrCloudCommandControllerServer) Pause(context.Context, *res
 }
 func (UnimplementedSolrCloudCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
+}
+func (UnimplementedSolrCloudCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedSolrCloudCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*SolrCloud, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeSolrCloudCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -494,6 +528,42 @@ func _SolrCloudCommandController_Unpause_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SolrCloudCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SolrCloudCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SolrCloudCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SolrCloudCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SolrCloudCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SolrCloudCommandController_ServiceDesc is the grpc.ServiceDesc for SolrCloudCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -548,6 +618,14 @@ var SolrCloudCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _SolrCloudCommandController_Unpause_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _SolrCloudCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _SolrCloudCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
