@@ -33,6 +33,8 @@ const (
 	CustomEndpointCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewRestore"
 	CustomEndpointCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/restore"
 	CustomEndpointCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/createStackJob"
+	CustomEndpointCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/previewRefresh"
+	CustomEndpointCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.customendpoint.CustomEndpointCommandController/refresh"
 )
 
 // CustomEndpointCommandControllerClient is the client API for CustomEndpointCommandController service.
@@ -57,6 +59,10 @@ type CustomEndpointCommandControllerClient interface {
 	Restore(ctx context.Context, in *CustomEndpoint, opts ...grpc.CallOption) (*CustomEndpoint, error)
 	// create-stack-job for custom-endpoint
 	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// preview refresh a custom-endpoint that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
+	// refresh a custom-endpoint that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error)
 }
 
 type customEndpointCommandControllerClient struct {
@@ -148,6 +154,24 @@ func (c *customEndpointCommandControllerClient) CreateStackJob(ctx context.Conte
 	return out, nil
 }
 
+func (c *customEndpointCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customEndpointCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CustomEndpoint, error) {
+	out := new(CustomEndpoint)
+	err := c.cc.Invoke(ctx, CustomEndpointCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CustomEndpointCommandControllerServer is the server API for CustomEndpointCommandController service.
 // All implementations should embed UnimplementedCustomEndpointCommandControllerServer
 // for forward compatibility
@@ -170,6 +194,10 @@ type CustomEndpointCommandControllerServer interface {
 	Restore(context.Context, *CustomEndpoint) (*CustomEndpoint, error)
 	// create-stack-job for custom-endpoint
 	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error)
+	// preview refresh a custom-endpoint that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CustomEndpoint, error)
+	// refresh a custom-endpoint that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CustomEndpoint, error)
 }
 
 // UnimplementedCustomEndpointCommandControllerServer should be embedded to have forward compatible implementations.
@@ -202,6 +230,12 @@ func (UnimplementedCustomEndpointCommandControllerServer) Restore(context.Contex
 }
 func (UnimplementedCustomEndpointCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
+}
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedCustomEndpointCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CustomEndpoint, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeCustomEndpointCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -377,6 +411,42 @@ func _CustomEndpointCommandController_CreateStackJob_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomEndpointCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomEndpointCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomEndpointCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CustomEndpointCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomEndpointCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CustomEndpointCommandController_ServiceDesc is the grpc.ServiceDesc for CustomEndpointCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -419,6 +489,14 @@ var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createStackJob",
 			Handler:    _CustomEndpointCommandController_CreateStackJob_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _CustomEndpointCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _CustomEndpointCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

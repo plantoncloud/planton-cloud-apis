@@ -38,6 +38,8 @@ const (
 	KafkaClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/restart"
 	KafkaClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/pause"
 	KafkaClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/unpause"
+	KafkaClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/previewRefresh"
+	KafkaClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterCommandController/refresh"
 )
 
 // KafkaClusterCommandControllerClient is the client API for KafkaClusterCommandController service.
@@ -74,6 +76,10 @@ type KafkaClusterCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-cluster.
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// preview refresh a kafka-cluster that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
+	// refresh a kafka-cluster that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error)
 }
 
 type kafkaClusterCommandControllerClient struct {
@@ -192,6 +198,24 @@ func (c *kafkaClusterCommandControllerClient) Unpause(ctx context.Context, in *r
 	return out, nil
 }
 
+func (c *kafkaClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *kafkaClusterCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*KafkaCluster, error) {
+	out := new(KafkaCluster)
+	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KafkaClusterCommandControllerServer is the server API for KafkaClusterCommandController service.
 // All implementations should embed UnimplementedKafkaClusterCommandControllerServer
 // for forward compatibility
@@ -226,6 +250,10 @@ type KafkaClusterCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-cluster.
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KafkaCluster, error)
+	// preview refresh a kafka-cluster that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KafkaCluster, error)
+	// refresh a kafka-cluster that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KafkaCluster, error)
 }
 
 // UnimplementedKafkaClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -267,6 +295,12 @@ func (UnimplementedKafkaClusterCommandControllerServer) Pause(context.Context, *
 }
 func (UnimplementedKafkaClusterCommandControllerServer) Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
+}
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedKafkaClusterCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*KafkaCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeKafkaClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -496,6 +530,42 @@ func _KafkaClusterCommandController_Unpause_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KafkaClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _KafkaClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KafkaClusterCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KafkaClusterCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KafkaClusterCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KafkaClusterCommandController_ServiceDesc is the grpc.ServiceDesc for KafkaClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -550,6 +620,14 @@ var KafkaClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _KafkaClusterCommandController_Unpause_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _KafkaClusterCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _KafkaClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

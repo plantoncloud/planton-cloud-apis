@@ -32,6 +32,8 @@ const (
 	CloudAccountCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewRestore"
 	CloudAccountCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/restore"
 	CloudAccountCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/createStackJob"
+	CloudAccountCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/previewRefresh"
+	CloudAccountCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountCommandController/refresh"
 )
 
 // CloudAccountCommandControllerClient is the client API for CloudAccountCommandController service.
@@ -57,6 +59,10 @@ type CloudAccountCommandControllerClient interface {
 	Restore(ctx context.Context, in *CloudAccount, opts ...grpc.CallOption) (*CloudAccount, error)
 	// create-stack-job for cloud-account
 	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
+	// preview refresh a cloud-account that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
+	// refresh a cloud-account that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CloudAccount, error)
 }
 
 type cloudAccountCommandControllerClient struct {
@@ -148,6 +154,24 @@ func (c *cloudAccountCommandControllerClient) CreateStackJob(ctx context.Context
 	return out, nil
 }
 
+func (c *cloudAccountCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *cloudAccountCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*CloudAccount, error) {
+	out := new(CloudAccount)
+	err := c.cc.Invoke(ctx, CloudAccountCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CloudAccountCommandControllerServer is the server API for CloudAccountCommandController service.
 // All implementations should embed UnimplementedCloudAccountCommandControllerServer
 // for forward compatibility
@@ -171,6 +195,10 @@ type CloudAccountCommandControllerServer interface {
 	Restore(context.Context, *CloudAccount) (*CloudAccount, error)
 	// create-stack-job for cloud-account
 	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CloudAccount, error)
+	// preview refresh a cloud-account that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CloudAccount, error)
+	// refresh a cloud-account that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CloudAccount, error)
 }
 
 // UnimplementedCloudAccountCommandControllerServer should be embedded to have forward compatible implementations.
@@ -203,6 +231,12 @@ func (UnimplementedCloudAccountCommandControllerServer) Restore(context.Context,
 }
 func (UnimplementedCloudAccountCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
+}
+func (UnimplementedCloudAccountCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedCloudAccountCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*CloudAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeCloudAccountCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -378,6 +412,42 @@ func _CloudAccountCommandController_CreateStackJob_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CloudAccountCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CloudAccountCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CloudAccountCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CloudAccountCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CloudAccountCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CloudAccountCommandController_ServiceDesc is the grpc.ServiceDesc for CloudAccountCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -420,6 +490,14 @@ var CloudAccountCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createStackJob",
 			Handler:    _CloudAccountCommandController_CreateStackJob_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _CloudAccountCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _CloudAccountCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

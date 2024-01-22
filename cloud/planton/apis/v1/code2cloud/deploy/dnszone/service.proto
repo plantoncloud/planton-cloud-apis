@@ -84,6 +84,22 @@ service DnsZoneCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for dns-zone";
   }
+  //preview refresh a dns-zone that was previously created
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (DnsZone) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh dns-zone";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a dns-zone that was previously created
+  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (DnsZone) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh dns-zone";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = refreshed;
+  }
 }
 
 //dns-zone query controller

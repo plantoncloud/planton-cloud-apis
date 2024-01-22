@@ -114,6 +114,22 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause solr-cloud";
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
+  //preview refresh a solr-cloud that was previously created
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (SolrCloud) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh solr-cloud";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a solr-cloud that was previously created
+  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (SolrCloud) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh solr-cloud";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = refreshed;
+  }
 }
 
 //solr-cloud query controller

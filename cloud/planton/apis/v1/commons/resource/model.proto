@@ -80,3 +80,12 @@ message ApiResourceUnPauseCommandInput {
   // For example, "un pause as the resource is now required again".
   string version_message = 2;
 }
+
+// input for rpc to refresh or previewing refresh for any api resource
+message ApiResourceRefreshCommandInput {
+  //id of the resource.
+  string resource_id = 1;
+  // A descriptive message explaining the reason for refreshing the resource. This is used for audit purposes.
+  // For example, "refreshing the state to update computed fields".
+  string version_message = 2;
+}

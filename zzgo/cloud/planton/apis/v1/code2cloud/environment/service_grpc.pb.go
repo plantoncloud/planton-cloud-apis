@@ -40,6 +40,8 @@ const (
 	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/pause"
 	EnvironmentCommandController_Unpause_FullMethodName                   = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/unpause"
 	EnvironmentCommandController_DeleteNamespace_FullMethodName           = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/deleteNamespace"
+	EnvironmentCommandController_PreviewRefresh_FullMethodName            = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/previewRefresh"
+	EnvironmentCommandController_Refresh_FullMethodName                   = "/cloud.planton.apis.v1.code2cloud.environment.EnvironmentCommandController/refresh"
 )
 
 // EnvironmentCommandControllerClient is the client API for EnvironmentCommandController service.
@@ -92,6 +94,10 @@ type EnvironmentCommandControllerClient interface {
 	Unpause(ctx context.Context, in *resource.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
 	DeleteNamespace(ctx context.Context, in *ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource1.WorkloadNamespace, error)
+	// preview refresh a environment that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*Environment, error)
+	// refresh a environment that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*Environment, error)
 }
 
 type environmentCommandControllerClient struct {
@@ -228,6 +234,24 @@ func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context
 	return out, nil
 }
 
+func (c *environmentCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*Environment, error) {
+	out := new(Environment)
+	err := c.cc.Invoke(ctx, EnvironmentCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EnvironmentCommandControllerServer is the server API for EnvironmentCommandController service.
 // All implementations should embed UnimplementedEnvironmentCommandControllerServer
 // for forward compatibility
@@ -278,6 +302,10 @@ type EnvironmentCommandControllerServer interface {
 	Unpause(context.Context, *resource.ApiResourceUnPauseCommandInput) (*Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
 	DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource1.WorkloadNamespace, error)
+	// preview refresh a environment that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*Environment, error)
+	// refresh a environment that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*Environment, error)
 }
 
 // UnimplementedEnvironmentCommandControllerServer should be embedded to have forward compatible implementations.
@@ -325,6 +353,12 @@ func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, 
 }
 func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *ByEnvironmentByNamespaceInput) (*resource1.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
+}
+func (UnimplementedEnvironmentCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedEnvironmentCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeEnvironmentCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -590,6 +624,42 @@ func _EnvironmentCommandController_DeleteNamespace_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnvironmentCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EnvironmentCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EnvironmentCommandController_ServiceDesc is the grpc.ServiceDesc for EnvironmentCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -652,6 +722,14 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "deleteNamespace",
 			Handler:    _EnvironmentCommandController_DeleteNamespace_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _EnvironmentCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _EnvironmentCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

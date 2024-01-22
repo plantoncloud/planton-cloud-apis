@@ -33,6 +33,8 @@ const (
 	StorageBucketCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewRestore"
 	StorageBucketCommandController_Restore_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/restore"
 	StorageBucketCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/createStackJob"
+	StorageBucketCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/previewRefresh"
+	StorageBucketCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.deploy.storagebucket.StorageBucketCommandController/refresh"
 )
 
 // StorageBucketCommandControllerClient is the client API for StorageBucketCommandController service.
@@ -57,6 +59,10 @@ type StorageBucketCommandControllerClient interface {
 	Restore(ctx context.Context, in *StorageBucket, opts ...grpc.CallOption) (*StorageBucket, error)
 	// create-stack-job for storage-bucket
 	CreateStackJob(ctx context.Context, in *job.CreateStackJobCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
+	// preview refresh a storage-bucket that was previously created
+	PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
+	// refresh a storage-bucket that was previously created
+	Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*StorageBucket, error)
 }
 
 type storageBucketCommandControllerClient struct {
@@ -148,6 +154,24 @@ func (c *storageBucketCommandControllerClient) CreateStackJob(ctx context.Contex
 	return out, nil
 }
 
+func (c *storageBucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *storageBucketCommandControllerClient) Refresh(ctx context.Context, in *resource.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*StorageBucket, error) {
+	out := new(StorageBucket)
+	err := c.cc.Invoke(ctx, StorageBucketCommandController_Refresh_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StorageBucketCommandControllerServer is the server API for StorageBucketCommandController service.
 // All implementations should embed UnimplementedStorageBucketCommandControllerServer
 // for forward compatibility
@@ -170,6 +194,10 @@ type StorageBucketCommandControllerServer interface {
 	Restore(context.Context, *StorageBucket) (*StorageBucket, error)
 	// create-stack-job for storage-bucket
 	CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*StorageBucket, error)
+	// preview refresh a storage-bucket that was previously created
+	PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*StorageBucket, error)
+	// refresh a storage-bucket that was previously created
+	Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*StorageBucket, error)
 }
 
 // UnimplementedStorageBucketCommandControllerServer should be embedded to have forward compatible implementations.
@@ -202,6 +230,12 @@ func (UnimplementedStorageBucketCommandControllerServer) Restore(context.Context
 }
 func (UnimplementedStorageBucketCommandControllerServer) CreateStackJob(context.Context, *job.CreateStackJobCommandInput) (*StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
+}
+func (UnimplementedStorageBucketCommandControllerServer) PreviewRefresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
+}
+func (UnimplementedStorageBucketCommandControllerServer) Refresh(context.Context, *resource.ApiResourceRefreshCommandInput) (*StorageBucket, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeStorageBucketCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -377,6 +411,42 @@ func _StorageBucketCommandController_CreateStackJob_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StorageBucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).PreviewRefresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_PreviewRefresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).PreviewRefresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StorageBucketCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(resource.ApiResourceRefreshCommandInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StorageBucketCommandControllerServer).Refresh(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StorageBucketCommandController_Refresh_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StorageBucketCommandControllerServer).Refresh(ctx, req.(*resource.ApiResourceRefreshCommandInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StorageBucketCommandController_ServiceDesc is the grpc.ServiceDesc for StorageBucketCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -419,6 +489,14 @@ var StorageBucketCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createStackJob",
 			Handler:    _StorageBucketCommandController_CreateStackJob_Handler,
+		},
+		{
+			MethodName: "previewRefresh",
+			Handler:    _StorageBucketCommandController_PreviewRefresh_Handler,
+		},
+		{
+			MethodName: "refresh",
+			Handler:    _StorageBucketCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
