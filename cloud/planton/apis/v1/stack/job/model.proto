@@ -263,6 +263,8 @@ message PulumiOperationResourceChangesSnapshotRow {
   string resource_type = 1;
   string resource_name = 2;
   string status = 3;
+  bool is_done = 4;
+  bool is_failed = 5;
 }
 
 // input for rpc to create a new stack job for any resource.
