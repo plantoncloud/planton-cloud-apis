@@ -268,7 +268,7 @@ message PulumiOperationResourceChangesSnapshotRow {
   string status = 3;
   bool is_done = 4;
   bool is_failed = 5;
-  int32 elapsed_duration_seconds = 6;
+  int64 elapsed_duration_seconds = 6;
 }
 
 // input for rpc to create a new stack job for any resource.
