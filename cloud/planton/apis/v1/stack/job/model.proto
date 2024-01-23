@@ -14,6 +14,7 @@ import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.p
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
+import "cloud/planton/apis/v1/stack/job/progress/enums/statuslabel/status_label.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -265,6 +266,7 @@ message PulumiOperationResourceChangesSnapshotRow {
   string status = 3;
   bool is_done = 4;
   bool is_failed = 5;
+  int32 elapsed_duration_seconds = 6;
 }
 
 // input for rpc to create a new stack job for any resource.

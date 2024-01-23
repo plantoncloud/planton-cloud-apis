@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.progress.enums.statuslabel;
+
+enum StackJobProgressStatusLabel {
+  STACK_JOB_PROGRESS_STATUS_LABEL_UNSPECIFIED = 0;
+  refreshing = 1;
+  unchanged = 2;
+  creating = 3;
+  updating = 4;
+  deleting = 5;
+  replacing = 6;
+  refreshed = 7;
+  created = 8;
+  updated = 9;
+  deleted = 10;
+  replaced = 11;
+  refresh_failed = 12;
+  create_failed = 13;
+  updated_failed = 14;
+  delete_failed = 15;
+  replace_failed = 16;
+}
