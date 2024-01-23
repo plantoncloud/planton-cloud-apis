@@ -227,10 +227,15 @@ message StackJobLogSnapshot {
 }
 
 message StackJobLogPulumiOperationSnapshot {
-  PulumiOperationResourceChangesSnapshot resource_changes = 1;
-  PulumiOperationDiffSnapshot diff = 2;
-  PulumiOperationDiagnosticsSnapshot diagnostics = 3;
-  PulumiOperationSummarySnapshot summary = 4;
+  PulumiOperationPreludeSnapshot prelude = 1;
+  PulumiOperationResourceChangesSnapshot resource_changes = 2;
+  PulumiOperationDiffSnapshot diff = 3;
+  PulumiOperationDiagnosticsSnapshot diagnostics = 4;
+  PulumiOperationSummarySnapshot summary = 5;
+}
+
+message PulumiOperationPreludeSnapshot {
+  repeated string prelude_message = 1;
 }
 
 message PulumiOperationResourceChangesSnapshot {
