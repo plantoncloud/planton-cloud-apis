@@ -229,6 +229,7 @@ message StackJobLogSnapshot {
 message StackJobLogPulumiOperationSnapshot {
   PulumiOperationResourceChangesSnapshot resource_changes = 1;
   PulumiOperationDiffSnapshot diff = 2;
+  PulumiOperationDiagnosticsSnapshot diagnostics = 3;
 }
 
 message PulumiOperationResourceChangesSnapshot {
@@ -236,7 +237,11 @@ message PulumiOperationResourceChangesSnapshot {
 }
 
 message PulumiOperationDiffSnapshot {
-  repeated string resource_diff = 2;
+  repeated string resource_diff = 1;
+}
+
+message PulumiOperationDiagnosticsSnapshot {
+  repeated string diagnostic_message = 1;
 }
 
 message PulumiOperationResourceChangesSnapshotRow {
