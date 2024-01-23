@@ -230,6 +230,7 @@ message StackJobLogPulumiOperationSnapshot {
   PulumiOperationResourceChangesSnapshot resource_changes = 1;
   PulumiOperationDiffSnapshot diff = 2;
   PulumiOperationDiagnosticsSnapshot diagnostics = 3;
+  PulumiOperationSummarySnapshot summary = 4;
 }
 
 message PulumiOperationResourceChangesSnapshot {
@@ -242,6 +243,15 @@ message PulumiOperationDiffSnapshot {
 
 message PulumiOperationDiagnosticsSnapshot {
   repeated string diagnostic_message = 1;
+}
+
+message PulumiOperationSummarySnapshot {
+  int32 duration_seconds = 1;
+  int32 unchanged_resource_count = 2;
+  int32 create_resource_count = 3;
+  int32 update_resource_count = 4;
+  int32 delete_resource_count = 5;
+  int32 replace_resource_count = 6;
 }
 
 message PulumiOperationResourceChangesSnapshotRow {
