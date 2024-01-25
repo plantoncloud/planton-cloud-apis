@@ -6,10 +6,10 @@ enum StackJobProgressStatusLabel {
   STACK_JOB_PROGRESS_STATUS_LABEL_UNSPECIFIED = 0;
   refreshing = 1;
   unchanged = 2;
-  will_be_created = 3;
-  will_be_updated = 4;
-  will_be_deleted = 5;
-  will_be_replaced = 6;
+  create = 3;
+  update = 4;
+  delete = 5;
+  replace = 6;
   creating = 7;
   updating = 8;
   deleting = 9;
