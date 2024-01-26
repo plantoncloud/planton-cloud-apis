@@ -63,6 +63,8 @@ message GetIamPolicyByResourceTypeAndResourceIdInput {
   string resource_id = 2;
   // flag to get inherited policies from owner
   bool show_inherited_policies = 3;
+  // flag to get public access iam policies
+  bool show_public_access = 4;
 }
 
 // response to return all iam policies by principal
