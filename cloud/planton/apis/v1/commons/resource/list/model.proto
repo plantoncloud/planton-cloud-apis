@@ -32,6 +32,8 @@ message Record {
   string environment_id = 6;
   // flag to indicate if the resource is deleted.
   bool is_active = 7;
+  // flag to indicate if the resource is paused
+  bool is_paused = 8;
 }
 
 // ResourceList is a message type that represents a paginated list of Record objects.
