@@ -110,6 +110,16 @@ message KubeClusterAddonsSpec {
   bool is_install_kubecost = 4;
   //planton-cloud-kube-agent addon spec
   KubeClusterAddonsPlantonCloudKubeAgentSpec planton_cloud_kube_agent = 5;
+  //flag to control ingress-nginx
+  bool is_install_ingress_nginx = 6;
+  //flag to control istio
+  bool is_install_istio = 7;
+  //flag to control cert-manager
+  bool is_install_cert_manager = 8;
+  //flag to control external-dns
+  bool is_install_external_dns = 9;
+  //flag to control external-secrets
+  bool is_install_external_secrets = 10;
 }
 
 //planton-cloud-kube-agent addon spec
