@@ -6,6 +6,7 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/managementmode/management_mode.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/provider/awsaks/enums/workersmanagementmode/workers_management_mode.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
@@ -89,13 +90,18 @@ message KubeClusterSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
 
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.managementmode.ManagementMode management_mode = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
   // gcp is a field for GCP-specific kube-cluster specifications.
   // This field is only set if the kubernetes-provider is GCP GKE.
-  KubeClusterGcpSpec gcp = 5;
+  KubeClusterGcpSpec gcp = 6;
 
   // aws is a field for AWS-specific kube-cluster specifications.
   // This field is only set if the kubernetes-provider is AWS EKS.
-  KubeClusterAwsSpec aws = 6;
+  KubeClusterAwsSpec aws = 7;
 }
 
 //kube-cluster kubernetes addons
@@ -153,6 +159,15 @@ message KubeClusterStatus {
 
 //specification for kube-cluster in google cloud
 message KubeClusterGcpSpec {
+  //spec for create management-mode
+  KubeClusterGcpCreateSpec create_spec = 1;
+
+  //spec for configure management-mode
+  KubeClusterGcpConfigureSpec configure_spec = 2;
+}
+
+//specification for creating kube-cluster in google cloud
+message KubeClusterGcpCreateSpec {
   //id of the gcp cloud account to be used for creating kube-cluster resources.
   string gcp_cloud_account_id = 1 [
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
@@ -212,6 +227,16 @@ message KubeClusterGcpSpec {
 
   // kube-cluster node pools
   repeated KubeClusterNodePoolGcp node_pools = 8;
+}
+
+//specification for configured kube-cluster in google cloud
+message KubeClusterGcpConfigureSpec {
+  // endpoint for the cluster api server
+  string cluster_endpoint = 1;
+  // base64 encoded string containing the cluster ca certificate
+  string cluster_ca_certificate_base64 = 2;
+  // base64 encoded google service-account credentials json file
+  string service_account_credentials_json_base64 = 3;
 }
 
 //cluster autoscaling configuration for gke clusters.

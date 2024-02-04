@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.managementmode;
+
+enum ManagementMode {
+  MANAGEMENT_MODE_UNSPECIFIED = 0;
+  create = 1;
+  configure = 2;
+}
