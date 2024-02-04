@@ -47,6 +47,9 @@ message IamRoleSpec {
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 3;
   // description of iam role
   string description = 4;
+  // flag to identify if the role can be used to grant public access
+  // by public it is to grant access to all companies in the platform
+  bool is_public = 5;
 }
 
 //status for iam-role
@@ -90,6 +93,8 @@ message ResourceTypeAndPrincipalTypeInput {
   // type of the principal that is allowed to link with the resource
   // examples: user/ company etc
   string principal_type = 2;
+  // flag to get only roles that can be publicly granted
+  bool is_public = 3;
 }
 
 // response to rpc query to get list of all principal types
