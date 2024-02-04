@@ -8,24 +8,12 @@ enum StackJobEventType {
   STACK_JOB_EVENT_TYPE_UNSPECIFIED = 0;
   created = 1 [
     //stack-jobs are persisted to database as part of rpc call during creation
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_create_stack_required) = false
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
   ];
   updated = 2 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_create_stack_required) = false
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
   deleted = 3 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_fga_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = false,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_create_stack_required) = false
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
   ];
 }
