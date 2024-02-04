@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.integration.cloudprovider.gcp;
+
+// input for command to authorize gcp cloud-account
+message AuthorizeGcpCloudAccountCommandInput {
+  // id of the organization on google cloud.
+  string organization_id = 1;
+  // email of the google service account to be used as principal for granting required roles.
+  string service_account_email = 2;
+  // access token to be used to impersonate the user.
+  string access_token = 3;
+}
+
+// response for command to authorize gcp cloud-account
+message AuthorizeGcpCloudAccountCommandResponse {
+  // list of roles granted for the service-account
+  repeated string granted_roles = 1;
+}
