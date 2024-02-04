@@ -34,22 +34,19 @@ enum KafkaClusterEventType {
   ];
   refreshed = 5 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = false,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
-  stack_job_progress_updated = 6 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
-  ];
+  stack_job_progress_updated = 6;
   stack_job_refresh_requested = 7 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = refresh
   ];
   stack_job_refresh_completed = 8 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_status_only_persist_required) = true
   ];
   stack_job_apply_preview_requested = 9 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = false,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply_preview
   ];
@@ -59,10 +56,10 @@ enum KafkaClusterEventType {
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = apply
   ];
   stack_job_apply_completed = 11 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_status_only_persist_required) = true
   ];
   stack_job_destroy_preview_requested = 12 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = false,
     (cloud.planton.apis.v1.commons.resource.enums.options.is_stack_job_required) = true,
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy_preview
   ];
@@ -72,7 +69,8 @@ enum KafkaClusterEventType {
     (cloud.planton.apis.v1.commons.resource.enums.options.stack_job_operation_type) = destroy
   ];
   stack_job_destroy_completed = 14 [
-    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_status_only_persist_required) = true
   ];
   paused = 15 [
     (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true,
