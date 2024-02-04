@@ -160,10 +160,10 @@ message KubeClusterStatus {
 //specification for kube-cluster in google cloud
 message KubeClusterGcpSpec {
   //spec for create management-mode
-  KubeClusterGcpCreateSpec create_spec = 1;
+  KubeClusterGcpCreateSpec create = 1;
 
   //spec for configure management-mode
-  KubeClusterGcpConfigureSpec configure_spec = 2;
+  KubeClusterGcpConfigureSpec configure = 2;
 }
 
 //specification for creating kube-cluster in google cloud
