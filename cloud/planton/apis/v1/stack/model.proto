@@ -58,6 +58,10 @@ message StackSpec {
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
+
+  // id of the company to which the resource belongs to.
+  // this is used as project name when creating stacks on pulumi cloud.
+  string company_id = 4;
 }
 
 // stack status
