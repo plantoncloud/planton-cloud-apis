@@ -8,8 +8,9 @@ message AuthorizeGcpCloudAccountCommandInput {
   string organization_id = 1;
   // email of the google service account to be used as principal for granting required roles.
   string service_account_email = 2;
-  // access token to be used to impersonate the user.
-  string access_token = 3;
+  // authorization code to be used for exchange for an access token that will
+  // eventually be used to impersonate the user to complete the cloud-account authorization process.
+  string authorization_code = 3;
 }
 
 // response for command to authorize gcp cloud-account
