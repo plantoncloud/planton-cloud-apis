@@ -282,3 +282,52 @@ message CreateStackJobCommandInput {
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 }
+
+// GetStackJobMinutesByCompanyIdInput is intended for requests to retrieve the total minutes of stack job
+// processing or usage associated with a given company. It focuses on identifying the company in question,
+// facilitating the aggregation or reporting of stack job minutes at the company level.
+message GetStackJobMinutesByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field is formatted as a string.
+  string company_id = 1;
+}
+
+
+// StackJobMinutesMTB represents the total minutes a stack job has been running. This message is typically
+// used to communicate or store information regarding the duration of stack jobs, making it a crucial
+// component in monitoring, billing, or reporting systems that track job execution times.
+message StackJobMinutesMTB {
+  // minutes indicates the total duration of the stack job execution in minutes. This field uses an int32 type to
+  // accommodate a wide range of values, from short tasks to long-running operations.
+  int32 minutes = 1;
+}
+
+// GetResourceCountByCompanyIdInput is used for requests aimed at obtaining the number of resources
+// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company.
+// The focus on company identification via the company_id field enables targeted queries for resource
+// counts within the specified company's context, supporting operations like auditing, resource management,
+// and planning.
+message GetResourceCountByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field is formatted as a string.
+  string company_id = 1;
+}
+
+// ResourceCount encapsulates count of a specific resource type within an organization.
+// It includes the resource's type and name for clear identification and the total count of such resources.
+// This message is useful in contexts where detailed inventory, asset management, or resource planning is required,
+// allowing for precise tracking and reporting of various resources.
+message ResourceCount {
+  // resource_type categorizes the resource, aiding in grouping and differentiating between various kinds
+  // of resources (e.g., postgres_cluster, redis_cluster, kube_cluster etc.;).
+  string resource_type = 1;
+
+  // resource_name provides the specific name or identifier of the resource, offering a more user readable
+  // text that complements the resource_type field.
+  string resource_name = 2;
+
+  // count represents the total number of resources of the specified type and name, enabling quantitative
+  // assessments and management decisions based on the available resources.
+  int32 count = 3;
+}
+
+
+

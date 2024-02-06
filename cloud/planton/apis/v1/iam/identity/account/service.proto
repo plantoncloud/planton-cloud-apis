@@ -120,4 +120,19 @@ service UserAccountQueryController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "company_id";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get associates";
   }
+
+  rpc getMembersCountByCompanyId(MembersCountByCompanyIdInput) returns (MembersCount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "company_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get company members count";
+  }
+
+  rpc getMembersCountByProductId(MembersCountByProductIdInput) returns (MembersCount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = product;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "product_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get product members count";
+  }
+
 }
