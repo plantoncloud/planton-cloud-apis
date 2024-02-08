@@ -77,6 +77,7 @@ message MicroserviceInstanceSpec {
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
   //review-<id> where id is the merge request number
   string version = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true,
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 20,
     (buf.validate.field).cel = {
