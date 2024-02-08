@@ -189,10 +189,12 @@ var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	StackJobQueryController_ListByFilters_FullMethodName                = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/listByFilters"
-	StackJobQueryController_GetById_FullMethodName                      = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getById"
-	StackJobQueryController_GetProgressEventStream_FullMethodName       = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getProgressEventStream"
-	StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobLogSnapshotStream"
+	StackJobQueryController_ListByFilters_FullMethodName                    = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/listByFilters"
+	StackJobQueryController_GetById_FullMethodName                          = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getById"
+	StackJobQueryController_GetProgressEventStream_FullMethodName           = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getProgressEventStream"
+	StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName     = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobLogSnapshotStream"
+	StackJobQueryController_GetStackJobMinutesMTBByCompanyId_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobMinutesMTBByCompanyId"
+	StackJobQueryController_GetResourceCountByCompanyId_FullMethodName      = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getResourceCountByCompanyId"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -211,6 +213,16 @@ type StackJobQueryControllerClient interface {
 	// rpc to get snapshot of stack-job log
 	// response is optimized to display the stack-job log on non-interactive client-apps
 	GetStackJobLogSnapshotStream(ctx context.Context, in *StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetStackJobLogSnapshotStreamClient, error)
+	// getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
+	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
+	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
+	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
+	GetStackJobMinutesMTBByCompanyId(ctx context.Context, in *GetStackJobMinutesByCompanyIdInput, opts ...grpc.CallOption) (*StackJobMinutesMTB, error)
+	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
+	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
+	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
+	// and name of the resource along with its total count within the specified company.
+	GetResourceCountByCompanyId(ctx context.Context, in *GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*ResourceCount, error)
 }
 
 type stackJobQueryControllerClient struct {
@@ -303,6 +315,24 @@ func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamClient) Recv() (*Sta
 	return m, nil
 }
 
+func (c *stackJobQueryControllerClient) GetStackJobMinutesMTBByCompanyId(ctx context.Context, in *GetStackJobMinutesByCompanyIdInput, opts ...grpc.CallOption) (*StackJobMinutesMTB, error) {
+	out := new(StackJobMinutesMTB)
+	err := c.cc.Invoke(ctx, StackJobQueryController_GetStackJobMinutesMTBByCompanyId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *stackJobQueryControllerClient) GetResourceCountByCompanyId(ctx context.Context, in *GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*ResourceCount, error) {
+	out := new(ResourceCount)
+	err := c.cc.Invoke(ctx, StackJobQueryController_GetResourceCountByCompanyId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StackJobQueryControllerServer is the server API for StackJobQueryController service.
 // All implementations should embed UnimplementedStackJobQueryControllerServer
 // for forward compatibility
@@ -319,6 +349,16 @@ type StackJobQueryControllerServer interface {
 	// rpc to get snapshot of stack-job log
 	// response is optimized to display the stack-job log on non-interactive client-apps
 	GetStackJobLogSnapshotStream(*StackJobId, StackJobQueryController_GetStackJobLogSnapshotStreamServer) error
+	// getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
+	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
+	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
+	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
+	GetStackJobMinutesMTBByCompanyId(context.Context, *GetStackJobMinutesByCompanyIdInput) (*StackJobMinutesMTB, error)
+	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
+	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
+	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
+	// and name of the resource along with its total count within the specified company.
+	GetResourceCountByCompanyId(context.Context, *GetResourceCountByCompanyIdInput) (*ResourceCount, error)
 }
 
 // UnimplementedStackJobQueryControllerServer should be embedded to have forward compatible implementations.
@@ -336,6 +376,12 @@ func (UnimplementedStackJobQueryControllerServer) GetProgressEventStream(*StackJ
 }
 func (UnimplementedStackJobQueryControllerServer) GetStackJobLogSnapshotStream(*StackJobId, StackJobQueryController_GetStackJobLogSnapshotStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetStackJobLogSnapshotStream not implemented")
+}
+func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesMTBByCompanyId(context.Context, *GetStackJobMinutesByCompanyIdInput) (*StackJobMinutesMTB, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStackJobMinutesMTBByCompanyId not implemented")
+}
+func (UnimplementedStackJobQueryControllerServer) GetResourceCountByCompanyId(context.Context, *GetResourceCountByCompanyIdInput) (*ResourceCount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetResourceCountByCompanyId not implemented")
 }
 
 // UnsafeStackJobQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -427,6 +473,42 @@ func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamServer) Send(m *Stac
 	return x.ServerStream.SendMsg(m)
 }
 
+func _StackJobQueryController_GetStackJobMinutesMTBByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStackJobMinutesByCompanyIdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTBByCompanyId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StackJobQueryController_GetStackJobMinutesMTBByCompanyId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTBByCompanyId(ctx, req.(*GetStackJobMinutesByCompanyIdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _StackJobQueryController_GetResourceCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetResourceCountByCompanyIdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StackJobQueryControllerServer).GetResourceCountByCompanyId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StackJobQueryController_GetResourceCountByCompanyId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StackJobQueryControllerServer).GetResourceCountByCompanyId(ctx, req.(*GetResourceCountByCompanyIdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StackJobQueryController_ServiceDesc is the grpc.ServiceDesc for StackJobQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -441,6 +523,14 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _StackJobQueryController_GetById_Handler,
+		},
+		{
+			MethodName: "getStackJobMinutesMTBByCompanyId",
+			Handler:    _StackJobQueryController_GetStackJobMinutesMTBByCompanyId_Handler,
+		},
+		{
+			MethodName: "getResourceCountByCompanyId",
+			Handler:    _StackJobQueryController_GetResourceCountByCompanyId_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

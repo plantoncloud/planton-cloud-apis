@@ -163,3 +163,24 @@ message Auth0Webhook {
   string user_agent = 7;
   string user_id = 8;
 }
+
+message MembersCount {
+  int32 count = 1;
+}
+
+
+// MembersCountByCompanyIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given company. This simplified input focuses solely on company identification,
+// making it suitable to aggregate members count at the company level.
+message MembersCountByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field accepts a string format.
+  string company_id = 1;
+}
+
+// MembersCountByProductIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given product. This simplified input focuses solely on product identification,
+// making it suitable to aggregate members count at the product level.
+message MembersCountByProductIdInput {
+  // product_id uniquely identifies a product within the system. The field accepts a string format.
+  string product_id = 1;
+}
