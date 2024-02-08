@@ -329,5 +329,33 @@ message ResourceCount {
   int32 count = 3;
 }
 
+// ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
+// of resource counts across different types and names within a specific context, such as a company.
+// Each entry in the 'entries' field details the type, name, and count of a distinct resource.
+message ResourcesCount {
+  // entries is a collection of ResourceCount messages, each of which details the type, name,
+  // and count of an individual resource. This repeated field allows for representing a diverse
+  // array of resources within a single, structured response.
+  repeated ResourceCount entries = 1;
+}
+
+// GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi
+// resources associated with a specified company. The inclusion of the company_id field allows for
+// targeted queries to assess the scope of Pulumi resource utilization within a particular company,
+// supporting resource management, auditing, and planning activities in cloud infrastructure and development operations.
+message GetPulumiResourceCountByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field is formatted as a string.
+  string company_id = 1;
+}
+
+// TotalPulumiResourceCount represents the aggregate count of Pulumi resources, typically returned
+// in response to queries assessing the volume of Pulumi-managed resources within a specific context,
+// such as a company. This message is crucial for understanding the extent of Pulumi infrastructure
+// deployment and utilization, aiding in resource management, planning, and optimization efforts
+// for cloud infrastructure managed through Pulumi.
+message TotalPulumiResourceCount {
+  // count is the total number of Pulumi resources.
+  int32 count = 1;
+}
 
 
