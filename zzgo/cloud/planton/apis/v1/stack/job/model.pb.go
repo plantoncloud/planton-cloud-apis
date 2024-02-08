@@ -1647,6 +1647,164 @@ func (x *ResourceCount) GetCount() int32 {
 	return 0
 }
 
+// ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
+// of resource counts across different types and names within a specific context, such as a company.
+// Each entry in the 'entries' field details the type, name, and count of a distinct resource.
+type ResourcesCount struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// entries is a collection of ResourceCount messages, each of which details the type, name,
+	// and count of an individual resource. This repeated field allows for representing a diverse
+	// array of resources within a single, structured response.
+	Entries []*ResourceCount `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+}
+
+func (x *ResourcesCount) Reset() {
+	*x = ResourcesCount{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ResourcesCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResourcesCount) ProtoMessage() {}
+
+func (x *ResourcesCount) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResourcesCount.ProtoReflect.Descriptor instead.
+func (*ResourcesCount) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_stack_job_model_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *ResourcesCount) GetEntries() []*ResourceCount {
+	if x != nil {
+		return x.Entries
+	}
+	return nil
+}
+
+// GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi
+// resources associated with a specified company. The inclusion of the company_id field allows for
+// targeted queries to assess the scope of Pulumi resource utilization within a particular company,
+// supporting resource management, auditing, and planning activities in cloud infrastructure and development operations.
+type GetPulumiResourceCountByCompanyIdInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// company_id uniquely identifies a company within the system. The field is formatted as a string.
+	CompanyId string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
+}
+
+func (x *GetPulumiResourceCountByCompanyIdInput) Reset() {
+	*x = GetPulumiResourceCountByCompanyIdInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetPulumiResourceCountByCompanyIdInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPulumiResourceCountByCompanyIdInput) ProtoMessage() {}
+
+func (x *GetPulumiResourceCountByCompanyIdInput) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPulumiResourceCountByCompanyIdInput.ProtoReflect.Descriptor instead.
+func (*GetPulumiResourceCountByCompanyIdInput) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_stack_job_model_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *GetPulumiResourceCountByCompanyIdInput) GetCompanyId() string {
+	if x != nil {
+		return x.CompanyId
+	}
+	return ""
+}
+
+// TotalPulumiResourceCount represents the aggregate count of Pulumi resources, typically returned
+// in response to queries assessing the volume of Pulumi-managed resources within a specific context,
+// such as a company. This message is crucial for understanding the extent of Pulumi infrastructure
+// deployment and utilization, aiding in resource management, planning, and optimization efforts
+// for cloud infrastructure managed through Pulumi.
+type TotalPulumiResourceCount struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// count is the total number of Pulumi resources.
+	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
+}
+
+func (x *TotalPulumiResourceCount) Reset() {
+	*x = TotalPulumiResourceCount{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *TotalPulumiResourceCount) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*TotalPulumiResourceCount) ProtoMessage() {}
+
+func (x *TotalPulumiResourceCount) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use TotalPulumiResourceCount.ProtoReflect.Descriptor instead.
+func (*TotalPulumiResourceCount) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_v1_stack_job_model_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *TotalPulumiResourceCount) GetCount() int32 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
 var File_cloud_planton_apis_v1_stack_job_model_proto protoreflect.FileDescriptor
 
 var file_cloud_planton_apis_v1_stack_job_model_proto_rawDesc = []byte{
@@ -2086,27 +2244,40 @@ var file_cloud_planton_apis_v1_stack_job_model_proto_rawDesc = []byte{
 	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4e, 0x61, 0x6d, 0x65,
 	0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52,
-	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0xb0, 0x02, 0x0a, 0x2d, 0x62, 0x75, 0x69, 0x6c, 0x64,
-	0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
-	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x73,
-	0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x42, 0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4f, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63,
-	0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f,
-	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70,
-	0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c,
-	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74,
-	0x61, 0x63, 0x6b, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02, 0x06, 0x43, 0x50, 0x41, 0x56, 0x53, 0x4a,
-	0xaa, 0x02, 0x1f, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
-	0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x4a,
-	0x6f, 0x62, 0xca, 0x02, 0x1f, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x53, 0x74, 0x61, 0x63, 0x6b,
-	0x5c, 0x4a, 0x6f, 0x62, 0xe2, 0x02, 0x2b, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x53, 0x74, 0x61,
-	0x63, 0x6b, 0x5c, 0x4a, 0x6f, 0x62, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
-	0x74, 0x61, 0xea, 0x02, 0x24, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e,
-	0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x53,
-	0x74, 0x61, 0x63, 0x6b, 0x3a, 0x3a, 0x4a, 0x6f, 0x62, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x5a, 0x0a, 0x0e, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72,
+	0x63, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x48, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72,
+	0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2e, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76,
+	0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x52, 0x65, 0x73, 0x6f,
+	0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69,
+	0x65, 0x73, 0x22, 0x47, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52,
+	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f,
+	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x1d, 0x0a, 0x0a,
+	0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22, 0x30, 0x0a, 0x18, 0x54,
+	0x6f, 0x74, 0x61, 0x6c, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72,
+	0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0xb0, 0x02,
+	0x0a, 0x2d, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e,
+	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70,
+	0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x42,
+	0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4f, 0x67,
+	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
+	0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69,
+	0x73, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2f, 0x6a, 0x6f, 0x62, 0xa2, 0x02,
+	0x06, 0x43, 0x50, 0x41, 0x56, 0x53, 0x4a, 0xaa, 0x02, 0x1f, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
+	0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e,
+	0x53, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x4a, 0x6f, 0x62, 0xca, 0x02, 0x1f, 0x43, 0x6c, 0x6f, 0x75,
+	0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56,
+	0x31, 0x5c, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x5c, 0x4a, 0x6f, 0x62, 0xe2, 0x02, 0x2b, 0x43, 0x6c,
+	0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73,
+	0x5c, 0x56, 0x31, 0x5c, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x5c, 0x4a, 0x6f, 0x62, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x24, 0x43, 0x6c, 0x6f, 0x75,
+	0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73,
+	0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x3a, 0x3a, 0x4a, 0x6f, 0x62,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2121,7 +2292,7 @@ func file_cloud_planton_apis_v1_stack_job_model_proto_rawDescGZIP() []byte {
 	return file_cloud_planton_apis_v1_stack_job_model_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
+var file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
 var file_cloud_planton_apis_v1_stack_job_model_proto_goTypes = []interface{}{
 	(*StackJob)(nil),                                  // 0: cloud.planton.apis.v1.stack.job.StackJob
 	(*StackJobSpec)(nil),                              // 1: cloud.planton.apis.v1.stack.job.StackJobSpec
@@ -2146,42 +2317,45 @@ var file_cloud_planton_apis_v1_stack_job_model_proto_goTypes = []interface{}{
 	(*StackJobMinutesMTB)(nil),                        // 20: cloud.planton.apis.v1.stack.job.StackJobMinutesMTB
 	(*GetResourceCountByCompanyIdInput)(nil),          // 21: cloud.planton.apis.v1.stack.job.GetResourceCountByCompanyIdInput
 	(*ResourceCount)(nil),                             // 22: cloud.planton.apis.v1.stack.job.ResourceCount
-	nil,                                               // 23: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
-	(*resource.Metadata)(nil),                         // 24: cloud.planton.apis.v1.commons.resource.Metadata
-	(enums.ResourceType)(0),                           // 25: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(operationtype.StackJobOperationType)(0),          // 26: cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	(*resource.ResourceLifecycle)(nil),                // 27: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	(*audit.ResourceAudit)(nil),                       // 28: cloud.planton.apis.v1.commons.audit.ResourceAudit
-	(executionstatus.StackJobExecutionStatus)(0),      // 29: cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
-	(*timestamppb.Timestamp)(nil),                     // 30: google.protobuf.Timestamp
-	(*pagination.PageInfo)(nil),                       // 31: cloud.planton.apis.v1.commons.pagination.PageInfo
-	(event.StackJobProgressEventType)(0),              // 32: cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType
-	(*engine.EngineEvent)(nil),                        // 33: cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent
-	(statusevent.StackJobProgressStatusEventType)(0),  // 34: cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
+	(*ResourcesCount)(nil),                            // 23: cloud.planton.apis.v1.stack.job.ResourcesCount
+	(*GetPulumiResourceCountByCompanyIdInput)(nil),    // 24: cloud.planton.apis.v1.stack.job.GetPulumiResourceCountByCompanyIdInput
+	(*TotalPulumiResourceCount)(nil),                  // 25: cloud.planton.apis.v1.stack.job.TotalPulumiResourceCount
+	nil,                                               // 26: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
+	(*resource.Metadata)(nil),                         // 27: cloud.planton.apis.v1.commons.resource.Metadata
+	(enums.ResourceType)(0),                           // 28: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(operationtype.StackJobOperationType)(0),          // 29: cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	(*resource.ResourceLifecycle)(nil),                // 30: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	(*audit.ResourceAudit)(nil),                       // 31: cloud.planton.apis.v1.commons.audit.ResourceAudit
+	(executionstatus.StackJobExecutionStatus)(0),      // 32: cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	(*timestamppb.Timestamp)(nil),                     // 33: google.protobuf.Timestamp
+	(*pagination.PageInfo)(nil),                       // 34: cloud.planton.apis.v1.commons.pagination.PageInfo
+	(event.StackJobProgressEventType)(0),              // 35: cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType
+	(*engine.EngineEvent)(nil),                        // 36: cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent
+	(statusevent.StackJobProgressStatusEventType)(0),  // 37: cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
 }
 var file_cloud_planton_apis_v1_stack_job_model_proto_depIdxs = []int32{
-	24, // 0: cloud.planton.apis.v1.stack.job.StackJob.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
+	27, // 0: cloud.planton.apis.v1.stack.job.StackJob.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
 	1,  // 1: cloud.planton.apis.v1.stack.job.StackJob.spec:type_name -> cloud.planton.apis.v1.stack.job.StackJobSpec
 	2,  // 2: cloud.planton.apis.v1.stack.job.StackJob.status:type_name -> cloud.planton.apis.v1.stack.job.StackJobStatus
-	25, // 3: cloud.planton.apis.v1.stack.job.StackJobSpec.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	26, // 4: cloud.planton.apis.v1.stack.job.StackJobSpec.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	27, // 5: cloud.planton.apis.v1.stack.job.StackJobStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	28, // 6: cloud.planton.apis.v1.stack.job.StackJobStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
-	29, // 7: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
-	30, // 8: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_start_time:type_name -> google.protobuf.Timestamp
-	30, // 9: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_end_time:type_name -> google.protobuf.Timestamp
-	31, // 10: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.v1.commons.pagination.PageInfo
-	25, // 11: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	26, // 12: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	29, // 13: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	28, // 3: cloud.planton.apis.v1.stack.job.StackJobSpec.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	29, // 4: cloud.planton.apis.v1.stack.job.StackJobSpec.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	30, // 5: cloud.planton.apis.v1.stack.job.StackJobStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	31, // 6: cloud.planton.apis.v1.stack.job.StackJobStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
+	32, // 7: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	33, // 8: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_start_time:type_name -> google.protobuf.Timestamp
+	33, // 9: cloud.planton.apis.v1.stack.job.StackJobStatus.execution_end_time:type_name -> google.protobuf.Timestamp
+	34, // 10: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.v1.commons.pagination.PageInfo
+	28, // 11: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	29, // 12: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	32, // 13: cloud.planton.apis.v1.stack.job.ListStackJobsByFiltersQueryInput.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
 	0,  // 14: cloud.planton.apis.v1.stack.job.StackJobList.entries:type_name -> cloud.planton.apis.v1.stack.job.StackJob
-	29, // 15: cloud.planton.apis.v1.stack.job.SetStackJobExecutionStatusCommandInput.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
-	26, // 16: cloud.planton.apis.v1.stack.job.StackJobLogFileNameInfo.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	32, // 17: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.event_type:type_name -> cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType
+	32, // 15: cloud.planton.apis.v1.stack.job.SetStackJobExecutionStatusCommandInput.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	29, // 16: cloud.planton.apis.v1.stack.job.StackJobLogFileNameInfo.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	35, // 17: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.event_type:type_name -> cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType
 	9,  // 18: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.progress_status_payload:type_name -> cloud.planton.apis.v1.stack.job.StackJobProgressStatusPayload
-	33, // 19: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.engine_event_payload:type_name -> cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent
-	30, // 20: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.timestamp:type_name -> google.protobuf.Timestamp
-	34, // 21: cloud.planton.apis.v1.stack.job.StackJobProgressStatusPayload.event_type:type_name -> cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
+	36, // 19: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.engine_event_payload:type_name -> cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent
+	33, // 20: cloud.planton.apis.v1.stack.job.StackJobProgressEvent.timestamp:type_name -> google.protobuf.Timestamp
+	37, // 21: cloud.planton.apis.v1.stack.job.StackJobProgressStatusPayload.event_type:type_name -> cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
 	11, // 22: cloud.planton.apis.v1.stack.job.StackJobLogSnapshot.refresh_snapshot:type_name -> cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot
 	11, // 23: cloud.planton.apis.v1.stack.job.StackJobLogSnapshot.preview_snapshot:type_name -> cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot
 	11, // 24: cloud.planton.apis.v1.stack.job.StackJobLogSnapshot.apply_snapshot:type_name -> cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot
@@ -2191,14 +2365,15 @@ var file_cloud_planton_apis_v1_stack_job_model_proto_depIdxs = []int32{
 	14, // 28: cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot.diff:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationDiffSnapshot
 	15, // 29: cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot.diagnostics:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationDiagnosticsSnapshot
 	16, // 30: cloud.planton.apis.v1.stack.job.StackJobLogPulumiOperationSnapshot.summary:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationSummarySnapshot
-	23, // 31: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.urn_to_row_map:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
-	26, // 32: cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	17, // 33: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry.value:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshotRow
-	34, // [34:34] is the sub-list for method output_type
-	34, // [34:34] is the sub-list for method input_type
-	34, // [34:34] is the sub-list for extension type_name
-	34, // [34:34] is the sub-list for extension extendee
-	0,  // [0:34] is the sub-list for field type_name
+	26, // 31: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.urn_to_row_map:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
+	29, // 32: cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	22, // 33: cloud.planton.apis.v1.stack.job.ResourcesCount.entries:type_name -> cloud.planton.apis.v1.stack.job.ResourceCount
+	17, // 34: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry.value:type_name -> cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshotRow
+	35, // [35:35] is the sub-list for method output_type
+	35, // [35:35] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_v1_stack_job_model_proto_init() }
@@ -2483,6 +2658,42 @@ func file_cloud_planton_apis_v1_stack_job_model_proto_init() {
 				return nil
 			}
 		}
+		file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ResourcesCount); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPulumiResourceCountByCompanyIdInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*TotalPulumiResourceCount); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2490,7 +2701,7 @@ func file_cloud_planton_apis_v1_stack_job_model_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_v1_stack_job_model_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   24,
+			NumMessages:   27,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

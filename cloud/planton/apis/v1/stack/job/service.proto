@@ -39,5 +39,13 @@ service StackJobQueryController {
   // associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
   // containing the company_id of interest. It returns a ResourceCount message, which includes the type
   // and name of the resource along with its total count within the specified company.
-  rpc getResourceCountByCompanyId(GetResourceCountByCompanyIdInput) returns (ResourceCount);
+  rpc getResourceCountByCompanyId(GetResourceCountByCompanyIdInput) returns (ResourcesCount);
+  // getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
+  // associated with a specified company. This operation requires an input of type
+  // GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
+  // company. It returns a TotalPulumiResourceCount message, encapsulating the aggregate count of
+  // Pulumi resources managed under the given company's account. This service is essential for
+  // organizations utilizing Pulumi for infrastructure as code (IaC) to monitor and manage their
+  // cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
+  rpc getPulumiResourceCountByCompanyId(GetPulumiResourceCountByCompanyIdInput) returns (TotalPulumiResourceCount);
 }
