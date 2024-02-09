@@ -295,7 +295,7 @@ message GetStackJobMinutesByCompanyIdInput {
 // StackJobMinutesMTB represents the total minutes a stack job has been running. This message is typically
 // used to communicate or store information regarding the duration of stack jobs, making it a crucial
 // component in monitoring, billing, or reporting systems that track job execution times.
-message StackJobMinutesMTB {
+message StackJobMinutesMTD {
   // minutes indicates the total duration of the stack job execution in minutes. This field uses an int32 type to
   // accommodate a wide range of values, from short tasks to long-running operations.
   int32 minutes = 1;
