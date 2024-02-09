@@ -34,7 +34,7 @@ service StackJobQueryController {
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
   // within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-  rpc getStackJobMinutesMTBByCompanyId(GetStackJobMinutesByCompanyIdInput) returns (StackJobMinutesMTB);
+  rpc getStackJobMinutesMTDByCompanyId(GetStackJobMinutesByCompanyIdInput) returns (StackJobMinutesMTD);
   // getResourceCountByCompanyId retrieves detailed information about the count of different resources
   // associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
   // containing the company_id of interest. It returns a ResourceCount message, which includes the type

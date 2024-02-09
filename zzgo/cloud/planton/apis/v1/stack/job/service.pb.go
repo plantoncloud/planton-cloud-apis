@@ -99,7 +99,7 @@ var file_cloud_planton_apis_v1_stack_job_service_proto_rawDesc = []byte{
 	0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x53, 0x74, 0x61,
 	0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x4c, 0x6f, 0x67, 0x53, 0x6e, 0x61, 0x70, 0x73, 0x68, 0x6f, 0x74,
 	0x30, 0x01, 0x12, 0x9c, 0x01, 0x0a, 0x20, 0x67, 0x65, 0x74, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a,
-	0x6f, 0x62, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54, 0x42, 0x42, 0x79, 0x43, 0x6f,
+	0x6f, 0x62, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54, 0x44, 0x42, 0x79, 0x43, 0x6f,
 	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x12, 0x43, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
 	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e,
 	0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x47, 0x65, 0x74, 0x53, 0x74, 0x61,
@@ -108,7 +108,7 @@ var file_cloud_planton_apis_v1_stack_job_service_proto_rawDesc = []byte{
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69,
 	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6a, 0x6f, 0x62, 0x2e, 0x53,
 	0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54,
-	0x42, 0x12, 0x91, 0x01, 0x0a, 0x1b, 0x67, 0x65, 0x74, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
+	0x44, 0x12, 0x91, 0x01, 0x0a, 0x1b, 0x67, 0x65, 0x74, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
 	0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49,
 	0x64, 0x12, 0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
 	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e,
@@ -161,7 +161,7 @@ var file_cloud_planton_apis_v1_stack_job_service_proto_goTypes = []interface{}{
 	(*StackJobList)(nil),                           // 7: cloud.planton.apis.v1.stack.job.StackJobList
 	(*StackJobProgressEvent)(nil),                  // 8: cloud.planton.apis.v1.stack.job.StackJobProgressEvent
 	(*StackJobLogSnapshot)(nil),                    // 9: cloud.planton.apis.v1.stack.job.StackJobLogSnapshot
-	(*StackJobMinutesMTB)(nil),                     // 10: cloud.planton.apis.v1.stack.job.StackJobMinutesMTB
+	(*StackJobMinutesMTD)(nil),                     // 10: cloud.planton.apis.v1.stack.job.StackJobMinutesMTD
 	(*ResourcesCount)(nil),                         // 11: cloud.planton.apis.v1.stack.job.ResourcesCount
 	(*TotalPulumiResourceCount)(nil),               // 12: cloud.planton.apis.v1.stack.job.TotalPulumiResourceCount
 }
@@ -173,7 +173,7 @@ var file_cloud_planton_apis_v1_stack_job_service_proto_depIdxs = []int32{
 	3,  // 4: cloud.planton.apis.v1.stack.job.StackJobQueryController.getById:input_type -> cloud.planton.apis.v1.stack.job.StackJobId
 	3,  // 5: cloud.planton.apis.v1.stack.job.StackJobQueryController.getProgressEventStream:input_type -> cloud.planton.apis.v1.stack.job.StackJobId
 	3,  // 6: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobLogSnapshotStream:input_type -> cloud.planton.apis.v1.stack.job.StackJobId
-	4,  // 7: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobMinutesMTBByCompanyId:input_type -> cloud.planton.apis.v1.stack.job.GetStackJobMinutesByCompanyIdInput
+	4,  // 7: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobMinutesMTDByCompanyId:input_type -> cloud.planton.apis.v1.stack.job.GetStackJobMinutesByCompanyIdInput
 	5,  // 8: cloud.planton.apis.v1.stack.job.StackJobQueryController.getResourceCountByCompanyId:input_type -> cloud.planton.apis.v1.stack.job.GetResourceCountByCompanyIdInput
 	6,  // 9: cloud.planton.apis.v1.stack.job.StackJobQueryController.getPulumiResourceCountByCompanyId:input_type -> cloud.planton.apis.v1.stack.job.GetPulumiResourceCountByCompanyIdInput
 	0,  // 10: cloud.planton.apis.v1.stack.job.StackJobCommandController.create:output_type -> cloud.planton.apis.v1.stack.job.StackJob
@@ -183,7 +183,7 @@ var file_cloud_planton_apis_v1_stack_job_service_proto_depIdxs = []int32{
 	0,  // 14: cloud.planton.apis.v1.stack.job.StackJobQueryController.getById:output_type -> cloud.planton.apis.v1.stack.job.StackJob
 	8,  // 15: cloud.planton.apis.v1.stack.job.StackJobQueryController.getProgressEventStream:output_type -> cloud.planton.apis.v1.stack.job.StackJobProgressEvent
 	9,  // 16: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobLogSnapshotStream:output_type -> cloud.planton.apis.v1.stack.job.StackJobLogSnapshot
-	10, // 17: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobMinutesMTBByCompanyId:output_type -> cloud.planton.apis.v1.stack.job.StackJobMinutesMTB
+	10, // 17: cloud.planton.apis.v1.stack.job.StackJobQueryController.getStackJobMinutesMTDByCompanyId:output_type -> cloud.planton.apis.v1.stack.job.StackJobMinutesMTD
 	11, // 18: cloud.planton.apis.v1.stack.job.StackJobQueryController.getResourceCountByCompanyId:output_type -> cloud.planton.apis.v1.stack.job.ResourcesCount
 	12, // 19: cloud.planton.apis.v1.stack.job.StackJobQueryController.getPulumiResourceCountByCompanyId:output_type -> cloud.planton.apis.v1.stack.job.TotalPulumiResourceCount
 	10, // [10:20] is the sub-list for method output_type

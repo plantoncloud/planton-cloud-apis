@@ -1472,7 +1472,7 @@ func (x *GetStackJobMinutesByCompanyIdInput) GetCompanyId() string {
 // StackJobMinutesMTB represents the total minutes a stack job has been running. This message is typically
 // used to communicate or store information regarding the duration of stack jobs, making it a crucial
 // component in monitoring, billing, or reporting systems that track job execution times.
-type StackJobMinutesMTB struct {
+type StackJobMinutesMTD struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -1482,8 +1482,8 @@ type StackJobMinutesMTB struct {
 	Minutes int32 `protobuf:"varint,1,opt,name=minutes,proto3" json:"minutes,omitempty"`
 }
 
-func (x *StackJobMinutesMTB) Reset() {
-	*x = StackJobMinutesMTB{}
+func (x *StackJobMinutesMTD) Reset() {
+	*x = StackJobMinutesMTD{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1491,13 +1491,13 @@ func (x *StackJobMinutesMTB) Reset() {
 	}
 }
 
-func (x *StackJobMinutesMTB) String() string {
+func (x *StackJobMinutesMTD) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*StackJobMinutesMTB) ProtoMessage() {}
+func (*StackJobMinutesMTD) ProtoMessage() {}
 
-func (x *StackJobMinutesMTB) ProtoReflect() protoreflect.Message {
+func (x *StackJobMinutesMTD) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1509,12 +1509,12 @@ func (x *StackJobMinutesMTB) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use StackJobMinutesMTB.ProtoReflect.Descriptor instead.
-func (*StackJobMinutesMTB) Descriptor() ([]byte, []int) {
+// Deprecated: Use StackJobMinutesMTD.ProtoReflect.Descriptor instead.
+func (*StackJobMinutesMTD) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_stack_job_model_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *StackJobMinutesMTB) GetMinutes() int32 {
+func (x *StackJobMinutesMTD) GetMinutes() int32 {
 	if x != nil {
 		return x.Minutes
 	}
@@ -2231,7 +2231,7 @@ var file_cloud_planton_apis_v1_stack_job_model_proto_rawDesc = []byte{
 	0x70, 0x75, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79,
 	0x49, 0x64, 0x22, 0x2e, 0x0a, 0x12, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x4d, 0x69,
-	0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54, 0x42, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x69, 0x6e, 0x75,
+	0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54, 0x44, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x69, 0x6e, 0x75,
 	0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x6d, 0x69, 0x6e, 0x75, 0x74,
 	0x65, 0x73, 0x22, 0x41, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
 	0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49,
@@ -2314,7 +2314,7 @@ var file_cloud_planton_apis_v1_stack_job_model_proto_goTypes = []interface{}{
 	(*PulumiOperationResourceChangesSnapshotRow)(nil), // 17: cloud.planton.apis.v1.stack.job.PulumiOperationResourceChangesSnapshotRow
 	(*CreateStackJobCommandInput)(nil),                // 18: cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput
 	(*GetStackJobMinutesByCompanyIdInput)(nil),        // 19: cloud.planton.apis.v1.stack.job.GetStackJobMinutesByCompanyIdInput
-	(*StackJobMinutesMTB)(nil),                        // 20: cloud.planton.apis.v1.stack.job.StackJobMinutesMTB
+	(*StackJobMinutesMTD)(nil),                        // 20: cloud.planton.apis.v1.stack.job.StackJobMinutesMTD
 	(*GetResourceCountByCompanyIdInput)(nil),          // 21: cloud.planton.apis.v1.stack.job.GetResourceCountByCompanyIdInput
 	(*ResourceCount)(nil),                             // 22: cloud.planton.apis.v1.stack.job.ResourceCount
 	(*ResourcesCount)(nil),                            // 23: cloud.planton.apis.v1.stack.job.ResourcesCount
@@ -2623,7 +2623,7 @@ func file_cloud_planton_apis_v1_stack_job_model_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_stack_job_model_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*StackJobMinutesMTB); i {
+			switch v := v.(*StackJobMinutesMTD); i {
 			case 0:
 				return &v.state
 			case 1:
