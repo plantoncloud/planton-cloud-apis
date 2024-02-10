@@ -2,9 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.job;
 
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
-import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/snapshot/model.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 
 service StackJobCommandController {
@@ -26,10 +28,10 @@ service StackJobQueryController {
   rpc getById(cloud.planton.apis.v1.stack.job.StackJobId) returns(cloud.planton.apis.v1.stack.job.StackJob);
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
-  rpc getProgressEventStream(cloud.planton.apis.v1.stack.job.StackJobId) returns(stream cloud.planton.apis.v1.stack.job.StackJobProgressEvent);
+  rpc getProgressEventStream(cloud.planton.apis.v1.stack.job.StackJobId) returns(stream cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent);
   //rpc to get snapshot of stack-job log
   //response is optimized to display the stack-job log on non-interactive client-apps
-  rpc getStackJobLogSnapshotStream(cloud.planton.apis.v1.stack.job.StackJobId) returns (stream cloud.planton.apis.v1.stack.job.StackJobLogSnapshot);
+  rpc getStackJobLogSnapshotStream(cloud.planton.apis.v1.stack.job.StackJobId) returns (stream cloud.planton.apis.v1.stack.job.progress.snapshot.StackJobLogSnapshot);
   // getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
   // within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id

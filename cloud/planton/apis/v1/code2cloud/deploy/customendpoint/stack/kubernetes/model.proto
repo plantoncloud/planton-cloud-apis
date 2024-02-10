@@ -4,9 +4,10 @@ syntax = "proto3";
 //wildcard certificates are provisioned for the custom-endpoint.
 package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes;
 
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 //custom-endpoint container stack input
 message CustomEndpointKubernetesStackInput {
@@ -39,7 +40,7 @@ message CustomEndpointKubernetesStackOutputs {
 //stack response
 message CustomEndpointKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   CustomEndpointKubernetesStackOutputs outputs = 3;
 }

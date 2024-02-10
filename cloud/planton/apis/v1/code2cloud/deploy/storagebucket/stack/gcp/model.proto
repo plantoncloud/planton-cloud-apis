@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.stack.gcp;
 
+import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 //input for storage-bucket stack
 message StorageBucketGcpStackInput {
@@ -35,7 +36,7 @@ message StorageBucketGcpStackOutputs {
 //stack response
 message StorageBucketGcpStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   StorageBucketGcpStackOutputs outputs = 3;
 }

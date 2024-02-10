@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.environment.stack.gcpgke;
 
+import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 message EnvironmentGcpGkeStackInput {
   //stack job
@@ -38,7 +39,7 @@ message EnvironmentGcpGkeStackOutputs {
 //stack response
 message EnvironmentGcpGkeStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   EnvironmentGcpGkeStackOutputs outputs = 3;
 }
