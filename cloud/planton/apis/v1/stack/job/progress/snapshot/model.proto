@@ -4,9 +4,10 @@ package cloud.planton.apis.v1.stack.job.progress.snapshot;
 
 message StackJobLogSnapshot {
   StackJobLogPulumiOperationSnapshot refresh_snapshot = 1;
-  StackJobLogPulumiOperationSnapshot preview_snapshot = 2;
-  StackJobLogPulumiOperationSnapshot apply_snapshot = 3;
-  StackJobLogPulumiOperationSnapshot destroy_snapshot = 4;
+  StackJobLogPulumiOperationSnapshot apply_preview_snapshot = 2;
+  StackJobLogPulumiOperationSnapshot destroy_preview_snapshot = 3;
+  StackJobLogPulumiOperationSnapshot apply_snapshot = 4;
+  StackJobLogPulumiOperationSnapshot destroy_snapshot = 5;
 }
 
 message StackJobLogPulumiOperationProgress {
