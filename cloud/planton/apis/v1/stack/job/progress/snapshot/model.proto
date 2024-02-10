@@ -9,12 +9,20 @@ message StackJobLogSnapshot {
   StackJobLogPulumiOperationSnapshot destroy_snapshot = 4;
 }
 
+message StackJobLogPulumiOperationProgress {
+  bool is_started = 1;
+  bool is_completed = 2;
+  bool is_failed = 3;
+  repeated string errors = 4;
+}
+
 message StackJobLogPulumiOperationSnapshot {
-  PulumiOperationPreludeSnapshot prelude = 1;
-  PulumiOperationResourceChangesSnapshot resource_changes = 2;
-  PulumiOperationDiffSnapshot diff = 3;
-  PulumiOperationDiagnosticsSnapshot diagnostics = 4;
-  PulumiOperationSummarySnapshot summary = 5;
+  StackJobLogPulumiOperationProgress progress = 1;
+  PulumiOperationPreludeSnapshot prelude = 2;
+  PulumiOperationResourceChangesSnapshot resource_changes = 3;
+  PulumiOperationDiffSnapshot diff = 4;
+  PulumiOperationDiagnosticsSnapshot diagnostics = 5;
+  PulumiOperationSummarySnapshot summary = 6;
 }
 
 message PulumiOperationPreludeSnapshot {

@@ -23,6 +23,6 @@ message StackJobProgressEvent {
 message StackJobProgressStatusPayload {
   // type of the stack-job progress status event
   cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType event_type = 1;
-  // error message is populated when event_type is "STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_FAILED"
-  string error_message = 2;
+  // errors is populated for errors_reported or failed event types
+  repeated string errors = 2;
 }
