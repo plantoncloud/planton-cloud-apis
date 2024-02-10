@@ -6,6 +6,7 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/proj
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 //input for microservice-instance stack
 message MicroserviceInstanceKubernetesStackInput {
@@ -60,7 +61,7 @@ message MicroserviceInstanceKubernetesStackOutputs {
 //stack response
 message MicroserviceInstanceKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   MicroserviceInstanceKubernetesStackOutputs outputs = 2;
 }

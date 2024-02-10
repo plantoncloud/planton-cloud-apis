@@ -12,10 +12,6 @@ import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
-import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
-import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
-import "cloud/planton/apis/v1/stack/job/progress/enums/statuslabel/status_label.proto";
-import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
 import "google/protobuf/timestamp.proto";
 
 // stack-job
@@ -185,92 +181,6 @@ message SetStackJobExecutionStatusCommandInput {
   ];
 }
 
-// information required to build log file name for company or product level stacks.
-// the company level stacks are named using format: "{companyId}/{resource_type}.{resource_id}.{stack_name}.{operation_type}.{timestamp}.log"
-// the product level stacks are named using format: "{companyId}/{productId}/{resource_type}.{resource_id}.{stack_name}.{operation_type}.{timestamp}.log"
-message StackJobLogFileNameInfo {
-  // id of the company
-  string company_id = 1;
-  // id of the product.
-  // this attribute is ignore for company level stacks.
-  string product_id = 2;
-  // id of the resource on which the stack is being executed
-  string resource_id = 3;
-  // type of the operation being performed on the stack
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 4;
-  // timestamp in "yyyymmhhmmss" format to be suffixed to the file name
-  string timestamp = 5;
-}
-
-// stack-job progress event
-message StackJobProgressEvent {
-  // type of the event
-  cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType event_type = 1;
-  // stack-job progress status is populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT"
-  StackJobProgressStatusPayload progress_status_payload = 2;
-  // pulumi engine event is only populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT"
-  cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent engine_event_payload = 3;
-  //The time when the progress event was first received and written to persistent storage.
-  google.protobuf.Timestamp timestamp = 4;
-}
-
-// stack-job progress status payload
-message StackJobProgressStatusPayload {
-  // type of the stack-job progress status event
-  cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType event_type = 1;
-  // error message is populated when event_type is "STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_FAILED"
-  string error_message = 2;
-}
-
-message StackJobLogSnapshot {
-  StackJobLogPulumiOperationSnapshot refresh_snapshot = 1;
-  StackJobLogPulumiOperationSnapshot preview_snapshot = 2;
-  StackJobLogPulumiOperationSnapshot apply_snapshot = 3;
-  StackJobLogPulumiOperationSnapshot destroy_snapshot = 4;
-}
-
-message StackJobLogPulumiOperationSnapshot {
-  PulumiOperationPreludeSnapshot prelude = 1;
-  PulumiOperationResourceChangesSnapshot resource_changes = 2;
-  PulumiOperationDiffSnapshot diff = 3;
-  PulumiOperationDiagnosticsSnapshot diagnostics = 4;
-  PulumiOperationSummarySnapshot summary = 5;
-}
-
-message PulumiOperationPreludeSnapshot {
-  repeated string prelude_message = 1;
-}
-
-message PulumiOperationResourceChangesSnapshot {
-  map<string,PulumiOperationResourceChangesSnapshotRow> urn_to_row_map = 1;
-}
-
-message PulumiOperationDiffSnapshot {
-  repeated string resource_diff = 1;
-}
-
-message PulumiOperationDiagnosticsSnapshot {
-  repeated string diagnostic_message = 1;
-}
-
-message PulumiOperationSummarySnapshot {
-  int32 duration_seconds = 1;
-  int32 unchanged_resource_count = 2;
-  int32 create_resource_count = 3;
-  int32 update_resource_count = 4;
-  int32 delete_resource_count = 5;
-  int32 replace_resource_count = 6;
-}
-
-message PulumiOperationResourceChangesSnapshotRow {
-  string resource_type = 1;
-  string resource_name = 2;
-  string status = 3;
-  bool is_done = 4;
-  bool is_failed = 5;
-  int64 elapsed_duration_seconds = 6;
-}
-
 // input for rpc to create a new stack job for any resource.
 message CreateStackJobCommandInput {
   //id of the resource for which the stack-job is to be created.
@@ -290,7 +200,6 @@ message GetStackJobMinutesByCompanyIdInput {
   // company_id uniquely identifies a company within the system. The field is formatted as a string.
   string company_id = 1;
 }
-
 
 // StackJobMinutesMTB represents the total minutes a stack job has been running. This message is typically
 // used to communicate or store information regarding the duration of stack jobs, making it a crucial
@@ -357,5 +266,3 @@ message TotalPulumiResourceCount {
   // count is the total number of Pulumi resources.
   int32 count = 1;
 }
-
-

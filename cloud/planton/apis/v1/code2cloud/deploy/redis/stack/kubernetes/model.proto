@@ -5,6 +5,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.redis.stack.kubernetes;
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 //input for redis-cluster stack
 message RedisClusterKubernetesStackInput {
@@ -36,7 +37,7 @@ message RedisClusterKubernetesStackOutputs {
 //stack response
 message RedisClusterKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   RedisClusterKubernetesStackOutputs outputs = 3;
 }

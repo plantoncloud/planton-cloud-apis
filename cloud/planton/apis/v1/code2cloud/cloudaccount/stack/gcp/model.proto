@@ -7,6 +7,7 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/fold
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 // google cloud account init stack input
 message CloudAccountGcpStackInput {
@@ -37,7 +38,7 @@ message CloudAccountGcpStackOutputs {
 //stack response
 message CloudAccountGcpStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   CloudAccountGcpStackOutputs outputs = 3;
 }

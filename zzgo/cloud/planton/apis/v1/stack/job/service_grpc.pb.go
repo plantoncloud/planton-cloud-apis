@@ -8,6 +8,8 @@ package job
 
 import (
 	context "context"
+	progress "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/progress"
+	snapshot "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/progress/snapshot"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -276,7 +278,7 @@ func (c *stackJobQueryControllerClient) GetProgressEventStream(ctx context.Conte
 }
 
 type StackJobQueryController_GetProgressEventStreamClient interface {
-	Recv() (*StackJobProgressEvent, error)
+	Recv() (*progress.StackJobProgressEvent, error)
 	grpc.ClientStream
 }
 
@@ -284,8 +286,8 @@ type stackJobQueryControllerGetProgressEventStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *stackJobQueryControllerGetProgressEventStreamClient) Recv() (*StackJobProgressEvent, error) {
-	m := new(StackJobProgressEvent)
+func (x *stackJobQueryControllerGetProgressEventStreamClient) Recv() (*progress.StackJobProgressEvent, error) {
+	m := new(progress.StackJobProgressEvent)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -308,7 +310,7 @@ func (c *stackJobQueryControllerClient) GetStackJobLogSnapshotStream(ctx context
 }
 
 type StackJobQueryController_GetStackJobLogSnapshotStreamClient interface {
-	Recv() (*StackJobLogSnapshot, error)
+	Recv() (*snapshot.StackJobLogSnapshot, error)
 	grpc.ClientStream
 }
 
@@ -316,8 +318,8 @@ type stackJobQueryControllerGetStackJobLogSnapshotStreamClient struct {
 	grpc.ClientStream
 }
 
-func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamClient) Recv() (*StackJobLogSnapshot, error) {
-	m := new(StackJobLogSnapshot)
+func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamClient) Recv() (*snapshot.StackJobLogSnapshot, error) {
+	m := new(snapshot.StackJobLogSnapshot)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -469,7 +471,7 @@ func _StackJobQueryController_GetProgressEventStream_Handler(srv interface{}, st
 }
 
 type StackJobQueryController_GetProgressEventStreamServer interface {
-	Send(*StackJobProgressEvent) error
+	Send(*progress.StackJobProgressEvent) error
 	grpc.ServerStream
 }
 
@@ -477,7 +479,7 @@ type stackJobQueryControllerGetProgressEventStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *stackJobQueryControllerGetProgressEventStreamServer) Send(m *StackJobProgressEvent) error {
+func (x *stackJobQueryControllerGetProgressEventStreamServer) Send(m *progress.StackJobProgressEvent) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -490,7 +492,7 @@ func _StackJobQueryController_GetStackJobLogSnapshotStream_Handler(srv interface
 }
 
 type StackJobQueryController_GetStackJobLogSnapshotStreamServer interface {
-	Send(*StackJobLogSnapshot) error
+	Send(*snapshot.StackJobLogSnapshot) error
 	grpc.ServerStream
 }
 
@@ -498,7 +500,7 @@ type stackJobQueryControllerGetStackJobLogSnapshotStreamServer struct {
 	grpc.ServerStream
 }
 
-func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamServer) Send(m *StackJobLogSnapshot) error {
+func (x *stackJobQueryControllerGetStackJobLogSnapshotStreamServer) Send(m *snapshot.StackJobLogSnapshot) error {
 	return x.ServerStream.SendMsg(m)
 }
 
