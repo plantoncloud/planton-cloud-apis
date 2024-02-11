@@ -96,7 +96,6 @@ message StackJobSpec {
     (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
   ];
 
-
   // stack-job operation type
   cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8 [
     (buf.validate.field).ignore_empty = false,
@@ -115,6 +114,9 @@ message StackJobSpec {
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
+
+  //pulumi operations for stack-job
+  StackJobPulumiOperationsSpec pulumi_operations = 11;
 }
 
 // stack-job status
@@ -133,6 +135,59 @@ message StackJobStatus {
 
   // execution end time of stack job
   google.protobuf.Timestamp execution_end_time = 3;
+
+  // status of pulumi operations
+  StackJobPulumiOperationsStatus pulumi_operations_status = 4;
+}
+
+// pulumi operations spec for a stack job
+message StackJobPulumiOperationsSpec {
+  //flag to indicate if pulumi refresh is required for this job
+  bool is_refresh_required = 1;
+
+  //flag to indicate if pulumi preview(apply) is required for this job
+  bool is_apply_preview_required = 2;
+
+  //flag to indicate if pulumi preview(destroy) is required for this job
+  bool is_destroy_preview_required = 3;
+
+  //flag to indicate if pulumi up is required for this job
+  bool is_apply_required = 4;
+
+  //flag to indicate if pulumi destroy is required for this job
+  bool is_destroy_required = 5;
+}
+
+// pulumi operations status of the stack job
+message StackJobPulumiOperationsStatus {
+  // status of refresh operation populated only when pulumi refresh is required for the stack-job
+  PulumiOperationStatus refresh_status = 1;
+
+  // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
+  PulumiOperationStatus apply_preview_status = 2;
+
+  // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
+  PulumiOperationStatus destroy_preview_status = 3;
+
+  // status of apply operation populated only when pulumi apply is required for the stack-job
+  PulumiOperationStatus apply_status = 4;
+
+  // status of apply operation populated only when pulumi destroy is required for the stack-job
+  PulumiOperationStatus destroy_status = 5;
+}
+
+// status of a pulumi operation
+message PulumiOperationStatus {
+  //flag to indicate if the pulumi operation has started
+  bool is_started = 1;
+  //flag to indicate if the pulumi operation has been completed
+  bool is_completed = 2;
+  //flag to indicate if the pulumi operation has been successfully completed
+  bool is_succeeded = 3;
+  //list of errors reported during the operation execution
+  repeated string errors = 4;
+  //duration seconds for the operation
+  int32 duration_seconds = 5;
 }
 
 // wrapper for stack-job id
