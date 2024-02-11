@@ -117,7 +117,9 @@ message StackJobSpec {
   ];
 
   //pulumi operations for stack-job
-  StackJobPulumiOperationsSpec pulumi_operations = 11;
+  StackJobPulumiOperationsSpec pulumi_operations = 11 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }
 
 // stack-job status
@@ -138,25 +140,35 @@ message StackJobStatus {
   google.protobuf.Timestamp execution_end_time = 3;
 
   // status of pulumi operations
-  StackJobPulumiOperationsStatus pulumi_operations_status = 4;
+  StackJobPulumiOperationsStatus pulumi_operations = 4;
 }
 
 // pulumi operations spec for a stack job
 message StackJobPulumiOperationsSpec {
   //flag to indicate if pulumi refresh is required for this job
-  bool is_refresh_required = 1;
+  bool is_refresh_required = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
   //flag to indicate if pulumi preview(apply) is required for this job
-  bool is_apply_preview_required = 2;
+  bool is_apply_preview_required = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
   //flag to indicate if pulumi preview(destroy) is required for this job
-  bool is_destroy_preview_required = 3;
+  bool is_destroy_preview_required = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
   //flag to indicate if pulumi up is required for this job
-  bool is_apply_required = 4;
+  bool is_apply_required = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 
   //flag to indicate if pulumi destroy is required for this job
-  bool is_destroy_required = 5;
+  bool is_destroy_required = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
 }
 
 // pulumi operations status of the stack job

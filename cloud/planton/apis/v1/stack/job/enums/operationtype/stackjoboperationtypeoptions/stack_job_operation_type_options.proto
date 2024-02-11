@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtyp
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.EnumValueOptions {
-  bool is_refresh_required_required = 50050;
+  bool is_refresh_required = 50050;
   bool is_apply_preview_required = 50051;
   bool is_destroy_preview_required = 50052;
   bool is_apply_required = 50053;
