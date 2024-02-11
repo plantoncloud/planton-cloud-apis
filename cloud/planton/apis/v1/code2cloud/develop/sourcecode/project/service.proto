@@ -70,7 +70,6 @@ service CodeProjectCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_account;
     //since this operation requires looking up client-secret, update permission is required.
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_account_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "machine_account_email";
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to attach machine account";
   }
 }
