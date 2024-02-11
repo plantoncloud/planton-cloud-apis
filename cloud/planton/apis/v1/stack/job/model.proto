@@ -12,6 +12,7 @@ import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
+import "cloud/planton/apis/v1/stack/pulumi/operation/model.proto";
 import "google/protobuf/timestamp.proto";
 
 // stack-job
@@ -161,33 +162,19 @@ message StackJobPulumiOperationsSpec {
 // pulumi operations status of the stack job
 message StackJobPulumiOperationsStatus {
   // status of refresh operation populated only when pulumi refresh is required for the stack-job
-  PulumiOperationStatus refresh_status = 1;
+  cloud.planton.apis.v1.stack.pulumi.operation.PulumiOperationStatus refresh_status = 1;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  PulumiOperationStatus apply_preview_status = 2;
+  cloud.planton.apis.v1.stack.pulumi.operation.PulumiOperationStatus apply_preview_status = 2;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  PulumiOperationStatus destroy_preview_status = 3;
+  cloud.planton.apis.v1.stack.pulumi.operation.PulumiOperationStatus destroy_preview_status = 3;
 
   // status of apply operation populated only when pulumi apply is required for the stack-job
-  PulumiOperationStatus apply_status = 4;
+  cloud.planton.apis.v1.stack.pulumi.operation.PulumiOperationStatus apply_status = 4;
 
   // status of apply operation populated only when pulumi destroy is required for the stack-job
-  PulumiOperationStatus destroy_status = 5;
-}
-
-// status of a pulumi operation
-message PulumiOperationStatus {
-  //flag to indicate if the pulumi operation has started
-  bool is_started = 1;
-  //flag to indicate if the pulumi operation has been completed
-  bool is_completed = 2;
-  //flag to indicate if the pulumi operation has been successfully completed
-  bool is_succeeded = 3;
-  //list of errors reported during the operation execution
-  repeated string errors = 4;
-  //duration seconds for the operation
-  int32 duration_seconds = 5;
+  cloud.planton.apis.v1.stack.pulumi.operation.PulumiOperationStatus destroy_status = 5;
 }
 
 // wrapper for stack-job id
