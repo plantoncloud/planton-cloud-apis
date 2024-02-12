@@ -2,26 +2,24 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.pulumi.engine;
 
-import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/enums/event/event.proto";
 
 message EngineEvent {
-  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 1;
-  cloud.planton.apis.v1.stack.pulumi.engine.enums.event.PulumiEngineEventType event_type = 2;
-  int32 sequence = 3;
-  int32 timestamp = 4;
-  CancelEvent cancel_event = 5;
-  StdoutEngineEvent stdout_event = 6;
-  DiagnosticEvent diagnostic_event = 7;
-  PreludeEvent prelude_event = 8;
-  SummaryEvent summary_event = 9;
-  ResourcePreEvent resource_preEvent = 10;
-  ResOutputsEvent res_outputs_event = 11;
-  ResOpFailedEvent res_op_failed_event = 12;
-  PolicyEvent policy_event = 13;
-  PolicyRemediationEvent policy_remediation_event = 14;
+  cloud.planton.apis.v1.stack.pulumi.engine.enums.event.PulumiEngineEventType event_type = 1;
+  int32 sequence = 2;
+  int32 timestamp = 3;
+  CancelEvent cancel_event = 4;
+  StdoutEngineEvent stdout_event = 5;
+  DiagnosticEvent diagnostic_event = 6;
+  PreludeEvent prelude_event = 7;
+  SummaryEvent summary_event = 8;
+  ResourcePreEvent resource_preEvent = 9;
+  ResOutputsEvent res_outputs_event = 10;
+  ResOpFailedEvent res_op_failed_event = 11;
+  PolicyEvent policy_event = 12;
+  PolicyRemediationEvent policy_remediation_event = 13;
 }
 
 // wrapper for list of pulumi engine-events

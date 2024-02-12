@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.job.progress;
 
+import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/event/event.proto";
 import "cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model.proto";
@@ -11,12 +12,14 @@ import "google/protobuf/timestamp.proto";
 message StackJobProgressEvent {
   // type of the event
   cloud.planton.apis.v1.stack.job.progress.enums.event.StackJobProgressEventType event_type = 1;
+  // stack-job operation for which generated progress event
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 2;
   // stack-job progress status is populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT"
-  StackJobProgressStatusPayload progress_status_payload = 2;
+  StackJobProgressStatusPayload progress_status_payload = 3;
   // pulumi engine event is only populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT"
-  cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent engine_event_payload = 3;
+  cloud.planton.apis.v1.stack.pulumi.engine.EngineEvent engine_event_payload = 4;
   //The time when the progress event was first received and written to persistent storage.
-  google.protobuf.Timestamp timestamp = 4;
+  google.protobuf.Timestamp timestamp = 5;
 }
 
 // stack-job progress status payload
