@@ -44,7 +44,7 @@ type IamPolicyCommandControllerClient interface {
 	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
 	// a tuple is created on fga and the same tuple along with any contextual
 	// information is stored in planton-cloud's database.
-	AddApiResourceOwner(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
+	AddApiResourceOwner(ctx context.Context, in *FgaTuple, opts ...grpc.CallOption) (*FgaTuple, error)
 }
 
 type iamPolicyCommandControllerClient struct {
@@ -100,8 +100,8 @@ func (c *iamPolicyCommandControllerClient) RemoveCompanyMultiple(ctx context.Con
 	return out, nil
 }
 
-func (c *iamPolicyCommandControllerClient) AddApiResourceOwner(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error) {
-	out := new(IamPoliciesByPrincipal)
+func (c *iamPolicyCommandControllerClient) AddApiResourceOwner(ctx context.Context, in *FgaTuple, opts ...grpc.CallOption) (*FgaTuple, error) {
+	out := new(FgaTuple)
 	err := c.cc.Invoke(ctx, IamPolicyCommandController_AddApiResourceOwner_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -126,7 +126,7 @@ type IamPolicyCommandControllerServer interface {
 	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
 	// a tuple is created on fga and the same tuple along with any contextual
 	// information is stored in planton-cloud's database.
-	AddApiResourceOwner(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error)
+	AddApiResourceOwner(context.Context, *FgaTuple) (*FgaTuple, error)
 }
 
 // UnimplementedIamPolicyCommandControllerServer should be embedded to have forward compatible implementations.
@@ -148,7 +148,7 @@ func (UnimplementedIamPolicyCommandControllerServer) AddCompany(context.Context,
 func (UnimplementedIamPolicyCommandControllerServer) RemoveCompanyMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCompanyMultiple not implemented")
 }
-func (UnimplementedIamPolicyCommandControllerServer) AddApiResourceOwner(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error) {
+func (UnimplementedIamPolicyCommandControllerServer) AddApiResourceOwner(context.Context, *FgaTuple) (*FgaTuple, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddApiResourceOwner not implemented")
 }
 
@@ -254,7 +254,7 @@ func _IamPolicyCommandController_RemoveCompanyMultiple_Handler(srv interface{}, 
 }
 
 func _IamPolicyCommandController_AddApiResourceOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveIamPoliciesInput)
+	in := new(FgaTuple)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -266,7 +266,7 @@ func _IamPolicyCommandController_AddApiResourceOwner_Handler(srv interface{}, ct
 		FullMethod: IamPolicyCommandController_AddApiResourceOwner_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamPolicyCommandControllerServer).AddApiResourceOwner(ctx, req.(*RemoveIamPoliciesInput))
+		return srv.(IamPolicyCommandControllerServer).AddApiResourceOwner(ctx, req.(*FgaTuple))
 	}
 	return interceptor(ctx, in, info, handler)
 }

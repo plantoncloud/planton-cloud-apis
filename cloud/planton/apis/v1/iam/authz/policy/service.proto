@@ -39,7 +39,7 @@ service IamPolicyCommandController {
   // this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
   // a tuple is created on fga and the same tuple along with any contextual
   // information is stored in planton-cloud's database.
-  rpc addApiResourceOwner(RemoveIamPoliciesInput) returns (IamPoliciesByPrincipal) {
+  rpc addApiResourceOwner(FgaTuple) returns (FgaTuple) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to add resource owner";
   }
