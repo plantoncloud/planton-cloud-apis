@@ -24,6 +24,7 @@ const (
 	IamPolicyCommandController_Update_FullMethodName                = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/update"
 	IamPolicyCommandController_AddCompany_FullMethodName            = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/addCompany"
 	IamPolicyCommandController_RemoveCompanyMultiple_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/removeCompanyMultiple"
+	IamPolicyCommandController_AddApiResourceOwner_FullMethodName   = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyCommandController/addApiResourceOwner"
 )
 
 // IamPolicyCommandControllerClient is the client API for IamPolicyCommandController service.
@@ -39,6 +40,11 @@ type IamPolicyCommandControllerClient interface {
 	AddCompany(ctx context.Context, in *AddIamPolicyInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
 	RemoveCompanyMultiple(ctx context.Context, in *RemoveIamPoliciesInput, opts ...grpc.CallOption) (*IamPoliciesByPrincipal, error)
+	// add an owner for a resource.
+	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
+	// a tuple is created on fga and the same tuple along with any contextual
+	// information is stored in planton-cloud's database.
+	AddApiResourceOwner(ctx context.Context, in *FgaTuple, opts ...grpc.CallOption) (*FgaTuple, error)
 }
 
 type iamPolicyCommandControllerClient struct {
@@ -94,6 +100,15 @@ func (c *iamPolicyCommandControllerClient) RemoveCompanyMultiple(ctx context.Con
 	return out, nil
 }
 
+func (c *iamPolicyCommandControllerClient) AddApiResourceOwner(ctx context.Context, in *FgaTuple, opts ...grpc.CallOption) (*FgaTuple, error) {
+	out := new(FgaTuple)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_AddApiResourceOwner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IamPolicyCommandControllerServer is the server API for IamPolicyCommandController service.
 // All implementations should embed UnimplementedIamPolicyCommandControllerServer
 // for forward compatibility
@@ -107,6 +122,11 @@ type IamPolicyCommandControllerServer interface {
 	AddCompany(context.Context, *AddIamPolicyInput) (*IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
 	RemoveCompanyMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error)
+	// add an owner for a resource.
+	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
+	// a tuple is created on fga and the same tuple along with any contextual
+	// information is stored in planton-cloud's database.
+	AddApiResourceOwner(context.Context, *FgaTuple) (*FgaTuple, error)
 }
 
 // UnimplementedIamPolicyCommandControllerServer should be embedded to have forward compatible implementations.
@@ -127,6 +147,9 @@ func (UnimplementedIamPolicyCommandControllerServer) AddCompany(context.Context,
 }
 func (UnimplementedIamPolicyCommandControllerServer) RemoveCompanyMultiple(context.Context, *RemoveIamPoliciesInput) (*IamPoliciesByPrincipal, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RemoveCompanyMultiple not implemented")
+}
+func (UnimplementedIamPolicyCommandControllerServer) AddApiResourceOwner(context.Context, *FgaTuple) (*FgaTuple, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddApiResourceOwner not implemented")
 }
 
 // UnsafeIamPolicyCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -230,6 +253,24 @@ func _IamPolicyCommandController_RemoveCompanyMultiple_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IamPolicyCommandController_AddApiResourceOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FgaTuple)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyCommandControllerServer).AddApiResourceOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyCommandController_AddApiResourceOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyCommandControllerServer).AddApiResourceOwner(ctx, req.(*FgaTuple))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IamPolicyCommandController_ServiceDesc is the grpc.ServiceDesc for IamPolicyCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -256,6 +297,10 @@ var IamPolicyCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "removeCompanyMultiple",
 			Handler:    _IamPolicyCommandController_RemoveCompanyMultiple_Handler,
+		},
+		{
+			MethodName: "addApiResourceOwner",
+			Handler:    _IamPolicyCommandController_AddApiResourceOwner_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
