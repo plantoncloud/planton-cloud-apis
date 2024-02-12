@@ -53,7 +53,6 @@ message IamPolicy {
   RoleAndOwnerMapping role_owner_mapping = 2;
 }
 
-
 // input message to get IAM policies of a resource.
 message GetIamPolicyByResourceTypeAndResourceIdInput {
   // type of the resource for which we want to get iam policies
@@ -147,3 +146,26 @@ message UpdateIamPolicyInput {
   string resource_id = 4;
 }
 
+// FGA Tuple defines the relationship between a user and an object, specifying
+// the type of access or relation the user has to the object.
+message FgaTuple {
+  // user_type indicates the category or type of the user involved in the relationship.
+  // This helps in differentiating between different roles or kinds of users.
+  string user_type = 1;
+
+  // user_id uniquely identifies the user within the specified user_type.
+  // It's a unique identifier (such as a UUID or username) that specifies which user the tuple is referring to.
+  string user_id = 2;
+
+  // relation describes the type of access or relationship the user has with the object.
+  // Examples include roles like 'admin', 'editor', 'viewer', etc.
+  string relation = 3;
+
+  // object_type indicates the category or type of the object involved in the relationship.
+  // This helps in differentiating between different types of resources or objects.
+  string object_type = 4;
+
+  // object_id uniquely identifies the object within the specified object_type.
+  // It's a unique identifier (such as a UUID or resource name) that specifies which object the tuple is referring to.
+  string object_id = 5;
+}
