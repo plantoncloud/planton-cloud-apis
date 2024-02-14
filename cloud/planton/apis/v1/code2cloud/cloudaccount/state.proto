@@ -11,7 +11,6 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
 
 // cloud-account
 message CloudAccount {
@@ -139,27 +138,6 @@ message CloudAccountStatus {
   // status of a gcp cloud-account.
   // this is only populated when the parent cloud-account is a gcp cloud account and is set to nil otherwise.
   CloudAccountGcpStatus gcp = 1;
-}
-
-// list of cloud accounts
-message CloudAccounts {
-  repeated CloudAccount entries = 1;
-}
-
-// response for paginated query to get list of cloud accounts
-message CloudAccountList {
-  int32 total_pages = 1;
-  repeated CloudAccount entries = 2;
-}
-
-// wrapper for company cloud account id
-message CloudAccountId {
-  string value = 1;
-}
-
-// wrapper for company cloud account id
-message CloudAccountIds {
-  repeated string entries = 1;
 }
 
 // Specification for the Cloud Account in Google Cloud Platform (GCP)
