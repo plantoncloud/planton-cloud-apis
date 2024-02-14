@@ -11,7 +11,6 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //solr-cloud
 message SolrCloud {
@@ -215,25 +214,4 @@ message SolrCloudStatusKubernetesStatus {
   //ingress endpoint to be used by solr clients running outside the kubernetes cluster.
   //ex: https://slc-planton-pcs-dev-main.data.dev.planton.live:8983/solr
   string ingress_endpoint = 5;
-}
-
-//wrapper for id field of solr-cloud
-message SolrCloudId {
-  string value = 1;
-}
-
-//list of solr-clouds
-message SolrClouds {
-  repeated SolrCloud entries = 1;
-}
-
-//wrapper for solr-cloud password
-message SolrCloudPassword {
-  string value = 1;
-}
-
-//response for paginated query to list solr-clouds
-message SolrCloudList {
-  int32 total_pages = 1;
-  repeated SolrCloud entries = 2;
 }
