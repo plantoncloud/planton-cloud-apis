@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model.proto
+// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/state.proto
 
 package server
 
@@ -50,7 +50,7 @@ type CodeServer struct {
 func (x *CodeServer) Reset() {
 	*x = CodeServer{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[0]
+		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -63,7 +63,7 @@ func (x *CodeServer) String() string {
 func (*CodeServer) ProtoMessage() {}
 
 func (x *CodeServer) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[0]
+	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -76,7 +76,7 @@ func (x *CodeServer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeServer.ProtoReflect.Descriptor instead.
 func (*CodeServer) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{0}
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CodeServer) GetApiVersion() string {
@@ -138,7 +138,7 @@ type CodeServerSpec struct {
 func (x *CodeServerSpec) Reset() {
 	*x = CodeServerSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -151,7 +151,7 @@ func (x *CodeServerSpec) String() string {
 func (*CodeServerSpec) ProtoMessage() {}
 
 func (x *CodeServerSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -164,7 +164,7 @@ func (x *CodeServerSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeServerSpec.ProtoReflect.Descriptor instead.
 func (*CodeServerSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CodeServerSpec) GetCompanyId() string {
@@ -226,7 +226,7 @@ type CodeServerGithubSpec struct {
 func (x *CodeServerGithubSpec) Reset() {
 	*x = CodeServerGithubSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -239,7 +239,7 @@ func (x *CodeServerGithubSpec) String() string {
 func (*CodeServerGithubSpec) ProtoMessage() {}
 
 func (x *CodeServerGithubSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -252,7 +252,7 @@ func (x *CodeServerGithubSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeServerGithubSpec.ProtoReflect.Descriptor instead.
 func (*CodeServerGithubSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CodeServerGithubSpec) GetOrgId() string {
@@ -295,7 +295,7 @@ type CodeServerGitlabSpec struct {
 func (x *CodeServerGitlabSpec) Reset() {
 	*x = CodeServerGitlabSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -308,7 +308,7 @@ func (x *CodeServerGitlabSpec) String() string {
 func (*CodeServerGitlabSpec) ProtoMessage() {}
 
 func (x *CodeServerGitlabSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -321,7 +321,7 @@ func (x *CodeServerGitlabSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeServerGitlabSpec.ProtoReflect.Descriptor instead.
 func (*CodeServerGitlabSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CodeServerGitlabSpec) GetGroupId() string {
@@ -362,7 +362,7 @@ type CodeServerStatus struct {
 func (x *CodeServerStatus) Reset() {
 	*x = CodeServerStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -375,7 +375,7 @@ func (x *CodeServerStatus) String() string {
 func (*CodeServerStatus) ProtoMessage() {}
 
 func (x *CodeServerStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -388,7 +388,7 @@ func (x *CodeServerStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeServerStatus.ProtoReflect.Descriptor instead.
 func (*CodeServerStatus) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CodeServerStatus) GetLifecycle() *resource.ResourceLifecycle {
@@ -412,224 +412,14 @@ func (x *CodeServerStatus) GetStackJobId() string {
 	return ""
 }
 
-// wrapper for id field of postgres-cluster
-type CodeServerId struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
+var File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto protoreflect.FileDescriptor
 
-	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *CodeServerId) Reset() {
-	*x = CodeServerId{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CodeServerId) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CodeServerId) ProtoMessage() {}
-
-func (x *CodeServerId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CodeServerId.ProtoReflect.Descriptor instead.
-func (*CodeServerId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *CodeServerId) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-// list of postgres-clusters
-type CodeServers struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Entries []*CodeServer `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *CodeServers) Reset() {
-	*x = CodeServers{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CodeServers) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CodeServers) ProtoMessage() {}
-
-func (x *CodeServers) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CodeServers.ProtoReflect.Descriptor instead.
-func (*CodeServers) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *CodeServers) GetEntries() []*CodeServer {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
-// response for paginated query to list postgres-clusters
-type CodeServerList struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	TotalPages int32         `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*CodeServer `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *CodeServerList) Reset() {
-	*x = CodeServerList{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CodeServerList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CodeServerList) ProtoMessage() {}
-
-func (x *CodeServerList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CodeServerList.ProtoReflect.Descriptor instead.
-func (*CodeServerList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *CodeServerList) GetTotalPages() int32 {
-	if x != nil {
-		return x.TotalPages
-	}
-	return 0
-}
-
-func (x *CodeServerList) GetEntries() []*CodeServer {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
-// input for command to attach a machine account on upstream code-server(github/gitlab)
-type AttachMachineAccountByCodeServerIdCommandInput struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// email of the machine account to be attached to the code-project
-	MachineAccountEmail string `protobuf:"bytes,1,opt,name=machine_account_email,json=machineAccountEmail,proto3" json:"machine_account_email,omitempty"`
-	// id of the code server to which the machine account is to be attached
-	CodeServerId string `protobuf:"bytes,2,opt,name=code_server_id,json=codeServerId,proto3" json:"code_server_id,omitempty"`
-}
-
-func (x *AttachMachineAccountByCodeServerIdCommandInput) Reset() {
-	*x = AttachMachineAccountByCodeServerIdCommandInput{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *AttachMachineAccountByCodeServerIdCommandInput) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AttachMachineAccountByCodeServerIdCommandInput) ProtoMessage() {}
-
-func (x *AttachMachineAccountByCodeServerIdCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AttachMachineAccountByCodeServerIdCommandInput.ProtoReflect.Descriptor instead.
-func (*AttachMachineAccountByCodeServerIdCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *AttachMachineAccountByCodeServerIdCommandInput) GetMachineAccountEmail() string {
-	if x != nil {
-		return x.MachineAccountEmail
-	}
-	return ""
-}
-
-func (x *AttachMachineAccountByCodeServerIdCommandInput) GetCodeServerId() string {
-	if x != nil {
-		return x.CodeServerId
-	}
-	return ""
-}
-
-var File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto protoreflect.FileDescriptor
-
-var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDesc = []byte{
+var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDesc = []byte{
 	0x0a, 0x46, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f,
 	0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2f, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2f, 0x73, 0x6f, 0x75, 0x72, 0x63,
-	0x65, 0x63, 0x6f, 0x64, 0x65, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x3a, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
+	0x65, 0x63, 0x6f, 0x64, 0x65, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x73, 0x74, 0x61,
+	0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x3a, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
 	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e,
 	0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x76, 0x65, 0x6c,
 	0x6f, 0x70, 0x2e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2e, 0x73, 0x65,
@@ -792,121 +582,88 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_
 	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x41, 0x75, 0x64, 0x69, 0x74, 0x52, 0x05, 0x61, 0x75, 0x64,
 	0x69, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x6a, 0x6f, 0x62, 0x5f,
 	0x69, 0x64, 0x18, 0x61, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x4a,
-	0x6f, 0x62, 0x49, 0x64, 0x22, 0x24, 0x0a, 0x0c, 0x43, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x6f, 0x0a, 0x0b, 0x43, 0x6f,
-	0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x12, 0x60, 0x0a, 0x07, 0x65, 0x6e, 0x74,
-	0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x46, 0x2e, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
-	0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65,
-	0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65,
-	0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x93, 0x01, 0x0a, 0x0e,
-	0x43, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f,
-	0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12,
-	0x60, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b,
-	0x32, 0x46, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
-	0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2e, 0x73, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x43, 0x6f,
-	0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
-	0x73, 0x22, 0x8a, 0x01, 0x0a, 0x2e, 0x41, 0x74, 0x74, 0x61, 0x63, 0x68, 0x4d, 0x61, 0x63, 0x68,
-	0x69, 0x6e, 0x65, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x64, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x49,
-	0x6e, 0x70, 0x75, 0x74, 0x12, 0x32, 0x0a, 0x15, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x5f,
-	0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x01, 0x20,
-	0x01, 0x28, 0x09, 0x52, 0x13, 0x6d, 0x61, 0x63, 0x68, 0x69, 0x6e, 0x65, 0x41, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x45, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x24, 0x0a, 0x0e, 0x63, 0x6f, 0x64, 0x65,
-	0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x0c, 0x63, 0x6f, 0x64, 0x65, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x42, 0xd6,
-	0x03, 0x0a, 0x48, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e,
-	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
-	0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2e, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2e, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
-	0x63, 0x6f, 0x64, 0x65, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x42, 0x0a, 0x4d, 0x6f, 0x64,
-	0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x6a, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31,
-	0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x64, 0x65, 0x76, 0x65,
-	0x6c, 0x6f, 0x70, 0x2f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2f, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0xa2, 0x02, 0x08, 0x43, 0x50, 0x41, 0x56, 0x43, 0x44, 0x53, 0x53,
-	0xaa, 0x02, 0x3a, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
-	0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x2e, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2e, 0x53, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2e, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0xca, 0x02, 0x3a,
-	0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70,
-	0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x5c, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x5c, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63,
-	0x6f, 0x64, 0x65, 0x5c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0xe2, 0x02, 0x46, 0x43, 0x6c, 0x6f,
-	0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c,
-	0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x44, 0x65,
-	0x76, 0x65, 0x6c, 0x6f, 0x70, 0x5c, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65,
-	0x5c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0xea, 0x02, 0x41, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a,
-	0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x44, 0x65, 0x76, 0x65,
-	0x6c, 0x6f, 0x70, 0x3a, 0x3a, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x3a,
-	0x3a, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6f, 0x62, 0x49, 0x64, 0x42, 0xd6, 0x03, 0x0a, 0x48, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62,
+	0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64,
+	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2e,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x65,
+	0x72, 0x42, 0x0a, 0x53, 0x74, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x6a, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e,
+	0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f,
+	0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61,
+	0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2f, 0x64, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x2f, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
+	0x63, 0x6f, 0x64, 0x65, 0x2f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0xa2, 0x02, 0x08, 0x43, 0x50,
+	0x41, 0x56, 0x43, 0x44, 0x53, 0x53, 0xaa, 0x02, 0x3a, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50,
+	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f,
+	0x70, 0x2e, 0x53, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x2e, 0x53, 0x65, 0x72,
+	0x76, 0x65, 0x72, 0xca, 0x02, 0x3a, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e,
+	0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65,
+	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x5c, 0x53,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x5c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0xe2, 0x02, 0x46, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x5c, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x5c, 0x53, 0x6f, 0x75, 0x72,
+	0x63, 0x65, 0x63, 0x6f, 0x64, 0x65, 0x5c, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x41, 0x43, 0x6c, 0x6f, 0x75,
+	0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73,
+	0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x3a, 0x3a, 0x44, 0x65, 0x76, 0x65, 0x6c, 0x6f, 0x70, 0x3a, 0x3a, 0x53, 0x6f, 0x75, 0x72, 0x63,
+	0x65, 0x63, 0x6f, 0x64, 0x65, 0x3a, 0x3a, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescOnce sync.Once
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescData = file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDesc
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescOnce sync.Once
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescData = file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDesc
 )
 
-func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescGZIP() []byte {
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescOnce.Do(func() {
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescData)
+func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescGZIP() []byte {
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescOnce.Do(func() {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescData)
 	})
-	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDescData
+	return file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
-var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_goTypes = []interface{}{
+var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_goTypes = []interface{}{
 	(*CodeServer)(nil),                                       // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer
 	(*CodeServerSpec)(nil),                                   // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec
 	(*CodeServerGithubSpec)(nil),                             // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGithubSpec
 	(*CodeServerGitlabSpec)(nil),                             // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGitlabSpec
 	(*CodeServerStatus)(nil),                                 // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus
-	(*CodeServerId)(nil),                                     // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerId
-	(*CodeServers)(nil),                                      // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServers
-	(*CodeServerList)(nil),                                   // 7: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerList
-	(*AttachMachineAccountByCodeServerIdCommandInput)(nil),   // 8: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.AttachMachineAccountByCodeServerIdCommandInput
-	(*resource.Metadata)(nil),                                // 9: cloud.planton.apis.v1.commons.resource.Metadata
-	(codeserverprovider.CodeServerProvider)(0),               // 10: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider
-	(githubappinstallownertype.GithubAppInstallOwnerType)(0), // 11: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType
-	(*resource.ResourceLifecycle)(nil),                       // 12: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	(*audit.ResourceAudit)(nil),                              // 13: cloud.planton.apis.v1.commons.audit.ResourceAudit
+	(*resource.Metadata)(nil),                                // 5: cloud.planton.apis.v1.commons.resource.Metadata
+	(codeserverprovider.CodeServerProvider)(0),               // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider
+	(githubappinstallownertype.GithubAppInstallOwnerType)(0), // 7: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType
+	(*resource.ResourceLifecycle)(nil),                       // 8: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	(*audit.ResourceAudit)(nil),                              // 9: cloud.planton.apis.v1.commons.audit.ResourceAudit
 }
-var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_depIdxs = []int32{
-	9,  // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
-	1,  // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.spec:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec
-	4,  // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.status:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus
-	10, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.code_server_provider:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider
-	2,  // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.github:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGithubSpec
-	3,  // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.gitlab:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGitlabSpec
-	11, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGithubSpec.app_install_owner_type:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType
-	12, // 7: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	13, // 8: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
-	0,  // 9: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServers.entries:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer
-	0,  // 10: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerList.entries:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_depIdxs = []int32{
+	5, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
+	1, // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.spec:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec
+	4, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer.status:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus
+	6, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.code_server_provider:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider
+	2, // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.github:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGithubSpec
+	3, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerSpec.gitlab:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGitlabSpec
+	7, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerGithubSpec.app_install_owner_type:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType
+	8, // 7: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	9, // 8: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
+	9, // [9:9] is the sub-list for method output_type
+	9, // [9:9] is the sub-list for method input_type
+	9, // [9:9] is the sub-list for extension type_name
+	9, // [9:9] is the sub-list for extension extendee
+	0, // [0:9] is the sub-list for field type_name
 }
 
-func init() { file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_init() }
-func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_init() {
-	if File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto != nil {
+func init() { file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_init() }
+func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_init() {
+	if File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeServer); i {
 			case 0:
 				return &v.state
@@ -918,7 +675,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeServerSpec); i {
 			case 0:
 				return &v.state
@@ -930,7 +687,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeServerGithubSpec); i {
 			case 0:
 				return &v.state
@@ -942,7 +699,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeServerGitlabSpec); i {
 			case 0:
 				return &v.state
@@ -954,56 +711,8 @@ func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeServerStatus); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CodeServerId); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CodeServers); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CodeServerList); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AttachMachineAccountByCodeServerIdCommandInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1019,18 +728,18 @@ func file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDesc,
+			RawDescriptor: file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_goTypes,
-		DependencyIndexes: file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_depIdxs,
-		MessageInfos:      file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_msgTypes,
+		GoTypes:           file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_goTypes,
+		DependencyIndexes: file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_depIdxs,
+		MessageInfos:      file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_msgTypes,
 	}.Build()
-	File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto = out.File
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_rawDesc = nil
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_goTypes = nil
-	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_model_proto_depIdxs = nil
+	File_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto = out.File
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_rawDesc = nil
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_goTypes = nil
+	file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_state_proto_depIdxs = nil
 }

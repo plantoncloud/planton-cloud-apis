@@ -2,9 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.integration.github.proxy;
 
-import "cloud/planton/apis/v1/integration/github/proxy/enums/enums.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto";
+import "cloud/planton/apis/v1/integration/github/proxy/enums/enums.proto";
 
 //github client info
 message GithubClientInfo {
