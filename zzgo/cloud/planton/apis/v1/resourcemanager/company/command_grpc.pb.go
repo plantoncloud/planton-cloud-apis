@@ -2,15 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/resourcemanager/company/service.proto
+// source: cloud/planton/apis/v1/resourcemanager/company/command.proto
 
 package company
 
 import (
 	context "context"
-	custom "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/protobuf/custom"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource"
-	pagination "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -225,171 +223,5 @@ var CompanyCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/resourcemanager/company/service.proto",
-}
-
-const (
-	CompanyQueryController_List_FullMethodName          = "/cloud.planton.apis.v1.resourcemanager.company.CompanyQueryController/list"
-	CompanyQueryController_GetById_FullMethodName       = "/cloud.planton.apis.v1.resourcemanager.company.CompanyQueryController/getById"
-	CompanyQueryController_FindCompanies_FullMethodName = "/cloud.planton.apis.v1.resourcemanager.company.CompanyQueryController/findCompanies"
-)
-
-// CompanyQueryControllerClient is the client API for CompanyQueryController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type CompanyQueryControllerClient interface {
-	// list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
-	List(ctx context.Context, in *pagination.PageInfo, opts ...grpc.CallOption) (*CompanyList, error)
-	// get a company using company id
-	GetById(ctx context.Context, in *CompanyId, opts ...grpc.CallOption) (*Company, error)
-	FindCompanies(ctx context.Context, in *custom.CustomEmpty, opts ...grpc.CallOption) (*Companies, error)
-}
-
-type companyQueryControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewCompanyQueryControllerClient(cc grpc.ClientConnInterface) CompanyQueryControllerClient {
-	return &companyQueryControllerClient{cc}
-}
-
-func (c *companyQueryControllerClient) List(ctx context.Context, in *pagination.PageInfo, opts ...grpc.CallOption) (*CompanyList, error) {
-	out := new(CompanyList)
-	err := c.cc.Invoke(ctx, CompanyQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *companyQueryControllerClient) GetById(ctx context.Context, in *CompanyId, opts ...grpc.CallOption) (*Company, error) {
-	out := new(Company)
-	err := c.cc.Invoke(ctx, CompanyQueryController_GetById_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *companyQueryControllerClient) FindCompanies(ctx context.Context, in *custom.CustomEmpty, opts ...grpc.CallOption) (*Companies, error) {
-	out := new(Companies)
-	err := c.cc.Invoke(ctx, CompanyQueryController_FindCompanies_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// CompanyQueryControllerServer is the server API for CompanyQueryController service.
-// All implementations should embed UnimplementedCompanyQueryControllerServer
-// for forward compatibility
-type CompanyQueryControllerServer interface {
-	// list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
-	List(context.Context, *pagination.PageInfo) (*CompanyList, error)
-	// get a company using company id
-	GetById(context.Context, *CompanyId) (*Company, error)
-	FindCompanies(context.Context, *custom.CustomEmpty) (*Companies, error)
-}
-
-// UnimplementedCompanyQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedCompanyQueryControllerServer struct {
-}
-
-func (UnimplementedCompanyQueryControllerServer) List(context.Context, *pagination.PageInfo) (*CompanyList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
-func (UnimplementedCompanyQueryControllerServer) GetById(context.Context, *CompanyId) (*Company, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedCompanyQueryControllerServer) FindCompanies(context.Context, *custom.CustomEmpty) (*Companies, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindCompanies not implemented")
-}
-
-// UnsafeCompanyQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to CompanyQueryControllerServer will
-// result in compilation errors.
-type UnsafeCompanyQueryControllerServer interface {
-	mustEmbedUnimplementedCompanyQueryControllerServer()
-}
-
-func RegisterCompanyQueryControllerServer(s grpc.ServiceRegistrar, srv CompanyQueryControllerServer) {
-	s.RegisterService(&CompanyQueryController_ServiceDesc, srv)
-}
-
-func _CompanyQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(pagination.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CompanyQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CompanyQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyQueryControllerServer).List(ctx, req.(*pagination.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CompanyQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CompanyId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CompanyQueryControllerServer).GetById(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CompanyQueryController_GetById_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyQueryControllerServer).GetById(ctx, req.(*CompanyId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CompanyQueryController_FindCompanies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(custom.CustomEmpty)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CompanyQueryControllerServer).FindCompanies(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CompanyQueryController_FindCompanies_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyQueryControllerServer).FindCompanies(ctx, req.(*custom.CustomEmpty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// CompanyQueryController_ServiceDesc is the grpc.ServiceDesc for CompanyQueryController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var CompanyQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.resourcemanager.company.CompanyQueryController",
-	HandlerType: (*CompanyQueryControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _CompanyQueryController_List_Handler,
-		},
-		{
-			MethodName: "getById",
-			Handler:    _CompanyQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findCompanies",
-			Handler:    _CompanyQueryController_FindCompanies_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/resourcemanager/company/service.proto",
+	Metadata: "cloud/planton/apis/v1/resourcemanager/company/command.proto",
 }
