@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/billing/service.proto
+// source: cloud/planton/apis/v1/billing/query.proto
 
 package billing
 
@@ -19,176 +19,6 @@ import (
 // is compatible with the grpc package it is being compiled against.
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
-
-const (
-	BillingCommandController_UpdBillingAccount_FullMethodName     = "/cloud.planton.apis.v1.billing.BillingCommandController/updBillingAccount"
-	BillingCommandController_DelBillingAccount_FullMethodName     = "/cloud.planton.apis.v1.billing.BillingCommandController/delBillingAccount"
-	BillingCommandController_RestoreBillingAccount_FullMethodName = "/cloud.planton.apis.v1.billing.BillingCommandController/restoreBillingAccount"
-)
-
-// BillingCommandControllerClient is the client API for BillingCommandController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type BillingCommandControllerClient interface {
-	// update an existing billing account.
-	UpdBillingAccount(ctx context.Context, in *BillingAccount, opts ...grpc.CallOption) (*BillingAccount, error)
-	// delete an existing billing account.
-	// a billing account can not be deleted without deleting all the subscriptions linked to the billing account.
-	DelBillingAccount(ctx context.Context, in *BillingAccountId, opts ...grpc.CallOption) (*BillingAccount, error)
-	// restore a previously deleted billing account.
-	RestoreBillingAccount(ctx context.Context, in *BillingAccountId, opts ...grpc.CallOption) (*BillingAccount, error)
-}
-
-type billingCommandControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewBillingCommandControllerClient(cc grpc.ClientConnInterface) BillingCommandControllerClient {
-	return &billingCommandControllerClient{cc}
-}
-
-func (c *billingCommandControllerClient) UpdBillingAccount(ctx context.Context, in *BillingAccount, opts ...grpc.CallOption) (*BillingAccount, error) {
-	out := new(BillingAccount)
-	err := c.cc.Invoke(ctx, BillingCommandController_UpdBillingAccount_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *billingCommandControllerClient) DelBillingAccount(ctx context.Context, in *BillingAccountId, opts ...grpc.CallOption) (*BillingAccount, error) {
-	out := new(BillingAccount)
-	err := c.cc.Invoke(ctx, BillingCommandController_DelBillingAccount_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *billingCommandControllerClient) RestoreBillingAccount(ctx context.Context, in *BillingAccountId, opts ...grpc.CallOption) (*BillingAccount, error) {
-	out := new(BillingAccount)
-	err := c.cc.Invoke(ctx, BillingCommandController_RestoreBillingAccount_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// BillingCommandControllerServer is the server API for BillingCommandController service.
-// All implementations should embed UnimplementedBillingCommandControllerServer
-// for forward compatibility
-type BillingCommandControllerServer interface {
-	// update an existing billing account.
-	UpdBillingAccount(context.Context, *BillingAccount) (*BillingAccount, error)
-	// delete an existing billing account.
-	// a billing account can not be deleted without deleting all the subscriptions linked to the billing account.
-	DelBillingAccount(context.Context, *BillingAccountId) (*BillingAccount, error)
-	// restore a previously deleted billing account.
-	RestoreBillingAccount(context.Context, *BillingAccountId) (*BillingAccount, error)
-}
-
-// UnimplementedBillingCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedBillingCommandControllerServer struct {
-}
-
-func (UnimplementedBillingCommandControllerServer) UpdBillingAccount(context.Context, *BillingAccount) (*BillingAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdBillingAccount not implemented")
-}
-func (UnimplementedBillingCommandControllerServer) DelBillingAccount(context.Context, *BillingAccountId) (*BillingAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DelBillingAccount not implemented")
-}
-func (UnimplementedBillingCommandControllerServer) RestoreBillingAccount(context.Context, *BillingAccountId) (*BillingAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RestoreBillingAccount not implemented")
-}
-
-// UnsafeBillingCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to BillingCommandControllerServer will
-// result in compilation errors.
-type UnsafeBillingCommandControllerServer interface {
-	mustEmbedUnimplementedBillingCommandControllerServer()
-}
-
-func RegisterBillingCommandControllerServer(s grpc.ServiceRegistrar, srv BillingCommandControllerServer) {
-	s.RegisterService(&BillingCommandController_ServiceDesc, srv)
-}
-
-func _BillingCommandController_UpdBillingAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BillingAccount)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BillingCommandControllerServer).UpdBillingAccount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BillingCommandController_UpdBillingAccount_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingCommandControllerServer).UpdBillingAccount(ctx, req.(*BillingAccount))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BillingCommandController_DelBillingAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BillingAccountId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BillingCommandControllerServer).DelBillingAccount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BillingCommandController_DelBillingAccount_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingCommandControllerServer).DelBillingAccount(ctx, req.(*BillingAccountId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _BillingCommandController_RestoreBillingAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(BillingAccountId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(BillingCommandControllerServer).RestoreBillingAccount(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: BillingCommandController_RestoreBillingAccount_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingCommandControllerServer).RestoreBillingAccount(ctx, req.(*BillingAccountId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-// BillingCommandController_ServiceDesc is the grpc.ServiceDesc for BillingCommandController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var BillingCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.billing.BillingCommandController",
-	HandlerType: (*BillingCommandControllerServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "updBillingAccount",
-			Handler:    _BillingCommandController_UpdBillingAccount_Handler,
-		},
-		{
-			MethodName: "delBillingAccount",
-			Handler:    _BillingCommandController_DelBillingAccount_Handler,
-		},
-		{
-			MethodName: "restoreBillingAccount",
-			Handler:    _BillingCommandController_RestoreBillingAccount_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/billing/service.proto",
-}
 
 const (
 	BillingQueryController_ListBillingAccounts_FullMethodName                 = "/cloud.planton.apis.v1.billing.BillingQueryController/listBillingAccounts"
@@ -396,5 +226,5 @@ var BillingQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/billing/service.proto",
+	Metadata: "cloud/planton/apis/v1/billing/query.proto",
 }
