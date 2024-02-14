@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/resource/list/service.proto
+// source: cloud/planton/apis/v1/iam/resource/list/query.proto
 
 package list
 
@@ -20,7 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ResourceListViewQueryController_ListByResourceType_FullMethodName = "/cloud.planton.apis.v1.code2cloud.resource.list.ResourceListViewQueryController/listByResourceType"
+	ResourceListViewQueryController_ListByResourceType_FullMethodName = "/cloud.planton.apis.v1.iam.resource.list.ResourceListViewQueryController/listByResourceType"
 )
 
 // ResourceListViewQueryControllerClient is the client API for ResourceListViewQueryController service.
@@ -101,7 +101,7 @@ func _ResourceListViewQueryController_ListByResourceType_Handler(srv interface{}
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ResourceListViewQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.resource.list.ResourceListViewQueryController",
+	ServiceName: "cloud.planton.apis.v1.iam.resource.list.ResourceListViewQueryController",
 	HandlerType: (*ResourceListViewQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -110,5 +110,5 @@ var ResourceListViewQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/resource/list/service.proto",
+	Metadata: "cloud/planton/apis/v1/iam/resource/list/query.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/iam/resource/version/service.proto
+// source: cloud/planton/apis/v1/iam/resource/version/query.proto
 
 package version
 
@@ -184,5 +184,5 @@ var ResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/iam/resource/version/service.proto",
+	Metadata: "cloud/planton/apis/v1/iam/resource/version/query.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/search/resource/service.proto
+// source: cloud/planton/apis/v1/search/resource/query.proto
 
 package resource
 
@@ -199,5 +199,5 @@ var SearchQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/search/resource/service.proto",
+	Metadata: "cloud/planton/apis/v1/search/resource/query.proto",
 }

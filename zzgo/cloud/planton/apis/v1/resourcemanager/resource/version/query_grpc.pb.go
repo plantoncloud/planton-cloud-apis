@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/resource/version/service.proto
+// source: cloud/planton/apis/v1/resourcemanager/resource/version/query.proto
 
 package version
 
@@ -20,9 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.v1.code2cloud.resource.version.ResourceVersionQueryController/listByFilters"
-	ResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.v1.code2cloud.resource.version.ResourceVersionQueryController/getByIdWithContextSize"
-	ResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.v1.code2cloud.resource.version.ResourceVersionQueryController/getCount"
+	ResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.v1.resourcemanager.resource.version.ResourceVersionQueryController/listByFilters"
+	ResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.v1.resourcemanager.resource.version.ResourceVersionQueryController/getByIdWithContextSize"
+	ResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.v1.resourcemanager.resource.version.ResourceVersionQueryController/getCount"
 )
 
 // ResourceVersionQueryControllerClient is the client API for ResourceVersionQueryController service.
@@ -167,7 +167,7 @@ func _ResourceVersionQueryController_GetCount_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.resource.version.ResourceVersionQueryController",
+	ServiceName: "cloud.planton.apis.v1.resourcemanager.resource.version.ResourceVersionQueryController",
 	HandlerType: (*ResourceVersionQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -184,5 +184,5 @@ var ResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/resource/version/service.proto",
+	Metadata: "cloud/planton/apis/v1/resourcemanager/resource/version/query.proto",
 }

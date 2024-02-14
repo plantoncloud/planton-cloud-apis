@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.search.resource;
 
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/search/resource/model.proto";
+import "cloud/planton/apis/v1/search/resource/io.proto";
 
 // SearchQueryController is a service that provides search functionality
 // related to specific companies and products.
@@ -41,4 +41,3 @@ service SearchQueryController {
   rpc searchIdentityAccountByEmail(SearchIdentityAccountByEmailInput) returns (ResourceList);
 
 }
-
