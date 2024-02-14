@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.common;
 
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/pipeline/model.proto";
-
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 
 //code pipeline command controller
