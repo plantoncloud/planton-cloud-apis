@@ -2,10 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/billing/model.proto
-
-//Contains messages and rpc definitions for performing operations on billing related domain objects.
-//All Billing API clients are expected to use the rpc definitions defined in this package.
+// source: cloud/planton/apis/v1/billing/state.proto
 
 package billing
 
@@ -51,7 +48,7 @@ type BillingAccount struct {
 func (x *BillingAccount) Reset() {
 	*x = BillingAccount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[0]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +61,7 @@ func (x *BillingAccount) String() string {
 func (*BillingAccount) ProtoMessage() {}
 
 func (x *BillingAccount) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[0]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +74,7 @@ func (x *BillingAccount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BillingAccount.ProtoReflect.Descriptor instead.
 func (*BillingAccount) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{0}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *BillingAccount) GetApiVersion() string {
@@ -136,7 +133,7 @@ type BillingAccountSpec struct {
 func (x *BillingAccountSpec) Reset() {
 	*x = BillingAccountSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -149,7 +146,7 @@ func (x *BillingAccountSpec) String() string {
 func (*BillingAccountSpec) ProtoMessage() {}
 
 func (x *BillingAccountSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -162,7 +159,7 @@ func (x *BillingAccountSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BillingAccountSpec.ProtoReflect.Descriptor instead.
 func (*BillingAccountSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *BillingAccountSpec) GetCompanyId() string {
@@ -211,7 +208,7 @@ type BillingSubscription struct {
 func (x *BillingSubscription) Reset() {
 	*x = BillingSubscription{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -224,7 +221,7 @@ func (x *BillingSubscription) String() string {
 func (*BillingSubscription) ProtoMessage() {}
 
 func (x *BillingSubscription) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -237,7 +234,7 @@ func (x *BillingSubscription) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BillingSubscription.ProtoReflect.Descriptor instead.
 func (*BillingSubscription) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *BillingSubscription) GetAudit() *audit.AuditInfo {
@@ -287,7 +284,7 @@ type StripeCustomer struct {
 func (x *StripeCustomer) Reset() {
 	*x = StripeCustomer{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -300,7 +297,7 @@ func (x *StripeCustomer) String() string {
 func (*StripeCustomer) ProtoMessage() {}
 
 func (x *StripeCustomer) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -313,7 +310,7 @@ func (x *StripeCustomer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StripeCustomer.ProtoReflect.Descriptor instead.
 func (*StripeCustomer) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *StripeCustomer) GetCustomerId() string {
@@ -335,7 +332,7 @@ type StripeSubscription struct {
 func (x *StripeSubscription) Reset() {
 	*x = StripeSubscription{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -348,7 +345,7 @@ func (x *StripeSubscription) String() string {
 func (*StripeSubscription) ProtoMessage() {}
 
 func (x *StripeSubscription) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -361,7 +358,7 @@ func (x *StripeSubscription) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StripeSubscription.ProtoReflect.Descriptor instead.
 func (*StripeSubscription) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *StripeSubscription) GetSubscriptionId() string {
@@ -386,7 +383,7 @@ type BillingAccountStatus struct {
 func (x *BillingAccountStatus) Reset() {
 	*x = BillingAccountStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -399,7 +396,7 @@ func (x *BillingAccountStatus) String() string {
 func (*BillingAccountStatus) ProtoMessage() {}
 
 func (x *BillingAccountStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -412,7 +409,7 @@ func (x *BillingAccountStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BillingAccountStatus.ProtoReflect.Descriptor instead.
 func (*BillingAccountStatus) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *BillingAccountStatus) GetLifecycle() *resource.ResourceLifecycle {
@@ -456,7 +453,7 @@ type BillingItem struct {
 func (x *BillingItem) Reset() {
 	*x = BillingItem{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[6]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -469,7 +466,7 @@ func (x *BillingItem) String() string {
 func (*BillingItem) ProtoMessage() {}
 
 func (x *BillingItem) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[6]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -482,7 +479,7 @@ func (x *BillingItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BillingItem.ProtoReflect.Descriptor instead.
 func (*BillingItem) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{6}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *BillingItem) GetAudit() *audit.AuditInfo {
@@ -538,7 +535,7 @@ type BillingSubscriptionResourceMapping struct {
 func (x *BillingSubscriptionResourceMapping) Reset() {
 	*x = BillingSubscriptionResourceMapping{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[7]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -551,7 +548,7 @@ func (x *BillingSubscriptionResourceMapping) String() string {
 func (*BillingSubscriptionResourceMapping) ProtoMessage() {}
 
 func (x *BillingSubscriptionResourceMapping) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[7]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -564,7 +561,7 @@ func (x *BillingSubscriptionResourceMapping) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use BillingSubscriptionResourceMapping.ProtoReflect.Descriptor instead.
 func (*BillingSubscriptionResourceMapping) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{7}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *BillingSubscriptionResourceMapping) GetAudit() *audit.AuditInfo {
@@ -606,7 +603,7 @@ type StripeSubscriptionItem struct {
 func (x *StripeSubscriptionItem) Reset() {
 	*x = StripeSubscriptionItem{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[8]
+		mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -619,7 +616,7 @@ func (x *StripeSubscriptionItem) String() string {
 func (*StripeSubscriptionItem) ProtoMessage() {}
 
 func (x *StripeSubscriptionItem) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[8]
+	mi := &file_cloud_planton_apis_v1_billing_state_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -632,7 +629,7 @@ func (x *StripeSubscriptionItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StripeSubscriptionItem.ProtoReflect.Descriptor instead.
 func (*StripeSubscriptionItem) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{8}
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *StripeSubscriptionItem) GetPriceId() string {
@@ -649,223 +646,12 @@ func (x *StripeSubscriptionItem) GetSubscriptionItemId() string {
 	return ""
 }
 
-// wrapper for id of the billing account.
-type BillingAccountId struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
+var File_cloud_planton_apis_v1_billing_state_proto protoreflect.FileDescriptor
 
-	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *BillingAccountId) Reset() {
-	*x = BillingAccountId{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *BillingAccountId) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BillingAccountId) ProtoMessage() {}
-
-func (x *BillingAccountId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BillingAccountId.ProtoReflect.Descriptor instead.
-func (*BillingAccountId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *BillingAccountId) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-// list of billing accounts.
-type BillingAccounts struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	BillingAccounts []*BillingAccount `protobuf:"bytes,1,rep,name=billing_accounts,json=billingAccounts,proto3" json:"billing_accounts,omitempty"`
-}
-
-func (x *BillingAccounts) Reset() {
-	*x = BillingAccounts{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *BillingAccounts) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BillingAccounts) ProtoMessage() {}
-
-func (x *BillingAccounts) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BillingAccounts.ProtoReflect.Descriptor instead.
-func (*BillingAccounts) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *BillingAccounts) GetBillingAccounts() []*BillingAccount {
-	if x != nil {
-		return x.BillingAccounts
-	}
-	return nil
-}
-
-// response for paginated requests to list all billing accounts.
-type BillingAccountList struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	TotalPages      int32             `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	BillingAccounts []*BillingAccount `protobuf:"bytes,2,rep,name=billing_accounts,json=billingAccounts,proto3" json:"billing_accounts,omitempty"`
-}
-
-func (x *BillingAccountList) Reset() {
-	*x = BillingAccountList{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[11]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *BillingAccountList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BillingAccountList) ProtoMessage() {}
-
-func (x *BillingAccountList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[11]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BillingAccountList.ProtoReflect.Descriptor instead.
-func (*BillingAccountList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *BillingAccountList) GetTotalPages() int32 {
-	if x != nil {
-		return x.TotalPages
-	}
-	return 0
-}
-
-func (x *BillingAccountList) GetBillingAccounts() []*BillingAccount {
-	if x != nil {
-		return x.BillingAccounts
-	}
-	return nil
-}
-
-// response to the query to get stripe customer portal session.
-// https://stripe.com/docs/api/customer_portal/sessions/create
-type GetCustomerPortalSessionQueryResp struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// url for the customer portal session.
-	Url string `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	// url to which the user should be returned to upon managing the billing on customer portal.
-	ReturnUrl string `protobuf:"bytes,2,opt,name=return_url,json=returnUrl,proto3" json:"return_url,omitempty"`
-}
-
-func (x *GetCustomerPortalSessionQueryResp) Reset() {
-	*x = GetCustomerPortalSessionQueryResp{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[12]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetCustomerPortalSessionQueryResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetCustomerPortalSessionQueryResp) ProtoMessage() {}
-
-func (x *GetCustomerPortalSessionQueryResp) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_billing_model_proto_msgTypes[12]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetCustomerPortalSessionQueryResp.ProtoReflect.Descriptor instead.
-func (*GetCustomerPortalSessionQueryResp) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *GetCustomerPortalSessionQueryResp) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-func (x *GetCustomerPortalSessionQueryResp) GetReturnUrl() string {
-	if x != nil {
-		return x.ReturnUrl
-	}
-	return ""
-}
-
-var File_cloud_planton_apis_v1_billing_model_proto protoreflect.FileDescriptor
-
-var file_cloud_planton_apis_v1_billing_model_proto_rawDesc = []byte{
+var file_cloud_planton_apis_v1_billing_state_proto_rawDesc = []byte{
 	0x0a, 0x29, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f,
 	0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x2f,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1d, 0x63, 0x6c, 0x6f,
+	0x73, 0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x1d, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
 	0x76, 0x31, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x1a, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76,
@@ -1007,66 +793,42 @@ var file_cloud_planton_apis_v1_billing_model_proto_rawDesc = []byte{
 	0x52, 0x07, 0x70, 0x72, 0x69, 0x63, 0x65, 0x49, 0x64, 0x12, 0x30, 0x0a, 0x14, 0x73, 0x75, 0x62,
 	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69,
 	0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x12, 0x73, 0x75, 0x62, 0x73, 0x63, 0x72, 0x69,
-	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x22, 0x28, 0x0a, 0x10, 0x42,
-	0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x49, 0x64, 0x12,
-	0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
-	0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x6b, 0x0a, 0x0f, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
-	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x12, 0x58, 0x0a, 0x10, 0x62, 0x69, 0x6c, 0x6c,
-	0x69, 0x6e, 0x67, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x18, 0x01, 0x20, 0x03,
-	0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69,
-	0x6e, 0x67, 0x2e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x52, 0x0f, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x73, 0x22, 0x8f, 0x01, 0x0a, 0x12, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63,
-	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74,
-	0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a,
-	0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x58, 0x0a, 0x10, 0x62, 0x69,
-	0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x73, 0x18, 0x02,
-	0x20, 0x03, 0x28, 0x0b, 0x32, 0x2d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x62, 0x69, 0x6c,
-	0x6c, 0x69, 0x6e, 0x67, 0x2e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x52, 0x0f, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x41, 0x63, 0x63, 0x6f,
-	0x75, 0x6e, 0x74, 0x73, 0x22, 0x54, 0x0a, 0x21, 0x47, 0x65, 0x74, 0x43, 0x75, 0x73, 0x74, 0x6f,
-	0x6d, 0x65, 0x72, 0x50, 0x6f, 0x72, 0x74, 0x61, 0x6c, 0x53, 0x65, 0x73, 0x73, 0x69, 0x6f, 0x6e,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x52, 0x65, 0x73, 0x70, 0x12, 0x10, 0x0a, 0x03, 0x75, 0x72, 0x6c,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x75, 0x72, 0x6c, 0x12, 0x1d, 0x0a, 0x0a, 0x72,
-	0x65, 0x74, 0x75, 0x72, 0x6e, 0x5f, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x09, 0x72, 0x65, 0x74, 0x75, 0x72, 0x6e, 0x55, 0x72, 0x6c, 0x42, 0xa2, 0x02, 0x0a, 0x2b, 0x62,
-	0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
-	0x76, 0x31, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x42, 0x0a, 0x4d, 0x6f, 0x64, 0x65,
-	0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
-	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d,
-	0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f,
-	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f,
-	0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0xa2, 0x02, 0x05, 0x43, 0x50, 0x41, 0x56, 0x42, 0xaa,
-	0x02, 0x1d, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
-	0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0xca,
-	0x02, 0x1d, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c,
-	0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0xe2,
-	0x02, 0x29, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c,
-	0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x5c,
-	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x21, 0x43, 0x6c,
-	0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70,
-	0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x74, 0x65, 0x6d, 0x49, 0x64, 0x42, 0xa2, 0x02, 0x0a, 0x2b,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x76, 0x31, 0x2e, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0x42, 0x0a, 0x53, 0x74, 0x61,
+	0x74, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x4d, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31,
+	0x2f, 0x62, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67, 0xa2, 0x02, 0x05, 0x43, 0x50, 0x41, 0x56, 0x42,
+	0xaa, 0x02, 0x1d, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
+	0xca, 0x02, 0x1d, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
+	0xe2, 0x02, 0x29, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
+	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x21, 0x43,
+	0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41,
+	0x70, 0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x42, 0x69, 0x6c, 0x6c, 0x69, 0x6e, 0x67,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_cloud_planton_apis_v1_billing_model_proto_rawDescOnce sync.Once
-	file_cloud_planton_apis_v1_billing_model_proto_rawDescData = file_cloud_planton_apis_v1_billing_model_proto_rawDesc
+	file_cloud_planton_apis_v1_billing_state_proto_rawDescOnce sync.Once
+	file_cloud_planton_apis_v1_billing_state_proto_rawDescData = file_cloud_planton_apis_v1_billing_state_proto_rawDesc
 )
 
-func file_cloud_planton_apis_v1_billing_model_proto_rawDescGZIP() []byte {
-	file_cloud_planton_apis_v1_billing_model_proto_rawDescOnce.Do(func() {
-		file_cloud_planton_apis_v1_billing_model_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_billing_model_proto_rawDescData)
+func file_cloud_planton_apis_v1_billing_state_proto_rawDescGZIP() []byte {
+	file_cloud_planton_apis_v1_billing_state_proto_rawDescOnce.Do(func() {
+		file_cloud_planton_apis_v1_billing_state_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_billing_state_proto_rawDescData)
 	})
-	return file_cloud_planton_apis_v1_billing_model_proto_rawDescData
+	return file_cloud_planton_apis_v1_billing_state_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_billing_model_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_cloud_planton_apis_v1_billing_model_proto_goTypes = []interface{}{
+var file_cloud_planton_apis_v1_billing_state_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_cloud_planton_apis_v1_billing_state_proto_goTypes = []interface{}{
 	(*BillingAccount)(nil),                     // 0: cloud.planton.apis.v1.billing.BillingAccount
 	(*BillingAccountSpec)(nil),                 // 1: cloud.planton.apis.v1.billing.BillingAccountSpec
 	(*BillingSubscription)(nil),                // 2: cloud.planton.apis.v1.billing.BillingSubscription
@@ -1076,49 +838,43 @@ var file_cloud_planton_apis_v1_billing_model_proto_goTypes = []interface{}{
 	(*BillingItem)(nil),                        // 6: cloud.planton.apis.v1.billing.BillingItem
 	(*BillingSubscriptionResourceMapping)(nil), // 7: cloud.planton.apis.v1.billing.BillingSubscriptionResourceMapping
 	(*StripeSubscriptionItem)(nil),             // 8: cloud.planton.apis.v1.billing.StripeSubscriptionItem
-	(*BillingAccountId)(nil),                   // 9: cloud.planton.apis.v1.billing.BillingAccountId
-	(*BillingAccounts)(nil),                    // 10: cloud.planton.apis.v1.billing.BillingAccounts
-	(*BillingAccountList)(nil),                 // 11: cloud.planton.apis.v1.billing.BillingAccountList
-	(*GetCustomerPortalSessionQueryResp)(nil),  // 12: cloud.planton.apis.v1.billing.GetCustomerPortalSessionQueryResp
-	(*resource.Metadata)(nil),                  // 13: cloud.planton.apis.v1.commons.resource.Metadata
-	(*audit.AuditInfo)(nil),                    // 14: cloud.planton.apis.v1.commons.audit.AuditInfo
-	(enums.ResourceType)(0),                    // 15: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*resource.ResourceLifecycle)(nil),         // 16: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	(*audit.ResourceAudit)(nil),                // 17: cloud.planton.apis.v1.commons.audit.ResourceAudit
+	(*resource.Metadata)(nil),                  // 9: cloud.planton.apis.v1.commons.resource.Metadata
+	(*audit.AuditInfo)(nil),                    // 10: cloud.planton.apis.v1.commons.audit.AuditInfo
+	(enums.ResourceType)(0),                    // 11: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(*resource.ResourceLifecycle)(nil),         // 12: cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	(*audit.ResourceAudit)(nil),                // 13: cloud.planton.apis.v1.commons.audit.ResourceAudit
 }
-var file_cloud_planton_apis_v1_billing_model_proto_depIdxs = []int32{
-	13, // 0: cloud.planton.apis.v1.billing.BillingAccount.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
+var file_cloud_planton_apis_v1_billing_state_proto_depIdxs = []int32{
+	9,  // 0: cloud.planton.apis.v1.billing.BillingAccount.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
 	1,  // 1: cloud.planton.apis.v1.billing.BillingAccount.spec:type_name -> cloud.planton.apis.v1.billing.BillingAccountSpec
 	5,  // 2: cloud.planton.apis.v1.billing.BillingAccount.status:type_name -> cloud.planton.apis.v1.billing.BillingAccountStatus
 	3,  // 3: cloud.planton.apis.v1.billing.BillingAccountSpec.stripe_customer:type_name -> cloud.planton.apis.v1.billing.StripeCustomer
 	2,  // 4: cloud.planton.apis.v1.billing.BillingAccountSpec.subscriptions:type_name -> cloud.planton.apis.v1.billing.BillingSubscription
-	14, // 5: cloud.planton.apis.v1.billing.BillingSubscription.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	15, // 6: cloud.planton.apis.v1.billing.BillingSubscription.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	10, // 5: cloud.planton.apis.v1.billing.BillingSubscription.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	11, // 6: cloud.planton.apis.v1.billing.BillingSubscription.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
 	4,  // 7: cloud.planton.apis.v1.billing.BillingSubscription.subscription:type_name -> cloud.planton.apis.v1.billing.StripeSubscription
 	6,  // 8: cloud.planton.apis.v1.billing.BillingSubscription.billing_items:type_name -> cloud.planton.apis.v1.billing.BillingItem
-	16, // 9: cloud.planton.apis.v1.billing.BillingAccountStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
-	17, // 10: cloud.planton.apis.v1.billing.BillingAccountStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
-	14, // 11: cloud.planton.apis.v1.billing.BillingItem.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	15, // 12: cloud.planton.apis.v1.billing.BillingItem.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	12, // 9: cloud.planton.apis.v1.billing.BillingAccountStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.ResourceLifecycle
+	13, // 10: cloud.planton.apis.v1.billing.BillingAccountStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
+	10, // 11: cloud.planton.apis.v1.billing.BillingItem.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	11, // 12: cloud.planton.apis.v1.billing.BillingItem.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
 	8,  // 13: cloud.planton.apis.v1.billing.BillingItem.subscription_item:type_name -> cloud.planton.apis.v1.billing.StripeSubscriptionItem
 	7,  // 14: cloud.planton.apis.v1.billing.BillingItem.resource_mapping:type_name -> cloud.planton.apis.v1.billing.BillingSubscriptionResourceMapping
-	14, // 15: cloud.planton.apis.v1.billing.BillingSubscriptionResourceMapping.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
-	0,  // 16: cloud.planton.apis.v1.billing.BillingAccounts.billing_accounts:type_name -> cloud.planton.apis.v1.billing.BillingAccount
-	0,  // 17: cloud.planton.apis.v1.billing.BillingAccountList.billing_accounts:type_name -> cloud.planton.apis.v1.billing.BillingAccount
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	10, // 15: cloud.planton.apis.v1.billing.BillingSubscriptionResourceMapping.audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
+	16, // [16:16] is the sub-list for method output_type
+	16, // [16:16] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
-func init() { file_cloud_planton_apis_v1_billing_model_proto_init() }
-func file_cloud_planton_apis_v1_billing_model_proto_init() {
-	if File_cloud_planton_apis_v1_billing_model_proto != nil {
+func init() { file_cloud_planton_apis_v1_billing_state_proto_init() }
+func file_cloud_planton_apis_v1_billing_state_proto_init() {
+	if File_cloud_planton_apis_v1_billing_state_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingAccount); i {
 			case 0:
 				return &v.state
@@ -1130,7 +886,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingAccountSpec); i {
 			case 0:
 				return &v.state
@@ -1142,7 +898,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingSubscription); i {
 			case 0:
 				return &v.state
@@ -1154,7 +910,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StripeCustomer); i {
 			case 0:
 				return &v.state
@@ -1166,7 +922,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StripeSubscription); i {
 			case 0:
 				return &v.state
@@ -1178,7 +934,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingAccountStatus); i {
 			case 0:
 				return &v.state
@@ -1190,7 +946,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingItem); i {
 			case 0:
 				return &v.state
@@ -1202,7 +958,7 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BillingSubscriptionResourceMapping); i {
 			case 0:
 				return &v.state
@@ -1214,56 +970,8 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_billing_state_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StripeSubscriptionItem); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BillingAccountId); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BillingAccounts); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*BillingAccountList); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_billing_model_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetCustomerPortalSessionQueryResp); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1279,18 +987,18 @@ func file_cloud_planton_apis_v1_billing_model_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cloud_planton_apis_v1_billing_model_proto_rawDesc,
+			RawDescriptor: file_cloud_planton_apis_v1_billing_state_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cloud_planton_apis_v1_billing_model_proto_goTypes,
-		DependencyIndexes: file_cloud_planton_apis_v1_billing_model_proto_depIdxs,
-		MessageInfos:      file_cloud_planton_apis_v1_billing_model_proto_msgTypes,
+		GoTypes:           file_cloud_planton_apis_v1_billing_state_proto_goTypes,
+		DependencyIndexes: file_cloud_planton_apis_v1_billing_state_proto_depIdxs,
+		MessageInfos:      file_cloud_planton_apis_v1_billing_state_proto_msgTypes,
 	}.Build()
-	File_cloud_planton_apis_v1_billing_model_proto = out.File
-	file_cloud_planton_apis_v1_billing_model_proto_rawDesc = nil
-	file_cloud_planton_apis_v1_billing_model_proto_goTypes = nil
-	file_cloud_planton_apis_v1_billing_model_proto_depIdxs = nil
+	File_cloud_planton_apis_v1_billing_state_proto = out.File
+	file_cloud_planton_apis_v1_billing_state_proto_rawDesc = nil
+	file_cloud_planton_apis_v1_billing_state_proto_goTypes = nil
+	file_cloud_planton_apis_v1_billing_state_proto_depIdxs = nil
 }
