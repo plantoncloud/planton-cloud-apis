@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack;
+
+import "cloud/planton/apis/v1/stack/state.proto";
+
+// list of stacks
+message Stacks {
+  repeated Stack entries = 1;
+}
+
+//response for paginated list query
+message StackList {
+  int32 total_pages = 1;
+  repeated Stack entries = 2;
+}
+
+// wrapper for stack identifier
+message StackId {
+  string value = 1;
+}

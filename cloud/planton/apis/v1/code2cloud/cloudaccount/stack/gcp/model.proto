@@ -6,8 +6,8 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/fold
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model.proto";
+import "cloud/planton/apis/v1/stack/job/state.proto";
 
 // google cloud account init stack input
 message CloudAccountGcpStackInput {
