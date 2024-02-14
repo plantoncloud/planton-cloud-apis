@@ -2,18 +2,18 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
 
 //microservice-instance command controller
 service MicroserviceInstanceCommandController {
