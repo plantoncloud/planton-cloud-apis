@@ -1,10 +1,8 @@
 syntax = "proto3";
 
-//this stack creates resources required to enable routing for custom-endpoint domains.
-//wildcard certificates are provisioned for the custom-endpoint.
 package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
 import "cloud/planton/apis/v1/stack/job/model.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model.proto";
