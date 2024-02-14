@@ -147,27 +147,3 @@ message CodeServerStatus {
   // id of the stack-job
   string stack_job_id = 97;
 }
-
-//wrapper for id field of postgres-cluster
-message CodeServerId {
-  string value = 1;
-}
-
-//list of postgres-clusters
-message CodeServers {
-  repeated CodeServer entries = 1;
-}
-
-//response for paginated query to list postgres-clusters
-message CodeServerList {
-  int32 total_pages = 1;
-  repeated CodeServer entries = 2;
-}
-
-//input for command to attach a machine account on upstream code-server(github/gitlab)
-message AttachMachineAccountByCodeServerIdCommandInput {
-  //email of the machine account to be attached to the code-project
-  string machine_account_email = 1;
-  //id of the code server to which the machine account is to be attached
-  string code_server_id = 2;
-}

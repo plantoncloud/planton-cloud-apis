@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.integration.gitlab.proxy;
 
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/state.proto";
 import "cloud/planton/apis/v1/integration/gitlab/proxy/model.proto";
 
 //gitlab proxy command controller
