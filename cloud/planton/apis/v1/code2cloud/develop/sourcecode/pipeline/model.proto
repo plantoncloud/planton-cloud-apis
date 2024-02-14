@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.common;
 
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model.proto";
 
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
