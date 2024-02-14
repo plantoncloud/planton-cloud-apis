@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.postgres;
+
+import "cloud/planton/apis/v1/code2cloud/deploy/postgres/state.proto";
+
+//wrapper for id field of postgres-cluster
+message PostgresClusterId {
+  string value = 1;
+}
+
+//list of postgres-clusters
+message PostgresClusters {
+  repeated PostgresCluster entries = 1;
+}
+
+//response for paginated query to list postgres-clusters
+message PostgresClusterList {
+  int32 total_pages = 1;
+  repeated PostgresCluster entries = 2;
+}
+
+//wrapper for postgres-cluster password
+message PostgresClusterPassword {
+  string value = 1;
+}

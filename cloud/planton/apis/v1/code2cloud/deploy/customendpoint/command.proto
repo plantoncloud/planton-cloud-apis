@@ -4,7 +4,6 @@ package cloud.planton.apis.v1.code2cloud.deploy.customendpoint;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/state.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
