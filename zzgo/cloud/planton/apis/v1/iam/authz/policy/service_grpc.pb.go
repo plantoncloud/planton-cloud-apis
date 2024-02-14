@@ -311,6 +311,8 @@ const (
 	IamPolicyQueryController_GetByResourceTypeAndResourceId_FullMethodName                   = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceId"
 	IamPolicyQueryController_GetByResourceTypeAndResourceIdGroupByRole_FullMethodName        = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getByResourceTypeAndResourceIdGroupByRole"
 	IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_FullMethodName = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/getCompanyByResourceTypeAndResourceIdGroupByRole"
+	IamPolicyQueryController_CheckAuthorization_FullMethodName                               = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/checkAuthorization"
+	IamPolicyQueryController_ListAuthorizedResourceIds_FullMethodName                        = "/cloud.planton.apis.v1.iam.authz.policy.IamPolicyQueryController/listAuthorizedResourceIds"
 )
 
 // IamPolicyQueryControllerClient is the client API for IamPolicyQueryController service.
@@ -323,6 +325,23 @@ type IamPolicyQueryControllerClient interface {
 	GetByResourceTypeAndResourceIdGroupByRole(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByRole, error)
 	// retrieve iam policies by type and id grouped by role
 	GetCompanyByResourceTypeAndResourceIdGroupByRole(ctx context.Context, in *GetIamPolicyByResourceTypeAndResourceIdInput, opts ...grpc.CallOption) (*IamPoliciesByRole, error)
+	// checkPermission evaluates whether a specific action or access described by the AuthorizationInput
+	// is authorized based on the configured IAM policies. This RPC is crucial for enforcing access controls
+	// and ensuring that operations are performed by appropriately authorized users or services.
+	//
+	// The authorization decision is returned as an IsAuthorized message, indicating a binary outcome
+	// (true if the action is authorized, false otherwise). Custom options are used to define the required
+	// permission (iam_policy_get) and the error message to be returned if the authorization check fails
+	// due to insufficient permissions.
+	CheckAuthorization(ctx context.Context, in *AuthorizationInput, opts ...grpc.CallOption) (*IsAuthorized, error)
+	// listResources evaluates the provided AuthorizationInput to identify resources that the requesting
+	// entity is authorized to access, based on IAM policies. This operation is essential for scenarios
+	// where an entity needs to enumerate resources they have permissions to interact with.
+	//
+	// It returns an AuthorizedResourceIds message, which contains the IDs of all resources the entity is
+	// authorized to access. Similar to checkPermission, this RPC utilizes custom options to specify the
+	// required permission (iam_policy_get) and the error message for insufficient permissions scenarios.
+	ListAuthorizedResourceIds(ctx context.Context, in *AuthorizationInput, opts ...grpc.CallOption) (*AuthorizedResourceIds, error)
 }
 
 type iamPolicyQueryControllerClient struct {
@@ -360,6 +379,24 @@ func (c *iamPolicyQueryControllerClient) GetCompanyByResourceTypeAndResourceIdGr
 	return out, nil
 }
 
+func (c *iamPolicyQueryControllerClient) CheckAuthorization(ctx context.Context, in *AuthorizationInput, opts ...grpc.CallOption) (*IsAuthorized, error) {
+	out := new(IsAuthorized)
+	err := c.cc.Invoke(ctx, IamPolicyQueryController_CheckAuthorization_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *iamPolicyQueryControllerClient) ListAuthorizedResourceIds(ctx context.Context, in *AuthorizationInput, opts ...grpc.CallOption) (*AuthorizedResourceIds, error) {
+	out := new(AuthorizedResourceIds)
+	err := c.cc.Invoke(ctx, IamPolicyQueryController_ListAuthorizedResourceIds_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // IamPolicyQueryControllerServer is the server API for IamPolicyQueryController service.
 // All implementations should embed UnimplementedIamPolicyQueryControllerServer
 // for forward compatibility
@@ -370,6 +407,23 @@ type IamPolicyQueryControllerServer interface {
 	GetByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error)
 	// retrieve iam policies by type and id grouped by role
 	GetCompanyByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error)
+	// checkPermission evaluates whether a specific action or access described by the AuthorizationInput
+	// is authorized based on the configured IAM policies. This RPC is crucial for enforcing access controls
+	// and ensuring that operations are performed by appropriately authorized users or services.
+	//
+	// The authorization decision is returned as an IsAuthorized message, indicating a binary outcome
+	// (true if the action is authorized, false otherwise). Custom options are used to define the required
+	// permission (iam_policy_get) and the error message to be returned if the authorization check fails
+	// due to insufficient permissions.
+	CheckAuthorization(context.Context, *AuthorizationInput) (*IsAuthorized, error)
+	// listResources evaluates the provided AuthorizationInput to identify resources that the requesting
+	// entity is authorized to access, based on IAM policies. This operation is essential for scenarios
+	// where an entity needs to enumerate resources they have permissions to interact with.
+	//
+	// It returns an AuthorizedResourceIds message, which contains the IDs of all resources the entity is
+	// authorized to access. Similar to checkPermission, this RPC utilizes custom options to specify the
+	// required permission (iam_policy_get) and the error message for insufficient permissions scenarios.
+	ListAuthorizedResourceIds(context.Context, *AuthorizationInput) (*AuthorizedResourceIds, error)
 }
 
 // UnimplementedIamPolicyQueryControllerServer should be embedded to have forward compatible implementations.
@@ -384,6 +438,12 @@ func (UnimplementedIamPolicyQueryControllerServer) GetByResourceTypeAndResourceI
 }
 func (UnimplementedIamPolicyQueryControllerServer) GetCompanyByResourceTypeAndResourceIdGroupByRole(context.Context, *GetIamPolicyByResourceTypeAndResourceIdInput) (*IamPoliciesByRole, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyByResourceTypeAndResourceIdGroupByRole not implemented")
+}
+func (UnimplementedIamPolicyQueryControllerServer) CheckAuthorization(context.Context, *AuthorizationInput) (*IsAuthorized, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckAuthorization not implemented")
+}
+func (UnimplementedIamPolicyQueryControllerServer) ListAuthorizedResourceIds(context.Context, *AuthorizationInput) (*AuthorizedResourceIds, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorizedResourceIds not implemented")
 }
 
 // UnsafeIamPolicyQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -451,6 +511,42 @@ func _IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_
 	return interceptor(ctx, in, info, handler)
 }
 
+func _IamPolicyQueryController_CheckAuthorization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthorizationInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyQueryControllerServer).CheckAuthorization(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyQueryController_CheckAuthorization_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyQueryControllerServer).CheckAuthorization(ctx, req.(*AuthorizationInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _IamPolicyQueryController_ListAuthorizedResourceIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthorizationInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(IamPolicyQueryControllerServer).ListAuthorizedResourceIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: IamPolicyQueryController_ListAuthorizedResourceIds_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(IamPolicyQueryControllerServer).ListAuthorizedResourceIds(ctx, req.(*AuthorizationInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // IamPolicyQueryController_ServiceDesc is the grpc.ServiceDesc for IamPolicyQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -469,6 +565,14 @@ var IamPolicyQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getCompanyByResourceTypeAndResourceIdGroupByRole",
 			Handler:    _IamPolicyQueryController_GetCompanyByResourceTypeAndResourceIdGroupByRole_Handler,
+		},
+		{
+			MethodName: "checkAuthorization",
+			Handler:    _IamPolicyQueryController_CheckAuthorization_Handler,
+		},
+		{
+			MethodName: "listAuthorizedResourceIds",
+			Handler:    _IamPolicyQueryController_ListAuthorizedResourceIds_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

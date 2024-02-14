@@ -175,3 +175,41 @@ message FgaTuple {
   // It's a unique identifier (such as a UUID or resource name) that specifies which object the tuple is referring to.
   string object_id = 6;
 }
+
+// AuthorizationInput is designed for use in authorization queries, encapsulating the necessary
+// information to evaluate whether a particular action or access is permitted. It comprises a
+// primary tuple to check (check_tuple) and a collection of additional tuples (contextual_tuples)
+// that provide relevant context for the authorization decision. This structure enables a nuanced
+// evaluation of access control, taking into account not only the direct relationship between a user
+// and a resource but also other relevant relationships and permissions that may impact the authorization
+// outcome.
+message AuthorizationInput {
+  // check_tuple represents the primary FgaTuple to be evaluated in the authorization check. This tuple
+  // directly relates to the user, resource, and action or relation being queried and is the focal point
+  // of the authorization decision.
+  FgaTuple tuple = 1;
+
+  // contextual_tuples is a list of additional FgaTuples that provide context for the authorization decision.
+  // These tuples can represent other permissions, relationships, or constraints that are relevant to the
+  // comprehensive evaluation of the user's authorization to perform an action on a resource. The inclusion
+  // of these contextual tuples allows for a richer and more accurate authorization logic that can accommodate
+  // complex access control scenarios.
+  repeated FgaTuple contextual_tuples = 2;
+}
+
+// IsAuthorized encapsulates the result of an authorization check, indicating whether a specific
+// action or access attempt is authorized. This binary representation (true or false) serves as a
+// straightforward mechanism to communicate permission statuses in security and access control systems,
+// streamlining decision-making processes related to user actions on resources.
+message IsAuthorized {
+  // value is a boolean that represents the outcome of an authorization check. A value of true indicates
+  // that the action or access is permitted, while a value of false denotes that it is denied. This field
+  // simplifies the interpretation of authorization responses, enabling clear and direct enforcement of
+  // access controls.
+  bool value = 1;
+}
+
+message AuthorizedResourceIds {
+  repeated string values = 1;
+}
+
