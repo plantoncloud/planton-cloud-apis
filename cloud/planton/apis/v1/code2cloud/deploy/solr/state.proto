@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.solr;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress/workload_ingress.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/state.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/kubernetes/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";

@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";

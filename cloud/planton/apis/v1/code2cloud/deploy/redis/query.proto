@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.redis;
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/state.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
