@@ -222,19 +222,6 @@ message StackJobList {
   repeated StackJob entries = 2;
 }
 
-// input for rpc to set stack-job execution status
-message SetStackJobExecutionStatusCommandInput {
-  //id of the stack-job
-  string stack_job_id = 1 [
-    (buf.validate.field).ignore_empty = false
-  ];
-
-  //execution-status to be set for the stack-job
-  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 2 [
-    (buf.validate.field).ignore_empty = false
-  ];
-}
-
 // input for rpc to create a new stack job for any resource.
 message CreateStackJobCommandInput {
   //id of the resource for which the stack-job is to be created.
