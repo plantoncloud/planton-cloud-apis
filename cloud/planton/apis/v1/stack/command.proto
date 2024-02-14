@@ -3,7 +3,8 @@ syntax = "proto3";
 package cloud.planton.apis.v1.stack;
 
 import "cloud/planton/apis/v1/commons/resource/model.proto";
-import "cloud/planton/apis/v1/stack/model.proto";
+import "cloud/planton/apis/v1/stack/io.proto";
+import "cloud/planton/apis/v1/stack/state.proto";
 
 service StackCommandController {
   //create stack
@@ -14,11 +15,4 @@ service StackCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
   //delete stack on pulumi cloud
   rpc deleteOnPulumiCloud(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
-}
-
-service StackQueryController {
-  //look up stack by stack-id
-  rpc getById(cloud.planton.apis.v1.stack.StackId) returns(cloud.planton.apis.v1.stack.Stack);
-  //lookup a stack by resource-id
-  rpc getByResourceId(cloud.planton.apis.v1.commons.resource.ResourceId) returns(cloud.planton.apis.v1.stack.Stack);
 }
