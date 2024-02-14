@@ -2,13 +2,12 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.resourcemanager.product;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/v1/commons/audit/model.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
-import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 
 //product
 message Product {
@@ -80,20 +79,4 @@ message ProductStatus {
 
   // id of the stack-job
   string stack_job_id = 97;
-}
-
-//list of products
-message Products {
-  repeated Product entries = 1;
-}
-
-//wrapper for product id
-message ProductId {
-  string value = 1;
-}
-
-//response for paginated query to get list of products
-message ProductList {
-  int32 total_pages = 1;
-  repeated Product entries = 2;
 }

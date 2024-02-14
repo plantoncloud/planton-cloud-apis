@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.product;
+
+import "cloud/planton/apis/v1/resourcemanager/product/state.proto";
+
+//list of products
+message Products {
+  repeated Product entries = 1;
+}
+
+//wrapper for product id
+message ProductId {
+  string value = 1;
+}
+
+//response for paginated query to get list of products
+message ProductList {
+  int32 total_pages = 1;
+  repeated Product entries = 2;
+}
