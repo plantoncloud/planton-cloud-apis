@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.storagebucket.stack.gcp;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/state.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 //input for storage-bucket stack

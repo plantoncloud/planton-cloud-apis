@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.stack.aws;
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/state.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
+import "cloud/planton/apis/v1/stack/job/state.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model.proto";
 
 message KubeClusterAwsStackInput {
