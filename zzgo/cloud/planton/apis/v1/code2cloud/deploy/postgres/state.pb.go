@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/deploy/postgres/model.proto
+// source: cloud/planton/apis/v1/code2cloud/deploy/postgres/state.proto
 
 package postgres
 
@@ -51,7 +51,7 @@ type PostgresCluster struct {
 func (x *PostgresCluster) Reset() {
 	*x = PostgresCluster{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[0]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -64,7 +64,7 @@ func (x *PostgresCluster) String() string {
 func (*PostgresCluster) ProtoMessage() {}
 
 func (x *PostgresCluster) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[0]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -77,7 +77,7 @@ func (x *PostgresCluster) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostgresCluster.ProtoReflect.Descriptor instead.
 func (*PostgresCluster) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{0}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PostgresCluster) GetApiVersion() string {
@@ -130,7 +130,7 @@ type PostgresClusterSpec struct {
 func (x *PostgresClusterSpec) Reset() {
 	*x = PostgresClusterSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -143,7 +143,7 @@ func (x *PostgresClusterSpec) String() string {
 func (*PostgresClusterSpec) ProtoMessage() {}
 
 func (x *PostgresClusterSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -156,7 +156,7 @@ func (x *PostgresClusterSpec) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostgresClusterSpec.ProtoReflect.Descriptor instead.
 func (*PostgresClusterSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PostgresClusterSpec) GetEnvironmentInfo() *environment.ResourceEnvironmentInfo {
@@ -192,7 +192,7 @@ type PostgresClusterStatus struct {
 func (x *PostgresClusterStatus) Reset() {
 	*x = PostgresClusterStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -205,7 +205,7 @@ func (x *PostgresClusterStatus) String() string {
 func (*PostgresClusterStatus) ProtoMessage() {}
 
 func (x *PostgresClusterStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +218,7 @@ func (x *PostgresClusterStatus) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostgresClusterStatus.ProtoReflect.Descriptor instead.
 func (*PostgresClusterStatus) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PostgresClusterStatus) GetLifecycle() *resource.RunnableResourceLifecycle {
@@ -264,7 +264,7 @@ type PostgresClusterSpecKubernetesSpec struct {
 func (x *PostgresClusterSpecKubernetesSpec) Reset() {
 	*x = PostgresClusterSpecKubernetesSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -277,7 +277,7 @@ func (x *PostgresClusterSpecKubernetesSpec) String() string {
 func (*PostgresClusterSpecKubernetesSpec) ProtoMessage() {}
 
 func (x *PostgresClusterSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +290,7 @@ func (x *PostgresClusterSpecKubernetesSpec) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use PostgresClusterSpecKubernetesSpec.ProtoReflect.Descriptor instead.
 func (*PostgresClusterSpecKubernetesSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *PostgresClusterSpecKubernetesSpec) GetPostgresContainer() *PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
@@ -327,7 +327,7 @@ type PostgresClusterSpecKubernetesSpecPostgresContainerSpec struct {
 func (x *PostgresClusterSpecKubernetesSpecPostgresContainerSpec) Reset() {
 	*x = PostgresClusterSpecKubernetesSpecPostgresContainerSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -340,7 +340,7 @@ func (x *PostgresClusterSpecKubernetesSpecPostgresContainerSpec) String() string
 func (*PostgresClusterSpecKubernetesSpecPostgresContainerSpec) ProtoMessage() {}
 
 func (x *PostgresClusterSpecKubernetesSpecPostgresContainerSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -353,7 +353,7 @@ func (x *PostgresClusterSpecKubernetesSpecPostgresContainerSpec) ProtoReflect() 
 
 // Deprecated: Use PostgresClusterSpecKubernetesSpecPostgresContainerSpec.ProtoReflect.Descriptor instead.
 func (*PostgresClusterSpecKubernetesSpecPostgresContainerSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *PostgresClusterSpecKubernetesSpecPostgresContainerSpec) GetReplicas() int32 {
@@ -395,7 +395,7 @@ type PostgresClusterSpecKubernetesSpecIngressSpec struct {
 func (x *PostgresClusterSpecKubernetesSpecIngressSpec) Reset() {
 	*x = PostgresClusterSpecKubernetesSpecIngressSpec{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -408,7 +408,7 @@ func (x *PostgresClusterSpecKubernetesSpecIngressSpec) String() string {
 func (*PostgresClusterSpecKubernetesSpecIngressSpec) ProtoMessage() {}
 
 func (x *PostgresClusterSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -421,7 +421,7 @@ func (x *PostgresClusterSpecKubernetesSpecIngressSpec) ProtoReflect() protorefle
 
 // Deprecated: Use PostgresClusterSpecKubernetesSpecIngressSpec.ProtoReflect.Descriptor instead.
 func (*PostgresClusterSpecKubernetesSpecIngressSpec) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *PostgresClusterSpecKubernetesSpecIngressSpec) GetIsEnabled() bool {
@@ -473,7 +473,7 @@ type PostgresClusterStatusKubernetesStatus struct {
 func (x *PostgresClusterStatusKubernetesStatus) Reset() {
 	*x = PostgresClusterStatusKubernetesStatus{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[6]
+		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -486,7 +486,7 @@ func (x *PostgresClusterStatusKubernetesStatus) String() string {
 func (*PostgresClusterStatusKubernetesStatus) ProtoMessage() {}
 
 func (x *PostgresClusterStatusKubernetesStatus) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[6]
+	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -499,7 +499,7 @@ func (x *PostgresClusterStatusKubernetesStatus) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use PostgresClusterStatusKubernetesStatus.ProtoReflect.Descriptor instead.
 func (*PostgresClusterStatusKubernetesStatus) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{6}
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *PostgresClusterStatusKubernetesStatus) GetNamespace() string {
@@ -544,213 +544,13 @@ func (x *PostgresClusterStatusKubernetesStatus) GetInternalClusterHostname() str
 	return ""
 }
 
-// wrapper for id field of postgres-cluster
-type PostgresClusterId struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
+var File_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto protoreflect.FileDescriptor
 
-	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *PostgresClusterId) Reset() {
-	*x = PostgresClusterId{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostgresClusterId) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostgresClusterId) ProtoMessage() {}
-
-func (x *PostgresClusterId) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostgresClusterId.ProtoReflect.Descriptor instead.
-func (*PostgresClusterId) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *PostgresClusterId) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-// list of postgres-clusters
-type PostgresClusters struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Entries []*PostgresCluster `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *PostgresClusters) Reset() {
-	*x = PostgresClusters{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostgresClusters) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostgresClusters) ProtoMessage() {}
-
-func (x *PostgresClusters) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostgresClusters.ProtoReflect.Descriptor instead.
-func (*PostgresClusters) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *PostgresClusters) GetEntries() []*PostgresCluster {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
-// response for paginated query to list postgres-clusters
-type PostgresClusterList struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	TotalPages int32              `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*PostgresCluster `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *PostgresClusterList) Reset() {
-	*x = PostgresClusterList{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[9]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostgresClusterList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostgresClusterList) ProtoMessage() {}
-
-func (x *PostgresClusterList) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[9]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostgresClusterList.ProtoReflect.Descriptor instead.
-func (*PostgresClusterList) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *PostgresClusterList) GetTotalPages() int32 {
-	if x != nil {
-		return x.TotalPages
-	}
-	return 0
-}
-
-func (x *PostgresClusterList) GetEntries() []*PostgresCluster {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
-// wrapper for postgres-cluster password
-type PostgresClusterPassword struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
-}
-
-func (x *PostgresClusterPassword) Reset() {
-	*x = PostgresClusterPassword{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[10]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *PostgresClusterPassword) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PostgresClusterPassword) ProtoMessage() {}
-
-func (x *PostgresClusterPassword) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[10]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PostgresClusterPassword.ProtoReflect.Descriptor instead.
-func (*PostgresClusterPassword) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *PostgresClusterPassword) GetValue() string {
-	if x != nil {
-		return x.Value
-	}
-	return ""
-}
-
-var File_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto protoreflect.FileDescriptor
-
-var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDesc = []byte{
+var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDesc = []byte{
 	0x0a, 0x3c, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f,
 	0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2f, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2f, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72,
-	0x65, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x30,
+	0x65, 0x73, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x30,
 	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70,
 	0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73,
@@ -964,71 +764,49 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDesc = 
 	0x19, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x5f, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65,
 	0x72, 0x5f, 0x68, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
 	0x52, 0x17, 0x69, 0x6e, 0x74, 0x65, 0x72, 0x6e, 0x61, 0x6c, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x48, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0x29, 0x0a, 0x11, 0x50, 0x6f, 0x73,
-	0x74, 0x67, 0x72, 0x65, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14,
-	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x22, 0x6f, 0x0a, 0x10, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73,
-	0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x12, 0x5b, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72,
-	0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x72, 0x48, 0x6f, 0x73, 0x74, 0x6e, 0x61, 0x6d, 0x65, 0x42, 0x98, 0x03, 0x0a, 0x3e, 0x62, 0x75,
+	0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76,
 	0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x64, 0x65, 0x70,
-	0x6c, 0x6f, 0x79, 0x2e, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x2e, 0x50, 0x6f, 0x73,
-	0x74, 0x67, 0x72, 0x65, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e,
-	0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x93, 0x01, 0x0a, 0x13, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72,
-	0x65, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x0a,
-	0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x5b,
-	0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
-	0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
-	0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x2e, 0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72,
-	0x65, 0x73, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74,
-	0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x2f, 0x0a, 0x17, 0x50,
-	0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x50, 0x61,
-	0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x42, 0x98, 0x03, 0x0a,
-	0x3e, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63,
-	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69,
-	0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
-	0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2e, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x42,
-	0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x60, 0x67,
-	0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
-	0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63,
-	0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63,
-	0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69,
-	0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f,
-	0x64, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x2f, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xa2,
-	0x02, 0x07, 0x43, 0x50, 0x41, 0x56, 0x43, 0x44, 0x50, 0xaa, 0x02, 0x30, 0x43, 0x6c, 0x6f, 0x75,
-	0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56,
-	0x31, 0x2e, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x44, 0x65, 0x70,
-	0x6c, 0x6f, 0x79, 0x2e, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xca, 0x02, 0x30, 0x43,
+	0x6c, 0x6f, 0x79, 0x2e, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x42, 0x0a, 0x53, 0x74,
+	0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x60, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x76,
+	0x31, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x64, 0x65, 0x70,
+	0x6c, 0x6f, 0x79, 0x2f, 0x70, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xa2, 0x02, 0x07, 0x43,
+	0x50, 0x41, 0x56, 0x43, 0x44, 0x50, 0xaa, 0x02, 0x30, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50,
+	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x56, 0x31, 0x2e, 0x43,
+	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79,
+	0x2e, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xca, 0x02, 0x30, 0x43, 0x6c, 0x6f, 0x75,
+	0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x56,
+	0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x44, 0x65, 0x70,
+	0x6c, 0x6f, 0x79, 0x5c, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xe2, 0x02, 0x3c, 0x43,
 	0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69,
 	0x73, 0x5c, 0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c,
-	0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x5c, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0xe2,
-	0x02, 0x3c, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c,
-	0x41, 0x70, 0x69, 0x73, 0x5c, 0x56, 0x31, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x5c, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x5c, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72,
-	0x65, 0x73, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x36, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a,
-	0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x43, 0x6f, 0x64, 0x65, 0x32,
-	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x3a, 0x3a, 0x50,
-	0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x5c, 0x50, 0x6f, 0x73, 0x74, 0x67, 0x72, 0x65, 0x73, 0x5c,
+	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x36, 0x43, 0x6c,
+	0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70,
+	0x69, 0x73, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x3a, 0x3a, 0x44, 0x65, 0x70, 0x6c, 0x6f, 0x79, 0x3a, 0x3a, 0x50, 0x6f, 0x73, 0x74,
+	0x67, 0x72, 0x65, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescOnce sync.Once
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescData = file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDesc
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescOnce sync.Once
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescData = file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDesc
 )
 
-func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescGZIP() []byte {
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescOnce.Do(func() {
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescData)
+func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescGZIP() []byte {
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescOnce.Do(func() {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescData)
 	})
-	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDescData
+	return file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
-var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_goTypes = []interface{}{
+var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_goTypes = []interface{}{
 	(*PostgresCluster)(nil),                                        // 0: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster
 	(*PostgresClusterSpec)(nil),                                    // 1: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpec
 	(*PostgresClusterStatus)(nil),                                  // 2: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus
@@ -1036,46 +814,40 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_goTypes = 
 	(*PostgresClusterSpecKubernetesSpecPostgresContainerSpec)(nil), // 4: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecPostgresContainerSpec
 	(*PostgresClusterSpecKubernetesSpecIngressSpec)(nil),           // 5: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecIngressSpec
 	(*PostgresClusterStatusKubernetesStatus)(nil),                  // 6: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatusKubernetesStatus
-	(*PostgresClusterId)(nil),                                      // 7: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterId
-	(*PostgresClusters)(nil),                                       // 8: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusters
-	(*PostgresClusterList)(nil),                                    // 9: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterList
-	(*PostgresClusterPassword)(nil),                                // 10: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterPassword
-	(*resource.Metadata)(nil),                                      // 11: cloud.planton.apis.v1.commons.resource.Metadata
-	(*environment.ResourceEnvironmentInfo)(nil),                    // 12: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
-	(*resource.RunnableResourceLifecycle)(nil),                     // 13: cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
-	(*audit.ResourceAudit)(nil),                                    // 14: cloud.planton.apis.v1.commons.audit.ResourceAudit
-	(*kubernetes.ContainerResources)(nil),                          // 15: cloud.planton.apis.v1.commons.kubernetes.ContainerResources
-	(workloadingress.KubernetesWorkloadIngressType)(0),             // 16: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
+	(*resource.Metadata)(nil),                                      // 7: cloud.planton.apis.v1.commons.resource.Metadata
+	(*environment.ResourceEnvironmentInfo)(nil),                    // 8: cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
+	(*resource.RunnableResourceLifecycle)(nil),                     // 9: cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
+	(*audit.ResourceAudit)(nil),                                    // 10: cloud.planton.apis.v1.commons.audit.ResourceAudit
+	(*kubernetes.ContainerResources)(nil),                          // 11: cloud.planton.apis.v1.commons.kubernetes.ContainerResources
+	(workloadingress.KubernetesWorkloadIngressType)(0),             // 12: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 }
-var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_depIdxs = []int32{
-	11, // 0: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
+var file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_depIdxs = []int32{
+	7,  // 0: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster.metadata:type_name -> cloud.planton.apis.v1.commons.resource.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus
-	12, // 3: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
+	8,  // 3: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.ResourceEnvironmentInfo
 	3,  // 4: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpec.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpec
-	13, // 5: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
-	14, // 6: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
+	9,  // 5: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.RunnableResourceLifecycle
+	10, // 6: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAudit
 	6,  // 7: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatus.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterStatusKubernetesStatus
 	4,  // 8: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpec.postgres_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecPostgresContainerSpec
 	5,  // 9: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecIngressSpec
-	15, // 10: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecPostgresContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.ContainerResources
-	16, // 11: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
-	0,  // 12: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusters.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster
-	0,  // 13: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterList.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresCluster
-	14, // [14:14] is the sub-list for method output_type
-	14, // [14:14] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	11, // 10: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecPostgresContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.ContainerResources
+	12, // 11: cloud.planton.apis.v1.code2cloud.deploy.postgres.PostgresClusterSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
+	12, // [12:12] is the sub-list for method output_type
+	12, // [12:12] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
-func init() { file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() }
-func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
-	if File_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto != nil {
+func init() { file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_init() }
+func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_init() {
+	if File_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresCluster); i {
 			case 0:
 				return &v.state
@@ -1087,7 +859,7 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterSpec); i {
 			case 0:
 				return &v.state
@@ -1099,7 +871,7 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterStatus); i {
 			case 0:
 				return &v.state
@@ -1111,7 +883,7 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterSpecKubernetesSpec); i {
 			case 0:
 				return &v.state
@@ -1123,7 +895,7 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterSpecKubernetesSpecPostgresContainerSpec); i {
 			case 0:
 				return &v.state
@@ -1135,7 +907,7 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterSpecKubernetesSpecIngressSpec); i {
 			case 0:
 				return &v.state
@@ -1147,56 +919,8 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PostgresClusterStatusKubernetesStatus); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostgresClusterId); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostgresClusters); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostgresClusterList); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*PostgresClusterPassword); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1212,18 +936,18 @@ func file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDesc,
+			RawDescriptor: file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_goTypes,
-		DependencyIndexes: file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_depIdxs,
-		MessageInfos:      file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_msgTypes,
+		GoTypes:           file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_goTypes,
+		DependencyIndexes: file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_depIdxs,
+		MessageInfos:      file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_msgTypes,
 	}.Build()
-	File_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto = out.File
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_rawDesc = nil
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_goTypes = nil
-	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_model_proto_depIdxs = nil
+	File_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto = out.File
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_rawDesc = nil
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_goTypes = nil
+	file_cloud_planton_apis_v1_code2cloud_deploy_postgres_state_proto_depIdxs = nil
 }

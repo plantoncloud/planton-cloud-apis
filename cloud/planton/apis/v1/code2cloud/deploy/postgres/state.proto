@@ -168,24 +168,3 @@ message PostgresClusterStatusKubernetesStatus {
   //internal postgres-cluster hostname. port is always 5432.
   string internal_cluster_hostname = 6;
 }
-
-//wrapper for id field of postgres-cluster
-message PostgresClusterId {
-  string value = 1;
-}
-
-//list of postgres-clusters
-message PostgresClusters {
-  repeated PostgresCluster entries = 1;
-}
-
-//response for paginated query to list postgres-clusters
-message PostgresClusterList {
-  int32 total_pages = 1;
-  repeated PostgresCluster entries = 2;
-}
-
-//wrapper for postgres-cluster password
-message PostgresClusterPassword {
-  string value = 1;
-}
