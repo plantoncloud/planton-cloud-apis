@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model.proto"
 import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model.proto";
 
 import "cloud/planton/apis/v1/code2cloud/environment/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
 
 //input for query rpc to get dynamically generated code pipeline template
 message GenerateCodePipelineTemplateQueryInput {

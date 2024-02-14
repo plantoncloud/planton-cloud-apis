@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.buildengine;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
 
 //build engine code project
 message BuildEngineProject {

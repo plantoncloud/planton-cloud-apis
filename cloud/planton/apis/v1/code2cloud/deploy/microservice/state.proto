@@ -12,8 +12,6 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/stack/job/model.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -319,49 +317,4 @@ message MicroserviceInstanceStatusKubernetesStatus {
   //public endpoint to open microservice-instance from clients outside kubernetes.
   //ex: https://ms-planton-pcs-dev-account.dev.planton.live:8080
   repeated string ingress_endpoints = 5;
-}
-
-//wrapper for id field of microservice-instance
-message MicroserviceInstanceId {
-  string value = 1;
-}
-
-//list of microservice-instances
-message MicroserviceInstances {
-  repeated MicroserviceInstance entries = 1;
-}
-
-//response for paginated query to list microservice-instances
-message MicroserviceInstanceList {
-  int32 total_pages = 1;
-  repeated MicroserviceInstance entries = 2;
-}
-
-//input for query to get microservice-instance log stream
-message GetMicroserviceInstanceLogStreamQueryInput {
-  //id of the microservice-instance
-  string microservice_instance_id = 1;
-  //https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/
-  //the number of lines from the end of the logs to show.
-  //if the value is not set or is set to 0, then a default value of 600 seconds is used.
-  int32 tail_lines = 2;
-  //https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/
-  //a relative time in seconds before the current time from which to show logs.
-  //If this value precedes the time a pod was started, only logs since the pod start will be returned.
-  //If this value is in the future, no logs will be returned.
-  //if the value is not set or is set to 0, then a default value of 60 seconds is used.
-  int32 since_seconds = 3;
-}
-
-//input for rpc queries that take environment-id and code-project-id as input
-message ByEnvironmentIdByCodeProjectIdInput {
-  //id of the environment
-  string environment_id = 1;
-  //id of the code project
-  string code_project_id = 2;
-}
-
-//wrapper for microservice-instance env var map
-message MicroserviceInstanceEnvVarMap {
-  map<string, string> value = 1;
 }
