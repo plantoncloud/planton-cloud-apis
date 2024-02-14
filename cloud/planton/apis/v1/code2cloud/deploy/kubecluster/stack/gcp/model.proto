@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.stack.gcp;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/model.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/state.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/provider/gcpgke/enums/podservicesecondaryrangecidrsetnum/pod_service_secondary_range_cidr_set_num.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
