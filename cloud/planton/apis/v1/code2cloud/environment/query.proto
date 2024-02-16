@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/proj
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/state.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";

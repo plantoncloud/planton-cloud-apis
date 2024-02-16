@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.identity.account;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/state.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/state.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
 import "cloud/planton/apis/v1/iam/identity/account/enums/accounttype/account_type.proto";
 

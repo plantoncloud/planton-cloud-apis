@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.stack.job;
 
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/state.proto";
