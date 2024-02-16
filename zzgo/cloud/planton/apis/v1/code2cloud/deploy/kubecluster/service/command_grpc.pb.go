@@ -53,9 +53,9 @@ type KubeClusterCommandControllerClient interface {
 	// update an existing kube-cluster.
 	Update(ctx context.Context, in *model.KubeCluster, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// preview deleting a kube-cluster.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// delete a kube-cluster.
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// preview restoring a deleted kube-cluster.
 	PreviewRestore(ctx context.Context, in *model.KubeCluster, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// restore a deleted kube-cluster.
@@ -128,7 +128,7 @@ func (c *kubeClusterCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
 	out := new(model.KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -137,7 +137,7 @@ func (c *kubeClusterCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
+func (c *kubeClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
 	out := new(model.KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -240,9 +240,9 @@ type KubeClusterCommandControllerServer interface {
 	// update an existing kube-cluster.
 	Update(context.Context, *model.KubeCluster) (*model.KubeCluster, error)
 	// preview deleting a kube-cluster.
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubeCluster, error)
 	// delete a kube-cluster.
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubeCluster, error)
 	// preview restoring a deleted kube-cluster.
 	PreviewRestore(context.Context, *model.KubeCluster) (*model.KubeCluster, error)
 	// restore a deleted kube-cluster.
@@ -287,10 +287,10 @@ func (UnimplementedKubeClusterCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedKubeClusterCommandControllerServer) Update(context.Context, *model.KubeCluster) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error) {
+func (UnimplementedKubeClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) PreviewRestore(context.Context, *model.KubeCluster) (*model.KubeCluster, error) {
@@ -405,7 +405,7 @@ func _KubeClusterCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _KubeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -417,13 +417,13 @@ func _KubeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: KubeClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KubeClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -435,7 +435,7 @@ func _KubeClusterCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: KubeClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KubeClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

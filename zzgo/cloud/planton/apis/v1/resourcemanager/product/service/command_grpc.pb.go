@@ -36,7 +36,7 @@ type ProductCommandControllerClient interface {
 	// update an existing product
 	Update(ctx context.Context, in *model.Product, opts ...grpc.CallOption) (*model.Product, error)
 	// delete an existing product
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Product, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Product, error)
 	// restore a previously deleted product
 	Restore(ctx context.Context, in *model.Product, opts ...grpc.CallOption) (*model.Product, error)
 }
@@ -67,7 +67,7 @@ func (c *productCommandControllerClient) Update(ctx context.Context, in *model.P
 	return out, nil
 }
 
-func (c *productCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Product, error) {
+func (c *productCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Product, error) {
 	out := new(model.Product)
 	err := c.cc.Invoke(ctx, ProductCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type ProductCommandControllerServer interface {
 	// update an existing product
 	Update(context.Context, *model.Product) (*model.Product, error)
 	// delete an existing product
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Product, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Product, error)
 	// restore a previously deleted product
 	Restore(context.Context, *model.Product) (*model.Product, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedProductCommandControllerServer) Create(context.Context, *mode
 func (UnimplementedProductCommandControllerServer) Update(context.Context, *model.Product) (*model.Product, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedProductCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Product, error) {
+func (UnimplementedProductCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Product, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedProductCommandControllerServer) Restore(context.Context, *model.Product) (*model.Product, error) {
@@ -164,7 +164,7 @@ func _ProductCommandController_Update_Handler(srv interface{}, ctx context.Conte
 }
 
 func _ProductCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _ProductCommandController_Delete_Handler(srv interface{}, ctx context.Conte
 		FullMethod: ProductCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ProductCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

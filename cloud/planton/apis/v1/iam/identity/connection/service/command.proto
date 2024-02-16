@@ -25,7 +25,7 @@ service IdentityConnectionCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update identity connection";
   }
   // delete an existing identity connection
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_connection;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_connection_delete;

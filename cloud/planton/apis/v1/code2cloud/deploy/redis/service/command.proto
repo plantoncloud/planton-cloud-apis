@@ -49,7 +49,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing redis-cluster
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
@@ -58,7 +58,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing redis-cluster
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;

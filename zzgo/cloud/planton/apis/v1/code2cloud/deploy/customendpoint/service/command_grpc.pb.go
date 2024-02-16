@@ -48,9 +48,9 @@ type CustomEndpointCommandControllerClient interface {
 	// update an existing custom-endpoint
 	Update(ctx context.Context, in *model.CustomEndpoint, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// preview delete custom-endpoint
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// delete custom-endpoint
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// preview restoring a deleted custom-endpoint
 	PreviewRestore(ctx context.Context, in *model.CustomEndpoint, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// restore a deleted custom-endpoint
@@ -107,7 +107,7 @@ func (c *customEndpointCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
 	out := new(model.CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -116,7 +116,7 @@ func (c *customEndpointCommandControllerClient) PreviewDelete(ctx context.Contex
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
+func (c *customEndpointCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
 	out := new(model.CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -183,9 +183,9 @@ type CustomEndpointCommandControllerServer interface {
 	// update an existing custom-endpoint
 	Update(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error)
 	// preview delete custom-endpoint
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CustomEndpoint, error)
 	// delete custom-endpoint
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CustomEndpoint, error)
 	// preview restoring a deleted custom-endpoint
 	PreviewRestore(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error)
 	// restore a deleted custom-endpoint
@@ -214,10 +214,10 @@ func (UnimplementedCustomEndpointCommandControllerServer) PreviewUpdate(context.
 func (UnimplementedCustomEndpointCommandControllerServer) Update(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error) {
+func (UnimplementedCustomEndpointCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedCustomEndpointCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error) {
+func (UnimplementedCustomEndpointCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error) {
@@ -320,7 +320,7 @@ func _CustomEndpointCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _CustomEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,13 +332,13 @@ func _CustomEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx
 		FullMethod: CustomEndpointCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(CustomEndpointCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -350,7 +350,7 @@ func _CustomEndpointCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: CustomEndpointCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(CustomEndpointCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

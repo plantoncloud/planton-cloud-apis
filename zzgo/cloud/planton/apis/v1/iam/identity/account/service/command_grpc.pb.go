@@ -36,7 +36,7 @@ type MachineAccountCommandControllerClient interface {
 	// update an existing machine account
 	Update(ctx context.Context, in *model.IdentityAccount, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// delete an existing machine account
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IdentityAccount, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// restore an existing machine account
 	Restore(ctx context.Context, in *model.IdentityAccount, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 }
@@ -67,7 +67,7 @@ func (c *machineAccountCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IdentityAccount, error) {
+func (c *machineAccountCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IdentityAccount, error) {
 	out := new(model.IdentityAccount)
 	err := c.cc.Invoke(ctx, MachineAccountCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type MachineAccountCommandControllerServer interface {
 	// update an existing machine account
 	Update(context.Context, *model.IdentityAccount) (*model.IdentityAccount, error)
 	// delete an existing machine account
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IdentityAccount, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IdentityAccount, error)
 	// restore an existing machine account
 	Restore(context.Context, *model.IdentityAccount) (*model.IdentityAccount, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedMachineAccountCommandControllerServer) Create(context.Context
 func (UnimplementedMachineAccountCommandControllerServer) Update(context.Context, *model.IdentityAccount) (*model.IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IdentityAccount, error) {
+func (UnimplementedMachineAccountCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMachineAccountCommandControllerServer) Restore(context.Context, *model.IdentityAccount) (*model.IdentityAccount, error) {
@@ -164,7 +164,7 @@ func _MachineAccountCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _MachineAccountCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: MachineAccountCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MachineAccountCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

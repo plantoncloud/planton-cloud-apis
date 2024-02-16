@@ -44,7 +44,7 @@ type CodeProjectCommandControllerClient interface {
 	// update an existing code-project
 	Update(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// delete an existing code project.
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CodeProject, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// restore a deleted code project of a product.
 	Restore(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// synchronize code projects of a product.
@@ -92,7 +92,7 @@ func (c *codeProjectCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *codeProjectCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CodeProject, error) {
+func (c *codeProjectCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CodeProject, error) {
 	out := new(model.CodeProject)
 	err := c.cc.Invoke(ctx, CodeProjectCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -149,7 +149,7 @@ type CodeProjectCommandControllerServer interface {
 	// update an existing code-project
 	Update(context.Context, *model.CodeProject) (*model.CodeProject, error)
 	// delete an existing code project.
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CodeProject, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CodeProject, error)
 	// restore a deleted code project of a product.
 	Restore(context.Context, *model.CodeProject) (*model.CodeProject, error)
 	// synchronize code projects of a product.
@@ -175,7 +175,7 @@ func (UnimplementedCodeProjectCommandControllerServer) Create(context.Context, *
 func (UnimplementedCodeProjectCommandControllerServer) Update(context.Context, *model.CodeProject) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCodeProjectCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CodeProject, error) {
+func (UnimplementedCodeProjectCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCodeProjectCommandControllerServer) Restore(context.Context, *model.CodeProject) (*model.CodeProject, error) {
@@ -257,7 +257,7 @@ func _CodeProjectCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _CodeProjectCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -269,7 +269,7 @@ func _CodeProjectCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: CodeProjectCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeProjectCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(CodeProjectCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

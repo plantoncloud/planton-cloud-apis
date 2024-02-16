@@ -50,7 +50,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an environment
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.environment.model.Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
@@ -61,7 +61,7 @@ service EnvironmentCommandController {
   //delete an existing environment
   //deleting a environment involves cleaning of all product components deployed for that environment.
   //microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.environment.model.Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;

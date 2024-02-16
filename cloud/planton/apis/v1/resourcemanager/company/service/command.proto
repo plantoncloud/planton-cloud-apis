@@ -18,7 +18,7 @@ service CompanyCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update company";
   }
   //delete an existing company on planton cloud using company id
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (cloud.planton.apis.v1.resourcemanager.company.model.Company) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.v1.resourcemanager.company.model.Company) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = company_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

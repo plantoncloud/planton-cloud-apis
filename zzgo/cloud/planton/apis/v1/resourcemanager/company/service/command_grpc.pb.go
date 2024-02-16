@@ -36,7 +36,7 @@ type CompanyCommandControllerClient interface {
 	// update an existing company on planton cloud
 	Update(ctx context.Context, in *model.Company, opts ...grpc.CallOption) (*model.Company, error)
 	// delete an existing company on planton cloud using company id
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Company, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Company, error)
 	// restore a previously deleted company.
 	Restore(ctx context.Context, in *model.Company, opts ...grpc.CallOption) (*model.Company, error)
 }
@@ -67,7 +67,7 @@ func (c *companyCommandControllerClient) Update(ctx context.Context, in *model.C
 	return out, nil
 }
 
-func (c *companyCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Company, error) {
+func (c *companyCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Company, error) {
 	out := new(model.Company)
 	err := c.cc.Invoke(ctx, CompanyCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type CompanyCommandControllerServer interface {
 	// update an existing company on planton cloud
 	Update(context.Context, *model.Company) (*model.Company, error)
 	// delete an existing company on planton cloud using company id
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Company, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Company, error)
 	// restore a previously deleted company.
 	Restore(context.Context, *model.Company) (*model.Company, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedCompanyCommandControllerServer) Create(context.Context, *mode
 func (UnimplementedCompanyCommandControllerServer) Update(context.Context, *model.Company) (*model.Company, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCompanyCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Company, error) {
+func (UnimplementedCompanyCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Company, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCompanyCommandControllerServer) Restore(context.Context, *model.Company) (*model.Company, error) {
@@ -164,7 +164,7 @@ func _CompanyCommandController_Update_Handler(srv interface{}, ctx context.Conte
 }
 
 func _CompanyCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _CompanyCommandController_Delete_Handler(srv interface{}, ctx context.Conte
 		FullMethod: CompanyCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(CompanyCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

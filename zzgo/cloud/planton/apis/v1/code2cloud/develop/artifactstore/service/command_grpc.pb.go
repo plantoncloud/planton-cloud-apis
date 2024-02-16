@@ -49,9 +49,9 @@ type ArtifactStoreCommandControllerClient interface {
 	// update artifact-store
 	Update(ctx context.Context, in *model.ArtifactStore, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// preview delete an artifact-store.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// delete an artifact-store.
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// preview restoring a deleted artifact-store.
 	PreviewRestore(ctx context.Context, in *model.ArtifactStore, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
@@ -110,7 +110,7 @@ func (c *artifactStoreCommandControllerClient) Update(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error) {
+func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error) {
 	out := new(model.ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -119,7 +119,7 @@ func (c *artifactStoreCommandControllerClient) PreviewDelete(ctx context.Context
 	return out, nil
 }
 
-func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error) {
+func (c *artifactStoreCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error) {
 	out := new(model.ArtifactStore)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -195,9 +195,9 @@ type ArtifactStoreCommandControllerServer interface {
 	// update artifact-store
 	Update(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error)
 	// preview delete an artifact-store.
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArtifactStore, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArtifactStore, error)
 	// delete an artifact-store.
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArtifactStore, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArtifactStore, error)
 	// preview restoring a deleted artifact-store.
 	PreviewRestore(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
@@ -228,10 +228,10 @@ func (UnimplementedArtifactStoreCommandControllerServer) PreviewUpdate(context.C
 func (UnimplementedArtifactStoreCommandControllerServer) Update(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedArtifactStoreCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArtifactStore, error) {
+func (UnimplementedArtifactStoreCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedArtifactStoreCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArtifactStore, error) {
+func (UnimplementedArtifactStoreCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedArtifactStoreCommandControllerServer) PreviewRestore(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error) {
@@ -337,7 +337,7 @@ func _ArtifactStoreCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _ArtifactStoreCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -349,13 +349,13 @@ func _ArtifactStoreCommandController_PreviewDelete_Handler(srv interface{}, ctx 
 		FullMethod: ArtifactStoreCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArtifactStoreCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -367,7 +367,7 @@ func _ArtifactStoreCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: ArtifactStoreCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArtifactStoreCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

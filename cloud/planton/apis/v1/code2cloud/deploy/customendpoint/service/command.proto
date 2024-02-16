@@ -52,7 +52,7 @@ service CustomEndpointCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete custom-endpoint
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_delete;
@@ -61,7 +61,7 @@ service CustomEndpointCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete custom-endpoint
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_delete;

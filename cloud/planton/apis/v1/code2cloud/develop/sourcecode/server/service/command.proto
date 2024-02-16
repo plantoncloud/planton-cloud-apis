@@ -29,7 +29,7 @@ service CodeServerCommandController {
   }
 
   //delete an existing code-server
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServer) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = code_server;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_server_delete;

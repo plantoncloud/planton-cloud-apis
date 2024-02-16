@@ -51,7 +51,7 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   // preview deleting a kube-cluster.
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_delete;
@@ -60,7 +60,7 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   // delete a kube-cluster.
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = kube_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kube_cluster_delete;

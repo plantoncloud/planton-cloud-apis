@@ -51,9 +51,9 @@ type PostgresClusterCommandControllerClient interface {
 	// update an existing postgres-cluster
 	Update(ctx context.Context, in *model.PostgresCluster, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// preview deleting an existing postgres-cluster
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// delete an existing postgres-cluster
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// preview restoring a deleted postgres-cluster in a environment
 	PreviewRestore(ctx context.Context, in *model.PostgresCluster, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
@@ -121,7 +121,7 @@ func (c *postgresClusterCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
 	out := new(model.PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -130,7 +130,7 @@ func (c *postgresClusterCommandControllerClient) PreviewDelete(ctx context.Conte
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
+func (c *postgresClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
 	out := new(model.PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -224,9 +224,9 @@ type PostgresClusterCommandControllerServer interface {
 	// update an existing postgres-cluster
 	Update(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error)
 	// preview deleting an existing postgres-cluster
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresCluster, error)
 	// delete an existing postgres-cluster
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresCluster, error)
 	// preview restoring a deleted postgres-cluster in a environment
 	PreviewRestore(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
@@ -266,10 +266,10 @@ func (UnimplementedPostgresClusterCommandControllerServer) PreviewUpdate(context
 func (UnimplementedPostgresClusterCommandControllerServer) Update(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedPostgresClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresCluster, error) {
+func (UnimplementedPostgresClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedPostgresClusterCommandControllerServer) PreviewRestore(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error) {
@@ -381,7 +381,7 @@ func _PostgresClusterCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _PostgresClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,13 +393,13 @@ func _PostgresClusterCommandController_PreviewDelete_Handler(srv interface{}, ct
 		FullMethod: PostgresClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PostgresClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -411,7 +411,7 @@ func _PostgresClusterCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: PostgresClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PostgresClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -54,11 +54,11 @@ type EnvironmentCommandControllerClient interface {
 	// update an existing environment
 	Update(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
 	// preview deleting an environment
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// preview restoring a deleted environment
 	PreviewRestore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
 	// restore a deleted environment
@@ -141,7 +141,7 @@ func (c *environmentCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
+func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -150,7 +150,7 @@ func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
+func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -262,11 +262,11 @@ type EnvironmentCommandControllerServer interface {
 	// update an existing environment
 	Update(context.Context, *model.Environment) (*model.Environment, error)
 	// preview deleting an environment
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of all product components deployed for that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
 	// preview restoring a deleted environment
 	PreviewRestore(context.Context, *model.Environment) (*model.Environment, error)
 	// restore a deleted environment
@@ -321,10 +321,10 @@ func (UnimplementedEnvironmentCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedEnvironmentCommandControllerServer) Update(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Context, *model.Environment) (*model.Environment, error) {
@@ -442,7 +442,7 @@ func _EnvironmentCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -454,13 +454,13 @@ func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: EnvironmentCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,7 +472,7 @@ func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: EnvironmentCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

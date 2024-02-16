@@ -14,6 +14,6 @@ service IamRoleCommandController {
   rpc update(cloud.planton.apis.v1.iam.authz.role.model.IamRole)
       returns (cloud.planton.apis.v1.iam.authz.role.model.IamRole);
   // delete iam role
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.iam.authz.role.model.IamRole);
 }

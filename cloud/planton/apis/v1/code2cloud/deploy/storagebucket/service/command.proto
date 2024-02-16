@@ -49,7 +49,7 @@ service StorageBucketCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete an existing storage-bucket
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_delete;
@@ -58,7 +58,7 @@ service StorageBucketCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing storage-bucket
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = storage_bucket;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = storage_bucket_delete;

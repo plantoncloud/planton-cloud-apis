@@ -14,6 +14,6 @@ service IamPermissionCommandController {
   rpc update(cloud.planton.apis.v1.iam.authz.permission.model.IamPermission)
       returns (cloud.planton.apis.v1.iam.authz.permission.model.IamPermission);
   // delete iam permission
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.iam.authz.permission.model.IamPermission);
 }

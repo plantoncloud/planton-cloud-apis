@@ -50,7 +50,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing solr-cloud
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_delete;
@@ -59,7 +59,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing solr-cloud
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_delete;

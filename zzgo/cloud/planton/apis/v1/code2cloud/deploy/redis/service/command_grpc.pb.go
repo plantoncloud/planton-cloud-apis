@@ -51,9 +51,9 @@ type RedisClusterCommandControllerClient interface {
 	// update an existing redis-cluster
 	Update(ctx context.Context, in *model.RedisCluster, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// preview deleting an existing redis-cluster
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// delete an existing redis-cluster
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// preview restoring a previously deleted redis-cluster
 	PreviewRestore(ctx context.Context, in *model.RedisCluster, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// restore a previously deleted redis-cluster
@@ -121,7 +121,7 @@ func (c *redisClusterCommandControllerClient) Update(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error) {
 	out := new(model.RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -130,7 +130,7 @@ func (c *redisClusterCommandControllerClient) PreviewDelete(ctx context.Context,
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error) {
+func (c *redisClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error) {
 	out := new(model.RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -224,9 +224,9 @@ type RedisClusterCommandControllerServer interface {
 	// update an existing redis-cluster
 	Update(context.Context, *model.RedisCluster) (*model.RedisCluster, error)
 	// preview deleting an existing redis-cluster
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisCluster, error)
 	// delete an existing redis-cluster
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisCluster, error)
 	// preview restoring a previously deleted redis-cluster
 	PreviewRestore(context.Context, *model.RedisCluster) (*model.RedisCluster, error)
 	// restore a previously deleted redis-cluster
@@ -266,10 +266,10 @@ func (UnimplementedRedisClusterCommandControllerServer) PreviewUpdate(context.Co
 func (UnimplementedRedisClusterCommandControllerServer) Update(context.Context, *model.RedisCluster) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedRedisClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisCluster, error) {
+func (UnimplementedRedisClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedRedisClusterCommandControllerServer) PreviewRestore(context.Context, *model.RedisCluster) (*model.RedisCluster, error) {
@@ -381,7 +381,7 @@ func _RedisClusterCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _RedisClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,13 +393,13 @@ func _RedisClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx c
 		FullMethod: RedisClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(RedisClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -411,7 +411,7 @@ func _RedisClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: RedisClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(RedisClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

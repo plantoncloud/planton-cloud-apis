@@ -51,9 +51,9 @@ type SolrCloudCommandControllerClient interface {
 	// update an existing solr-cloud
 	Update(ctx context.Context, in *model.SolrCloud, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// preview deleting an existing solr-cloud
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// delete an existing solr-cloud
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// preview restoring a deleted solr-cloud
 	PreviewRestore(ctx context.Context, in *model.SolrCloud, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// restore a deleted solr-cloud
@@ -121,7 +121,7 @@ func (c *solrCloudCommandControllerClient) Update(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error) {
 	out := new(model.SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -130,7 +130,7 @@ func (c *solrCloudCommandControllerClient) PreviewDelete(ctx context.Context, in
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error) {
+func (c *solrCloudCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error) {
 	out := new(model.SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -224,9 +224,9 @@ type SolrCloudCommandControllerServer interface {
 	// update an existing solr-cloud
 	Update(context.Context, *model.SolrCloud) (*model.SolrCloud, error)
 	// preview deleting an existing solr-cloud
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrCloud, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrCloud, error)
 	// delete an existing solr-cloud
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrCloud, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrCloud, error)
 	// preview restoring a deleted solr-cloud
 	PreviewRestore(context.Context, *model.SolrCloud) (*model.SolrCloud, error)
 	// restore a deleted solr-cloud
@@ -266,10 +266,10 @@ func (UnimplementedSolrCloudCommandControllerServer) PreviewUpdate(context.Conte
 func (UnimplementedSolrCloudCommandControllerServer) Update(context.Context, *model.SolrCloud) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedSolrCloudCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrCloud, error) {
+func (UnimplementedSolrCloudCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedSolrCloudCommandControllerServer) PreviewRestore(context.Context, *model.SolrCloud) (*model.SolrCloud, error) {
@@ -381,7 +381,7 @@ func _SolrCloudCommandController_Update_Handler(srv interface{}, ctx context.Con
 }
 
 func _SolrCloudCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,13 +393,13 @@ func _SolrCloudCommandController_PreviewDelete_Handler(srv interface{}, ctx cont
 		FullMethod: SolrCloudCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(SolrCloudCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -411,7 +411,7 @@ func _SolrCloudCommandController_Delete_Handler(srv interface{}, ctx context.Con
 		FullMethod: SolrCloudCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(SolrCloudCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

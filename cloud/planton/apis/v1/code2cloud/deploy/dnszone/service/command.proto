@@ -49,7 +49,7 @@ service DnsZoneCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   // preview deleting a dns-zone
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_delete;
@@ -58,7 +58,7 @@ service DnsZoneCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   // delete a dns-zone
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = dns_zone;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = dns_zone_delete;

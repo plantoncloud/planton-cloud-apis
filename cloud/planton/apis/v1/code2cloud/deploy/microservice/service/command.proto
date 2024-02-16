@@ -49,7 +49,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete microservice-instance
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
@@ -58,7 +58,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete microservice-instance
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;

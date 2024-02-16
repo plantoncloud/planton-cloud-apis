@@ -51,9 +51,9 @@ type KafkaClusterCommandControllerClient interface {
 	// update an existing kafka-cluster
 	Update(ctx context.Context, in *model.KafkaCluster, opts ...grpc.CallOption) (*model.KafkaCluster, error)
 	// preview deleting an existing kafka-cluster
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error)
 	// delete an existing kafka-cluster
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error)
 	// preview restoring a deleted kafka-cluster
 	PreviewRestore(ctx context.Context, in *model.KafkaCluster, opts ...grpc.CallOption) (*model.KafkaCluster, error)
 	// restore a deleted kafka-cluster
@@ -122,7 +122,7 @@ func (c *kafkaClusterCommandControllerClient) Update(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error) {
 	out := new(model.KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -131,7 +131,7 @@ func (c *kafkaClusterCommandControllerClient) PreviewDelete(ctx context.Context,
 	return out, nil
 }
 
-func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error) {
+func (c *kafkaClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaCluster, error) {
 	out := new(model.KafkaCluster)
 	err := c.cc.Invoke(ctx, KafkaClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -225,9 +225,9 @@ type KafkaClusterCommandControllerServer interface {
 	// update an existing kafka-cluster
 	Update(context.Context, *model.KafkaCluster) (*model.KafkaCluster, error)
 	// preview deleting an existing kafka-cluster
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaCluster, error)
 	// delete an existing kafka-cluster
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaCluster, error)
 	// preview restoring a deleted kafka-cluster
 	PreviewRestore(context.Context, *model.KafkaCluster) (*model.KafkaCluster, error)
 	// restore a deleted kafka-cluster
@@ -268,10 +268,10 @@ func (UnimplementedKafkaClusterCommandControllerServer) PreviewUpdate(context.Co
 func (UnimplementedKafkaClusterCommandControllerServer) Update(context.Context, *model.KafkaCluster) (*model.KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKafkaClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaCluster, error) {
+func (UnimplementedKafkaClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKafkaClusterCommandControllerServer) PreviewRestore(context.Context, *model.KafkaCluster) (*model.KafkaCluster, error) {
@@ -383,7 +383,7 @@ func _KafkaClusterCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _KafkaClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -395,13 +395,13 @@ func _KafkaClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx c
 		FullMethod: KafkaClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KafkaClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -413,7 +413,7 @@ func _KafkaClusterCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: KafkaClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KafkaClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

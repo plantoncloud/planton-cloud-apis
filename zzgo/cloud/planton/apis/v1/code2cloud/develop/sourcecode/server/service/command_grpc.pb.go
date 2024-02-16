@@ -38,7 +38,7 @@ type CodeServerCommandControllerClient interface {
 	// update an existing code-server
 	Update(ctx context.Context, in *model.CodeServer, opts ...grpc.CallOption) (*model.CodeServer, error)
 	// delete an existing code-server
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CodeServer, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CodeServer, error)
 	// restore a deleted code server
 	Restore(ctx context.Context, in *model.CodeServer, opts ...grpc.CallOption) (*model.CodeServer, error)
 	// synchronize code projects from the server.
@@ -74,7 +74,7 @@ func (c *codeServerCommandControllerClient) Update(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *codeServerCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CodeServer, error) {
+func (c *codeServerCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CodeServer, error) {
 	out := new(model.CodeServer)
 	err := c.cc.Invoke(ctx, CodeServerCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -119,7 +119,7 @@ type CodeServerCommandControllerServer interface {
 	// update an existing code-server
 	Update(context.Context, *model.CodeServer) (*model.CodeServer, error)
 	// delete an existing code-server
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CodeServer, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CodeServer, error)
 	// restore a deleted code server
 	Restore(context.Context, *model.CodeServer) (*model.CodeServer, error)
 	// synchronize code projects from the server.
@@ -139,7 +139,7 @@ func (UnimplementedCodeServerCommandControllerServer) Create(context.Context, *m
 func (UnimplementedCodeServerCommandControllerServer) Update(context.Context, *model.CodeServer) (*model.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedCodeServerCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CodeServer, error) {
+func (UnimplementedCodeServerCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedCodeServerCommandControllerServer) Restore(context.Context, *model.CodeServer) (*model.CodeServer, error) {
@@ -200,7 +200,7 @@ func _CodeServerCommandController_Update_Handler(srv interface{}, ctx context.Co
 }
 
 func _CodeServerCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -212,7 +212,7 @@ func _CodeServerCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: CodeServerCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeServerCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(CodeServerCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

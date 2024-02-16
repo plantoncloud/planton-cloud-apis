@@ -51,9 +51,9 @@ type MicroserviceInstanceCommandControllerClient interface {
 	// update microservice-instance
 	Update(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// preview delete microservice-instance
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// delete microservice-instance
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// preview restoring a deleted microservice-instance
 	PreviewRestore(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
@@ -121,7 +121,7 @@ func (c *microserviceInstanceCommandControllerClient) Update(ctx context.Context
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
 	out := new(model.MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -130,7 +130,7 @@ func (c *microserviceInstanceCommandControllerClient) PreviewDelete(ctx context.
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
+func (c *microserviceInstanceCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
 	out := new(model.MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -224,9 +224,9 @@ type MicroserviceInstanceCommandControllerServer interface {
 	// update microservice-instance
 	Update(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error)
 	// preview delete microservice-instance
-	PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceInstance, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceInstance, error)
 	// delete microservice-instance
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceInstance, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceInstance, error)
 	// preview restoring a deleted microservice-instance
 	PreviewRestore(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
@@ -266,10 +266,10 @@ func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewUpdate(co
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Update(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedMicroserviceInstanceCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewRestore(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error) {
@@ -381,7 +381,7 @@ func _MicroserviceInstanceCommandController_Update_Handler(srv interface{}, ctx 
 }
 
 func _MicroserviceInstanceCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,13 +393,13 @@ func _MicroserviceInstanceCommandController_PreviewDelete_Handler(srv interface{
 		FullMethod: MicroserviceInstanceCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MicroserviceInstanceCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -411,7 +411,7 @@ func _MicroserviceInstanceCommandController_Delete_Handler(srv interface{}, ctx 
 		FullMethod: MicroserviceInstanceCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MicroserviceInstanceCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

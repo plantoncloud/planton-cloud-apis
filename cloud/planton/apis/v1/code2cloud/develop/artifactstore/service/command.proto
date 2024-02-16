@@ -49,7 +49,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete an artifact-store.
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
@@ -58,7 +58,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an artifact-store.
-  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;

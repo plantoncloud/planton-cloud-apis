@@ -36,7 +36,7 @@ type IdentityConnectionCommandControllerClient interface {
 	// update an existing identity connection
 	Update(ctx context.Context, in *model.IdentityConnection, opts ...grpc.CallOption) (*model.IdentityConnection, error)
 	// delete an existing identity connection
-	Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IdentityConnection, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IdentityConnection, error)
 	// restore an existing identity connection
 	Restore(ctx context.Context, in *model.IdentityConnection, opts ...grpc.CallOption) (*model.IdentityConnection, error)
 }
@@ -67,7 +67,7 @@ func (c *identityConnectionCommandControllerClient) Update(ctx context.Context, 
 	return out, nil
 }
 
-func (c *identityConnectionCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IdentityConnection, error) {
+func (c *identityConnectionCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IdentityConnection, error) {
 	out := new(model.IdentityConnection)
 	err := c.cc.Invoke(ctx, IdentityConnectionCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type IdentityConnectionCommandControllerServer interface {
 	// update an existing identity connection
 	Update(context.Context, *model.IdentityConnection) (*model.IdentityConnection, error)
 	// delete an existing identity connection
-	Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IdentityConnection, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IdentityConnection, error)
 	// restore an existing identity connection
 	Restore(context.Context, *model.IdentityConnection) (*model.IdentityConnection, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedIdentityConnectionCommandControllerServer) Create(context.Con
 func (UnimplementedIdentityConnectionCommandControllerServer) Update(context.Context, *model.IdentityConnection) (*model.IdentityConnection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIdentityConnectionCommandControllerServer) Delete(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IdentityConnection, error) {
+func (UnimplementedIdentityConnectionCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IdentityConnection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedIdentityConnectionCommandControllerServer) Restore(context.Context, *model.IdentityConnection) (*model.IdentityConnection, error) {
@@ -164,7 +164,7 @@ func _IdentityConnectionCommandController_Update_Handler(srv interface{}, ctx co
 }
 
 func _IdentityConnectionCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _IdentityConnectionCommandController_Delete_Handler(srv interface{}, ctx co
 		FullMethod: IdentityConnectionCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityConnectionCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(IdentityConnectionCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
