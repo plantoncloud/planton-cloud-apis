@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.role;
+
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/iam/authz/role/state.proto";
+
+//iam role command controller
+service IamRoleCommandController {
+  // create iam role
+  rpc create(IamRole) returns (IamRole);
+  // update iam role
+  rpc update(IamRole) returns (IamRole);
+  // delete iam role
+  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IamRole);
+}

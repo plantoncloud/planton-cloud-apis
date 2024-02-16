@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.permission;
+
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/io.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/state.proto";
+
+// iam query controller
+service IamPermissionQueryController {
+  // retrieve paginated list of all iam permissions on planton cloud. this is intended for use on portal.
+  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (IamPermissionList);
+  // lookup iam permission by permission id
+  rpc getById(IamPermissionId) returns (IamPermission);
+  // lookup iam permission by permission code
+  rpc getByPermissionCode(IamPermissionCode) returns (IamPermission);
+}
