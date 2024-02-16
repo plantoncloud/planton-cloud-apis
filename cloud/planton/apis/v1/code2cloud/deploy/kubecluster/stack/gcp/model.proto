@@ -7,13 +7,13 @@ import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/proj
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/provider/gcpgke/enums/podservicesecondaryrangecidrsetnum/pod_service_secondary_range_cidr_set_num.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/state.proto";
-import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/model/state.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 
 message KubeClusterGcpStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
   // pulumi stack credentials
   KubeClusterGcpStackCredentialsInput credentials_input = 2;
   // inputs used for creating stack resources
@@ -23,13 +23,13 @@ message KubeClusterGcpStackInput {
 // stack credentials input
 message KubeClusterGcpStackCredentialsInput {
   //google provider credential input
-  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
 }
 
 // stack resource input
 message KubeClusterGcpStackResourceInput {
   // cloud-account in which the kube-cluster resources are to be created.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount cloud_account = 1;
+  cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount cloud_account = 1;
 
   //details of the kube-cluster
   cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeCluster kube_cluster = 2;
@@ -292,7 +292,7 @@ message KubeClusterGcpStackIamOutputs {
 //stack response
 message KubeClusterGcpStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
   //stack outputs
   KubeClusterGcpStackOutputs outputs = 3;
 }

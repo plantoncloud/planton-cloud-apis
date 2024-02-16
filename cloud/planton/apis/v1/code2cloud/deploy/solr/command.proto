@@ -4,9 +4,9 @@ package cloud.planton.apis.v1.code2cloud.deploy.solr;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/solr/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/solr/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
 
@@ -45,7 +45,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing solr-cloud
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (SolrCloud) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -53,7 +53,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing solr-cloud
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (SolrCloud) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -77,7 +77,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for solr-cloud
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (SolrCloud) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -112,7 +112,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //preview refresh a solr-cloud that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (SolrCloud) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -120,7 +120,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a solr-cloud that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (SolrCloud) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (SolrCloud) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = solr_cloud;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

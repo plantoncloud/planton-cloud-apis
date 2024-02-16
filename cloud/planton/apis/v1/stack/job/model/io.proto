@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.stack.job.model;
 
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
 import "cloud/planton/apis/v1/stack/job/model/state.proto";
@@ -17,7 +17,7 @@ message StackJobId {
 // list stack-jobs by resource type and id query input
 message ListStackJobsByFiltersQueryInput {
   // page info
-  cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 1;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page_info = 1;
   // id of the company to filter the stack-jobs
   string company_id = 2;
   // id of the product to filter the stack-jobs

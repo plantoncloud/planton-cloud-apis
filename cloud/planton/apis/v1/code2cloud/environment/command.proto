@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.environment;
 
 import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
@@ -45,7 +45,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an environment
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Environment) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -55,7 +55,7 @@ service EnvironmentCommandController {
   //delete an existing environment
   //deleting a environment involves cleaning of all product components deployed for that environment.
   //microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (Environment) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -80,7 +80,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for environment
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (Environment) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -143,7 +143,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete namespace in environment";
   }
   //preview refresh a environment that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (Environment) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -151,7 +151,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a environment that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (Environment) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (Environment) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

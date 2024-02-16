@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.stack.job;
 
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/progress/snapshot/model.proto";
@@ -19,7 +19,7 @@ service StackJobQueryController {
   rpc getById(cloud.planton.apis.v1.stack.job.model.StackJobId) returns(cloud.planton.apis.v1.stack.job.model.StackJob);
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
-  rpc getProgressEventStream(cloud.planton.apis.v1.stack.job.model.StackJobId) returns(stream cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent);
+  rpc getProgressEventStream(cloud.planton.apis.v1.stack.job.model.StackJobId) returns(stream cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent);
   //rpc to get snapshot of stack-job log
   //response is optimized to display the stack-job log on non-interactive client-apps
   rpc getStackJobLogSnapshotStream(cloud.planton.apis.v1.stack.job.model.StackJobId) returns (stream cloud.planton.apis.v1.stack.job.progress.snapshot.StackJobLogSnapshot);

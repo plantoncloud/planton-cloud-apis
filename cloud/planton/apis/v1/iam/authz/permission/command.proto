@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authz.permission;
 
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/iam/authz/permission/model/state.proto";
 
 //iam command controller
@@ -12,5 +12,5 @@ service IamPermissionCommandController {
   // update iam permission
   rpc update(IamPermission) returns (IamPermission);
   // delete iam permission
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (IamPermission);
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (IamPermission);
 }

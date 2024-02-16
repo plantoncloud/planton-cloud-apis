@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.service;
 
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/stack/model/io.proto";
 import "cloud/planton/apis/v1/stack/model/state.proto";
 
@@ -12,7 +12,7 @@ service StackCommandController {
   //update stack
   rpc update(cloud.planton.apis.v1.stack.Stack) returns (cloud.planton.apis.v1.stack.Stack);
   //delete stack
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
   //delete stack on pulumi cloud
-  rpc deleteOnPulumiCloud(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
+  rpc deleteOnPulumiCloud(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (cloud.planton.apis.v1.stack.Stack);
 }

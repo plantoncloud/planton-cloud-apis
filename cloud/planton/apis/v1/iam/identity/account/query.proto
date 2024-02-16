@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.identity.account;
 
-import "cloud/planton/apis/v1/commons/resource/model.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/iam/identity/account/model/io.proto";
 import "cloud/planton/apis/v1/iam/identity/account/model/state.proto";
@@ -13,7 +13,7 @@ import "google/protobuf/wrappers.proto";
 // machine-account query controller
 service MachineAccountQueryController {
   // retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
-  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (IdentityAccountsList);
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo) returns (IdentityAccountsList);
 
   // lookup machine account by identity account id.
   rpc getById(IdentityAccountId) returns (IdentityAccount) {
@@ -61,7 +61,7 @@ service MachineAccountQueryController {
 // user-account query controller
 service UserAccountQueryController {
   // retrieve paginated list of all user accounts on planton cloud. this is intended for use on portal.
-  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (IdentityAccountsList);
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo) returns (IdentityAccountsList);
 
   //todo: add authorization
   // lookup user-account by identity account id.

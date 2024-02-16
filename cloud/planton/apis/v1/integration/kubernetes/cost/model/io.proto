@@ -21,7 +21,7 @@ message CostAllocationList {
 //input for paginated rpc to get list of cost allocations for a resources based on provided filters.
 message ListByCostAllocationFiltersInput {
   // page info
-  cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 1;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page_info = 1;
   // start timestamp
   google.protobuf.Timestamp start_ts = 2;
   // end timestamp

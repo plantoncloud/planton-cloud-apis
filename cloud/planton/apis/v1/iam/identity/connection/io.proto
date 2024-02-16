@@ -19,7 +19,7 @@ message IdentityConnectionId {
 message ListWithIdentityConnectionIdReq {
   // identity connection id
   string identity_connection_id = 1;
-  cloud.planton.apis.v1.commons.pagination.PageInfo page = 2;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page = 2;
 }
 
 message IdentityConnectionCompanyId {

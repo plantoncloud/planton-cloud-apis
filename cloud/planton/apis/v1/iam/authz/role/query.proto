@@ -9,7 +9,7 @@ import "cloud/planton/apis/v1/iam/authz/role/model/state.proto";
 // iam role query controller
 service IamRoleQueryController {
   // retrieve paginated list of all iam roles on planton cloud. this is intended for use on portal.
-  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (IamRoleList);
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo) returns (IamRoleList);
   // lookup iam role by role id
   rpc getById(IamRoleId) returns (IamRole);
   // lookup iam role by resource type and principal type

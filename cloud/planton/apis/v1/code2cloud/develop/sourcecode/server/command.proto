@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server;
 
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 
 //code-server command controller
@@ -26,7 +26,7 @@ service CodeServerCommandController {
   }
 
   //delete an existing code-server
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (CodeServer) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (CodeServer) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = code_server;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_server_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

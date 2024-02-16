@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.stack.service;
 
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/stack/model/io.proto";
 import "cloud/planton/apis/v1/stack/model/state.proto";
 

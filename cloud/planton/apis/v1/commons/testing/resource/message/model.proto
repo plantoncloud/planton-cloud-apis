@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.commons.testing.resource.message;
 
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/testing/resource/enums/model.proto";
 import "buf/validate/validate.proto";
 

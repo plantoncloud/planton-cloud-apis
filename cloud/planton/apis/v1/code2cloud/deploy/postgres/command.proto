@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.postgres;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/postgres/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/postgres/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
@@ -44,7 +44,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing postgres-cluster
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (PostgresCluster) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -52,7 +52,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing postgres-cluster
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (PostgresCluster) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -76,7 +76,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for postgres-cluster
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (PostgresCluster) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -111,7 +111,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }
   //preview refresh a postgres-cluster that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -119,7 +119,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a postgres-cluster that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (PostgresCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

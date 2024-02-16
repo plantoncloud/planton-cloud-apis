@@ -4,14 +4,14 @@ package cloud.planton.apis.v1.code2cloud.deploy.dnszone.stack.gcp;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model/state.proto";
 import "cloud/planton/apis/v1/commons/network/dns/domain/model.proto";
-import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/model/state.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 
 // input for dns-zone stack
 message DnsZoneGcpStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
   // pulumi stack credentials
   DnsZoneGcpStackCredentialsInput credentials_input = 2;
   // inputs used for creating stack resources
@@ -21,7 +21,7 @@ message DnsZoneGcpStackInput {
 // stack credentials input
 message DnsZoneGcpStackCredentialsInput {
   //google provider credential input
-  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
 }
 
 // stack resource input
@@ -40,7 +40,7 @@ message DnsZoneGcpStackOutputs {
 //stack response
 message DnsZoneGcpStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
   //stack outputs
   DnsZoneGcpStackOutputs outputs = 3;
 }

@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
@@ -44,7 +44,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete microservice-instance
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (MicroserviceInstance) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -52,7 +52,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete microservice-instance
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (MicroserviceInstance) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -76,7 +76,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for microservice-instance
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (MicroserviceInstance) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -111,7 +111,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }
   //preview refresh a microservice-instance that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -119,7 +119,7 @@ service MicroserviceInstanceCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a microservice-instance that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (MicroserviceInstance) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = microservice_instance;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

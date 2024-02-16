@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authz.role;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 
 // iam-role
 message IamRole {

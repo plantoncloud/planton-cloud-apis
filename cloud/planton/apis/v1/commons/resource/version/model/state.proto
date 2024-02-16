@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource.version.model;
+
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
+
+// The ResourceVersion message represents a record of a resource state modification
+// in a system's resource. It stores the original and new states of the resource,
+// the differences between them in a unified diff format, as well as audit and
+// identification information.
+message ResourceVersion {
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "ver";
+
+  // Resource audit information, which typically includes data about
+  // when and by whom the version was created.
+  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+  // A unique identifier (UUID) for the resource-version.
+  string id = 1;
+  // The ID of the company to which the resource-version belongs.
+  string company_id = 2;
+  // The ID of the product to which the resource-version belongs.
+  // This attribute is always empty for company level state.
+  string product_id = 3;
+  // The ID of the product environment to which the resource-version belongs.
+  // This attribute is always empty for company level state.
+  string environment_id = 4;
+  // The type of the resource for which the version was created.
+  // Resource types are defined in the ResourceType enum.
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  // The ID of the resource for which the version was created.
+  string resource_id = 6;
+  // The original state of the resource, represented as a YAML string.
+  string original_state_yaml = 7;
+  // The new state of the resource, represented as a YAML string.
+  string new_state_yaml = 8;
+  // The differences between the original and new state, represented in a unified diff format.
+  string diff_unified_format = 9;
+  // operation done on the state which ended up in creating this new version.
+  string operation_type = 10;
+  // version message provided during resource update operation.
+  string message = 11;
+  // version stack job info.
+  VersionStackJobInfo stack_job_info = 12;
+}
+
+// VersionStackJobInfo represents information about a version stack job.
+message VersionStackJobInfo {
+  // unique identifier for the stack job.
+  string stack_job_id = 1;
+
+  // represents the current status of the stack job.
+  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus  status = 2;
+}
+

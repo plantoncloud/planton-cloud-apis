@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.redis;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/redis/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
@@ -44,7 +44,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing redis-cluster
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (RedisCluster) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -52,7 +52,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing redis-cluster
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (RedisCluster) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -76,7 +76,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for redis-cluster
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (RedisCluster) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -111,7 +111,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
   }
   //preview refresh a redis-cluster that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (RedisCluster) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -119,7 +119,7 @@ service RedisClusterCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a redis-cluster that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (RedisCluster) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (RedisCluster) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = redis_cluster;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = redis_cluster_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

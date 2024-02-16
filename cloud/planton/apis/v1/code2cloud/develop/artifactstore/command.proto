@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.develop.artifactstore;
 
 import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
@@ -44,7 +44,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete an artifact-store.
-  rpc previewDelete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (ArtifactStore) {
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -52,7 +52,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an artifact-store.
-  rpc delete(cloud.planton.apis.v1.commons.resource.ApiResourceDeleteCommandInput) returns (ArtifactStore) {
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -76,7 +76,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for artifact-store
-  rpc createStackJob(cloud.planton.apis.v1.stack.job.CreateStackJobCommandInput) returns (ArtifactStore) {
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -90,7 +90,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete package version from artifact-store";
   }
   //preview refresh a artifact-store that was previously created
-  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
@@ -98,7 +98,7 @@ service ArtifactStoreCommandController {
     option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a artifact-store that was previously created
-  rpc refresh(cloud.planton.apis.v1.commons.resource.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput) returns (ArtifactStore) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";

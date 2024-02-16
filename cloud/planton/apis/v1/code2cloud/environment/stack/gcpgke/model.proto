@@ -3,13 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.environment.stack.gcpgke;
 
 import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
-import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/model/state.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 
 message EnvironmentGcpGkeStackInput {
   //stack job
-  cloud.planton.apis.v1.stack.job.StackJob stack_job = 1;
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
   //pulumi stack credentials
   EnvironmentGcpGkeStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
@@ -19,7 +19,7 @@ message EnvironmentGcpGkeStackInput {
 //stack credentials input
 message EnvironmentGcpGkeStackCredentialsInput {
   //google provider credential input required to create secret-resources on gcp
-  cloud.planton.apis.v1.commons.pulumi.operation.GoogleProviderCredential google = 1;
+  cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
   //kubernetes provider credential for creating endpoint-domain resources on kubernetes cluster
   cloud.planton.apis.v1.commons.pulumi.operation.KubernetesProviderCredential kubernetes = 2;
 }
@@ -39,7 +39,7 @@ message EnvironmentGcpGkeStackOutputs {
 //stack response
 message EnvironmentGcpGkeStackResponse {
   //stack-job progress event
-  cloud.planton.apis.v1.stack.job.progress.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
   //stack outputs
   EnvironmentGcpGkeStackOutputs outputs = 3;
 }

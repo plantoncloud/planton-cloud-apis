@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.commons.testing.resource.field.input;
 
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "buf/validate/validate.proto";
 
 // A message with a string field that must match a regex, and a string field without regex.

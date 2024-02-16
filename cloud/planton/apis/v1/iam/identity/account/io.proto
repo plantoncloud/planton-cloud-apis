@@ -26,7 +26,7 @@ message IdentityAccountEmail {
 message ListWithIdentityAccountIdReq {
   // identity account id
   string identity_account_id = 1;
-  cloud.planton.apis.v1.commons.pagination.PageInfo page = 2;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page = 2;
 }
 
 // response for paginated rpc query to list identity accounts.
@@ -48,7 +48,7 @@ message MachineAccountCompanyId {
 // wrapper for identity account company id.
 message ListWithIdentityCompanyId {
   string company_id = 1;
-  cloud.planton.apis.v1.commons.pagination.PageInfo page = 2;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page = 2;
 }
 
 message GetByCompanyByNameQueryInput {
