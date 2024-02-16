@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.postgres.service;
+
+import "cloud/planton/apis/v1/code2cloud/deploy/postgres/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/postgres/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/model/io.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/stack/job/model/io.proto";
+
+//postgres-cluster command controller
+service PostgresClusterCommandController {
+  //preview create postgres-cluster
+  rpc previewCreate(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview create postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //create postgres-cluster
+  rpc create(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = environment;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_create;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = created;
+  }
+  //preview updating an existing postgres-cluster
+  rpc previewUpdate(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview update postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //update an existing postgres-cluster
+  rpc update(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = updated;
+  }
+  //preview deleting an existing postgres-cluster
+  rpc previewDelete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
+  }
+  //delete an existing postgres-cluster
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_delete;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = deleted;
+  }
+  //preview restoring a deleted postgres-cluster in a environment
+  rpc previewRestore(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //restore a deleted postgres-cluster in a environment
+  rpc restore(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_restore;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = restored;
+  }
+  //create-stack-job for postgres-cluster
+  rpc createStackJob(cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for postgres-cluster";
+  }
+  //restart a postgres-cluster running in a environment.
+  //postgres-cluster is restarted by deleting running pods which will be automatically recreated by kubernetes
+  rpc restart(cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresClusterId)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restart postgres-cluster";
+  }
+  //pause a postgres-cluster running in a environment.
+  //postgres-cluster is paused by scaling down number of replicas of
+  //the kubernetes deployment/stateful sets to zero in the environment.
+  rpc pause(cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = paused;
+  }
+  //unpause a previously paused postgres-cluster running in a environment.
+  //unpause is done by scaling the number of pods back to the number of
+  //replicas configured for the postgres-cluster.
+  rpc unpause(cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = unpaused;
+  }
+  //preview refresh a postgres-cluster that was previously created
+  rpc previewRefresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a postgres-cluster that was previously created
+  rpc refresh(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.postgres.model.PostgresCluster) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = postgres_cluster;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = postgres_cluster_update;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh postgres-cluster";
+    option (cloud.planton.apis.v1.commons.rpc.method.options.event_type) = refreshed;
+  }
+}

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.integration.kubernetes.cost.service;
+
+import "cloud/planton/apis/v1/integration/kubernetes/cost/model/io.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/cost/model/state.proto";
+
+// cost allocation query controller
+service CostAllocationQueryController {
+  // Get Cost allocation data by search filters
+  // This returns a paginated list of cost allocation data
+  // Filters include start and end date so company identifier product identifier environment identifier and posting environment identifier
+  rpc listByCostAllocationFilters(cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput)
+      returns (cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocationList);
+  // get cost aggregate by timestamp for a given resource.
+  // example: Get month to date cost of a postgres cluster
+  // example: Get month to date cost of a kafka cluster
+  rpc getCostAggregateByResourceId(cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput)
+      returns (cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAggregate);
+}

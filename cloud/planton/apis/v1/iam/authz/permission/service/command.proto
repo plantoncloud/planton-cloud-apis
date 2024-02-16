@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.permission.service;
+
+import "cloud/planton/apis/v1/commons/resource/model/io.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/model/state.proto";
+
+//iam command controller
+service IamPermissionCommandController {
+  // create iam permission
+  rpc create(cloud.planton.apis.v1.iam.authz.permission.model.IamPermission)
+      returns (cloud.planton.apis.v1.iam.authz.permission.model.IamPermission);
+  // update iam permission
+  rpc update(cloud.planton.apis.v1.iam.authz.permission.model.IamPermission)
+      returns (cloud.planton.apis.v1.iam.authz.permission.model.IamPermission);
+  // delete iam permission
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.iam.authz.permission.model.IamPermission);
+}

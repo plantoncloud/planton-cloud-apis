@@ -1,0 +1,77 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.company.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+
+// company on planton-cloud
+message Company {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = company;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = identity_account;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "status.audit.spec_audit.created_by.id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  // metadata for the resource
+  // id for this resource should not exceed 9 characters.
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 2,
+    (buf.validate.field).string.max_len = 9,
+    (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "Only lowercase letters and numbers are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.id.matches('^[a-z0-9]+$')"
+    }
+  ];
+
+  // company spec
+  CompanySpec spec = 4;
+
+  // company status
+  CompanyStatus status = 5;
+}
+
+// CompanySpec is a message type that defines the specifications for a company.
+message CompanySpec {
+  // description for the company
+  string description = 1;
+  // public url for the company logo
+  string logo_url = 2;
+}
+
+// company status
+message CompanyStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  // id of the service-account created on google-cloud for this company.
+  // this service-account should be granted the required roles for planton-cloud to
+  // be able to create resource in the customer's google-cloud account.
+  string gcp_service_account_id = 1;
+
+  // id of the secret on secrets-manager containing the service-account key credential.
+  string gcp_service_account_key_secret_name = 2;
+}

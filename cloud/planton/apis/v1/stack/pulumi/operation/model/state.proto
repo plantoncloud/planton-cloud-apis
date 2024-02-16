@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.pulumi.operation.model;
+
+// status of a pulumi operation
+message PulumiOperationStatus {
+  //flag to indicate if the pulumi operation has started
+  bool is_started = 1;
+  //flag to indicate if the pulumi operation has been completed
+  bool is_completed = 2;
+  //flag to indicate if the pulumi operation has been successfully completed
+  bool is_succeeded = 3;
+  //list of errors reported during the operation execution
+  repeated string errors = 4;
+  //duration seconds for the operation
+  int32 duration_seconds = 5;
+}

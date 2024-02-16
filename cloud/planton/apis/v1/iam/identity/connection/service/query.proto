@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.identity.connection.service;
+
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/iam/identity/connection/model/state.proto";
+import "cloud/planton/apis/v1/iam/identity/connection/model/io.proto";
+
+// identity connection query controller
+service IdentityConnectionQueryController {
+  // lookup identity account by id.
+  rpc getById(cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionId)
+      returns (cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_connection;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_connection_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get identity connection";
+  }
+  // retrieve paginated list of all identity connections on planton cloud. this is intended for use on portal.
+  rpc findByCompanyId(cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionCompanyId)
+      returns (cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnections) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = identity_connection;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_connection_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get identity connection";
+  }
+}

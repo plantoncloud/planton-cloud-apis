@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.commons.resource.list;
 
-import "cloud/planton/apis/v1/commons/audit/state.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/list/enums/statusfilter/status_filter.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 
 // Record is a message type that represents a single record object in list view.
 // Record object has all fields that are required to show in list view
@@ -15,7 +15,7 @@ import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 // product environment identifiers.
 message Record {
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.AuditInfo audit = 98;
   // Unique identifier for the resource.
   // example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;
@@ -62,7 +62,7 @@ message GetByResourceTypeInput {
   cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 3;
   // This field contains the pagination information used for retrieving specific paginated
   // data. It enables the client to specify the number of records per page and the page number.
-  cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 4;
+  cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page_info = 4;
   //  this field is an enumeration used to dictate the active status of the resources
   //  included in the search results.
   cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter status_filter = 5;

@@ -1,0 +1,189 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
+import "cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto";
+import "cloud/planton/apis/v1/stack/pulumi/operation/model/state.proto";
+import "google/protobuf/timestamp.proto";
+
+// stack-job
+message StackJob {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = stack_job;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "sj";
+
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = stack;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.stack_id";
+
+  //id format "sj-<ulid>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (buf.validate.field).string.const = "stack.planton.cloud/v1"
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (buf.validate.field).string.const = "StackJob"
+  ];
+
+  // resource metadata
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
+
+  //resource spec
+  StackJobSpec spec = 4;
+
+  //resource status
+  StackJobStatus status = 5;
+}
+
+// stack-job spec
+message StackJobSpec {
+  // id of the company to which the stack-job belongs to.
+  //value is computed from stack
+  string company_id = 1 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //id of the product to which the stack-job belongs to.
+  //value is empty for non-product specific resources
+  string product_id = 2 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the environment to which the stack-job belongs to.
+  //value is empty for non-environment specific resources
+  string environment_id = 3 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // resource type for which the stack-job is created
+  //value is computed from stack.
+  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 4 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the resource for which the stack-job is created.
+  string resource_id = 5 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the resource version for which the stack-job is created.
+  string resource_version_id = 6 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // id of the stack to which the stack-job belongs to.
+  // value is computed based on resource-id.
+  string stack_id = 7 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  // stack-job operation type
+  cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType operation_type = 8 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // name of the pulumi-stack.
+  // this value is computed by stack service.
+  string pulumi_stack_name = 9 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  // event type of the resource that triggered the stack job
+  string resource_event = 10 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //pulumi operations for stack-job
+  StackJobPulumiOperationsSpec pulumi_operations = 11 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+// stack-job status
+message StackJobStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+
+  // execution status of the stack-job
+  cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;
+
+  // execution start time of stack job
+  google.protobuf.Timestamp execution_start_time = 2;
+
+  // execution end time of stack job
+  google.protobuf.Timestamp execution_end_time = 3;
+
+  // status of pulumi operations
+  StackJobPulumiOperationsStatus pulumi_operations = 4;
+}
+
+// pulumi operations spec for a stack job
+message StackJobPulumiOperationsSpec {
+  //flag to indicate if pulumi refresh is required for this job
+  bool is_refresh_required = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //flag to indicate if pulumi preview(apply) is required for this job
+  bool is_apply_preview_required = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //flag to indicate if pulumi preview(destroy) is required for this job
+  bool is_destroy_preview_required = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //flag to indicate if pulumi up is required for this job
+  bool is_apply_required = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //flag to indicate if pulumi destroy is required for this job
+  bool is_destroy_required = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+// pulumi operations status of the stack job
+message StackJobPulumiOperationsStatus {
+  // status of refresh operation populated only when pulumi refresh is required for the stack-job
+  cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus refresh_status = 1;
+
+  // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
+  cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus apply_preview_status = 2;
+
+  // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
+  cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus destroy_preview_status = 3;
+
+  // status of apply operation populated only when pulumi apply is required for the stack-job
+  cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus apply_status = 4;
+
+  // status of apply operation populated only when pulumi destroy is required for the stack-job
+  cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus destroy_status = 5;
+}

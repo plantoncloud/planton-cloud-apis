@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service;
+
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/model/io.proto";
+
+service ArtifactStoreGcpStackController {
+  rpc execute(cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput)
+      returns (stream cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs);
+}

@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.kafka.model;
+
+import "cloud/planton/apis/v1/code2cloud/deploy/kafka/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+
+//wrapper for id field of kafka-cluster
+message KafkaClusterId {
+  string value = 1;
+}
+
+//list of kafka-clusters
+message KafkaClusters {
+  repeated KafkaCluster entries = 1;
+}
+
+//list of kafka topics
+message KafkaTopics {
+  repeated KafkaTopic entries = 1;
+}
+
+//wrapper for kafka topic id
+message KafkaTopicId {
+  string value = 1;
+}
+
+//wrapper for kafka-cluster password
+message KafkaClusterPassword {
+  string value = 1;
+}
+
+//input for command to add multiple kafka topics to a kafka-cluster
+message AddKafkaTopicsCommandInput {
+  //id of the kafka-cluster to which the kafka topics are added
+  string kafka_cluster_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //list of kafka topics to be added to existing list of kafka topics
+  repeated KafkaTopic kafka_topics = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
+}
+
+//response for paginated query to list kafka-clusters
+message KafkaClusterList {
+  int32 total_pages = 1;
+  repeated KafkaCluster entries = 2;
+}
+
+//AddOrUpdateKafkaTopicCommandInput is used to encapsulate the details required
+//for adding a new kafka-topic to a specific kafka-cluster, or updating
+//an existing one. This message is typically used to transmit data between the client and
+//server during an add or update operation concerning a specific kafka-topic
+//associated with a particular kafka-cluster.
+message AddOrUpdateKafkaTopicCommandInput {
+  //The unique identifier for the kafka-cluster to which the kafka-topic
+  // needs to be added or updated. This field must be populated with a valid
+  //kafka-cluster ID, which can be obtained from the kafka-cluster entity itself.
+  //The server uses this ID to identify the correct kafka-cluster where the
+  //kafka-topic needs to be added or updated.
+  string kafka_cluster_id = 1;
+
+  //The kafka-topic that needs to be added or updated within the product
+  //environment. This field should be populated with a valid KafkaTopic object,
+  //which encapsulates the details of the kafka-topic. If an kafka-topic
+  //with the kafka-topic-id already exists in the kafka-cluster, the value will be updated.
+  //Otherwise, a new kafka-topic will be created with the provided details.
+  KafkaTopic kafka_topic = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
+}
+
+//DeleteOrRestoreKafkaTopicCommandInput is used to encapsulate the details required for
+//deleting or restoring a kafka-topic of a specific kafka-cluster.
+//This message is typically used to transmit data between the client and the server
+//during a delete or restore operation concerning a specific kafka-topic associated
+//with a particular kafka-cluster.
+message DeleteOrRestoreKafkaTopicCommandInput {
+  //The unique identifier for the kafka-cluster from which the kafka-topic
+  // needs to be deleted or restored. This field must be populated with a valid
+  //kafka-cluster ID, which can be obtained from the kafka-cluster entity itself.
+  //The server uses this ID to identify the correct kafka-cluster from which
+  //the kafka-topic needs to be deleted or restored.
+  string kafka_cluster_id = 1;
+
+  //The kafka-topic-id of the kafka-topic that needs to be deleted or restored.
+  //This field should be populated with a valid
+  //kafka-topic-id, which can be obtained from the kafka-topic entity itself.
+  //The server uses this kafka-topic-id to identify the correct kafka-topic that
+  //needs to be deleted or restored.
+  string kafka_topic_id = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
+}
+
+//KafkaTopicQueryInput is a message type that serves as input for queries
+//related to Kafka topics within a specific Kafka cluster.
+//It contains information about the specific Kafka cluster and the Kafka
+//topic to be queried.
+message KafkaTopicQueryInput {
+  //Unique identifier of the Kafka cluster from which the Kafka topic
+  //information is to be retrieved.
+  //This field is required, as specified by the is_required field option.
+  string kafka_cluster_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //KafkaTopic object that represents the Kafka topic to be queried
+  //in the Kafka cluster.
+  //This encapsulates all the necessary information about the Kafka topic.
+  KafkaTopic kafka_topic = 2;
+}

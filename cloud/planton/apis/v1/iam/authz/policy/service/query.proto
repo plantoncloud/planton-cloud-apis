@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.policy.service;
+
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/iam/authz/policy/model/state.proto";
+import "cloud/planton/apis/v1/iam/authz/policy/model/io.proto";
+
+// iam policy query controller
+service IamPolicyQueryController {
+  // retrieve iam policies by type and id
+  rpc getByResourceTypeAndResourceId(cloud.planton.apis.v1.iam.authz.policy.model.GetIamPolicyByResourceTypeAndResourceIdInput)
+      returns (cloud.planton.apis.v1.iam.authz.policy.model.IamPoliciesByPrincipal) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view iam policy";
+  }
+
+  // retrieve iam policies by type and id grouped by role
+  rpc getByResourceTypeAndResourceIdGroupByRole(cloud.planton.apis.v1.iam.authz.policy.model.GetIamPolicyByResourceTypeAndResourceIdInput)
+      returns (cloud.planton.apis.v1.iam.authz.policy.model.IamPoliciesByRole) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view iam policy";
+  }
+
+  // retrieve iam policies by type and id grouped by role
+  rpc getCompanyByResourceTypeAndResourceIdGroupByRole(cloud.planton.apis.v1.iam.authz.policy.model.GetIamPolicyByResourceTypeAndResourceIdInput)
+      returns (cloud.planton.apis.v1.iam.authz.policy.model.IamPoliciesByRole) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view iam policy";
+  }
+
+  // checkPermission evaluates whether a specific action or access described by the AuthorizationInput
+  // is authorized based on the configured IAM policies. This RPC is crucial for enforcing access controls
+  // and ensuring that operations are performed by appropriately authorized users or services.
+  //
+  // The authorization decision is returned as an IsAuthorized message, indicating a binary outcome
+  // (true if the action is authorized, false otherwise). Custom options are used to define the required
+  // permission (iam_policy_get) and the error message to be returned if the authorization check fails
+  // due to insufficient permissions.
+  rpc checkAuthorization(cloud.planton.apis.v1.iam.authz.policy.model.AuthorizationInput)
+      returns (cloud.planton.apis.v1.iam.authz.policy.model.IsAuthorized) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to check iam policy";
+  }
+
+  // listResources evaluates the provided AuthorizationInput to identify resources that the requesting
+  // entity is authorized to access, based on IAM policies. This operation is essential for scenarios
+  // where an entity needs to enumerate resources they have permissions to interact with.
+  //
+  // It returns an AuthorizedResourceIds message, which contains the IDs of all resources the entity is
+  // authorized to access. Similar to checkPermission, this RPC utilizes custom options to specify the
+  // required permission (iam_policy_get) and the error message for insufficient permissions scenarios.
+  rpc listAuthorizedResourceIds(cloud.planton.apis.v1.iam.authz.policy.model.AuthorizationInput)
+      returns (cloud.planton.apis.v1.iam.authz.policy.model.AuthorizedResourceIds) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to list authorized resources";
+  }
+}
