@@ -5,22 +5,7 @@ package cloud.planton.apis.v1.integration.gitlab.proxy;
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/state.proto";
-import "cloud/planton/apis/v1/integration/gitlab/proxy/model.proto";
-
-//gitlab proxy command controller
-service GitlabProxyCommandController {
-  //create new project on gitlab
-  //https://docs.gitlab.com/ee/api/projects.html#create-project
-  rpc creProject(CreProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
-  //apply a cookiecutter template on a code project created on gitlab
-  rpc applyTemplate(GitlabApplyTemplateCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
-  //add a list of variables to a gitlab project
-  rpc addVariablesToProject(AddVariablesToProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
-  //add a list of variables to a gitlab group
-  rpc addVariablesToGroup(AddVariablesToGroupCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer);
-  //add a list of files to a gitlab project
-  rpc addFilesToProject(AddFilesToGitlabProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
-}
+import "cloud/planton/apis/v1/integration/gitlab/proxy/io.proto";
 
 //gitlab proxy query controller
 service GitlabProxyQueryController {

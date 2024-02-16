@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.integration.gitlab.proxy;
 
 import "cloud/planton/apis/v1/integration/gitlab/proxy/enums/enums.proto";
-import "cloud/planton/apis/v1/integration/github/proxy/model.proto";
+import "cloud/planton/apis/v1/integration/github/proxy/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
 

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/service.proto
+// source: cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/query.proto
 
 package certificate
 
@@ -141,5 +141,5 @@ var CertificateProxyQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/service.proto",
+	Metadata: "cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/query.proto",
 }
