@@ -114,12 +114,14 @@ service KubeClusterNodePoolGcpQueryController {
 // gcp query controller
 service GcpQueryController {
   // list all gcp regions
-  rpc findRegions(cloud.planton.apis.v1.commons.protobuf.custom.CustomEmpty) returns (GcpRegions) {
+  rpc findRegions(cloud.planton.apis.v1.commons.protobuf.custom.CustomEmpty)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpRegions) {
     option (cloud.planton.apis.v1.iam.authz.extensions.is_public) = true;
   }
 
   // list all zones in a gcp region
-  rpc findZonesByRegionIdentifier(GcpRegionIdentifier) returns (GcpZones) {
+  rpc findZonesByRegionIdentifier(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpRegionIdentifier)
+      returns (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpZones) {
     option (cloud.planton.apis.v1.iam.authz.extensions.is_public) = true;
   }
 }

@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model;
 import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model/state.proto";
 
 //wrapper for custom-endpoint Domain id
-message (cloud.planton.apis.v1.code2cloud.io.CustomEndpointId) {
+message CustomEndpointId {
   string value = 1;
 }
 

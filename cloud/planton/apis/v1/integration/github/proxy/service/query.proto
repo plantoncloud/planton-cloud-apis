@@ -13,14 +13,14 @@ service GithubProxyQueryController {
   //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
   //todo: we have to add pagination support for response.
   rpc listRepositories(cloud.planton.apis.v1.integration.github.proxy.model.ListRepositoriesQueryInput)
-      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjects);
+      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjects);
   //get the details of a repository on github
   rpc getRepository(cloud.planton.apis.v1.integration.github.proxy.model.GetRepositoryQueryInput)
-      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
+      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject);
   //get details of a github app installation
   rpc getGithubAppInstallation(cloud.planton.apis.v1.integration.github.proxy.model.GithubAppInstallation)
       returns (cloud.planton.apis.v1.integration.github.proxy.model.GithubAppInstallation);
   //get code project profile of a code-project hosted on github
   rpc getGithubCodeProjectProfile(cloud.planton.apis.v1.integration.github.proxy.model.GetGithubCodeProjectProfileQueryInput)
-      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
+      returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectProfile);
 }

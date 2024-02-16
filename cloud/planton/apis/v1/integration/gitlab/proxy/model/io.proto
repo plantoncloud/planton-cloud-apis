@@ -50,13 +50,13 @@ message CreProjectCommandInput {
 message GitlabApplyTemplateCommandInput {
   //github client info required to lookup template project info.
   //code project templates is only supported for template projects hosted on github
-  cloud.planton.apis.v1.integration.github.proxy.GithubClientInfo template_project_github_client_info = 1;
+  cloud.planton.apis.v1.integration.github.proxy.model.GithubClientInfo template_project_github_client_info = 1;
   //gitlab client info required to clone and publish template changes to target project
   GitlabClientInfo target_project_gitlab_client_info = 2;
   //template code project
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject template_project = 3;
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject template_project = 3;
   //code project for which the template should be applied
-  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject target_code_project = 4;
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject target_code_project = 4;
 }
 
 //input for command to add list of variables to a gitlab project
@@ -104,5 +104,5 @@ message AddFilesToGitlabProjectCommandInput {
   //id of the gitlab project to which the files are to be added
   string gitlab_project_id = 2;
   //files to be added to the project
-  repeated cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectFile code_project_files = 3;
+  repeated cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectFile code_project_files = 3;
 }

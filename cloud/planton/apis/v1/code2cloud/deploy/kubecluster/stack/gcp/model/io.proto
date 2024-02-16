@@ -32,7 +32,7 @@ message KubeClusterGcpStackResourceInput {
   cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount cloud_account = 1;
 
   //details of the kube-cluster
-  (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster kube_cluster = 2;
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster kube_cluster = 2;
 
   //input required to configure kube-clusters.
   KubeClusterGcpStackContainerInput container = 7;

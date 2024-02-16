@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.iam.authz.role.service;
+
+import "cloud/planton/apis/v1/commons/resource/model/io.proto";
+import "cloud/planton/apis/v1/iam/authz/role/model/state.proto";
+
+//iam role command controller
+service IamRoleCommandController {
+  // create iam role
+  rpc create(cloud.planton.apis.v1.iam.authz.role.model.IamRole)
+      returns (cloud.planton.apis.v1.iam.authz.role.model.IamRole);
+  // update iam role
+  rpc update(cloud.planton.apis.v1.iam.authz.role.model.IamRole)
+      returns (cloud.planton.apis.v1.iam.authz.role.model.IamRole);
+  // delete iam role
+  rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.v1.iam.authz.role.model.IamRole);
+}

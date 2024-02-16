@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/stack/job/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
-import "cloud/planton/apis/v1/stack/job/progress/snapshot/model.proto";
+import "cloud/planton/apis/v1/stack/job/progress/snapshot/model/io.proto";
 import "cloud/planton/apis/v1/stack/job/model/state.proto";
 import "cloud/planton/apis/v1/stack/pulumi/engine/model/io.proto";
 

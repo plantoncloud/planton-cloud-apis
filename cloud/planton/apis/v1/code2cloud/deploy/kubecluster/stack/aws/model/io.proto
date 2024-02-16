@@ -26,7 +26,7 @@ message KubeClusterAwsStackCredentialsInput {
 // stack resource input
 message KubeClusterAwsStackResourceInput {
   //details of the kube-cluster
-  (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster kube_cluster = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster kube_cluster = 1;
 }
 
 // stack outputs

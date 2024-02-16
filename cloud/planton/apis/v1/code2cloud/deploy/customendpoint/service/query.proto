@@ -16,7 +16,7 @@ service CustomEndpointQueryController {
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointList);
 
   //look up custom-endpoint using custom-endpoint id
-  rpc getById((cloud.planton.apis.v1.code2cloud.io.CustomEndpointId))
+  rpc getById(cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_get;
@@ -30,7 +30,7 @@ service CustomEndpointQueryController {
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoints);
 
   //check cert status for custom-endpoint
-  rpc getCustomEndpointCertStatus((cloud.planton.apis.v1.code2cloud.io.CustomEndpointId))
+  rpc getCustomEndpointCertStatus(cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointCertStatus) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_get;
@@ -40,7 +40,7 @@ service CustomEndpointQueryController {
 
   //check status of dns resolution for custom-endpoint.
   //confirms if the dns of the custom-endpoint domain is resolving to the correct address.
-  rpc getCustomEndpointDsnResolutionStatus((cloud.planton.apis.v1.code2cloud.io.CustomEndpointId))
+  rpc getCustomEndpointDsnResolutionStatus(cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointDnsResolutionStatus) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_get;
@@ -49,7 +49,7 @@ service CustomEndpointQueryController {
   }
 
   //find certificates for custom-endpoint
-  rpc findCustomEndpointCertificates((cloud.planton.apis.v1.code2cloud.io.CustomEndpointId))
+  rpc findCustomEndpointCertificates(cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.v1.integration.kubernetes.resource.Certificates) {
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = custom_endpoint;
     option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = custom_endpoint_get;

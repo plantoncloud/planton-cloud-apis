@@ -127,7 +127,7 @@ message CloudAccountSpec {
 // cloud-account status
 message CloudAccountStatus {
   // resource lifecycle
-  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
   cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;

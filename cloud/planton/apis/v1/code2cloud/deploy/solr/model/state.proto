@@ -111,7 +111,7 @@ message SolrCloudSpecKubernetesSpecSolrContainerSpec {
 
   //solr container image
   //example repo: solr example tag: 8.7.0
-  cloud.planton.apis.v1.commons.kubernetes.ContainerImage image = 2;
+  cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage image = 2;
 
   //solr container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"

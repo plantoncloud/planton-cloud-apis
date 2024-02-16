@@ -53,7 +53,7 @@ message BillingAccountSpec {
 message BillingSubscription {
   // Resource audit information associated with this billing subscription.
   // ResourceAudit is a separate message defined elsewhere, which includes necessary resource audit information.
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+  cloud.planton.apis.v1.commons.audit.model.AuditInfo audit = 99;
 
   // Unique identifier for the specific billing subscription.
   // This identifier is unique per billing subscription and is used to correlate the billing subscription with its associated data.
@@ -89,7 +89,7 @@ message StripeSubscription {
 //status for billing-account
 message BillingAccountStatus {
   // resource lifecycle
-  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
   cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
@@ -99,7 +99,7 @@ message BillingAccountStatus {
 // This message is used to manage and track billing related information for various resources.
 message BillingItem {
   //resource audit info
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+  cloud.planton.apis.v1.commons.audit.model.AuditInfo audit = 99;
   // id is the unique identifier for the specific billing item.
   // This identifier is unique per billing item and is used to correlate the billing item with its associated data.
   string id = 1;
@@ -122,7 +122,7 @@ message BillingItem {
 // This message provides details about the association between a billing subscription and a specific resource.
 message BillingSubscriptionResourceMapping {
   // Resource audit information, containing metadata like creation and modification timestamps.
-  cloud.planton.apis.v1.commons.audit.AuditInfo audit = 99;
+  cloud.planton.apis.v1.commons.audit.model.AuditInfo audit = 99;
 
   // Unique identifier for the billing subscription resource mapping.
   string id = 1;

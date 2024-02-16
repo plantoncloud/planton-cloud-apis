@@ -23,5 +23,5 @@ service BillingQueryController {
 
   //get customer portal session.
   //https://stripe.com/docs/api/customer_portal/sessions/create
-  rpc getCustomerPortalSessionByCompanyId(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns ((cloud.planton.apis.v1.billing.model.GetCustomerPortalSessionQueryResp);
+  rpc getCustomerPortalSessionByCompanyId(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.billing.model.GetCustomerPortalSessionQueryResp);
 }

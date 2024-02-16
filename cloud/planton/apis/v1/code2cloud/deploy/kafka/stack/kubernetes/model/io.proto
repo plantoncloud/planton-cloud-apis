@@ -26,13 +26,13 @@ message KafkaClusterKubernetesStackCredentialsInput {
 //stack resource input
 message KafkaClusterKubernetesStackResourceInput {
   //kafka-cluster
-  cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaCluster kafka_cluster = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster kafka_cluster = 1;
 }
 
 //kafka-cluster kubernetes stack outputs
 message KafkaClusterKubernetesStackOutputs {
   //kafka-cluster status
-  cloud.planton.apis.v1.code2cloud.deploy.kafka.KafkaClusterStatus kafka_cluster_status = 1;
+  cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus kafka_cluster_status = 1;
 }
 
 //stack response
