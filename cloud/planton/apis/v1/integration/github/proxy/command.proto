@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.integration.github.proxy;
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/state.proto";
-import "cloud/planton/apis/v1/integration/github/proxy/model.proto";
+import "cloud/planton/apis/v1/integration/github/proxy/io.proto";
 
 //github proxy command controller
 service GithubProxyCommandController {
@@ -23,18 +23,4 @@ service GithubProxyCommandController {
   //synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
   //then add files in the input to .github/workflows directory.
   rpc synchronizeMagicPipelineFiles(SynchronizeGithubMagicPipelineFilesCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
-}
-
-//github proxy query controller
-service GithubProxyQueryController {
-  //list repositories for the requested organization or user on github
-  //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
-  //todo: we have to add pagination support for response.
-  rpc listRepositories(ListRepositoriesQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjects);
-  //get the details of a repository on github
-  rpc getRepository(GetRepositoryQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
-  //get details of a github app installation
-  rpc getGithubAppInstallation(GithubAppInstallation) returns (GithubAppInstallation);
-  //get code project profile of a code-project hosted on github
-  rpc getGithubCodeProjectProfile(GetGithubCodeProjectProfileQueryInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
 }

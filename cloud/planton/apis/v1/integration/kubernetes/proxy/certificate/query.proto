@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.integration.kubernetes.proxy.certificate;
 
-import "cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/model.proto";
+import "cloud/planton/apis/v1/integration/kubernetes/proxy/certificate/io.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
 
 service CertificateProxyQueryController {
