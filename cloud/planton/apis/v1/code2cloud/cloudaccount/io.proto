@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.cloudaccount;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/state.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
 
 // list of cloud accounts
 message CloudAccounts {

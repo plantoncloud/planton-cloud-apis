@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.storagebucket;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
 
 //storage-bucket query controller
 service StorageBucketQueryController {
@@ -25,7 +25,7 @@ service StorageBucketQueryController {
 
   //find storage-buckets by product id.
   //response contains only objects that the authenticated user account id has viewer access to.
-  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns(StorageBuckets);
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns(StorageBuckets);
 
   //find storage-buckets by environment id.
   //response contains only objects that the authenticated user account id has viewer access to.

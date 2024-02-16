@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.dnszone.stack.aws;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model/state.proto";
 import "cloud/planton/apis/v1/commons/network/dns/domain/model.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/state.proto";
-import "cloud/planton/apis/v1/stack/job/progress/model.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 
 // input for dns-zone stack
 message DnsZoneAwsStackInput {

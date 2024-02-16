@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.project;
 
 import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/enums/profile/profile.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/state.proto";
 
 //wrapper for code project id
 message CodeProjectId {

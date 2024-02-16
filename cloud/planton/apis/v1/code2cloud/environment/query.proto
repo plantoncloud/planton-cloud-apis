@@ -3,14 +3,14 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.environment;
 
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
 
 //environment query controller
 service EnvironmentQueryController {
@@ -26,7 +26,7 @@ service EnvironmentQueryController {
   }
 
   //find environments by product id
-  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (Environments);
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (Environments);
 
   //find environments by kube-cluster id
   rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterId) returns (Environments);
@@ -40,7 +40,7 @@ service EnvironmentQueryController {
   }
 
   //look up the build engine environment for the product required for launching the microservice in build engine
-  rpc getBuildEngineEnvironmentByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (Environment);
+  rpc getBuildEngineEnvironmentByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (Environment);
 
   //look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
   rpc getSecretsGcpProjectByEnvironmentId(EnvironmentId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject);

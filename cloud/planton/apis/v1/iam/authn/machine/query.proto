@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authn.machine;
 
-import "cloud/planton/apis/v1/iam/authn/machine/io.proto";
+import "cloud/planton/apis/v1/iam/authn/machine/model/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 
 //machine authentication query controller

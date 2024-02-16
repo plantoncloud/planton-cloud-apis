@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.dnszone;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/dnszone/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/company/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model/io.proto";
 import "google/protobuf/wrappers.proto";
 
 //dns-zone query controller
@@ -14,7 +14,7 @@ service DnsZoneQueryController {
   //todo: add authorization
   // find dns-zones by company id
   //the response should only include dns-zones in a company that the authenticated user account has viewer access to.
-  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.CompanyId) returns (DnsZones);
+  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (DnsZones);
   //todo: add authorization
   // get details of a dns-zone id
   rpc getById(DnsZoneId) returns (DnsZone) {

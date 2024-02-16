@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kubecluster;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/stack/job/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/io.proto";
 
 // kube-cluster command controller
 service KubeClusterCommandController {

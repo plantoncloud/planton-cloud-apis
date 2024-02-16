@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.solr;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/solr/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/solr/model/state.proto";
 
 //wrapper for id field of solr-cloud
 message SolrCloudId {

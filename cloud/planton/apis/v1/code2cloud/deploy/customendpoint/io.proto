@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.customendpoint;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model/state.proto";
 
 //wrapper for custom-endpoint Domain id
-message CustomEndpointId {
+message (cloud.planton.apis.v1.code2cloud.io.CustomEndpointId) {
   string value = 1;
 }
 

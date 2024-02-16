@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kubecluster;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/state.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/state.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/protobuf/custom/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
@@ -12,7 +12,7 @@ import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/namespace.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/resourcemanager/company/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model/io.proto";
 
 // kube-cluster query controller
 service KubeClusterQueryController {
@@ -28,7 +28,7 @@ service KubeClusterQueryController {
   }
 
   // find kube-clusters by company id
-  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.CompanyId) returns (KubeClusters);
+  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (KubeClusters);
 
   // find kube-clusters in a cloud account.
   rpc findByCloudAccountId(cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccountId) returns (KubeClusters);
@@ -37,7 +37,7 @@ service KubeClusterQueryController {
   // this will be used to populate drop down of kube-clusters in create environment form.
   // the response should only include kube-clusters that a company is authorised to create environment.
   // the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
-  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.v1.resourcemanager.company.CompanyId) returns (KubeClusters);
+  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (KubeClusters);
 
   // lookup components in a kube-cluster of a kube-cluster
   rpc getKubeClusterComponentsByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.KubeClusterId) returns (KubeClusterComponents) {

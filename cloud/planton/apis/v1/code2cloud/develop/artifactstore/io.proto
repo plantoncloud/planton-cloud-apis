@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.artifactstore;
 
-import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/google/model.proto";
 import "google/protobuf/timestamp.proto";
 

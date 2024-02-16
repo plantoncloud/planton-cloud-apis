@@ -6,6 +6,6 @@ import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/stack/kubernetes/model.proto";
 
 service CustomEndpointKubernetesStackController {
-  rpc execute(CustomEndpointKubernetesStackInput) returns (stream CustomEndpointKubernetesStackResponse);
-  rpc getStackOutputs(CustomEndpointKubernetesStackInput) returns (CustomEndpointKubernetesStackOutputs);
+  rpc execute(cloud.planton.apis.v1.code2cloud.deploy.model.CustomEndpointKubernetesStackInput) returns (stream CustomEndpointKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.deploy.model.CustomEndpointKubernetesStackInput) returns (cloud.planton.apis.v1.code2cloud.deploy.model.CustomEndpointKubernetesStackOutputs);
 }

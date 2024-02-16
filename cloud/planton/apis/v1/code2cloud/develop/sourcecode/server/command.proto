@@ -2,8 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server;
 
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/io.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 

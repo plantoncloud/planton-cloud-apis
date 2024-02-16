@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.storagebucket;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model/state.proto";
 
 //list of storage-buckets
 message StorageBuckets {

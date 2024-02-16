@@ -2,12 +2,12 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.project;
 
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/state.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/state.proto";
 
 //code-project command controller
 service CodeProjectCommandController {
@@ -54,7 +54,7 @@ service CodeProjectCommandController {
 
   //synchronize code projects of a product.
   //this operation will run synchronization process on all code-servers of the product.
-  rpc synchronizeByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (cloud.planton.apis.v1.resourcemanager.product.Product);
+  rpc synchronizeByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (cloud.planton.apis.v1.resourcemanager.product.Product);
 
   //synchronize code project with its counterpart on the code-server
   rpc synchronizeByCodeProjectId(CodeProjectId) returns (CodeProject) {

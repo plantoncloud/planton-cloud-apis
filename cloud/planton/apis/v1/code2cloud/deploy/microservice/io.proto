@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/state.proto";
 
 //wrapper for id field of microservice-instance
 message MicroserviceInstanceId {

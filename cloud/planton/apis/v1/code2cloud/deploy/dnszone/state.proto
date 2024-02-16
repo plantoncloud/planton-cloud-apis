@@ -11,7 +11,7 @@ import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_opti
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/stack/job/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/io.proto";
 
 //dns-zone
 message DnsZone {

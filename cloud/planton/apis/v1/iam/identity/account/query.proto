@@ -5,8 +5,8 @@ package cloud.planton.apis.v1.iam.identity.account;
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/iam/identity/account/io.proto";
-import "cloud/planton/apis/v1/iam/identity/account/state.proto";
+import "cloud/planton/apis/v1/iam/identity/account/model/io.proto";
+import "cloud/planton/apis/v1/iam/identity/account/model/state.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 

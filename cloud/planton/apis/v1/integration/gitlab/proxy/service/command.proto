@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.integration.gitlab.proxy.service;
+
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/state.proto";
+import "cloud/planton/apis/v1/integration/gitlab/proxy/model/io.proto";
+
+//gitlab proxy command controller
+service GitlabProxyCommandController {
+  //create new project on gitlab
+  //https://docs.gitlab.com/ee/api/projects.html#create-project
+  rpc creProject(CreProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
+  //apply a cookiecutter template on a code project created on gitlab
+  rpc applyTemplate(GitlabApplyTemplateCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProjectProfile);
+  //add a list of variables to a gitlab project
+  rpc addVariablesToProject(AddVariablesToProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
+  //add a list of variables to a gitlab group
+  rpc addVariablesToGroup(AddVariablesToGroupCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServer);
+  //add a list of files to a gitlab project
+  rpc addFilesToProject(AddFilesToGitlabProjectCommandInput) returns (cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.CodeProject);
+}

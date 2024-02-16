@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.kafka;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/kafka/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kafka/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 
 //wrapper for id field of kafka-cluster

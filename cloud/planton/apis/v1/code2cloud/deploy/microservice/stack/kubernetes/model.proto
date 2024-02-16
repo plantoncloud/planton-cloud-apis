@@ -3,10 +3,10 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.deploy.microservice.stack.kubernetes;
 
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/state.proto";
-import "cloud/planton/apis/v1/stack/job/progress/model.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
 
 //input for microservice-instance stack
 message MicroserviceInstanceKubernetesStackInput {

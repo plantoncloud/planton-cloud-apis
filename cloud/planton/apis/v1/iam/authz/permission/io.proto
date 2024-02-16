@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authz.permission;
 
-import "cloud/planton/apis/v1/iam/authz/permission/state.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/model/state.proto";
 
 // wrapper for iam permission id
 message IamPermissionId {

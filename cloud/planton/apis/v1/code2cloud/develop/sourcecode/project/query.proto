@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.develop.sourcecode.project;
 
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/state.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model/io.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/state.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/state.proto";
 
 //code project query controller
 service CodeProjectQueryController {
@@ -24,7 +24,7 @@ service CodeProjectQueryController {
   }
 
   //find code projects by product id
-  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (CodeProjects);
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (CodeProjects);
 
   //find code projects by code-server id
   rpc findByCodeServerId(cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.CodeServerId) returns (CodeProjects);
@@ -41,7 +41,7 @@ service CodeProjectQueryController {
   //this will be used to populate drop down of code project templates in create code project form.
   //the response should only include code project templates that a company is authorised to use for creating new code projects.
   //the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
-  rpc findTemplateCodeProjectsByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (CodeProjects);
+  rpc findTemplateCodeProjectsByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (CodeProjects);
 
   //get code project profile by code project id
   rpc getCodeProjectProfileById(CodeProjectId) returns (CodeProjectProfile) {

@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.stack.kubernetes;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model/state.proto";
 import "cloud/planton/apis/v1/commons/pulumi/operation/model.proto";
-import "cloud/planton/apis/v1/stack/job/progress/model.proto";
-import "cloud/planton/apis/v1/stack/job/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
 
 //custom-endpoint container stack input
 message CustomEndpointKubernetesStackInput {

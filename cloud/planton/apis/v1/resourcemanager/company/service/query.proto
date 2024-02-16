@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.resourcemanager.company.service;
+
+import "cloud/planton/apis/v1/commons/protobuf/custom/model.proto";
+import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model/state.proto";
+
+//company query controller
+service CompanyQueryController {
+  // list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
+  rpc list(cloud.planton.apis.v1.commons.pagination.PageInfo) returns (cloud.planton.apis.v1.resourcemanager.company.model.CompanyList);
+  // get a company using company id
+  rpc getById(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.resourcemanager.company.model.Company) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = company;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view company details";
+  }
+  rpc findCompanies(cloud.planton.apis.v1.commons.protobuf.custom.CustomEmpty) returns (cloud.planton.apis.v1.resourcemanager.company.model.Companies);
+}

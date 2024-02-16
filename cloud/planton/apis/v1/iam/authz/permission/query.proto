@@ -4,8 +4,8 @@ package cloud.planton.apis.v1.iam.authz.permission;
 
 import "cloud/planton/apis/v1/commons/resource/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
-import "cloud/planton/apis/v1/iam/authz/permission/io.proto";
-import "cloud/planton/apis/v1/iam/authz/permission/state.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/model/io.proto";
+import "cloud/planton/apis/v1/iam/authz/permission/model/state.proto";
 
 // iam query controller
 service IamPermissionQueryController {

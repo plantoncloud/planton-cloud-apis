@@ -3,8 +3,8 @@ syntax = "proto3";
 package cloud.planton.apis.v1.iam.authz.policy;
 
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/iam/authz/policy/state.proto";
-import "cloud/planton/apis/v1/iam/authz/policy/io.proto";
+import "cloud/planton/apis/v1/iam/authz/policy/model/state.proto";
+import "cloud/planton/apis/v1/iam/authz/policy/model/io.proto";
 
 // iam policy query controller
 service IamPolicyQueryController {

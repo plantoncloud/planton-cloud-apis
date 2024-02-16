@@ -2,16 +2,16 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/io.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
-import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/io.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
 import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
 
 //microservice-instance query controller
 service MicroserviceInstanceQueryController {
@@ -28,7 +28,7 @@ service MicroserviceInstanceQueryController {
 
   //find microservice-instances by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
-  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.ProductId) returns (MicroserviceInstances);
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId) returns (MicroserviceInstances);
 
   //find microservice-instances by environment
   rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.EnvironmentId) returns (MicroserviceInstances);
