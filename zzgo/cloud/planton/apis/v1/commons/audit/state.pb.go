@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/audit/model.proto
+// source: cloud/planton/apis/v1/commons/audit/state.proto
 
 package audit
 
@@ -37,7 +37,7 @@ type ResourceAudit struct {
 func (x *ResourceAudit) Reset() {
 	*x = ResourceAudit{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[0]
+		mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -50,7 +50,7 @@ func (x *ResourceAudit) String() string {
 func (*ResourceAudit) ProtoMessage() {}
 
 func (x *ResourceAudit) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[0]
+	mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -63,7 +63,7 @@ func (x *ResourceAudit) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceAudit.ProtoReflect.Descriptor instead.
 func (*ResourceAudit) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescGZIP(), []int{0}
+	return file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ResourceAudit) GetSpecAudit() *AuditInfo {
@@ -104,7 +104,7 @@ type AuditInfo struct {
 func (x *AuditInfo) Reset() {
 	*x = AuditInfo{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -117,7 +117,7 @@ func (x *AuditInfo) String() string {
 func (*AuditInfo) ProtoMessage() {}
 
 func (x *AuditInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +130,7 @@ func (x *AuditInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuditInfo.ProtoReflect.Descriptor instead.
 func (*AuditInfo) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AuditInfo) GetCreatedBy() *ResourceAuditActor {
@@ -183,7 +183,7 @@ type ResourceAuditActor struct {
 func (x *ResourceAuditActor) Reset() {
 	*x = ResourceAuditActor{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -196,7 +196,7 @@ func (x *ResourceAuditActor) String() string {
 func (*ResourceAuditActor) ProtoMessage() {}
 
 func (x *ResourceAuditActor) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -209,7 +209,7 @@ func (x *ResourceAuditActor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResourceAuditActor.ProtoReflect.Descriptor instead.
 func (*ResourceAuditActor) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ResourceAuditActor) GetId() string {
@@ -226,12 +226,12 @@ func (x *ResourceAuditActor) GetAvatar() string {
 	return ""
 }
 
-var File_cloud_planton_apis_v1_commons_audit_model_proto protoreflect.FileDescriptor
+var File_cloud_planton_apis_v1_commons_audit_state_proto protoreflect.FileDescriptor
 
-var file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc = []byte{
+var file_cloud_planton_apis_v1_commons_audit_state_proto_rawDesc = []byte{
 	0x0a, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f,
 	0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2f,
-	0x61, 0x75, 0x64, 0x69, 0x74, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x61, 0x75, 0x64, 0x69, 0x74, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x23, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
 	0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73,
 	0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70,
@@ -275,7 +275,7 @@ var file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc = []byte{
 	0x74, 0x61, 0x72, 0x42, 0xc8, 0x02, 0x0a, 0x31, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75,
 	0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x6d, 0x6d,
-	0x6f, 0x6e, 0x73, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x42, 0x0a, 0x4d, 0x6f, 0x64, 0x65, 0x6c,
+	0x6f, 0x6e, 0x73, 0x2e, 0x61, 0x75, 0x64, 0x69, 0x74, 0x42, 0x0a, 0x53, 0x74, 0x61, 0x74, 0x65,
 	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x53, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
 	0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61,
@@ -297,25 +297,25 @@ var file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc = []byte{
 }
 
 var (
-	file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescOnce sync.Once
-	file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescData = file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc
+	file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescOnce sync.Once
+	file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescData = file_cloud_planton_apis_v1_commons_audit_state_proto_rawDesc
 )
 
-func file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescGZIP() []byte {
-	file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescOnce.Do(func() {
-		file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescData)
+func file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescGZIP() []byte {
+	file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescOnce.Do(func() {
+		file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescData)
 	})
-	return file_cloud_planton_apis_v1_commons_audit_model_proto_rawDescData
+	return file_cloud_planton_apis_v1_commons_audit_state_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_cloud_planton_apis_v1_commons_audit_model_proto_goTypes = []interface{}{
+var file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_cloud_planton_apis_v1_commons_audit_state_proto_goTypes = []interface{}{
 	(*ResourceAudit)(nil),         // 0: cloud.planton.apis.v1.commons.audit.ResourceAudit
 	(*AuditInfo)(nil),             // 1: cloud.planton.apis.v1.commons.audit.AuditInfo
 	(*ResourceAuditActor)(nil),    // 2: cloud.planton.apis.v1.commons.audit.ResourceAuditActor
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
-var file_cloud_planton_apis_v1_commons_audit_model_proto_depIdxs = []int32{
+var file_cloud_planton_apis_v1_commons_audit_state_proto_depIdxs = []int32{
 	1, // 0: cloud.planton.apis.v1.commons.audit.ResourceAudit.spec_audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
 	1, // 1: cloud.planton.apis.v1.commons.audit.ResourceAudit.status_audit:type_name -> cloud.planton.apis.v1.commons.audit.AuditInfo
 	2, // 2: cloud.planton.apis.v1.commons.audit.AuditInfo.created_by:type_name -> cloud.planton.apis.v1.commons.audit.ResourceAuditActor
@@ -329,13 +329,13 @@ var file_cloud_planton_apis_v1_commons_audit_model_proto_depIdxs = []int32{
 	0, // [0:6] is the sub-list for field type_name
 }
 
-func init() { file_cloud_planton_apis_v1_commons_audit_model_proto_init() }
-func file_cloud_planton_apis_v1_commons_audit_model_proto_init() {
-	if File_cloud_planton_apis_v1_commons_audit_model_proto != nil {
+func init() { file_cloud_planton_apis_v1_commons_audit_state_proto_init() }
+func file_cloud_planton_apis_v1_commons_audit_state_proto_init() {
+	if File_cloud_planton_apis_v1_commons_audit_state_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceAudit); i {
 			case 0:
 				return &v.state
@@ -347,7 +347,7 @@ func file_cloud_planton_apis_v1_commons_audit_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AuditInfo); i {
 			case 0:
 				return &v.state
@@ -359,7 +359,7 @@ func file_cloud_planton_apis_v1_commons_audit_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ResourceAuditActor); i {
 			case 0:
 				return &v.state
@@ -376,18 +376,18 @@ func file_cloud_planton_apis_v1_commons_audit_model_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc,
+			RawDescriptor: file_cloud_planton_apis_v1_commons_audit_state_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cloud_planton_apis_v1_commons_audit_model_proto_goTypes,
-		DependencyIndexes: file_cloud_planton_apis_v1_commons_audit_model_proto_depIdxs,
-		MessageInfos:      file_cloud_planton_apis_v1_commons_audit_model_proto_msgTypes,
+		GoTypes:           file_cloud_planton_apis_v1_commons_audit_state_proto_goTypes,
+		DependencyIndexes: file_cloud_planton_apis_v1_commons_audit_state_proto_depIdxs,
+		MessageInfos:      file_cloud_planton_apis_v1_commons_audit_state_proto_msgTypes,
 	}.Build()
-	File_cloud_planton_apis_v1_commons_audit_model_proto = out.File
-	file_cloud_planton_apis_v1_commons_audit_model_proto_rawDesc = nil
-	file_cloud_planton_apis_v1_commons_audit_model_proto_goTypes = nil
-	file_cloud_planton_apis_v1_commons_audit_model_proto_depIdxs = nil
+	File_cloud_planton_apis_v1_commons_audit_state_proto = out.File
+	file_cloud_planton_apis_v1_commons_audit_state_proto_rawDesc = nil
+	file_cloud_planton_apis_v1_commons_audit_state_proto_goTypes = nil
+	file_cloud_planton_apis_v1_commons_audit_state_proto_depIdxs = nil
 }

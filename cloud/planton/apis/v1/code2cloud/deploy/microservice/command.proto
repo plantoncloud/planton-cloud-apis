@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/microservice/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/io.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/io.proto";

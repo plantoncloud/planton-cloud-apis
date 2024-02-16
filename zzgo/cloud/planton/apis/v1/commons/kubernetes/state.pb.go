@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/kubernetes/model.proto
+// source: cloud/planton/apis/v1/commons/kubernetes/state.proto
 
 package kubernetes
 
@@ -38,7 +38,7 @@ type Container struct {
 func (x *Container) Reset() {
 	*x = Container{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[0]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -51,7 +51,7 @@ func (x *Container) String() string {
 func (*Container) ProtoMessage() {}
 
 func (x *Container) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[0]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +64,7 @@ func (x *Container) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Container.ProtoReflect.Descriptor instead.
 func (*Container) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{0}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Container) GetName() string {
@@ -119,7 +119,7 @@ type ContainerResources struct {
 func (x *ContainerResources) Reset() {
 	*x = ContainerResources{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[1]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -132,7 +132,7 @@ func (x *ContainerResources) String() string {
 func (*ContainerResources) ProtoMessage() {}
 
 func (x *ContainerResources) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[1]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -145,7 +145,7 @@ func (x *ContainerResources) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContainerResources.ProtoReflect.Descriptor instead.
 func (*ContainerResources) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{1}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *ContainerResources) GetLimits() *CpuMemory {
@@ -174,7 +174,7 @@ type ContainerEnvVar struct {
 func (x *ContainerEnvVar) Reset() {
 	*x = ContainerEnvVar{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[2]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -187,7 +187,7 @@ func (x *ContainerEnvVar) String() string {
 func (*ContainerEnvVar) ProtoMessage() {}
 
 func (x *ContainerEnvVar) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[2]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -200,7 +200,7 @@ func (x *ContainerEnvVar) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContainerEnvVar.ProtoReflect.Descriptor instead.
 func (*ContainerEnvVar) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{2}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *ContainerEnvVar) GetName() string {
@@ -231,7 +231,7 @@ type ContainerPort struct {
 func (x *ContainerPort) Reset() {
 	*x = ContainerPort{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[3]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -244,7 +244,7 @@ func (x *ContainerPort) String() string {
 func (*ContainerPort) ProtoMessage() {}
 
 func (x *ContainerPort) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[3]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -257,7 +257,7 @@ func (x *ContainerPort) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContainerPort.ProtoReflect.Descriptor instead.
 func (*ContainerPort) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{3}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *ContainerPort) GetName() string {
@@ -293,7 +293,7 @@ type CpuMemory struct {
 func (x *CpuMemory) Reset() {
 	*x = CpuMemory{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[4]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -306,7 +306,7 @@ func (x *CpuMemory) String() string {
 func (*CpuMemory) ProtoMessage() {}
 
 func (x *CpuMemory) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[4]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -319,7 +319,7 @@ func (x *CpuMemory) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CpuMemory.ProtoReflect.Descriptor instead.
 func (*CpuMemory) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{4}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CpuMemory) GetCpu() string {
@@ -349,7 +349,7 @@ type ContainerImage struct {
 func (x *ContainerImage) Reset() {
 	*x = ContainerImage{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -362,7 +362,7 @@ func (x *ContainerImage) String() string {
 func (*ContainerImage) ProtoMessage() {}
 
 func (x *ContainerImage) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -375,7 +375,7 @@ func (x *ContainerImage) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ContainerImage.ProtoReflect.Descriptor instead.
 func (*ContainerImage) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ContainerImage) GetRepo() string {
@@ -399,12 +399,12 @@ func (x *ContainerImage) GetPullSecretName() string {
 	return ""
 }
 
-var File_cloud_planton_apis_v1_commons_kubernetes_model_proto protoreflect.FileDescriptor
+var File_cloud_planton_apis_v1_commons_kubernetes_state_proto protoreflect.FileDescriptor
 
-var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc = []byte{
+var file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDesc = []byte{
 	0x0a, 0x34, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f,
 	0x61, 0x70, 0x69, 0x73, 0x2f, 0x76, 0x31, 0x2f, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2f,
-	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65,
 	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x28, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c,
 	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f,
 	0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
@@ -461,8 +461,8 @@ var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc = []byte{
 	0x6d, 0x65, 0x42, 0xe6, 0x02, 0x0a, 0x36, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66,
 	0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
 	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f,
-	0x6e, 0x73, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x42, 0x0a, 0x4d,
-	0x6f, 0x64, 0x65, 0x6c, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x58, 0x67, 0x69, 0x74,
+	0x6e, 0x73, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x42, 0x0a, 0x53,
+	0x74, 0x61, 0x74, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x58, 0x67, 0x69, 0x74,
 	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f,
@@ -485,19 +485,19 @@ var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc = []byte{
 }
 
 var (
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescOnce sync.Once
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescData = file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescOnce sync.Once
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescData = file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDesc
 )
 
-func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescGZIP() []byte {
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescOnce.Do(func() {
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescData)
+func file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescGZIP() []byte {
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescOnce.Do(func() {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescData = protoimpl.X.CompressGZIP(file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescData)
 	})
-	return file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDescData
+	return file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDescData
 }
 
-var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_goTypes = []interface{}{
+var file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_cloud_planton_apis_v1_commons_kubernetes_state_proto_goTypes = []interface{}{
 	(*Container)(nil),          // 0: cloud.planton.apis.v1.commons.kubernetes.Container
 	(*ContainerResources)(nil), // 1: cloud.planton.apis.v1.commons.kubernetes.ContainerResources
 	(*ContainerEnvVar)(nil),    // 2: cloud.planton.apis.v1.commons.kubernetes.ContainerEnvVar
@@ -505,7 +505,7 @@ var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_goTypes = []interf
 	(*CpuMemory)(nil),          // 4: cloud.planton.apis.v1.commons.kubernetes.CpuMemory
 	(*ContainerImage)(nil),     // 5: cloud.planton.apis.v1.commons.kubernetes.ContainerImage
 }
-var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_depIdxs = []int32{
+var file_cloud_planton_apis_v1_commons_kubernetes_state_proto_depIdxs = []int32{
 	3, // 0: cloud.planton.apis.v1.commons.kubernetes.Container.ports:type_name -> cloud.planton.apis.v1.commons.kubernetes.ContainerPort
 	1, // 1: cloud.planton.apis.v1.commons.kubernetes.Container.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.ContainerResources
 	2, // 2: cloud.planton.apis.v1.commons.kubernetes.Container.env:type_name -> cloud.planton.apis.v1.commons.kubernetes.ContainerEnvVar
@@ -518,13 +518,13 @@ var file_cloud_planton_apis_v1_commons_kubernetes_model_proto_depIdxs = []int32{
 	0, // [0:5] is the sub-list for field type_name
 }
 
-func init() { file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() }
-func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
-	if File_cloud_planton_apis_v1_commons_kubernetes_model_proto != nil {
+func init() { file_cloud_planton_apis_v1_commons_kubernetes_state_proto_init() }
+func file_cloud_planton_apis_v1_commons_kubernetes_state_proto_init() {
+	if File_cloud_planton_apis_v1_commons_kubernetes_state_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Container); i {
 			case 0:
 				return &v.state
@@ -536,7 +536,7 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ContainerResources); i {
 			case 0:
 				return &v.state
@@ -548,7 +548,7 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ContainerEnvVar); i {
 			case 0:
 				return &v.state
@@ -560,7 +560,7 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ContainerPort); i {
 			case 0:
 				return &v.state
@@ -572,7 +572,7 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CpuMemory); i {
 			case 0:
 				return &v.state
@@ -584,7 +584,7 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ContainerImage); i {
 			case 0:
 				return &v.state
@@ -601,18 +601,18 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc,
+			RawDescriptor: file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_cloud_planton_apis_v1_commons_kubernetes_model_proto_goTypes,
-		DependencyIndexes: file_cloud_planton_apis_v1_commons_kubernetes_model_proto_depIdxs,
-		MessageInfos:      file_cloud_planton_apis_v1_commons_kubernetes_model_proto_msgTypes,
+		GoTypes:           file_cloud_planton_apis_v1_commons_kubernetes_state_proto_goTypes,
+		DependencyIndexes: file_cloud_planton_apis_v1_commons_kubernetes_state_proto_depIdxs,
+		MessageInfos:      file_cloud_planton_apis_v1_commons_kubernetes_state_proto_msgTypes,
 	}.Build()
-	File_cloud_planton_apis_v1_commons_kubernetes_model_proto = out.File
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_rawDesc = nil
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_goTypes = nil
-	file_cloud_planton_apis_v1_commons_kubernetes_model_proto_depIdxs = nil
+	File_cloud_planton_apis_v1_commons_kubernetes_state_proto = out.File
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_rawDesc = nil
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_goTypes = nil
+	file_cloud_planton_apis_v1_commons_kubernetes_state_proto_depIdxs = nil
 }

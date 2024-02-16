@@ -2,11 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.commons.resource.list;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/state.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/list/enums/statusfilter/status_filter.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 
 // Record is a message type that represents a single record object in list view.
 // Record object has all fields that are required to show in list view

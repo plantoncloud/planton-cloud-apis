@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authz.policy;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/state.proto";
 
 // FGA Tuple defines the relationship between a user and an object, specifying
 // the type of access or relation the user has to the object.

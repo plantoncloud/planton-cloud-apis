@@ -4,9 +4,9 @@ package cloud.planton.apis.v1.code2cloud.deploy.kafka;
 
 import "cloud/planton/apis/v1/code2cloud/deploy/kafka/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/kafka/state.proto";
-import "cloud/planton/apis/v1/commons/resource/model.proto";
+import "cloud/planton/apis/v1/commons/resource/io.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/stack/job/io.proto";
 

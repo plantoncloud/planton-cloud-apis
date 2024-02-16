@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.code2cloud.resource.version;
 
-import "cloud/planton/apis/v1/commons/resource/version/model.proto";
+import "cloud/planton/apis/v1/commons/resource/version/state.proto";
+import "cloud/planton/apis/v1/commons/resource/version/io.proto";
 
 //resource-version query controller
 service ResourceVersionQueryController {

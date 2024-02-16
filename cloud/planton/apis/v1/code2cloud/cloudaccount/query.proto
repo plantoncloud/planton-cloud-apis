@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.code2cloud.cloudaccount;
 
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/io.proto";
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/state.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/resourcemanager/company/io.proto";
 

@@ -2,10 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.commons.resource.version;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/state.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
 import "cloud/planton/apis/v1/stack/job/enums/executionstatus/execution_status.proto";
 
 // The ResourceVersion message represents a record of a resource state modification
@@ -45,58 +44,6 @@ message ResourceVersion {
   string message = 11;
   // version stack job info.
   VersionStackJobInfo stack_job_info = 12;
-}
-
-// wrapper for resource-versions id
-message ResourceVersionId {
-  string value= 1;
-}
-
-// The StateCommitByIdWithContextSize message represents a specific
-// resource-version along with the context size associated with it. The context size
-// is typically used to control the amount of information or data surrounding a
-// particular point of interest in the resource-version.
-message ResourceVersionWithContextSizeInput {
-  // The unique identifier (usually a UUID) for the resource-version.
-  // It is used to look up or refer to a specific version.
-  string version_id = 1;
-  // The context size associated with the resource-version. This could represent
-  // the amount of surrounding data or metadata to include when fetching or
-  // working with the version. The meaning of this value can vary depending on
-  // the specifics of your application.
-  int32 context_size = 2;
-}
-
-// list resource-versions by resource type and id query input
-message ListResourceVersionsInput {
-  // page info
-  cloud.planton.apis.v1.commons.pagination.PageInfo page_info = 1;
-  // type of resource
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 2;
-  // id of the resource
-  string resource_id = 3;
-}
-
-// paginated list of resource-versions
-message ResourceVersionList {
-  // total number of pages
-  int32 total_pages = 1;
-  // list of resource-versions
-  repeated ResourceVersion entries = 2;
-}
-
-// count resource-versions by resource type and id query input
-message GetResourceVersionCountInput {
-  // type of resource
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
-  // id of the resource
-  string resource_id = 6;
-}
-
-// response to return number of resource versions are available
-message ResourceVersionCount {
-  // value for the count of resource versions
-  int32 count = 1;
 }
 
 // VersionStackJobInfo represents information about a version stack job.

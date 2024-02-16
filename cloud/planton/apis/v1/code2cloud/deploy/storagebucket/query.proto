@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/io.proto";
 import "cloud/planton/apis/v1/code2cloud/deploy/storagebucket/state.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/io.proto";
 import "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/resourcemanager/product/io.proto";
 
