@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.v1.code2cloud.cloudaccount;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.cloudaccount.CloudAccount;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 
@@ -16,4 +16,3 @@ public final class CloudAccountTest {
     }
 
 }
-

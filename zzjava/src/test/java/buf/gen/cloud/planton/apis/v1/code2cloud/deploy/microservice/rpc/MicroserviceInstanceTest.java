@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.microservice;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.microservice.MicroserviceInstance;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

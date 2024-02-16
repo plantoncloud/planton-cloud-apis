@@ -1,7 +1,7 @@
 package buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.RedisCluster;
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.RedisClusterSpecKubernetesSpecIngressSpec;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster;
+import build.buf.gen.cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecIngressSpec;
 import build.buf.protovalidate.Validator;
 import build.buf.protovalidate.exceptions.ValidationException;
 import org.junit.jupiter.api.Test;
