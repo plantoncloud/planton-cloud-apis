@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model;
+
+import "cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model/state.proto";
+
+//wrapper for custom-endpoint Domain id
+message (cloud.planton.apis.v1.code2cloud.io.CustomEndpointId) {
+  string value = 1;
+}
+
+//list of custom-endpoints
+message CustomEndpoints {
+  repeated CustomEndpoint entries = 1;
+}
+
+//response for paginated query to list custom-endpoints
+message CustomEndpointList {
+  int32 total_pages = 1;
+  repeated CustomEndpoint entries = 2;
+}
+
+//AddOrUpdateCustomEndpointRouteCommandInput is used to encapsulate the details required
+//for adding a new route to a specific custom-endpoint, or updating
+//an existing one. This message is typically used to transmit data between the client and
+//server during an add or update operation concerning a specific route
+//associated with a particular custom-endpoint.
+message AddOrUpdateCustomEndpointRouteCommandInput {
+  //The unique identifier for the custom-endpoint to which the route
+  // needs to be added or updated. This field must be populated with a valid
+  //custom-endpoint ID, which can be obtained from the custom-endpoint entity itself.
+  //The server uses this ID to identify the correct custom-endpoint where the
+  //route needs to be added or updated.
+  string custom_endpoint_id = 1;
+
+  //The route that needs to be added or updated within the product
+  //environment. This field should be populated with a valid CustomEndpointRoute object,
+  //which encapsulates the details of the route. If an route
+  //with the same url path prefix already exists in the custom-endpoint, the value will be updated.
+  //Otherwise, a new route will be created with the provided details.
+  CustomEndpointRoute route = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
+}
+
+//DeleteOrRestoreCustomEndpointRouteCommandInput is used to encapsulate the details required for
+//deleting or restore a route of a specific custom-endpoint.
+//This message is typically used to transmit data between the client and the server
+//during a delete or restore operation concerning a specific route associated
+//with a particular custom-endpoint.
+message DeleteOrRestoreCustomEndpointRouteCommandInput {
+  //The unique identifier for the custom-endpoint from which the route
+  // needs to be deleted. This field must be populated with a valid
+  //custom-endpoint ID, which can be obtained from the custom-endpoint entity itself.
+  //The server uses this ID to identify the correct custom-endpoint from which
+  //the route needs to be deleted.
+  string custom_endpoint_id = 1;
+
+  //The url path prefix of the route that needs to be deleted
+  //from the custom-endpoint. This field should be populated with a valid
+  //url path prefix, which can be obtained from the route entity itself.
+  //The server uses this url path prefix to identify the correct route that
+  //needs to be deleted.
+  string url_path_prefix = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3;
+}
+
+//ssl certificate status of custom-endpoint
+message CustomEndpointCertStatus {
+  //flag to indicate if the certificate has been issued.
+  bool is_cert_issued = 1;
+}
+
+//dns resolution status of endpoint
+message CustomEndpointDnsResolutionStatus {
+  //flag to indicate if the dns is resolving to the correct ingress address(ip or cname).
+  bool is_resolving_to_ingress_address = 1;
+}

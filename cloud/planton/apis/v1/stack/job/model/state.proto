@@ -38,7 +38,7 @@ message StackJob {
   ];
 
   // resource metadata
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
 
   //resource spec
   StackJobSpec spec = 4;
@@ -127,7 +127,7 @@ message StackJobStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
 
   // execution status of the stack-job
   cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;

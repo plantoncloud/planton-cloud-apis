@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model;;
+
+import "cloud/planton/apis/v1/code2cloud/deploy/microservice/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+
+//input for query rpc to get dynamically generated code pipeline template
+message GenerateCodePipelineTemplateQueryInput {
+  //code project profile
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectProfile code_project_profile = 1;
+  //git remote url used for looking up code project
+  string git_remote_url = 2;
+  //list of microservice-instances declared in _kustomize directory
+  repeated cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance microservice_instances = 3;
+}
+
+message GenerateCodePipelineTemplateQueryResp {
+  //input used for generating the template
+  CodePipelineBuildTemplateInput template_input = 1;
+  //template generated based on the provided inputs
+  string template_output = 2;
+}
+
+//container(docker) images to be used in code pipeline templates
+message CodePipelineTemplateContainerImages {
+  string docker_build = 1;
+  string golang_build = 2;
+  string java_build = 3;
+  string javascript_build = 4;
+  string planton_cli = 5;
+  string protobuf_build = 6;
+}
+
+//gitlab pipeline template is used as input data model for processing gitlab build job templates
+//templating frameworks like apache freemarker in java or the built in templating engine in golang can use this data model as input for rendering the template.
+message CodePipelineBuildTemplateInput {
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 1;
+  //artifact-store to be used by the pipeline
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore artifact_store = 2;
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 3;
+  //container image to be used in container image build jobs.
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+}
+
+//input used for rendering job template for microservice deployment to each environment
+message CodePipelineDeployTemplateJobInput {
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 1;
+  //environment
+  cloud.planton.apis.v1.code2cloud.environment.model.Environment environment = 2;
+  //microservice-instance
+  cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance microservice_instance = 3;
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+  //flag to indicate if manual gate is enabled for the deployment environment.
+  //this flag is used for setting `when` attribute of the gitlab pipeline https://docs.gitlab.com/ee/ci/yaml/#when
+  bool is_manual_gate_required = 5;
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 6;
+}

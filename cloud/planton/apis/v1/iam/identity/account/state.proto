@@ -37,7 +37,7 @@ message IdentityAccount {
   // name of the machine account.
   // name must match the regex '^[A-Za-z0-9-]{6,16}$'.
   // It represents a string of 6-16 alphanumeric characters or hyphens, with no spaces or other special characters.
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
 
   // resource spec
   IdentityAccountSpec spec = 4;
@@ -95,7 +95,7 @@ message IdentityAccountStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
 }
 
 // https://auth0.com/docs/customize/log-streams/custom-log-streams

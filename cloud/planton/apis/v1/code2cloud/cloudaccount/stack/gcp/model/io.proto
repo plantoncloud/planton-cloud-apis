@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.cloudaccount.stack.gcp.model;
+
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+
+// google cloud account init stack input
+message CloudAccountGcpStackInput {
+  //stack job
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
+  // pulumi stack credentials
+  CloudAccountGcpStackCredentialsInput credentials_input = 2;
+  // inputs used for creating stack resources
+  CloudAccountGcpStackResourceInput resource_input = 3;
+}
+
+// stack credentials input
+message CloudAccountGcpStackCredentialsInput {
+  //google provider credential input
+  cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
+}
+
+// stack resource input
+message CloudAccountGcpStackResourceInput {
+  cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount cloud_account = 1;
+}
+
+// stack outputs
+message CloudAccountGcpStackOutputs {
+  cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus cloud_account_status = 1;
+}
+
+//stack response
+message CloudAccountGcpStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  CloudAccountGcpStackOutputs outputs = 3;
+}

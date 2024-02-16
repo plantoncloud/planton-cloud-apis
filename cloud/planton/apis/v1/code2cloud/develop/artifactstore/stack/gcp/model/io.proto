@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model;
+
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
+
+//gcp artifact repo stack input
+message ArtifactStoreGcpStackInput {
+  //stack job
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  ArtifactStoreGcpStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  ArtifactStoreGcpStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message ArtifactStoreGcpStackCredentialsInput {
+  //google provider credential input
+  //this is only populated when the artifact-store repo provider is gcp.
+  cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
+}
+
+//stack resource input
+message ArtifactStoreGcpStackResourceInput {
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore artifact_store = 1;
+}
+
+//gcp artifact repo stack outputs
+message ArtifactStoreGcpStackOutputs {
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus gcp_artifact_registry_status = 1;
+}
+
+//stack response
+message ArtifactStoreGcpStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  ArtifactStoreGcpStackOutputs outputs = 3;
+}

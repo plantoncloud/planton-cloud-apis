@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.commons.resource.version.model;
 
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
 import "cloud/planton/apis/v1/commons/resource/version/model/state.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 
 // wrapper for resource-versions id
 message ResourceVersionId {

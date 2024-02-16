@@ -1,0 +1,191 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.artifactstore.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/provider/enums/repoprovider/repo_provider.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+
+//artifact-store
+message ArtifactStore {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = artifact_store;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = product;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.product_id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "afs";
+  //id format "afs-<product-id>-<artifact-store-name>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 8,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
+
+  //resource spec
+  ArtifactStoreSpec spec = 4;
+
+  //resource status
+  ArtifactStoreStatus status = 5;
+}
+
+//artifact-store spec
+message ArtifactStoreSpec {
+  //company to which the artifact-store belongs to.
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //product to which the artifact-store belongs to.
+  string product_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //Buf Schema Registry repo
+  ArtifactStoreSpecBsrRepoSpec bsr_repo = 3;
+
+  //Golang Repo with Git Provider
+  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo = 4;
+
+  //provider for the artifact-store repositories
+  cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //specification for google cloud artifact registry.
+  //this attribute is only populated when the artifact-store repo provider is artifact-registry on google cloud.
+  ArtifactStoreGcpArtifactRegistrySpec gcp_artifact_registry = 6;
+}
+
+// artifact-store Buf Schema Registry(buf.build) repo spec
+message ArtifactStoreSpecBsrRepoSpec {
+  // username to authenticate with buf schema registry
+  string username = 1;
+  // token to be used in combination with username to authenticate with buf schema registry
+  string token = 2;
+}
+
+// artifact-store golang repository spec for git provider
+message ArtifactStoreSpecGolangRepoGitProviderSpec {
+  //base64 encoded git ssh key to clone golang code projects as part of code pipeline executions.
+  //used in code pipelines which would require git authentication to fetch dependencies that rely on git.
+  //both golang and swift code projects use git for dependency management.
+  string ssh_key_base64 = 1;
+}
+
+//artifact-store status
+message ArtifactStoreStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  //status for artifact-store repositories created on gcp artifact-registry.
+  //this is only populated when the gcp artifact-registry is configured as the repo-provider.
+  ArtifactStoreGcpArtifactRegistryStatus gcp_artifact_registry = 1;
+}
+
+//spec for gcp artifact-registry repo provider for artifact-store
+message ArtifactStoreGcpArtifactRegistrySpec {
+  //id of the gcp cloud account in which the artifact-store repositories are to be created.
+  //the allowed values for this attribute are all the gcp cloud accounts that the parent company of the product
+  //has required permissions to create artifact-store in.
+  string gcp_cloud_account_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //id of the gcp project in which the artifact-registry resources are to be created.
+  //this is computed from the configured gcp cloud-account.
+  //artifact-registry resources are created in core-infra project created in the connected gcp cloud-account.
+  string project_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //gcp region in which the artifact-store is to be created ex: us-west2.
+  //choosing the closest region for the kube-clusters in which the environments of the product are
+  //hosted reduces the service startup time as the container images are downloaded faster.
+  string region = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //flag to control access to artifacts published to repositories without any authentication.
+  //this is useful for publishing artifacts for opensource projects.
+  bool is_external = 4;
+}
+
+//status for gcp artifact-registry repo provider for artifact-store
+message ArtifactStoreGcpArtifactRegistryStatus {
+  //email of the reader service account.
+  string reader_service_account_email = 1;
+
+  //base64 encoded key of the reader service account.
+  string reader_service_account_key_base64 = 2;
+
+  //email of the writer service account.
+  string writer_service_account_email = 3;
+
+  //base64 encoded key of the writer service account.
+  string writer_service_account_key_base64 = 4;
+
+  //name of the docker repo.
+  string docker_repo_name = 5;
+
+  //hostname of the docker repo.
+  string docker_repo_hostname = 6;
+
+  //url for the docker repository.
+  string docker_repo_url = 7;
+
+  //name of the maven repo.
+  string maven_repo_name = 8;
+
+  //url for the maven repository.
+  string maven_repo_url = 9;
+
+  //name of the npm repo.
+  string npm_repo_name = 10;
+
+  //name of the python repo.
+  string python_repo_name = 11;
+}

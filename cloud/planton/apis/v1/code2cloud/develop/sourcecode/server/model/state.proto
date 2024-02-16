@@ -1,0 +1,149 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/codeserverprovider/code_server_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/job/model/io.proto";
+
+//code-server
+message CodeServer {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = code_server;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = false;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = product;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.product_id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "cs";
+  //id format "cs-<product-id>-<code-server-name>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
+
+  //spec
+  CodeServerSpec spec = 4;
+
+  //status
+  CodeServerStatus status = 5;
+}
+
+//code-server spec
+message CodeServerSpec {
+  //Specifies the company to which the code server belongs.
+  //This value is computed from the product.
+  string company_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //Specifies the product to which the code server belongs.
+  string product_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //Specifies the host of the code server, such as "https://github.com".
+  string code_server_host = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //Specifies the provider for the code server.
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true,
+    (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
+  ];
+
+  //github spec
+  CodeServerGithubSpec github = 5;
+
+  //gitlab spec
+  CodeServerGitlabSpec gitlab = 6;
+}
+
+//github code-server spec
+message CodeServerGithubSpec {
+  //id of the github organization
+  string org_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+
+  //ID of the Github App installation provided by Github after successful app installation via OAuth flow.
+  int64 app_install_id = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //Specifies the owner type for Github App installation: User or Org.
+  cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_computed) = true
+  ];
+}
+
+//gitlab code-server spec
+message CodeServerGitlabSpec {
+  //name or numerical identifier for gitlab group
+  //This value is primarily used in the code project synchronization process.
+  string group_id = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //Access token to integrate with Gitlab Server.
+  //This value is acquired by browser authorization flow when code server is added via Planton Cloud Console App.
+  string access_token = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //Refresh token used to fetch a new access token when the current one expires.
+  string refresh_token = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+}
+
+//code-server status
+message CodeServerStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+}

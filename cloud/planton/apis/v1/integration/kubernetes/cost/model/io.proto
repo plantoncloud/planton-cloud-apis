@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.integration.kubernetes.cost.model;
 
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/cost/model/state.proto";
 import "google/protobuf/timestamp.proto";
 

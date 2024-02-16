@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.iam.identity.account;
 
 import "cloud/planton/apis/v1/commons/resource/io.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/iam/identity/account/model/io.proto";
 import "cloud/planton/apis/v1/iam/identity/account/model/state.proto";

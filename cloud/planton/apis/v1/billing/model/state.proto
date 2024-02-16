@@ -24,7 +24,7 @@ message BillingAccount {
   // metadata for the resource
   // identifier for billing account
   // name of the billing account.
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
 
   // spec
   BillingAccountSpec spec = 4;
@@ -92,7 +92,7 @@ message BillingAccountStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
 }
 
 // BillingItem is a protocol message that represents the state of a billing item.

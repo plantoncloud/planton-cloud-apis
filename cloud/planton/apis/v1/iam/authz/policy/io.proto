@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.iam.authz.policy;
 
-import "cloud/planton/apis/v1/commons/audit/model.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
 import "cloud/planton/apis/v1/iam/authz/policy/model/state.proto";
 import "cloud/planton/apis/v1/iam/authz/role/model/state.proto";
 

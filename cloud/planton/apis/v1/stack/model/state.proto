@@ -29,7 +29,7 @@ message Stack {
     (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
   ];
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
 
   //stack spec
   StackSpec spec = 4;
@@ -70,5 +70,5 @@ message StackStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
 }

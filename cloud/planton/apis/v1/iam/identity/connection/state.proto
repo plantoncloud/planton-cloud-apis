@@ -6,7 +6,7 @@ import "cloud/planton/apis/v1/commons/audit/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 import "cloud/planton/apis/v1/iam/identity/connection/provider/enums/enums.proto";
 
 //identity-connection used for linking a company's identity provider with planton cloud
@@ -35,7 +35,7 @@ message IdentityConnection {
   //
   // a user preferred name of the identity connection.
   // (important) spaces and special characters are not allowed except for hyphens.
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 3;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3;
 
   // resource spec
   IdentityConnectionSpec spec = 4;
@@ -97,7 +97,7 @@ message IdentityConnectionStatus {
   cloud.planton.apis.v1.commons.resource.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
 }
 
 message SamlConnection {

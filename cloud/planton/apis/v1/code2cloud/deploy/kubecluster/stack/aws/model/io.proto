@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.kubecluster.stack.aws.model;
+
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/state.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
+
+message KubeClusterAwsStackInput {
+  //stack job
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
+  // pulumi stack credentials
+  KubeClusterAwsStackCredentialsInput credentials_input = 2;
+  // inputs used for creating stack resources
+  KubeClusterAwsStackResourceInput resource_input = 3;
+}
+
+// stack credentials input
+message KubeClusterAwsStackCredentialsInput {
+  //aws provider credential input
+  cloud.planton.apis.v1.commons.pulumi.operation.model.AwsProviderCredential aws = 1;
+}
+
+// stack resource input
+message KubeClusterAwsStackResourceInput {
+  //details of the kube-cluster
+  (cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster kube_cluster = 1;
+}
+
+// stack outputs
+message KubeClusterAwsStackOutputs {
+  // id of the vpc in which the kube-cluster is created
+  string cluster_vpc_id = 1;
+  // kube-cluster endpoint
+  string cluster_endpoint = 2;
+  // kube-cluster ca data
+  string cluster_ca_data = 3;
+}
+
+//stack response
+message KubeClusterAwsStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  KubeClusterAwsStackOutputs outputs = 3;
+}

@@ -4,7 +4,7 @@ package cloud.planton.apis.v1.iam.identity.account;
 
 import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
 import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 import "cloud/planton/apis/v1/iam/identity/account/model/state.proto";
 
 // wrapper to get list of identity accounts

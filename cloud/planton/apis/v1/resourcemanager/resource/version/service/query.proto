@@ -2,18 +2,18 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.resourcemanager.resource.version.service;
 
-import "cloud/planton/apis/v1/commons/resource/version/io.proto";
+import "cloud/planton/apis/v1/commons/resource/version/model/io.proto";
 import "cloud/planton/apis/v1/commons/resource/version/model/state.proto";
 
 //resource-version query controller
 service ResourceVersionQueryController {
   // list of resource-versions
-  rpc listByFilters(cloud.planton.apis.v1.commons.resource.version.ListResourceVersionsInput)
-      returns(cloud.planton.apis.v1.commons.resource.version.ResourceVersionList);
+  rpc listByFilters(cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput)
+      returns(cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionList);
   // look up resource-version by version-id
-  rpc getByIdWithContextSize(cloud.planton.apis.v1.commons.resource.version.ResourceVersionWithContextSizeInput)
-      returns(cloud.planton.apis.v1.commons.resource.version.ResourceVersion);
+  rpc getByIdWithContextSize(cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionWithContextSizeInput)
+      returns(cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion);
   // count of resource-versions
-  rpc getCount(cloud.planton.apis.v1.commons.resource.version.GetResourceVersionCountInput)
-      returns(cloud.planton.apis.v1.commons.resource.version.ResourceVersionCount);
+  rpc getCount(cloud.planton.apis.v1.commons.resource.version.model.GetResourceVersionCountInput)
+      returns(cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionCount);
 }

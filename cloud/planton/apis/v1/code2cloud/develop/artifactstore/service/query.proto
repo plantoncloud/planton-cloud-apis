@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.develop.artifactstore.service;
+
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
+
+//artifact-store query controller
+service ArtifactStoreQueryController {
+  //get artifact-store by id
+  rpc getById(cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreId)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_type = artifact_store;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view artifact-store";
+  }
+  //list all artifact-stores on planton cloud for the requested page. This is intended for use on portal.
+  rpc list(cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreList);
+  //look up artifact-stores by product id.
+  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStores);
+  //look up artifact-stores by code project url
+  rpc findByCodeProjectUrl(cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectUrl)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStores);
+
+  //list docker images from the artifact-store provided in the input
+  //(proxy google artifact-registry server)
+  rpc listArtifactStoreDockerImages(cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdRepoNameInput)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreDockerImageList);
+
+  //list maven/npm/python packages from the corresponding repositories of artifact-store provided in the input
+  //(proxy google artifact-registry server)
+  rpc listArtifactStorePackages(cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdRepoNameInput)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageList);
+
+  //list maven/npm/python package versions from the corresponding repositories of artifact-store provided in the input
+  //(proxy google artifact-registry server)
+  rpc listArtifactStorePackageVersions(cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdPackageNameInput)
+      returns (cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageVersionList);
+}

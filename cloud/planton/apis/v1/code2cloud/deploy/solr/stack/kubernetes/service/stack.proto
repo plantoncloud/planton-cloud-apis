@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.service;
+
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+
+import "cloud/planton/apis/v1/code2cloud/deploy/solr/stack/kubernetes/model/io.proto";
+
+service SolrCloudKubernetesStackController {
+  rpc execute(cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudKubernetesStackInput) returns (stream SolrCloudKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudKubernetesStackInput) returns (cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudKubernetesStackOutputs);
+}

@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.deploy.postgres.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress/workload_ingress.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/v1/commons/audit/model/state.proto";
+import "cloud/planton/apis/v1/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/field/options/resource_field_options.proto";
+import "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/v1/commons/resource/model/state.proto";
+import "cloud/planton/apis/v1/commons/resource/options/resource_options.proto";
+import "cloud/planton/apis/v1/stack/job/model/io.proto";
+
+//postgres-cluster
+message PostgresCluster {
+  option (cloud.planton.apis.v1.commons.resource.options.resource_type) = postgres_cluster;
+  option (cloud.planton.apis.v1.commons.resource.options.is_runnable) = true;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).type = environment;
+  option (cloud.planton.apis.v1.commons.resource.options.owner).id_field_path = "spec.environment_info.environment_id";
+
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix) = "pgc";
+  //id format "pgc-<environment-id>-<postgres-cluster-name>"
+  option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //resource metadata
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 3 [
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    }
+  ];
+
+  //spec
+  PostgresClusterSpec spec = 4;
+
+  //status
+  PostgresClusterStatus status = 5;
+}
+
+//postgres-cluster spec
+message PostgresClusterSpec {
+  //resource parent
+  cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo environment_info = 1;
+
+  // kubernetes spec
+  PostgresClusterSpecKubernetesSpec kubernetes = 2;
+}
+
+//postgres-cluster status
+message PostgresClusterStatus {
+  // resource lifecycle
+  cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  //postgres-cluster kubernetes status
+  PostgresClusterStatusKubernetesStatus kubernetes = 1;
+}
+
+//postgres-cluster kubernetes spec
+message PostgresClusterSpecKubernetesSpec {
+  // postgres-container spec
+  PostgresClusterSpecKubernetesSpecPostgresContainerSpec postgres_container = 2;
+
+  //postgres-cluster ingress
+  PostgresClusterSpecKubernetesSpecIngressSpec ingress = 3;
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
+  //number of replicas of postgres pods
+  //recommended default is 1
+  int32 replicas = 1 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //postgres container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources resources = 2 [
+    (cloud.planton.apis.v1.commons.resource.field.options.is_required) = true
+  ];
+
+  //storage to allocate for each postgres instance in gb. ex: 1Gi
+  //default is set if the client does not provide a value.
+  string disk_size = 3 [
+    (cloud.planton.apis.v1.commons.resource.field.options.string_default) = "1Gi"
+  ];
+}
+
+//postgres-cluster kubernetes ingress spec
+message PostgresClusterSpecKubernetesSpecIngressSpec {
+  option (buf.validate.message).cel = {
+    id: "ingres.enabled.endpoint_domain_name.mandatory",
+    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
+        "? 'endpoint domain name is mandatory to enable ingress'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "ingres.enabled.ingress_type.mandatory",
+    expression: "this.is_enabled && this.ingress_type == 0"
+        "? 'ingress type is mandatory to enable ingress'"
+        ": ''"
+  };
+  //toggle to control ingress
+  bool is_enabled = 1;
+  //ingress type
+  cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2;
+  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating postgres endpoints.
+  string endpoint_domain_name = 3;
+}
+
+//postgres-cluster kubernetes status
+message PostgresClusterStatusKubernetesStatus {
+  //name of the kubernetes namespace in which the postgres-cluster has been created.
+  string namespace = 1;
+
+  //name of the kubernetes service created for postgres-cluster.
+  string service = 2;
+
+  //command to setup port-forwarding to open postgres-cluster from developers laptop.
+  //this might come handy when postgres-cluster ingress is disabled for security reasons.
+  //this is rendered by combining kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
+  //running the command from this attribute makes it possible to access postgres-cluster using localhost:5432
+  string port_forward_command = 3;
+
+  //kubernetes endpoint for clients running in the same kubernetes cluster.
+  //ex: main-microservice-instance.namespace.svc.instance.local:8080
+  string kube_endpoint = 4;
+
+  //external postgres-cluster hostname. port is always 5432.
+  string external_cluster_hostname = 5;
+
+  //internal postgres-cluster hostname. port is always 5432.
+  string internal_cluster_hostname = 6;
+}

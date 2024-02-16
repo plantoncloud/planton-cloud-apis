@@ -154,7 +154,7 @@ message MetadataIdRequiredTest {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required) = true;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description) = "Id must be present.";
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 1;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 1;
 }
 
 // Test case 2: Message with metadata where id has regex constraint
@@ -163,7 +163,7 @@ message MetadataIdRegexTest {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_regex) = "^[a-z0-9]+(-[a-z0-9]+)*$";
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen.";
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 1;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 1;
 }
 
 // Test case 3: Message with metadata where id has min and max length constraints
@@ -173,14 +173,14 @@ message MetadataIdLengthTest {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_max_length) = 10;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description) = "Id must be between 3 to 10 characters long.";
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 1;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 1;
 }
 
 // Test case 4: Message with metadata where is_id_computed is true (validations on id should be skipped)
 message MetadataIdComputedTest {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed) = true;
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 1;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 1;
 }
 
 // Test case 5: Message with metadata where name has regex and length constraints
@@ -190,5 +190,5 @@ message MetadataNameConstraintsTest {
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length) = 20;
   option (cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description) = "Name must be between 2 to 20 alphabetic characters.";
 
-  cloud.planton.apis.v1.commons.resource.Metadata metadata = 1;
+  cloud.planton.apis.v1.commons.resource.model.Metadata metadata = 1;
 }

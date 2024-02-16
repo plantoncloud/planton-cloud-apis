@@ -5,7 +5,7 @@ package cloud.planton.apis.v1.integration.kubernetes.cost.model;
 import "google/protobuf/timestamp.proto";
 import "cloud/planton/apis/v1/commons/audit/model/state.proto";
 import "cloud/planton/apis/v1/commons/resource/enums/enums.proto";
-import "cloud/planton/apis/v1/commons/rpc/pagination/io.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 
 //cost allocation
 message CostAllocation {

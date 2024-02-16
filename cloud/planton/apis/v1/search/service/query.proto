@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.search.service;
 
-import "cloud/planton/apis/v1/commons/rpc/pagination/model.proto";
+import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
 import "cloud/planton/apis/v1/search/model/io.proto";
 
 // SearchQueryController is a service that provides search functionality
