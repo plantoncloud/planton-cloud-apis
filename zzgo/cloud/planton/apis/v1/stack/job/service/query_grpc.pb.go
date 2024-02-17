@@ -22,13 +22,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackJobQueryController_ListByFilters_FullMethodName                     = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/listByFilters"
-	StackJobQueryController_GetById_FullMethodName                           = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getById"
-	StackJobQueryController_GetProgressEventStream_FullMethodName            = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getProgressEventStream"
-	StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName      = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobLogSnapshotStream"
-	StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName  = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getStackJobMinutesMTDByCompanyId"
-	StackJobQueryController_GetResourceCountByCompanyId_FullMethodName       = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getResourceCountByCompanyId"
-	StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobQueryController/getPulumiResourceCountByCompanyId"
+	StackJobQueryController_ListByFilters_FullMethodName                     = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/listByFilters"
+	StackJobQueryController_GetById_FullMethodName                           = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getById"
+	StackJobQueryController_GetProgressEventStream_FullMethodName            = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getProgressEventStream"
+	StackJobQueryController_GetStackJobLogSnapshotStream_FullMethodName      = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getStackJobLogSnapshotStream"
+	StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName  = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getStackJobMinutesMTDByCompanyId"
+	StackJobQueryController_GetResourceCountByCompanyId_FullMethodName       = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getResourceCountByCompanyId"
+	StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName = "/cloud.planton.apis.v1.stack.job.service.StackJobQueryController/getPulumiResourceCountByCompanyId"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -393,7 +393,7 @@ func _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler(srv inte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.stack.job.StackJobQueryController",
+	ServiceName: "cloud.planton.apis.v1.stack.job.service.StackJobQueryController",
 	HandlerType: (*StackJobQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -20,9 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackJobCommandController_Create_FullMethodName        = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/create"
-	StackJobCommandController_Update_FullMethodName        = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/update"
-	StackJobCommandController_NotifyRunning_FullMethodName = "/cloud.planton.apis.v1.stack.job.StackJobCommandController/notifyRunning"
+	StackJobCommandController_Create_FullMethodName        = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/create"
+	StackJobCommandController_Update_FullMethodName        = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/update"
+	StackJobCommandController_NotifyRunning_FullMethodName = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/notifyRunning"
 )
 
 // StackJobCommandControllerClient is the client API for StackJobCommandController service.
@@ -173,7 +173,7 @@ func _StackJobCommandController_NotifyRunning_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.stack.job.StackJobCommandController",
+	ServiceName: "cloud.planton.apis.v1.stack.job.service.StackJobCommandController",
 	HandlerType: (*StackJobCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
