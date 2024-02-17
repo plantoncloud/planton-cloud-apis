@@ -38,7 +38,7 @@ type StackCommandControllerClient interface {
 	// delete stack
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Stack, error)
 	// delete stack on pulumi cloud
-	DeleteOnPulumiCloud(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Stack, error)
+	DeleteOnPulumiCloud(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Stack, error)
 }
 
 type stackCommandControllerClient struct {
@@ -76,7 +76,7 @@ func (c *stackCommandControllerClient) Delete(ctx context.Context, in *model1.Ap
 	return out, nil
 }
 
-func (c *stackCommandControllerClient) DeleteOnPulumiCloud(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Stack, error) {
+func (c *stackCommandControllerClient) DeleteOnPulumiCloud(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Stack, error) {
 	out := new(model.Stack)
 	err := c.cc.Invoke(ctx, StackCommandController_DeleteOnPulumiCloud_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -96,7 +96,7 @@ type StackCommandControllerServer interface {
 	// delete stack
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Stack, error)
 	// delete stack on pulumi cloud
-	DeleteOnPulumiCloud(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Stack, error)
+	DeleteOnPulumiCloud(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Stack, error)
 }
 
 // UnimplementedStackCommandControllerServer should be embedded to have forward compatible implementations.
@@ -112,7 +112,7 @@ func (UnimplementedStackCommandControllerServer) Update(context.Context, *model.
 func (UnimplementedStackCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Stack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedStackCommandControllerServer) DeleteOnPulumiCloud(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Stack, error) {
+func (UnimplementedStackCommandControllerServer) DeleteOnPulumiCloud(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Stack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOnPulumiCloud not implemented")
 }
 
@@ -182,7 +182,7 @@ func _StackCommandController_Delete_Handler(srv interface{}, ctx context.Context
 }
 
 func _StackCommandController_DeleteOnPulumiCloud_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ func _StackCommandController_DeleteOnPulumiCloud_Handler(srv interface{}, ctx co
 		FullMethod: StackCommandController_DeleteOnPulumiCloud_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackCommandControllerServer).DeleteOnPulumiCloud(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(StackCommandControllerServer).DeleteOnPulumiCloud(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

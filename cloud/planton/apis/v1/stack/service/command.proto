@@ -16,6 +16,6 @@ service StackCommandController {
   rpc delete(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.stack.model.Stack);
   //delete stack on pulumi cloud
-  rpc deleteOnPulumiCloud(cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput)
+  rpc deleteOnPulumiCloud(cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.v1.stack.model.Stack);
 }
