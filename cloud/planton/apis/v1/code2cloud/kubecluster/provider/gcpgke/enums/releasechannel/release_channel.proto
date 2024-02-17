@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.kubecluster.provider.gcpgke.enums.releasechannel;
+
+// note: using uppercase for values since this enum is used as input for google cloud apis
+enum GkeReleaseChannel {
+  GKE_RELEASE_CHANNEL_UNSPECIFIED = 0;
+  REGULAR = 1;
+  STABLE = 2;
+  RAPID = 3;
+}

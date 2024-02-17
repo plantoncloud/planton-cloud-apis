@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.v1.code2cloud.environment.service;
 
 import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/deploy/kubecluster/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/kubecluster/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
 import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
 import "cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto";
@@ -32,7 +32,7 @@ service EnvironmentQueryController {
       returns (cloud.planton.apis.v1.code2cloud.environment.model.Environments);
 
   //find environments by kube-cluster id
-  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusterId)
+  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.kubecluster.model.KubeClusterId)
       returns (cloud.planton.apis.v1.code2cloud.environment.model.Environments);
 
   //look up environment using environment id

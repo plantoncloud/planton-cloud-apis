@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/command.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/service/command.proto
 
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/method/options"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
@@ -286,38 +286,38 @@ var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_command_
 }
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_command_proto_goTypes = []interface{}{
-	(*model.ArtifactStore)(nil),                              // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
+	(*model.ArtifactStore)(nil),                              // 0: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
 	(*model1.ApiResourceDeleteCommandInput)(nil),             // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
 	(*model2.CreateStackJobCommandInput)(nil),                // 2: cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
-	(*model.DelArtifactStorePackageVersionCommandInput)(nil), // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.DelArtifactStorePackageVersionCommandInput
+	(*model.DelArtifactStorePackageVersionCommandInput)(nil), // 3: cloud.planton.apis.v1.code2cloud.artifactstore.model.DelArtifactStorePackageVersionCommandInput
 	(*model1.ApiResourceRefreshCommandInput)(nil),            // 4: cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	(*model.ArtifactStorePackageVersion)(nil),                // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageVersion
+	(*model.ArtifactStorePackageVersion)(nil),                // 5: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_command_proto_depIdxs = []int32{
-	0,  // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewCreate:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewUpdate:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	1,  // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewDelete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	1,  // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	0,  // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewRestore:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	2,  // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.createStackJob:input_type -> cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
-	3,  // 9: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.deleteArtifactStorePackageVersion:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.DelArtifactStorePackageVersionCommandInput
-	4,  // 10: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewRefresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	4,  // 11: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.refresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	0,  // 12: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewCreate:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 13: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.create:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 14: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewUpdate:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 15: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.update:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 16: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewDelete:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 17: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.delete:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 18: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewRestore:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 19: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.restore:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 20: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.createStackJob:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	5,  // 21: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.deleteArtifactStorePackageVersion:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageVersion
-	0,  // 22: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.previewRefresh:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	0,  // 23: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController.refresh:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
+	0,  // 0: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewCreate:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 1: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 2: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewUpdate:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 3: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	1,  // 4: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewDelete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 5: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	0,  // 6: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewRestore:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 7: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	2,  // 8: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.createStackJob:input_type -> cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
+	3,  // 9: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.deleteArtifactStorePackageVersion:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.DelArtifactStorePackageVersionCommandInput
+	4,  // 10: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewRefresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	4,  // 11: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.refresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	0,  // 12: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewCreate:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 13: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.create:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 14: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewUpdate:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 15: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.update:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 16: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewDelete:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 17: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.delete:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 18: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewRestore:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 19: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.restore:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 20: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.createStackJob:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	5,  // 21: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.deleteArtifactStorePackageVersion:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion
+	0,  // 22: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.previewRefresh:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	0,  // 23: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController.refresh:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
 	12, // [12:24] is the sub-list for method output_type
 	0,  // [0:12] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/service/command.proto
+// source: cloud/planton/apis/v1/code2cloud/sourcecode/server/service/command.proto
 
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/server/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

@@ -2,14 +2,14 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/query.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/service/query.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/project/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
 	grpc "google.golang.org/grpc"
@@ -23,13 +23,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactStoreQueryController_GetById_FullMethodName                          = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/getById"
-	ArtifactStoreQueryController_List_FullMethodName                             = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/list"
-	ArtifactStoreQueryController_FindByProductId_FullMethodName                  = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/findByProductId"
-	ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName             = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/findByCodeProjectUrl"
-	ArtifactStoreQueryController_ListArtifactStoreDockerImages_FullMethodName    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/listArtifactStoreDockerImages"
-	ArtifactStoreQueryController_ListArtifactStorePackages_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackages"
-	ArtifactStoreQueryController_ListArtifactStorePackageVersions_FullMethodName = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackageVersions"
+	ArtifactStoreQueryController_GetById_FullMethodName                          = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/getById"
+	ArtifactStoreQueryController_List_FullMethodName                             = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/list"
+	ArtifactStoreQueryController_FindByProductId_FullMethodName                  = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/findByProductId"
+	ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName             = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/findByCodeProjectUrl"
+	ArtifactStoreQueryController_ListArtifactStoreDockerImages_FullMethodName    = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/listArtifactStoreDockerImages"
+	ArtifactStoreQueryController_ListArtifactStorePackages_FullMethodName        = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackages"
+	ArtifactStoreQueryController_ListArtifactStorePackageVersions_FullMethodName = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackageVersions"
 )
 
 // ArtifactStoreQueryControllerClient is the client API for ArtifactStoreQueryController service.
@@ -316,7 +316,7 @@ func _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler(srv 
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController",
 	HandlerType: (*ArtifactStoreQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -349,5 +349,5 @@ var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/query.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/artifactstore/service/query.proto",
 }

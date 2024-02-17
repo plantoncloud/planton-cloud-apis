@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/service/stack.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/service/stack.proto
 
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/grpc/stream"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -111,15 +111,15 @@ var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_servic
 }
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_service_stack_proto_goTypes = []interface{}{
-	(*model.ArtifactStoreGcpStackInput)(nil),    // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
-	(*model.ArtifactStoreGcpStackResponse)(nil), // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
-	(*model.ArtifactStoreGcpStackOutputs)(nil),  // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
+	(*model.ArtifactStoreGcpStackInput)(nil),    // 0: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
+	(*model.ArtifactStoreGcpStackResponse)(nil), // 1: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
+	(*model.ArtifactStoreGcpStackOutputs)(nil),  // 2: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_service_stack_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.execute:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
-	0, // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.getStackOutputs:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
-	1, // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.execute:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
-	2, // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.getStackOutputs:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
+	0, // 0: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.execute:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
+	0, // 1: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.getStackOutputs:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
+	1, // 2: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.execute:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
+	2, // 3: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController.getStackOutputs:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

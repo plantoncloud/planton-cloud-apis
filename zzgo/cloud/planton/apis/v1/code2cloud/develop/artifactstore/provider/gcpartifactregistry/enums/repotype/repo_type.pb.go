@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/provider/gcpartifactregistry/enums/repotype/repo_type.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/provider/gcpartifactregistry/enums/repotype/repo_type.proto
 
 package repotype
 
@@ -175,7 +175,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_gcpart
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_gcpartifactregistry_enums_repotype_repo_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_gcpartifactregistry_enums_repotype_repo_type_proto_goTypes = []interface{}{
-	(GcpArtifactRegistryRepoType)(0), // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.gcpartifactregistry.enums.repotype.GcpArtifactRegistryRepoType
+	(GcpArtifactRegistryRepoType)(0), // 0: cloud.planton.apis.v1.code2cloud.artifactstore.provider.gcpartifactregistry.enums.repotype.GcpArtifactRegistryRepoType
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_gcpartifactregistry_enums_repotype_repo_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.buildengine.model;
+
+import "cloud/planton/apis/v1/code2cloud/microservice/model/state.proto";
+
+//build engine code project
+message BuildEngineProject {
+  //project tilt config snippet
+  string tilt_config_snippet = 99;
+  //code project directory
+  string code_project_dir = 1;
+  //code project name
+  string code_project_name = 2;
+  //normalized code project path used for ensuring uniqueness in tilt resources in build engine.
+  string code_project_normalized_path = 3;
+  //either https or ssh url depending on the method supported for cloning the git project.
+  //this is the same url that should added to the code project that is linked to microservice resources.
+  string git_remote_url = 4;
+  //flag to indicate if project is required to be built before deployed to build engine environment.
+  //this flag is used to ensure link between build step and deployment step in tilt config file.
+  bool is_build_required = 5;
+  //is code project deployable to a environment.
+  bool is_deployable = 6;
+  //microservice-instance
+  cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance microservice_instance = 7;
+}

@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/model/state.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/model/state.proto
 
 package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	repoprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/provider/enums/repoprovider"
+	repoprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/provider/enums/repoprovider"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
@@ -127,7 +127,7 @@ type ArtifactStoreSpec struct {
 	// Golang Repo with Git Provider
 	GolangRepo *ArtifactStoreSpecGolangRepoGitProviderSpec `protobuf:"bytes,4,opt,name=golang_repo,json=golangRepo,proto3" json:"golang_repo,omitempty"`
 	// provider for the artifact-store repositories
-	RepoProvider repoprovider.ArtifactStoreRepoProvider `protobuf:"varint,5,opt,name=repo_provider,json=repoProvider,proto3,enum=cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider" json:"repo_provider,omitempty"`
+	RepoProvider repoprovider.ArtifactStoreRepoProvider `protobuf:"varint,5,opt,name=repo_provider,json=repoProvider,proto3,enum=cloud.planton.apis.v1.code2cloud.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider" json:"repo_provider,omitempty"`
 	// specification for google cloud artifact registry.
 	// this attribute is only populated when the artifact-store repo provider is artifact-registry on google cloud.
 	GcpArtifactRegistry *ArtifactStoreGcpArtifactRegistrySpec `protobuf:"bytes,6,opt,name=gcp_artifact_registry,json=gcpArtifactRegistry,proto3" json:"gcp_artifact_registry,omitempty"`
@@ -876,29 +876,29 @@ func file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_state_pro
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_state_proto_goTypes = []interface{}{
-	(*ArtifactStore)(nil),                              // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	(*ArtifactStoreSpec)(nil),                          // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec
-	(*ArtifactStoreSpecBsrRepoSpec)(nil),               // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpecBsrRepoSpec
-	(*ArtifactStoreSpecGolangRepoGitProviderSpec)(nil), // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpecGolangRepoGitProviderSpec
-	(*ArtifactStoreStatus)(nil),                        // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreStatus
-	(*ArtifactStoreGcpArtifactRegistrySpec)(nil),       // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistrySpec
-	(*ArtifactStoreGcpArtifactRegistryStatus)(nil),     // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
+	(*ArtifactStore)(nil),                              // 0: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	(*ArtifactStoreSpec)(nil),                          // 1: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec
+	(*ArtifactStoreSpecBsrRepoSpec)(nil),               // 2: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpecBsrRepoSpec
+	(*ArtifactStoreSpecGolangRepoGitProviderSpec)(nil), // 3: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpecGolangRepoGitProviderSpec
+	(*ArtifactStoreStatus)(nil),                        // 4: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreStatus
+	(*ArtifactStoreGcpArtifactRegistrySpec)(nil),       // 5: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistrySpec
+	(*ArtifactStoreGcpArtifactRegistryStatus)(nil),     // 6: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
 	(*model.Metadata)(nil),                             // 7: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(repoprovider.ArtifactStoreRepoProvider)(0),        // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
+	(repoprovider.ArtifactStoreRepoProvider)(0),        // 8: cloud.planton.apis.v1.code2cloud.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
 	(*model.ResourceLifecycle)(nil),                    // 9: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
 	(*model1.ResourceAudit)(nil),                       // 10: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_state_proto_depIdxs = []int32{
-	7,  // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
-	1,  // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore.spec:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec
-	4,  // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore.status:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreStatus
-	2,  // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec.bsr_repo:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpecBsrRepoSpec
-	3,  // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec.golang_repo:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpecGolangRepoGitProviderSpec
-	8,  // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec.repo_provider:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
-	5,  // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreSpec.gcp_artifact_registry:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistrySpec
-	9,  // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	10, // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	6,  // 9: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreStatus.gcp_artifact_registry:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
+	7,  // 0: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	1,  // 1: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore.spec:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec
+	4,  // 2: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore.status:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreStatus
+	2,  // 3: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec.bsr_repo:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpecBsrRepoSpec
+	3,  // 4: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec.golang_repo:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpecGolangRepoGitProviderSpec
+	8,  // 5: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec.repo_provider:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
+	5,  // 6: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreSpec.gcp_artifact_registry:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistrySpec
+	9,  // 7: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
+	10, // 8: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	6,  // 9: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreStatus.gcp_artifact_registry:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
 	10, // [10:10] is the sub-list for method output_type
 	10, // [10:10] is the sub-list for method input_type
 	10, // [10:10] is the sub-list for extension type_name

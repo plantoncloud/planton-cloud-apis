@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/service/stack.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/service/stack.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactStoreGcpStackController_Execute_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController/execute"
-	ArtifactStoreGcpStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController/getStackOutputs"
+	ArtifactStoreGcpStackController_Execute_FullMethodName         = "/cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController/execute"
+	ArtifactStoreGcpStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController/getStackOutputs"
 )
 
 // ArtifactStoreGcpStackControllerClient is the client API for ArtifactStoreGcpStackController service.
@@ -154,7 +154,7 @@ func _ArtifactStoreGcpStackController_GetStackOutputs_Handler(srv interface{}, c
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ArtifactStoreGcpStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.service.ArtifactStoreGcpStackController",
 	HandlerType: (*ArtifactStoreGcpStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -169,5 +169,5 @@ var ArtifactStoreGcpStackController_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/service/stack.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/service/stack.proto",
 }

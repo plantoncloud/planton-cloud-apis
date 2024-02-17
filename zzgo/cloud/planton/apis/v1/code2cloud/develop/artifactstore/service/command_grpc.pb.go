@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/command.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/service/command.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
 	grpc "google.golang.org/grpc"
@@ -22,18 +22,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArtifactStoreCommandController_PreviewCreate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/previewCreate"
-	ArtifactStoreCommandController_Create_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/create"
-	ArtifactStoreCommandController_PreviewUpdate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/previewUpdate"
-	ArtifactStoreCommandController_Update_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/update"
-	ArtifactStoreCommandController_PreviewDelete_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/previewDelete"
-	ArtifactStoreCommandController_Delete_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/delete"
-	ArtifactStoreCommandController_PreviewRestore_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/previewRestore"
-	ArtifactStoreCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/restore"
-	ArtifactStoreCommandController_CreateStackJob_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/createStackJob"
-	ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_FullMethodName = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/deleteArtifactStorePackageVersion"
-	ArtifactStoreCommandController_PreviewRefresh_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/previewRefresh"
-	ArtifactStoreCommandController_Refresh_FullMethodName                           = "/cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController/refresh"
+	ArtifactStoreCommandController_PreviewCreate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/previewCreate"
+	ArtifactStoreCommandController_Create_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/create"
+	ArtifactStoreCommandController_PreviewUpdate_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/previewUpdate"
+	ArtifactStoreCommandController_Update_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/update"
+	ArtifactStoreCommandController_PreviewDelete_FullMethodName                     = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/previewDelete"
+	ArtifactStoreCommandController_Delete_FullMethodName                            = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/delete"
+	ArtifactStoreCommandController_PreviewRestore_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/previewRestore"
+	ArtifactStoreCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/restore"
+	ArtifactStoreCommandController_CreateStackJob_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/createStackJob"
+	ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_FullMethodName = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/deleteArtifactStorePackageVersion"
+	ArtifactStoreCommandController_PreviewRefresh_FullMethodName                    = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/previewRefresh"
+	ArtifactStoreCommandController_Refresh_FullMethodName                           = "/cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController/refresh"
 )
 
 // ArtifactStoreCommandControllerClient is the client API for ArtifactStoreCommandController service.
@@ -484,7 +484,7 @@ func _ArtifactStoreCommandController_Refresh_Handler(srv interface{}, ctx contex
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ArtifactStoreCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreCommandController",
+	ServiceName: "cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreCommandController",
 	HandlerType: (*ArtifactStoreCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -537,5 +537,5 @@ var ArtifactStoreCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/command.proto",
+	Metadata: "cloud/planton/apis/v1/code2cloud/artifactstore/service/command.proto",
 }

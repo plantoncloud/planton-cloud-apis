@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.stack.job.enums.event;
+
+import "cloud/planton/apis/v1/commons/resource/enums/options/resource_event_type_enum_options.proto";
+
+enum StackJobApiResourceEventType {
+  STACK_JOB_API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
+  created = 1 [
+    //stack-jobs are persisted to database as part of rpc call during creation
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_search_indexing_required) = true
+  ];
+  updated = 2 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+  deleted = 3 [
+    (cloud.planton.apis.v1.commons.resource.enums.options.is_persist_required) = true
+  ];
+}

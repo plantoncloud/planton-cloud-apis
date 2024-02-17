@@ -2,14 +2,14 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/pipeline/model/io.proto
+// source: cloud/planton/apis/v1/code2cloud/sourcecode/pipeline/model/io.proto
 
 package model
 
 import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/microservice/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/project/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -616,14 +616,14 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_pipeline_model_io_p
 	(*CodePipelineDeployTemplateJobInput)(nil),     // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineDeployTemplateJobInput
 	(*model.CodeProjectProfile)(nil),               // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectProfile
 	(*model1.MicroserviceInstance)(nil),            // 6: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance
-	(*model2.ArtifactStore)(nil),                   // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
+	(*model2.ArtifactStore)(nil),                   // 7: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
 	(*model3.Environment)(nil),                     // 8: cloud.planton.apis.v1.code2cloud.environment.model.Environment
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_pipeline_model_io_proto_depIdxs = []int32{
 	5, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.GenerateCodePipelineTemplateQueryInput.code_project_profile:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectProfile
 	6, // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.GenerateCodePipelineTemplateQueryInput.microservice_instances:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance
 	3, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.GenerateCodePipelineTemplateQueryResp.template_input:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineBuildTemplateInput
-	7, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineBuildTemplateInput.artifact_store:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
+	7, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineBuildTemplateInput.artifact_store:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
 	2, // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineBuildTemplateInput.template_container_images:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineTemplateContainerImages
 	2, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineDeployTemplateJobInput.template_container_images:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineTemplateContainerImages
 	8, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.pipeline.model.CodePipelineDeployTemplateJobInput.environment:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.Environment

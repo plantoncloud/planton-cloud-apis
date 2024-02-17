@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/provider/enums/repoprovider/repo_provider.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/provider/enums/repoprovider/repo_provider.proto
 
 package repoprovider
 
@@ -161,7 +161,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_enums_
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_enums_repoprovider_repo_provider_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_enums_repoprovider_repo_provider_proto_goTypes = []interface{}{
-	(ArtifactStoreRepoProvider)(0), // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
+	(ArtifactStoreRepoProvider)(0), // 0: cloud.planton.apis.v1.code2cloud.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_provider_enums_repoprovider_repo_provider_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

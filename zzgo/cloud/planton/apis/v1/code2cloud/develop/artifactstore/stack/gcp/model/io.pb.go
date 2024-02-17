@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/stack/gcp/model/io.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/stack/gcp/model/io.proto
 
 package model
 
 import (
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/pulumi/operation/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/progress/model"
@@ -448,26 +448,26 @@ func file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_model
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_model_io_proto_goTypes = []interface{}{
-	(*ArtifactStoreGcpStackInput)(nil),                    // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
-	(*ArtifactStoreGcpStackCredentialsInput)(nil),         // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput
-	(*ArtifactStoreGcpStackResourceInput)(nil),            // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput
-	(*ArtifactStoreGcpStackOutputs)(nil),                  // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
-	(*ArtifactStoreGcpStackResponse)(nil),                 // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
+	(*ArtifactStoreGcpStackInput)(nil),                    // 0: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput
+	(*ArtifactStoreGcpStackCredentialsInput)(nil),         // 1: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput
+	(*ArtifactStoreGcpStackResourceInput)(nil),            // 2: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput
+	(*ArtifactStoreGcpStackOutputs)(nil),                  // 3: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
+	(*ArtifactStoreGcpStackResponse)(nil),                 // 4: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse
 	(*model.StackJob)(nil),                                // 5: cloud.planton.apis.v1.stack.job.model.StackJob
 	(*model1.GoogleProviderCredential)(nil),               // 6: cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential
-	(*model2.ArtifactStore)(nil),                          // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	(*model2.ArtifactStoreGcpArtifactRegistryStatus)(nil), // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
+	(*model2.ArtifactStore)(nil),                          // 7: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	(*model2.ArtifactStoreGcpArtifactRegistryStatus)(nil), // 8: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
 	(*model3.StackJobProgressEvent)(nil),                  // 9: cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_stack_gcp_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.stack_job:type_name -> cloud.planton.apis.v1.stack.job.model.StackJob
-	1, // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.credentials_input:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput
-	2, // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.resource_input:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput
-	6, // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput.google:type_name -> cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential
-	7, // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput.artifact_store:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	8, // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs.gcp_artifact_registry_status:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
-	9, // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse.progress_event:type_name -> cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent
-	3, // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse.outputs:type_name -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
+	5, // 0: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.stack_job:type_name -> cloud.planton.apis.v1.stack.job.model.StackJob
+	1, // 1: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.credentials_input:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput
+	2, // 2: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackInput.resource_input:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput
+	6, // 3: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackCredentialsInput.google:type_name -> cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential
+	7, // 4: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResourceInput.artifact_store:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	8, // 5: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs.gcp_artifact_registry_status:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus
+	9, // 6: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse.progress_event:type_name -> cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent
+	3, // 7: cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackResponse.outputs:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model.ArtifactStoreGcpStackOutputs
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name

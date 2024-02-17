@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/enums/event/event.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/enums/event/event.proto
 
 package event
 
@@ -213,7 +213,7 @@ func file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_enums_event_eve
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_enums_event_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_enums_event_event_proto_goTypes = []interface{}{
-	(ArtifactStoreEventType)(0), // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.enums.event.ArtifactStoreEventType
+	(ArtifactStoreEventType)(0), // 0: cloud.planton.apis.v1.code2cloud.artifactstore.enums.event.ArtifactStoreEventType
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_enums_event_event_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

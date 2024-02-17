@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto
+// source: cloud/planton/apis/v1/code2cloud/sourcecode/server/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto
 
 package githubappinstallownertype
 

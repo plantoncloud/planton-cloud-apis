@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/artifactstore/service/query.proto
+// source: cloud/planton/apis/v1/code2cloud/artifactstore/service/query.proto
 
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/artifactstore/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/artifactstore/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/project/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
@@ -185,34 +185,34 @@ var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_query_pr
 }
 
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_query_proto_goTypes = []interface{}{
-	(*model.ArtifactStoreId)(nil),                       // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreId
+	(*model.ArtifactStoreId)(nil),                       // 0: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreId
 	(*model1.PageInfo)(nil),                             // 1: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
 	(*model2.ProductId)(nil),                            // 2: cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	(*model3.CodeProjectUrl)(nil),                       // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectUrl
-	(*model.ListByArtifactStoreIdRepoNameInput)(nil),    // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdRepoNameInput
-	(*model.ListByArtifactStoreIdPackageNameInput)(nil), // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdPackageNameInput
-	(*model.ArtifactStore)(nil),                         // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	(*model.ArtifactStoreList)(nil),                     // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreList
-	(*model.ArtifactStores)(nil),                        // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStores
-	(*model.ArtifactStoreDockerImageList)(nil),          // 9: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreDockerImageList
-	(*model.ArtifactStorePackageList)(nil),              // 10: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageList
-	(*model.ArtifactStorePackageVersionList)(nil),       // 11: cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageVersionList
+	(*model.ListByArtifactStoreIdRepoNameInput)(nil),    // 4: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdRepoNameInput
+	(*model.ListByArtifactStoreIdPackageNameInput)(nil), // 5: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdPackageNameInput
+	(*model.ArtifactStore)(nil),                         // 6: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	(*model.ArtifactStoreList)(nil),                     // 7: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreList
+	(*model.ArtifactStores)(nil),                        // 8: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStores
+	(*model.ArtifactStoreDockerImageList)(nil),          // 9: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreDockerImageList
+	(*model.ArtifactStorePackageList)(nil),              // 10: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageList
+	(*model.ArtifactStorePackageVersionList)(nil),       // 11: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersionList
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_service_query_proto_depIdxs = []int32{
-	0,  // 0: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreId
-	1,  // 1: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	2,  // 2: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.findByProductId:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
-	3,  // 3: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.findByCodeProjectUrl:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectUrl
-	4,  // 4: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStoreDockerImages:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdRepoNameInput
-	4,  // 5: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackages:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdRepoNameInput
-	5,  // 6: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackageVersions:input_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ListByArtifactStoreIdPackageNameInput
-	6,  // 7: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.getById:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStore
-	7,  // 8: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.list:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreList
-	8,  // 9: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.findByProductId:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStores
-	8,  // 10: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.findByCodeProjectUrl:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStores
-	9,  // 11: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStoreDockerImages:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStoreDockerImageList
-	10, // 12: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackages:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageList
-	11, // 13: cloud.planton.apis.v1.code2cloud.develop.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackageVersions:output_type -> cloud.planton.apis.v1.code2cloud.develop.artifactstore.model.ArtifactStorePackageVersionList
+	0,  // 0: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreId
+	1,  // 1: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	2,  // 2: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.findByProductId:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
+	3,  // 3: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.findByCodeProjectUrl:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectUrl
+	4,  // 4: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStoreDockerImages:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdRepoNameInput
+	4,  // 5: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackages:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdRepoNameInput
+	5,  // 6: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackageVersions:input_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdPackageNameInput
+	6,  // 7: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.getById:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
+	7,  // 8: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.list:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreList
+	8,  // 9: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.findByProductId:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStores
+	8,  // 10: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.findByCodeProjectUrl:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStores
+	9,  // 11: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStoreDockerImages:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreDockerImageList
+	10, // 12: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackages:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageList
+	11, // 13: cloud.planton.apis.v1.code2cloud.artifactstore.service.ArtifactStoreQueryController.listArtifactStorePackageVersions:output_type -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersionList
 	7,  // [7:14] is the sub-list for method output_type
 	0,  // [0:7] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

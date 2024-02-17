@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.service;
+
+import "cloud/planton/apis/v1/commons/grpc/stream/model.proto";
+import "cloud/planton/apis/v1/code2cloud/kafka/stack/kubernetes/model/io.proto";
+
+service KafkaClusterKubernetesStackController {
+  rpc execute(cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.model.KafkaClusterKubernetesStackInput)
+      returns (stream cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.model.KafkaClusterKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.model.KafkaClusterKubernetesStackInput)
+      returns (cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.model.KafkaClusterKubernetesStackOutputs);
+}

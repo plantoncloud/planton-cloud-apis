@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model/state.proto
+// source: cloud/planton/apis/v1/code2cloud/sourcecode/project/model/state.proto
 
 package model
 

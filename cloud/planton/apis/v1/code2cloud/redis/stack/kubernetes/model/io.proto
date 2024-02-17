@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.redis.stack.kubernetes.model;
+
+import "cloud/planton/apis/v1/code2cloud/redis/model/state.proto";
+import "cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/v1/stack/job/model/state.proto";
+import "cloud/planton/apis/v1/stack/job/progress/model/io.proto";
+
+//input for redis-cluster stack
+message RedisClusterKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.v1.stack.job.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  RedisClusterKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  RedisClusterKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message RedisClusterKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating redis-cluster resources on kubernetes cluster
+  cloud.planton.apis.v1.commons.pulumi.operation.model.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message RedisClusterKubernetesStackResourceInput {
+  //redis-cluster
+  cloud.planton.apis.v1.code2cloud.redis.model.RedisCluster redis_cluster = 1;}
+
+//redis-cluster stack outputs
+message RedisClusterKubernetesStackOutputs {
+  //status of the redis-cluster upon stack-job
+  cloud.planton.apis.v1.code2cloud.redis.model.RedisClusterStatus redis_cluster_status = 1;
+}
+
+//stack response
+message RedisClusterKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  RedisClusterKubernetesStackOutputs outputs = 3;
+}

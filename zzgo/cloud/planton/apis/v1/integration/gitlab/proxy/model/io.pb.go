@@ -7,7 +7,7 @@
 package model
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/develop/sourcecode/project/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/project/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/github/proxy/model"
 	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/gitlab/proxy/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
