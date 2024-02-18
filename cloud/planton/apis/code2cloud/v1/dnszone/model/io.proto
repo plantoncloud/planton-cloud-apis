@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.dnszone.model;
 
 import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
-import "cloud/planton/apis/commons/network/dns/record/enums/enums.proto";
+import "cloud/planton/apis/code2cloud/v1/dnszone/enums/dnsrecordtype/dns_record_type.proto";
 
 // list of dns-zones
 message DnsZones {
@@ -66,7 +66,7 @@ message DeleteDnsRecordCommandInput {
   // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
   // The server uses this information to find the DNS record of the correct type within the
   // specified DNS zone. This is a required field.
-  cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType record_type = 2;
+  cloud.planton.apis.code2cloud.v1.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 2;
 
   // This field contains the name of the DNS record that is to be either soft deleted or restored.
   // The DNS record name is a significant identifier used by the server to find the specific record

@@ -6,10 +6,9 @@ import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/codeserver/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/codeproject/model/pipeline/io.proto";
 
 //code project query controller
 service CodeProjectQueryController {
@@ -20,10 +19,10 @@ service CodeProjectQueryController {
   //look up a code project by code project id
   rpc getById(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get code project";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get code project";
   }
 
   //find code projects by product id
@@ -31,16 +30,16 @@ service CodeProjectQueryController {
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjects);
 
   //find code projects by code-server id
-  rpc findByCodeServerId(cloud.planton.apis.code2cloud.v1.server.model.CodeServerId)
+  rpc findByCodeServerId(cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjects);
 
   //look up all code projects by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjects) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
     //field-path can not be added as the target resource-id is not present in the request input.
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get code projects";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get code projects";
   }
 
   //find code project templates by company id to create new code project.
@@ -53,29 +52,29 @@ service CodeProjectQueryController {
   //get code project profile by code project id
   rpc getCodeProjectProfileById(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get code project profile";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get code project profile";
   }
 }
 
 //code-project pipeline query controller
 service CodeProjectPipelineQueryController {
   //generate code pipeline template for a code project
-  rpc generateCodePipelineTemplate(cloud.planton.apis.code2cloud.v1.codeproject.model.pipeline.GenerateCodePipelineTemplateQueryInput)
-      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.pipeline.GenerateCodePipelineTemplateQueryResp) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_get;
+  rpc generateCodePipelineTemplate(cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryResp) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
     //note: field-path can not be added as id of target resource is not directly present in the input
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get code-pipeline template";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get code-pipeline template";
   }
   //get code-pipeline template files for a code project
   rpc getPipelineFilesByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFiles) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get code project profile";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get code project profile";
   }
 }

@@ -7,7 +7,6 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 
 // company on planton-cloud
 message Company {
@@ -16,16 +15,16 @@ message Company {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = identity_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "status.audit.spec_audit.created_by.id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = true;
 
   // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "resource-manager.planton.cloud/v1"
   ];
 
   // resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "Company"
   ];
 
   // metadata for the resource

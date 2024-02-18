@@ -2,13 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.iac.v1.stackjob.service;
 
-import "cloud/planton/apis/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/snapshot/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
-import "cloud/planton/apis/iac/v1/stack/pulumi/engine/model/io.proto";
 
 service StackJobCommandController {
   //create stack-job

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.testing.resource.enums;
+package cloud.planton.apis.commons.apiresource.testing.enums;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
 
@@ -21,7 +21,7 @@ enum TestApiResourceEventType {
 
 // A message with computed fields.
 message EnumFieldsTest {
-  TestEventType event_type = 1;
+  TestApiResourceEventType event_type = 1;
 }
 
 enum CloudProviderTest {

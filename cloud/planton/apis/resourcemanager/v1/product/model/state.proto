@@ -5,9 +5,8 @@ package cloud.planton.apis.resourcemanager.v1.product.model;
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 
 //product
 message Product {
@@ -16,17 +15,18 @@ message Product {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   //id format "<company-id>-<product-key>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
-  //resource api-version
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
+
+  // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "resource-manager.planton.cloud/v1"
   ];
 
-  //resource kind
+  // resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "Product"
   ];
 
   //resource metadata

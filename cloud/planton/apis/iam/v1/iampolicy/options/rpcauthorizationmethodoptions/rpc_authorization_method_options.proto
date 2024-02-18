@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions;
+
+import "google/protobuf/descriptor.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/model/io.proto";
+
+extend google.protobuf.MethodOptions {
+  cloud.planton.apis.iam.v1.iampolicy.model.RpcAuthorizationConfig authorization_config = 50056;
+  bool is_public = 50057;
+}

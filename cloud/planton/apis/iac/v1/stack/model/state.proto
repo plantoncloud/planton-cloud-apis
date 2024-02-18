@@ -3,30 +3,29 @@ syntax = "proto3";
 package cloud.planton.apis.iac.v1.stack.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 
 // stack
 message Stack {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "st";
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "st";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "iac.planton.cloud/v1"
   ];
 
   // resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "Stack"
   ];
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stack.pulumi.engine.enums.event;
+package cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype;
 
 //note: values are intentionally left capitalized as required by pulumi engine api
-enum PulumiEngineApiResourceEventType {
+enum PulumiEngineEventType {
   PULUMI_ENGINE_EVENT_TYPE_UNSPECIFIED = 0;
   CANCEL = 1;
   STDOUT = 2;

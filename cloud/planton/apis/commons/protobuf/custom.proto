@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.protobuf.custom;
+package cloud.planton.apis.commons.protobuf;
 
 //this is a temporary workaround for an issue with use google's built in empty message in typescript codebase.
 message CustomEmpty {

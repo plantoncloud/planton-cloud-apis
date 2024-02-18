@@ -3,12 +3,11 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.artifactstore.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/artifactstore/provider/enums/repoprovider/repo_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/enums/artifactstorerepoprovider/artifact_store_repo_provider.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 
 //artifact-store
 message ArtifactStore {
@@ -17,19 +16,19 @@ message ArtifactStore {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "afs";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "afs";
   //id format "afs-<product-id>-<artifact-store-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
   //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "ArtifactStore"
   ];
 
   //resource metadata
@@ -83,7 +82,7 @@ message ArtifactStoreSpec {
   ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo = 4;
 
   //provider for the artifact-store repositories
-  cloud.planton.apis.code2cloud.v1.artifactstore.provider.enums.repoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
+  cloud.planton.apis.code2cloud.v1.artifactstore.enums.artifactstorerepoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

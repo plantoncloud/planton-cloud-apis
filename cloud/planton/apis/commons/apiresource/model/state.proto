@@ -15,6 +15,18 @@ message ApiResourceMetadata {
   string id = 2;
   // labels for the resource
   map<string, string> labels = 3;
+}
+
+//metadata for all resource objects on planton-cloud
+message VersionedApiResourceMetadata {
+  // name of the resource
+  string name = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+  // id of the resource
+  string id = 2;
+  // labels for the resource
+  map<string, string> labels = 3;
   //metadata for resource version
   ApiResourceMetadataApiResourceVersion version = 4;
 }

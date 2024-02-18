@@ -4,7 +4,7 @@ package cloud.planton.apis.commons.testing.resource.message;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/testing/resource/enums/model.proto";
+import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
 import "buf/validate/validate.proto";
 
 message MessageLevelProtoValidateConditionalTest {
@@ -20,7 +20,7 @@ message MessageLevelProtoValidateConditionalTest {
         "? 'aws account id should be mentioned'"
         ": ''"
   };
-  cloud.planton.apis.commons.testing.resource.enums.CloudProviderTest cloud_provider = 1;
+  cloud.planton.apis.commons.apiresource.testing.enums.CloudProviderTest cloud_provider = 1;
   GcpSpecTest gcp_spec = 2;
   AwsSpecTest aws_spec = 3;
 }

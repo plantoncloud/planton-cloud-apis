@@ -1,15 +1,14 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.server.model;
+package cloud.planton.apis.code2cloud.v1.codeserver.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/codeserver/provider/enums/codeserverprovider/code_server_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/codeserver/provider/enums/githubappinstallownertype/github_app_install_owner_type.proto";
+import "cloud/planton/apis/code2cloud/v1/codeserver/enums/codeserverprovider/code_server_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/codeserver/enums/githubappinstallownertype/github_app_install_owner_type.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //code-server
@@ -19,14 +18,14 @@ message CodeServer {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "cs";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "cs";
   //id format "cs-<product-id>-<code-server-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
   //resource kind
@@ -86,7 +85,7 @@ message CodeServerSpec {
   ];
 
   //Specifies the provider for the code server.
-  cloud.planton.apis.code2cloud.v1.server.provider.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
+  cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -111,7 +110,7 @@ message CodeServerGithubSpec {
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
-  cloud.planton.apis.code2cloud.v1.server.provider.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
+  cloud.planton.apis.code2cloud.v1.codeserver.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }

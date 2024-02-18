@@ -5,8 +5,8 @@ package cloud.planton.apis.code2cloud.v1.customendpoint.service;
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/resource/certificate.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //custom-endpoint query controller
@@ -18,10 +18,10 @@ service CustomEndpointQueryController {
   //look up custom-endpoint using custom-endpoint id
   rpc getById(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view custom-endpoint";
   }
 
   //find custom-endpoints by product id.
@@ -32,28 +32,28 @@ service CustomEndpointQueryController {
   //check cert status for custom-endpoint
   rpc getCustomEndpointCertStatus(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointCertStatus) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to check custom-endpoint certificate status";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check custom-endpoint certificate status";
   }
 
   //check status of dns resolution for custom-endpoint.
   //confirms if the dns of the custom-endpoint domain is resolving to the correct address.
   rpc getCustomEndpointDsnResolutionStatus(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointDnsResolutionStatus) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to check custom-endpoint dnszone status";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check custom-endpoint dnszone status";
   }
 
   //find certificates for custom-endpoint
   rpc findCustomEndpointCertificates(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
-      returns (cloud.planton.apis.v1.integration.kubernetes.resource.Certificates) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to look up custom-endpoint certificates";
+      returns (cloud.planton.apis.integration.v1.kubernetes.resource.Certificates) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to look up custom-endpoint certificates";
   }
 }

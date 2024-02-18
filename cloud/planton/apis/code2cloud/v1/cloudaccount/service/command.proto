@@ -3,101 +3,111 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.cloudaccount.service;
 
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
-import "cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 // cloud-account command controller
 service CloudAccountCommandController {
   //preview create cloud-account resource
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_create;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.company_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview create cloud-account";
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //create a cloud-account resource
-  rpc create(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_create;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.company_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create cloud-account";
+  rpc create(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
   }
   //preview update on existing cloud-account
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview update cloud-account";
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing cloud-account
-  rpc update(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update cloud-account";
+  rpc update(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete a cloud-account that was previously created
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_delete;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete cloud-account";
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete a cloud-account that was previously created
   //warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_delete;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete cloud-account";
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
   }
   //preview restoring a deleted cloud-account.
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_restore;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore cloud-account";
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted cloud-account.
-  rpc restore(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_restore;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore cloud-account";
+  rpc restore(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for cloud-account
-  rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for cloud-account";
+  rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for cloud-account";
   }
-
   //preview refresh a cloud-account that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh cloud-account";
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a cloud-account that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to refresh cloud-account";
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh cloud-account";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
   }
 }

@@ -3,8 +3,8 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.customendpoint.stack.kubernetes.model;
 
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
-import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 //custom-endpoint container stack input
@@ -20,7 +20,7 @@ message CustomEndpointKubernetesStackInput {
 //custom-endpoint container stack credentials input
 message CustomEndpointKubernetesStackCredentialsInput {
   //kubernetes provider credential for creating endpoint domain resources on kubernetes cluster
-  cloud.planton.apis.commons.pulumi.operation.model.KubernetesProviderCredential kubernetes = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
 }
 
 //custom-endpoint container stack resource input
@@ -38,7 +38,7 @@ message CustomEndpointKubernetesStackOutputs {
 //stack response
 message CustomEndpointKubernetesStackResponse {
   //stack-job progress event
-  cloud.planton.apis.iac.v1.stackjob.progress.model.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   CustomEndpointKubernetesStackOutputs outputs = 3;
 }

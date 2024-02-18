@@ -4,9 +4,9 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.stack.aws.model;
 
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
-import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 
 message KubeClusterAwsStackInput {
   //stack job
@@ -20,7 +20,7 @@ message KubeClusterAwsStackInput {
 // stack credentials input
 message KubeClusterAwsStackCredentialsInput {
   //aws provider credential input
-  cloud.planton.apis.commons.pulumi.operation.model.AwsProviderCredential aws = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.AwsProviderCredential aws = 1;
 }
 
 // stack resource input
@@ -42,7 +42,7 @@ message KubeClusterAwsStackOutputs {
 //stack response
 message KubeClusterAwsStackResponse {
   //stack-job progress event
-  cloud.planton.apis.iac.v1.stackjob.progress.model.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   KubeClusterAwsStackOutputs outputs = 3;
 }

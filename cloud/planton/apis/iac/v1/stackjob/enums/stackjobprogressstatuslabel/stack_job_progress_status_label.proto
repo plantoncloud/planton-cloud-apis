@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.progress.enums.statuslabel;
+package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatuslabel;
 
 enum StackJobProgressStatusLabel {
   STACK_JOB_PROGRESS_STATUS_LABEL_UNSPECIFIED = 0;

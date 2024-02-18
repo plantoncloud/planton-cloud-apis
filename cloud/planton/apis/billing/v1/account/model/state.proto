@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.billing.v1.account.model;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
@@ -15,7 +16,9 @@ message BillingAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
   // resource api version
-  string api_version = 1;
+  string api_version = 1 [
+    (buf.validate.field).string.const = "billing.planton.cloud/v1"
+  ];
 
   // resource kind
   string kind = 2;

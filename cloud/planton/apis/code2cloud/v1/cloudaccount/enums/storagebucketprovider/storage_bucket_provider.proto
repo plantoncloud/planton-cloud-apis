@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.cloudaccount.enums.storagebucketprovider;
+
+//provider for storage-bucket
+enum StorageBucketProvider {
+  STORAGE_BUCKET_PROVIDER_UNSPECIFIED = 0;
+  //https://cloud.google.com/storage
+  gcp_gcs = 1;
+  //https://aws.amazon.com/s3/
+  aws_s3 = 2;
+  //https://azure.microsoft.com/en-us/products/storage/blobs
+  azure_blob_storage = 3;
+  //https://www.digitalocean.com/products/spaces
+  digital_ocean_object_storage = 4;
+}

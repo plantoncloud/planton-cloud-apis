@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.billing.v1.service;
+package cloud.planton.apis.billing.v1.account.service;
 
 import "cloud/planton/apis/billing/v1/account/model/io.proto";
 import "cloud/planton/apis/billing/v1/account/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 
 // billing-account query controller
@@ -15,9 +15,9 @@ service BillingAccountQueryController {
   //lookup billing account using billing account id.
   rpc getBillingAccountByBillingAccountId(cloud.planton.apis.billing.v1.account.model.BillingAccountId)
       returns (cloud.planton.apis.billing.v1.account.model.BillingAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = billing_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = billing_account_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view billing account details";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = billing_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = billing_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view billing account details";
   }
   //lookup billing account using company id.
   rpc getBillingAccountByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)

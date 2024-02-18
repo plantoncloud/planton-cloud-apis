@@ -1,23 +1,23 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.progress.model;
+package cloud.planton.apis.iac.v1.stackjob.model.progress;
 
-import "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/operation_type.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/enums/event/event.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/enums/statusevent/status_event.proto";
-import "cloud/planton/apis/iac/v1/stack/pulumi/engine/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogresseventtype/stack_job_progress_event_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatuseventtype/stack_job_progress_status_event_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/pulumiengine/io.proto";
 import "google/protobuf/timestamp.proto";
 
 // stack-job progress event
 message StackJobProgressEvent {
   // type of the event
-  cloud.planton.apis.iac.v1.stackjob.progress.enums.event.StackJobProgressEventType event_type = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype.StackJobProgressEventType event_type = 1;
   // stack-job operation for which generated progress event
   cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 2;
   // stack-job progress status is populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_STATUS_EVENT"
   StackJobProgressStatusPayload progress_status_payload = 3;
   // pulumi engine event is only populated when event_type is "STACK_JOB_PROGRESS_EVENT_TYPE_PULUMI_ENGINE_EVENT"
-  cloud.planton.apis.iac.v1.stack.pulumi.engine.model.EngineEvent engine_event_payload = 4;
+  cloud.planton.apis.iac.v1.stackjob.model.pulumiengine.PulumiEngineEvent engine_event_payload = 4;
   //The time when the progress event was first received and written to persistent storage.
   google.protobuf.Timestamp timestamp = 5;
 }
@@ -25,7 +25,7 @@ message StackJobProgressEvent {
 // stack-job progress status payload
 message StackJobProgressStatusPayload {
   // type of the stack-job progress status event
-  cloud.planton.apis.iac.v1.stackjob.progress.enums.statusevent.StackJobProgressStatusEventType event_type = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatuseventtype.StackJobProgressStatusEventType event_type = 1;
   // errors is populated for errors_reported or failed event types
   repeated string errors = 2;
 }

@@ -8,31 +8,28 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/executionstatus/execution_status.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/operation_type.proto";
-import "cloud/planton/apis/iac/v1/stack/pulumi/operation/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/stack_job_execution_status_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "google/protobuf/timestamp.proto";
 
 // stack-job
 message StackJob {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "sj";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "sj";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = stack;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";
 
   //id format "sj-<ulid>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
-    (buf.validate.field).string.const = "stack.planton.cloud/v1"
+    (buf.validate.field).string.const = "iac.planton.cloud/v1"
   ];
 
   // resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (buf.validate.field).string.const = "StackJob"
   ];
 
@@ -129,7 +126,7 @@ message StackJobStatus {
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // execution status of the stack-job
-  cloud.planton.apis.iac.v1.stackjob.enums.executionstatus.StackJobExecutionStatus execution_status = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType execution_status = 1;
 
   // execution start time of stack job
   google.protobuf.Timestamp execution_start_time = 2;
@@ -172,19 +169,19 @@ message StackJobPulumiOperationsSpec {
 // pulumi operations status of the stack job
 message StackJobPulumiOperationsStatus {
   // status of refresh operation populated only when pulumi refresh is required for the stack-job
-  cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus refresh_status = 1;
+  StackJobPulumiOperationStatus refresh_status = 1;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus apply_preview_status = 2;
+  StackJobPulumiOperationStatus apply_preview_status = 2;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus destroy_preview_status = 3;
+  StackJobPulumiOperationStatus destroy_preview_status = 3;
 
   // status of apply operation populated only when pulumi apply is required for the stack-job
-  cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus apply_status = 4;
+  StackJobPulumiOperationStatus apply_status = 4;
 
   // status of apply operation populated only when pulumi destroy is required for the stack-job
-  cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus destroy_status = 5;
+  StackJobPulumiOperationStatus destroy_status = 5;
 }
 
 // progress of a pulumi operation in a stack-job

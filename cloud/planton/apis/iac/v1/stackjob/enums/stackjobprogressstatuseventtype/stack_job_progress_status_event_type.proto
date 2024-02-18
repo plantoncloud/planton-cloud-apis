@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.progress.enums.stackjobprogressstatuseventtype;
+package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatuseventtype;
 
 enum StackJobProgressStatusEventType {
   STACK_JOB_PROGRESS_STATUS_EVENT_TYPE_UNSPECIFIED = 0;

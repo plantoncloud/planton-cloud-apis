@@ -5,17 +5,17 @@ package cloud.planton.apis.code2cloud.v1.cloudaccount.service;
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 
 // cloud-account query controller
 service CloudAccountQueryController {
   //look up a cloud-account by id
   rpc getById(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = cloud_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = cloud_account_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view cloud-account";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view cloud-account";
   }
 
   //todo: add authorization

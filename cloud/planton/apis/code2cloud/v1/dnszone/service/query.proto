@@ -5,7 +5,7 @@ package cloud.planton.apis.code2cloud.v1.dnszone.service;
 import "cloud/planton/apis/code2cloud/v1/dnszone/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 import "google/protobuf/wrappers.proto";
 
@@ -20,10 +20,10 @@ service DnsZoneQueryController {
   // get details of a dns-zone id
   rpc getById(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneId)
       returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = dns_zone;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = dns_zone_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get dns-zone";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get dns-zone";
   }
   //todo: add authorization
   // get details of the exact or a parent of the provided dns-zone name

@@ -2,9 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.codeproject.model;
 
-import "cloud/planton/apis/code2cloud/v1/codeproject/enums/profile/profile.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/enums/codeprojectprofile/code_project_profile.proto";
 import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/microservice/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/microserviceinstance/model/state.proto";
 
 //wrapper for code project id
 message CodeProjectId {
@@ -63,18 +65,18 @@ message CodeProjectProfile {
   //this field is only used in the local context and is ignored for operations performed on the server.
   bool is_deployable = 2;
   //code project language
-  cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectLang lang = 3;
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang lang = 3;
   //code project category library vs cli vs microservice
-  cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCat cat = 4;
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat cat = 4;
   //code project sub category
   oneof sub_cat {
-    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatLibSubCat lib_sub_cat = 5;
-    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
   }
   //code project sub-sub category
   oneof sub_sub_cat {
-    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
-    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
   }
 }
 
@@ -97,5 +99,65 @@ message BuildEngineProject {
   //is code project deployable to a environment.
   bool is_deployable = 6;
   //microservice-instance
-  cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance microservice_instance = 7;
+  cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instance = 7;
+}
+
+//input for query rpc to get dynamically generated code pipeline template
+message GenerateCodePipelineTemplateQueryInput {
+  //code project profile
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile code_project_profile = 1;
+  //git remote url used for looking up code project
+  string git_remote_url = 2;
+  //list of microservice-instances declared in _kustomize directory
+  repeated cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instances = 3;
+}
+
+message GenerateCodePipelineTemplateQueryResp {
+  //input used for generating the template
+  CodePipelineBuildTemplateInput template_input = 1;
+  //template generated based on the provided inputs
+  string template_output = 2;
+}
+
+//container(docker) images to be used in code pipeline templates
+message CodePipelineTemplateContainerImages {
+  string docker_build = 1;
+  string golang_build = 2;
+  string java_build = 3;
+  string javascript_build = 4;
+  string planton_cli = 5;
+  string protobuf_build = 6;
+}
+
+//gitlab pipeline template is used as input data model for processing gitlab build job templates
+//templating frameworks like apache freemarker in java or the built in templating engine in golang can use this data model as input for rendering the template.
+message CodePipelineBuildTemplateInput {
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 1;
+  //artifact-store to be used by the pipeline
+  cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore artifact_store = 2;
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 3;
+  //container image to be used in container image build jobs.
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+}
+
+//input used for rendering job template for microservice deployment to each environment
+message CodePipelineDeployTemplateJobInput {
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 1;
+  //environment
+  cloud.planton.apis.code2cloud.v1.environment.model.Environment environment = 2;
+  //microservice-instance
+  cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instance = 3;
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+  //flag to indicate if manual gate is enabled for the deployment environment.
+  //this flag is used for setting `when` attribute of the gitlab pipeline https://docs.gitlab.com/ee/ci/yaml/#when
+  bool is_manual_gate_required = 5;
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 6;
 }

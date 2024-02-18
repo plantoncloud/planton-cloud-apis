@@ -2,14 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model;
 
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/provider/gcpgke/enums/podservicesecondaryrangecidrsetnum/pod_service_secondary_range_cidr_set_num.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
-import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 
 message KubeClusterGcpStackInput {
   //stack job
@@ -23,7 +22,7 @@ message KubeClusterGcpStackInput {
 // stack credentials input
 message KubeClusterGcpStackCredentialsInput {
   //google provider credential input
-  cloud.planton.apis.commons.pulumi.operation.model.GoogleProviderCredential google = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.GoogleProviderCredential google = 1;
 }
 
 // stack resource input
@@ -262,9 +261,9 @@ message ClusterOutputs {
 
 // kube-cluster gcp stack projects outputs
 message KubeClusterGcpStackProjectsOutputs {
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.folder.GcpFolder gcp_folder = 1;
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 2;
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject vpc_network_project = 3;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpFolder gcp_folder = 1;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 2;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject vpc_network_project = 3;
 }
 
 // kube-cluster gcp stack network outputs
@@ -292,7 +291,7 @@ message KubeClusterGcpStackIamOutputs {
 //stack response
 message KubeClusterGcpStackResponse {
   //stack-job progress event
-  cloud.planton.apis.iac.v1.stackjob.progress.model.StackJobProgressEvent progress_event = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   KubeClusterGcpStackOutputs outputs = 3;
 }

@@ -1,31 +1,31 @@
 syntax = "proto3";
 
-package cloud.planton.apis.billing.v1.service;
+package cloud.planton.apis.billing.v1.account.service;
 
 import "cloud/planton/apis/billing/v1/account/model/io.proto";
 import "cloud/planton/apis/billing/v1/account/model/state.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //billing-account command controller
 service BillingAccountCommandController {
   //update an existing billing account.
   rpc update(cloud.planton.apis.billing.v1.account.model.BillingAccount) returns (cloud.planton.apis.billing.v1.account.model.BillingAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = billing_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = billing_account_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update billing account";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = billing_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = billing_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update billing account";
   }
   //delete an existing billing account.
   //a billing account can not be deleted without deleting all the subscriptions linked to the billing account.
   rpc delete(cloud.planton.apis.billing.v1.account.model.BillingAccountId) returns (cloud.planton.apis.billing.v1.account.model.BillingAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = billing_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = billing_account_delete;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete billing account";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = billing_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = billing_account_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete billing account";
   }
 
   //restore a previously deleted billing account.
   rpc restore(cloud.planton.apis.billing.v1.account.model.BillingAccountId) returns (cloud.planton.apis.billing.v1.account.model.BillingAccount) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = billing_account;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = billing_account_restore;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore billing account";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = billing_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = billing_account_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore billing account";
   }
 }

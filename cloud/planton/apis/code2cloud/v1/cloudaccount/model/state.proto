@@ -3,14 +3,12 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.cloudaccount.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/cloudprovider/cloud_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/cloudprovider/cloud_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 
 // cloud-account
 message CloudAccount {
@@ -19,14 +17,14 @@ message CloudAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "ca";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "ca";
 
   //id format "ca-<company-id>-<cloud-account-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
   // resource kind
@@ -110,7 +108,7 @@ message CloudAccountSpec {
 
   // cloud provider.
   // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 2 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider cloud_provider = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -195,12 +193,12 @@ message CloudAccountGcpSpec {
 message CloudAccountGcpStatus {
   // The GCP Project created to host shared services resources (e.g., artifact-store, DNS managed zones).
   // This is updated after the successful execution of a shared services stack.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject shared_services_project = 1;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject shared_services_project = 1;
 
   // A GCP Folder is created within the GCP Organization for each Cloud Account added to Platon Cloud.
   // Multiple Cloud Accounts can share the same Organization ID. Resources created for each Cloud Account are linked to this Folder.
   // Each Cloud Account's children include the shared services project and one Folder per kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.folder.GcpFolder cloud_account_folder = 2;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpFolder cloud_account_folder = 2;
 }
 
 // Specification for the Cloud Account in Amazon Web Services (AWS)

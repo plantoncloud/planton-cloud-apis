@@ -3,18 +3,16 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.kubecluster.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/provider/awsaks/enums/workersmanagementmode/workers_management_mode.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
 
 // kube-cluster
 message KubeCluster {
@@ -23,14 +21,14 @@ message KubeCluster {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "k8c";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "k8c";
 
   //id format "k8c-<company-id>-<kube-cluster-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
   // resource kind
@@ -84,7 +82,7 @@ message KubeClusterSpec {
   KubeClusterAddonsSpec kubernetes_addons = 3;
 
   // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -136,7 +134,7 @@ message KubeClusterAddonsPlantonCloudKubeAgentSpec {
 // kube-cluster status
 message KubeClusterStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
@@ -243,18 +241,18 @@ message KubeClusterGcpStatus {
   // a folder is created with the cloud account folder as parent for the kube-cluster.
   // resources created for kube-cluster are linked to this folder as the parent.
   // children for a cloud account are the gcp projects in the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.folder.GcpFolder folder = 1;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpFolder folder = 1;
 
   // projects created on google cloud for this kube-cluster
   // this value is updated upon successful kube-cluster creation stack-job.
   // gcp project info for the kube-cluster project
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 2;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 2;
 
   // gcp project info for vpc-network project
   // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
   // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
   // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject vpc_network_project = 3;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject vpc_network_project = 3;
 
   // kube-cluster endpoint.
   string cluster_endpoint = 4;
@@ -392,4 +390,67 @@ message KubeClusterAwsStatus {
   // kube-cluster certificate-authority-data.
   // this value is updated upon successful kube-cluster creation stack-job.
   string cluster_ca_data = 3;
+}
+
+//sidecar object in microservice deployment configuration
+//this spec should always match the specification of a kubernetes container spec https://pkg.go.dev/k8s.io/api/core/v1#Container
+//warning: sidecar feature does not currently support all features of a kubernetes container spec.
+message Container {
+  // name of the container
+  string name = 1;
+  // container image
+  string image = 2;
+  // container ports
+  repeated  ContainerPort ports = 3;
+  // container resources
+  ContainerResources resources = 4;
+  // container environment variables
+  repeated ContainerEnvVar env = 5;
+}
+
+// container cpu and memory resources
+message ContainerResources {
+  // container resource limits
+  // key is either cpu or memory and value is the limits value for the resource
+  CpuMemory limits = 1;
+  // container resource limits
+  // key is either cpu or memory and value is the requests value for the resource
+  CpuMemory requests = 2;
+}
+
+// container env var
+message ContainerEnvVar {
+  // name of the environment variable
+  string name = 1;
+  // value of the environment variable
+  string value = 2;
+}
+
+// container port
+message ContainerPort {
+  // port name
+  string name = 1;
+  // container port
+  //the attribute names must use camel case to marshal into https://pkg.go.dev/k8s.io/api/core/v1#Container
+  int32 containerPort = 2;
+  // container port protocol
+  string protocol = 3;
+}
+
+// container cpu and memory
+message CpuMemory {
+  // container cpu
+  string cpu = 1;
+  // container memory
+  string memory = 2;
+}
+
+// container image
+message ContainerImage {
+  // image repository
+  string repo = 1;
+  // image tag
+  string tag = 2;
+  //image pull secret name
+  string pull_secret_name = 3;
 }

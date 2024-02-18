@@ -4,7 +4,7 @@ package cloud.planton.apis.resourcemanager.v1.product.service;
 
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
@@ -16,10 +16,10 @@ service ProductQueryController {
 
   //get details of a product by product id
   rpc getById(cloud.planton.apis.resourcemanager.v1.product.model.ProductId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Product) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = product_get;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view product";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view product";
   }
 
   //find products by company id.

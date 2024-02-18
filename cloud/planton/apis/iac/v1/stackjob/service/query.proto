@@ -2,13 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.iac.v1.stackjob.service;
 
-import "cloud/planton/apis/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/progress/snapshot/model/io.proto";
-import "cloud/planton/apis/iac/v1/stack/pulumi/engine/model/io.proto";
 
 service StackJobQueryController {
   //list of stack-jobs
@@ -22,11 +20,11 @@ service StackJobQueryController {
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
   rpc getProgressEventStream(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
-      returns(stream cloud.planton.apis.iac.v1.stackjob.progress.model.StackJobProgressEvent);
+      returns(stream cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent);
   //rpc to get snapshot of stack-job log
   //response is optimized to display the stack-job log on non-interactive client-apps
-  rpc getStackJobLogSnapshotStream(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
-      returns (stream cloud.planton.apis.iac.v1.stackjob.progress.snapshot.model.StackJobLogSnapshot);
+  rpc getStackJobProgressSnapshotStream(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
+      returns (stream cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot);
   // getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
   // within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id

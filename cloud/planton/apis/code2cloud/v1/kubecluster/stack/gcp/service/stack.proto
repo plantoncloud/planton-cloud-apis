@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.service;
 
-import "cloud/planton/apis/commons/grpc/stream/model.proto";
-
 import "cloud/planton/apis/code2cloud/v1/kubecluster/stack/gcp/model/io.proto";
 
 service KubeClusterGcpStackController {

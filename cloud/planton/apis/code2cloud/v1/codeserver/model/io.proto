@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.server.model;
+package cloud.planton.apis.code2cloud.v1.codeserver.model;
 
 import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
 

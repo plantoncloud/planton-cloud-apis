@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.progress.enums.event;
+package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype;
 
 // The type of the stack job progress event.
 // These events are emitted while a stack job is running.
-enum StackJobProgressApiResourceEventType {
+enum StackJobProgressEventType {
   STACK_JOB_PROGRESS_EVENT_TYPE_UNSPECIFIED = 0;
   status_event = 1;
   pulumi_engine_event = 12;

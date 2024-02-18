@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions;
 
 import "google/protobuf/descriptor.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/operation_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 
 extend google.protobuf.EnumValueOptions {
   optional bool is_fga_required = 90000;

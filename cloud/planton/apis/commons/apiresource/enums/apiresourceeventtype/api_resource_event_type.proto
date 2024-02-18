@@ -7,7 +7,7 @@ package cloud.planton.apis.commons.apiresource.enums.apiresourceeventtype;
 //using different enum for these event types while specifying in rpc methods and individual api resource would
 // work because the events are eventually converted to strings during message passing.
 enum ApiResourceEventType {
-  API_RESOURCEAPI_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
+  API_RESOURCE_API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
   created = 1;
   updated = 2;
   deleted = 3;

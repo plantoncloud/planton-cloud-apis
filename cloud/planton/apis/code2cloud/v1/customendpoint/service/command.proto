@@ -6,10 +6,10 @@ import "cloud/planton/apis/code2cloud/v1/customendpoint/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/integration/kubernetes/resource/certificate.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/resource/certificate.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
@@ -18,99 +18,99 @@ service CustomEndpointCommandController {
   //preview create custom-endpoint
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_create;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.product_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview create custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //create custom-endpoint
   rpc create(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_create;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.product_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
   }
   //preview update an existing custom-endpoint
   rpc previewUpdate(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview update custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing custom-endpoint
   rpc update(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete custom-endpoint
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_delete;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete custom-endpoint
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_delete;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
   }
   //preview restoring a deleted custom-endpoint
   rpc previewRestore(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_restore;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted custom-endpoint
   rpc restore(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_restore;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for custom-endpoint
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for custom-endpoint";
   }
   //preview refresh a custom-endpoint that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a custom-endpoint that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to refresh custom-endpoint";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh custom-endpoint";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
   }
 }
@@ -120,25 +120,25 @@ service  CustomEndpointRouteCommandController {
   //add a route to a custom-endpoint
   rpc add(cloud.planton.apis.code2cloud.v1.customendpoint.model.AddOrUpdateCustomEndpointRouteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "custom_endpoint_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create custom-endpoint route";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "custom_endpoint_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create custom-endpoint route";
   }
   //update an existing route of a custom-endpoint
   rpc update(cloud.planton.apis.code2cloud.v1.customendpoint.model.AddOrUpdateCustomEndpointRouteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "custom_endpoint_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update custom-endpoint route";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "custom_endpoint_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update custom-endpoint route";
   }
   //delete a route for a custom-endpoint.
   rpc delete(cloud.planton.apis.code2cloud.v1.customendpoint.model.DeleteOrRestoreCustomEndpointRouteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoint) {
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = custom_endpoint_update;
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "custom_endpoint_id";
-    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete custom-endpoint route";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "custom_endpoint_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete custom-endpoint route";
   }
 }

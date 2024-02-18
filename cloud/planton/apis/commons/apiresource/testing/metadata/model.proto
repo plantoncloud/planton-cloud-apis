@@ -4,7 +4,6 @@ package cloud.planton.apis.commons.testing.resource.metadata;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/testing/resource/enums/model.proto";
 import "buf/validate/validate.proto";
 
 message ResourceIdExtractionTestWithOutIdPrefix {
@@ -13,7 +12,7 @@ message ResourceIdExtractionTestWithOutIdPrefix {
 }
 
 message ResourceIdExtractionTestWithIdPrefix {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "hc-";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "hc-";
   string first_name = 1;
   string last_name = 2;
 }
@@ -68,7 +67,3 @@ message MetadataTest {
   string name = 1;
   string id = 2;
 }
-
-
-
-
