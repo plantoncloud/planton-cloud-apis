@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.testing.resource.field.computed;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+
+// A message with computed fields.
+message ComputedFieldsTest {
+  string required_string_field = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+  string computed_string_field = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+}
+
+// A message with a nested message containing computed fields.
+message NestedComputedFieldsTest {
+  ComputedFieldsTest nested_computed_field = 1;
+}
+
+// A message with a repeated message containing computed fields.
+message RepeatedComputedFieldsTest {
+  repeated ComputedFieldsTest repeated_computed_field = 1;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.iamrole.service;
+
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iamrole/model/io.proto";
+import "cloud/planton/apis/iam/v1/iamrole/model/state.proto";
+
+// iam role query controller
+service IamRoleQueryController {
+  // retrieve paginated list of all iam roles on planton cloud. this is intended for use on portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRoleList);
+  // lookup iam role by role id
+  rpc getById(cloud.planton.apis.iam.v1.iamrole.model.IamRoleId)
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole);
+  // lookup iam role by resource type and principal type
+  rpc findByApiResourceKindAndPrincipalType(cloud.planton.apis.iam.v1.iamrole.model.ApiResourceKindAndPrincipalTypeInput)
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRoles);
+  // lookup iam principal type by resource type
+  // returns the list of principal types that can be used to create relations with the resource
+  // for example cloud account is allowed to share at company and user level
+  // by this cloud account have two principal types to create relations with
+  rpc getIamPrincipalTypesByApiResourceKind(cloud.planton.apis.iam.v1.iamrole.model.IamApiResourceKindInput)
+      returns (cloud.planton.apis.iam.v1.iamrole.model.PrincipalTypes);
+}

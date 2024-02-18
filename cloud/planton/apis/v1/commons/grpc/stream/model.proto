@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.commons.grpc.stream;
-
-// wrapper for stream output line
-message OutputLine {
-  //a string representing output of a stream operation
-  string value = 1;
-}

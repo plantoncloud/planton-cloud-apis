@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.identityaccount.service;
+
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/iam/v1/identityaccount/model/io.proto";
+import "cloud/planton/apis/iam/v1/identityaccount/model/state.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+// machine-account query controller
+service MachineAccountQueryController {
+  // retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList);
+
+  // lookup machine account by identity account id.
+  rpc getById(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
+  }
+
+  // retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+  rpc findByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountCompanyId)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccounts) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
+  }
+
+  // lookup machine account by identity account email.
+  rpc getByEmail(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountEmail)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    //field-path can not be added as authorization is performed on id
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
+  }
+
+  // lookup machine-account by company and name.
+  rpc getByCompanyByName(cloud.planton.apis.iam.v1.identityaccount.model.GetByCompanyByNameQueryInput)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    //note: can not add field-path as the permission is based on the email of the identity_account in database matching provided input.
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup machine account";
+  }
+
+  // lookup the client secret for the machine account.
+  // since client_secret for machine account is not stored in planton database, the client secret is
+  // retrieved from the idp account and is passed on to the client as response.
+  rpc getClientSecretByMachineAccountEmail(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountEmail)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountClientSecret) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_update;
+    //field-path can-not be added as the permission should be evaluated on the id of the machine-account which
+    // needs to be looked up using the provided machine-account email.
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account client secret";
+  }
+}
+
+// user-account query controller
+service UserAccountQueryController {
+  // retrieve paginated list of all user accounts on planton cloud. this is intended for use on portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList);
+
+  //todo: add authorization
+  // lookup user-account by identity account id.
+  rpc getById(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount);
+
+  //todo: add authorization
+  // lookup user-account by identity account email.
+  rpc getByEmail(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountEmail)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount);
+
+ // this is to check if a user is authorized to login to back office or not
+ // like other queries this rpc does not return any data
+ // instead it tries to check the authorization based on config given below
+ // if rpc returns authorization error then the user is not supposed to login to backoffice
+ // otherwise if rpc returns boolean response then the user is allowed to login to backoffice.
+  rpc isBackofficeUser(google.protobuf.Empty) returns (google.protobuf.BoolValue) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = login_to_back_office;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to login to back office";
+  }
+
+  // retrieve paginated list of all associate accounts of a company. this is intended for use on portal.
+  rpc listAssociatesByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.ListWithIdentityCompanyId)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = list_associates;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get associates";
+  }
+
+  rpc getMembersCountByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByCompanyIdInput)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.MembersCount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get company members count";
+  }
+
+  rpc getMembersCountByProductId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByProductIdInput)
+      returns (cloud.planton.apis.iam.v1.identityaccount.model.MembersCount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "product_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get product members count";
+  }
+}

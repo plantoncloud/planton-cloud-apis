@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.codeproject.model;
+
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/enums/codeprojectprofile/code_project_profile.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/microserviceinstance/model/state.proto";
+
+//wrapper for code project id
+message CodeProjectId {
+  string value = 1;
+}
+
+//list of code project ids
+message CodeProjectIds {
+  repeated string entries = 1;
+}
+
+//wrapper for code project url
+message CodeProjectUrl {
+  string value = 1;
+}
+
+//list of code projects
+message CodeProjects {
+  repeated CodeProject entries = 1;
+}
+
+//response for paginated query to list code projects
+message CodeProjectList {
+  int32 total_pages = 1;
+  repeated CodeProject entries = 2;
+}
+
+//input for command to attach a machine account to code-project on upstream code-server(github/gitlab)
+message AttachMachineAccountByCodeProjectIdCommandInput {
+  //email of the machine account to be attached to the code-project
+  string machine_account_email = 1;
+  //id of the code project to which the machine account is to be attached
+  string code_project_id = 2;
+}
+
+//code project file
+message CodeProjectFile {
+  //path of the file, including the name of the file ex: .github/workflows/main.yaml
+  string file_path = 1;
+  //base64 encoded content of the template file
+  string file_content_base64 = 2;
+  //file content plain text
+  string file_content = 3;
+}
+
+//list of code project files
+message CodeProjectFiles {
+  repeated CodeProjectFile entries = 1;
+}
+
+//code project profile
+message CodeProjectProfile {
+  //this field is only used in the local context and is ignored for operations performed on the server.
+  string code_project_dir = 1;
+  //is code project deployable to a environment.
+  //this field is only used in the local context and is ignored for operations performed on the server.
+  bool is_deployable = 2;
+  //code project language
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang lang = 3;
+  //code project category library vs cli vs microservice
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat cat = 4;
+  //code project sub category
+  oneof sub_cat {
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+  }
+  //code project sub-sub category
+  oneof sub_sub_cat {
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+  }
+}
+
+//build engine code project
+message BuildEngineProject {
+  //project tilt config snippet
+  string tilt_config_snippet = 99;
+  //code project directory
+  string code_project_dir = 1;
+  //code project name
+  string code_project_name = 2;
+  //normalized code project path used for ensuring uniqueness in tilt resources in build engine.
+  string code_project_normalized_path = 3;
+  //either https or ssh url depending on the method supported for cloning the git project.
+  //this is the same url that should added to the code project that is linked to microservice resources.
+  string git_remote_url = 4;
+  //flag to indicate if project is required to be built before deployed to build engine environment.
+  //this flag is used to ensure link between build step and deployment step in tilt config file.
+  bool is_build_required = 5;
+  //is code project deployable to a environment.
+  bool is_deployable = 6;
+  //microservice-instance
+  cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instance = 7;
+}
+
+//input for query rpc to get dynamically generated code pipeline template
+message GenerateCodePipelineTemplateQueryInput {
+  //code project profile
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile code_project_profile = 1;
+  //git remote url used for looking up code project
+  string git_remote_url = 2;
+  //list of microservice-instances declared in _kustomize directory
+  repeated cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instances = 3;
+}
+
+message GenerateCodePipelineTemplateQueryResp {
+  //input used for generating the template
+  CodePipelineBuildTemplateInput template_input = 1;
+  //template generated based on the provided inputs
+  string template_output = 2;
+}
+
+//container(docker) images to be used in code pipeline templates
+message CodePipelineTemplateContainerImages {
+  string docker_build = 1;
+  string golang_build = 2;
+  string java_build = 3;
+  string javascript_build = 4;
+  string planton_cli = 5;
+  string protobuf_build = 6;
+}
+
+//gitlab pipeline template is used as input data model for processing gitlab build job templates
+//templating frameworks like apache freemarker in java or the built in templating engine in golang can use this data model as input for rendering the template.
+message CodePipelineBuildTemplateInput {
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 1;
+  //artifact-store to be used by the pipeline
+  cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore artifact_store = 2;
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 3;
+  //container image to be used in container image build jobs.
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+}
+
+//input used for rendering job template for microservice deployment to each environment
+message CodePipelineDeployTemplateJobInput {
+  //container images(docker) to be used inside code pipeline templates
+  CodePipelineTemplateContainerImages template_container_images = 1;
+  //environment
+  cloud.planton.apis.code2cloud.v1.environment.model.Environment environment = 2;
+  //microservice-instance
+  cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instance = 3;
+  //container image tag is not included in the value of this attribute.
+  //git commit short sha is used as the tag for the image.
+  string project_container_image = 4;
+  //flag to indicate if manual gate is enabled for the deployment environment.
+  //this flag is used for setting `when` attribute of the gitlab pipeline https://docs.gitlab.com/ee/ci/yaml/#when
+  bool is_manual_gate_required = 5;
+  //name of the cli environment to be used. this can be test or live.
+  string planton_cloud_cli_environment = 6;
+}

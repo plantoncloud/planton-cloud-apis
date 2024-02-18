@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.resource;
+
+// kubernetes certificate
+message Certificate {
+  // namespace of the certificate
+  string namespace = 1;
+  // name of the certificate
+  string name = 2;
+  // certificate labels
+  map<string, string> labels = 3;
+  // primary domain in the certificate
+  string primary_domain = 4;
+  //additional domain names
+  repeated string additional_domains = 5;
+  //certificate issuer reference in the format clusterissuer/issuer-name or issuer/namespace/name
+  string issuer_ref = 6;
+  //name of the kubernetes secret in which certificate is stored
+  string secret_name = 7;
+  //status of the certificate
+  bool is_ready = 8;
+}
+
+//list of certificates
+message Certificates {
+  repeated Certificate entries = 1;
+}

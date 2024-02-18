@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype;
+
+import "cloud/planton/apis/iac/v1/stackjob/options/stackjobexecutionstatusoptions/stack_job_execution_status_options.proto";
+
+enum StackJobExecutionStatusType {
+  STACK_JOB_EXECUTION_STATUS_TYPE_UNSPECIFIED = 0;
+  pending = 1;
+  running = 2;
+  succeeded = 3 [
+    (cloud.planton.apis.iac.v1.stackjob.options.stackjobexecutionstatusoptions.is_final_status) = true
+  ];
+  failed = 4 [
+    (cloud.planton.apis.iac.v1.stackjob.options.stackjobexecutionstatusoptions.is_final_status) = true
+  ];
+  cancelled = 5 [
+    (cloud.planton.apis.iac.v1.stackjob.options.stackjobexecutionstatusoptions.is_final_status) = true
+  ];
+  skipped = 6 [
+    (cloud.planton.apis.iac.v1.stackjob.options.stackjobexecutionstatusoptions.is_final_status) = true
+  ];
+}

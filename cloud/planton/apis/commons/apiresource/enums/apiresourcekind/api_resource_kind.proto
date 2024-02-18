@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.enums.apiresourcekind;
+
+enum ApiResourceKind {
+  API_RESOURCE_KIND_UNSPECIFIED = 0;
+  api_resource_version = 1;
+  artifact_store = 2;
+  billing_account = 3;
+  cloud_account = 4;
+  code_project = 5;
+  code_server = 6;
+  company = 7;
+  custom_endpoint = 8;
+  dns_zone = 9;
+  environment = 10;
+  identity_account = 11;
+  identity_connection = 12;
+  identity_group = 13;
+  kafka_cluster = 14;
+  kube_cluster = 15;
+  microservice_instance = 16;
+  platform = 17;
+  postgres_cluster = 18;
+  product = 19;
+  redis_cluster = 20;
+  solr_cloud = 21;
+  stack = 22;
+  stack_job = 23;
+  storage_bucket = 24;
+}

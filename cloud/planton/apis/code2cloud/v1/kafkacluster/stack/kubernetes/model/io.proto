@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kafkacluster.stack.kubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/kafkacluster/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for kafka-cluster kubernetes stack
+message KafkaClusterKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  KafkaClusterKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  KafkaClusterKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message KafkaClusterKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating kafka-cluster resources on kubernetes cluster
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message KafkaClusterKubernetesStackResourceInput {
+  //kafka-cluster
+  cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaCluster kafka_cluster = 1;
+}
+
+//kafka-cluster kubernetes stack outputs
+message KafkaClusterKubernetesStackOutputs {
+  //kafka-cluster status
+  cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterStatus kafka_cluster_status = 1;
+}
+
+//stack response
+message KafkaClusterKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  KafkaClusterKubernetesStackOutputs outputs = 3;
+}

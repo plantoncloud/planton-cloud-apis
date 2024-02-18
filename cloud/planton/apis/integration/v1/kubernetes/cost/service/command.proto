@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.cost.service;
+import "cloud/planton/apis/integration/v1/kubernetes/cost/model/io.proto";
+
+// cost allocation command controller
+service CostAllocationCommandController {
+  // create cost allocations
+  rpc create(cloud.planton.apis.integration.v1.kubernetes.cost.model.CostAllocations)
+      returns (cloud.planton.apis.integration.v1.kubernetes.cost.model.CostAllocations);
+}

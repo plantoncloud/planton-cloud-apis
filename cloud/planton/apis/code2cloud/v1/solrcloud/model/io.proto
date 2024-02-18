@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.solrcloud.model;
+
+import "cloud/planton/apis/code2cloud/v1/solrcloud/model/state.proto";
+
+//wrapper for id field of solr-cloud
+message SolrCloudId {
+  string value = 1;
+}
+
+//list of solr-clouds
+message SolrClouds {
+  repeated SolrCloud entries = 1;
+}
+
+//wrapper for solr-cloud password
+message SolrCloudPassword {
+  string value = 1;
+}
+
+//response for paginated query to list solr-clouds
+message SolrCloudList {
+  int32 total_pages = 1;
+  repeated SolrCloud entries = 2;
+}

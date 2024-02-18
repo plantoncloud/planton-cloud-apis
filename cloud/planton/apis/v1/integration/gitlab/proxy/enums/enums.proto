@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.integration.gitlab.proxy.enums;
-
-enum GitlabApiAuthorizationType {
-  GITLAB_API_AUTHORIZATION_TYPE_UNSPECIFIED = 0;
-  GITLAB_API_AUTHORIZATION_TYPE_OAUTH_TOKEN = 1;
-  GITLAB_API_AUTHORIZATION_TYPE_ACCESS_TOKEN = 2;
-}

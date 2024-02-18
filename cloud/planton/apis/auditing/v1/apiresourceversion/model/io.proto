@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package cloud.planton.apis.auditing.v1.apiresourceversion.model;
+
+import "cloud/planton/apis/auditing/v1/apiresourceversion/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+
+// wrapper for api-resource-version id
+message ApiResourceVersionId {
+  string value= 1;
+}
+
+// The ApiResourceVersionWithContextSizeInput message represents a specific
+// api-resource-version along with the context size associated with it. The context size
+// is typically used to control the amount of information or data surrounding a
+// particular point of interest in the api-resource-version.
+message ApiResourceVersionWithContextSizeInput {
+  // The unique identifier (usually a UUID) for the api-resource-version.
+  // It is used to look up or refer to a specific version.
+  string version_id = 1;
+  // The context size associated with the api-resource-version. This could represent
+  // the amount of surrounding data or metadata to include when fetching or
+  // working with the version. The meaning of this value can vary depending on
+  // the specifics of your application.
+  int32 context_size = 2;
+}
+
+// list api-resource-versions by resource type and id query input
+message ListApiResourceVersionsInput {
+  // page info
+  cloud.planton.apis.commons.rpc.PageInfo page_info = 1;
+  // type of resource
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind kind = 2;
+  // id of the resource
+  string resource_id = 3;
+}
+
+// paginated list of api-resource-versions
+message ApiResourceVersionList {
+  // total number of pages
+  int32 total_pages = 1;
+  // list of api-resource-versions
+  repeated ApiResourceVersion entries = 2;
+}
+
+// count api-resource-versions by resource type and id query input
+message GetApiResourceVersionCountInput {
+  // type of resource
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind kind = 5;
+  // id of the resource
+  string id = 6;
+}
+
+// wrapper for api-resource-version count
+message ApiResourceVersionCount {
+  // value for the count of resource versions
+  int32 value = 1;
+}

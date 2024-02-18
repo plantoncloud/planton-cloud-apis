@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.codeserver.service;
+
+import "cloud/planton/apis/code2cloud/v1/codeserver/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+
+//code server query controller
+service CodeServerQueryController {
+  //list all code servers on planton cloud for the requested page. This is intended for use on portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns(cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerList);
+
+  //look up a code server using code server id
+  rpc getById(cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerId)
+      returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view code server";
+  }
+
+  //find code servers by product id.
+  //response contains only objects that the authenticated user account id has viewer access to.
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServers);
+}

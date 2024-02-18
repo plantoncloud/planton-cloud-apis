@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.protobuf.testing;
+
+message TestMessage {
+  string root_level_string = 1;
+  LevelOne level_one_message = 2;
+}
+
+message LevelOne {
+  string level_one_string = 1;
+  LevelTwo level_two_message = 2;
+}
+
+message LevelTwo {
+  string level_two_string = 1;
+  LevelThree level_three_message = 2;
+}
+
+message LevelThree {
+  string level_three_string = 1;
+  int32 not_a_string = 2;
+}

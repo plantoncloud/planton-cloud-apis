@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.testing.resource.field.immutable;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+
+// New message to test immutable fields.
+message ImmutableFieldsTest {
+  string immutable_string_field = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
+  ];
+  string mutable_string_field = 2;
+  int32 immutable_int_field = 3 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
+  ];
+  int32 mutable_int_field = 4;
+}
+
+// New message to test nested immutable fields.
+message NestedImmutableFieldsTest {
+  ImmutableFieldsTest nested_immutable_fields = 1;
+  string mutable_string_field = 2;
+}

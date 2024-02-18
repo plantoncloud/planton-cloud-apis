@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.product.service;
+
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
+
+//product query controller
+service ProductQueryController {
+  //list all products on planton cloud for the requested page. This is intended to be used on back-office portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.product.model.ProductList);
+
+  //get details of a product by product id
+  rpc getById(cloud.planton.apis.resourcemanager.v1.product.model.ProductId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Product) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view product";
+  }
+
+  //find products by company id.
+  //the response should only include the products that the authenticated user has access to.
+  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Products);
+}

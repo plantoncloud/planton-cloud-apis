@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjob.options.stackjoboperationtypeoptions;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.EnumValueOptions {
+  bool is_refresh_required = 50050;
+  bool is_apply_preview_required = 50051;
+  bool is_destroy_preview_required = 50052;
+  bool is_apply_required = 50053;
+  bool is_destroy_required = 50054;
+}

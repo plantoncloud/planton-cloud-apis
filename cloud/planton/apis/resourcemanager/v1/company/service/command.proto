@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.company.service;
+
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
+
+//company command controller
+service CompanyCommandController {
+  //create a new company on planton cloud
+  rpc create(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company);
+  //update an existing company on planton cloud
+  rpc update(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update company";
+  }
+  //delete an existing company on planton cloud using company id
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete company";
+  }
+  //restore a previously deleted company.
+  rpc restore(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore company";
+  }
+}

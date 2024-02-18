@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.testing.resource.message;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
+import "buf/validate/validate.proto";
+
+message MessageLevelProtoValidateConditionalTest {
+  option (buf.validate.message).cel = {
+    id: "gcp_spec.project_id",
+    expression: "this.cloud_provider == 1 && size(this.gcp_spec.project_id) == 0"
+    "? 'gcp project id should be mentioned'"
+    ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "aws_spec.account_id",
+    expression: "this.cloud_provider == 2 && size(this.aws_spec.account_id) == 0"
+        "? 'aws account id should be mentioned'"
+        ": ''"
+  };
+  cloud.planton.apis.commons.apiresource.testing.enums.CloudProviderTest cloud_provider = 1;
+  GcpSpecTest gcp_spec = 2;
+  AwsSpecTest aws_spec = 3;
+}
+
+message GcpSpecTest {
+  string project_id = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).cel = {
+      id: "spec.gcp.project_id",
+      message: "Only lowercase letters, numbers (0-9) are allowed",
+      expression: "this.matches('^[a-z0-9]+$')"
+    }
+  ];
+  string no_validation_field = 2;
+
+}
+
+message AwsSpecTest {
+  string account_id = 1 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).required = false,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).cel = {
+      id: "spec.aws.account_id",
+      message: "Only lowercase letters, numbers (0-9) are allowed",
+      expression: "this.matches('^[a-z0-9]+$')"
+    }
+  ];
+  string no_validation_field = 2;
+}
+
+
+
+

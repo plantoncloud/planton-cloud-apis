@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.dnszone.service;
+
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
+import "google/protobuf/wrappers.proto";
+
+//dns-zone query controller
+service DnsZoneQueryController {
+  //todo: add authorization
+  // find dns-zones by company id
+  //the response should only include dns-zones in a company that the authenticated user account has viewer access to.
+  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZones);
+  //todo: add authorization
+  // get details of a dns-zone id
+  rpc getById(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneId)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get dns-zone";
+  }
+  //todo: add authorization
+  // get details of the exact or a parent of the provided dns-zone name
+  rpc getExactOrParentDnsZoneByDomainName(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsDomainName)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone);
+  //todo: add authorization
+  // list all dns-zones for the requested page. This is intended to be used on back-office portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneList);
+  //todo: add authorization
+  // checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
+  rpc isNameserversDelegated(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneId)
+      returns (google.protobuf.BoolValue);
+}

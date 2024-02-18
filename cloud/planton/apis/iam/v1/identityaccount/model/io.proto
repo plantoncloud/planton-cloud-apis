@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.identityaccount.model;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/identityaccount/model/state.proto";
+
+// wrapper to get list of identity accounts
+message IdentityAccounts {
+  repeated IdentityAccount entries = 1;
+}
+
+// wrapper for user identity account id.
+message IdentityAccountId {
+  string value = 1;
+}
+
+// wrapper for email of the identity account.
+message IdentityAccountEmail {
+  string value = 1;
+}
+
+// input for paginated queries that require identity account id as input.
+message ListWithIdentityAccountIdReq {
+  // identity account id
+  string identity_account_id = 1;
+  cloud.planton.apis.commons.rpc.PageInfo page = 2;
+}
+
+// response for paginated rpc query to list identity accounts.
+message IdentityAccountsList {
+  repeated IdentityAccount entries = 1;
+  int32 total_pages = 2;
+}
+
+// wrapper for client_secret of the machine account
+message MachineAccountClientSecret {
+  string value = 1;
+}
+
+// wrapper for machine account company id.
+message MachineAccountCompanyId {
+  string value = 1;
+}
+
+// wrapper for identity account company id.
+message ListWithIdentityCompanyId {
+  string company_id = 1;
+  cloud.planton.apis.commons.rpc.PageInfo page = 2;
+}
+
+message GetByCompanyByNameQueryInput {
+  string company_id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+  string name = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+}
+
+message MembersCount {
+  int32 count = 1;
+}
+
+// MembersCountByCompanyIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given company. This simplified input focuses solely on company identification,
+// making it suitable to aggregate members count at the company level.
+message MembersCountByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field accepts a string format.
+  string company_id = 1;
+}
+
+// MembersCountByProductIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given product. This simplified input focuses solely on product identification,
+// making it suitable to aggregate members count at the product level.
+message MembersCountByProductIdInput {
+  // product_id uniquely identifies a product within the system. The field accepts a string format.
+  string product_id = 1;
+}
+
+// input for rpc to create access token for machine identity account
+message CreateMachineAccessTokenInput {
+  // email of machine identity account
+  string machine_account_email = 1;
+  // client secret of the machine identity account
+  string client_secret = 2;
+}
+
+// wrapper for access token
+message AccessToken {
+  string value = 1;
+}

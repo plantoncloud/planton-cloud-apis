@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.dnszone.service;
+
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+
+//dns-zone command controller
+service DnsZoneCommandController {
+  // preview dns-zone before creating
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  // create a dns-zone
+  rpc create(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
+  }
+  // preview updates to a dns-zone
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  // update an existing dns-zone
+  rpc update(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
+  }
+  // preview deleting a dns-zone
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
+  }
+  // delete a dns-zone
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
+  }
+  // preview restoring a deleted dns-zone
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  // restore a deleted dns-zone
+  rpc restore(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
+  }
+  //create-stack-job for dns-zone
+  rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for dns-zone";
+  }
+  //preview refresh a dns-zone that was previously created
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a dns-zone that was previously created
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh dns-zone";
+    option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
+  }
+}
+
+//dns-record command controller
+service DnsRecordCommandController {
+  // add a new dns-record to dns-zone
+  rpc add(cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "dns_zone_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add dns-record";
+  }
+  // update an existing dns-record in dns-zone
+  rpc update(cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "dns_zone_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update dns-record";
+  }
+  // delete a dns-record from a dns-zone
+  rpc delete(cloud.planton.apis.code2cloud.v1.dnszone.model.DeleteDnsRecordCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "dns_zone_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete dns-record";
+  }
+}

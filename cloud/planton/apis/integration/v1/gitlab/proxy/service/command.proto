@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.gitlab.proxy.service;
+
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
+import "cloud/planton/apis/integration/v1/gitlab/proxy/model/io.proto";
+
+//gitlab proxy command controller
+service GitlabProxyCommandController {
+  //create new project on gitlab
+  //https://docs.gitlab.com/ee/api/projects.html#create-project
+  rpc creProject(cloud.planton.apis.integration.v1.gitlab.proxy.model.CreProjectCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
+  //apply a cookiecutter template on a code project created on gitlab
+  rpc applyTemplate(cloud.planton.apis.integration.v1.gitlab.proxy.model.GitlabApplyTemplateCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile);
+  //add a list of variables to a gitlab project
+  rpc addVariablesToProject(cloud.planton.apis.integration.v1.gitlab.proxy.model.AddVariablesToProjectCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
+  //add a list of variables to a gitlab group
+  rpc addVariablesToGroup(cloud.planton.apis.integration.v1.gitlab.proxy.model.AddVariablesToGroupCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServer);
+  //add a list of files to a gitlab project
+  rpc addFilesToProject(cloud.planton.apis.integration.v1.gitlab.proxy.model.AddFilesToGitlabProjectCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
+}

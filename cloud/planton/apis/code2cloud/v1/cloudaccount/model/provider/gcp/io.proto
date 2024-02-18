@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp;
+
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
+
+// list of gcp folder
+message GcpFolders {
+  repeated GcpFolder entries = 1;
+}
+
+// list of gcp projects
+message GcpProjects {
+  repeated GcpProject list = 1;
+}
