@@ -11,7 +11,7 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -90,7 +90,7 @@ type EnvironmentCommandControllerClient interface {
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -222,8 +222,8 @@ func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error) {
-	out := new(resource.WorkloadNamespace)
+func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error) {
+	out := new(model3.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -298,7 +298,7 @@ type EnvironmentCommandControllerServer interface {
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model3.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -348,7 +348,7 @@ func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *m
 func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*resource.WorkloadNamespace, error) {
+func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model3.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {

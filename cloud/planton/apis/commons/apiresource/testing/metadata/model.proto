@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.testing.resource.metadata;
+package cloud.planton.apis.commons.apiresource.testing.metadata;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";

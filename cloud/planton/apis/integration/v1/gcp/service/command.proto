@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.gcp.service;
+
+import "cloud/planton/apis/integration/v1/gcp/model/io.proto";
+
+// gcp command controller
+service GcpCommandController {
+  // authorizes the service-account to be used for authenticating with google cloud for the specific cloud-account.
+  rpc authorizeCloudAccount(cloud.planton.apis.integration.v1.gcp.model.AuthorizeGcpCloudAccountCommandInput)
+      returns (cloud.planton.apis.integration.v1.gcp.model.AuthorizeGcpCloudAccountCommandResponse);
+}

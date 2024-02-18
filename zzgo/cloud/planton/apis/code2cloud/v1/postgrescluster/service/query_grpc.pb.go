@@ -12,7 +12,7 @@ import (
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgrescluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -54,7 +54,7 @@ type PostgresClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type postgresClusterQueryControllerClient struct {
@@ -119,8 +119,8 @@ func (c *postgresClusterQueryControllerClient) GetPassword(ctx context.Context, 
 	return out, nil
 }
 
-func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
+	out := new(model4.Pods)
 	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -148,7 +148,7 @@ type PostgresClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(context.Context, *model.PostgresClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *model.PostgresClusterId) (*model4.Pods, error)
 }
 
 // UnimplementedPostgresClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -173,7 +173,7 @@ func (UnimplementedPostgresClusterQueryControllerServer) FindByKubeClusterId(con
 func (UnimplementedPostgresClusterQueryControllerServer) GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *model.PostgresClusterId) (*resource.Pods, error) {
+func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *model.PostgresClusterId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

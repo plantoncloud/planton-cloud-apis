@@ -6,7 +6,7 @@ import "cloud/planton/apis/code2cloud/v1/customendpoint/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/certificate.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //custom-endpoint query controller
@@ -50,7 +50,7 @@ service CustomEndpointQueryController {
 
   //find certificates for custom-endpoint
   rpc findCustomEndpointCertificates(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.Certificates) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificates) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

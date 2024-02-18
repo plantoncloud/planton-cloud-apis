@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.testing.resource.field.input;
+package cloud.planton.apis.commons.apiresource.testing.field.input;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";

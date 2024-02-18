@@ -8,7 +8,7 @@ import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/namespace.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //environment command controller
@@ -20,7 +20,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //create environment
   rpc create(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
@@ -29,7 +29,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
   //preview updating an existing environment
   rpc previewUpdate(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
@@ -38,7 +38,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing environment
   rpc update(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
@@ -47,7 +47,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
   }
   //preview deleting an environment
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
@@ -56,7 +56,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing environment
   //deleting a environment involves cleaning of all product components deployed for that environment.
@@ -67,7 +67,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
   }
   //preview restoring a deleted environment
   rpc previewRestore(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
@@ -76,7 +76,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted environment
   //restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
@@ -86,7 +86,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
   }
   //create-stack-job for environment
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
@@ -151,7 +151,7 @@ service EnvironmentCommandController {
 
   //delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
   rpc deleteNamespace(cloud.planton.apis.code2cloud.v1.environment.model.ByEnvironmentByNamespaceInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.WorkloadNamespace) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.WorkloadNamespace) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
@@ -164,7 +164,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a environment that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
@@ -173,7 +173,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh environment";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
   }
 }
 

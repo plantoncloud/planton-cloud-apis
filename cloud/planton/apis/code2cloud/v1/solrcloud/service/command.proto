@@ -20,7 +20,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //create solr-cloud
   rpc create(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud)
@@ -29,7 +29,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
   //preview update an existing solr-cloud
   rpc previewUpdate(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud)
@@ -38,7 +38,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing solr-cloud
   rpc update(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud)
@@ -47,7 +47,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
   }
   //preview deleting an existing solr-cloud
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
@@ -56,7 +56,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing solr-cloud
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
@@ -65,7 +65,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
   }
   //preview restoring a deleted solr-cloud
   rpc previewRestore(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud)
@@ -74,7 +74,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted solr-cloud
   rpc restore(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud)
@@ -83,7 +83,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
   }
   //create-stack-job for solr-cloud
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
@@ -111,7 +111,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //unpause a previously paused solr-cloud running in a environment.
   //unpause is done by scaling the number of pods back to the number of
@@ -122,7 +122,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //preview refresh a solr-cloud that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
@@ -131,7 +131,7 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a solr-cloud that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
@@ -140,6 +140,6 @@ service SolrCloudCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh solr-cloud";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
   }
 }

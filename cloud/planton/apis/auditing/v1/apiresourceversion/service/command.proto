@@ -12,7 +12,7 @@ service ApiResourceVersionCommandController {
   //create an api-resource-version resource
   rpc create(cloud.planton.apis.auditing.v1.apiresourceversion.model.ApiResourceVersion)
       returns (cloud.planton.apis.auditing.v1.apiresourceversion.model.ApiResourceVersion) {
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
 
   //when a stack-job is started in other microservices, the status of the stack-job should be updated

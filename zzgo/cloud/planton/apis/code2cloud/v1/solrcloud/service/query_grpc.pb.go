@@ -12,7 +12,7 @@ import (
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/solrcloud/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -53,7 +53,7 @@ type SolrCloudQueryControllerClient interface {
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type solrCloudQueryControllerClient struct {
@@ -118,8 +118,8 @@ func (c *solrCloudQueryControllerClient) GetPassword(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model4.Pods, error) {
+	out := new(model4.Pods)
 	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -146,7 +146,7 @@ type SolrCloudQueryControllerServer interface {
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(context.Context, *model.SolrCloudId) (*resource.Pods, error)
+	FindPods(context.Context, *model.SolrCloudId) (*model4.Pods, error)
 }
 
 // UnimplementedSolrCloudQueryControllerServer should be embedded to have forward compatible implementations.
@@ -171,7 +171,7 @@ func (UnimplementedSolrCloudQueryControllerServer) FindByKubeClusterId(context.C
 func (UnimplementedSolrCloudQueryControllerServer) GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *model.SolrCloudId) (*resource.Pods, error) {
+func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *model.SolrCloudId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

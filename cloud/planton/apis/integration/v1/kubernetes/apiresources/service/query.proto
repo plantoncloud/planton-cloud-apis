@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.apiresources.service;
+
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+
+service KubernetesApiResourcesQueryController {
+  rpc getCertificateByNamespaceByName(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.GetCertificateByNamespaceByNameQueryInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificate);
+  rpc findCertificates(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.FindCertificatesQueryInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificates);
+}

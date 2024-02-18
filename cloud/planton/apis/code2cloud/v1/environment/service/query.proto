@@ -3,13 +3,12 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.environment.service;
 
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/namespace.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //environment query controller
@@ -54,7 +53,7 @@ service EnvironmentQueryController {
 
   //find workload pods part of environment
   rpc findWorkloadPodsByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.WorkloadPods) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.WorkloadPods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -63,7 +62,7 @@ service EnvironmentQueryController {
 
   //find workload namespaces in a environment.
   rpc findWorkloadNamespacesByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.WorkloadNamespaces) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.WorkloadNamespaces) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

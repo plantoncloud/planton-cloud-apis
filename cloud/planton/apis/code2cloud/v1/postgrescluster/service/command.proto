@@ -19,7 +19,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //create postgres-cluster
   rpc create(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresCluster)
@@ -28,7 +28,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
   //preview updating an existing postgres-cluster
   rpc previewUpdate(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresCluster)
@@ -37,7 +37,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing postgres-cluster
   rpc update(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresCluster)
@@ -46,7 +46,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
   }
   //preview deleting an existing postgres-cluster
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
@@ -55,7 +55,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing postgres-cluster
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
@@ -64,7 +64,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
   }
   //preview restoring a deleted postgres-cluster in a environment
   rpc previewRestore(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresCluster)
@@ -73,7 +73,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted postgres-cluster in a environment
   rpc restore(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresCluster)
@@ -82,7 +82,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
   }
   //create-stack-job for postgres-cluster
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
@@ -110,7 +110,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = paused;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = paused;
   }
   //unpause a previously paused postgres-cluster running in a environment.
   //unpause is done by scaling the number of pods back to the number of
@@ -121,7 +121,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = unpaused;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = unpaused;
   }
   //preview refresh a postgres-cluster that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
@@ -130,7 +130,7 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a postgres-cluster that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
@@ -139,6 +139,6 @@ service PostgresClusterCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh postgres-cluster";
-    option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
   }
 }

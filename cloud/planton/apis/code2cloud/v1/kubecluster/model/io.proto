@@ -5,7 +5,7 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.model;
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 
 // wrapper for kube-cluster id
 message KubeClusterId {
@@ -147,57 +147,57 @@ message KubeClusterComponents {
 
 // kube-system components
 message KubeSystem {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // istio https://github.com/istio/istio
 message Istio {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // cert-manager https://github.com/cert-manager/cert-manager
 message CertManager {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // external-secrets https://github.com/external-secrets/external-secrets
 message ExternalSecrets {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // kafka-operator https://github.com/strimzi/strimzi-kafka-operator
 message KafkaOperator {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // postgres-operator https://github.com/zalando/postgres-operator
 message PostgresOperator {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // prometheus https://github.com/prometheus/prometheus
 message Prometheus {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // open-cost https://github.com/opencost/opencost
 message OpenCost {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // planton-cloud-kube-agent https://github.com/plantoncloud-inc/planton-cloud-kube-agent
 message PlantonCloudKubeAgent {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // kube-cost https://www.kubecost.com/
 message KubeCost {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // solr-operator https://github.com/apache/solr-operator
 message SolrOperator {
-  repeated cloud.planton.apis.integration.v1.kubernetes.resource.Pod pods = 1;
+  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod pods = 1;
 }
 
 // input for rpc requests that require kubernetes-cluster id, namespace and pod id

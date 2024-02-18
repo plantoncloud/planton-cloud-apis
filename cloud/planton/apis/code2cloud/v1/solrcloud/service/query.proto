@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.solrcloud.service;
 
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/solrcloud/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/solrcloud/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //solr-cloud query controller
@@ -52,7 +52,7 @@ service SolrCloudQueryController {
 
   //lookup pods of a solr-cloud deployed to a environment
   rpc findPods(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloudId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.Pods) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_cloud;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_cloud_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

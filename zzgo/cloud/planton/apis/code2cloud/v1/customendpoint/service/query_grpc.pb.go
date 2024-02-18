@@ -10,7 +10,7 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/customendpoint/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -48,7 +48,7 @@ type CustomEndpointQueryControllerClient interface {
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpointDnsResolutionStatus, error)
 	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*resource.Certificates, error)
+	FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model2.Certificates, error)
 }
 
 type customEndpointQueryControllerClient struct {
@@ -104,8 +104,8 @@ func (c *customEndpointQueryControllerClient) GetCustomEndpointDsnResolutionStat
 	return out, nil
 }
 
-func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*resource.Certificates, error) {
-	out := new(resource.Certificates)
+func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model2.Certificates, error) {
+	out := new(model2.Certificates)
 	err := c.cc.Invoke(ctx, CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -130,7 +130,7 @@ type CustomEndpointQueryControllerServer interface {
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointDnsResolutionStatus, error)
 	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*resource.Certificates, error)
+	FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*model2.Certificates, error)
 }
 
 // UnimplementedCustomEndpointQueryControllerServer should be embedded to have forward compatible implementations.
@@ -152,7 +152,7 @@ func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointCertSta
 func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointDsnResolutionStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointDnsResolutionStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCustomEndpointDsnResolutionStatus not implemented")
 }
-func (UnimplementedCustomEndpointQueryControllerServer) FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*resource.Certificates, error) {
+func (UnimplementedCustomEndpointQueryControllerServer) FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*model2.Certificates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindCustomEndpointCertificates not implemented")
 }
 

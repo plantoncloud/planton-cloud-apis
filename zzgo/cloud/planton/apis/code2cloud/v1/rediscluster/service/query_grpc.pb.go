@@ -12,7 +12,7 @@ import (
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/rediscluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -52,7 +52,7 @@ type RedisClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type redisClusterQueryControllerClient struct {
@@ -117,8 +117,8 @@ func (c *redisClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
+	out := new(model4.Pods)
 	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -144,7 +144,7 @@ type RedisClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.RedisClusterId) (*model.RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(context.Context, *model.RedisClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *model.RedisClusterId) (*model4.Pods, error)
 }
 
 // UnimplementedRedisClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -169,7 +169,7 @@ func (UnimplementedRedisClusterQueryControllerServer) FindByKubeClusterId(contex
 func (UnimplementedRedisClusterQueryControllerServer) GetPassword(context.Context, *model.RedisClusterId) (*model.RedisClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *model.RedisClusterId) (*resource.Pods, error) {
+func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *model.RedisClusterId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

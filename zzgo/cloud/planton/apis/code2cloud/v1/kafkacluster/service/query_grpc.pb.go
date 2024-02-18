@@ -12,7 +12,7 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kafkacluster/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -53,7 +53,7 @@ type KafkaClusterQueryControllerClient interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaClusterPassword, error)
 	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type kafkaClusterQueryControllerClient struct {
@@ -118,8 +118,8 @@ func (c *kafkaClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
+	out := new(model4.Pods)
 	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -146,7 +146,7 @@ type KafkaClusterQueryControllerServer interface {
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error)
 	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(context.Context, *model.KafkaClusterId) (*resource.Pods, error)
+	FindPods(context.Context, *model.KafkaClusterId) (*model4.Pods, error)
 }
 
 // UnimplementedKafkaClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -171,7 +171,7 @@ func (UnimplementedKafkaClusterQueryControllerServer) FindByKubeClusterId(contex
 func (UnimplementedKafkaClusterQueryControllerServer) GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedKafkaClusterQueryControllerServer) FindPods(context.Context, *model.KafkaClusterId) (*resource.Pods, error) {
+func (UnimplementedKafkaClusterQueryControllerServer) FindPods(context.Context, *model.KafkaClusterId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 

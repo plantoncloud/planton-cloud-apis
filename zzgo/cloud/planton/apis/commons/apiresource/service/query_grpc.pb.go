@@ -8,7 +8,7 @@ package service
 
 import (
 	context "context"
-	list "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model/list"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +30,7 @@ type ApiResourceListViewQueryControllerClient interface {
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
 	// and be associated with the specified company and product.
-	ListByResourceType(ctx context.Context, in *list.GetByApiResourceKindInput, opts ...grpc.CallOption) (*list.ApiResourceRecordList, error)
+	ListByResourceType(ctx context.Context, in *model.GetByApiResourceKindInput, opts ...grpc.CallOption) (*model.ApiResourceRecordList, error)
 }
 
 type apiResourceListViewQueryControllerClient struct {
@@ -41,8 +41,8 @@ func NewApiResourceListViewQueryControllerClient(cc grpc.ClientConnInterface) Ap
 	return &apiResourceListViewQueryControllerClient{cc}
 }
 
-func (c *apiResourceListViewQueryControllerClient) ListByResourceType(ctx context.Context, in *list.GetByApiResourceKindInput, opts ...grpc.CallOption) (*list.ApiResourceRecordList, error) {
-	out := new(list.ApiResourceRecordList)
+func (c *apiResourceListViewQueryControllerClient) ListByResourceType(ctx context.Context, in *model.GetByApiResourceKindInput, opts ...grpc.CallOption) (*model.ApiResourceRecordList, error) {
+	out := new(model.ApiResourceRecordList)
 	err := c.cc.Invoke(ctx, ApiResourceListViewQueryController_ListByResourceType_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -57,14 +57,14 @@ type ApiResourceListViewQueryControllerServer interface {
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
 	// and be associated with the specified company and product.
-	ListByResourceType(context.Context, *list.GetByApiResourceKindInput) (*list.ApiResourceRecordList, error)
+	ListByResourceType(context.Context, *model.GetByApiResourceKindInput) (*model.ApiResourceRecordList, error)
 }
 
 // UnimplementedApiResourceListViewQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedApiResourceListViewQueryControllerServer struct {
 }
 
-func (UnimplementedApiResourceListViewQueryControllerServer) ListByResourceType(context.Context, *list.GetByApiResourceKindInput) (*list.ApiResourceRecordList, error) {
+func (UnimplementedApiResourceListViewQueryControllerServer) ListByResourceType(context.Context, *model.GetByApiResourceKindInput) (*model.ApiResourceRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByResourceType not implemented")
 }
 
@@ -80,7 +80,7 @@ func RegisterApiResourceListViewQueryControllerServer(s grpc.ServiceRegistrar, s
 }
 
 func _ApiResourceListViewQueryController_ListByResourceType_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(list.GetByApiResourceKindInput)
+	in := new(model.GetByApiResourceKindInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -92,7 +92,7 @@ func _ApiResourceListViewQueryController_ListByResourceType_Handler(srv interfac
 		FullMethod: ApiResourceListViewQueryController_ListByResourceType_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceListViewQueryControllerServer).ListByResourceType(ctx, req.(*list.GetByApiResourceKindInput))
+		return srv.(ApiResourceListViewQueryControllerServer).ListByResourceType(ctx, req.(*model.GetByApiResourceKindInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

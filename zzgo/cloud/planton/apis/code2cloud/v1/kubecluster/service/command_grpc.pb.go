@@ -11,7 +11,7 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -75,9 +75,9 @@ type KubeClusterCommandControllerClient interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error)
+	DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -191,8 +191,8 @@ func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*resource.WorkloadNamespace, error) {
-	out := new(resource.WorkloadNamespace)
+func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error) {
+	out := new(model3.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -200,8 +200,8 @@ func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*resource.Pod, error) {
-	out := new(resource.Pod)
+func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error) {
+	out := new(model3.Pod)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeletePod_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -262,9 +262,9 @@ type KubeClusterCommandControllerServer interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*resource.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model3.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error)
+	DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -308,10 +308,10 @@ func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *m
 func (UnimplementedKubeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*resource.WorkloadNamespace, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model3.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*resource.Pod, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error) {

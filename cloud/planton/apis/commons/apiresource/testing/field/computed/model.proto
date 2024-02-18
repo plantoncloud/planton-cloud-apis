@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.testing.resource.field.computed;
+package cloud.planton.apis.commons.apiresource.testing.field.computed;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 

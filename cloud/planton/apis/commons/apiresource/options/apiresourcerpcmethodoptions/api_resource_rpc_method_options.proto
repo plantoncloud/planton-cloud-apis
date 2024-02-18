@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.rpc.method.options;
+package cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions;
 
 import "google/protobuf/descriptor.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourceeventtype/api_resource_event_type.proto";

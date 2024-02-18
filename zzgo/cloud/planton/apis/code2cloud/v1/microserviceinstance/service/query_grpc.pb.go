@@ -8,12 +8,12 @@ package service
 
 import (
 	context "context"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
+	model5 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/microserviceinstance/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -58,13 +58,13 @@ type MicroserviceInstanceQueryControllerClient interface {
 	// find microservice-instances in a environment for a code-project
 	FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
 	// lookup pods of a microservice-instance deployed to a environment
-	FindPods(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*resource.Pods, error)
+	FindPods(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model4.Pods, error)
 	// get a log stream for a running instance of a microservice-instance
 	GetLogStream(ctx context.Context, in *model.GetMicroserviceInstanceLogStreamQueryInput, opts ...grpc.CallOption) (MicroserviceInstanceQueryController_GetLogStreamClient, error)
 	// lookup a microservice-instance by code project id
-	GetByCodeProjectId(ctx context.Context, in *model4.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
+	GetByCodeProjectId(ctx context.Context, in *model5.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model4.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
+	FindByCodeProjectUrl(ctx context.Context, in *model5.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
 	GetEnvVarMap(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
@@ -130,8 +130,8 @@ func (c *microserviceInstanceQueryControllerClient) FindByEnvironmentIdByCodePro
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) FindPods(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*resource.Pods, error) {
-	out := new(resource.Pods)
+func (c *microserviceInstanceQueryControllerClient) FindPods(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model4.Pods, error) {
+	out := new(model4.Pods)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -171,7 +171,7 @@ func (x *microserviceInstanceQueryControllerGetLogStreamClient) Recv() (*wrapper
 	return m, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) GetByCodeProjectId(ctx context.Context, in *model4.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
+func (c *microserviceInstanceQueryControllerClient) GetByCodeProjectId(ctx context.Context, in *model5.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
 	out := new(model.MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_GetByCodeProjectId_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *microserviceInstanceQueryControllerClient) GetByCodeProjectId(ctx conte
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model4.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error) {
+func (c *microserviceInstanceQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model5.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error) {
 	out := new(model.MicroserviceInstances)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -216,13 +216,13 @@ type MicroserviceInstanceQueryControllerServer interface {
 	// find microservice-instances in a environment for a code-project
 	FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstances, error)
 	// lookup pods of a microservice-instance deployed to a environment
-	FindPods(context.Context, *model.MicroserviceInstanceId) (*resource.Pods, error)
+	FindPods(context.Context, *model.MicroserviceInstanceId) (*model4.Pods, error)
 	// get a log stream for a running instance of a microservice-instance
 	GetLogStream(*model.GetMicroserviceInstanceLogStreamQueryInput, MicroserviceInstanceQueryController_GetLogStreamServer) error
 	// lookup a microservice-instance by code project id
-	GetByCodeProjectId(context.Context, *model4.CodeProjectId) (*model.MicroserviceInstance, error)
+	GetByCodeProjectId(context.Context, *model5.CodeProjectId) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
-	FindByCodeProjectUrl(context.Context, *model4.CodeProjectUrl) (*model.MicroserviceInstances, error)
+	FindByCodeProjectUrl(context.Context, *model5.CodeProjectUrl) (*model.MicroserviceInstances, error)
 	GetEnvVarMap(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
@@ -248,16 +248,16 @@ func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByKubeClusterI
 func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstances, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentIdByCodeProjectId not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) FindPods(context.Context, *model.MicroserviceInstanceId) (*resource.Pods, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) FindPods(context.Context, *model.MicroserviceInstanceId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetLogStream(*model.GetMicroserviceInstanceLogStreamQueryInput, MicroserviceInstanceQueryController_GetLogStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetLogStream not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) GetByCodeProjectId(context.Context, *model4.CodeProjectId) (*model.MicroserviceInstance, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) GetByCodeProjectId(context.Context, *model5.CodeProjectId) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByCodeProjectId not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByCodeProjectUrl(context.Context, *model4.CodeProjectUrl) (*model.MicroserviceInstances, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByCodeProjectUrl(context.Context, *model5.CodeProjectUrl) (*model.MicroserviceInstances, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetEnvVarMap(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstanceEnvVarMap, error) {
@@ -423,7 +423,7 @@ func (x *microserviceInstanceQueryControllerGetLogStreamServer) Send(m *wrappers
 }
 
 func _MicroserviceInstanceQueryController_GetByCodeProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model4.CodeProjectId)
+	in := new(model5.CodeProjectId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -435,13 +435,13 @@ func _MicroserviceInstanceQueryController_GetByCodeProjectId_Handler(srv interfa
 		FullMethod: MicroserviceInstanceQueryController_GetByCodeProjectId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceQueryControllerServer).GetByCodeProjectId(ctx, req.(*model4.CodeProjectId))
+		return srv.(MicroserviceInstanceQueryControllerServer).GetByCodeProjectId(ctx, req.(*model5.CodeProjectId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceInstanceQueryController_FindByCodeProjectUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model4.CodeProjectUrl)
+	in := new(model5.CodeProjectUrl)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -453,7 +453,7 @@ func _MicroserviceInstanceQueryController_FindByCodeProjectUrl_Handler(srv inter
 		FullMethod: MicroserviceInstanceQueryController_FindByCodeProjectUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model4.CodeProjectUrl))
+		return srv.(MicroserviceInstanceQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model5.CodeProjectUrl))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -2,13 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.postgrescluster.service;
 
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/postgrescluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/postgrescluster/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //postgres-cluster query controller
@@ -52,7 +52,7 @@ service PostgresClusterQueryController {
 
   //lookup pods of a postgres-cluster deployment
   rpc findPods(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresClusterId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.resource.Pods) {
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = postgres_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.iac.stack.enums.apiresourceeventtype;
+package cloud.planton.apis.iac.v1.stack.enums.apiresourceeventtype;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
 

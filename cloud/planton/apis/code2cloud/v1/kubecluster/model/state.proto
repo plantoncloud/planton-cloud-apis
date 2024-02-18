@@ -12,7 +12,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/resource/pod.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 
 // kube-cluster
 message KubeCluster {

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.kubernetesapiresourcekind;
+
+// kubernetes resource kind
+enum KubernetesApiResourceKind {
+  RESOURCE_KIND_UNSPECIFIED = 0;
+  Namespace = 1;
+  Deployment = 2;
+  Service = 3;
+  Secret = 4;
+  Ingress = 5;
+  Issuer = 6;
+  Certificate = 7;
+}

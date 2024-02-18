@@ -12,7 +12,7 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/resource"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -55,9 +55,9 @@ type EnvironmentQueryControllerClient interface {
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*gcp.GcpProject, error)
 	// find workload pods part of environment
-	FindWorkloadPodsByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model3.WorkloadPods, error)
 	// find workload namespaces in a environment.
-	FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model3.WorkloadNamespaces, error)
 }
 
 type environmentQueryControllerClient struct {
@@ -131,8 +131,8 @@ func (c *environmentQueryControllerClient) GetSecretsGcpProjectByEnvironmentId(c
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadPods, error) {
-	out := new(resource.WorkloadPods)
+func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model3.WorkloadPods, error) {
+	out := new(model3.WorkloadPods)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindWorkloadPodsByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -140,8 +140,8 @@ func (c *environmentQueryControllerClient) FindWorkloadPodsByEnvironmentId(ctx c
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*resource.WorkloadNamespaces, error) {
-	out := new(resource.WorkloadNamespaces)
+func (c *environmentQueryControllerClient) FindWorkloadNamespacesByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model3.WorkloadNamespaces, error) {
+	out := new(model3.WorkloadNamespaces)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindWorkloadNamespacesByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -168,9 +168,9 @@ type EnvironmentQueryControllerServer interface {
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(context.Context, *model.EnvironmentId) (*gcp.GcpProject, error)
 	// find workload pods part of environment
-	FindWorkloadPodsByEnvironmentId(context.Context, *model.EnvironmentId) (*resource.WorkloadPods, error)
+	FindWorkloadPodsByEnvironmentId(context.Context, *model.EnvironmentId) (*model3.WorkloadPods, error)
 	// find workload namespaces in a environment.
-	FindWorkloadNamespacesByEnvironmentId(context.Context, *model.EnvironmentId) (*resource.WorkloadNamespaces, error)
+	FindWorkloadNamespacesByEnvironmentId(context.Context, *model.EnvironmentId) (*model3.WorkloadNamespaces, error)
 }
 
 // UnimplementedEnvironmentQueryControllerServer should be embedded to have forward compatible implementations.
@@ -198,10 +198,10 @@ func (UnimplementedEnvironmentQueryControllerServer) GetBuildEngineEnvironmentBy
 func (UnimplementedEnvironmentQueryControllerServer) GetSecretsGcpProjectByEnvironmentId(context.Context, *model.EnvironmentId) (*gcp.GcpProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSecretsGcpProjectByEnvironmentId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadPodsByEnvironmentId(context.Context, *model.EnvironmentId) (*resource.WorkloadPods, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadPodsByEnvironmentId(context.Context, *model.EnvironmentId) (*model3.WorkloadPods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadPodsByEnvironmentId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadNamespacesByEnvironmentId(context.Context, *model.EnvironmentId) (*resource.WorkloadNamespaces, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindWorkloadNamespacesByEnvironmentId(context.Context, *model.EnvironmentId) (*model3.WorkloadNamespaces, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadNamespacesByEnvironmentId not implemented")
 }
 
