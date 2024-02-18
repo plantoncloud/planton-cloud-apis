@@ -1,28 +1,28 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kafka.model;
+package cloud.planton.apis.code2cloud.v1.kafka.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/kubecluster/enums/workloadingress/workload_ingress.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/workloadingress/workload_ingress.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //kafka-cluster
 message KafkaCluster {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = kafka_cluster;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = environment;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.environment_info.environment_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kafka_cluster;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "kfc";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "kfc";
   //id format "kfc-<environment-id>-<kafka-cluster-name>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -35,7 +35,7 @@ message KafkaCluster {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 10,
     (buf.validate.field).cel = {
@@ -68,7 +68,7 @@ message KafkaCluster {
 //kafka-cluster spec
 message KafkaClusterSpec {
   //resource parent
-  cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
 
   //list of kafka topics.
   repeated KafkaTopic kafka_topics = 2;
@@ -83,7 +83,7 @@ message KafkaClusterStatus {
   cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -195,7 +195,7 @@ message KafkaClusterSpecKubernetesSpecIngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
   //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating kafka endpoints.
   string endpoint_domain_name = 3;
@@ -235,7 +235,7 @@ message KafkaClusterStatusKubernetesStatus {
 
 //kafka-topic
 message KafkaTopic {
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "kft";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "kft";
 
   //topic name
   string name = 1 [

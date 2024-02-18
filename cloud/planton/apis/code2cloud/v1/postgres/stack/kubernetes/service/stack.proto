@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.service;
+package cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.service;
 
 import "cloud/planton/apis/commons/grpc/stream/model.proto";
 
-import "cloud/planton/apis/v1/code2cloud/postgres/stack/kubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/postgres/stack/kubernetes/model/io.proto";
 
 //postgres-cluster stack controller
 service PostgresClusterKubernetesStackController {
-  rpc execute(cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackInput)
-      returns (stream cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackInput)
-      returns (cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackOutputs);
+  rpc execute(cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.model.PostgresClusterKubernetesStackOutputs);
 }

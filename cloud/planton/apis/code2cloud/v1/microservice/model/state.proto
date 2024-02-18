@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.microservice.model;
+package cloud.planton.apis.code2cloud.v1.microservice.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/kubecluster/enums/workloadingress/workload_ingress.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/workloadingress/workload_ingress.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/kubernetes/enums/enums.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //microservice-instance
 message MicroserviceInstance {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = microservice_instance;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = environment;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.environment_info.environment_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = microservice_instance;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "msi";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "msi";
   //id format "msi-<environment-id>-<microservice-instance-name>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -38,7 +38,7 @@ message MicroserviceInstance {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 20,
     (buf.validate.field).cel = {
@@ -71,7 +71,7 @@ message MicroserviceInstance {
 //microservice-instance spec
 message MicroserviceInstanceSpec {
   //resource parent
-  cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
 
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
   //review-<id> where id is the merge request number
@@ -216,7 +216,7 @@ message MicroserviceInstanceSpecKubernetesIngress {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
   //selected endpoint-domain from the environment endpoint-domains to configure dns
@@ -282,7 +282,7 @@ message MicroserviceInstanceStatus {
   cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;

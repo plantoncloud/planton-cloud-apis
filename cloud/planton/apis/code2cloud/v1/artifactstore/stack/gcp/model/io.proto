@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.artifactstore.stack.gcp.model;
+package cloud.planton.apis.code2cloud.v1.artifactstore.stack.gcp.model;
 
-import "cloud/planton/apis/v1/code2cloud/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -26,12 +26,12 @@ message ArtifactStoreGcpStackCredentialsInput {
 
 //stack resource input
 message ArtifactStoreGcpStackResourceInput {
-  cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore artifact_store = 1;
+  cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore artifact_store = 1;
 }
 
 //gcp artifact repo stack outputs
 message ArtifactStoreGcpStackOutputs {
-  cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus gcp_artifact_registry_status = 1;
+  cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreGcpArtifactRegistryStatus gcp_artifact_registry_status = 1;
 }
 
 //stack response

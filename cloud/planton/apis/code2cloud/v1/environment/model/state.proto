@@ -1,28 +1,28 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.environment.model;
+package cloud.planton.apis.code2cloud.v1.environment.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/cloudprovider/cloud_provider.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/storagebucketprovider/storage_bucket_provider.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/provider/enums/secretsbackendprovider/secrets_backend_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/cloudprovider/cloud_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/storagebucketprovider/storage_bucket_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/provider/enums/secretsbackendprovider/secrets_backend_provider.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //environment
 message Environment {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = environment;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = product;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.product_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
   //id format "<product-id>-<environment-name>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -35,7 +35,7 @@ message Environment {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 10,
     (buf.validate.field).cel = {
@@ -108,7 +108,7 @@ message EnvironmentSpec {
 
   //provider for storage-buckets created in this environment.
   //this value is computed based on the cloud-provider.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 11 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 11 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -119,7 +119,7 @@ message EnvironmentSpec {
 // information about the cloud-account configured for the environment
 message EnvironmentSpecCloudAccountSpec {
   //cloud-provider
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider provider = 1 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.cloudprovider.CloudProvider provider = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
   //id of the cloud-account
@@ -133,7 +133,7 @@ message EnvironmentSpecCloudAccountSpec {
 message EnvironmentSpecKubeClusterSpec {
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider provider = 1 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider provider = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -181,7 +181,7 @@ message EnvironmentSpecKubeClusterSpec {
 // information about the secrets provider for the environment
 message EnvironmentSpecSecretsBackendSpec {
   //secrets management provider
-  cloud.planton.apis.v1.code2cloud.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider provider = 1;
+  cloud.planton.apis.code2cloud.v1.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider provider = 1;
 
   //gcp secrets-manager spec
   EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec gcp_secrets_manager = 2;
@@ -234,7 +234,7 @@ message EnvironmentStatus {
   cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -242,7 +242,7 @@ message EnvironmentStatus {
 
 //environment-variable
 message EnvironmentVariable {
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "var";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "var";
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -275,7 +275,7 @@ message EnvironmentVariable {
 
 //environment-secret
 message EnvironmentSecret {
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "sec";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "sec";
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -374,7 +374,7 @@ message ResourceEnvironmentInfo {
   ];
 
   //provider for the cloud-account configured for the environment.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 5 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.cloudprovider.CloudProvider cloud_provider = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -384,7 +384,7 @@ message ResourceEnvironmentInfo {
   ];
 
   // provider for the kube-cluster configured for the environment.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 7 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 7 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -395,7 +395,7 @@ message ResourceEnvironmentInfo {
 
   //storage provider on which the storage-bucket is to be created.
   //the value is computed from environment.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 9 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 9 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }

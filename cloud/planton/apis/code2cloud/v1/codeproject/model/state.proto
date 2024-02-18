@@ -1,25 +1,24 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.codeproject.model;
+package cloud.planton.apis.code2cloud.v1.codeproject.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //code-project
 message CodeProject {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = code_project;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = product;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.product_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_project;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "cp";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "cp";
   //id format "cp-<product-id>-<normalized-git-repo-url>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -32,7 +31,7 @@ message CodeProject {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 99,
     (buf.validate.field).cel = {
@@ -138,8 +137,8 @@ message CodeProjectSpec {
 //code-project status
 message CodeProjectStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

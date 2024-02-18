@@ -2,7 +2,8 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions;
 
-import "cloud/planton/apis/v1/"
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "google/protobuf/descriptor.proto";
 
 // Extending the google.protobuf.MessageOptions to include custom fields
@@ -14,5 +15,5 @@ extend google.protobuf.MessageOptions {
   // For example, a microservice-instance requires a runtime platform to run and so it is considered runnable.
   bool is_runnable = 60002;
   // The owner information for the resource.
-  ApiResourceOwner owner = 60003;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceOwnerInfo owner = 60003;
 }

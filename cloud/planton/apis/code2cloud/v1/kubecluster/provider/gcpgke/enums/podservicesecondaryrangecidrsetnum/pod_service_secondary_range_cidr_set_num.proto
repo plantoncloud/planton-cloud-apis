@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.provider.gcpgke.enums.podservicesecondaryrangecidrsetnum;
+package cloud.planton.apis.code2cloud.v1.kubecluster.provider.gcpgke.enums.podservicesecondaryrangecidrsetnum;
 
 //https://jodies.de/ipcalc?host=10.0.0.0&mask1=10&mask2=15
 

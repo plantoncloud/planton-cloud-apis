@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.environment.model;
+package cloud.planton.apis.code2cloud.v1.environment.model;
 
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 
 //list of environments
 message Environments {

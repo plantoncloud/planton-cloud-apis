@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.service;
+package cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.service;
 
 import "cloud/planton/apis/commons/grpc/stream/model.proto";
-import "cloud/planton/apis/v1/code2cloud/microservice/stack/kubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/stack/kubernetes/model/io.proto";
 
 service MicroserviceInstanceKubernetesStackController {
-  rpc execute(cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackInput)
-      returns (stream cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackInput)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackOutputs);
+  rpc execute(cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.model.MicroserviceInstanceKubernetesStackOutputs);
 }

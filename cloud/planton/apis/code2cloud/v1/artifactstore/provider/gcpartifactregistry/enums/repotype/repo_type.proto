@@ -1,4 +1,4 @@
-package cloud.planton.apis.v1.code2cloud.artifactstore.provider.gcpartifactregistry.enums.repotype;
+package cloud.planton.apis.code2cloud.v1.artifactstore.provider.gcpartifactregistry.enums.repotype;
 
 //note: the values are intentionally left capitalized as required by the gcp artifact-registry apis
 enum GcpArtifactRegistryRepoType {

@@ -1,24 +1,24 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.resourcemanager.company.service;
+package cloud.planton.apis.resourcemanager.v1.company.service;
 
 import "cloud/planton/apis/commons/protobuf/custom/model.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/company/model/io.proto";
-import "cloud/planton/apis/v1/resourcemanager/company/model/state.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
 
 //company query controller
 service CompanyQueryController {
   // list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.v1.resourcemanager.company.model.CompanyList);
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.company.model.CompanyList);
   // get a company using company id
-  rpc getById(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.resourcemanager.company.model.Company) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view company details";
+  rpc getById(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view company details";
   }
-  rpc findCompanies(cloud.planton.apis.commons.protobuf.custom.CustomEmpty) returns (cloud.planton.apis.v1.resourcemanager.company.model.Companies);
+  rpc findCompanies(cloud.planton.apis.commons.protobuf.custom.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.company.model.Companies);
 }

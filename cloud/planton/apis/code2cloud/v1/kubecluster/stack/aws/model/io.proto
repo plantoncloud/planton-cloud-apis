@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.stack.aws.model;
+package cloud.planton.apis.code2cloud.v1.kubecluster.stack.aws.model;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -26,7 +26,7 @@ message KubeClusterAwsStackCredentialsInput {
 // stack resource input
 message KubeClusterAwsStackResourceInput {
   //details of the kube-cluster
-  cloud.planton.apis.v1.code2cloud.kubecluster.model.KubeCluster kube_cluster = 1;
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster kube_cluster = 1;
 }
 
 // stack outputs

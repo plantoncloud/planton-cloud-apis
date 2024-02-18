@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.model;
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/executionstatus/execution_status.proto";
@@ -15,14 +15,14 @@ import "google/protobuf/timestamp.proto";
 
 // stack-job
 message StackJob {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = stack_job;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "sj";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "sj";
 
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = stack;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.stack_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = stack;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";
 
   //id format "sj-<ulid>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
@@ -37,7 +37,7 @@ message StackJob {
   ];
 
   // resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
   //resource spec
   StackJobSpec spec = 4;
@@ -123,10 +123,10 @@ message StackJobSpec {
 // stack-job status
 message StackJobStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // execution status of the stack-job
   cloud.planton.apis.iac.v1.stackjob.enums.executionstatus.StackJobExecutionStatus execution_status = 1;

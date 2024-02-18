@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.provider.awsaks.enums.workersmanagementmode;
+package cloud.planton.apis.code2cloud.v1.kubecluster.provider.awsaks.enums.workersmanagementmode;
 
 enum AwsEksWorkersManagementMode {
   AWS_EKA_WORKERS_MANAGEMENT_MODE_UNSPECIFIED = 0;

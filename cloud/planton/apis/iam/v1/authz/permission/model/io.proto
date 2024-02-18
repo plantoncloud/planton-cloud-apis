@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.authz.permission.model;
+
+import "cloud/planton/apis/iam/v1/authz/permission/model/state.proto";
+
+// wrapper for iam permission id
+message IamPermissionId {
+  string value = 1;
+}
+
+// wrapper for iam permission code
+message IamPermissionCode {
+  string value = 1;
+}
+
+//list of iam permissions
+message IamPermissions {
+  repeated IamPermission entries = 1;
+}
+
+//response for paginated rpc query to list iam permissions.
+message IamPermissionList {
+  repeated IamPermission entries = 1;
+  int32 total_pages = 2;
+}

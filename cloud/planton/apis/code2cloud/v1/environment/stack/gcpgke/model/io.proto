@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.environment.stack.gcpgke.model;
+package cloud.planton.apis.code2cloud.v1.environment.stack.gcpgke.model;
 
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -27,13 +27,13 @@ message EnvironmentGcpGkeStackCredentialsInput {
 //stack resource input
 message EnvironmentGcpGkeStackResourceInput {
   //environment
-  cloud.planton.apis.v1.code2cloud.environment.model.Environment environment = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.Environment environment = 1;
 }
 
 //environment secrets outputs
 message EnvironmentGcpGkeStackOutputs {
   //environment secrets
-  repeated cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSecret environment_secrets = 1;
+  repeated cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret environment_secrets = 1;
 }
 
 //stack response

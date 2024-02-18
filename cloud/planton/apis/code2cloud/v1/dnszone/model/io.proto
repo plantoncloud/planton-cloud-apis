@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.dnszone.model;
+package cloud.planton.apis.code2cloud.v1.dnszone.model;
 
-import "cloud/planton/apis/v1/code2cloud/dnszone/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
 import "cloud/planton/apis/commons/network/dns/record/enums/enums.proto";
 
 // list of dns-zones

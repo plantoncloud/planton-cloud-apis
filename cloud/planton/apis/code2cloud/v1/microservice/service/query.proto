@@ -1,89 +1,89 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.microservice.service;
+package cloud.planton.apis.code2cloud.v1.microservice.service;
 
-import "cloud/planton/apis/v1/code2cloud/kubecluster/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/microservice/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/microservice/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
 import "cloud/planton/apis/commons/grpc/stream/model.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //microservice-instance query controller
 service MicroserviceInstanceQueryController {
   //list all microservice-instances on planton instance for the requested page. This is intended for use on portal.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstanceList);
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstanceList);
 
   //look up microservice-instance using microservice-instance id
-  rpc getById(cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstanceId)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = microservice_instance;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_get;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice-instance";
+  rpc getById(cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstanceId)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = microservice_instance;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = microservice_instance_get;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice-instance";
   }
 
   //find microservice-instances by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
-  rpc findByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstances);
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstances);
 
   //find microservice-instances by environment
-  rpc findByEnvironmentId(cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstances);
+  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstances);
 
   //find microservice-instances by kube-cluster
-  rpc findByKubeClusterId(cloud.planton.apis.v1.code2cloud.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstances);
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstances);
 
   //find microservice-instances in a environment for a code-project
-  rpc findByEnvironmentIdByCodeProjectId(cloud.planton.apis.v1.code2cloud.microservice.model.ByEnvironmentIdByCodeProjectIdInput)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstances) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = environment_get;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "environment_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to for environment";
+  rpc findByEnvironmentIdByCodeProjectId(cloud.planton.apis.code2cloud.v1.microservice.model.ByEnvironmentIdByCodeProjectIdInput)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstances) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to for environment";
   }
 
   //lookup pods of a microservice-instance deployed to a environment
-  rpc findPods(cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstanceId)
+  rpc findPods(cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstanceId)
       returns (cloud.planton.apis.v1.integration.kubernetes.resource.Pods) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = microservice_instance;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_get;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice-instance pods";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = microservice_instance;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = microservice_instance_get;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice-instance pods";
   }
 
   //get a log stream for a running instance of a microservice-instance
-  rpc getLogStream(cloud.planton.apis.v1.code2cloud.microservice.model.GetMicroserviceInstanceLogStreamQueryInput)
+  rpc getLogStream(cloud.planton.apis.code2cloud.v1.microservice.model.GetMicroserviceInstanceLogStreamQueryInput)
       returns (stream cloud.planton.apis.commons.grpc.stream.OutputLine) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = microservice_instance;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_get;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "microservice_instance_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice log";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = microservice_instance;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = microservice_instance_get;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "microservice_instance_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to view microservice log";
   }
 
   //lookup a microservice-instance by code project id
-  rpc getByCodeProjectId(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectId)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance);
+  rpc getByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance);
 
   //lookup all microservice-instances by code project url
-  rpc findByCodeProjectUrl(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectUrl)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstances);
+  rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstances);
 
-  rpc getEnvVarMap(cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance)
-      returns (cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstanceEnvVarMap) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = microservice_instance;
+  rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance)
+      returns (cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstanceEnvVarMap) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = microservice_instance;
     //note: this rpc may also require that the requester to have update access to the environment
     // if the provided microservice-instance contains references to environment secrets.
     // this is not enforced here, but is enforced in the request processing.
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to get environment variables of microservice-instance";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = microservice_instance_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to get environment variables of microservice-instance";
   }
 }

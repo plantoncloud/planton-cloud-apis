@@ -1,14 +1,14 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.stack.gcp.service;
+package cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.service;
 
 import "cloud/planton/apis/commons/grpc/stream/model.proto";
 
-import "cloud/planton/apis/v1/code2cloud/kubecluster/stack/gcp/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/stack/gcp/model/io.proto";
 
 service KubeClusterGcpStackController {
-    rpc execute(cloud.planton.apis.v1.code2cloud.kubecluster.stack.gcp.model.KubeClusterGcpStackInput)
-        returns (stream cloud.planton.apis.v1.code2cloud.kubecluster.stack.gcp.model.KubeClusterGcpStackResponse);
-    rpc getStackOutputs(cloud.planton.apis.v1.code2cloud.kubecluster.stack.gcp.model.KubeClusterGcpStackInput)
-        returns (cloud.planton.apis.v1.code2cloud.kubecluster.stack.gcp.model.KubeClusterGcpStackOutputs);
+    rpc execute(cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model.KubeClusterGcpStackInput)
+        returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model.KubeClusterGcpStackResponse);
+    rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model.KubeClusterGcpStackInput)
+        returns (cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model.KubeClusterGcpStackOutputs);
 }

@@ -1,20 +1,20 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.codeproject.model.pipeline;
+package cloud.planton.apis.code2cloud.v1.codeproject.model.pipeline;
 
-import "cloud/planton/apis/v1/code2cloud/microservice/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/artifactstore/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 
 //input for query rpc to get dynamically generated code pipeline template
 message GenerateCodePipelineTemplateQueryInput {
   //code project profile
-  cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectProfile code_project_profile = 1;
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile code_project_profile = 1;
   //git remote url used for looking up code project
   string git_remote_url = 2;
   //list of microservice-instances declared in _kustomize directory
-  repeated cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance microservice_instances = 3;
+  repeated cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance microservice_instances = 3;
 }
 
 message GenerateCodePipelineTemplateQueryResp {
@@ -40,7 +40,7 @@ message CodePipelineBuildTemplateInput {
   //name of the cli environment to be used. this can be test or live.
   string planton_cloud_cli_environment = 1;
   //artifact-store to be used by the pipeline
-  cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore artifact_store = 2;
+  cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore artifact_store = 2;
   //container images(docker) to be used inside code pipeline templates
   CodePipelineTemplateContainerImages template_container_images = 3;
   //container image to be used in container image build jobs.
@@ -54,9 +54,9 @@ message CodePipelineDeployTemplateJobInput {
   //container images(docker) to be used inside code pipeline templates
   CodePipelineTemplateContainerImages template_container_images = 1;
   //environment
-  cloud.planton.apis.v1.code2cloud.environment.model.Environment environment = 2;
+  cloud.planton.apis.code2cloud.v1.environment.model.Environment environment = 2;
   //microservice-instance
-  cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance microservice_instance = 3;
+  cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance microservice_instance = 3;
   //container image tag is not included in the value of this attribute.
   //git commit short sha is used as the tag for the image.
   string project_container_image = 4;

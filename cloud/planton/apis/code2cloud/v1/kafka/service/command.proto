@@ -1,146 +1,146 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kafka.service;
+package cloud.planton.apis.code2cloud.v1.kafka.service;
 
-import "cloud/planton/apis/v1/code2cloud/kafka/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/kafka/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kafka/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kafka/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //kafka-cluster command controller
 service KafkaClusterCommandController {
   //preview create kafka-cluster
-  rpc previewCreate(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview create kafka-cluster";
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_create;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview create kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //create kafka-cluster
-  rpc create(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka-cluster";
+  rpc create(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_create;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
   }
   //preview update an existing kafka-cluster
-  rpc previewUpdate(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview update kafka-cluster";
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview update kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing kafka-cluster
-  rpc update(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka-cluster";
+  rpc update(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
   }
   //preview deleting an existing kafka-cluster
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an existing kafka-cluster
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
   }
   //preview restoring a deleted kafka-cluster
-  rpc previewRestore(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_restore;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore kafka-cluster";
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted kafka-cluster
-  rpc restore(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_restore;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore kafka-cluster";
+  rpc restore(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for kafka-cluster
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for kafka-cluster";
   }
   //restart a kafka-cluster running in a environment.
   //kafka-cluster is restarted by deleting running "broker" pods which will be automatically recreated by kubernetes
   //note: zookeeper pods are not deleted.
-  rpc restart(cloud.planton.apis.v1.code2cloud.kafka.model.KafkaClusterId)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restart kafka-cluster";
+  rpc restart(cloud.planton.apis.code2cloud.v1.kafka.model.KafkaClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restart kafka-cluster";
   }
   //pause a kafka-cluster running in a environment.
   //kafka-cluster is paused by scaling down number of replicas of
   //the kubernetes deployment/stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to pause kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to pause kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = paused;
   }
   //unpause a previously paused kafka-cluster running in a environment.
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the kafka-cluster.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to unpause kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to unpause kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = unpaused;
   }
   //preview refresh a kafka-cluster that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a kafka-cluster that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh kafka-cluster";
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to refresh kafka-cluster";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
   }
 }
@@ -148,35 +148,35 @@ service KafkaClusterCommandController {
 //kafka-topic command controller
 service KafkaTopicCommandController {
   //add a single kafka topic to existing list of kafka topics of a kafka-cluster
-  rpc add(cloud.planton.apis.v1.code2cloud.kafka.model.AddOrUpdateKafkaTopicCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
+  rpc add(cloud.planton.apis.code2cloud.v1.kafka.model.AddOrUpdateKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
   }
   //add multiple kafka topics to existing list of kafka topics of a kafka-cluster
-  rpc addMultiple(cloud.planton.apis.v1.code2cloud.kafka.model.AddKafkaTopicsCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
+  rpc addMultiple(cloud.planton.apis.code2cloud.v1.kafka.model.AddKafkaTopicsCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create kafka topic";
   }
   //update a kafka topic.
-  rpc update(cloud.planton.apis.v1.code2cloud.kafka.model.AddOrUpdateKafkaTopicCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka topic";
+  rpc update(cloud.planton.apis.code2cloud.v1.kafka.model.AddOrUpdateKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update kafka topic";
   }
   //delete a kafka topic.
-  rpc delete(cloud.planton.apis.v1.code2cloud.kafka.model.DeleteOrRestoreKafkaTopicCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = kafka_cluster_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka topic";
+  rpc delete(cloud.planton.apis.code2cloud.v1.kafka.model.DeleteOrRestoreKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = kafka_cluster;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = kafka_cluster_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "kafka_cluster_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete kafka topic";
   }
 }

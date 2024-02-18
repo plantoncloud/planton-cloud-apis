@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.artifactstore.provider.enums.repoprovider;
+package cloud.planton.apis.code2cloud.v1.artifactstore.provider.enums.repoprovider;
 
 enum ArtifactStoreRepoProvider {
   ARTIFACT_STORE_REPO_PROVIDER_UNSPECIFIED = 0;

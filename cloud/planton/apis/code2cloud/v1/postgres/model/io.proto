@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.postgres.model;
+package cloud.planton.apis.code2cloud.v1.postgres.model;
 
-import "cloud/planton/apis/v1/code2cloud/postgres/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/postgres/model/state.proto";
 
 //wrapper for id field of postgres-cluster
 message PostgresClusterId {

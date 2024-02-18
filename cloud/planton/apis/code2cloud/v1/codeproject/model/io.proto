@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.codeproject.model;
+package cloud.planton.apis.code2cloud.v1.codeproject.model;
 
-import "cloud/planton/apis/v1/code2cloud/codeproject/enums/profile/profile.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/microservice/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/enums/profile/profile.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/model/state.proto";
 
 //wrapper for code project id
 message CodeProjectId {
@@ -63,18 +63,18 @@ message CodeProjectProfile {
   //this field is only used in the local context and is ignored for operations performed on the server.
   bool is_deployable = 2;
   //code project language
-  cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectLang lang = 3;
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectLang lang = 3;
   //code project category library vs cli vs microservice
-  cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectCat cat = 4;
+  cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCat cat = 4;
   //code project sub category
   oneof sub_cat {
-    cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectCatLibSubCat lib_sub_cat = 5;
-    cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatLibSubCat lib_sub_cat = 5;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCat microservice_sub_cat = 6;
   }
   //code project sub-sub category
   oneof sub_sub_cat {
-    cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
-    cloud.planton.apis.v1.code2cloud.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatApiSubSubCat microservice_api_sub_sub_cat = 7;
+    cloud.planton.apis.code2cloud.v1.codeproject.enums.profile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat microservice_web_app_sub_sub_cat = 8;
   }
 }
 
@@ -97,5 +97,5 @@ message BuildEngineProject {
   //is code project deployable to a environment.
   bool is_deployable = 6;
   //microservice-instance
-  cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance microservice_instance = 7;
+  cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance microservice_instance = 7;
 }

@@ -1,121 +1,121 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.artifactstore.service;
+package cloud.planton.apis.code2cloud.v1.artifactstore.service;
 
-import "cloud/planton/apis/v1/code2cloud/artifactstore/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //artifact-store command controller
 service ArtifactStoreCommandController {
   //preview create artifact-store
-  rpc previewCreate(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.product_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview create artifact-store";
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_create;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview create artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //create artifact-store
-  rpc create(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_create;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "spec.product_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create artifact-store";
+  rpc create(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_create;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = created;
   }
   //preview update artifact-store
-  rpc previewUpdate(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview update artifact-store";
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview update artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //update artifact-store
-  rpc update(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update artifact-store";
+  rpc update(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = updated;
   }
   //preview delete an artifact-store.
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete artifact-store";
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview delete artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_destroy_preview_requested;
   }
   //delete an artifact-store.
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete artifact-store";
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = deleted;
   }
   //preview restoring a deleted artifact-store.
-  rpc previewRestore(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_restore;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore artifact-store";
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview restore artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //restore a deleted artifact-store.
-  rpc restore(cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_restore;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore artifact-store";
+  rpc restore(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = restored;
   }
   //create-stack-job for artifact-store
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for artifact-store";
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create stack-job for artifact-store";
   }
   //restore a deleted artifact-store.
-  rpc deleteArtifactStorePackageVersion(cloud.planton.apis.v1.code2cloud.artifactstore.model.DelArtifactStorePackageVersionCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "artifact_store_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete package version from artifact-store";
+  rpc deleteArtifactStorePackageVersion(cloud.planton.apis.code2cloud.v1.artifactstore.model.DelArtifactStorePackageVersionCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStorePackageVersion) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "artifact_store_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete package version from artifact-store";
   }
   //preview refresh a artifact-store that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh artifact-store";
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to preview refresh artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = stack_job_apply_preview_requested;
   }
   //refresh a artifact-store that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = artifact_store;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = artifact_store_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to refresh artifact-store";
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = artifact_store_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to refresh artifact-store";
     option (cloud.planton.apis.commons.rpc.method.options.event_type) = refreshed;
   }
 }

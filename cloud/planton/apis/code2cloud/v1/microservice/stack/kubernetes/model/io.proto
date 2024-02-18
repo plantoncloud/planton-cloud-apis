@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.microservice.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.microservice.stack.kubernetes.model;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/microservice/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/code2cloud/v1/microservice/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -29,7 +29,7 @@ message MicroserviceInstanceKubernetesStackCredentialsInput {
 //stack resource input
 message MicroserviceInstanceKubernetesStackResourceInput {
   //microservice-instance
-  cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstance microservice_instance = 1;
+  cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstance microservice_instance = 1;
   //input required for creating kubernetes secret resources to be used by deployment resources to pull private
   //container images.
   //a product can have many artifact-stores. each artifact-store has a separate service account credential.
@@ -40,7 +40,7 @@ message MicroserviceInstanceKubernetesStackResourceInput {
   repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
   //kubernetes cluster project required to configure workload identity
   //service account is created in kubernetes cluster project and a binding created to workload identity pool.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 3;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 3;
 }
 
 message KubernetesImagePullSecretInput {
@@ -55,7 +55,7 @@ message KubernetesImagePullSecretInput {
 //microservice-instance stack outputs
 message MicroserviceInstanceKubernetesStackOutputs {
   //status of the microservice-instance upon stack-job
-  cloud.planton.apis.v1.code2cloud.microservice.model.MicroserviceInstanceStatus microservice_instance_status = 1;
+  cloud.planton.apis.code2cloud.v1.microservice.model.MicroserviceInstanceStatus microservice_instance_status = 1;
 }
 
 //stack response

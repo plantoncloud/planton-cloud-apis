@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.postgres.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.postgres.stack.kubernetes.model;
 
-import "cloud/planton/apis/v1/code2cloud/postgres/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/postgres/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -26,7 +26,7 @@ message PostgresClusterKubernetesStackCredentialsInput {
 //stack resource input
 message PostgresClusterKubernetesStackResourceInput {
   //postgres-cluster
-  cloud.planton.apis.v1.code2cloud.postgres.model.PostgresCluster postgres_cluster = 1;
+  cloud.planton.apis.code2cloud.v1.postgres.model.PostgresCluster postgres_cluster = 1;
   //postgres-cluster config
   PostgresClusterConfig postgres_cluster_config = 2;
 }
@@ -58,7 +58,7 @@ message PostgresDatabase {
 //stack outputs
 message PostgresClusterKubernetesStackOutputs {
   //postgres-cluster status
-  cloud.planton.apis.v1.code2cloud.postgres.model.PostgresClusterStatus postgres_cluster_status = 1;
+  cloud.planton.apis.code2cloud.v1.postgres.model.PostgresClusterStatus postgres_cluster_status = 1;
 }
 
 //stack response

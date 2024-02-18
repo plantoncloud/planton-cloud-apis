@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kafka.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.kafka.stack.kubernetes.model;
 
-import "cloud/planton/apis/v1/code2cloud/kafka/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kafka/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -26,13 +26,13 @@ message KafkaClusterKubernetesStackCredentialsInput {
 //stack resource input
 message KafkaClusterKubernetesStackResourceInput {
   //kafka-cluster
-  cloud.planton.apis.v1.code2cloud.kafka.model.KafkaCluster kafka_cluster = 1;
+  cloud.planton.apis.code2cloud.v1.kafka.model.KafkaCluster kafka_cluster = 1;
 }
 
 //kafka-cluster kubernetes stack outputs
 message KafkaClusterKubernetesStackOutputs {
   //kafka-cluster status
-  cloud.planton.apis.v1.code2cloud.kafka.model.KafkaClusterStatus kafka_cluster_status = 1;
+  cloud.planton.apis.code2cloud.v1.kafka.model.KafkaClusterStatus kafka_cluster_status = 1;
 }
 
 //stack response

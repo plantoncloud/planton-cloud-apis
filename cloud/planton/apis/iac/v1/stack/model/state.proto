@@ -6,18 +6,18 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 // stack
 message Stack {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = stack;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "st";
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "st";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
@@ -29,7 +29,7 @@ message Stack {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
 
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
   //stack spec
   StackSpec spec = 4;
@@ -67,8 +67,8 @@ message StackSpec {
 // stack status
 message StackStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

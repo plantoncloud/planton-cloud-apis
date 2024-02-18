@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.v1.integration.github.proxy.service;
 
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/codeserver/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
 import "cloud/planton/apis/v1/integration/github/proxy/model/io.proto";
 
 //github proxy command controller
@@ -14,18 +14,18 @@ service GithubProxyCommandController {
   //https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
   //https://docs.github.com/en/rest/repos/repos#create-an-organization-repository
   rpc creRepository(cloud.planton.apis.v1.integration.github.proxy.model.CreRepositoryCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
   //apply a cookiecutter template on a code project created on github
   rpc applyTemplate(cloud.planton.apis.v1.integration.github.proxy.model.GithubApplyTemplateCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectProfile);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile);
   //add a list of secrets to a github repository
   rpc addSecretsToRepo(cloud.planton.apis.v1.integration.github.proxy.model.AddSecretsToRepoCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
   //add a list of secrets to a github organization
   rpc addSecretsToOrg(cloud.planton.apis.v1.integration.github.proxy.model.AddSecretsToOrgCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.server.model.CodeServer);
+      returns (cloud.planton.apis.code2cloud.v1.server.model.CodeServer);
   //synchronization is achieved by first removing all yaml files prefixed with "pc:" inside .github/workflows and
   //then add files in the input to .github/workflows directory.
   rpc synchronizeMagicPipelineFiles(cloud.planton.apis.v1.integration.github.proxy.model.SynchronizeGithubMagicPipelineFilesCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
 }

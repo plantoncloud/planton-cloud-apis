@@ -1,24 +1,24 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.resourcemanager.product.model;
+package cloud.planton.apis.resourcemanager.v1.product.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //product
 message Product {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = product;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = company;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = product;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
   //id format "<company-id>-<product-key>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
   //resource api-version
   string api_version = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
@@ -30,7 +30,7 @@ message Product {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
   //spec
   ProductSpec spec = 4;
@@ -72,10 +72,10 @@ message ProductSpec {
 //product status
 message ProductStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;

@@ -1,15 +1,15 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.model;
+package cloud.planton.apis.code2cloud.v1.kubecluster.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder/model.proto";
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project/model.proto";
-import "cloud/planton/apis/v1/code2cloud/kubecluster/provider/awsaks/enums/workersmanagementmode/workers_management_mode.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/folder/model.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/provider/gcp/resource/project/model.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/provider/awsaks/enums/workersmanagementmode/workers_management_mode.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
@@ -18,15 +18,15 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 // kube-cluster
 message KubeCluster {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = kube_cluster;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = company;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kube_cluster;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "k8c";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "k8c";
 
   //id format "k8c-<company-id>-<kube-cluster-name>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version
   string api_version = 1 [
@@ -39,7 +39,7 @@ message KubeCluster {
   ];
 
   // resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 15,
     (buf.validate.field).cel = {
@@ -84,7 +84,7 @@ message KubeClusterSpec {
   KubeClusterAddonsSpec kubernetes_addons = 3;
 
   // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -139,7 +139,7 @@ message KubeClusterStatus {
   cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -243,18 +243,18 @@ message KubeClusterGcpStatus {
   // a folder is created with the cloud account folder as parent for the kube-cluster.
   // resources created for kube-cluster are linked to this folder as the parent.
   // children for a cloud account are the gcp projects in the kube-cluster.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.folder.GcpFolder folder = 1;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.folder.GcpFolder folder = 1;
 
   // projects created on google cloud for this kube-cluster
   // this value is updated upon successful kube-cluster creation stack-job.
   // gcp project info for the kube-cluster project
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 2;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject container_cluster_project = 2;
 
   // gcp project info for vpc-network project
   // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
   // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
   // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
-  cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject vpc_network_project = 3;
+  cloud.planton.apis.code2cloud.v1.cloudaccount.provider.gcp.resource.project.GcpProject vpc_network_project = 3;
 
   // kube-cluster endpoint.
   string cluster_endpoint = 4;
@@ -376,7 +376,7 @@ message KubeClusterAwsSpec {
   ];
 
   // aws eks worker node-groups management mode
-  cloud.planton.apis.v1.code2cloud.kubecluster.provider.awsaks.enums.workersmanagementmode.AwsEksWorkersManagementMode workers_management_mode = 4 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.provider.awsaks.enums.workersmanagementmode.AwsEksWorkersManagementMode workers_management_mode = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
 }

@@ -1,18 +1,18 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.billing.account.model;
+package cloud.planton.apis.billing.v1.account.model;
 
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 
 //billing-account
 message BillingAccount {
-  option (cloud.planton.apis.commons.apiresource.options.ap) = billing;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = company;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = billing_account;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
   // resource api version
   string api_version = 1;
@@ -23,7 +23,7 @@ message BillingAccount {
   // metadata for the resource
   // identifier for billing account
   // name of the billing account.
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
   // spec
   BillingAccountSpec spec = 4;
@@ -88,10 +88,10 @@ message StripeSubscription {
 //status for billing-account
 message BillingAccountStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }
 
 // BillingItem is a protocol message that represents the state of a billing item.

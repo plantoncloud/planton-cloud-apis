@@ -4,8 +4,8 @@ package cloud.planton.apis.v1.integration.gitlab.proxy.model;
 
 import "cloud/planton/apis/v1/integration/gitlab/proxy/enums/enums.proto";
 import "cloud/planton/apis/v1/integration/github/proxy/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/state.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
 
 //gitlab client info
 message GitlabClientInfo {
@@ -54,9 +54,9 @@ message GitlabApplyTemplateCommandInput {
   //gitlab client info required to clone and publish template changes to target project
   GitlabClientInfo target_project_gitlab_client_info = 2;
   //template code project
-  cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject template_project = 3;
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject template_project = 3;
   //code project for which the template should be applied
-  cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject target_code_project = 4;
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject target_code_project = 4;
 }
 
 //input for command to add list of variables to a gitlab project
@@ -104,5 +104,5 @@ message AddFilesToGitlabProjectCommandInput {
   //id of the gitlab project to which the files are to be added
   string gitlab_project_id = 2;
   //files to be added to the project
-  repeated cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectFile code_project_files = 3;
+  repeated cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFile code_project_files = 3;
 }

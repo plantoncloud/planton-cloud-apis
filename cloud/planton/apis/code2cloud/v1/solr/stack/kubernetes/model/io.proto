@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.solr.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.solr.stack.kubernetes.model;
 
-import "cloud/planton/apis/v1/code2cloud/solr/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/solr/model/state.proto";
 import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
@@ -26,13 +26,13 @@ message SolrCloudKubernetesStackCredentialsInput {
 //stack resource input
 message SolrCloudKubernetesStackResourceInput {
   //solr-cloud
-  cloud.planton.apis.v1.code2cloud.solr.model.SolrCloud solr_cloud = 1;
+  cloud.planton.apis.code2cloud.v1.solr.model.SolrCloud solr_cloud = 1;
 }
 
 //solr-cloud stack outputs
 message SolrCloudKubernetesStackOutputs {
   //status of the solr-cloud upon stack-job
-  cloud.planton.apis.v1.code2cloud.solr.model.SolrCloudStatus solr_cloud_status = 1;
+  cloud.planton.apis.code2cloud.v1.solr.model.SolrCloudStatus solr_cloud_status = 1;
 }
 
 //stack response

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.resourcemanager.company.model;
+package cloud.planton.apis.resourcemanager.v1.company.model;
 
-import "cloud/planton/apis/v1/resourcemanager/company/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
 
 // list of companies
 message Companies {

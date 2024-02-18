@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.iam.stackjob.enums.pulumipluginname;
+package cloud.planton.apis.iam.v1.stackjob.enums.pulumipluginname;
 
 // pulumi plugin name
 // the recommended best practice to prefix the entry with enum name has been intentionally ignored to ensure that the enum's value matches the name of the pulumi plugin.

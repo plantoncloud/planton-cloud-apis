@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iam.v1.identity.account.service;
+
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/iam/v1/identity/account/model/io.proto";
+import "cloud/planton/apis/iam/v1/identity/account/model/state.proto";
+
+// machine-account command controller
+service MachineAccountCommandController {
+  // create new machine account
+  rpc create(cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount)
+      returns (cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = identity_account_create;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "spec.company_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create machine account";
+  }
+  // update an existing machine account
+  rpc update(cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount)
+      returns (cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = identity_account_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update machine account";
+  }
+  // delete an existing machine account
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = identity_account_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete machine account";
+  }
+  // restore an existing machine account
+  rpc restore(cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount)
+      returns (cloud.planton.apis.iam.v1.identity.account.model.IdentityAccount) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = identity_account_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore machine account";
+  }
+}

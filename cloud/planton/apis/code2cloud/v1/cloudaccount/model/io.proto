@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.cloudaccount.model;
+package cloud.planton.apis.code2cloud.v1.cloudaccount.model;
 
-import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
 
 // list of cloud accounts
 message CloudAccounts {

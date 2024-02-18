@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.resourcemanager.product.model;
+package cloud.planton.apis.resourcemanager.v1.product.model;
 
-import "cloud/planton/apis/v1/resourcemanager/product/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 
 //list of products
 message Products {

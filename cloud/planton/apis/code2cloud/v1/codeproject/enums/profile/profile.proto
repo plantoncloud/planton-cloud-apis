@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.codeproject.enums.profile;
+package cloud.planton.apis.code2cloud.v1.codeproject.enums.profile;
 
 //deviation from the recommended best-practice of prefixing all enum entries with enum type in order to use the
 //language to name and identify project specific folders.

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kafka.model;
+package cloud.planton.apis.code2cloud.v1.kafka.model;
 
-import "cloud/planton/apis/v1/code2cloud/kafka/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kafka/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 
 //wrapper for id field of kafka-cluster

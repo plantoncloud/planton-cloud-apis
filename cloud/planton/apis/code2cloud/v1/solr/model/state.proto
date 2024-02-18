@@ -1,28 +1,28 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.solr.model;
+package cloud.planton.apis.code2cloud.v1.solr.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/v1/code2cloud/kubecluster/enums/workloadingress/workload_ingress.proto";
-import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/workloadingress/workload_ingress.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 
 //solr-cloud
 message SolrCloud {
-  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = solr_cloud;
-  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.owner).type = environment;
-  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.environment_info.environment_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = solr_cloud;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
-  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "slc";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.id_prefix) = "slc";
   //id format "slc-<environment-id>-<solr-cloud-name>"
-  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -35,7 +35,7 @@ message SolrCloud {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 10,
     (buf.validate.field).cel = {
@@ -68,7 +68,7 @@ message SolrCloud {
 //solr-cloud spec
 message SolrCloudSpec {
   //resource parent
-  cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
   SolrCloudSpecKubernetesSpec kubernetes = 2;
@@ -80,7 +80,7 @@ message SolrCloudStatus {
   cloud.planton.apis.commons.apiresource.model.RunnableResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // id of the stack-job
   string stack_job_id = 97;
@@ -180,7 +180,7 @@ message SolrCloudSpecKubernetesSpecIngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.v1.code2cloud.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType ingress_type = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.

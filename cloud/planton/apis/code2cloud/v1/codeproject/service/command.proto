@@ -1,96 +1,96 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.codeproject.service;
+package cloud.planton.apis.code2cloud.v1.codeproject.service;
 
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
-import "cloud/planton/apis/v1/code2cloud/codeproject/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/model/io.proto";
-import "cloud/planton/apis/v1/resourcemanager/product/model/state.proto";
+import "cloud/planton/apis/iam/v1/authz/extensions/extensions.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 
 //code-project command controller
 service CodeProjectCommandController {
   //add code-project that already exists on the code-server.
-  rpc add(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_create;
+  rpc add(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_create;
     //note: field-path can not be provided as permissions are against product_id which is a computed attribute.
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create code project";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create code project";
   }
 
   //create a code-project on selected code-server.
   //new code projects created from planton cloud, can also choose an available code project template.
-  rpc create(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_create;
+  rpc create(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_create;
     //note: field-path can not be provided as permissions are against product_id which is a computed attribute.
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to create code project";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to create code project";
   }
 
   //update an existing code-project
-  rpc update(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to update code project";
+  rpc update(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to update code project";
   }
 
   //delete an existing code project.
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_delete;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to delete code project";
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_delete;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to delete code project";
   }
 
   //restore a deleted code project of a product.
-  rpc restore(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_restore;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to restore code project";
+  rpc restore(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_restore;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to restore code project";
   }
 
   //synchronize code projects of a product.
   //this operation will run synchronization process on all code-servers of the product.
-  rpc synchronizeByProductId(cloud.planton.apis.v1.resourcemanager.product.model.ProductId)
-      returns (cloud.planton.apis.v1.resourcemanager.product.model.Product);
+  rpc synchronizeByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.resourcemanager.v1.product.model.Product);
 
   //synchronize code project with its counterpart on the code-server
-  rpc synchronizeByCodeProjectId(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectId)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to synchronize code project";
+  rpc synchronizeByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to synchronize code project";
   }
 
   //attach a machine account to a code project on the code-server by adding client-id and client-secret as
   //variables on the repository or project on github, gitlab etc
-  rpc attachMachineAccountByCodeProjectId(cloud.planton.apis.v1.code2cloud.codeproject.model.AttachMachineAccountByCodeProjectIdCommandInput)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject) {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = identity_account;
+  rpc attachMachineAccountByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.AttachMachineAccountByCodeProjectIdCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = identity_account;
     //since this operation requires looking up client-secret, update permission is required.
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = identity_account_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to attach machine account";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = identity_account_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to attach machine account";
   }
 }
 
 //code-project pipeline command controller
 service CodeProjectPipelineCommandController {
   //add or update magic pipeline for a code project
-  rpc addOrUpdatePipeline(cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectId)
-      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject)  {
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = code_project;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = code_project_update;
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to integration code pipeline for code project";
+  rpc addOrUpdatePipeline(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject)  {
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).permission = code_project_update;
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.authz.extensions.authorization_config).error_msg = "unauthorized to integration code pipeline for code project";
   }
 }

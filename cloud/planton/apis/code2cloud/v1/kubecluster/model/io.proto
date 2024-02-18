@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.v1.code2cloud.kubecluster.model;
+package cloud.planton.apis.code2cloud.v1.kubecluster.model;
 
-import "cloud/planton/apis/v1/code2cloud/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/v1/integration/kubernetes/resource/pod.proto";
