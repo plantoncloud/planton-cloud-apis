@@ -7,8 +7,8 @@
 package model
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -144,7 +144,7 @@ type ListByCostAllocationFiltersInput struct {
 	// id of the environment for which the cost allocations are filtered for the resource requested.
 	EnvironmentId string `protobuf:"bytes,5,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
 	// type of the resource on planton cloud.
-	ResourceType enums.ResourceType `protobuf:"varint,6,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,6,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource on planton cloud.
 	// ex: ms-planton-pcs-product which is the id of the microservice.
 	ResourceId string `protobuf:"bytes,7,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
@@ -237,7 +237,7 @@ type GetCostAggregateInput struct {
 	unknownFields protoimpl.UnknownFields
 
 	// type of the resource on planton cloud.
-	ResourceType enums.ResourceType `protobuf:"varint,1,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,1,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource on planton cloud.
 	// ex: ms-planton-pcs-product which is the id of the microservice.
 	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
@@ -494,18 +494,18 @@ var file_cloud_planton_apis_v1_integration_kubernetes_cost_model_io_proto_goType
 	(*GetCostAggregateInput)(nil),            // 3: cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput
 	(*CostAggregate)(nil),                    // 4: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAggregate
 	(*CostAllocation)(nil),                   // 5: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation
-	(*model.PageInfo)(nil),                   // 6: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),                   // 6: cloud.planton.apis.commons.rpc.PageInfo
 	(*timestamppb.Timestamp)(nil),            // 7: google.protobuf.Timestamp
-	(enums.ResourceType)(0),                  // 8: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(enums.ResourceType)(0),                  // 8: cloud.planton.apis.commons.resource.enums.ResourceType
 }
 var file_cloud_planton_apis_v1_integration_kubernetes_cost_model_io_proto_depIdxs = []int32{
 	5, // 0: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocations.entries:type_name -> cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation
 	5, // 1: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocationList.entries:type_name -> cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation
-	6, // 2: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	6, // 2: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	7, // 3: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.start_ts:type_name -> google.protobuf.Timestamp
 	7, // 4: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.end_ts:type_name -> google.protobuf.Timestamp
-	8, // 5: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	8, // 6: cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	8, // 5: cloud.planton.apis.v1.integration.kubernetes.cost.model.ListByCostAllocationFiltersInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	8, // 6: cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
 	7, // 7: cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput.start_ts:type_name -> google.protobuf.Timestamp
 	7, // 8: cloud.planton.apis.v1.integration.kubernetes.cost.model.GetCostAggregateInput.end_ts:type_name -> google.protobuf.Timestamp
 	9, // [9:9] is the sub-list for method output_type

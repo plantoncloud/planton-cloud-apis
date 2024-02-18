@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/network/dns/domain/model.proto
+// source: cloud/planton/apis/commons/network/dns/domain/model.proto
 
 package domain
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/domain/enums"
-	record "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/record"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/network/dns/domain/enums"
+	record "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/network/dns/record"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -31,7 +31,7 @@ type DnsDomain struct {
 	DomainName string `protobuf:"bytes,1,opt,name=domain_name,json=domainName,proto3" json:"domain_name,omitempty"`
 	// domain visibility. for private visibility internal reserved ips are added to the zone.
 	// for publicly visible domains external reserved domains are added to the zone.
-	Visibility enums.DnsDomainVisibility `protobuf:"varint,2,opt,name=visibility,proto3,enum=cloud.planton.apis.v1.commons.network.dns.domain.enums.DnsDomainVisibility" json:"visibility,omitempty"`
+	Visibility enums.DnsDomainVisibility `protobuf:"varint,2,opt,name=visibility,proto3,enum=cloud.planton.apis.commons.network.dns.domain.enums.DnsDomainVisibility" json:"visibility,omitempty"`
 	// dns records to be added to the zone
 	DnsRecords []*record.DnsRecord `protobuf:"bytes,3,rep,name=dns_records,json=dnsRecords,proto3" json:"dns_records,omitempty"`
 }
@@ -166,13 +166,13 @@ func file_cloud_planton_apis_v1_commons_network_dns_domain_model_proto_rawDescGZ
 
 var file_cloud_planton_apis_v1_commons_network_dns_domain_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_network_dns_domain_model_proto_goTypes = []interface{}{
-	(*DnsDomain)(nil),              // 0: cloud.planton.apis.v1.commons.network.dns.domain.DnsDomain
-	(enums.DnsDomainVisibility)(0), // 1: cloud.planton.apis.v1.commons.network.dns.domain.enums.DnsDomainVisibility
-	(*record.DnsRecord)(nil),       // 2: cloud.planton.apis.v1.commons.network.dns.record.DnsRecord
+	(*DnsDomain)(nil),              // 0: cloud.planton.apis.commons.network.dns.domain.DnsDomain
+	(enums.DnsDomainVisibility)(0), // 1: cloud.planton.apis.commons.network.dns.domain.enums.DnsDomainVisibility
+	(*record.DnsRecord)(nil),       // 2: cloud.planton.apis.commons.network.dns.record.DnsRecord
 }
 var file_cloud_planton_apis_v1_commons_network_dns_domain_model_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.commons.network.dns.domain.DnsDomain.visibility:type_name -> cloud.planton.apis.v1.commons.network.dns.domain.enums.DnsDomainVisibility
-	2, // 1: cloud.planton.apis.v1.commons.network.dns.domain.DnsDomain.dns_records:type_name -> cloud.planton.apis.v1.commons.network.dns.record.DnsRecord
+	1, // 0: cloud.planton.apis.commons.network.dns.domain.DnsDomain.visibility:type_name -> cloud.planton.apis.commons.network.dns.domain.enums.DnsDomainVisibility
+	2, // 1: cloud.planton.apis.commons.network.dns.domain.DnsDomain.dns_records:type_name -> cloud.planton.apis.commons.network.dns.record.DnsRecord
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

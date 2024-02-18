@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/rpc/pagination/google/model.proto
+// source: cloud/planton/apis/commons/rpc/pagination/google/model.proto
 
 package google
 
@@ -136,7 +136,7 @@ func file_cloud_planton_apis_v1_commons_rpc_pagination_google_model_proto_rawDes
 
 var file_cloud_planton_apis_v1_commons_rpc_pagination_google_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_rpc_pagination_google_model_proto_goTypes = []interface{}{
-	(*GooglePageInfo)(nil), // 0: cloud.planton.apis.v1.commons.pagination.google.GooglePageInfo
+	(*GooglePageInfo)(nil), // 0: cloud.planton.apis.commons.pagination.google.GooglePageInfo
 }
 var file_cloud_planton_apis_v1_commons_rpc_pagination_google_model_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

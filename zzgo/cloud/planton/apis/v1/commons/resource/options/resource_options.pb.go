@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/options/resource_options.proto
+// source: cloud/planton/apis/commons/resource/options/resource_options.proto
 
 package options
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
@@ -29,7 +29,7 @@ type Owner struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The type of the owner, defined in the ResourceType enum.
-	Type enums.ResourceType `protobuf:"varint,1,opt,name=type,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"type,omitempty"`
+	Type enums.ResourceType `protobuf:"varint,1,opt,name=type,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"type,omitempty"`
 	// The field path of the owner id in a resource.
 	IdFieldPath string `protobuf:"bytes,2,opt,name=id_field_path,json=idFieldPath,proto3" json:"id_field_path,omitempty"`
 }
@@ -85,25 +85,25 @@ var file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_e
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*enums.ResourceType)(nil),
 		Field:         60001,
-		Name:          "cloud.planton.apis.v1.commons.resource.options.resource_type",
-		Tag:           "varint,60001,opt,name=resource_type,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType",
-		Filename:      "cloud/planton/apis/v1/commons/resource/options/resource_options.proto",
+		Name:          "cloud.planton.apis.commons.resource.options.resource_type",
+		Tag:           "varint,60001,opt,name=resource_type,enum=cloud.planton.apis.commons.resource.enums.ResourceType",
+		Filename:      "cloud/planton/apis/commons/resource/options/resource_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         60002,
-		Name:          "cloud.planton.apis.v1.commons.resource.options.is_runnable",
+		Name:          "cloud.planton.apis.commons.resource.options.is_runnable",
 		Tag:           "varint,60002,opt,name=is_runnable",
-		Filename:      "cloud/planton/apis/v1/commons/resource/options/resource_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/options/resource_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*Owner)(nil),
 		Field:         60003,
-		Name:          "cloud.planton.apis.v1.commons.resource.options.owner",
+		Name:          "cloud.planton.apis.commons.resource.options.owner",
 		Tag:           "bytes,60003,opt,name=owner",
-		Filename:      "cloud/planton/apis/v1/commons/resource/options/resource_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/options/resource_options.proto",
 	},
 }
 
@@ -111,7 +111,7 @@ var file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_e
 var (
 	// An identifier for the type of resource.
 	//
-	// optional cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 60001;
+	// optional cloud.planton.apis.commons.resource.enums.ResourceType resource_type = 60001;
 	E_ResourceType = &file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_extTypes[0]
 	// Whether the resource is runnable.
 	// All resources that require runtime platform to run should set this to true.
@@ -121,7 +121,7 @@ var (
 	E_IsRunnable = &file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_extTypes[1]
 	// The owner information for the resource.
 	//
-	// optional cloud.planton.apis.v1.commons.resource.options.Owner owner = 60003;
+	// optional cloud.planton.apis.commons.resource.options.Owner owner = 60003;
 	E_Owner = &file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_extTypes[2]
 )
 
@@ -211,17 +211,17 @@ func file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_
 
 var file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_goTypes = []interface{}{
-	(*Owner)(nil),                       // 0: cloud.planton.apis.v1.commons.resource.options.Owner
-	(enums.ResourceType)(0),             // 1: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(*Owner)(nil),                       // 0: cloud.planton.apis.commons.resource.options.Owner
+	(enums.ResourceType)(0),             // 1: cloud.planton.apis.commons.resource.enums.ResourceType
 	(*descriptorpb.MessageOptions)(nil), // 2: google.protobuf.MessageOptions
 }
 var file_cloud_planton_apis_v1_commons_resource_options_resource_options_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.commons.resource.options.Owner.type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	2, // 1: cloud.planton.apis.v1.commons.resource.options.resource_type:extendee -> google.protobuf.MessageOptions
-	2, // 2: cloud.planton.apis.v1.commons.resource.options.is_runnable:extendee -> google.protobuf.MessageOptions
-	2, // 3: cloud.planton.apis.v1.commons.resource.options.owner:extendee -> google.protobuf.MessageOptions
-	1, // 4: cloud.planton.apis.v1.commons.resource.options.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	0, // 5: cloud.planton.apis.v1.commons.resource.options.owner:type_name -> cloud.planton.apis.v1.commons.resource.options.Owner
+	1, // 0: cloud.planton.apis.commons.resource.options.Owner.type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	2, // 1: cloud.planton.apis.commons.resource.options.resource_type:extendee -> google.protobuf.MessageOptions
+	2, // 2: cloud.planton.apis.commons.resource.options.is_runnable:extendee -> google.protobuf.MessageOptions
+	2, // 3: cloud.planton.apis.commons.resource.options.owner:extendee -> google.protobuf.MessageOptions
+	1, // 4: cloud.planton.apis.commons.resource.options.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	0, // 5: cloud.planton.apis.commons.resource.options.owner:type_name -> cloud.planton.apis.commons.resource.options.Owner
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	4, // [4:6] is the sub-list for extension type_name

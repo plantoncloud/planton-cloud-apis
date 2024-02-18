@@ -7,8 +7,8 @@
 package service
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/permission/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -107,14 +107,14 @@ var file_cloud_planton_apis_v1_iam_authz_permission_service_query_proto_rawDesc 
 }
 
 var file_cloud_planton_apis_v1_iam_authz_permission_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),           // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),           // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.IamPermissionId)(nil),   // 1: cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionId
 	(*model1.IamPermissionCode)(nil), // 2: cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionCode
 	(*model1.IamPermissionList)(nil), // 3: cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionList
 	(*model1.IamPermission)(nil),     // 4: cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
 }
 var file_cloud_planton_apis_v1_iam_authz_permission_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionQueryController.getById:input_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionId
 	2, // 2: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionQueryController.getByPermissionCode:input_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionCode
 	3, // 3: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionQueryController.list:output_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermissionList

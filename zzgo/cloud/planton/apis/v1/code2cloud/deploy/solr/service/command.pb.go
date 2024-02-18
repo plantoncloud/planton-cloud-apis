@@ -8,11 +8,11 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/solr/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/method/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/method/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -289,28 +289,28 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_solr_service_command_proto_rawD
 
 var file_cloud_planton_apis_v1_code2cloud_deploy_solr_service_command_proto_goTypes = []interface{}{
 	(*model.SolrCloud)(nil),                       // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
-	(*model1.ApiResourceDeleteCommandInput)(nil),  // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	(*model2.CreateStackJobCommandInput)(nil),     // 2: cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil),  // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model2.CreateStackJobCommandInput)(nil),     // 2: cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
 	(*model.SolrCloudId)(nil),                     // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudId
-	(*model1.ApiResourcePauseCommandInput)(nil),   // 4: cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput
-	(*model1.ApiResourceUnPauseCommandInput)(nil), // 5: cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput
-	(*model1.ApiResourceRefreshCommandInput)(nil), // 6: cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	(*model1.ApiResourcePauseCommandInput)(nil),   // 4: cloud.planton.apis.commons.resource.model.ApiResourcePauseCommandInput
+	(*model1.ApiResourceUnPauseCommandInput)(nil), // 5: cloud.planton.apis.commons.resource.model.ApiResourceUnPauseCommandInput
+	(*model1.ApiResourceRefreshCommandInput)(nil), // 6: cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_solr_service_command_proto_depIdxs = []int32{
 	0,  // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewCreate:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 1: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 2: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewUpdate:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
-	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewDelete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewDelete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0,  // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewRestore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 7: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
-	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.createStackJob:input_type -> cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
+	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.createStackJob:input_type -> cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
 	3,  // 9: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.restart:input_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudId
-	4,  // 10: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.pause:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput
-	5,  // 11: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.unpause:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput
-	6,  // 12: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewRefresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	6,  // 13: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.refresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	4,  // 10: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.pause:input_type -> cloud.planton.apis.commons.resource.model.ApiResourcePauseCommandInput
+	5,  // 11: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.unpause:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceUnPauseCommandInput
+	6,  // 12: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
+	6,  // 13: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.refresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 	0,  // 14: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewCreate:output_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 15: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.create:output_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	0,  // 16: cloud.planton.apis.v1.code2cloud.deploy.solr.service.SolrCloudCommandController.previewUpdate:output_type -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud

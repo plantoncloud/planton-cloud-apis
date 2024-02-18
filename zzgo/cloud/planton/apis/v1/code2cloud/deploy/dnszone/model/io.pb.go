@@ -7,7 +7,7 @@
 package model
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/record/enums"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/network/dns/record/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -361,7 +361,7 @@ type DeleteDnsRecordCommandInput struct {
 	// DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
 	// The server uses this information to find the DNS record of the correct type within the
 	// specified DNS zone. This is a required field.
-	RecordType enums.DnsRecordType `protobuf:"varint,2,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
+	RecordType enums.DnsRecordType `protobuf:"varint,2,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
 	// This field contains the name of the DNS record that is to be either soft deleted or restored.
 	// The DNS record name is a significant identifier used by the server to find the specific record
 	// within the specified DNS zone and of the provided type to either soft delete or restore.
@@ -559,14 +559,14 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_model_io_proto_goTypes 
 	(*DeleteDnsRecordCommandInput)(nil),      // 6: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DeleteDnsRecordCommandInput
 	(*DnsZone)(nil),                          // 7: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone
 	(*DnsRecord)(nil),                        // 8: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord
-	(enums.DnsRecordType)(0),                 // 9: cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	(enums.DnsRecordType)(0),                 // 9: cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_model_io_proto_depIdxs = []int32{
 	7, // 0: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZones.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone
 	7, // 1: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneList.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone
 	8, // 2: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecords.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord
 	8, // 3: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.AddOrUpdateDnsRecordCommandInput.dns_record:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord
-	9, // 4: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DeleteDnsRecordCommandInput.record_type:type_name -> cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	9, // 4: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DeleteDnsRecordCommandInput.record_type:type_name -> cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

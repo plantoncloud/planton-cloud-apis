@@ -7,9 +7,9 @@
 package model
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/timestamppb"
@@ -620,10 +620,10 @@ func file_cloud_planton_apis_v1_integration_kubernetes_cost_model_state_proto_ra
 var file_cloud_planton_apis_v1_integration_kubernetes_cost_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_integration_kubernetes_cost_model_state_proto_goTypes = []interface{}{
 	(*CostAllocation)(nil),  // 0: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation
-	(*model.AuditInfo)(nil), // 1: cloud.planton.apis.v1.commons.audit.model.AuditInfo
+	(*model.AuditInfo)(nil), // 1: cloud.planton.apis.commons.audit.model.AuditInfo
 }
 var file_cloud_planton_apis_v1_integration_kubernetes_cost_model_state_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
+	1, // 0: cloud.planton.apis.v1.integration.kubernetes.cost.model.CostAllocation.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

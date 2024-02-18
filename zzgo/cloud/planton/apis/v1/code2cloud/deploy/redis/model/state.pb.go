@@ -10,13 +10,13 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	workloadingress "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/kubernetes/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -825,25 +825,25 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_redis_model_state_proto_goTypes
 	(*RedisClusterSpecKubernetesSpecRedisContainerSpec)(nil), // 4: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecRedisContainerSpec
 	(*RedisClusterSpecKubernetesSpecIngressSpec)(nil),        // 5: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecIngressSpec
 	(*RedisClusterStatusKubernetesStatus)(nil),               // 6: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatusKubernetesStatus
-	(*model.Metadata)(nil),                                   // 7: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                                   // 7: cloud.planton.apis.commons.resource.model.Metadata
 	(*model1.ResourceEnvironmentInfo)(nil),                   // 8: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(*model.RunnableResourceLifecycle)(nil),                  // 9: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*model2.ResourceAudit)(nil),                             // 10: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(*model3.ContainerResources)(nil),                        // 11: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	(*model.RunnableResourceLifecycle)(nil),                  // 9: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*model2.ResourceAudit)(nil),                             // 10: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(*model3.ContainerResources)(nil),                        // 11: cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	(workloadingress.KubernetesWorkloadIngressType)(0),       // 12: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_redis_model_state_proto_depIdxs = []int32{
-	7,  // 0: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	7,  // 0: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisCluster.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus
 	8,  // 3: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
 	3,  // 4: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpec.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpec
-	9,  // 5: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	10, // 6: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	9,  // 5: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	10, // 6: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	6,  // 7: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatus.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterStatusKubernetesStatus
 	4,  // 8: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpec.redis_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecRedisContainerSpec
 	5,  // 9: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecIngressSpec
-	11, // 10: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecRedisContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	11, // 10: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecRedisContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	12, // 11: cloud.planton.apis.v1.code2cloud.deploy.redis.model.RedisClusterSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type

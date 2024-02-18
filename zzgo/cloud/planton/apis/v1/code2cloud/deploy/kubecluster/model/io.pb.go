@@ -7,8 +7,8 @@
 package model
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1964,14 +1964,14 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_kubecluster_model_io_proto_goTy
 	(*ByKubeClusterByNamespaceByPodInput)(nil),            // 26: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.ByKubeClusterByNamespaceByPodInput
 	(*ByKubeClusterByNamespaceInput)(nil),                 // 27: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.ByKubeClusterByNamespaceInput
 	(*KubeCluster)(nil),                                   // 28: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster
-	(*model.PageInfo)(nil),                                // 29: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),                                // 29: cloud.planton.apis.commons.rpc.PageInfo
 	(*KubeClusterNodePoolGcp)(nil),                        // 30: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusterNodePoolGcp
 	(*resource.Pod)(nil),                                  // 31: cloud.planton.apis.v1.integration.kubernetes.resource.Pod
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_kubecluster_model_io_proto_depIdxs = []int32{
 	28, // 0: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusters.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster
 	28, // 1: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusterList.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeCluster
-	29, // 2: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.ListByKubeClusterIdInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	29, // 2: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.ListByKubeClusterIdInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	5,  // 3: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpRegions.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpRegion
 	8,  // 4: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpZones.entries:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.GcpZone
 	30, // 5: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusterGcpNodePoolCommandInput.gcp_node_pool:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.model.KubeClusterNodePoolGcp

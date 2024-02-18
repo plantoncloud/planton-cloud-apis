@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/network/ip/enums/enums.proto
+// source: cloud/planton/apis/commons/network/ip/enums/enums.proto
 
 package enums
 
@@ -129,7 +129,7 @@ func file_cloud_planton_apis_v1_commons_network_ip_enums_enums_proto_rawDescGZIP
 
 var file_cloud_planton_apis_v1_commons_network_ip_enums_enums_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_commons_network_ip_enums_enums_proto_goTypes = []interface{}{
-	(IpAddressVisibility)(0), // 0: cloud.planton.apis.v1.commons.network.ip.enums.IpAddressVisibility
+	(IpAddressVisibility)(0), // 0: cloud.planton.apis.commons.network.ip.enums.IpAddressVisibility
 }
 var file_cloud_planton_apis_v1_commons_network_ip_enums_enums_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

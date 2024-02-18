@@ -8,7 +8,7 @@ package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/version/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/version/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,167 +20,167 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.v1.iam.resource.version.service.ResourceVersionQueryController/listByFilters"
-	ResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.v1.iam.resource.version.service.ResourceVersionQueryController/getByIdWithContextSize"
-	ResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.v1.iam.resource.version.service.ResourceVersionQueryController/getCount"
+	ApiResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.v1.iam.resource.version.service.ApiResourceVersionQueryController/listByFilters"
+	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.v1.iam.resource.version.service.ApiResourceVersionQueryController/getByIdWithContextSize"
+	ApiResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.v1.iam.resource.version.service.ApiResourceVersionQueryController/getCount"
 )
 
-// ResourceVersionQueryControllerClient is the client API for ResourceVersionQueryController service.
+// ApiResourceVersionQueryControllerClient is the client API for ApiResourceVersionQueryController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ResourceVersionQueryControllerClient interface {
-	// list of resource-versions
-	ListByFilters(ctx context.Context, in *model.ListResourceVersionsInput, opts ...grpc.CallOption) (*model.ResourceVersionList, error)
-	// look up resource-version by version-id
-	GetByIdWithContextSize(ctx context.Context, in *model.ResourceVersionWithContextSizeInput, opts ...grpc.CallOption) (*model.ResourceVersion, error)
-	// count of resource-versions
-	GetCount(ctx context.Context, in *model.GetResourceVersionCountInput, opts ...grpc.CallOption) (*model.ResourceVersionCount, error)
+type ApiResourceVersionQueryControllerClient interface {
+	// list of api-resource-versions
+	ListByFilters(ctx context.Context, in *model.ListApiResourceVersionsInput, opts ...grpc.CallOption) (*model.ApiResourceVersionList, error)
+	// look up api-resource-version by version-id
+	GetByIdWithContextSize(ctx context.Context, in *model.ApiResourceVersionWithContextSizeInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
+	// count of api-resource-versions
+	GetCount(ctx context.Context, in *model.GetApiResourceVersionCountInput, opts ...grpc.CallOption) (*model.ApiResourceVersionCount, error)
 }
 
 type resourceVersionQueryControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewResourceVersionQueryControllerClient(cc grpc.ClientConnInterface) ResourceVersionQueryControllerClient {
+func NewApiResourceVersionQueryControllerClient(cc grpc.ClientConnInterface) ApiResourceVersionQueryControllerClient {
 	return &resourceVersionQueryControllerClient{cc}
 }
 
-func (c *resourceVersionQueryControllerClient) ListByFilters(ctx context.Context, in *model.ListResourceVersionsInput, opts ...grpc.CallOption) (*model.ResourceVersionList, error) {
-	out := new(model.ResourceVersionList)
-	err := c.cc.Invoke(ctx, ResourceVersionQueryController_ListByFilters_FullMethodName, in, out, opts...)
+func (c *resourceVersionQueryControllerClient) ListByFilters(ctx context.Context, in *model.ListApiResourceVersionsInput, opts ...grpc.CallOption) (*model.ApiResourceVersionList, error) {
+	out := new(model.ApiResourceVersionList)
+	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_ListByFilters_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *resourceVersionQueryControllerClient) GetByIdWithContextSize(ctx context.Context, in *model.ResourceVersionWithContextSizeInput, opts ...grpc.CallOption) (*model.ResourceVersion, error) {
-	out := new(model.ResourceVersion)
-	err := c.cc.Invoke(ctx, ResourceVersionQueryController_GetByIdWithContextSize_FullMethodName, in, out, opts...)
+func (c *resourceVersionQueryControllerClient) GetByIdWithContextSize(ctx context.Context, in *model.ApiResourceVersionWithContextSizeInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
+	out := new(model.ApiResourceVersion)
+	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *resourceVersionQueryControllerClient) GetCount(ctx context.Context, in *model.GetResourceVersionCountInput, opts ...grpc.CallOption) (*model.ResourceVersionCount, error) {
-	out := new(model.ResourceVersionCount)
-	err := c.cc.Invoke(ctx, ResourceVersionQueryController_GetCount_FullMethodName, in, out, opts...)
+func (c *resourceVersionQueryControllerClient) GetCount(ctx context.Context, in *model.GetApiResourceVersionCountInput, opts ...grpc.CallOption) (*model.ApiResourceVersionCount, error) {
+	out := new(model.ApiResourceVersionCount)
+	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_GetCount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ResourceVersionQueryControllerServer is the server API for ResourceVersionQueryController service.
-// All implementations should embed UnimplementedResourceVersionQueryControllerServer
+// ApiResourceVersionQueryControllerServer is the server API for ApiResourceVersionQueryController service.
+// All implementations should embed UnimplementedApiResourceVersionQueryControllerServer
 // for forward compatibility
-type ResourceVersionQueryControllerServer interface {
-	// list of resource-versions
-	ListByFilters(context.Context, *model.ListResourceVersionsInput) (*model.ResourceVersionList, error)
-	// look up resource-version by version-id
-	GetByIdWithContextSize(context.Context, *model.ResourceVersionWithContextSizeInput) (*model.ResourceVersion, error)
-	// count of resource-versions
-	GetCount(context.Context, *model.GetResourceVersionCountInput) (*model.ResourceVersionCount, error)
+type ApiResourceVersionQueryControllerServer interface {
+	// list of api-resource-versions
+	ListByFilters(context.Context, *model.ListApiResourceVersionsInput) (*model.ApiResourceVersionList, error)
+	// look up api-resource-version by version-id
+	GetByIdWithContextSize(context.Context, *model.ApiResourceVersionWithContextSizeInput) (*model.ApiResourceVersion, error)
+	// count of api-resource-versions
+	GetCount(context.Context, *model.GetApiResourceVersionCountInput) (*model.ApiResourceVersionCount, error)
 }
 
-// UnimplementedResourceVersionQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedResourceVersionQueryControllerServer struct {
+// UnimplementedApiResourceVersionQueryControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedApiResourceVersionQueryControllerServer struct {
 }
 
-func (UnimplementedResourceVersionQueryControllerServer) ListByFilters(context.Context, *model.ListResourceVersionsInput) (*model.ResourceVersionList, error) {
+func (UnimplementedApiResourceVersionQueryControllerServer) ListByFilters(context.Context, *model.ListApiResourceVersionsInput) (*model.ApiResourceVersionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByFilters not implemented")
 }
-func (UnimplementedResourceVersionQueryControllerServer) GetByIdWithContextSize(context.Context, *model.ResourceVersionWithContextSizeInput) (*model.ResourceVersion, error) {
+func (UnimplementedApiResourceVersionQueryControllerServer) GetByIdWithContextSize(context.Context, *model.ApiResourceVersionWithContextSizeInput) (*model.ApiResourceVersion, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByIdWithContextSize not implemented")
 }
-func (UnimplementedResourceVersionQueryControllerServer) GetCount(context.Context, *model.GetResourceVersionCountInput) (*model.ResourceVersionCount, error) {
+func (UnimplementedApiResourceVersionQueryControllerServer) GetCount(context.Context, *model.GetApiResourceVersionCountInput) (*model.ApiResourceVersionCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCount not implemented")
 }
 
-// UnsafeResourceVersionQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ResourceVersionQueryControllerServer will
+// UnsafeApiResourceVersionQueryControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ApiResourceVersionQueryControllerServer will
 // result in compilation errors.
-type UnsafeResourceVersionQueryControllerServer interface {
-	mustEmbedUnimplementedResourceVersionQueryControllerServer()
+type UnsafeApiResourceVersionQueryControllerServer interface {
+	mustEmbedUnimplementedApiResourceVersionQueryControllerServer()
 }
 
-func RegisterResourceVersionQueryControllerServer(s grpc.ServiceRegistrar, srv ResourceVersionQueryControllerServer) {
-	s.RegisterService(&ResourceVersionQueryController_ServiceDesc, srv)
+func RegisterApiResourceVersionQueryControllerServer(s grpc.ServiceRegistrar, srv ApiResourceVersionQueryControllerServer) {
+	s.RegisterService(&ApiResourceVersionQueryController_ServiceDesc, srv)
 }
 
-func _ResourceVersionQueryController_ListByFilters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ListResourceVersionsInput)
+func _ApiResourceVersionQueryController_ListByFilters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ListApiResourceVersionsInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceVersionQueryControllerServer).ListByFilters(ctx, in)
+		return srv.(ApiResourceVersionQueryControllerServer).ListByFilters(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceVersionQueryController_ListByFilters_FullMethodName,
+		FullMethod: ApiResourceVersionQueryController_ListByFilters_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceVersionQueryControllerServer).ListByFilters(ctx, req.(*model.ListResourceVersionsInput))
+		return srv.(ApiResourceVersionQueryControllerServer).ListByFilters(ctx, req.(*model.ListApiResourceVersionsInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ResourceVersionQueryController_GetByIdWithContextSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ResourceVersionWithContextSizeInput)
+func _ApiResourceVersionQueryController_GetByIdWithContextSize_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ApiResourceVersionWithContextSizeInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceVersionQueryControllerServer).GetByIdWithContextSize(ctx, in)
+		return srv.(ApiResourceVersionQueryControllerServer).GetByIdWithContextSize(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceVersionQueryController_GetByIdWithContextSize_FullMethodName,
+		FullMethod: ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceVersionQueryControllerServer).GetByIdWithContextSize(ctx, req.(*model.ResourceVersionWithContextSizeInput))
+		return srv.(ApiResourceVersionQueryControllerServer).GetByIdWithContextSize(ctx, req.(*model.ApiResourceVersionWithContextSizeInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ResourceVersionQueryController_GetCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetResourceVersionCountInput)
+func _ApiResourceVersionQueryController_GetCount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetApiResourceVersionCountInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ResourceVersionQueryControllerServer).GetCount(ctx, in)
+		return srv.(ApiResourceVersionQueryControllerServer).GetCount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ResourceVersionQueryController_GetCount_FullMethodName,
+		FullMethod: ApiResourceVersionQueryController_GetCount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ResourceVersionQueryControllerServer).GetCount(ctx, req.(*model.GetResourceVersionCountInput))
+		return srv.(ApiResourceVersionQueryControllerServer).GetCount(ctx, req.(*model.GetApiResourceVersionCountInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ResourceVersionQueryController_ServiceDesc is the grpc.ServiceDesc for ResourceVersionQueryController service.
+// ApiResourceVersionQueryController_ServiceDesc is the grpc.ServiceDesc for ApiResourceVersionQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.iam.resource.version.service.ResourceVersionQueryController",
-	HandlerType: (*ResourceVersionQueryControllerServer)(nil),
+var ApiResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.v1.iam.resource.version.service.ApiResourceVersionQueryController",
+	HandlerType: (*ApiResourceVersionQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "listByFilters",
-			Handler:    _ResourceVersionQueryController_ListByFilters_Handler,
+			Handler:    _ApiResourceVersionQueryController_ListByFilters_Handler,
 		},
 		{
 			MethodName: "getByIdWithContextSize",
-			Handler:    _ResourceVersionQueryController_GetByIdWithContextSize_Handler,
+			Handler:    _ApiResourceVersionQueryController_GetByIdWithContextSize_Handler,
 		},
 		{
 			MethodName: "getCount",
-			Handler:    _ResourceVersionQueryController_GetCount_Handler,
+			Handler:    _ApiResourceVersionQueryController_GetCount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

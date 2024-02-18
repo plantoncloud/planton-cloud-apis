@@ -7,7 +7,7 @@
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/role/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -108,7 +108,7 @@ var file_cloud_planton_apis_v1_iam_authz_role_service_query_proto_rawDesc = []by
 }
 
 var file_cloud_planton_apis_v1_iam_authz_role_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.IamRoleId)(nil),                         // 1: cloud.planton.apis.v1.iam.authz.role.model.IamRoleId
 	(*model1.ResourceTypeAndPrincipalTypeInput)(nil), // 2: cloud.planton.apis.v1.iam.authz.role.model.ResourceTypeAndPrincipalTypeInput
 	(*model1.IamResourceTypeInput)(nil),              // 3: cloud.planton.apis.v1.iam.authz.role.model.IamResourceTypeInput
@@ -118,7 +118,7 @@ var file_cloud_planton_apis_v1_iam_authz_role_service_query_proto_goTypes = []in
 	(*model1.PrincipalTypes)(nil),                    // 7: cloud.planton.apis.v1.iam.authz.role.model.PrincipalTypes
 }
 var file_cloud_planton_apis_v1_iam_authz_role_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.iam.authz.role.service.IamRoleQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.iam.authz.role.service.IamRoleQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.iam.authz.role.service.IamRoleQueryController.getById:input_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRoleId
 	2, // 2: cloud.planton.apis.v1.iam.authz.role.service.IamRoleQueryController.findByResourceTypeAndPrincipalType:input_type -> cloud.planton.apis.v1.iam.authz.role.model.ResourceTypeAndPrincipalTypeInput
 	3, // 3: cloud.planton.apis.v1.iam.authz.role.service.IamRoleQueryController.getIamPrincipalTypesByResourceType:input_type -> cloud.planton.apis.v1.iam.authz.role.model.IamResourceTypeInput

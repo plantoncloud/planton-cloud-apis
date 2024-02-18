@@ -8,13 +8,13 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/method/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/method/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -338,9 +338,9 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_command_
 
 var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_command_proto_goTypes = []interface{}{
 	(*model.CustomEndpoint)(nil),                                 // 0: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
-	(*model1.ApiResourceDeleteCommandInput)(nil),                 // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	(*model2.CreateStackJobCommandInput)(nil),                    // 2: cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
-	(*model1.ApiResourceRefreshCommandInput)(nil),                // 3: cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil),                 // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model2.CreateStackJobCommandInput)(nil),                    // 2: cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
+	(*model1.ApiResourceRefreshCommandInput)(nil),                // 3: cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 	(*model.AddOrUpdateCustomEndpointRouteCommandInput)(nil),     // 4: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.AddOrUpdateCustomEndpointRouteCommandInput
 	(*model.DeleteOrRestoreCustomEndpointRouteCommandInput)(nil), // 5: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.DeleteOrRestoreCustomEndpointRouteCommandInput
 }
@@ -349,13 +349,13 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_command_
 	0,  // 1: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
 	0,  // 2: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewUpdate:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
 	0,  // 3: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
-	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewDelete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewDelete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0,  // 6: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewRestore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
 	0,  // 7: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint
-	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.createStackJob:input_type -> cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
-	3,  // 9: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewRefresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	3,  // 10: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.refresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.createStackJob:input_type -> cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
+	3,  // 9: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
+	3,  // 10: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointCommandController.refresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 	4,  // 11: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointRouteCommandController.add:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.AddOrUpdateCustomEndpointRouteCommandInput
 	4,  // 12: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointRouteCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.AddOrUpdateCustomEndpointRouteCommandInput
 	5,  // 13: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointRouteCommandController.delete:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.DeleteOrRestoreCustomEndpointRouteCommandInput

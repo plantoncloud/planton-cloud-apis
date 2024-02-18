@@ -7,10 +7,10 @@
 package model
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -127,7 +127,7 @@ type IamRoleSpec struct {
 	// example values are user/company etc.
 	PrincipalType string `protobuf:"bytes,2,opt,name=principal_type,json=principalType,proto3" json:"principal_type,omitempty"`
 	// type of the resource the role belongs to
-	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// description of iam role
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// flag to identify if the role can be used to grant public access
@@ -376,18 +376,18 @@ var file_cloud_planton_apis_v1_iam_authz_role_model_state_proto_goTypes = []inte
 	(*IamRole)(nil),                 // 0: cloud.planton.apis.v1.iam.authz.role.model.IamRole
 	(*IamRoleSpec)(nil),             // 1: cloud.planton.apis.v1.iam.authz.role.model.IamRoleSpec
 	(*IamRoleStatus)(nil),           // 2: cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus
-	(*model.Metadata)(nil),          // 3: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(enums.ResourceType)(0),         // 4: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.Metadata)(nil),          // 3: cloud.planton.apis.commons.resource.model.Metadata
+	(enums.ResourceType)(0),         // 4: cloud.planton.apis.commons.resource.enums.ResourceType
+	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_iam_authz_role_model_state_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.iam.authz.role.model.IamRole.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	3, // 0: cloud.planton.apis.v1.iam.authz.role.model.IamRole.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.iam.authz.role.model.IamRole.spec:type_name -> cloud.planton.apis.v1.iam.authz.role.model.IamRoleSpec
 	2, // 2: cloud.planton.apis.v1.iam.authz.role.model.IamRole.status:type_name -> cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus
-	4, // 3: cloud.planton.apis.v1.iam.authz.role.model.IamRoleSpec.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	5, // 4: cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	6, // 5: cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	4, // 3: cloud.planton.apis.v1.iam.authz.role.model.IamRoleSpec.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	5, // 4: cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	6, // 5: cloud.planton.apis.v1.iam.authz.role.model.IamRoleStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

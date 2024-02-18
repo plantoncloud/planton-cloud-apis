@@ -2,15 +2,15 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/version/model/state.proto
+// source: cloud/planton/apis/commons/resource/version/model/state.proto
 
 package model
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	executionstatus "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/executionstatus"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	executionstatus "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/enums/executionstatus"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,11 +24,11 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// The ResourceVersion message represents a record of a resource state modification
+// The ApiResourceVersion message represents a record of a resource state modification
 // in a system's resource. It stores the original and new states of the resource,
 // the differences between them in a unified diff format, as well as audit and
 // identification information.
-type ResourceVersion struct {
+type ApiResourceVersion struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -36,19 +36,19 @@ type ResourceVersion struct {
 	// Resource audit information, which typically includes data about
 	// when and by whom the version was created.
 	Audit *model.AuditInfo `protobuf:"bytes,99,opt,name=audit,proto3" json:"audit,omitempty"`
-	// A unique identifier (UUID) for the resource-version.
+	// A unique identifier (UUID) for the api-resource-version.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// The ID of the company to which the resource-version belongs.
+	// The ID of the company to which the api-resource-version belongs.
 	CompanyId string `protobuf:"bytes,2,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
-	// The ID of the product to which the resource-version belongs.
+	// The ID of the product to which the api-resource-version belongs.
 	// This attribute is always empty for company level state.
 	ProductId string `protobuf:"bytes,3,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
-	// The ID of the product environment to which the resource-version belongs.
+	// The ID of the product environment to which the api-resource-version belongs.
 	// This attribute is always empty for company level state.
 	EnvironmentId string `protobuf:"bytes,4,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
 	// The type of the resource for which the version was created.
 	// Resource types are defined in the ResourceType enum.
-	ResourceType enums.ResourceType `protobuf:"varint,5,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,5,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// The ID of the resource for which the version was created.
 	ResourceId string `protobuf:"bytes,6,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	// The original state of the resource, represented as a YAML string.
@@ -65,8 +65,8 @@ type ResourceVersion struct {
 	StackJobInfo *VersionStackJobInfo `protobuf:"bytes,12,opt,name=stack_job_info,json=stackJobInfo,proto3" json:"stack_job_info,omitempty"`
 }
 
-func (x *ResourceVersion) Reset() {
-	*x = ResourceVersion{}
+func (x *ApiResourceVersion) Reset() {
+	*x = ApiResourceVersion{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -74,13 +74,13 @@ func (x *ResourceVersion) Reset() {
 	}
 }
 
-func (x *ResourceVersion) String() string {
+func (x *ApiResourceVersion) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ResourceVersion) ProtoMessage() {}
+func (*ApiResourceVersion) ProtoMessage() {}
 
-func (x *ResourceVersion) ProtoReflect() protoreflect.Message {
+func (x *ApiResourceVersion) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -92,96 +92,96 @@ func (x *ResourceVersion) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ResourceVersion.ProtoReflect.Descriptor instead.
-func (*ResourceVersion) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApiResourceVersion.ProtoReflect.Descriptor instead.
+func (*ApiResourceVersion) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ResourceVersion) GetAudit() *model.AuditInfo {
+func (x *ApiResourceVersion) GetAudit() *model.AuditInfo {
 	if x != nil {
 		return x.Audit
 	}
 	return nil
 }
 
-func (x *ResourceVersion) GetId() string {
+func (x *ApiResourceVersion) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetCompanyId() string {
+func (x *ApiResourceVersion) GetCompanyId() string {
 	if x != nil {
 		return x.CompanyId
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetProductId() string {
+func (x *ApiResourceVersion) GetProductId() string {
 	if x != nil {
 		return x.ProductId
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetEnvironmentId() string {
+func (x *ApiResourceVersion) GetEnvironmentId() string {
 	if x != nil {
 		return x.EnvironmentId
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetResourceType() enums.ResourceType {
+func (x *ApiResourceVersion) GetResourceType() enums.ResourceType {
 	if x != nil {
 		return x.ResourceType
 	}
 	return enums.ResourceType(0)
 }
 
-func (x *ResourceVersion) GetResourceId() string {
+func (x *ApiResourceVersion) GetResourceId() string {
 	if x != nil {
 		return x.ResourceId
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetOriginalStateYaml() string {
+func (x *ApiResourceVersion) GetOriginalStateYaml() string {
 	if x != nil {
 		return x.OriginalStateYaml
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetNewStateYaml() string {
+func (x *ApiResourceVersion) GetNewStateYaml() string {
 	if x != nil {
 		return x.NewStateYaml
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetDiffUnifiedFormat() string {
+func (x *ApiResourceVersion) GetDiffUnifiedFormat() string {
 	if x != nil {
 		return x.DiffUnifiedFormat
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetOperationType() string {
+func (x *ApiResourceVersion) GetOperationType() string {
 	if x != nil {
 		return x.OperationType
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetMessage() string {
+func (x *ApiResourceVersion) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *ResourceVersion) GetStackJobInfo() *VersionStackJobInfo {
+func (x *ApiResourceVersion) GetStackJobInfo() *VersionStackJobInfo {
 	if x != nil {
 		return x.StackJobInfo
 	}
@@ -197,7 +197,7 @@ type VersionStackJobInfo struct {
 	// unique identifier for the stack job.
 	StackJobId string `protobuf:"bytes,1,opt,name=stack_job_id,json=stackJobId,proto3" json:"stack_job_id,omitempty"`
 	// represents the current status of the stack job.
-	Status executionstatus.StackJobExecutionStatus `protobuf:"varint,2,opt,name=status,proto3,enum=cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus" json:"status,omitempty"`
+	Status executionstatus.StackJobExecutionStatus `protobuf:"varint,2,opt,name=status,proto3,enum=cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus" json:"status,omitempty"`
 }
 
 func (x *VersionStackJobInfo) Reset() {
@@ -370,17 +370,17 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_rawDe
 
 var file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_goTypes = []interface{}{
-	(*ResourceVersion)(nil),                      // 0: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion
-	(*VersionStackJobInfo)(nil),                  // 1: cloud.planton.apis.v1.commons.resource.version.model.VersionStackJobInfo
-	(*model.AuditInfo)(nil),                      // 2: cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	(enums.ResourceType)(0),                      // 3: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(executionstatus.StackJobExecutionStatus)(0), // 4: cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	(*ApiResourceVersion)(nil),                      // 0: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion
+	(*VersionStackJobInfo)(nil),                  // 1: cloud.planton.apis.commons.resource.version.model.VersionStackJobInfo
+	(*model.AuditInfo)(nil),                      // 2: cloud.planton.apis.commons.audit.model.AuditInfo
+	(enums.ResourceType)(0),                      // 3: cloud.planton.apis.commons.resource.enums.ResourceType
+	(executionstatus.StackJobExecutionStatus)(0), // 4: cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
 }
 var file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_depIdxs = []int32{
-	2, // 0: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	3, // 1: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	1, // 2: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion.stack_job_info:type_name -> cloud.planton.apis.v1.commons.resource.version.model.VersionStackJobInfo
-	4, // 3: cloud.planton.apis.v1.commons.resource.version.model.VersionStackJobInfo.status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	2, // 0: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	3, // 1: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	1, // 2: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion.stack_job_info:type_name -> cloud.planton.apis.commons.resource.version.model.VersionStackJobInfo
+	4, // 3: cloud.planton.apis.commons.resource.version.model.VersionStackJobInfo.status:type_name -> cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -395,7 +395,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_init(
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourceVersion); i {
+			switch v := v.(*ApiResourceVersion); i {
 			case 0:
 				return &v.state
 			case 1:

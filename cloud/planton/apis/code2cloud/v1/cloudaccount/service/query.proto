@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.cloudaccount.service;
+
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/v1/iam/authz/extensions/extensions.proto";
+import "cloud/planton/apis/v1/resourcemanager/company/model/io.proto";
+
+// cloud-account query controller
+service CloudAccountQueryController {
+  //look up a cloud-account by id
+  rpc getById(cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount) {
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).resource_kind = cloud_account;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).permission = cloud_account_get;
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.v1.iam.authz.extensions.authorization_config).error_msg = "unauthorized to view cloud-account";
+  }
+
+  //todo: add authorization
+  //find cloud-accounts by company id.
+  //the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
+  rpc findByCompanyId(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccounts);
+
+  //todo: add authorization
+  //list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountList);
+
+  //todo: add authorization
+  // find cloud-accounts by company id to create artifact store.
+  // this will be used to populate drop down of cloud-accounts in create artifact store form.
+  // the response should only include cloud-accounts that a company is authorised to create artifact stores.
+  // the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
+  // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
+  rpc findArtifactStoreCreateCloudAccounts(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccounts);
+
+  //todo: add authorization
+  // find cloud-accounts by company id to create kube-cluster.
+  // this will be used to populate drop down of cloud-accounts in create kube-cluster form.
+  // the response should only include cloud-accounts that a company is authorised to create kube-cluster.
+  // the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
+  // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
+  rpc findKubeClusterCreateCloudAccounts(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccounts);
+
+  //todo: add authorization
+  // find cloud-accounts by company id to create dns managed zone.
+  // this will be used to populate drop down of cloud-accounts in create dns managed zone form.
+  // the response should only include cloud-accounts that a company is authorised to create dns managed zone.
+  // the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
+  // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
+  rpc findDnsZoneCreateCloudAccounts(cloud.planton.apis.v1.resourcemanager.company.model.CompanyId) returns (cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccounts);
+}

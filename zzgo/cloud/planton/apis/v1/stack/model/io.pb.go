@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/model/io.proto
+// source: cloud/planton/apis/iac/v1/stack/model/io.proto
 
 package model
 
@@ -234,14 +234,14 @@ func file_cloud_planton_apis_v1_stack_model_io_proto_rawDescGZIP() []byte {
 
 var file_cloud_planton_apis_v1_stack_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_stack_model_io_proto_goTypes = []interface{}{
-	(*Stacks)(nil),    // 0: cloud.planton.apis.v1.stack.model.Stacks
-	(*StackList)(nil), // 1: cloud.planton.apis.v1.stack.model.StackList
-	(*StackId)(nil),   // 2: cloud.planton.apis.v1.stack.model.StackId
-	(*Stack)(nil),     // 3: cloud.planton.apis.v1.stack.model.Stack
+	(*Stacks)(nil),    // 0: cloud.planton.apis.iac.v1.stack.model.Stacks
+	(*StackList)(nil), // 1: cloud.planton.apis.iac.v1.stack.model.StackList
+	(*StackId)(nil),   // 2: cloud.planton.apis.iac.v1.stack.model.StackId
+	(*Stack)(nil),     // 3: cloud.planton.apis.iac.v1.stack.model.Stack
 }
 var file_cloud_planton_apis_v1_stack_model_io_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.stack.model.Stacks.entries:type_name -> cloud.planton.apis.v1.stack.model.Stack
-	3, // 1: cloud.planton.apis.v1.stack.model.StackList.entries:type_name -> cloud.planton.apis.v1.stack.model.Stack
+	3, // 0: cloud.planton.apis.iac.v1.stack.model.Stacks.entries:type_name -> cloud.planton.apis.iac.v1.stack.model.Stack
+	3, // 1: cloud.planton.apis.iac.v1.stack.model.StackList.entries:type_name -> cloud.planton.apis.iac.v1.stack.model.Stack
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

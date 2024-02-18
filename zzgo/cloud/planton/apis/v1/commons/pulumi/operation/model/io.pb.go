@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/pulumi/operation/model/io.proto
+// source: cloud/planton/apis/commons/pulumi/operation/model/io.proto
 
 package model
 
@@ -248,9 +248,9 @@ func file_cloud_planton_apis_v1_commons_pulumi_operation_model_io_proto_rawDescG
 
 var file_cloud_planton_apis_v1_commons_pulumi_operation_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_commons_pulumi_operation_model_io_proto_goTypes = []interface{}{
-	(*GoogleProviderCredential)(nil),     // 0: cloud.planton.apis.v1.commons.pulumi.operation.model.GoogleProviderCredential
-	(*KubernetesProviderCredential)(nil), // 1: cloud.planton.apis.v1.commons.pulumi.operation.model.KubernetesProviderCredential
-	(*AwsProviderCredential)(nil),        // 2: cloud.planton.apis.v1.commons.pulumi.operation.model.AwsProviderCredential
+	(*GoogleProviderCredential)(nil),     // 0: cloud.planton.apis.commons.pulumi.operation.model.GoogleProviderCredential
+	(*KubernetesProviderCredential)(nil), // 1: cloud.planton.apis.commons.pulumi.operation.model.KubernetesProviderCredential
+	(*AwsProviderCredential)(nil),        // 2: cloud.planton.apis.commons.pulumi.operation.model.AwsProviderCredential
 }
 var file_cloud_planton_apis_v1_commons_pulumi_operation_model_io_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

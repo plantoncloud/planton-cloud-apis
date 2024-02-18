@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/testing/protobuf/model.proto
+// source: cloud/planton/apis/commons/testing/protobuf/model.proto
 
 package protobuf
 
@@ -324,15 +324,15 @@ func file_cloud_planton_apis_v1_commons_testing_protobuf_model_proto_rawDescGZIP
 
 var file_cloud_planton_apis_v1_commons_testing_protobuf_model_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cloud_planton_apis_v1_commons_testing_protobuf_model_proto_goTypes = []interface{}{
-	(*TestMessage)(nil), // 0: cloud.planton.apis.v1.commons.testing.protobuf.TestMessage
-	(*LevelOne)(nil),    // 1: cloud.planton.apis.v1.commons.testing.protobuf.LevelOne
-	(*LevelTwo)(nil),    // 2: cloud.planton.apis.v1.commons.testing.protobuf.LevelTwo
-	(*LevelThree)(nil),  // 3: cloud.planton.apis.v1.commons.testing.protobuf.LevelThree
+	(*TestMessage)(nil), // 0: cloud.planton.apis.commons.testing.protobuf.TestMessage
+	(*LevelOne)(nil),    // 1: cloud.planton.apis.commons.testing.protobuf.LevelOne
+	(*LevelTwo)(nil),    // 2: cloud.planton.apis.commons.testing.protobuf.LevelTwo
+	(*LevelThree)(nil),  // 3: cloud.planton.apis.commons.testing.protobuf.LevelThree
 }
 var file_cloud_planton_apis_v1_commons_testing_protobuf_model_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.commons.testing.protobuf.TestMessage.levelOne:type_name -> cloud.planton.apis.v1.commons.testing.protobuf.LevelOne
-	2, // 1: cloud.planton.apis.v1.commons.testing.protobuf.LevelOne.levelTwo:type_name -> cloud.planton.apis.v1.commons.testing.protobuf.LevelTwo
-	3, // 2: cloud.planton.apis.v1.commons.testing.protobuf.LevelTwo.levelThree:type_name -> cloud.planton.apis.v1.commons.testing.protobuf.LevelThree
+	1, // 0: cloud.planton.apis.commons.testing.protobuf.TestMessage.levelOne:type_name -> cloud.planton.apis.commons.testing.protobuf.LevelOne
+	2, // 1: cloud.planton.apis.commons.testing.protobuf.LevelOne.levelTwo:type_name -> cloud.planton.apis.commons.testing.protobuf.LevelTwo
+	3, // 2: cloud.planton.apis.commons.testing.protobuf.LevelTwo.levelThree:type_name -> cloud.planton.apis.commons.testing.protobuf.LevelThree
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

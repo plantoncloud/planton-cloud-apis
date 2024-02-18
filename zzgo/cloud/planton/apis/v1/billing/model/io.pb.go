@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/billing/model/io.proto
+// source: cloud/planton/apis/v1/billing/account/model/io.proto
 
 package model
 
@@ -304,15 +304,15 @@ func file_cloud_planton_apis_v1_billing_model_io_proto_rawDescGZIP() []byte {
 
 var file_cloud_planton_apis_v1_billing_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cloud_planton_apis_v1_billing_model_io_proto_goTypes = []interface{}{
-	(*BillingAccountId)(nil),                  // 0: cloud.planton.apis.v1.billing.model.BillingAccountId
-	(*BillingAccounts)(nil),                   // 1: cloud.planton.apis.v1.billing.model.BillingAccounts
-	(*BillingAccountList)(nil),                // 2: cloud.planton.apis.v1.billing.model.BillingAccountList
-	(*GetCustomerPortalSessionQueryResp)(nil), // 3: cloud.planton.apis.v1.billing.model.GetCustomerPortalSessionQueryResp
-	(*BillingAccount)(nil),                    // 4: cloud.planton.apis.v1.billing.model.BillingAccount
+	(*BillingAccountId)(nil),                  // 0: cloud.planton.apis.v1.billing.account.model.BillingAccountId
+	(*BillingAccounts)(nil),                   // 1: cloud.planton.apis.v1.billing.account.model.BillingAccounts
+	(*BillingAccountList)(nil),                // 2: cloud.planton.apis.v1.billing.account.model.BillingAccountList
+	(*GetCustomerPortalSessionQueryResp)(nil), // 3: cloud.planton.apis.v1.billing.account.model.GetCustomerPortalSessionQueryResp
+	(*BillingAccount)(nil),                    // 4: cloud.planton.apis.v1.billing.account.model.BillingAccount
 }
 var file_cloud_planton_apis_v1_billing_model_io_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.billing.model.BillingAccounts.billing_accounts:type_name -> cloud.planton.apis.v1.billing.model.BillingAccount
-	4, // 1: cloud.planton.apis.v1.billing.model.BillingAccountList.billing_accounts:type_name -> cloud.planton.apis.v1.billing.model.BillingAccount
+	4, // 0: cloud.planton.apis.v1.billing.account.model.BillingAccounts.billing_accounts:type_name -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	4, // 1: cloud.planton.apis.v1.billing.account.model.BillingAccountList.billing_accounts:type_name -> cloud.planton.apis.v1.billing.account.model.BillingAccount
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

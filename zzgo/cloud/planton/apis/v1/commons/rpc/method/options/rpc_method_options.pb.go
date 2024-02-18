@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto
+// source: cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto
 
 package options
 
 import (
-	event "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums/event"
+	event "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums/event"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	descriptorpb "google.golang.org/protobuf/types/descriptorpb"
@@ -26,15 +26,15 @@ var file_cloud_planton_apis_v1_commons_rpc_method_options_rpc_method_options_pro
 		ExtendedType:  (*descriptorpb.MethodOptions)(nil),
 		ExtensionType: (*event.ApiResourceEventType)(nil),
 		Field:         90100,
-		Name:          "cloud.planton.apis.v1.commons.rpc.method.options.event_type",
-		Tag:           "varint,90100,opt,name=event_type,enum=cloud.planton.apis.v1.commons.resource.enums.event.ApiResourceEventType",
-		Filename:      "cloud/planton/apis/v1/commons/rpc/method/options/rpc_method_options.proto",
+		Name:          "cloud.planton.apis.commons.rpc.method.options.event_type",
+		Tag:           "varint,90100,opt,name=event_type,enum=cloud.planton.apis.commons.resource.enums.event.ApiResourceEventType",
+		Filename:      "cloud/planton/apis/commons/rpc/method/options/rpc_method_options.proto",
 	},
 }
 
 // Extension fields to descriptorpb.MethodOptions.
 var (
-	// optional cloud.planton.apis.v1.commons.resource.enums.event.ApiResourceEventType event_type = 90100;
+	// optional cloud.planton.apis.commons.resource.enums.event.ApiResourceEventType event_type = 90100;
 	E_EventType = &file_cloud_planton_apis_v1_commons_rpc_method_options_rpc_method_options_proto_extTypes[0]
 )
 
@@ -95,11 +95,11 @@ var file_cloud_planton_apis_v1_commons_rpc_method_options_rpc_method_options_pro
 
 var file_cloud_planton_apis_v1_commons_rpc_method_options_rpc_method_options_proto_goTypes = []interface{}{
 	(*descriptorpb.MethodOptions)(nil), // 0: google.protobuf.MethodOptions
-	(event.ApiResourceEventType)(0),    // 1: cloud.planton.apis.v1.commons.resource.enums.event.ApiResourceEventType
+	(event.ApiResourceEventType)(0),    // 1: cloud.planton.apis.commons.resource.enums.event.ApiResourceEventType
 }
 var file_cloud_planton_apis_v1_commons_rpc_method_options_rpc_method_options_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.commons.rpc.method.options.event_type:extendee -> google.protobuf.MethodOptions
-	1, // 1: cloud.planton.apis.v1.commons.rpc.method.options.event_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.event.ApiResourceEventType
+	0, // 0: cloud.planton.apis.commons.rpc.method.options.event_type:extendee -> google.protobuf.MethodOptions
+	1, // 1: cloud.planton.apis.commons.rpc.method.options.event_type:type_name -> cloud.planton.apis.commons.resource.enums.event.ApiResourceEventType
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	1, // [1:2] is the sub-list for extension type_name

@@ -8,7 +8,7 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/project/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -218,7 +218,7 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_project_service_com
 
 var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_project_service_command_proto_goTypes = []interface{}{
 	(*model.CodeProject)(nil),                                     // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject
-	(*model1.ApiResourceDeleteCommandInput)(nil),                  // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil),                  // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	(*model2.ProductId)(nil),                                      // 2: cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	(*model.CodeProjectId)(nil),                                   // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectId
 	(*model.AttachMachineAccountByCodeProjectIdCommandInput)(nil), // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.AttachMachineAccountByCodeProjectIdCommandInput
@@ -228,7 +228,7 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_project_service_com
 	0, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.add:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject
 	0, // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject
 	0, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject
-	1, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject
 	2, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.synchronizeByProductId:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	3, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.service.CodeProjectCommandController.synchronizeByCodeProjectId:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectId

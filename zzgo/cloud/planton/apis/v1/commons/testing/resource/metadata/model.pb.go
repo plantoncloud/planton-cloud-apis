@@ -2,15 +2,15 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/testing/resource/metadata/model.proto
+// source: cloud/planton/apis/commons/testing/resource/metadata/model.proto
 
 package metadata
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/testing/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/testing/resource/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -431,15 +431,15 @@ func file_cloud_planton_apis_v1_commons_testing_resource_metadata_model_proto_ra
 
 var file_cloud_planton_apis_v1_commons_testing_resource_metadata_model_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_v1_commons_testing_resource_metadata_model_proto_goTypes = []interface{}{
-	(*ResourceIdExtractionTestWithOutIdPrefix)(nil), // 0: cloud.planton.apis.v1.commons.testing.resource.metadata.ResourceIdExtractionTestWithOutIdPrefix
-	(*ResourceIdExtractionTestWithIdPrefix)(nil),    // 1: cloud.planton.apis.v1.commons.testing.resource.metadata.ResourceIdExtractionTestWithIdPrefix
-	(*RegexNameFieldProtoValidateTest)(nil),         // 2: cloud.planton.apis.v1.commons.testing.resource.metadata.RegexNameFieldProtoValidateTest
-	(*SplitRegexNameFieldProtoValidateTest)(nil),    // 3: cloud.planton.apis.v1.commons.testing.resource.metadata.SplitRegexNameFieldProtoValidateTest
-	(*MetadataTest)(nil),                            // 4: cloud.planton.apis.v1.commons.testing.resource.metadata.MetadataTest
+	(*ResourceIdExtractionTestWithOutIdPrefix)(nil), // 0: cloud.planton.apis.commons.testing.resource.metadata.ResourceIdExtractionTestWithOutIdPrefix
+	(*ResourceIdExtractionTestWithIdPrefix)(nil),    // 1: cloud.planton.apis.commons.testing.resource.metadata.ResourceIdExtractionTestWithIdPrefix
+	(*RegexNameFieldProtoValidateTest)(nil),         // 2: cloud.planton.apis.commons.testing.resource.metadata.RegexNameFieldProtoValidateTest
+	(*SplitRegexNameFieldProtoValidateTest)(nil),    // 3: cloud.planton.apis.commons.testing.resource.metadata.SplitRegexNameFieldProtoValidateTest
+	(*MetadataTest)(nil),                            // 4: cloud.planton.apis.commons.testing.resource.metadata.MetadataTest
 }
 var file_cloud_planton_apis_v1_commons_testing_resource_metadata_model_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.commons.testing.resource.metadata.RegexNameFieldProtoValidateTest.metadata:type_name -> cloud.planton.apis.v1.commons.testing.resource.metadata.MetadataTest
-	4, // 1: cloud.planton.apis.v1.commons.testing.resource.metadata.SplitRegexNameFieldProtoValidateTest.metadata:type_name -> cloud.planton.apis.v1.commons.testing.resource.metadata.MetadataTest
+	4, // 0: cloud.planton.apis.commons.testing.resource.metadata.RegexNameFieldProtoValidateTest.metadata:type_name -> cloud.planton.apis.commons.testing.resource.metadata.MetadataTest
+	4, // 1: cloud.planton.apis.commons.testing.resource.metadata.SplitRegexNameFieldProtoValidateTest.metadata:type_name -> cloud.planton.apis.commons.testing.resource.metadata.MetadataTest
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

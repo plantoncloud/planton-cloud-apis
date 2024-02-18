@@ -8,11 +8,11 @@ package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -605,17 +605,17 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_model_state_prot
 	(*CustomEndpointSpec)(nil),      // 1: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointSpec
 	(*CustomEndpointStatus)(nil),    // 2: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus
 	(*CustomEndpointRoute)(nil),     // 3: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointRoute
-	(*model.Metadata)(nil),          // 4: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.Metadata)(nil),          // 4: cloud.planton.apis.commons.resource.model.Metadata
+	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_model_state_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	4, // 0: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointSpec
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpoint.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus
 	3, // 3: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointSpec.routes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointRoute
-	5, // 4: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	6, // 5: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	5, // 4: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	6, // 5: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

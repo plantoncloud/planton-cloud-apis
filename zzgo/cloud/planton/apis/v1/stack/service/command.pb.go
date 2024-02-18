@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/service/command.proto
+// source: cloud/planton/apis/iac/v1/stack/service/command.proto
 
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -97,18 +97,18 @@ var file_cloud_planton_apis_v1_stack_service_command_proto_rawDesc = []byte{
 }
 
 var file_cloud_planton_apis_v1_stack_service_command_proto_goTypes = []interface{}{
-	(*model.Stack)(nil),                          // 0: cloud.planton.apis.v1.stack.model.Stack
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model.Stack)(nil),                          // 0: cloud.planton.apis.iac.v1.stack.model.Stack
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_stack_service_command_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.stack.service.StackCommandController.create:input_type -> cloud.planton.apis.v1.stack.model.Stack
-	0, // 1: cloud.planton.apis.v1.stack.service.StackCommandController.update:input_type -> cloud.planton.apis.v1.stack.model.Stack
-	1, // 2: cloud.planton.apis.v1.stack.service.StackCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	1, // 3: cloud.planton.apis.v1.stack.service.StackCommandController.deleteOnPulumiCloud:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	0, // 4: cloud.planton.apis.v1.stack.service.StackCommandController.create:output_type -> cloud.planton.apis.v1.stack.model.Stack
-	0, // 5: cloud.planton.apis.v1.stack.service.StackCommandController.update:output_type -> cloud.planton.apis.v1.stack.model.Stack
-	0, // 6: cloud.planton.apis.v1.stack.service.StackCommandController.delete:output_type -> cloud.planton.apis.v1.stack.model.Stack
-	0, // 7: cloud.planton.apis.v1.stack.service.StackCommandController.deleteOnPulumiCloud:output_type -> cloud.planton.apis.v1.stack.model.Stack
+	0, // 0: cloud.planton.apis.iac.v1.stack.service.StackCommandController.create:input_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	0, // 1: cloud.planton.apis.iac.v1.stack.service.StackCommandController.update:input_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	1, // 2: cloud.planton.apis.iac.v1.stack.service.StackCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 3: cloud.planton.apis.iac.v1.stack.service.StackCommandController.deleteOnPulumiCloud:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	0, // 4: cloud.planton.apis.iac.v1.stack.service.StackCommandController.create:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	0, // 5: cloud.planton.apis.iac.v1.stack.service.StackCommandController.update:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	0, // 6: cloud.planton.apis.iac.v1.stack.service.StackCommandController.delete:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	0, // 7: cloud.planton.apis.iac.v1.stack.service.StackCommandController.deleteOnPulumiCloud:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

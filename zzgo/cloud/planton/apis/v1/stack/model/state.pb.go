@@ -2,18 +2,18 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/model/state.proto
+// source: cloud/planton/apis/iac/v1/stack/model/state.proto
 
 package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -118,7 +118,7 @@ type StackSpec struct {
 	unknownFields protoimpl.UnknownFields
 
 	// type of the resource for which the stack belongs to.
-	ResourceType enums.ResourceType `protobuf:"varint,1,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,1,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource for which the stack belongs to.
 	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	// url of the stack-job on pulumi web console.
@@ -372,21 +372,21 @@ func file_cloud_planton_apis_v1_stack_model_state_proto_rawDescGZIP() []byte {
 
 var file_cloud_planton_apis_v1_stack_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_stack_model_state_proto_goTypes = []interface{}{
-	(*Stack)(nil),                   // 0: cloud.planton.apis.v1.stack.model.Stack
-	(*StackSpec)(nil),               // 1: cloud.planton.apis.v1.stack.model.StackSpec
-	(*StackStatus)(nil),             // 2: cloud.planton.apis.v1.stack.model.StackStatus
-	(*model.Metadata)(nil),          // 3: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(enums.ResourceType)(0),         // 4: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*Stack)(nil),                   // 0: cloud.planton.apis.iac.v1.stack.model.Stack
+	(*StackSpec)(nil),               // 1: cloud.planton.apis.iac.v1.stack.model.StackSpec
+	(*StackStatus)(nil),             // 2: cloud.planton.apis.iac.v1.stack.model.StackStatus
+	(*model.Metadata)(nil),          // 3: cloud.planton.apis.commons.resource.model.Metadata
+	(enums.ResourceType)(0),         // 4: cloud.planton.apis.commons.resource.enums.ResourceType
+	(*model.ResourceLifecycle)(nil), // 5: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),    // 6: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_stack_model_state_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.stack.model.Stack.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
-	1, // 1: cloud.planton.apis.v1.stack.model.Stack.spec:type_name -> cloud.planton.apis.v1.stack.model.StackSpec
-	2, // 2: cloud.planton.apis.v1.stack.model.Stack.status:type_name -> cloud.planton.apis.v1.stack.model.StackStatus
-	4, // 3: cloud.planton.apis.v1.stack.model.StackSpec.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	5, // 4: cloud.planton.apis.v1.stack.model.StackStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	6, // 5: cloud.planton.apis.v1.stack.model.StackStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	3, // 0: cloud.planton.apis.iac.v1.stack.model.Stack.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
+	1, // 1: cloud.planton.apis.iac.v1.stack.model.Stack.spec:type_name -> cloud.planton.apis.iac.v1.stack.model.StackSpec
+	2, // 2: cloud.planton.apis.iac.v1.stack.model.Stack.status:type_name -> cloud.planton.apis.iac.v1.stack.model.StackStatus
+	4, // 3: cloud.planton.apis.iac.v1.stack.model.StackSpec.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	5, // 4: cloud.planton.apis.iac.v1.stack.model.StackStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	6, // 5: cloud.planton.apis.iac.v1.stack.model.StackStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

@@ -7,10 +7,10 @@
 package model
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	accounttype "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/identity/account/enums/accounttype"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -552,18 +552,18 @@ var file_cloud_planton_apis_v1_iam_identity_account_model_state_proto_goTypes = 
 	(*IdentityAccountSpec)(nil),          // 1: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountSpec
 	(*IdentityAccountStatus)(nil),        // 2: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus
 	(*Auth0Webhook)(nil),                 // 3: cloud.planton.apis.v1.iam.identity.account.model.Auth0Webhook
-	(*model.Metadata)(nil),               // 4: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),               // 4: cloud.planton.apis.commons.resource.model.Metadata
 	(accounttype.IdentityAccountType)(0), // 5: cloud.planton.apis.v1.iam.identity.account.enums.accounttype.IdentityAccountType
-	(*model.ResourceLifecycle)(nil),      // 6: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),         // 7: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.ResourceLifecycle)(nil),      // 6: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),         // 7: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_iam_identity_account_model_state_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	4, // 0: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount.spec:type_name -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountSpec
 	2, // 2: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount.status:type_name -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus
 	5, // 3: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountSpec.identity_account_type:type_name -> cloud.planton.apis.v1.iam.identity.account.enums.accounttype.IdentityAccountType
-	6, // 4: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	7, // 5: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	6, // 4: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	7, // 5: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.v1.commons.protobuf.strings;
-
-message StringList {
-  repeated string entries = 1;
-}

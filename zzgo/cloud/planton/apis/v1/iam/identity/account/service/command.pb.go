@@ -7,8 +7,8 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/identity/account/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -139,12 +139,12 @@ var file_cloud_planton_apis_v1_iam_identity_account_service_command_proto_rawDes
 
 var file_cloud_planton_apis_v1_iam_identity_account_service_command_proto_goTypes = []interface{}{
 	(*model.IdentityAccount)(nil),                // 0: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_iam_identity_account_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.create:input_type -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
 	0, // 1: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.update:input_type -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
-	1, // 2: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.restore:input_type -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
 	0, // 4: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.create:output_type -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
 	0, // 5: cloud.planton.apis.v1.iam.identity.account.service.MachineAccountCommandController.update:output_type -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount

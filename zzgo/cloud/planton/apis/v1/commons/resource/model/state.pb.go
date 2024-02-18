@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/model/state.proto
+// source: cloud/planton/apis/commons/resource/model/state.proto
 
 package model
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -34,7 +34,7 @@ type Metadata struct {
 	// labels for the resource
 	Labels map[string]string `protobuf:"bytes,3,rep,name=labels,proto3" json:"labels,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// metadata for resource version
-	Version *MetadataResourceVersion `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	Version *MetadataApiResourceVersion `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
 }
 
 func (x *Metadata) Reset() {
@@ -90,7 +90,7 @@ func (x *Metadata) GetLabels() map[string]string {
 	return nil
 }
 
-func (x *Metadata) GetVersion() *MetadataResourceVersion {
+func (x *Metadata) GetVersion() *MetadataApiResourceVersion {
 	if x != nil {
 		return x.Version
 	}
@@ -205,7 +205,7 @@ func (x *RunnableResourceLifecycle) GetIsPaused() bool {
 }
 
 // version information for api-resource
-type MetadataResourceVersion struct {
+type MetadataApiResourceVersion struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -214,8 +214,8 @@ type MetadataResourceVersion struct {
 	Message string `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
 }
 
-func (x *MetadataResourceVersion) Reset() {
-	*x = MetadataResourceVersion{}
+func (x *MetadataApiResourceVersion) Reset() {
+	*x = MetadataApiResourceVersion{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_model_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -223,13 +223,13 @@ func (x *MetadataResourceVersion) Reset() {
 	}
 }
 
-func (x *MetadataResourceVersion) String() string {
+func (x *MetadataApiResourceVersion) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MetadataResourceVersion) ProtoMessage() {}
+func (*MetadataApiResourceVersion) ProtoMessage() {}
 
-func (x *MetadataResourceVersion) ProtoReflect() protoreflect.Message {
+func (x *MetadataApiResourceVersion) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_model_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -241,19 +241,19 @@ func (x *MetadataResourceVersion) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MetadataResourceVersion.ProtoReflect.Descriptor instead.
-func (*MetadataResourceVersion) Descriptor() ([]byte, []int) {
+// Deprecated: Use MetadataApiResourceVersion.ProtoReflect.Descriptor instead.
+func (*MetadataApiResourceVersion) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_model_state_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *MetadataResourceVersion) GetId() string {
+func (x *MetadataApiResourceVersion) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *MetadataResourceVersion) GetMessage() string {
+func (x *MetadataApiResourceVersion) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
@@ -349,15 +349,15 @@ func file_cloud_planton_apis_v1_commons_resource_model_state_proto_rawDescGZIP()
 
 var file_cloud_planton_apis_v1_commons_resource_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_v1_commons_resource_model_state_proto_goTypes = []interface{}{
-	(*Metadata)(nil),                  // 0: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(*ResourceLifecycle)(nil),         // 1: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*RunnableResourceLifecycle)(nil), // 2: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*MetadataResourceVersion)(nil),   // 3: cloud.planton.apis.v1.commons.resource.model.MetadataResourceVersion
-	nil,                               // 4: cloud.planton.apis.v1.commons.resource.model.Metadata.LabelsEntry
+	(*Metadata)(nil),                  // 0: cloud.planton.apis.commons.resource.model.Metadata
+	(*ResourceLifecycle)(nil),         // 1: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*RunnableResourceLifecycle)(nil), // 2: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*MetadataApiResourceVersion)(nil),   // 3: cloud.planton.apis.commons.resource.model.MetadataApiResourceVersion
+	nil,                               // 4: cloud.planton.apis.commons.resource.model.Metadata.LabelsEntry
 }
 var file_cloud_planton_apis_v1_commons_resource_model_state_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.commons.resource.model.Metadata.labels:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata.LabelsEntry
-	3, // 1: cloud.planton.apis.v1.commons.resource.model.Metadata.version:type_name -> cloud.planton.apis.v1.commons.resource.model.MetadataResourceVersion
+	4, // 0: cloud.planton.apis.commons.resource.model.Metadata.labels:type_name -> cloud.planton.apis.commons.resource.model.Metadata.LabelsEntry
+	3, // 1: cloud.planton.apis.commons.resource.model.Metadata.version:type_name -> cloud.planton.apis.commons.resource.model.MetadataApiResourceVersion
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -408,7 +408,7 @@ func file_cloud_planton_apis_v1_commons_resource_model_state_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_model_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MetadataResourceVersion); i {
+			switch v := v.(*MetadataApiResourceVersion); i {
 			case 0:
 				return &v.state
 			case 1:

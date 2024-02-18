@@ -7,10 +7,10 @@
 package model
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	statusfilter "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/list/enums/statusfilter"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	statusfilter "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/list/enums/statusfilter"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -41,7 +41,7 @@ type Resource struct {
 	// A human-readable name for the resource.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The type of the resource.
-	Type enums.ResourceType `protobuf:"varint,3,opt,name=type,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"type,omitempty"`
+	Type enums.ResourceType `protobuf:"varint,3,opt,name=type,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"type,omitempty"`
 	// Unique identifier for the company associated with this resource.
 	CompanyId string `protobuf:"bytes,4,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	// A unique key that represents the product associated with this resource.
@@ -333,13 +333,13 @@ type SearchByResourceTypeInput struct {
 	ProductId string `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	// This field indicates the type of resource that the search operation will be focusing on.
 	// The possible resource types are defined by the ResourceType enum.
-	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// This field contains the pagination information used for retrieving specific paginated
 	// data. It enables the client to specify the number of records per page and the page number.
 	PageInfo *model.PageInfo `protobuf:"bytes,4,opt,name=page_info,json=pageInfo,proto3" json:"page_info,omitempty"`
 	// this field is an enumeration used to dictate the active status of the resources
 	// included in the search results.
-	StatusFilter statusfilter.StatusFilter `protobuf:"varint,5,opt,name=status_filter,json=statusFilter,proto3,enum=cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter" json:"status_filter,omitempty"`
+	StatusFilter statusfilter.StatusFilter `protobuf:"varint,5,opt,name=status_filter,json=statusFilter,proto3,enum=cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter" json:"status_filter,omitempty"`
 }
 
 func (x *SearchByResourceTypeInput) Reset() {
@@ -632,20 +632,20 @@ var file_cloud_planton_apis_v1_search_model_io_proto_goTypes = []interface{}{
 	(*SearchByTextInput)(nil),                 // 2: cloud.planton.apis.v1.search.model.SearchByTextInput
 	(*SearchByResourceTypeInput)(nil),         // 3: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput
 	(*SearchIdentityAccountByEmailInput)(nil), // 4: cloud.planton.apis.v1.search.model.SearchIdentityAccountByEmailInput
-	(enums.ResourceType)(0),                   // 5: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(enums.ResourceType)(0),                   // 5: cloud.planton.apis.commons.resource.enums.ResourceType
 	(*timestamppb.Timestamp)(nil),             // 6: google.protobuf.Timestamp
-	(*model.PageInfo)(nil),                    // 7: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	(statusfilter.StatusFilter)(0),            // 8: cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter
+	(*model.PageInfo)(nil),                    // 7: cloud.planton.apis.commons.rpc.PageInfo
+	(statusfilter.StatusFilter)(0),            // 8: cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter
 }
 var file_cloud_planton_apis_v1_search_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.v1.search.model.Resource.type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	5, // 0: cloud.planton.apis.v1.search.model.Resource.type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
 	6, // 1: cloud.planton.apis.v1.search.model.Resource.created_at:type_name -> google.protobuf.Timestamp
 	0, // 2: cloud.planton.apis.v1.search.model.ResourceList.entries:type_name -> cloud.planton.apis.v1.search.model.Resource
-	7, // 3: cloud.planton.apis.v1.search.model.SearchByTextInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	5, // 4: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	7, // 5: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	8, // 6: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.status_filter:type_name -> cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter
-	7, // 7: cloud.planton.apis.v1.search.model.SearchIdentityAccountByEmailInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	7, // 3: cloud.planton.apis.v1.search.model.SearchByTextInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	5, // 4: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	7, // 5: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	8, // 6: cloud.planton.apis.v1.search.model.SearchByResourceTypeInput.status_filter:type_name -> cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter
+	7, // 7: cloud.planton.apis.v1.search.model.SearchIdentityAccountByEmailInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name

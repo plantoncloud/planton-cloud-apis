@@ -2,14 +2,14 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/stack/service/command.proto
+// source: cloud/planton/apis/iac/v1/stack/service/command.proto
 
 package service
 
 import (
 	context "context"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,10 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackCommandController_Create_FullMethodName              = "/cloud.planton.apis.v1.stack.service.StackCommandController/create"
-	StackCommandController_Update_FullMethodName              = "/cloud.planton.apis.v1.stack.service.StackCommandController/update"
-	StackCommandController_Delete_FullMethodName              = "/cloud.planton.apis.v1.stack.service.StackCommandController/delete"
-	StackCommandController_DeleteOnPulumiCloud_FullMethodName = "/cloud.planton.apis.v1.stack.service.StackCommandController/deleteOnPulumiCloud"
+	StackCommandController_Create_FullMethodName              = "/cloud.planton.apis.iac.v1.stack.service.StackCommandController/create"
+	StackCommandController_Update_FullMethodName              = "/cloud.planton.apis.iac.v1.stack.service.StackCommandController/update"
+	StackCommandController_Delete_FullMethodName              = "/cloud.planton.apis.iac.v1.stack.service.StackCommandController/delete"
+	StackCommandController_DeleteOnPulumiCloud_FullMethodName = "/cloud.planton.apis.iac.v1.stack.service.StackCommandController/deleteOnPulumiCloud"
 )
 
 // StackCommandControllerClient is the client API for StackCommandController service.
@@ -203,7 +203,7 @@ func _StackCommandController_DeleteOnPulumiCloud_Handler(srv interface{}, ctx co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StackCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.stack.service.StackCommandController",
+	ServiceName: "cloud.planton.apis.iac.v1.stack.service.StackCommandController",
 	HandlerType: (*StackCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -224,5 +224,5 @@ var StackCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/stack/service/command.proto",
+	Metadata: "cloud/planton/apis/iac/v1/stack/service/command.proto",
 }

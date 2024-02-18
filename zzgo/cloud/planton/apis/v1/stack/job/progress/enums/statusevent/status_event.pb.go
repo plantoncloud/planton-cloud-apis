@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/progress/enums/statusevent/status_event.proto
+// source: cloud/planton/apis/iac/v1/stackjob/progress/enums/statusevent/status_event.proto
 
 package statusevent
 
@@ -232,7 +232,7 @@ func file_cloud_planton_apis_v1_stack_job_progress_enums_statusevent_status_even
 
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statusevent_status_event_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statusevent_status_event_proto_goTypes = []interface{}{
-	(StackJobProgressStatusEventType)(0), // 0: cloud.planton.apis.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
+	(StackJobProgressStatusEventType)(0), // 0: cloud.planton.apis.iac.v1.stack.job.progress.enums.statusevent.StackJobProgressStatusEventType
 }
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statusevent_status_event_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

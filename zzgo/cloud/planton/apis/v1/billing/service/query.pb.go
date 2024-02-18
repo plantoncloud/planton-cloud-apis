@@ -7,8 +7,8 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/billing/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/billing/account/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -118,22 +118,22 @@ var file_cloud_planton_apis_v1_billing_service_query_proto_rawDesc = []byte{
 }
 
 var file_cloud_planton_apis_v1_billing_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	(*model1.BillingAccountId)(nil),                  // 1: cloud.planton.apis.v1.billing.model.BillingAccountId
+	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.commons.rpc.PageInfo
+	(*model1.BillingAccountId)(nil),                  // 1: cloud.planton.apis.v1.billing.account.model.BillingAccountId
 	(*model2.CompanyId)(nil),                         // 2: cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	(*model1.BillingAccountList)(nil),                // 3: cloud.planton.apis.v1.billing.model.BillingAccountList
-	(*model1.BillingAccount)(nil),                    // 4: cloud.planton.apis.v1.billing.model.BillingAccount
-	(*model1.GetCustomerPortalSessionQueryResp)(nil), // 5: cloud.planton.apis.v1.billing.model.GetCustomerPortalSessionQueryResp
+	(*model1.BillingAccountList)(nil),                // 3: cloud.planton.apis.v1.billing.account.model.BillingAccountList
+	(*model1.BillingAccount)(nil),                    // 4: cloud.planton.apis.v1.billing.account.model.BillingAccount
+	(*model1.GetCustomerPortalSessionQueryResp)(nil), // 5: cloud.planton.apis.v1.billing.account.model.GetCustomerPortalSessionQueryResp
 }
 var file_cloud_planton_apis_v1_billing_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.billing.service.BillingQueryController.listBillingAccounts:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	1, // 1: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByBillingAccountId:input_type -> cloud.planton.apis.v1.billing.model.BillingAccountId
+	0, // 0: cloud.planton.apis.v1.billing.service.BillingQueryController.listBillingAccounts:input_type -> cloud.planton.apis.commons.rpc.PageInfo
+	1, // 1: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByBillingAccountId:input_type -> cloud.planton.apis.v1.billing.account.model.BillingAccountId
 	2, // 2: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	2, // 3: cloud.planton.apis.v1.billing.service.BillingQueryController.getCustomerPortalSessionByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	3, // 4: cloud.planton.apis.v1.billing.service.BillingQueryController.listBillingAccounts:output_type -> cloud.planton.apis.v1.billing.model.BillingAccountList
-	4, // 5: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByBillingAccountId:output_type -> cloud.planton.apis.v1.billing.model.BillingAccount
-	4, // 6: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByCompanyId:output_type -> cloud.planton.apis.v1.billing.model.BillingAccount
-	5, // 7: cloud.planton.apis.v1.billing.service.BillingQueryController.getCustomerPortalSessionByCompanyId:output_type -> cloud.planton.apis.v1.billing.model.GetCustomerPortalSessionQueryResp
+	3, // 4: cloud.planton.apis.v1.billing.service.BillingQueryController.listBillingAccounts:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccountList
+	4, // 5: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByBillingAccountId:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	4, // 6: cloud.planton.apis.v1.billing.service.BillingQueryController.getBillingAccountByCompanyId:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	5, // 7: cloud.planton.apis.v1.billing.service.BillingQueryController.getCustomerPortalSessionByCompanyId:output_type -> cloud.planton.apis.v1.billing.account.model.GetCustomerPortalSessionQueryResp
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

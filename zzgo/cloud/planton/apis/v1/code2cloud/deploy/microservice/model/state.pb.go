@@ -10,13 +10,13 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	workloadingress "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/enums"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/kubernetes/enums"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/kubernetes/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -200,7 +200,7 @@ type MicroserviceInstanceSpecKubernetes struct {
 
 	// (required) type of the pod controller to use for the microservice deployment.
 	// default is set to "deployment".
-	PodControllerType enums.PodControllerType `protobuf:"varint,1,opt,name=pod_controller_type,json=podControllerType,proto3,enum=cloud.planton.apis.v1.commons.kubernetes.enums.PodControllerType" json:"pod_controller_type,omitempty"`
+	PodControllerType enums.PodControllerType `protobuf:"varint,1,opt,name=pod_controller_type,json=podControllerType,proto3,enum=cloud.planton.apis.commons.kubernetes.enums.PodControllerType" json:"pod_controller_type,omitempty"`
 	// container spec
 	Container *MicroserviceInstanceSpecKubernetesContainer `protobuf:"bytes,2,opt,name=container,proto3" json:"container,omitempty"`
 	// microservice instance ingress configuration on kubernetes
@@ -1625,31 +1625,31 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_microservice_model_state_proto_
 	(*MicroserviceInstanceStatusKubernetesStatus)(nil),                             // 13: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatusKubernetesStatus
 	nil,                                    // 14: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainerEnv.VariablesEntry
 	nil,                                    // 15: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainerEnv.SecretsEntry
-	(*model.Metadata)(nil),                 // 16: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                 // 16: cloud.planton.apis.commons.resource.model.Metadata
 	(*model1.ResourceEnvironmentInfo)(nil), // 17: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(enums.PodControllerType)(0),           // 18: cloud.planton.apis.v1.commons.kubernetes.enums.PodControllerType
-	(*model2.Container)(nil),               // 19: cloud.planton.apis.v1.commons.kubernetes.model.Container
-	(*model2.ContainerImage)(nil),          // 20: cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage
-	(*model2.ContainerResources)(nil),      // 21: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	(enums.PodControllerType)(0),           // 18: cloud.planton.apis.commons.kubernetes.enums.PodControllerType
+	(*model2.Container)(nil),               // 19: cloud.planton.apis.commons.kubernetes.model.Container
+	(*model2.ContainerImage)(nil),          // 20: cloud.planton.apis.commons.kubernetes.model.ContainerImage
+	(*model2.ContainerResources)(nil),      // 21: cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	(workloadingress.KubernetesWorkloadIngressType)(0), // 22: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
-	(*model.RunnableResourceLifecycle)(nil),            // 23: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*model3.ResourceAudit)(nil),                       // 24: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.RunnableResourceLifecycle)(nil),            // 23: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*model3.ResourceAudit)(nil),                       // 24: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_microservice_model_state_proto_depIdxs = []int32{
-	16, // 0: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	16, // 0: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpec
 	12, // 2: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstance.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus
 	17, // 3: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
 	2,  // 4: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpec.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes
 	11, // 5: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpec.pipeline:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecPipeline
-	18, // 6: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes.pod_controller_type:type_name -> cloud.planton.apis.v1.commons.kubernetes.enums.PodControllerType
+	18, // 6: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes.pod_controller_type:type_name -> cloud.planton.apis.commons.kubernetes.enums.PodControllerType
 	3,  // 7: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes.container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainer
 	8,  // 8: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes.ingress:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesIngress
 	9,  // 9: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetes.availability:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAvailability
 	4,  // 10: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainer.app:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer
-	19, // 11: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainer.sidecars:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.Container
-	20, // 12: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.image:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage
-	21, // 13: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	19, // 11: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainer.sidecars:type_name -> cloud.planton.apis.commons.kubernetes.model.Container
+	20, // 12: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.image:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerImage
+	21, // 13: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	5,  // 14: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.env:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainerEnv
 	6,  // 15: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.ports:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainerPort
 	7,  // 16: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainer.volume_mounts:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesContainerVolumeMount
@@ -1657,8 +1657,8 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_microservice_model_state_proto_
 	15, // 18: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainerEnv.secrets:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAppContainerEnv.SecretsEntry
 	22, // 19: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesIngress.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 	10, // 20: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAvailability.horizontal_pod_autoscaling:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceSpecKubernetesAvailabilityHorizontalPodAutoscaling
-	23, // 21: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	24, // 22: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	23, // 21: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	24, // 22: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	13, // 23: cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatus.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.microservice.model.MicroserviceInstanceStatusKubernetesStatus
 	24, // [24:24] is the sub-list for method output_type
 	24, // [24:24] is the sub-list for method input_type

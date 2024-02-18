@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjob.enums.operationtype;
+
+import "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto";
+
+enum StackJobOperationType {
+  STACK_JOB_OPERATION_TYPE_UNSPECIFIED = 0;
+  refresh = 1 [
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required) = true
+  ];
+  apply_preview = 2 [
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required) = true
+  ];
+  apply = 3 [
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_apply_required) = true
+  ];
+  destroy_preview = 4 [
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required) = true
+  ];
+  destroy = 5 [
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required) = true,
+    (cloud.planton.apis.iac.v1.stackjob.enums.operationtype.stackjoboperationtypeoptions.is_destroy_required) = true
+  ];
+}

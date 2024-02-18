@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/pulumi/plugin/enums/enums.proto
+// source: cloud/planton/apis/commons/pulumi/plugin/enums/enums.proto
 
 package enums
 
@@ -150,7 +150,7 @@ func file_cloud_planton_apis_v1_commons_pulumi_plugin_enums_enums_proto_rawDescG
 
 var file_cloud_planton_apis_v1_commons_pulumi_plugin_enums_enums_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_commons_pulumi_plugin_enums_enums_proto_goTypes = []interface{}{
-	(PulumiPluginName)(0), // 0: cloud.planton.apis.v1.commons.pulumi.plugin.PulumiPluginName
+	(PulumiPluginName)(0), // 0: cloud.planton.apis.commons.pulumi.plugin.PulumiPluginName
 }
 var file_cloud_planton_apis_v1_commons_pulumi_plugin_enums_enums_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

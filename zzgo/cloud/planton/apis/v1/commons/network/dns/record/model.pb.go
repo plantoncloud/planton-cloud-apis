@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/network/dns/record/model.proto
+// source: cloud/planton/apis/commons/network/dns/record/model.proto
 
 package record
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/record/enums"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/network/dns/record/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -28,7 +28,7 @@ type DnsRecord struct {
 	unknownFields protoimpl.UnknownFields
 
 	// dns record type
-	RecordType enums.DnsRecordType `protobuf:"varint,1,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
+	RecordType enums.DnsRecordType `protobuf:"varint,1,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
 	// name to be added to the domain. ex: if name is "dev" then the
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// record values
@@ -166,11 +166,11 @@ func file_cloud_planton_apis_v1_commons_network_dns_record_model_proto_rawDescGZ
 
 var file_cloud_planton_apis_v1_commons_network_dns_record_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_network_dns_record_model_proto_goTypes = []interface{}{
-	(*DnsRecord)(nil),        // 0: cloud.planton.apis.v1.commons.network.dns.record.DnsRecord
-	(enums.DnsRecordType)(0), // 1: cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	(*DnsRecord)(nil),        // 0: cloud.planton.apis.commons.network.dns.record.DnsRecord
+	(enums.DnsRecordType)(0), // 1: cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 }
 var file_cloud_planton_apis_v1_commons_network_dns_record_model_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.commons.network.dns.record.DnsRecord.record_type:type_name -> cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	1, // 0: cloud.planton.apis.commons.network.dns.record.DnsRecord.record_type:type_name -> cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

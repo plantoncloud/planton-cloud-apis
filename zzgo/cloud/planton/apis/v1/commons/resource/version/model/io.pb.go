@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/version/model/io.proto
+// source: cloud/planton/apis/commons/resource/version/model/io.proto
 
 package model
 
 import (
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -22,8 +22,8 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for resource-versions id
-type ResourceVersionId struct {
+// wrapper for api-resource-versions id
+type ApiResourceVersionId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -31,8 +31,8 @@ type ResourceVersionId struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *ResourceVersionId) Reset() {
-	*x = ResourceVersionId{}
+func (x *ApiResourceVersionId) Reset() {
+	*x = ApiResourceVersionId{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -40,13 +40,13 @@ func (x *ResourceVersionId) Reset() {
 	}
 }
 
-func (x *ResourceVersionId) String() string {
+func (x *ApiResourceVersionId) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ResourceVersionId) ProtoMessage() {}
+func (*ApiResourceVersionId) ProtoMessage() {}
 
-func (x *ResourceVersionId) ProtoReflect() protoreflect.Message {
+func (x *ApiResourceVersionId) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -58,12 +58,12 @@ func (x *ResourceVersionId) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ResourceVersionId.ProtoReflect.Descriptor instead.
-func (*ResourceVersionId) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApiResourceVersionId.ProtoReflect.Descriptor instead.
+func (*ApiResourceVersionId) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ResourceVersionId) GetValue() string {
+func (x *ApiResourceVersionId) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -71,26 +71,26 @@ func (x *ResourceVersionId) GetValue() string {
 }
 
 // The StateCommitByIdWithContextSize message represents a specific
-// resource-version along with the context size associated with it. The context size
+// api-resource-version along with the context size associated with it. The context size
 // is typically used to control the amount of information or data surrounding a
-// particular point of interest in the resource-version.
-type ResourceVersionWithContextSizeInput struct {
+// particular point of interest in the api-resource-version.
+type ApiResourceVersionWithContextSizeInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// The unique identifier (usually a UUID) for the resource-version.
+	// The unique identifier (usually a UUID) for the api-resource-version.
 	// It is used to look up or refer to a specific version.
 	VersionId string `protobuf:"bytes,1,opt,name=version_id,json=versionId,proto3" json:"version_id,omitempty"`
-	// The context size associated with the resource-version. This could represent
+	// The context size associated with the api-resource-version. This could represent
 	// the amount of surrounding data or metadata to include when fetching or
 	// working with the version. The meaning of this value can vary depending on
 	// the specifics of your application.
 	ContextSize int32 `protobuf:"varint,2,opt,name=context_size,json=contextSize,proto3" json:"context_size,omitempty"`
 }
 
-func (x *ResourceVersionWithContextSizeInput) Reset() {
-	*x = ResourceVersionWithContextSizeInput{}
+func (x *ApiResourceVersionWithContextSizeInput) Reset() {
+	*x = ApiResourceVersionWithContextSizeInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -98,13 +98,13 @@ func (x *ResourceVersionWithContextSizeInput) Reset() {
 	}
 }
 
-func (x *ResourceVersionWithContextSizeInput) String() string {
+func (x *ApiResourceVersionWithContextSizeInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ResourceVersionWithContextSizeInput) ProtoMessage() {}
+func (*ApiResourceVersionWithContextSizeInput) ProtoMessage() {}
 
-func (x *ResourceVersionWithContextSizeInput) ProtoReflect() protoreflect.Message {
+func (x *ApiResourceVersionWithContextSizeInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -116,27 +116,27 @@ func (x *ResourceVersionWithContextSizeInput) ProtoReflect() protoreflect.Messag
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ResourceVersionWithContextSizeInput.ProtoReflect.Descriptor instead.
-func (*ResourceVersionWithContextSizeInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApiResourceVersionWithContextSizeInput.ProtoReflect.Descriptor instead.
+func (*ApiResourceVersionWithContextSizeInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ResourceVersionWithContextSizeInput) GetVersionId() string {
+func (x *ApiResourceVersionWithContextSizeInput) GetVersionId() string {
 	if x != nil {
 		return x.VersionId
 	}
 	return ""
 }
 
-func (x *ResourceVersionWithContextSizeInput) GetContextSize() int32 {
+func (x *ApiResourceVersionWithContextSizeInput) GetContextSize() int32 {
 	if x != nil {
 		return x.ContextSize
 	}
 	return 0
 }
 
-// list resource-versions by resource type and id query input
-type ListResourceVersionsInput struct {
+// list api-resource-versions by resource type and id query input
+type ListApiResourceVersionsInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -144,13 +144,13 @@ type ListResourceVersionsInput struct {
 	// page info
 	PageInfo *model.PageInfo `protobuf:"bytes,1,opt,name=page_info,json=pageInfo,proto3" json:"page_info,omitempty"`
 	// type of resource
-	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource
 	ResourceId string `protobuf:"bytes,3,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 }
 
-func (x *ListResourceVersionsInput) Reset() {
-	*x = ListResourceVersionsInput{}
+func (x *ListApiResourceVersionsInput) Reset() {
+	*x = ListApiResourceVersionsInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -158,13 +158,13 @@ func (x *ListResourceVersionsInput) Reset() {
 	}
 }
 
-func (x *ListResourceVersionsInput) String() string {
+func (x *ListApiResourceVersionsInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListResourceVersionsInput) ProtoMessage() {}
+func (*ListApiResourceVersionsInput) ProtoMessage() {}
 
-func (x *ListResourceVersionsInput) ProtoReflect() protoreflect.Message {
+func (x *ListApiResourceVersionsInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -176,46 +176,46 @@ func (x *ListResourceVersionsInput) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListResourceVersionsInput.ProtoReflect.Descriptor instead.
-func (*ListResourceVersionsInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListApiResourceVersionsInput.ProtoReflect.Descriptor instead.
+func (*ListApiResourceVersionsInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ListResourceVersionsInput) GetPageInfo() *model.PageInfo {
+func (x *ListApiResourceVersionsInput) GetPageInfo() *model.PageInfo {
 	if x != nil {
 		return x.PageInfo
 	}
 	return nil
 }
 
-func (x *ListResourceVersionsInput) GetResourceType() enums.ResourceType {
+func (x *ListApiResourceVersionsInput) GetResourceType() enums.ResourceType {
 	if x != nil {
 		return x.ResourceType
 	}
 	return enums.ResourceType(0)
 }
 
-func (x *ListResourceVersionsInput) GetResourceId() string {
+func (x *ListApiResourceVersionsInput) GetResourceId() string {
 	if x != nil {
 		return x.ResourceId
 	}
 	return ""
 }
 
-// paginated list of resource-versions
-type ResourceVersionList struct {
+// paginated list of api-resource-versions
+type ApiResourceVersionList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// total number of pages
 	TotalPages int32 `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	// list of resource-versions
-	Entries []*ResourceVersion `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
+	// list of api-resource-versions
+	Entries []*ApiResourceVersion `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *ResourceVersionList) Reset() {
-	*x = ResourceVersionList{}
+func (x *ApiResourceVersionList) Reset() {
+	*x = ApiResourceVersionList{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -223,13 +223,13 @@ func (x *ResourceVersionList) Reset() {
 	}
 }
 
-func (x *ResourceVersionList) String() string {
+func (x *ApiResourceVersionList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ResourceVersionList) ProtoMessage() {}
+func (*ApiResourceVersionList) ProtoMessage() {}
 
-func (x *ResourceVersionList) ProtoReflect() protoreflect.Message {
+func (x *ApiResourceVersionList) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -241,39 +241,39 @@ func (x *ResourceVersionList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ResourceVersionList.ProtoReflect.Descriptor instead.
-func (*ResourceVersionList) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApiResourceVersionList.ProtoReflect.Descriptor instead.
+func (*ApiResourceVersionList) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ResourceVersionList) GetTotalPages() int32 {
+func (x *ApiResourceVersionList) GetTotalPages() int32 {
 	if x != nil {
 		return x.TotalPages
 	}
 	return 0
 }
 
-func (x *ResourceVersionList) GetEntries() []*ResourceVersion {
+func (x *ApiResourceVersionList) GetEntries() []*ApiResourceVersion {
 	if x != nil {
 		return x.Entries
 	}
 	return nil
 }
 
-// count resource-versions by resource type and id query input
-type GetResourceVersionCountInput struct {
+// count api-resource-versions by resource type and id query input
+type GetApiResourceVersionCountInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// type of resource
-	ResourceType enums.ResourceType `protobuf:"varint,5,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,5,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource
 	ResourceId string `protobuf:"bytes,6,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 }
 
-func (x *GetResourceVersionCountInput) Reset() {
-	*x = GetResourceVersionCountInput{}
+func (x *GetApiResourceVersionCountInput) Reset() {
+	*x = GetApiResourceVersionCountInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -281,13 +281,13 @@ func (x *GetResourceVersionCountInput) Reset() {
 	}
 }
 
-func (x *GetResourceVersionCountInput) String() string {
+func (x *GetApiResourceVersionCountInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetResourceVersionCountInput) ProtoMessage() {}
+func (*GetApiResourceVersionCountInput) ProtoMessage() {}
 
-func (x *GetResourceVersionCountInput) ProtoReflect() protoreflect.Message {
+func (x *GetApiResourceVersionCountInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -299,19 +299,19 @@ func (x *GetResourceVersionCountInput) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetResourceVersionCountInput.ProtoReflect.Descriptor instead.
-func (*GetResourceVersionCountInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetApiResourceVersionCountInput.ProtoReflect.Descriptor instead.
+func (*GetApiResourceVersionCountInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetResourceVersionCountInput) GetResourceType() enums.ResourceType {
+func (x *GetApiResourceVersionCountInput) GetResourceType() enums.ResourceType {
 	if x != nil {
 		return x.ResourceType
 	}
 	return enums.ResourceType(0)
 }
 
-func (x *GetResourceVersionCountInput) GetResourceId() string {
+func (x *GetApiResourceVersionCountInput) GetResourceId() string {
 	if x != nil {
 		return x.ResourceId
 	}
@@ -319,7 +319,7 @@ func (x *GetResourceVersionCountInput) GetResourceId() string {
 }
 
 // response to return number of resource versions are available
-type ResourceVersionCount struct {
+type ApiResourceVersionCount struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -328,8 +328,8 @@ type ResourceVersionCount struct {
 	Count int32 `protobuf:"varint,1,opt,name=count,proto3" json:"count,omitempty"`
 }
 
-func (x *ResourceVersionCount) Reset() {
-	*x = ResourceVersionCount{}
+func (x *ApiResourceVersionCount) Reset() {
+	*x = ApiResourceVersionCount{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -337,13 +337,13 @@ func (x *ResourceVersionCount) Reset() {
 	}
 }
 
-func (x *ResourceVersionCount) String() string {
+func (x *ApiResourceVersionCount) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ResourceVersionCount) ProtoMessage() {}
+func (*ApiResourceVersionCount) ProtoMessage() {}
 
-func (x *ResourceVersionCount) ProtoReflect() protoreflect.Message {
+func (x *ApiResourceVersionCount) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -355,12 +355,12 @@ func (x *ResourceVersionCount) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ResourceVersionCount.ProtoReflect.Descriptor instead.
-func (*ResourceVersionCount) Descriptor() ([]byte, []int) {
+// Deprecated: Use ApiResourceVersionCount.ProtoReflect.Descriptor instead.
+func (*ApiResourceVersionCount) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ResourceVersionCount) GetCount() int32 {
+func (x *ApiResourceVersionCount) GetCount() int32 {
 	if x != nil {
 		return x.Count
 	}
@@ -481,21 +481,21 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_rawDescG
 
 var file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_goTypes = []interface{}{
-	(*ResourceVersionId)(nil),                   // 0: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionId
-	(*ResourceVersionWithContextSizeInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionWithContextSizeInput
-	(*ListResourceVersionsInput)(nil),           // 2: cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput
-	(*ResourceVersionList)(nil),                 // 3: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionList
-	(*GetResourceVersionCountInput)(nil),        // 4: cloud.planton.apis.v1.commons.resource.version.model.GetResourceVersionCountInput
-	(*ResourceVersionCount)(nil),                // 5: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionCount
-	(*model.PageInfo)(nil),                      // 6: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	(enums.ResourceType)(0),                     // 7: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*ResourceVersion)(nil),                     // 8: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion
+	(*ApiResourceVersionId)(nil),                   // 0: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionId
+	(*ApiResourceVersionWithContextSizeInput)(nil), // 1: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionWithContextSizeInput
+	(*ListApiResourceVersionsInput)(nil),           // 2: cloud.planton.apis.commons.resource.version.model.ListApiResourceVersionsInput
+	(*ApiResourceVersionList)(nil),                 // 3: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionList
+	(*GetApiResourceVersionCountInput)(nil),        // 4: cloud.planton.apis.commons.resource.version.model.GetApiResourceVersionCountInput
+	(*ApiResourceVersionCount)(nil),                // 5: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionCount
+	(*model.PageInfo)(nil),                      // 6: cloud.planton.apis.commons.rpc.PageInfo
+	(enums.ResourceType)(0),                     // 7: cloud.planton.apis.commons.resource.enums.ResourceType
+	(*ApiResourceVersion)(nil),                     // 8: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion
 }
 var file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_depIdxs = []int32{
-	6, // 0: cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	7, // 1: cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	8, // 2: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionList.entries:type_name -> cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion
-	7, // 3: cloud.planton.apis.v1.commons.resource.version.model.GetResourceVersionCountInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	6, // 0: cloud.planton.apis.commons.resource.version.model.ListApiResourceVersionsInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	7, // 1: cloud.planton.apis.commons.resource.version.model.ListApiResourceVersionsInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	8, // 2: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionList.entries:type_name -> cloud.planton.apis.commons.resource.version.model.ApiResourceVersion
+	7, // 3: cloud.planton.apis.commons.resource.version.model.GetApiResourceVersionCountInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
 	4, // [4:4] is the sub-list for method output_type
 	4, // [4:4] is the sub-list for method input_type
 	4, // [4:4] is the sub-list for extension type_name
@@ -511,7 +511,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 	file_cloud_planton_apis_v1_commons_resource_version_model_state_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourceVersionId); i {
+			switch v := v.(*ApiResourceVersionId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -523,7 +523,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourceVersionWithContextSizeInput); i {
+			switch v := v.(*ApiResourceVersionWithContextSizeInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -535,7 +535,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListResourceVersionsInput); i {
+			switch v := v.(*ListApiResourceVersionsInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -547,7 +547,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourceVersionList); i {
+			switch v := v.(*ApiResourceVersionList); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -559,7 +559,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResourceVersionCountInput); i {
+			switch v := v.(*GetApiResourceVersionCountInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -571,7 +571,7 @@ func file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_v1_commons_resource_version_model_io_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ResourceVersionCount); i {
+			switch v := v.(*ApiResourceVersionCount); i {
 			case 0:
 				return &v.state
 			case 1:

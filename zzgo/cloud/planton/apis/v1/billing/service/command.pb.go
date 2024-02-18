@@ -7,7 +7,7 @@
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/billing/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/billing/account/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -101,16 +101,16 @@ var file_cloud_planton_apis_v1_billing_service_command_proto_rawDesc = []byte{
 }
 
 var file_cloud_planton_apis_v1_billing_service_command_proto_goTypes = []interface{}{
-	(*model.BillingAccount)(nil),   // 0: cloud.planton.apis.v1.billing.model.BillingAccount
-	(*model.BillingAccountId)(nil), // 1: cloud.planton.apis.v1.billing.model.BillingAccountId
+	(*model.BillingAccount)(nil),   // 0: cloud.planton.apis.v1.billing.account.model.BillingAccount
+	(*model.BillingAccountId)(nil), // 1: cloud.planton.apis.v1.billing.account.model.BillingAccountId
 }
 var file_cloud_planton_apis_v1_billing_service_command_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.billing.service.BillingCommandController.updBillingAccount:input_type -> cloud.planton.apis.v1.billing.model.BillingAccount
-	1, // 1: cloud.planton.apis.v1.billing.service.BillingCommandController.delBillingAccount:input_type -> cloud.planton.apis.v1.billing.model.BillingAccountId
-	1, // 2: cloud.planton.apis.v1.billing.service.BillingCommandController.restoreBillingAccount:input_type -> cloud.planton.apis.v1.billing.model.BillingAccountId
-	0, // 3: cloud.planton.apis.v1.billing.service.BillingCommandController.updBillingAccount:output_type -> cloud.planton.apis.v1.billing.model.BillingAccount
-	0, // 4: cloud.planton.apis.v1.billing.service.BillingCommandController.delBillingAccount:output_type -> cloud.planton.apis.v1.billing.model.BillingAccount
-	0, // 5: cloud.planton.apis.v1.billing.service.BillingCommandController.restoreBillingAccount:output_type -> cloud.planton.apis.v1.billing.model.BillingAccount
+	0, // 0: cloud.planton.apis.v1.billing.service.BillingCommandController.updBillingAccount:input_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	1, // 1: cloud.planton.apis.v1.billing.service.BillingCommandController.delBillingAccount:input_type -> cloud.planton.apis.v1.billing.account.model.BillingAccountId
+	1, // 2: cloud.planton.apis.v1.billing.service.BillingCommandController.restoreBillingAccount:input_type -> cloud.planton.apis.v1.billing.account.model.BillingAccountId
+	0, // 3: cloud.planton.apis.v1.billing.service.BillingCommandController.updBillingAccount:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	0, // 4: cloud.planton.apis.v1.billing.service.BillingCommandController.delBillingAccount:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
+	0, // 5: cloud.planton.apis.v1.billing.service.BillingCommandController.restoreBillingAccount:output_type -> cloud.planton.apis.v1.billing.account.model.BillingAccount
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

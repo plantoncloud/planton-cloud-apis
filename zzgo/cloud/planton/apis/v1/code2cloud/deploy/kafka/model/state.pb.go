@@ -10,12 +10,12 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	workloadingress "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/kubernetes/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1289,30 +1289,30 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_kafka_model_state_proto_goTypes
 	(*KafkaTopicConfig)(nil),                                          // 10: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopicConfig
 	nil,                                                               // 11: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopic.ConfigEntry
 	nil,                                                               // 12: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopicConfig.ValueEntry
-	(*model.Metadata)(nil),                                            // 13: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                                            // 13: cloud.planton.apis.commons.resource.model.Metadata
 	(*model1.ResourceEnvironmentInfo)(nil),                            // 14: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(*model.RunnableResourceLifecycle)(nil),                           // 15: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*model2.ResourceAudit)(nil),                                      // 16: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(*model3.ContainerResources)(nil),                                 // 17: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	(*model.RunnableResourceLifecycle)(nil),                           // 15: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*model2.ResourceAudit)(nil),                                      // 16: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(*model3.ContainerResources)(nil),                                 // 17: cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	(workloadingress.KubernetesWorkloadIngressType)(0),                // 18: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_kafka_model_state_proto_depIdxs = []int32{
-	13, // 0: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	13, // 0: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus
 	14, // 3: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
 	9,  // 4: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpec.kafka_topics:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopic
 	3,  // 5: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpec.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpec
-	15, // 6: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	16, // 7: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	15, // 6: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	16, // 7: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	8,  // 8: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatus.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterStatusKubernetesStatus
 	4,  // 9: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpec.kafka_broker_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpec
 	5,  // 10: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpec.zookeeper_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecZookeeperContainerSpec
 	6,  // 11: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpec.schema_registry_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpec
 	7,  // 12: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecIngressSpec
-	17, // 13: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
-	17, // 14: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecZookeeperContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
-	17, // 15: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	17, // 13: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
+	17, // 14: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecZookeeperContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
+	17, // 15: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	18, // 16: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 	11, // 17: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopic.config:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopic.ConfigEntry
 	12, // 18: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopicConfig.value:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaTopicConfig.ValueEntry

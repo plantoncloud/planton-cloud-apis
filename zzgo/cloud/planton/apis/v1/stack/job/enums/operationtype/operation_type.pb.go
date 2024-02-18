@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/enums/operationtype/operation_type.proto
+// source: cloud/planton/apis/iac/v1/stackjob/enums/operationtype/operation_type.proto
 
 package operationtype
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -154,7 +154,7 @@ func file_cloud_planton_apis_v1_stack_job_enums_operationtype_operation_type_pro
 
 var file_cloud_planton_apis_v1_stack_job_enums_operationtype_operation_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_stack_job_enums_operationtype_operation_type_proto_goTypes = []interface{}{
-	(StackJobOperationType)(0), // 0: cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
+	(StackJobOperationType)(0), // 0: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.StackJobOperationType
 }
 var file_cloud_planton_apis_v1_stack_job_enums_operationtype_operation_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

@@ -7,7 +7,7 @@
 package extensions
 
 import (
-	enums1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
+	enums1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
 	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/permission/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -32,7 +32,7 @@ type AuthorizationConfig struct {
 	// permission required to run the service
 	Permission enums.IamPermission `protobuf:"varint,1,opt,name=permission,proto3,enum=cloud.planton.apis.v1.iam.authz.permission.enums.IamPermission" json:"permission,omitempty"`
 	// type of the resource that the permission should be granted
-	ResourceType enums1.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums1.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// path of the field inside the input object to be used for performing authorization.
 	FieldPath string `protobuf:"bytes,3,opt,name=field_path,json=fieldPath,proto3" json:"field_path,omitempty"`
 	// error message to be returned when the permission is not granted to user
@@ -219,12 +219,12 @@ var file_cloud_planton_apis_v1_iam_authz_extensions_extensions_proto_msgTypes = 
 var file_cloud_planton_apis_v1_iam_authz_extensions_extensions_proto_goTypes = []interface{}{
 	(*AuthorizationConfig)(nil),        // 0: cloud.planton.apis.v1.iam.authz.extensions.AuthorizationConfig
 	(enums.IamPermission)(0),           // 1: cloud.planton.apis.v1.iam.authz.permission.enums.IamPermission
-	(enums1.ResourceType)(0),           // 2: cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	(enums1.ResourceType)(0),           // 2: cloud.planton.apis.commons.resource.enums.ResourceType
 	(*descriptorpb.MethodOptions)(nil), // 3: google.protobuf.MethodOptions
 }
 var file_cloud_planton_apis_v1_iam_authz_extensions_extensions_proto_depIdxs = []int32{
 	1, // 0: cloud.planton.apis.v1.iam.authz.extensions.AuthorizationConfig.permission:type_name -> cloud.planton.apis.v1.iam.authz.permission.enums.IamPermission
-	2, // 1: cloud.planton.apis.v1.iam.authz.extensions.AuthorizationConfig.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
+	2, // 1: cloud.planton.apis.v1.iam.authz.extensions.AuthorizationConfig.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
 	3, // 2: cloud.planton.apis.v1.iam.authz.extensions.authorization_config:extendee -> google.protobuf.MethodOptions
 	3, // 3: cloud.planton.apis.v1.iam.authz.extensions.is_public:extendee -> google.protobuf.MethodOptions
 	0, // 4: cloud.planton.apis.v1.iam.authz.extensions.authorization_config:type_name -> cloud.planton.apis.v1.iam.authz.extensions.AuthorizationConfig

@@ -8,11 +8,11 @@ package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -392,16 +392,16 @@ var file_cloud_planton_apis_v1_resourcemanager_product_model_state_proto_goTypes
 	(*Product)(nil),                 // 0: cloud.planton.apis.v1.resourcemanager.product.model.Product
 	(*ProductSpec)(nil),             // 1: cloud.planton.apis.v1.resourcemanager.product.model.ProductSpec
 	(*ProductStatus)(nil),           // 2: cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus
-	(*model.Metadata)(nil),          // 3: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(*model.ResourceLifecycle)(nil), // 4: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),    // 5: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.Metadata)(nil),          // 3: cloud.planton.apis.commons.resource.model.Metadata
+	(*model.ResourceLifecycle)(nil), // 4: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),    // 5: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_resourcemanager_product_model_state_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.resourcemanager.product.model.Product.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	3, // 0: cloud.planton.apis.v1.resourcemanager.product.model.Product.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.resourcemanager.product.model.Product.spec:type_name -> cloud.planton.apis.v1.resourcemanager.product.model.ProductSpec
 	2, // 2: cloud.planton.apis.v1.resourcemanager.product.model.Product.status:type_name -> cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus
-	4, // 3: cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	5, // 4: cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	4, // 3: cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	5, // 4: cloud.planton.apis.v1.resourcemanager.product.model.ProductStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

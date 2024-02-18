@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/testing/resource/enums/model.proto
+// source: cloud/planton/apis/commons/testing/resource/enums/model.proto
 
 package enums
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -125,7 +125,7 @@ type EnumFieldsTest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	EventType TestEventType `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=cloud.planton.apis.v1.commons.testing.resource.enums.TestEventType" json:"event_type,omitempty"`
+	EventType TestEventType `protobuf:"varint,1,opt,name=event_type,json=eventType,proto3,enum=cloud.planton.apis.commons.testing.resource.enums.TestEventType" json:"event_type,omitempty"`
 }
 
 func (x *EnumFieldsTest) Reset() {
@@ -253,12 +253,12 @@ func file_cloud_planton_apis_v1_commons_testing_resource_enums_model_proto_rawDe
 var file_cloud_planton_apis_v1_commons_testing_resource_enums_model_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
 var file_cloud_planton_apis_v1_commons_testing_resource_enums_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_testing_resource_enums_model_proto_goTypes = []interface{}{
-	(TestEventType)(0),     // 0: cloud.planton.apis.v1.commons.testing.resource.enums.TestEventType
-	(CloudProviderTest)(0), // 1: cloud.planton.apis.v1.commons.testing.resource.enums.CloudProviderTest
-	(*EnumFieldsTest)(nil), // 2: cloud.planton.apis.v1.commons.testing.resource.enums.EnumFieldsTest
+	(TestEventType)(0),     // 0: cloud.planton.apis.commons.testing.resource.enums.TestEventType
+	(CloudProviderTest)(0), // 1: cloud.planton.apis.commons.testing.resource.enums.CloudProviderTest
+	(*EnumFieldsTest)(nil), // 2: cloud.planton.apis.commons.testing.resource.enums.EnumFieldsTest
 }
 var file_cloud_planton_apis_v1_commons_testing_resource_enums_model_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.commons.testing.resource.enums.EnumFieldsTest.event_type:type_name -> cloud.planton.apis.v1.commons.testing.resource.enums.TestEventType
+	0, // 0: cloud.planton.apis.commons.testing.resource.enums.EnumFieldsTest.event_type:type_name -> cloud.planton.apis.commons.testing.resource.enums.TestEventType
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

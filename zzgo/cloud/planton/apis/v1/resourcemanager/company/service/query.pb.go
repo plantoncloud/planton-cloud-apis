@@ -7,9 +7,9 @@
 package service
 
 import (
-	custom "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/protobuf/custom"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	custom "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/protobuf/custom"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -120,17 +120,17 @@ var file_cloud_planton_apis_v1_resourcemanager_company_service_query_proto_rawDe
 }
 
 var file_cloud_planton_apis_v1_resourcemanager_company_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),     // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),     // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.CompanyId)(nil),   // 1: cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	(*custom.CustomEmpty)(nil), // 2: cloud.planton.apis.v1.commons.protobuf.custom.CustomEmpty
+	(*custom.CustomEmpty)(nil), // 2: cloud.planton.apis.commons.protobuf.custom.CustomEmpty
 	(*model1.CompanyList)(nil), // 3: cloud.planton.apis.v1.resourcemanager.company.model.CompanyList
 	(*model1.Company)(nil),     // 4: cloud.planton.apis.v1.resourcemanager.company.model.Company
 	(*model1.Companies)(nil),   // 5: cloud.planton.apis.v1.resourcemanager.company.model.Companies
 }
 var file_cloud_planton_apis_v1_resourcemanager_company_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.getById:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	2, // 2: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.findCompanies:input_type -> cloud.planton.apis.v1.commons.protobuf.custom.CustomEmpty
+	2, // 2: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.findCompanies:input_type -> cloud.planton.apis.commons.protobuf.custom.CustomEmpty
 	3, // 3: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.list:output_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyList
 	4, // 4: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.getById:output_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company
 	5, // 5: cloud.planton.apis.v1.resourcemanager.company.service.CompanyQueryController.findCompanies:output_type -> cloud.planton.apis.v1.resourcemanager.company.model.Companies

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/list/enums/statusfilter/status_filter.proto
+// source: cloud/planton/apis/commons/resource/list/enums/statusfilter/status_filter.proto
 
 package statusfilter
 
@@ -145,7 +145,7 @@ func file_cloud_planton_apis_v1_commons_resource_list_enums_statusfilter_status_
 
 var file_cloud_planton_apis_v1_commons_resource_list_enums_statusfilter_status_filter_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_commons_resource_list_enums_statusfilter_status_filter_proto_goTypes = []interface{}{
-	(StatusFilter)(0), // 0: cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter
+	(StatusFilter)(0), // 0: cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter
 }
 var file_cloud_planton_apis_v1_commons_resource_list_enums_statusfilter_status_filter_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

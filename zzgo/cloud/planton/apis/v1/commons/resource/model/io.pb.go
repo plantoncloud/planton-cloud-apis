@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/model/io.proto
+// source: cloud/planton/apis/commons/resource/model/io.proto
 
 package model
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -451,12 +451,12 @@ func file_cloud_planton_apis_v1_commons_resource_model_io_proto_rawDescGZIP() []
 
 var file_cloud_planton_apis_v1_commons_resource_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_cloud_planton_apis_v1_commons_resource_model_io_proto_goTypes = []interface{}{
-	(*ResourceId)(nil),                     // 0: cloud.planton.apis.v1.commons.resource.model.ResourceId
-	(*ResourceGroupVersionKind)(nil),       // 1: cloud.planton.apis.v1.commons.resource.model.ResourceGroupVersionKind
-	(*ApiResourceDeleteCommandInput)(nil),  // 2: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	(*ApiResourcePauseCommandInput)(nil),   // 3: cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput
-	(*ApiResourceUnPauseCommandInput)(nil), // 4: cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput
-	(*ApiResourceRefreshCommandInput)(nil), // 5: cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	(*ResourceId)(nil),                     // 0: cloud.planton.apis.commons.resource.model.ResourceId
+	(*ResourceGroupVersionKind)(nil),       // 1: cloud.planton.apis.commons.resource.model.ResourceGroupVersionKind
+	(*ApiResourceDeleteCommandInput)(nil),  // 2: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	(*ApiResourcePauseCommandInput)(nil),   // 3: cloud.planton.apis.commons.resource.model.ApiResourcePauseCommandInput
+	(*ApiResourceUnPauseCommandInput)(nil), // 4: cloud.planton.apis.commons.resource.model.ApiResourceUnPauseCommandInput
+	(*ApiResourceRefreshCommandInput)(nil), // 5: cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 }
 var file_cloud_planton_apis_v1_commons_resource_model_io_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

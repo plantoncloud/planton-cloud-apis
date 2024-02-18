@@ -2,15 +2,15 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/testing/resource/message/model.proto
+// source: cloud/planton/apis/commons/testing/resource/message/model.proto
 
 package message
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/testing/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/testing/resource/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -29,7 +29,7 @@ type MessageLevelProtoValidateConditionalTest struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	CloudProvider enums.CloudProviderTest `protobuf:"varint,1,opt,name=cloud_provider,json=cloudProvider,proto3,enum=cloud.planton.apis.v1.commons.testing.resource.enums.CloudProviderTest" json:"cloud_provider,omitempty"`
+	CloudProvider enums.CloudProviderTest `protobuf:"varint,1,opt,name=cloud_provider,json=cloudProvider,proto3,enum=cloud.planton.apis.commons.testing.resource.enums.CloudProviderTest" json:"cloud_provider,omitempty"`
 	GcpSpec       *GcpSpecTest            `protobuf:"bytes,2,opt,name=gcp_spec,json=gcpSpec,proto3" json:"gcp_spec,omitempty"`
 	AwsSpec       *AwsSpecTest            `protobuf:"bytes,3,opt,name=aws_spec,json=awsSpec,proto3" json:"aws_spec,omitempty"`
 }
@@ -333,15 +333,15 @@ func file_cloud_planton_apis_v1_commons_testing_resource_message_model_proto_raw
 
 var file_cloud_planton_apis_v1_commons_testing_resource_message_model_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_commons_testing_resource_message_model_proto_goTypes = []interface{}{
-	(*MessageLevelProtoValidateConditionalTest)(nil), // 0: cloud.planton.apis.v1.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest
-	(*GcpSpecTest)(nil),          // 1: cloud.planton.apis.v1.commons.testing.resource.message.GcpSpecTest
-	(*AwsSpecTest)(nil),          // 2: cloud.planton.apis.v1.commons.testing.resource.message.AwsSpecTest
-	(enums.CloudProviderTest)(0), // 3: cloud.planton.apis.v1.commons.testing.resource.enums.CloudProviderTest
+	(*MessageLevelProtoValidateConditionalTest)(nil), // 0: cloud.planton.apis.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest
+	(*GcpSpecTest)(nil),          // 1: cloud.planton.apis.commons.testing.resource.message.GcpSpecTest
+	(*AwsSpecTest)(nil),          // 2: cloud.planton.apis.commons.testing.resource.message.AwsSpecTest
+	(enums.CloudProviderTest)(0), // 3: cloud.planton.apis.commons.testing.resource.enums.CloudProviderTest
 }
 var file_cloud_planton_apis_v1_commons_testing_resource_message_model_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.cloud_provider:type_name -> cloud.planton.apis.v1.commons.testing.resource.enums.CloudProviderTest
-	1, // 1: cloud.planton.apis.v1.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.gcp_spec:type_name -> cloud.planton.apis.v1.commons.testing.resource.message.GcpSpecTest
-	2, // 2: cloud.planton.apis.v1.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.aws_spec:type_name -> cloud.planton.apis.v1.commons.testing.resource.message.AwsSpecTest
+	3, // 0: cloud.planton.apis.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.cloud_provider:type_name -> cloud.planton.apis.commons.testing.resource.enums.CloudProviderTest
+	1, // 1: cloud.planton.apis.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.gcp_spec:type_name -> cloud.planton.apis.commons.testing.resource.message.GcpSpecTest
+	2, // 2: cloud.planton.apis.commons.testing.resource.message.MessageLevelProtoValidateConditionalTest.aws_spec:type_name -> cloud.planton.apis.commons.testing.resource.message.AwsSpecTest
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

@@ -7,7 +7,7 @@
 package service
 
 import (
-	list "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/list"
+	list "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/list"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -77,12 +77,12 @@ var file_cloud_planton_apis_v1_billing_resource_list_service_query_proto_rawDesc
 }
 
 var file_cloud_planton_apis_v1_billing_resource_list_service_query_proto_goTypes = []interface{}{
-	(*list.GetByResourceTypeInput)(nil), // 0: cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput
-	(*list.RecordList)(nil),             // 1: cloud.planton.apis.v1.commons.resource.list.RecordList
+	(*list.GetByResourceTypeInput)(nil), // 0: cloud.planton.apis.commons.resource.list.GetByResourceTypeInput
+	(*list.RecordList)(nil),             // 1: cloud.planton.apis.commons.resource.list.RecordList
 }
 var file_cloud_planton_apis_v1_billing_resource_list_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.billing.resource.list.service.ResourceListViewQueryController.listByResourceType:input_type -> cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput
-	1, // 1: cloud.planton.apis.v1.billing.resource.list.service.ResourceListViewQueryController.listByResourceType:output_type -> cloud.planton.apis.v1.commons.resource.list.RecordList
+	0, // 0: cloud.planton.apis.v1.billing.resource.list.service.ResourceListViewQueryController.listByResourceType:input_type -> cloud.planton.apis.commons.resource.list.GetByResourceTypeInput
+	1, // 1: cloud.planton.apis.v1.billing.resource.list.service.ResourceListViewQueryController.listByResourceType:output_type -> cloud.planton.apis.commons.resource.list.RecordList
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

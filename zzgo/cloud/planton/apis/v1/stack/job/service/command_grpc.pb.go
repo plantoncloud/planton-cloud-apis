@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/stack/job/service/command.proto
+// source: cloud/planton/apis/iac/v1/stackjob/service/command.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,9 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackJobCommandController_Create_FullMethodName        = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/create"
-	StackJobCommandController_Update_FullMethodName        = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/update"
-	StackJobCommandController_NotifyRunning_FullMethodName = "/cloud.planton.apis.v1.stack.job.service.StackJobCommandController/notifyRunning"
+	StackJobCommandController_Create_FullMethodName        = "/cloud.planton.apis.iac.v1.stack.job.service.StackJobCommandController/create"
+	StackJobCommandController_Update_FullMethodName        = "/cloud.planton.apis.iac.v1.stack.job.service.StackJobCommandController/update"
+	StackJobCommandController_NotifyRunning_FullMethodName = "/cloud.planton.apis.iac.v1.stack.job.service.StackJobCommandController/notifyRunning"
 )
 
 // StackJobCommandControllerClient is the client API for StackJobCommandController service.
@@ -173,7 +173,7 @@ func _StackJobCommandController_NotifyRunning_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.stack.job.service.StackJobCommandController",
+	ServiceName: "cloud.planton.apis.iac.v1.stack.job.service.StackJobCommandController",
 	HandlerType: (*StackJobCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -190,5 +190,5 @@ var StackJobCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/stack/job/service/command.proto",
+	Metadata: "cloud/planton/apis/iac/v1/stackjob/service/command.proto",
 }

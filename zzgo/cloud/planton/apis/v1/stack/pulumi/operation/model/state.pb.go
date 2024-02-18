@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/pulumi/operation/model/state.proto
+// source: cloud/planton/apis/iac/v1/stack/pulumi/operation/model/state.proto
 
 package model
 
@@ -171,7 +171,7 @@ func file_cloud_planton_apis_v1_stack_pulumi_operation_model_state_proto_rawDesc
 
 var file_cloud_planton_apis_v1_stack_pulumi_operation_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_stack_pulumi_operation_model_state_proto_goTypes = []interface{}{
-	(*PulumiOperationStatus)(nil), // 0: cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	(*PulumiOperationStatus)(nil), // 0: cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
 }
 var file_cloud_planton_apis_v1_stack_pulumi_operation_model_state_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

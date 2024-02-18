@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto
+// source: cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto
 
 package stackjoboperationtypeoptions
 
@@ -25,41 +25,41 @@ var file_cloud_planton_apis_v1_stack_job_enums_operationtype_stackjoboperationty
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50050,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required",
 		Tag:           "varint,50050,opt,name=is_refresh_required",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50051,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required",
 		Tag:           "varint,50051,opt,name=is_apply_preview_required",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50052,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required",
 		Tag:           "varint,50052,opt,name=is_destroy_preview_required",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50053,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_required",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_required",
 		Tag:           "varint,50053,opt,name=is_apply_required",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50054,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_required",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_required",
 		Tag:           "varint,50054,opt,name=is_destroy_required",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/operationtype/stackjoboperationtypeoptions/stack_job_operation_type_options.proto",
 	},
 }
 
@@ -169,11 +169,11 @@ var file_cloud_planton_apis_v1_stack_job_enums_operationtype_stackjoboperationty
 	(*descriptorpb.EnumValueOptions)(nil), // 0: google.protobuf.EnumValueOptions
 }
 var file_cloud_planton_apis_v1_stack_job_enums_operationtype_stackjoboperationtypeoptions_stack_job_operation_type_options_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required:extendee -> google.protobuf.EnumValueOptions
-	0, // 1: cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required:extendee -> google.protobuf.EnumValueOptions
-	0, // 2: cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required:extendee -> google.protobuf.EnumValueOptions
-	0, // 3: cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_required:extendee -> google.protobuf.EnumValueOptions
-	0, // 4: cloud.planton.apis.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_required:extendee -> google.protobuf.EnumValueOptions
+	0, // 0: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_refresh_required:extendee -> google.protobuf.EnumValueOptions
+	0, // 1: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_preview_required:extendee -> google.protobuf.EnumValueOptions
+	0, // 2: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_preview_required:extendee -> google.protobuf.EnumValueOptions
+	0, // 3: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_apply_required:extendee -> google.protobuf.EnumValueOptions
+	0, // 4: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.stackjoboperationtypeoptions.is_destroy_required:extendee -> google.protobuf.EnumValueOptions
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

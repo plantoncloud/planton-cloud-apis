@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stack.service;
+
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/iac/v1/stack/model/io.proto";
+import "cloud/planton/apis/iac/v1/stack/model/state.proto";
+
+service StackCommandController {
+  //create stack
+  rpc create(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+  //update stack
+  rpc update(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+  //delete stack
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+  //delete stack on pulumi cloud
+  rpc deleteOnPulumiCloud(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+}

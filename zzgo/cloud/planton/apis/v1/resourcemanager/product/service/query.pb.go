@@ -7,8 +7,8 @@
 package service
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
@@ -120,7 +120,7 @@ var file_cloud_planton_apis_v1_resourcemanager_product_service_query_proto_rawDe
 }
 
 var file_cloud_planton_apis_v1_resourcemanager_product_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),     // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),     // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.ProductId)(nil),   // 1: cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	(*model2.CompanyId)(nil),   // 2: cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	(*model1.ProductList)(nil), // 3: cloud.planton.apis.v1.resourcemanager.product.model.ProductList
@@ -128,7 +128,7 @@ var file_cloud_planton_apis_v1_resourcemanager_product_service_query_proto_goTyp
 	(*model1.Products)(nil),    // 5: cloud.planton.apis.v1.resourcemanager.product.model.Products
 }
 var file_cloud_planton_apis_v1_resourcemanager_product_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.resourcemanager.product.service.ProductQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.resourcemanager.product.service.ProductQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.resourcemanager.product.service.ProductQueryController.getById:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	2, // 2: cloud.planton.apis.v1.resourcemanager.product.service.ProductQueryController.findByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	3, // 3: cloud.planton.apis.v1.resourcemanager.product.service.ProductQueryController.list:output_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductList

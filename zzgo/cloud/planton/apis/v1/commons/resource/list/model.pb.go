@@ -2,16 +2,16 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/list/model.proto
+// source: cloud/planton/apis/commons/resource/list/model.proto
 
 package list
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	statusfilter "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/list/enums/statusfilter"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	statusfilter "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/list/enums/statusfilter"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -43,7 +43,7 @@ type Record struct {
 	// A human-readable name for the resource.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// The type of the resource.
-	Type enums.ResourceType `protobuf:"varint,3,opt,name=type,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"type,omitempty"`
+	Type enums.ResourceType `protobuf:"varint,3,opt,name=type,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"type,omitempty"`
 	// Unique identifier for the company associated with this resource.
 	CompanyId string `protobuf:"bytes,4,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	// Unique identifier for the product associated with this resource.
@@ -229,13 +229,13 @@ type GetByResourceTypeInput struct {
 	ProductId string `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	// This field indicates the type of resource that the search operation will be focusing on.
 	// The possible resource types are defined by the ResourceType enum.
-	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,3,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// This field contains the pagination information used for retrieving specific paginated
 	// data. It enables the client to specify the number of records per page and the page number.
 	PageInfo *model1.PageInfo `protobuf:"bytes,4,opt,name=page_info,json=pageInfo,proto3" json:"page_info,omitempty"`
 	// this field is an enumeration used to dictate the active status of the resources
 	// included in the search results.
-	StatusFilter statusfilter.StatusFilter `protobuf:"varint,5,opt,name=status_filter,json=statusFilter,proto3,enum=cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter" json:"status_filter,omitempty"`
+	StatusFilter statusfilter.StatusFilter `protobuf:"varint,5,opt,name=status_filter,json=statusFilter,proto3,enum=cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter" json:"status_filter,omitempty"`
 }
 
 func (x *GetByResourceTypeInput) Reset() {
@@ -432,21 +432,21 @@ func file_cloud_planton_apis_v1_commons_resource_list_model_proto_rawDescGZIP() 
 
 var file_cloud_planton_apis_v1_commons_resource_list_model_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_commons_resource_list_model_proto_goTypes = []interface{}{
-	(*Record)(nil),                 // 0: cloud.planton.apis.v1.commons.resource.list.Record
-	(*RecordList)(nil),             // 1: cloud.planton.apis.v1.commons.resource.list.RecordList
-	(*GetByResourceTypeInput)(nil), // 2: cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput
-	(*model.AuditInfo)(nil),        // 3: cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	(enums.ResourceType)(0),        // 4: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*model1.PageInfo)(nil),        // 5: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	(statusfilter.StatusFilter)(0), // 6: cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter
+	(*Record)(nil),                 // 0: cloud.planton.apis.commons.resource.list.Record
+	(*RecordList)(nil),             // 1: cloud.planton.apis.commons.resource.list.RecordList
+	(*GetByResourceTypeInput)(nil), // 2: cloud.planton.apis.commons.resource.list.GetByResourceTypeInput
+	(*model.AuditInfo)(nil),        // 3: cloud.planton.apis.commons.audit.model.AuditInfo
+	(enums.ResourceType)(0),        // 4: cloud.planton.apis.commons.resource.enums.ResourceType
+	(*model1.PageInfo)(nil),        // 5: cloud.planton.apis.commons.rpc.PageInfo
+	(statusfilter.StatusFilter)(0), // 6: cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter
 }
 var file_cloud_planton_apis_v1_commons_resource_list_model_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.commons.resource.list.Record.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	4, // 1: cloud.planton.apis.v1.commons.resource.list.Record.type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	0, // 2: cloud.planton.apis.v1.commons.resource.list.RecordList.entries:type_name -> cloud.planton.apis.v1.commons.resource.list.Record
-	4, // 3: cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	5, // 4: cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput.page_info:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
-	6, // 5: cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput.status_filter:type_name -> cloud.planton.apis.v1.commons.resource.list.enums.statusfilter.StatusFilter
+	3, // 0: cloud.planton.apis.commons.resource.list.Record.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	4, // 1: cloud.planton.apis.commons.resource.list.Record.type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	0, // 2: cloud.planton.apis.commons.resource.list.RecordList.entries:type_name -> cloud.planton.apis.commons.resource.list.Record
+	4, // 3: cloud.planton.apis.commons.resource.list.GetByResourceTypeInput.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	5, // 4: cloud.planton.apis.commons.resource.list.GetByResourceTypeInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	6, // 5: cloud.planton.apis.commons.resource.list.GetByResourceTypeInput.status_filter:type_name -> cloud.planton.apis.commons.resource.list.enums.statusfilter.StatusFilter
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

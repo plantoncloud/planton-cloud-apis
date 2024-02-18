@@ -8,7 +8,7 @@ package service
 
 import (
 	context "context"
-	list "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/list"
+	list "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/list"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

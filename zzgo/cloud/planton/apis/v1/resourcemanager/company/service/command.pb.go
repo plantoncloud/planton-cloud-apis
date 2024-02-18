@@ -7,7 +7,7 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -124,12 +124,12 @@ var file_cloud_planton_apis_v1_resourcemanager_company_service_command_proto_raw
 
 var file_cloud_planton_apis_v1_resourcemanager_company_service_command_proto_goTypes = []interface{}{
 	(*model.Company)(nil),                        // 0: cloud.planton.apis.v1.resourcemanager.company.model.Company
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_resourcemanager_company_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.create:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company
 	0, // 1: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.update:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company
-	1, // 2: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.restore:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company
 	0, // 4: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.create:output_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company
 	0, // 5: cloud.planton.apis.v1.resourcemanager.company.service.CompanyCommandController.update:output_type -> cloud.planton.apis.v1.resourcemanager.company.model.Company

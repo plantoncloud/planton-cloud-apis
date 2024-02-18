@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/protobuf/strings/model.proto
+// source: cloud/planton/apis/commons/protobuf/strings/model.proto
 
 package strings
 
@@ -121,7 +121,7 @@ func file_cloud_planton_apis_v1_commons_protobuf_strings_model_proto_rawDescGZIP
 
 var file_cloud_planton_apis_v1_commons_protobuf_strings_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_protobuf_strings_model_proto_goTypes = []interface{}{
-	(*StringList)(nil), // 0: cloud.planton.apis.v1.commons.protobuf.strings.StringList
+	(*StringList)(nil), // 0: cloud.planton.apis.commons.protobuf.strings.StringList
 }
 var file_cloud_planton_apis_v1_commons_protobuf_strings_model_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

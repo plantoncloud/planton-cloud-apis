@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/progress/enums/statuslabel/status_label.proto
+// source: cloud/planton/apis/iac/v1/stackjob/progress/enums/statuslabel/status_label.proto
 
 package statuslabel
 
@@ -206,7 +206,7 @@ func file_cloud_planton_apis_v1_stack_job_progress_enums_statuslabel_status_labe
 
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statuslabel_status_label_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statuslabel_status_label_proto_goTypes = []interface{}{
-	(StackJobProgressStatusLabel)(0), // 0: cloud.planton.apis.v1.stack.job.progress.enums.statuslabel.StackJobProgressStatusLabel
+	(StackJobProgressStatusLabel)(0), // 0: cloud.planton.apis.iac.v1.stack.job.progress.enums.statuslabel.StackJobProgressStatusLabel
 }
 var file_cloud_planton_apis_v1_stack_job_progress_enums_statuslabel_status_label_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

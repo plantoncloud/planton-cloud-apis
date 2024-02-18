@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto
+// source: cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto
 
 package options
 
@@ -25,89 +25,89 @@ var file_cloud_planton_apis_v1_commons_resource_metadata_options_resource_metada
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50001,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.id_prefix",
 		Tag:           "bytes,50001,opt,name=id_prefix",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50002,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.is_id_required",
 		Tag:           "varint,50002,opt,name=is_id_required",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50003,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.is_id_computed",
 		Tag:           "varint,50003,opt,name=is_id_computed",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50004,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.id_regex",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.id_regex",
 		Tag:           "bytes,50004,opt,name=id_regex",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50005,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.id_min_length",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.id_min_length",
 		Tag:           "varint,50005,opt,name=id_min_length",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50006,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.id_max_length",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.id_max_length",
 		Tag:           "varint,50006,opt,name=id_max_length",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50007,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.id_constraints_description",
 		Tag:           "bytes,50007,opt,name=id_constraints_description",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50008,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.name_regex",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.name_regex",
 		Tag:           "bytes,50008,opt,name=name_regex",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50009,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.name_min_length",
 		Tag:           "varint,50009,opt,name=name_min_length",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50010,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.name_max_length",
 		Tag:           "varint,50010,opt,name=name_max_length",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50011,
-		Name:          "cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description",
+		Name:          "cloud.planton.apis.commons.resource.metadata.options.name_constraints_description",
 		Tag:           "bytes,50011,opt,name=name_constraints_description",
-		Filename:      "cloud/planton/apis/v1/commons/resource/metadata/options/resource_metadata_options.proto",
+		Filename:      "cloud/planton/apis/commons/resource/metadata/options/resource_metadata_options.proto",
 	},
 }
 
@@ -240,17 +240,17 @@ var file_cloud_planton_apis_v1_commons_resource_metadata_options_resource_metada
 	(*descriptorpb.MessageOptions)(nil), // 0: google.protobuf.MessageOptions
 }
 var file_cloud_planton_apis_v1_commons_resource_metadata_options_resource_metadata_options_proto_depIdxs = []int32{
-	0,  // 0: cloud.planton.apis.v1.commons.resource.metadata.options.id_prefix:extendee -> google.protobuf.MessageOptions
-	0,  // 1: cloud.planton.apis.v1.commons.resource.metadata.options.is_id_required:extendee -> google.protobuf.MessageOptions
-	0,  // 2: cloud.planton.apis.v1.commons.resource.metadata.options.is_id_computed:extendee -> google.protobuf.MessageOptions
-	0,  // 3: cloud.planton.apis.v1.commons.resource.metadata.options.id_regex:extendee -> google.protobuf.MessageOptions
-	0,  // 4: cloud.planton.apis.v1.commons.resource.metadata.options.id_min_length:extendee -> google.protobuf.MessageOptions
-	0,  // 5: cloud.planton.apis.v1.commons.resource.metadata.options.id_max_length:extendee -> google.protobuf.MessageOptions
-	0,  // 6: cloud.planton.apis.v1.commons.resource.metadata.options.id_constraints_description:extendee -> google.protobuf.MessageOptions
-	0,  // 7: cloud.planton.apis.v1.commons.resource.metadata.options.name_regex:extendee -> google.protobuf.MessageOptions
-	0,  // 8: cloud.planton.apis.v1.commons.resource.metadata.options.name_min_length:extendee -> google.protobuf.MessageOptions
-	0,  // 9: cloud.planton.apis.v1.commons.resource.metadata.options.name_max_length:extendee -> google.protobuf.MessageOptions
-	0,  // 10: cloud.planton.apis.v1.commons.resource.metadata.options.name_constraints_description:extendee -> google.protobuf.MessageOptions
+	0,  // 0: cloud.planton.apis.commons.resource.metadata.options.id_prefix:extendee -> google.protobuf.MessageOptions
+	0,  // 1: cloud.planton.apis.commons.resource.metadata.options.is_id_required:extendee -> google.protobuf.MessageOptions
+	0,  // 2: cloud.planton.apis.commons.resource.metadata.options.is_id_computed:extendee -> google.protobuf.MessageOptions
+	0,  // 3: cloud.planton.apis.commons.resource.metadata.options.id_regex:extendee -> google.protobuf.MessageOptions
+	0,  // 4: cloud.planton.apis.commons.resource.metadata.options.id_min_length:extendee -> google.protobuf.MessageOptions
+	0,  // 5: cloud.planton.apis.commons.resource.metadata.options.id_max_length:extendee -> google.protobuf.MessageOptions
+	0,  // 6: cloud.planton.apis.commons.resource.metadata.options.id_constraints_description:extendee -> google.protobuf.MessageOptions
+	0,  // 7: cloud.planton.apis.commons.resource.metadata.options.name_regex:extendee -> google.protobuf.MessageOptions
+	0,  // 8: cloud.planton.apis.commons.resource.metadata.options.name_min_length:extendee -> google.protobuf.MessageOptions
+	0,  // 9: cloud.planton.apis.commons.resource.metadata.options.name_max_length:extendee -> google.protobuf.MessageOptions
+	0,  // 10: cloud.planton.apis.commons.resource.metadata.options.name_constraints_description:extendee -> google.protobuf.MessageOptions
 	11, // [11:11] is the sub-list for method output_type
 	11, // [11:11] is the sub-list for method input_type
 	11, // [11:11] is the sub-list for extension type_name

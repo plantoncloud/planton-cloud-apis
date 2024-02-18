@@ -1,7 +1,0 @@
-// A message defining the ownership of a resource.
-message ApiResourceOwnerInfo {
-  // The type of the owner, defined in the ResourceType enum.
-  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind kind = 1;
-  // The field path of the owner id in a api-resource spec.
-  string id_field_path = 2;
-}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stack.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+
+// stack
+message Stack {
+  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = stack;
+  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
+
+  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "st";
+  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+
+  // resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+
+  // resource kind
+  string kind = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+
+  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3;
+
+  //stack spec
+  StackSpec spec = 4;
+
+  //stack status
+  StackStatus status = 5;
+}
+
+// stack spec
+message StackSpec {
+  // type of the resource for which the stack belongs to.
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+
+  // id of the resource for which the stack belongs to.
+  string resource_id = 2;
+
+  // url of the stack-job on pulumi web console.
+  // note: this value is not persisted in the database.
+  // the value of this attributes is rendered by replacing the placeholders in
+  // "https://app.pulumi.com/${pulumiOrgName}/${pulumiProject}/${pulumiStackName}"
+  // value of pulumiOrgName is same for every single stack for each planton-cloud environment.
+  // value of pulumiProject is the company-id on planton-cloud.
+  // value of pulumiStack is stack_name attribute in this object.
+  // ex: https://app.pulumi.com/plantonstack-prod/cookie/afs-cookie-shop-main.ca-planton-hosting-gcp-main.artifact-store
+  string pulumi_cloud_url = 3 [
+    (buf.validate.field).ignore_empty = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  // id of the company to which the resource belongs to.
+  // this is used as project name when creating stacks on pulumi cloud.
+  string company_id = 4;
+}
+
+// stack status
+message StackStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+}

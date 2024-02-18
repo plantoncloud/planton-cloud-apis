@@ -7,7 +7,7 @@
 package model
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -312,11 +312,11 @@ var file_cloud_planton_apis_v1_iam_identity_connection_model_io_proto_goTypes = 
 	(*ListWithIdentityConnectionIdReq)(nil), // 2: cloud.planton.apis.v1.iam.identity.connection.model.ListWithIdentityConnectionIdReq
 	(*IdentityConnectionCompanyId)(nil),     // 3: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionCompanyId
 	(*IdentityConnection)(nil),              // 4: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
-	(*model.PageInfo)(nil),                  // 5: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),                  // 5: cloud.planton.apis.commons.rpc.PageInfo
 }
 var file_cloud_planton_apis_v1_iam_identity_connection_model_io_proto_depIdxs = []int32{
 	4, // 0: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnections.entries:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
-	5, // 1: cloud.planton.apis.v1.iam.identity.connection.model.ListWithIdentityConnectionIdReq.page:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	5, // 1: cloud.planton.apis.v1.iam.identity.connection.model.ListWithIdentityConnectionIdReq.page:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

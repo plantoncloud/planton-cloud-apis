@@ -7,7 +7,7 @@
 package model
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -202,10 +202,10 @@ func file_cloud_planton_apis_v1_iam_authz_policy_model_state_proto_rawDescGZIP()
 var file_cloud_planton_apis_v1_iam_authz_policy_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_iam_authz_policy_model_state_proto_goTypes = []interface{}{
 	(*FgaTuple)(nil),        // 0: cloud.planton.apis.v1.iam.authz.policy.model.FgaTuple
-	(*model.AuditInfo)(nil), // 1: cloud.planton.apis.v1.commons.audit.model.AuditInfo
+	(*model.AuditInfo)(nil), // 1: cloud.planton.apis.commons.audit.model.AuditInfo
 }
 var file_cloud_planton_apis_v1_iam_authz_policy_model_state_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.iam.authz.policy.model.FgaTuple.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
+	1, // 0: cloud.planton.apis.v1.iam.authz.policy.model.FgaTuple.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

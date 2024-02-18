@@ -8,11 +8,11 @@ package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -565,18 +565,18 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_project_model_state
 	(*CodeProjectStatus)(nil),       // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus
 	nil,                             // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.CookiecutterJsonEntry
 	nil,                             // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.CookiecutterInputEntry
-	(*model.Metadata)(nil),          // 5: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(*model.ResourceLifecycle)(nil), // 6: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),    // 7: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.Metadata)(nil),          // 5: cloud.planton.apis.commons.resource.model.Metadata
+	(*model.ResourceLifecycle)(nil), // 6: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),    // 7: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_project_model_state_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	5, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject.spec:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec
 	2, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProject.status:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus
 	3, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.cookiecutter_json:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.CookiecutterJsonEntry
 	4, // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.cookiecutter_input:type_name -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectSpec.CookiecutterInputEntry
-	6, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	7, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	6, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	7, // 6: cloud.planton.apis.v1.code2cloud.develop.sourcecode.project.model.CodeProjectStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	7, // [7:7] is the sub-list for method output_type
 	7, // [7:7] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name

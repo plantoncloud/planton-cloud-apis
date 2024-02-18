@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.storagebucket.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/storagebucketprovider/storage_bucket_provider.proto";
+import "cloud/planton/apis/v1/code2cloud/environment/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/metadata/options/resource_metadata_options.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+
+//storage-bucket
+message StorageBucket {
+  option (cloud.planton.apis.commons.apiresource.options.resource_kind) = storage_bucket;
+  option (cloud.planton.apis.commons.apiresource.options.is_runnable) = false;
+  option (cloud.planton.apis.commons.apiresource.options.owner).type = environment;
+  option (cloud.planton.apis.commons.apiresource.options.owner).id_field_path = "spec.environment_info.environment_id";
+
+  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_required) = false;
+  option (cloud.planton.apis.commons.apiresource.metadata.options.id_prefix) = "bkt";
+  //id format "bkt-<environment-id>-<normalized-storage-bucket-name>"
+  option (cloud.planton.apis.commons.apiresource.metadata.options.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+
+  //resource metadata
+  cloud.planton.apis.commons.apiresource.model.Metadata metadata = 3 [
+  (buf.validate.field).string.min_len = 3,
+  (buf.validate.field).string.max_len = 63,
+  (buf.validate.field).cel = {
+  id: "metadata.name",
+      message: "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others",
+    //https://regex101.com/r/d1Viju/1
+      expression: "this.name.matches('^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$')"
+}];
+
+  //spec
+  StorageBucketSpec spec = 4;
+
+  //status
+  StorageBucketStatus status = 5;
+}
+
+//storage-bucket spec
+message StorageBucketSpec {
+  //resource parent
+  cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo environment_info = 1;
+
+  //(optional for create) flag to indicate if storage-bucket should have external(public) access.
+  //defaults to "false"
+  bool is_external = 2;
+
+  //storage-bucket spec on gcp
+  StorageBucketGcpSpec gcp = 4;
+}
+
+//storage-bucket status
+message StorageBucketStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.audit.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+}
+
+//storage-bucket on gcp
+message StorageBucketGcpSpec {
+  //id of the gcp cloud account in which the storage-bucket is created.
+  //this field is computed from the kube-cluster configured for the environment.
+  string gcp_cloud_account_id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //gcp project in which the storage-bucket is created.
+  //this field is computed from the kube-cluster configured for the environment.
+  //storage-bucket is created in the same gcp-project in which the container-cluster is created.
+  string project_id = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //gcp region in which the bucket is to be created.
+  string region = 3 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  ];
+}

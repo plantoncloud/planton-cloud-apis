@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.integration.gitlab.proxy.service;
+
+import "cloud/planton/apis/v1/code2cloud/codeproject/model/io.proto";
+import "cloud/planton/apis/v1/code2cloud/codeproject/model/state.proto";
+import "cloud/planton/apis/v1/code2cloud/codeserver/model/state.proto";
+import "cloud/planton/apis/v1/integration/gitlab/proxy/model/io.proto";
+
+//gitlab proxy query controller
+service GitlabProxyQueryController {
+  //list projects for the requested group, including projects in sub-groups on gitlab
+  //https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
+  //todo: we have to add pagination support for response.
+  rpc listProjects(cloud.planton.apis.v1.integration.gitlab.proxy.model.ListProjectsQueryInput)
+      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjects);
+  //get details of a project on gitlab
+  rpc getProject(cloud.planton.apis.v1.integration.gitlab.proxy.model.GetProjectQueryInput)
+      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject);
+  //get details of a group on gitlab
+  rpc getGroup(cloud.planton.apis.v1.integration.gitlab.proxy.model.GetGroupQueryInput)
+      returns (cloud.planton.apis.v1.code2cloud.server.model.CodeServer);
+  //get code project profile of a code-project hosted on gitlab
+  rpc getGitlabCodeProjectProfile(cloud.planton.apis.v1.integration.gitlab.proxy.model.GetGitlabCodeProjectProfileQueryInput)
+      returns (cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProjectProfile);
+}

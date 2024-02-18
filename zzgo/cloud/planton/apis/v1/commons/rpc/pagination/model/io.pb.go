@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/rpc/pagination/model/io.proto
+// source: cloud/planton/apis/commons/rpc/pagination/model/io.proto
 
 package model
 
@@ -132,7 +132,7 @@ func file_cloud_planton_apis_v1_commons_rpc_pagination_model_io_proto_rawDescGZI
 
 var file_cloud_planton_apis_v1_commons_rpc_pagination_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_rpc_pagination_model_io_proto_goTypes = []interface{}{
-	(*PageInfo)(nil), // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*PageInfo)(nil), // 0: cloud.planton.apis.commons.rpc.PageInfo
 }
 var file_cloud_planton_apis_v1_commons_rpc_pagination_model_io_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

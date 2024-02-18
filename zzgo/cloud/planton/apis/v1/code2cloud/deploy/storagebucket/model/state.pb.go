@@ -10,11 +10,11 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/storagebucketprovider"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -493,19 +493,19 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_model_state_proto
 	(*StorageBucketSpec)(nil),              // 1: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketSpec
 	(*StorageBucketStatus)(nil),            // 2: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus
 	(*StorageBucketGcpSpec)(nil),           // 3: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketGcpSpec
-	(*model.Metadata)(nil),                 // 4: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                 // 4: cloud.planton.apis.commons.resource.model.Metadata
 	(*model1.ResourceEnvironmentInfo)(nil), // 5: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(*model.ResourceLifecycle)(nil),        // 6: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model2.ResourceAudit)(nil),           // 7: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.ResourceLifecycle)(nil),        // 6: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model2.ResourceAudit)(nil),           // 7: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_model_state_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	4, // 0: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketSpec
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucket.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus
 	5, // 3: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
 	3, // 4: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketSpec.gcp:type_name -> cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketGcpSpec
-	6, // 5: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	7, // 6: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	6, // 5: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	7, // 6: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	7, // [7:7] is the sub-list for method output_type
 	7, // [7:7] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name

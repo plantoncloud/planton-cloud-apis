@@ -7,7 +7,7 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/permission/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -100,12 +100,12 @@ var file_cloud_planton_apis_v1_iam_authz_permission_service_command_proto_rawDes
 
 var file_cloud_planton_apis_v1_iam_authz_permission_service_command_proto_goTypes = []interface{}{
 	(*model.IamPermission)(nil),                  // 0: cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_iam_authz_permission_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.create:input_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
 	0, // 1: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.update:input_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
-	1, // 2: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.create:output_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
 	0, // 4: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.update:output_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermission
 	0, // 5: cloud.planton.apis.v1.iam.authz.permission.service.IamPermissionCommandController.delete:output_type -> cloud.planton.apis.v1.iam.authz.permission.model.IamPermission

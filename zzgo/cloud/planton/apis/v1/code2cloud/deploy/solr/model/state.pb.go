@@ -10,12 +10,12 @@ import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	workloadingress "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kubecluster/enums/workloadingress"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/kubernetes/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/kubernetes/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1015,30 +1015,30 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_solr_model_state_proto_goTypes 
 	(*SolrCloudSpecKubernetesSpecZookeeperContainerSpec)(nil), // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecZookeeperContainerSpec
 	(*SolrCloudSpecKubernetesSpecIngressSpec)(nil),            // 7: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecIngressSpec
 	(*SolrCloudStatusKubernetesStatus)(nil),                   // 8: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatusKubernetesStatus
-	(*model.Metadata)(nil),                                    // 9: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                                    // 9: cloud.planton.apis.commons.resource.model.Metadata
 	(*model1.ResourceEnvironmentInfo)(nil),                    // 10: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(*model.RunnableResourceLifecycle)(nil),                   // 11: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*model2.ResourceAudit)(nil),                              // 12: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(*model3.ContainerImage)(nil),                             // 13: cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage
-	(*model3.ContainerResources)(nil),                         // 14: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	(*model.RunnableResourceLifecycle)(nil),                   // 11: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*model2.ResourceAudit)(nil),                              // 12: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(*model3.ContainerImage)(nil),                             // 13: cloud.planton.apis.commons.kubernetes.model.ContainerImage
+	(*model3.ContainerResources)(nil),                         // 14: cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	(workloadingress.KubernetesWorkloadIngressType)(0),        // 15: cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_solr_model_state_proto_depIdxs = []int32{
-	9,  // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	9,  // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus
 	10, // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpec.environment_info:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
 	3,  // 4: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpec.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpec
-	11, // 5: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	12, // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	11, // 5: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	12, // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	8,  // 7: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus.kubernetes:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatusKubernetesStatus
 	4,  // 8: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpec.solr_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec
 	6,  // 9: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpec.zookeeper_container:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecZookeeperContainerSpec
 	7,  // 10: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecIngressSpec
-	13, // 11: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec.image:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage
-	14, // 12: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	13, // 11: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec.image:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerImage
+	14, // 12: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	5,  // 13: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrContainerSpec.config:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecSolrConfigSpec
-	14, // 14: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecZookeeperContainerSpec.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
+	14, // 14: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecZookeeperContainerSpec.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
 	15, // 15: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.v1.code2cloud.deploy.kubecluster.enums.workloadingress.KubernetesWorkloadIngressType
 	16, // [16:16] is the sub-list for method output_type
 	16, // [16:16] is the sub-list for method input_type

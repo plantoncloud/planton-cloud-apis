@@ -8,7 +8,7 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/sourcecode/server/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -184,14 +184,14 @@ var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_service_comm
 
 var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_service_command_proto_goTypes = []interface{}{
 	(*model.CodeServer)(nil),                                     // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServer
-	(*model1.ApiResourceDeleteCommandInput)(nil),                 // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil),                 // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	(*model.CodeServerId)(nil),                                   // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServerId
 	(*model.AttachMachineAccountByCodeServerIdCommandInput)(nil), // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.AttachMachineAccountByCodeServerIdCommandInput
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_sourcecode_server_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServer
 	0, // 1: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServer
-	1, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServer
 	2, // 4: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.synchronizeCodeProjects:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.CodeServerId
 	3, // 5: cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.service.CodeServerCommandController.attachMachineAccountByCodeServerId:input_type -> cloud.planton.apis.v1.code2cloud.develop.sourcecode.server.model.AttachMachineAccountByCodeServerIdCommandInput

@@ -8,11 +8,11 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/kafka/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/method/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/method/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -357,12 +357,12 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_kafka_service_command_proto_raw
 
 var file_cloud_planton_apis_v1_code2cloud_deploy_kafka_service_command_proto_goTypes = []interface{}{
 	(*model.KafkaCluster)(nil),                          // 0: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
-	(*model1.ApiResourceDeleteCommandInput)(nil),        // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	(*model2.CreateStackJobCommandInput)(nil),           // 2: cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil),        // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model2.CreateStackJobCommandInput)(nil),           // 2: cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
 	(*model.KafkaClusterId)(nil),                        // 3: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterId
-	(*model1.ApiResourcePauseCommandInput)(nil),         // 4: cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput
-	(*model1.ApiResourceUnPauseCommandInput)(nil),       // 5: cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput
-	(*model1.ApiResourceRefreshCommandInput)(nil),       // 6: cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	(*model1.ApiResourcePauseCommandInput)(nil),         // 4: cloud.planton.apis.commons.resource.model.ApiResourcePauseCommandInput
+	(*model1.ApiResourceUnPauseCommandInput)(nil),       // 5: cloud.planton.apis.commons.resource.model.ApiResourceUnPauseCommandInput
+	(*model1.ApiResourceRefreshCommandInput)(nil),       // 6: cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 	(*model.AddOrUpdateKafkaTopicCommandInput)(nil),     // 7: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.AddOrUpdateKafkaTopicCommandInput
 	(*model.AddKafkaTopicsCommandInput)(nil),            // 8: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.AddKafkaTopicsCommandInput
 	(*model.DeleteOrRestoreKafkaTopicCommandInput)(nil), // 9: cloud.planton.apis.v1.code2cloud.deploy.kafka.model.DeleteOrRestoreKafkaTopicCommandInput
@@ -372,16 +372,16 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_kafka_service_command_proto_dep
 	0,  // 1: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.create:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
 	0,  // 2: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewUpdate:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
 	0,  // 3: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
-	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewDelete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
-	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 4: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewDelete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
+	1,  // 5: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0,  // 6: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewRestore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
 	0,  // 7: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.restore:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaCluster
-	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.createStackJob:input_type -> cloud.planton.apis.v1.stack.job.model.CreateStackJobCommandInput
+	2,  // 8: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.createStackJob:input_type -> cloud.planton.apis.iac.v1.stack.job.model.CreateStackJobCommandInput
 	3,  // 9: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.restart:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.KafkaClusterId
-	4,  // 10: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.pause:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourcePauseCommandInput
-	5,  // 11: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.unpause:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceUnPauseCommandInput
-	6,  // 12: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewRefresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
-	6,  // 13: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.refresh:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceRefreshCommandInput
+	4,  // 10: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.pause:input_type -> cloud.planton.apis.commons.resource.model.ApiResourcePauseCommandInput
+	5,  // 11: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.unpause:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceUnPauseCommandInput
+	6,  // 12: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
+	6,  // 13: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaClusterCommandController.refresh:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceRefreshCommandInput
 	7,  // 14: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaTopicCommandController.add:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.AddOrUpdateKafkaTopicCommandInput
 	8,  // 15: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaTopicCommandController.addMultiple:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.AddKafkaTopicsCommandInput
 	7,  // 16: cloud.planton.apis.v1.code2cloud.deploy.kafka.service.KafkaTopicCommandController.update:input_type -> cloud.planton.apis.v1.code2cloud.deploy.kafka.model.AddOrUpdateKafkaTopicCommandInput

@@ -7,11 +7,11 @@
 package model
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/identity/connection/provider/enums"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -1193,17 +1193,17 @@ var file_cloud_planton_apis_v1_iam_identity_connection_model_state_proto_goTypes
 	(*AdfsConnection)(nil),                       // 7: cloud.planton.apis.v1.iam.identity.connection.model.AdfsConnection
 	(*OktaWorkforceConnection)(nil),              // 8: cloud.planton.apis.v1.iam.identity.connection.model.OktaWorkforceConnection
 	(*AzureActiveDirectoryNativeConnection)(nil), // 9: cloud.planton.apis.v1.iam.identity.connection.model.AzureActiveDirectoryNativeConnection
-	(*model.Metadata)(nil),                       // 10: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                       // 10: cloud.planton.apis.commons.resource.model.Metadata
 	(enums.IdentityConnectionType)(0),            // 11: cloud.planton.apis.v1.iam.identity.connection.provider.enums.IdentityConnectionType
-	(*model.ResourceLifecycle)(nil),              // 12: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),                 // 13: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.ResourceLifecycle)(nil),              // 12: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),                 // 13: cloud.planton.apis.commons.audit.model.ResourceAudit
 	(enums.SamlSignRequestAlgorithm)(0),          // 14: cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithm
 	(enums.SamlSignRequestAlgorithmDigest)(0),    // 15: cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithmDigest
 	(enums.SamlProtocolBinding)(0),               // 16: cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlProtocolBinding
 	(enums.MicrosoftIdentityApi)(0),              // 17: cloud.planton.apis.v1.iam.identity.connection.provider.enums.MicrosoftIdentityApi
 }
 var file_cloud_planton_apis_v1_iam_identity_connection_model_state_proto_depIdxs = []int32{
-	10, // 0: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	10, // 0: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection.spec:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionSpec
 	2,  // 2: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection.status:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionStatus
 	11, // 3: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionSpec.connection_type:type_name -> cloud.planton.apis.v1.iam.identity.connection.provider.enums.IdentityConnectionType
@@ -1214,8 +1214,8 @@ var file_cloud_planton_apis_v1_iam_identity_connection_model_state_proto_depIdxs
 	8,  // 8: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionSpec.okta_workforce_connection:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.OktaWorkforceConnection
 	9,  // 9: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionSpec.azure_active_identity_native_connection:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.AzureActiveDirectoryNativeConnection
 	4,  // 10: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionSpec.ping_federate_connection:type_name -> cloud.planton.apis.v1.iam.identity.connection.model.PingFederateConnection
-	12, // 11: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	13, // 12: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	12, // 11: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	13, // 12: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnectionStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	14, // 13: cloud.planton.apis.v1.iam.identity.connection.model.SamlConnection.sign_request_algorithm:type_name -> cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithm
 	15, // 14: cloud.planton.apis.v1.iam.identity.connection.model.SamlConnection.sign_request_algorithm_digest:type_name -> cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlSignRequestAlgorithmDigest
 	16, // 15: cloud.planton.apis.v1.iam.identity.connection.model.SamlConnection.protocol_binding:type_name -> cloud.planton.apis.v1.iam.identity.connection.provider.enums.SamlProtocolBinding

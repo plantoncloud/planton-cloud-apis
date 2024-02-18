@@ -1,0 +1,4 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stack.pulumi.operation.model;
+

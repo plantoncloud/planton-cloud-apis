@@ -8,7 +8,7 @@ package service
 
 import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/dnszone/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -142,7 +142,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_service_query_proto_goT
 	(*model.CompanyId)(nil),      // 0: cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	(*model1.DnsZoneId)(nil),     // 1: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneId
 	(*model1.DnsDomainName)(nil), // 2: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsDomainName
-	(*model2.PageInfo)(nil),      // 3: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model2.PageInfo)(nil),      // 3: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.DnsZones)(nil),      // 4: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZones
 	(*model1.DnsZone)(nil),       // 5: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone
 	(*model1.DnsZoneList)(nil),   // 6: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneList
@@ -152,7 +152,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_service_query_proto_dep
 	0, // 0: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.findByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneId
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.getExactOrParentDnsZoneByDomainName:input_type -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsDomainName
-	3, // 3: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	3, // 3: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 4: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.isNameserversDelegated:input_type -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneId
 	4, // 5: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.findByCompanyId:output_type -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZones
 	5, // 6: cloud.planton.apis.v1.code2cloud.deploy.dnszone.service.DnsZoneQueryController.getById:output_type -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone

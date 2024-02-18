@@ -7,7 +7,7 @@
 package model
 
 import (
-	google "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/google"
+	google "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/google"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -1057,13 +1057,13 @@ var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_io_proto_g
 	(*ArtifactStorePackageVersionList)(nil),            // 10: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersionList
 	(*DelArtifactStorePackageVersionCommandInput)(nil), // 11: cloud.planton.apis.v1.code2cloud.artifactstore.model.DelArtifactStorePackageVersionCommandInput
 	(*ArtifactStore)(nil),                              // 12: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
-	(*google.GooglePageInfo)(nil),                      // 13: cloud.planton.apis.v1.commons.pagination.google.GooglePageInfo
+	(*google.GooglePageInfo)(nil),                      // 13: cloud.planton.apis.commons.pagination.google.GooglePageInfo
 	(*timestamppb.Timestamp)(nil),                      // 14: google.protobuf.Timestamp
 }
 var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_io_proto_depIdxs = []int32{
 	12, // 0: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreList.entries:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
 	12, // 1: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStores.entries:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStore
-	13, // 2: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdRepoNameInput.page_info:type_name -> cloud.planton.apis.v1.commons.pagination.google.GooglePageInfo
+	13, // 2: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdRepoNameInput.page_info:type_name -> cloud.planton.apis.commons.pagination.google.GooglePageInfo
 	14, // 3: cloud.planton.apis.v1.code2cloud.artifactstore.model.DockerImage.upload_time:type_name -> google.protobuf.Timestamp
 	14, // 4: cloud.planton.apis.v1.code2cloud.artifactstore.model.DockerImage.build_time:type_name -> google.protobuf.Timestamp
 	4,  // 5: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStoreDockerImageList.entries:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.DockerImage
@@ -1072,7 +1072,7 @@ var file_cloud_planton_apis_v1_code2cloud_develop_artifactstore_model_io_proto_d
 	6,  // 8: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageList.entries:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackage
 	14, // 9: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion.create_time:type_name -> google.protobuf.Timestamp
 	14, // 10: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion.update_time:type_name -> google.protobuf.Timestamp
-	13, // 11: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdPackageNameInput.page_info:type_name -> cloud.planton.apis.v1.commons.pagination.google.GooglePageInfo
+	13, // 11: cloud.planton.apis.v1.code2cloud.artifactstore.model.ListByArtifactStoreIdPackageNameInput.page_info:type_name -> cloud.planton.apis.commons.pagination.google.GooglePageInfo
 	8,  // 12: cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersionList.entries:type_name -> cloud.planton.apis.v1.code2cloud.artifactstore.model.ArtifactStorePackageVersion
 	13, // [13:13] is the sub-list for method output_type
 	13, // [13:13] is the sub-list for method input_type

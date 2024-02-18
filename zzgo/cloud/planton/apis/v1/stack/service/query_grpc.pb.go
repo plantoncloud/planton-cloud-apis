@@ -2,14 +2,14 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/v1/stack/service/query.proto
+// source: cloud/planton/apis/iac/v1/stack/service/query.proto
 
 package service
 
 import (
 	context "context"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,8 +21,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackQueryController_GetById_FullMethodName         = "/cloud.planton.apis.v1.stack.service.StackQueryController/getById"
-	StackQueryController_GetByResourceId_FullMethodName = "/cloud.planton.apis.v1.stack.service.StackQueryController/getByResourceId"
+	StackQueryController_GetById_FullMethodName         = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getById"
+	StackQueryController_GetByResourceId_FullMethodName = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getByResourceId"
 )
 
 // StackQueryControllerClient is the client API for StackQueryController service.
@@ -133,7 +133,7 @@ func _StackQueryController_GetByResourceId_Handler(srv interface{}, ctx context.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var StackQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.v1.stack.service.StackQueryController",
+	ServiceName: "cloud.planton.apis.iac.v1.stack.service.StackQueryController",
 	HandlerType: (*StackQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -146,5 +146,5 @@ var StackQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/v1/stack/service/query.proto",
+	Metadata: "cloud/planton/apis/iac/v1/stack/service/query.proto",
 }

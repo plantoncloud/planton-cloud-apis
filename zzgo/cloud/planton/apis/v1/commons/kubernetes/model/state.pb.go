@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/kubernetes/model/state.proto
+// source: cloud/planton/apis/commons/kubernetes/model/state.proto
 
 package model
 
@@ -503,19 +503,19 @@ func file_cloud_planton_apis_v1_commons_kubernetes_model_state_proto_rawDescGZIP
 
 var file_cloud_planton_apis_v1_commons_kubernetes_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_cloud_planton_apis_v1_commons_kubernetes_model_state_proto_goTypes = []interface{}{
-	(*Container)(nil),          // 0: cloud.planton.apis.v1.commons.kubernetes.model.Container
-	(*ContainerResources)(nil), // 1: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
-	(*ContainerEnvVar)(nil),    // 2: cloud.planton.apis.v1.commons.kubernetes.model.ContainerEnvVar
-	(*ContainerPort)(nil),      // 3: cloud.planton.apis.v1.commons.kubernetes.model.ContainerPort
-	(*CpuMemory)(nil),          // 4: cloud.planton.apis.v1.commons.kubernetes.model.CpuMemory
-	(*ContainerImage)(nil),     // 5: cloud.planton.apis.v1.commons.kubernetes.model.ContainerImage
+	(*Container)(nil),          // 0: cloud.planton.apis.commons.kubernetes.model.Container
+	(*ContainerResources)(nil), // 1: cloud.planton.apis.commons.kubernetes.model.ContainerResources
+	(*ContainerEnvVar)(nil),    // 2: cloud.planton.apis.commons.kubernetes.model.ContainerEnvVar
+	(*ContainerPort)(nil),      // 3: cloud.planton.apis.commons.kubernetes.model.ContainerPort
+	(*CpuMemory)(nil),          // 4: cloud.planton.apis.commons.kubernetes.model.CpuMemory
+	(*ContainerImage)(nil),     // 5: cloud.planton.apis.commons.kubernetes.model.ContainerImage
 }
 var file_cloud_planton_apis_v1_commons_kubernetes_model_state_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.v1.commons.kubernetes.model.Container.ports:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerPort
-	1, // 1: cloud.planton.apis.v1.commons.kubernetes.model.Container.resources:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources
-	2, // 2: cloud.planton.apis.v1.commons.kubernetes.model.Container.env:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.ContainerEnvVar
-	4, // 3: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources.limits:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.CpuMemory
-	4, // 4: cloud.planton.apis.v1.commons.kubernetes.model.ContainerResources.requests:type_name -> cloud.planton.apis.v1.commons.kubernetes.model.CpuMemory
+	3, // 0: cloud.planton.apis.commons.kubernetes.model.Container.ports:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerPort
+	1, // 1: cloud.planton.apis.commons.kubernetes.model.Container.resources:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerResources
+	2, // 2: cloud.planton.apis.commons.kubernetes.model.Container.env:type_name -> cloud.planton.apis.commons.kubernetes.model.ContainerEnvVar
+	4, // 3: cloud.planton.apis.commons.kubernetes.model.ContainerResources.limits:type_name -> cloud.planton.apis.commons.kubernetes.model.CpuMemory
+	4, // 4: cloud.planton.apis.commons.kubernetes.model.ContainerResources.requests:type_name -> cloud.planton.apis.commons.kubernetes.model.CpuMemory
 	5, // [5:5] is the sub-list for method output_type
 	5, // [5:5] is the sub-list for method input_type
 	5, // [5:5] is the sub-list for extension type_name

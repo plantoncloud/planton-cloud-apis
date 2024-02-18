@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.metadata.options;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+  string id_prefix = 50001;
+  bool is_id_required = 50002;
+  bool is_id_computed = 50003;
+  string id_regex = 50004;
+  int32 id_min_length = 50005;
+  int32 id_max_length = 50006;
+  string id_constraints_description = 50007;
+  string name_regex = 50008;
+  int32 name_min_length = 50009;
+  int32 name_max_length = 50010;
+  string name_constraints_description = 50011;
+}

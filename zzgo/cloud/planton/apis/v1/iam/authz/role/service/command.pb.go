@@ -7,7 +7,7 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/role/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -92,12 +92,12 @@ var file_cloud_planton_apis_v1_iam_authz_role_service_command_proto_rawDesc = []
 
 var file_cloud_planton_apis_v1_iam_authz_role_service_command_proto_goTypes = []interface{}{
 	(*model.IamRole)(nil),                        // 0: cloud.planton.apis.v1.iam.authz.role.model.IamRole
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_iam_authz_role_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.create:input_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRole
 	0, // 1: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.update:input_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRole
-	1, // 2: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.create:output_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRole
 	0, // 4: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.update:output_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRole
 	0, // 5: cloud.planton.apis.v1.iam.authz.role.service.IamRoleCommandController.delete:output_type -> cloud.planton.apis.v1.iam.authz.role.model.IamRole

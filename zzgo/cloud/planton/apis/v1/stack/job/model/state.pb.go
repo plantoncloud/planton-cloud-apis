@@ -2,21 +2,21 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/model/state.proto
+// source: cloud/planton/apis/iac/v1/stackjob/model/state.proto
 
 package model
 
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
-	executionstatus "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/executionstatus"
-	operationtype "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/enums/operationtype"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/pulumi/operation/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
+	executionstatus "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/enums/executionstatus"
+	operationtype "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/enums/operationtype"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/pulumi/operation/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
@@ -133,16 +133,16 @@ type StackJobSpec struct {
 	EnvironmentId string `protobuf:"bytes,3,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
 	// resource type for which the stack-job is created
 	// value is computed from stack.
-	ResourceType enums.ResourceType `protobuf:"varint,4,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,4,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// id of the resource for which the stack-job is created.
 	ResourceId string `protobuf:"bytes,5,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	// id of the resource version for which the stack-job is created.
-	ResourceVersionId string `protobuf:"bytes,6,opt,name=resource_version_id,json=resourceVersionId,proto3" json:"resource_version_id,omitempty"`
+	ApiResourceVersionId string `protobuf:"bytes,6,opt,name=resource_version_id,json=resourceVersionId,proto3" json:"resource_version_id,omitempty"`
 	// id of the stack to which the stack-job belongs to.
 	// value is computed based on resource-id.
 	StackId string `protobuf:"bytes,7,opt,name=stack_id,json=stackId,proto3" json:"stack_id,omitempty"`
 	// stack-job operation type
-	OperationType operationtype.StackJobOperationType `protobuf:"varint,8,opt,name=operation_type,json=operationType,proto3,enum=cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType" json:"operation_type,omitempty"`
+	OperationType operationtype.StackJobOperationType `protobuf:"varint,8,opt,name=operation_type,json=operationType,proto3,enum=cloud.planton.apis.iac.v1.stack.job.enums.operationtype.StackJobOperationType" json:"operation_type,omitempty"`
 	// name of the pulumi-stack.
 	// this value is computed by stack service.
 	PulumiStackName string `protobuf:"bytes,9,opt,name=pulumi_stack_name,json=pulumiStackName,proto3" json:"pulumi_stack_name,omitempty"`
@@ -219,9 +219,9 @@ func (x *StackJobSpec) GetResourceId() string {
 	return ""
 }
 
-func (x *StackJobSpec) GetResourceVersionId() string {
+func (x *StackJobSpec) GetApiResourceVersionId() string {
 	if x != nil {
-		return x.ResourceVersionId
+		return x.ApiResourceVersionId
 	}
 	return ""
 }
@@ -272,7 +272,7 @@ type StackJobStatus struct {
 	// resource audit info
 	Audit *model1.ResourceAudit `protobuf:"bytes,98,opt,name=audit,proto3" json:"audit,omitempty"`
 	// execution status of the stack-job
-	ExecutionStatus executionstatus.StackJobExecutionStatus `protobuf:"varint,1,opt,name=execution_status,json=executionStatus,proto3,enum=cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus" json:"execution_status,omitempty"`
+	ExecutionStatus executionstatus.StackJobExecutionStatus `protobuf:"varint,1,opt,name=execution_status,json=executionStatus,proto3,enum=cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus" json:"execution_status,omitempty"`
 	// execution start time of stack job
 	ExecutionStartTime *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=execution_start_time,json=executionStartTime,proto3" json:"execution_start_time,omitempty"`
 	// execution end time of stack job
@@ -783,38 +783,38 @@ func file_cloud_planton_apis_v1_stack_job_model_state_proto_rawDescGZIP() []byte
 
 var file_cloud_planton_apis_v1_stack_job_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_v1_stack_job_model_state_proto_goTypes = []interface{}{
-	(*StackJob)(nil),                             // 0: cloud.planton.apis.v1.stack.job.model.StackJob
-	(*StackJobSpec)(nil),                         // 1: cloud.planton.apis.v1.stack.job.model.StackJobSpec
-	(*StackJobStatus)(nil),                       // 2: cloud.planton.apis.v1.stack.job.model.StackJobStatus
-	(*StackJobPulumiOperationsSpec)(nil),         // 3: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsSpec
-	(*StackJobPulumiOperationsStatus)(nil),       // 4: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus
-	(*model.Metadata)(nil),                       // 5: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(enums.ResourceType)(0),                      // 6: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(operationtype.StackJobOperationType)(0),     // 7: cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	(*model.ResourceLifecycle)(nil),              // 8: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),                 // 9: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(executionstatus.StackJobExecutionStatus)(0), // 10: cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	(*StackJob)(nil),                             // 0: cloud.planton.apis.iac.v1.stack.job.model.StackJob
+	(*StackJobSpec)(nil),                         // 1: cloud.planton.apis.iac.v1.stack.job.model.StackJobSpec
+	(*StackJobStatus)(nil),                       // 2: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus
+	(*StackJobPulumiOperationsSpec)(nil),         // 3: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsSpec
+	(*StackJobPulumiOperationsStatus)(nil),       // 4: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus
+	(*model.Metadata)(nil),                       // 5: cloud.planton.apis.commons.resource.model.Metadata
+	(enums.ResourceType)(0),                      // 6: cloud.planton.apis.commons.resource.enums.ResourceType
+	(operationtype.StackJobOperationType)(0),     // 7: cloud.planton.apis.iac.v1.stack.job.enums.operationtype.StackJobOperationType
+	(*model.ResourceLifecycle)(nil),              // 8: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),                 // 9: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(executionstatus.StackJobExecutionStatus)(0), // 10: cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
 	(*timestamppb.Timestamp)(nil),                // 11: google.protobuf.Timestamp
-	(*model2.PulumiOperationStatus)(nil),         // 12: cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	(*model2.PulumiOperationStatus)(nil),         // 12: cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
 }
 var file_cloud_planton_apis_v1_stack_job_model_state_proto_depIdxs = []int32{
-	5,  // 0: cloud.planton.apis.v1.stack.job.model.StackJob.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
-	1,  // 1: cloud.planton.apis.v1.stack.job.model.StackJob.spec:type_name -> cloud.planton.apis.v1.stack.job.model.StackJobSpec
-	2,  // 2: cloud.planton.apis.v1.stack.job.model.StackJob.status:type_name -> cloud.planton.apis.v1.stack.job.model.StackJobStatus
-	6,  // 3: cloud.planton.apis.v1.stack.job.model.StackJobSpec.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	7,  // 4: cloud.planton.apis.v1.stack.job.model.StackJobSpec.operation_type:type_name -> cloud.planton.apis.v1.stack.job.enums.operationtype.StackJobOperationType
-	3,  // 5: cloud.planton.apis.v1.stack.job.model.StackJobSpec.pulumi_operations:type_name -> cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsSpec
-	8,  // 6: cloud.planton.apis.v1.stack.job.model.StackJobStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	9,  // 7: cloud.planton.apis.v1.stack.job.model.StackJobStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	10, // 8: cloud.planton.apis.v1.stack.job.model.StackJobStatus.execution_status:type_name -> cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
-	11, // 9: cloud.planton.apis.v1.stack.job.model.StackJobStatus.execution_start_time:type_name -> google.protobuf.Timestamp
-	11, // 10: cloud.planton.apis.v1.stack.job.model.StackJobStatus.execution_end_time:type_name -> google.protobuf.Timestamp
-	4,  // 11: cloud.planton.apis.v1.stack.job.model.StackJobStatus.pulumi_operations:type_name -> cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus
-	12, // 12: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus.refresh_status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
-	12, // 13: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus.apply_preview_status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
-	12, // 14: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus.destroy_preview_status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
-	12, // 15: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus.apply_status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
-	12, // 16: cloud.planton.apis.v1.stack.job.model.StackJobPulumiOperationsStatus.destroy_status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	5,  // 0: cloud.planton.apis.iac.v1.stack.job.model.StackJob.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
+	1,  // 1: cloud.planton.apis.iac.v1.stack.job.model.StackJob.spec:type_name -> cloud.planton.apis.iac.v1.stack.job.model.StackJobSpec
+	2,  // 2: cloud.planton.apis.iac.v1.stack.job.model.StackJob.status:type_name -> cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus
+	6,  // 3: cloud.planton.apis.iac.v1.stack.job.model.StackJobSpec.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	7,  // 4: cloud.planton.apis.iac.v1.stack.job.model.StackJobSpec.operation_type:type_name -> cloud.planton.apis.iac.v1.stack.job.enums.operationtype.StackJobOperationType
+	3,  // 5: cloud.planton.apis.iac.v1.stack.job.model.StackJobSpec.pulumi_operations:type_name -> cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsSpec
+	8,  // 6: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	9,  // 7: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
+	10, // 8: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.execution_status:type_name -> cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.StackJobExecutionStatus
+	11, // 9: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.execution_start_time:type_name -> google.protobuf.Timestamp
+	11, // 10: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.execution_end_time:type_name -> google.protobuf.Timestamp
+	4,  // 11: cloud.planton.apis.iac.v1.stack.job.model.StackJobStatus.pulumi_operations:type_name -> cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus
+	12, // 12: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus.refresh_status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	12, // 13: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus.apply_preview_status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	12, // 14: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus.destroy_preview_status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	12, // 15: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus.apply_status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	12, // 16: cloud.planton.apis.iac.v1.stack.job.model.StackJobPulumiOperationsStatus.destroy_status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
 	17, // [17:17] is the sub-list for method output_type
 	17, // [17:17] is the sub-list for method input_type
 	17, // [17:17] is the sub-list for extension type_name

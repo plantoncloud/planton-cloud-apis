@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/audit/model/state.proto
+// source: cloud/planton/apis/commons/audit/model/state.proto
 
 package model
 
@@ -314,18 +314,18 @@ func file_cloud_planton_apis_v1_commons_audit_model_state_proto_rawDescGZIP() []
 
 var file_cloud_planton_apis_v1_commons_audit_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_v1_commons_audit_model_state_proto_goTypes = []interface{}{
-	(*ResourceAudit)(nil),         // 0: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(*AuditInfo)(nil),             // 1: cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	(*ResourceAuditActor)(nil),    // 2: cloud.planton.apis.v1.commons.audit.model.ResourceAuditActor
+	(*ResourceAudit)(nil),         // 0: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(*AuditInfo)(nil),             // 1: cloud.planton.apis.commons.audit.model.AuditInfo
+	(*ResourceAuditActor)(nil),    // 2: cloud.planton.apis.commons.audit.model.ResourceAuditActor
 	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
 }
 var file_cloud_planton_apis_v1_commons_audit_model_state_proto_depIdxs = []int32{
-	1, // 0: cloud.planton.apis.v1.commons.audit.model.ResourceAudit.spec_audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	1, // 1: cloud.planton.apis.v1.commons.audit.model.ResourceAudit.status_audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	2, // 2: cloud.planton.apis.v1.commons.audit.model.AuditInfo.created_by:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAuditActor
-	3, // 3: cloud.planton.apis.v1.commons.audit.model.AuditInfo.created_at:type_name -> google.protobuf.Timestamp
-	2, // 4: cloud.planton.apis.v1.commons.audit.model.AuditInfo.updated_by:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAuditActor
-	3, // 5: cloud.planton.apis.v1.commons.audit.model.AuditInfo.updated_at:type_name -> google.protobuf.Timestamp
+	1, // 0: cloud.planton.apis.commons.audit.model.ResourceAudit.spec_audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	1, // 1: cloud.planton.apis.commons.audit.model.ResourceAudit.status_audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	2, // 2: cloud.planton.apis.commons.audit.model.AuditInfo.created_by:type_name -> cloud.planton.apis.commons.audit.model.ResourceAuditActor
+	3, // 3: cloud.planton.apis.commons.audit.model.AuditInfo.created_at:type_name -> google.protobuf.Timestamp
+	2, // 4: cloud.planton.apis.commons.audit.model.AuditInfo.updated_by:type_name -> cloud.planton.apis.commons.audit.model.ResourceAuditActor
+	3, // 5: cloud.planton.apis.commons.audit.model.AuditInfo.updated_at:type_name -> google.protobuf.Timestamp
 	6, // [6:6] is the sub-list for method output_type
 	6, // [6:6] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name

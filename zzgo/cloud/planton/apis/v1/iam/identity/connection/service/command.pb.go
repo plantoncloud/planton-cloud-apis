@@ -7,7 +7,7 @@
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/identity/connection/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -136,12 +136,12 @@ var file_cloud_planton_apis_v1_iam_identity_connection_service_command_proto_raw
 
 var file_cloud_planton_apis_v1_iam_identity_connection_service_command_proto_goTypes = []interface{}{
 	(*model.IdentityConnection)(nil),             // 0: cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
-	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	(*model1.ApiResourceDeleteCommandInput)(nil), // 1: cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 }
 var file_cloud_planton_apis_v1_iam_identity_connection_service_command_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.create:input_type -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
 	0, // 1: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.update:input_type -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
-	1, // 2: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.delete:input_type -> cloud.planton.apis.v1.commons.resource.model.ApiResourceDeleteCommandInput
+	1, // 2: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.delete:input_type -> cloud.planton.apis.commons.resource.model.ApiResourceDeleteCommandInput
 	0, // 3: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.restore:input_type -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
 	0, // 4: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.create:output_type -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection
 	0, // 5: cloud.planton.apis.v1.iam.identity.connection.service.IdentityConnectionCommandController.update:output_type -> cloud.planton.apis.v1.iam.identity.connection.model.IdentityConnection

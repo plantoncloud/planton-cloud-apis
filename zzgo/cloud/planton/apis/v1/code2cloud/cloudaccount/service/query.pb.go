@@ -8,7 +8,7 @@ package service
 
 import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/company/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -151,7 +151,7 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_query_proto_rawDe
 var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_query_proto_goTypes = []interface{}{
 	(*model.CloudAccountId)(nil),   // 0: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountId
 	(*model1.CompanyId)(nil),       // 1: cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	(*model2.PageInfo)(nil),        // 2: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model2.PageInfo)(nil),        // 2: cloud.planton.apis.commons.rpc.PageInfo
 	(*model.CloudAccount)(nil),     // 3: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount
 	(*model.CloudAccounts)(nil),    // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccounts
 	(*model.CloudAccountList)(nil), // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountList
@@ -159,7 +159,7 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_query_proto_goTyp
 var file_cloud_planton_apis_v1_code2cloud_cloudaccount_service_query_proto_depIdxs = []int32{
 	0, // 0: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountId
 	1, // 1: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.findByCompanyId:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
-	2, // 2: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	2, // 2: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 3: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.findArtifactStoreCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	1, // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.findKubeClusterCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId
 	1, // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.service.CloudAccountQueryController.findDnsZoneCreateCloudAccounts:input_type -> cloud.planton.apis.v1.resourcemanager.company.model.CompanyId

@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.code2cloud.customendpoint.stack.kubernetes.model;
+
+import "cloud/planton/apis/v1/code2cloud/customendpoint/model/state.proto";
+import "cloud/planton/apis/commons/pulumi/operation/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/progress/model/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+
+//custom-endpoint container stack input
+message CustomEndpointKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  CustomEndpointKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  CustomEndpointKubernetesStackResourceInput resource_input = 3;
+}
+
+//custom-endpoint container stack credentials input
+message CustomEndpointKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating endpoint domain resources on kubernetes cluster
+  cloud.planton.apis.commons.pulumi.operation.model.KubernetesProviderCredential kubernetes = 1;
+}
+
+//custom-endpoint container stack resource input
+message CustomEndpointKubernetesStackResourceInput {
+  //custom-endpoint
+  cloud.planton.apis.v1.code2cloud.customendpoint.model.CustomEndpoint custom_endpoint = 1;
+}
+
+//custom-endpoint container stack outputs
+message CustomEndpointKubernetesStackOutputs {
+  //custom-endpoint
+  cloud.planton.apis.v1.code2cloud.customendpoint.model.CustomEndpointStatus custom_endpoint_status = 1;
+}
+
+//stack response
+message CustomEndpointKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.progress.model.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  CustomEndpointKubernetesStackOutputs outputs = 3;
+}

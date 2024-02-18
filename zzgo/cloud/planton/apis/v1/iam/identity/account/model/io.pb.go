@@ -7,9 +7,9 @@
 package model
 
 import (
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -782,13 +782,13 @@ var file_cloud_planton_apis_v1_iam_identity_account_model_io_proto_goTypes = []i
 	(*MembersCountByCompanyIdInput)(nil), // 10: cloud.planton.apis.v1.iam.identity.account.model.MembersCountByCompanyIdInput
 	(*MembersCountByProductIdInput)(nil), // 11: cloud.planton.apis.v1.iam.identity.account.model.MembersCountByProductIdInput
 	(*IdentityAccount)(nil),              // 12: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
-	(*model.PageInfo)(nil),               // 13: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),               // 13: cloud.planton.apis.commons.rpc.PageInfo
 }
 var file_cloud_planton_apis_v1_iam_identity_account_model_io_proto_depIdxs = []int32{
 	12, // 0: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccounts.entries:type_name -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
-	13, // 1: cloud.planton.apis.v1.iam.identity.account.model.ListWithIdentityAccountIdReq.page:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	13, // 1: cloud.planton.apis.v1.iam.identity.account.model.ListWithIdentityAccountIdReq.page:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	12, // 2: cloud.planton.apis.v1.iam.identity.account.model.IdentityAccountsList.entries:type_name -> cloud.planton.apis.v1.iam.identity.account.model.IdentityAccount
-	13, // 3: cloud.planton.apis.v1.iam.identity.account.model.ListWithIdentityCompanyId.page:type_name -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	13, // 3: cloud.planton.apis.v1.iam.identity.account.model.ListWithIdentityCompanyId.page:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	4,  // [4:4] is the sub-list for method output_type
 	4,  // [4:4] is the sub-list for method input_type
 	4,  // [4:4] is the sub-list for extension type_name

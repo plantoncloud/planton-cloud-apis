@@ -2,12 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/progress/snapshot/model/io.proto
+// source: cloud/planton/apis/iac/v1/stackjob/progress/snapshot/model/io.proto
 
 package model
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/pulumi/operation/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/pulumi/operation/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -788,31 +788,31 @@ func file_cloud_planton_apis_v1_stack_job_progress_snapshot_model_io_proto_rawDe
 
 var file_cloud_planton_apis_v1_stack_job_progress_snapshot_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_cloud_planton_apis_v1_stack_job_progress_snapshot_model_io_proto_goTypes = []interface{}{
-	(*StackJobLogSnapshot)(nil),                       // 0: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot
-	(*StackJobLogPulumiOperationSnapshot)(nil),        // 1: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	(*PulumiOperationPreludeSnapshot)(nil),            // 2: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationPreludeSnapshot
-	(*PulumiOperationResourceChangesSnapshot)(nil),    // 3: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot
-	(*PulumiOperationDiffSnapshot)(nil),               // 4: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationDiffSnapshot
-	(*PulumiOperationDiagnosticsSnapshot)(nil),        // 5: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationDiagnosticsSnapshot
-	(*PulumiOperationSummarySnapshot)(nil),            // 6: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationSummarySnapshot
-	(*PulumiOperationResourceChangesSnapshotRow)(nil), // 7: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshotRow
-	nil,                                 // 8: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
-	(*model.PulumiOperationStatus)(nil), // 9: cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	(*StackJobLogSnapshot)(nil),                       // 0: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot
+	(*StackJobLogPulumiOperationSnapshot)(nil),        // 1: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	(*PulumiOperationPreludeSnapshot)(nil),            // 2: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationPreludeSnapshot
+	(*PulumiOperationResourceChangesSnapshot)(nil),    // 3: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot
+	(*PulumiOperationDiffSnapshot)(nil),               // 4: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationDiffSnapshot
+	(*PulumiOperationDiagnosticsSnapshot)(nil),        // 5: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationDiagnosticsSnapshot
+	(*PulumiOperationSummarySnapshot)(nil),            // 6: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationSummarySnapshot
+	(*PulumiOperationResourceChangesSnapshotRow)(nil), // 7: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshotRow
+	nil,                                 // 8: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
+	(*model.PulumiOperationStatus)(nil), // 9: cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
 }
 var file_cloud_planton_apis_v1_stack_job_progress_snapshot_model_io_proto_depIdxs = []int32{
-	1,  // 0: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.refresh_snapshot:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	1,  // 1: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.apply_preview_snapshot:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	1,  // 2: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.destroy_preview_snapshot:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	1,  // 3: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.apply_snapshot:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	1,  // 4: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.destroy_snapshot:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
-	9,  // 5: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.status:type_name -> cloud.planton.apis.v1.stack.pulumi.operation.model.PulumiOperationStatus
-	2,  // 6: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.prelude:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationPreludeSnapshot
-	3,  // 7: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.resource_changes:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot
-	4,  // 8: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.diff:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationDiffSnapshot
-	5,  // 9: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.diagnostics:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationDiagnosticsSnapshot
-	6,  // 10: cloud.planton.apis.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.summary:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationSummarySnapshot
-	8,  // 11: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.urn_to_row_map:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
-	7,  // 12: cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry.value:type_name -> cloud.planton.apis.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshotRow
+	1,  // 0: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.refresh_snapshot:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	1,  // 1: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.apply_preview_snapshot:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	1,  // 2: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.destroy_preview_snapshot:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	1,  // 3: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.apply_snapshot:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	1,  // 4: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogSnapshot.destroy_snapshot:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot
+	9,  // 5: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.status:type_name -> cloud.planton.apis.iac.v1.stack.pulumi.operation.model.PulumiOperationStatus
+	2,  // 6: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.prelude:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationPreludeSnapshot
+	3,  // 7: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.resource_changes:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot
+	4,  // 8: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.diff:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationDiffSnapshot
+	5,  // 9: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.diagnostics:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationDiagnosticsSnapshot
+	6,  // 10: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.StackJobLogPulumiOperationSnapshot.summary:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationSummarySnapshot
+	8,  // 11: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.urn_to_row_map:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry
+	7,  // 12: cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshot.UrnToRowMapEntry.value:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.snapshot.model.PulumiOperationResourceChangesSnapshotRow
 	13, // [13:13] is the sub-list for method output_type
 	13, // [13:13] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name

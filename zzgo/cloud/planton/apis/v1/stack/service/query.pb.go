@@ -2,13 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/service/query.proto
+// source: cloud/planton/apis/iac/v1/stack/service/query.proto
 
 package service
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -78,15 +78,15 @@ var file_cloud_planton_apis_v1_stack_service_query_proto_rawDesc = []byte{
 }
 
 var file_cloud_planton_apis_v1_stack_service_query_proto_goTypes = []interface{}{
-	(*model.StackId)(nil),     // 0: cloud.planton.apis.v1.stack.model.StackId
-	(*model1.ResourceId)(nil), // 1: cloud.planton.apis.v1.commons.resource.model.ResourceId
-	(*model.Stack)(nil),       // 2: cloud.planton.apis.v1.stack.model.Stack
+	(*model.StackId)(nil),     // 0: cloud.planton.apis.iac.v1.stack.model.StackId
+	(*model1.ResourceId)(nil), // 1: cloud.planton.apis.commons.resource.model.ResourceId
+	(*model.Stack)(nil),       // 2: cloud.planton.apis.iac.v1.stack.model.Stack
 }
 var file_cloud_planton_apis_v1_stack_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.stack.service.StackQueryController.getById:input_type -> cloud.planton.apis.v1.stack.model.StackId
-	1, // 1: cloud.planton.apis.v1.stack.service.StackQueryController.getByResourceId:input_type -> cloud.planton.apis.v1.commons.resource.model.ResourceId
-	2, // 2: cloud.planton.apis.v1.stack.service.StackQueryController.getById:output_type -> cloud.planton.apis.v1.stack.model.Stack
-	2, // 3: cloud.planton.apis.v1.stack.service.StackQueryController.getByResourceId:output_type -> cloud.planton.apis.v1.stack.model.Stack
+	0, // 0: cloud.planton.apis.iac.v1.stack.service.StackQueryController.getById:input_type -> cloud.planton.apis.iac.v1.stack.model.StackId
+	1, // 1: cloud.planton.apis.iac.v1.stack.service.StackQueryController.getByResourceId:input_type -> cloud.planton.apis.commons.resource.model.ResourceId
+	2, // 2: cloud.planton.apis.iac.v1.stack.service.StackQueryController.getById:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
+	2, // 3: cloud.planton.apis.iac.v1.stack.service.StackQueryController.getByResourceId:output_type -> cloud.planton.apis.iac.v1.stack.model.Stack
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

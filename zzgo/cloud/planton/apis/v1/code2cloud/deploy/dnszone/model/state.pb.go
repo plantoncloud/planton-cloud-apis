@@ -9,14 +9,14 @@ package model
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	dnszoneprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/dnszoneprovider"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/network/dns/record/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/pulumi/operation/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/network/dns/record/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/pulumi/operation/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -517,7 +517,7 @@ type DnsRecord struct {
 	unknownFields protoimpl.UnknownFields
 
 	// dns-zone record type.
-	RecordType enums.DnsRecordType `protobuf:"varint,1,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
+	RecordType enums.DnsRecordType `protobuf:"varint,1,opt,name=record_type,json=recordType,proto3,enum=cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType" json:"record_type,omitempty"`
 	// name of the dns-zone ex: example.com or dev.example.com.
 	// this value should always end with a dot.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -829,25 +829,25 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_model_state_proto_goTyp
 	(*DnsZoneAwsSpec)(nil),               // 5: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneAwsSpec
 	(*DnsZoneAwsStatus)(nil),             // 6: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneAwsStatus
 	(*DnsRecord)(nil),                    // 7: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord
-	(*model.Metadata)(nil),               // 8: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),               // 8: cloud.planton.apis.commons.resource.model.Metadata
 	(dnszoneprovider.DnsZoneProvider)(0), // 9: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.dnszoneprovider.DnsZoneProvider
-	(*model.ResourceLifecycle)(nil),      // 10: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),         // 11: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	(enums.DnsRecordType)(0),             // 12: cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	(*model.ResourceLifecycle)(nil),      // 10: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),         // 11: cloud.planton.apis.commons.audit.model.ResourceAudit
+	(enums.DnsRecordType)(0),             // 12: cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_dnszone_model_state_proto_depIdxs = []int32{
-	8,  // 0: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	8,  // 0: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone.spec:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZone.status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus
 	7,  // 3: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneSpec.records:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord
 	9,  // 4: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneSpec.zone_provider:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.dnszoneprovider.DnsZoneProvider
 	3,  // 5: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneSpec.gcp:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneGcpSpec
 	5,  // 6: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneSpec.aws:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneAwsSpec
-	10, // 7: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	11, // 8: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	10, // 7: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	11, // 8: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	4,  // 9: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.gcp:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneGcpStatus
 	6,  // 10: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneStatus.aws:type_name -> cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsZoneAwsStatus
-	12, // 11: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord.record_type:type_name -> cloud.planton.apis.v1.commons.network.dns.record.enums.DnsRecordType
+	12, // 11: cloud.planton.apis.v1.code2cloud.deploy.dnszone.model.DnsRecord.record_type:type_name -> cloud.planton.apis.commons.network.dns.record.enums.DnsRecordType
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name

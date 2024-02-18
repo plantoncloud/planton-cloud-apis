@@ -11,11 +11,11 @@ import (
 	cloudprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/cloudprovider"
 	folder "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/folder"
 	project "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/gcp/resource/project"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -818,22 +818,22 @@ var file_cloud_planton_apis_v1_code2cloud_cloudaccount_model_state_proto_goTypes
 	(*CloudAccountGcpSpec)(nil),      // 3: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpSpec
 	(*CloudAccountGcpStatus)(nil),    // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpStatus
 	(*CloudAccountAwsSpec)(nil),      // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountAwsSpec
-	(*model.Metadata)(nil),           // 6: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),           // 6: cloud.planton.apis.commons.resource.model.Metadata
 	(cloudprovider.CloudProvider)(0), // 7: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider
-	(*model.ResourceLifecycle)(nil),  // 8: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),     // 9: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.ResourceLifecycle)(nil),  // 8: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),     // 9: cloud.planton.apis.commons.audit.model.ResourceAudit
 	(*project.GcpProject)(nil),       // 10: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject
 	(*folder.GcpFolder)(nil),         // 11: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.folder.GcpFolder
 }
 var file_cloud_planton_apis_v1_code2cloud_cloudaccount_model_state_proto_depIdxs = []int32{
-	6,  // 0: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	6,  // 0: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount.spec:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountSpec
 	2,  // 2: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccount.status:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus
 	7,  // 3: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountSpec.cloud_provider:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider
 	3,  // 4: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountSpec.gcp:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpSpec
 	5,  // 5: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountSpec.aws:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountAwsSpec
-	8,  // 6: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	9,  // 7: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	8,  // 6: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	9,  // 7: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	4,  // 8: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountStatus.gcp:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpStatus
 	10, // 9: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpStatus.shared_services_project:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.project.GcpProject
 	11, // 10: cloud.planton.apis.v1.code2cloud.cloudaccount.model.CloudAccountGcpStatus.cloud_account_folder:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.gcp.resource.folder.GcpFolder

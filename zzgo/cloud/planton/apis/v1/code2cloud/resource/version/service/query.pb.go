@@ -7,7 +7,7 @@
 package service
 
 import (
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/version/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/version/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -108,20 +108,20 @@ var file_cloud_planton_apis_v1_code2cloud_resource_version_service_query_proto_r
 }
 
 var file_cloud_planton_apis_v1_code2cloud_resource_version_service_query_proto_goTypes = []interface{}{
-	(*model.ListResourceVersionsInput)(nil),           // 0: cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput
-	(*model.ResourceVersionWithContextSizeInput)(nil), // 1: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionWithContextSizeInput
-	(*model.GetResourceVersionCountInput)(nil),        // 2: cloud.planton.apis.v1.commons.resource.version.model.GetResourceVersionCountInput
-	(*model.ResourceVersionList)(nil),                 // 3: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionList
-	(*model.ResourceVersion)(nil),                     // 4: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion
-	(*model.ResourceVersionCount)(nil),                // 5: cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionCount
+	(*model.ListApiResourceVersionsInput)(nil),           // 0: cloud.planton.apis.commons.resource.version.model.ListApiResourceVersionsInput
+	(*model.ApiResourceVersionWithContextSizeInput)(nil), // 1: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionWithContextSizeInput
+	(*model.GetApiResourceVersionCountInput)(nil),        // 2: cloud.planton.apis.commons.resource.version.model.GetApiResourceVersionCountInput
+	(*model.ApiResourceVersionList)(nil),                 // 3: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionList
+	(*model.ApiResourceVersion)(nil),                     // 4: cloud.planton.apis.commons.resource.version.model.ApiResourceVersion
+	(*model.ApiResourceVersionCount)(nil),                // 5: cloud.planton.apis.commons.resource.version.model.ApiResourceVersionCount
 }
 var file_cloud_planton_apis_v1_code2cloud_resource_version_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.listByFilters:input_type -> cloud.planton.apis.v1.commons.resource.version.model.ListResourceVersionsInput
-	1, // 1: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.getByIdWithContextSize:input_type -> cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionWithContextSizeInput
-	2, // 2: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.getCount:input_type -> cloud.planton.apis.v1.commons.resource.version.model.GetResourceVersionCountInput
-	3, // 3: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.listByFilters:output_type -> cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionList
-	4, // 4: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.getByIdWithContextSize:output_type -> cloud.planton.apis.v1.commons.resource.version.model.ResourceVersion
-	5, // 5: cloud.planton.apis.v1.code2cloud.resource.version.service.ResourceVersionQueryController.getCount:output_type -> cloud.planton.apis.v1.commons.resource.version.model.ResourceVersionCount
+	0, // 0: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.listByFilters:input_type -> cloud.planton.apis.commons.resource.version.model.ListApiResourceVersionsInput
+	1, // 1: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.getByIdWithContextSize:input_type -> cloud.planton.apis.commons.resource.version.model.ApiResourceVersionWithContextSizeInput
+	2, // 2: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.getCount:input_type -> cloud.planton.apis.commons.resource.version.model.GetApiResourceVersionCountInput
+	3, // 3: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.listByFilters:output_type -> cloud.planton.apis.commons.resource.version.model.ApiResourceVersionList
+	4, // 4: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.getByIdWithContextSize:output_type -> cloud.planton.apis.commons.resource.version.model.ApiResourceVersion
+	5, // 5: cloud.planton.apis.v1.code2cloud.resource.version.service.ApiResourceVersionQueryController.getCount:output_type -> cloud.planton.apis.commons.resource.version.model.ApiResourceVersionCount
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

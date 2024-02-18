@@ -2,16 +2,16 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/billing/model/state.proto
+// source: cloud/planton/apis/v1/billing/account/model/state.proto
 
 package model
 
 import (
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/enums"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	enums "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/enums"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -194,9 +194,9 @@ type BillingSubscription struct {
 	// Unique identifier for the specific billing subscription.
 	// This identifier is unique per billing subscription and is used to correlate the billing subscription with its associated data.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Specifies the type of the resource being billed using an enumeration from the cloud.planton.apis.v1.commons.resource.enums package.
+	// Specifies the type of the resource being billed using an enumeration from the cloud.planton.apis.commons.resource.enums package.
 	// The resource type helps categorize and manage resources more effectively, ensuring the right billing strategy for each type.
-	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// StripeSubscription object associated with this billing subscription.
 	// StripeSubscription is a separate message, which includes necessary Stripe-specific subscription information.
 	Subscription *StripeSubscription `protobuf:"bytes,3,opt,name=subscription,proto3" json:"subscription,omitempty"`
@@ -438,9 +438,9 @@ type BillingItem struct {
 	// id is the unique identifier for the specific billing item.
 	// This identifier is unique per billing item and is used to correlate the billing item with its associated data.
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Specifies the type of the resource being billed using an enumeration from the cloud.planton.apis.v1.commons.resource.enums package.
+	// Specifies the type of the resource being billed using an enumeration from the cloud.planton.apis.commons.resource.enums package.
 	// The resource type helps categorize and manage resources more effectively, ensuring the right billing strategy for each type.
-	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.v1.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
+	ResourceType enums.ResourceType `protobuf:"varint,2,opt,name=resource_type,json=resourceType,proto3,enum=cloud.planton.apis.commons.resource.enums.ResourceType" json:"resource_type,omitempty"`
 	// StripeSubscriptionItem object associated with this billing item.
 	// StripeSubscriptionItem is a separate message, which includes necessary Stripe-specific subscription item information.
 	SubscriptionItem *StripeSubscriptionItem `protobuf:"bytes,3,opt,name=subscription_item,json=subscriptionItem,proto3" json:"subscription_item,omitempty"`
@@ -838,38 +838,38 @@ func file_cloud_planton_apis_v1_billing_model_state_proto_rawDescGZIP() []byte {
 
 var file_cloud_planton_apis_v1_billing_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_cloud_planton_apis_v1_billing_model_state_proto_goTypes = []interface{}{
-	(*BillingAccount)(nil),                     // 0: cloud.planton.apis.v1.billing.model.BillingAccount
-	(*BillingAccountSpec)(nil),                 // 1: cloud.planton.apis.v1.billing.model.BillingAccountSpec
-	(*BillingSubscription)(nil),                // 2: cloud.planton.apis.v1.billing.model.BillingSubscription
-	(*StripeCustomer)(nil),                     // 3: cloud.planton.apis.v1.billing.model.StripeCustomer
-	(*StripeSubscription)(nil),                 // 4: cloud.planton.apis.v1.billing.model.StripeSubscription
-	(*BillingAccountStatus)(nil),               // 5: cloud.planton.apis.v1.billing.model.BillingAccountStatus
-	(*BillingItem)(nil),                        // 6: cloud.planton.apis.v1.billing.model.BillingItem
-	(*BillingSubscriptionResourceMapping)(nil), // 7: cloud.planton.apis.v1.billing.model.BillingSubscriptionResourceMapping
-	(*StripeSubscriptionItem)(nil),             // 8: cloud.planton.apis.v1.billing.model.StripeSubscriptionItem
-	(*model.Metadata)(nil),                     // 9: cloud.planton.apis.v1.commons.resource.model.Metadata
-	(*model1.AuditInfo)(nil),                   // 10: cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	(enums.ResourceType)(0),                    // 11: cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	(*model.ResourceLifecycle)(nil),            // 12: cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	(*model1.ResourceAudit)(nil),               // 13: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*BillingAccount)(nil),                     // 0: cloud.planton.apis.v1.billing.account.model.BillingAccount
+	(*BillingAccountSpec)(nil),                 // 1: cloud.planton.apis.v1.billing.account.model.BillingAccountSpec
+	(*BillingSubscription)(nil),                // 2: cloud.planton.apis.v1.billing.account.model.BillingSubscription
+	(*StripeCustomer)(nil),                     // 3: cloud.planton.apis.v1.billing.account.model.StripeCustomer
+	(*StripeSubscription)(nil),                 // 4: cloud.planton.apis.v1.billing.account.model.StripeSubscription
+	(*BillingAccountStatus)(nil),               // 5: cloud.planton.apis.v1.billing.account.model.BillingAccountStatus
+	(*BillingItem)(nil),                        // 6: cloud.planton.apis.v1.billing.account.model.BillingItem
+	(*BillingSubscriptionResourceMapping)(nil), // 7: cloud.planton.apis.v1.billing.account.model.BillingSubscriptionResourceMapping
+	(*StripeSubscriptionItem)(nil),             // 8: cloud.planton.apis.v1.billing.account.model.StripeSubscriptionItem
+	(*model.Metadata)(nil),                     // 9: cloud.planton.apis.commons.resource.model.Metadata
+	(*model1.AuditInfo)(nil),                   // 10: cloud.planton.apis.commons.audit.model.AuditInfo
+	(enums.ResourceType)(0),                    // 11: cloud.planton.apis.commons.resource.enums.ResourceType
+	(*model.ResourceLifecycle)(nil),            // 12: cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	(*model1.ResourceAudit)(nil),               // 13: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_billing_model_state_proto_depIdxs = []int32{
-	9,  // 0: cloud.planton.apis.v1.billing.model.BillingAccount.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
-	1,  // 1: cloud.planton.apis.v1.billing.model.BillingAccount.spec:type_name -> cloud.planton.apis.v1.billing.model.BillingAccountSpec
-	5,  // 2: cloud.planton.apis.v1.billing.model.BillingAccount.status:type_name -> cloud.planton.apis.v1.billing.model.BillingAccountStatus
-	3,  // 3: cloud.planton.apis.v1.billing.model.BillingAccountSpec.stripe_customer:type_name -> cloud.planton.apis.v1.billing.model.StripeCustomer
-	2,  // 4: cloud.planton.apis.v1.billing.model.BillingAccountSpec.subscriptions:type_name -> cloud.planton.apis.v1.billing.model.BillingSubscription
-	10, // 5: cloud.planton.apis.v1.billing.model.BillingSubscription.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	11, // 6: cloud.planton.apis.v1.billing.model.BillingSubscription.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	4,  // 7: cloud.planton.apis.v1.billing.model.BillingSubscription.subscription:type_name -> cloud.planton.apis.v1.billing.model.StripeSubscription
-	6,  // 8: cloud.planton.apis.v1.billing.model.BillingSubscription.billing_items:type_name -> cloud.planton.apis.v1.billing.model.BillingItem
-	12, // 9: cloud.planton.apis.v1.billing.model.BillingAccountStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle
-	13, // 10: cloud.planton.apis.v1.billing.model.BillingAccountStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
-	10, // 11: cloud.planton.apis.v1.billing.model.BillingItem.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
-	11, // 12: cloud.planton.apis.v1.billing.model.BillingItem.resource_type:type_name -> cloud.planton.apis.v1.commons.resource.enums.ResourceType
-	8,  // 13: cloud.planton.apis.v1.billing.model.BillingItem.subscription_item:type_name -> cloud.planton.apis.v1.billing.model.StripeSubscriptionItem
-	7,  // 14: cloud.planton.apis.v1.billing.model.BillingItem.resource_mapping:type_name -> cloud.planton.apis.v1.billing.model.BillingSubscriptionResourceMapping
-	10, // 15: cloud.planton.apis.v1.billing.model.BillingSubscriptionResourceMapping.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.AuditInfo
+	9,  // 0: cloud.planton.apis.v1.billing.account.model.BillingAccount.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
+	1,  // 1: cloud.planton.apis.v1.billing.account.model.BillingAccount.spec:type_name -> cloud.planton.apis.v1.billing.account.model.BillingAccountSpec
+	5,  // 2: cloud.planton.apis.v1.billing.account.model.BillingAccount.status:type_name -> cloud.planton.apis.v1.billing.account.model.BillingAccountStatus
+	3,  // 3: cloud.planton.apis.v1.billing.account.model.BillingAccountSpec.stripe_customer:type_name -> cloud.planton.apis.v1.billing.account.model.StripeCustomer
+	2,  // 4: cloud.planton.apis.v1.billing.account.model.BillingAccountSpec.subscriptions:type_name -> cloud.planton.apis.v1.billing.account.model.BillingSubscription
+	10, // 5: cloud.planton.apis.v1.billing.account.model.BillingSubscription.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	11, // 6: cloud.planton.apis.v1.billing.account.model.BillingSubscription.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	4,  // 7: cloud.planton.apis.v1.billing.account.model.BillingSubscription.subscription:type_name -> cloud.planton.apis.v1.billing.account.model.StripeSubscription
+	6,  // 8: cloud.planton.apis.v1.billing.account.model.BillingSubscription.billing_items:type_name -> cloud.planton.apis.v1.billing.account.model.BillingItem
+	12, // 9: cloud.planton.apis.v1.billing.account.model.BillingAccountStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.ResourceLifecycle
+	13, // 10: cloud.planton.apis.v1.billing.account.model.BillingAccountStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
+	10, // 11: cloud.planton.apis.v1.billing.account.model.BillingItem.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
+	11, // 12: cloud.planton.apis.v1.billing.account.model.BillingItem.resource_type:type_name -> cloud.planton.apis.commons.resource.enums.ResourceType
+	8,  // 13: cloud.planton.apis.v1.billing.account.model.BillingItem.subscription_item:type_name -> cloud.planton.apis.v1.billing.account.model.StripeSubscriptionItem
+	7,  // 14: cloud.planton.apis.v1.billing.account.model.BillingItem.resource_mapping:type_name -> cloud.planton.apis.v1.billing.account.model.BillingSubscriptionResourceMapping
+	10, // 15: cloud.planton.apis.v1.billing.account.model.BillingSubscriptionResourceMapping.audit:type_name -> cloud.planton.apis.commons.audit.model.AuditInfo
 	16, // [16:16] is the sub-list for method output_type
 	16, // [16:16] is the sub-list for method input_type
 	16, // [16:16] is the sub-list for extension type_name

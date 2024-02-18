@@ -12,11 +12,11 @@ import (
 	kubernetesprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/kubernetesprovider"
 	storagebucketprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/cloudaccount/provider/enums/storagebucketprovider"
 	secretsbackendprovider "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/provider/enums/secretsbackendprovider"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/audit/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/field/options"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/metadata/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/resource/options"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/audit/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/field/options"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/metadata/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/resource/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -1569,16 +1569,16 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_state_proto_goTypes 
 	(*EnvironmentSecret)(nil),                                      // 10: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSecret
 	(*EnvironmentEndpointDomain)(nil),                              // 11: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentEndpointDomain
 	(*ResourceEnvironmentInfo)(nil),                                // 12: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo
-	(*model.Metadata)(nil),                                         // 13: cloud.planton.apis.v1.commons.resource.model.Metadata
+	(*model.Metadata)(nil),                                         // 13: cloud.planton.apis.commons.resource.model.Metadata
 	(storagebucketprovider.StorageBucketProvider)(0),               // 14: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider
 	(cloudprovider.CloudProvider)(0),                               // 15: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider
 	(kubernetesprovider.KubernetesProvider)(0),                     // 16: cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider
 	(secretsbackendprovider.EnvironmentSecretsBackendProvider)(0),  // 17: cloud.planton.apis.v1.code2cloud.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider
-	(*model.RunnableResourceLifecycle)(nil),                        // 18: cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	(*model1.ResourceAudit)(nil),                                   // 19: cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	(*model.RunnableResourceLifecycle)(nil),                        // 18: cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	(*model1.ResourceAudit)(nil),                                   // 19: cloud.planton.apis.commons.audit.model.ResourceAudit
 }
 var file_cloud_planton_apis_v1_code2cloud_environment_model_state_proto_depIdxs = []int32{
-	13, // 0: cloud.planton.apis.v1.code2cloud.environment.model.Environment.metadata:type_name -> cloud.planton.apis.v1.commons.resource.model.Metadata
+	13, // 0: cloud.planton.apis.v1.code2cloud.environment.model.Environment.metadata:type_name -> cloud.planton.apis.commons.resource.model.Metadata
 	1,  // 1: cloud.planton.apis.v1.code2cloud.environment.model.Environment.spec:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpec
 	8,  // 2: cloud.planton.apis.v1.code2cloud.environment.model.Environment.status:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentStatus
 	9,  // 3: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpec.variables:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentVariable
@@ -1594,8 +1594,8 @@ var file_cloud_planton_apis_v1_code2cloud_environment_model_state_proto_depIdxs 
 	17, // 13: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpecSecretsBackendSpec.provider:type_name -> cloud.planton.apis.v1.code2cloud.environment.provider.enums.secretsbackendprovider.EnvironmentSecretsBackendProvider
 	5,  // 14: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpecSecretsBackendSpec.gcp_secrets_manager:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpecSecretsBackendSpecGcpSecretsManagerSpec
 	7,  // 15: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpecMicroserviceInstanceSpec.pipeline:type_name -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentSpecMicroserviceInstanceSpecPipelineSpec
-	18, // 16: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentStatus.lifecycle:type_name -> cloud.planton.apis.v1.commons.resource.model.RunnableResourceLifecycle
-	19, // 17: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentStatus.audit:type_name -> cloud.planton.apis.v1.commons.audit.model.ResourceAudit
+	18, // 16: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentStatus.lifecycle:type_name -> cloud.planton.apis.commons.resource.model.RunnableResourceLifecycle
+	19, // 17: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentStatus.audit:type_name -> cloud.planton.apis.commons.audit.model.ResourceAudit
 	15, // 18: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo.cloud_provider:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.cloudprovider.CloudProvider
 	16, // 19: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo.kubernetes_provider:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.kubernetesprovider.KubernetesProvider
 	14, // 20: cloud.planton.apis.v1.code2cloud.environment.model.ResourceEnvironmentInfo.storage_bucket_provider:type_name -> cloud.planton.apis.v1.code2cloud.cloudaccount.provider.enums.storagebucketprovider.StorageBucketProvider

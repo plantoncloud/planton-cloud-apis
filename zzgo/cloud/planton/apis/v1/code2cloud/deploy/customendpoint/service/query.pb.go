@@ -8,7 +8,7 @@ package service
 
 import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/customendpoint/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	resource "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/integration/kubernetes/resource"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
@@ -183,7 +183,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_query_pr
 }
 
 var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),                           // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.CustomEndpointId)(nil),                  // 1: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId
 	(*model2.ProductId)(nil),                         // 2: cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	(*model1.CustomEndpointList)(nil),                // 3: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointList
@@ -194,7 +194,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_query_pr
 	(*resource.Certificates)(nil),                    // 8: cloud.planton.apis.v1.integration.kubernetes.resource.Certificates
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_customendpoint_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointQueryController.findByProductId:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	1, // 3: cloud.planton.apis.v1.code2cloud.deploy.customendpoint.service.CustomEndpointQueryController.getCustomEndpointCertStatus:input_type -> cloud.planton.apis.v1.code2cloud.deploy.customendpoint.model.CustomEndpointId

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/commons/grpc/stream/model.proto
+// source: cloud/planton/apis/commons/grpc/stream/model.proto
 
 package stream
 
@@ -120,7 +120,7 @@ func file_cloud_planton_apis_v1_commons_grpc_stream_model_proto_rawDescGZIP() []
 
 var file_cloud_planton_apis_v1_commons_grpc_stream_model_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_cloud_planton_apis_v1_commons_grpc_stream_model_proto_goTypes = []interface{}{
-	(*OutputLine)(nil), // 0: cloud.planton.apis.v1.commons.grpc.stream.OutputLine
+	(*OutputLine)(nil), // 0: cloud.planton.apis.commons.grpc.stream.OutputLine
 }
 var file_cloud_planton_apis_v1_commons_grpc_stream_model_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

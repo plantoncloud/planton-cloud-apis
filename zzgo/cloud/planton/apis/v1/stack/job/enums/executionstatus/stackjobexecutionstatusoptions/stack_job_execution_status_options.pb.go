@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.31.0
 // 	protoc        (unknown)
-// source: cloud/planton/apis/v1/stack/job/enums/executionstatus/stackjobexecutionstatusoptions/stack_job_execution_status_options.proto
+// source: cloud/planton/apis/iac/v1/stackjob/enums/executionstatus/stackjobexecutionstatusoptions/stack_job_execution_status_options.proto
 
 package stackjobexecutionstatusoptions
 
@@ -25,9 +25,9 @@ var file_cloud_planton_apis_v1_stack_job_enums_executionstatus_stackjobexecution
 		ExtendedType:  (*descriptorpb.EnumValueOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50070,
-		Name:          "cloud.planton.apis.v1.stack.job.enums.executionstatus.stackjobexecutionstatusoptions.is_final_status",
+		Name:          "cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.stackjobexecutionstatusoptions.is_final_status",
 		Tag:           "varint,50070,opt,name=is_final_status",
-		Filename:      "cloud/planton/apis/v1/stack/job/enums/executionstatus/stackjobexecutionstatusoptions/stack_job_execution_status_options.proto",
+		Filename:      "cloud/planton/apis/iac/v1/stackjob/enums/executionstatus/stackjobexecutionstatusoptions/stack_job_execution_status_options.proto",
 	},
 }
 
@@ -108,7 +108,7 @@ var file_cloud_planton_apis_v1_stack_job_enums_executionstatus_stackjobexecution
 	(*descriptorpb.EnumValueOptions)(nil), // 0: google.protobuf.EnumValueOptions
 }
 var file_cloud_planton_apis_v1_stack_job_enums_executionstatus_stackjobexecutionstatusoptions_stack_job_execution_status_options_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.stack.job.enums.executionstatus.stackjobexecutionstatusoptions.is_final_status:extendee -> google.protobuf.EnumValueOptions
+	0, // 0: cloud.planton.apis.iac.v1.stack.job.enums.executionstatus.stackjobexecutionstatusoptions.is_final_status:extendee -> google.protobuf.EnumValueOptions
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

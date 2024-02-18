@@ -8,9 +8,9 @@ package model
 
 import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/solr/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/pulumi/operation/model"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/stack/job/progress/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/pulumi/operation/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
+	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/progress/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -449,20 +449,20 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_solr_stack_kubernetes_model_io_
 	(*SolrCloudKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResourceInput
 	(*SolrCloudKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackOutputs
 	(*SolrCloudKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResponse
-	(*model.StackJob)(nil),                           // 5: cloud.planton.apis.v1.stack.job.model.StackJob
-	(*model1.KubernetesProviderCredential)(nil),      // 6: cloud.planton.apis.v1.commons.pulumi.operation.model.KubernetesProviderCredential
+	(*model.StackJob)(nil),                           // 5: cloud.planton.apis.iac.v1.stack.job.model.StackJob
+	(*model1.KubernetesProviderCredential)(nil),      // 6: cloud.planton.apis.commons.pulumi.operation.model.KubernetesProviderCredential
 	(*model2.SolrCloud)(nil),                         // 7: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	(*model2.SolrCloudStatus)(nil),                   // 8: cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus
-	(*model3.StackJobProgressEvent)(nil),             // 9: cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent
+	(*model3.StackJobProgressEvent)(nil),             // 9: cloud.planton.apis.iac.v1.stack.job.progress.model.StackJobProgressEvent
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_solr_stack_kubernetes_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.v1.stack.job.model.StackJob
+	5, // 0: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stack.job.model.StackJob
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackCredentialsInput
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResourceInput
-	6, // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.v1.commons.pulumi.operation.model.KubernetesProviderCredential
+	6, // 3: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.commons.pulumi.operation.model.KubernetesProviderCredential
 	7, // 4: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResourceInput.solr_cloud:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloud
 	8, // 5: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackOutputs.solr_cloud_status:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.model.SolrCloudStatus
-	9, // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.v1.stack.job.progress.model.StackJobProgressEvent
+	9, // 6: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stack.job.progress.model.StackJobProgressEvent
 	3, // 7: cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.v1.code2cloud.deploy.solr.stack.kubernetes.model.SolrCloudKubernetesStackOutputs
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type

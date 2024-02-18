@@ -9,8 +9,8 @@ package service
 import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/deploy/storagebucket/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/code2cloud/environment/model"
-	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/method/options"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/commons/rpc/pagination/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/method/options"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc/pagination/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/iam/authz/extensions"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/v1/resourcemanager/product/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -146,7 +146,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_service_query_pro
 }
 
 var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_service_query_proto_goTypes = []interface{}{
-	(*model.PageInfo)(nil),           // 0: cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	(*model.PageInfo)(nil),           // 0: cloud.planton.apis.commons.rpc.PageInfo
 	(*model1.StorageBucketId)(nil),   // 1: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketId
 	(*model2.ProductId)(nil),         // 2: cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	(*model3.EnvironmentId)(nil),     // 3: cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentId
@@ -155,7 +155,7 @@ var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_service_query_pro
 	(*model1.StorageBuckets)(nil),    // 6: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBuckets
 }
 var file_cloud_planton_apis_v1_code2cloud_deploy_storagebucket_service_query_proto_depIdxs = []int32{
-	0, // 0: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.service.StorageBucketQueryController.list:input_type -> cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo
+	0, // 0: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.service.StorageBucketQueryController.list:input_type -> cloud.planton.apis.commons.rpc.PageInfo
 	1, // 1: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.service.StorageBucketQueryController.getById:input_type -> cloud.planton.apis.v1.code2cloud.deploy.storagebucket.model.StorageBucketId
 	2, // 2: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.service.StorageBucketQueryController.findByProductId:input_type -> cloud.planton.apis.v1.resourcemanager.product.model.ProductId
 	3, // 3: cloud.planton.apis.v1.code2cloud.deploy.storagebucket.service.StorageBucketQueryController.findByEnvironmentId:input_type -> cloud.planton.apis.v1.code2cloud.environment.model.EnvironmentId
