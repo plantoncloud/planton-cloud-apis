@@ -15,6 +15,6 @@ service ResourceListViewQueryController {
   // This method returns a `ResourceList` message, which encapsulates a list of resources that match
   // the input search parameters. Each resource in the list should match the specified resource type,
   // and be associated with the specified company and product.
-  rpc listByResourceType(cloud.planton.apis.v1.commons.resource.list.GetByResourceTypeInput) returns (cloud.planton.apis.v1.commons.resource.list.RecordList);
+  rpc listByResourceType(cloud.planton.apis.v1.commons.resource.list.GetByApiResourceKindInput) returns (cloud.planton.apis.v1.commons.resource.list.ApiResourceRecordList);
 }
 

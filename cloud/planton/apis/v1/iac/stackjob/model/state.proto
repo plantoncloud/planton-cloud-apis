@@ -72,7 +72,7 @@ message StackJobSpec {
 
   // resource type for which the stack-job is created
   //value is computed from stack.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 4 [
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 4 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.v1.commons.resource.field.options.is_immutable) = true
   ];
@@ -127,7 +127,7 @@ message StackJobStatus {
   cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ApiResourceAudit audit = 98;
 
   // execution status of the stack-job
   cloud.planton.apis.v1.stack.job.enums.executionstatus.StackJobExecutionStatus execution_status = 1;

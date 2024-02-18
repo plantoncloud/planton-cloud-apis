@@ -43,7 +43,7 @@ message IamRoleSpec {
   // example values are user/company etc.
   string principal_type = 2;
   // type of the resource the role belongs to
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 3;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 3;
   // description of iam role
   string description = 4;
   // flag to identify if the role can be used to grant public access
@@ -57,5 +57,5 @@ message IamRoleStatus {
   cloud.planton.apis.v1.commons.resource.model.ResourceLifecycle lifecycle = 99;
 
   // resource audit info
-  cloud.planton.apis.v1.commons.audit.model.ResourceAudit audit = 98;
+  cloud.planton.apis.v1.commons.audit.model.ApiResourceAudit audit = 98;
 }

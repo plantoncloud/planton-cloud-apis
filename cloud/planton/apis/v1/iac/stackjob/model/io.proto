@@ -25,7 +25,7 @@ message ListStackJobsByFiltersQueryInput {
   // id of the product env to filter the stack-jobs
   string environment_id = 4;
   // type of resource
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 5;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 5;
   // id of the resource
   string resource_id = 6;
   // stack operation type

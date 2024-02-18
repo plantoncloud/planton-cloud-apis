@@ -31,7 +31,7 @@ message ListByCostAllocationFiltersInput {
   // id of the environment for which the cost allocations are filtered for the resource requested.
   string environment_id = 5;
   // type of the resource on planton cloud.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 6;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 6;
   // id of the resource on planton cloud.
   // ex: ms-planton-pcs-product which is the id of the microservice.
   string resource_id = 7;
@@ -39,7 +39,7 @@ message ListByCostAllocationFiltersInput {
 
 message GetCostAggregateInput {
   // type of the resource on planton cloud.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 1;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 1;
   // id of the resource on planton cloud.
   // ex: ms-planton-pcs-product which is the id of the microservice.
   string resource_id = 2;

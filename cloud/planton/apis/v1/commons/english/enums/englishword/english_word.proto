@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.english.enums.englishword;
+
+// english word enums added to avoid typing mistakes for the commonly used words for naming things
+// this enum is encapsulated inside a message as a few entries like "name" (a reserved word in few languages) can only be added to the enum if it is inside a message.
+// the recommended best practice to prefix the entry with enum name has been intentionally ignored to as the values of the entries are intended to be used to name resources.
+message EnglishWord {
+  enum EnglishWordEnum {
+    word_unspecified = 0;
+    app = 1;
+    application = 2;
+    aws = 3;
+    azure = 4;
+    bill = 5;
+    company = 6;
+    config = 7;
+    cpu = 8;
+    debug = 9;
+    docker = 10;
+    domain = 11;
+    email = 12;
+    endpoint = 13;
+    external = 14;
+    file = 15;
+    gcp = 16;
+    google = 17;
+    hosting = 18;
+    hostname = 19;
+    id = 20;
+    ingress = 21;
+    instances = 22;
+    internal = 23;
+    ip = 24;
+    key = 25;
+    kubeconfig = 26;
+    kubernetes = 27;
+    localhost = 28;
+    machine = 29;
+    main = 30;
+    maven = 31;
+    memory = 32;
+    microservice = 33;
+    name = 34;
+    nameservers = 35;
+    namespace = 36;
+    network = 37;
+    npm = 38;
+    number = 39;
+    org = 40;
+    parent = 41;
+    postgres = 42;
+    product = 43;
+    project = 44;
+    python = 45;
+    repo = 46;
+    review = 47;
+    server = 48;
+    servers = 49;
+    share = 50;
+    shared_services = 51;
+    spilo = 52;
+    spot = 53;
+    stunnel = 54;
+    team = 55;
+    type = 56;
+    username = 57;
+    util = 58;
+    version = 59;
+    workload = 60;
+    url = 61;
+    env = 62;
+    kafka = 63;
+    unknown = 64;
+    resource = 65;
+    resource_id = 66;
+    resource_type = 67;
+    environment = 68;
+  }
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package cloud.planton.apis.v1.commons.resource.enums.event;
+
+//enumeration of the union of all event types used across all the api resources.
+//this is used for specifying the event type produced by rpc methods in command controllers.
+//using different enum for these event types while specifying in rpc methods and individual api resource would
+// work because the events are eventually converted to strings during message passing.
+enum ApiResourceEventType {
+  API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
+  created = 1;
+  updated = 2;
+  deleted = 3;
+  restored = 4;
+  refreshed = 5;
+  paused = 6;
+  unpaused = 7;
+  stack_job_progress_updated = 8;
+  stack_job_refresh_requested = 9;
+  stack_job_refresh_completed = 10;
+  stack_job_apply_preview_requested = 11;
+  stack_job_apply_requested = 12;
+  stack_job_apply_completed = 13;
+  stack_job_destroy_preview_requested = 14;
+  stack_job_destroy_requested = 15;
+  stack_job_destroy_completed = 16;
+}

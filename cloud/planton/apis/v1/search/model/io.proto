@@ -13,14 +13,14 @@ import "google/protobuf/timestamp.proto";
 // It contains identifying and contextual information about the resource,
 // such as its id, name, type, and the associated company, product, and
 // product environment identifiers.
-message Resource {
+message ApiResourceSearchResultRecord {
   // Unique identifier for the resource.
   // example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;
   // A human-readable name for the resource.
   string name = 2;
   // The type of the resource.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType type = 3;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind type = 3;
   // Unique identifier for the company associated with this resource.
   string company_id = 4;
   // A unique key that represents the product associated with this resource.
@@ -49,11 +49,11 @@ message Resource {
 
 // ResourceList is a message type that represents a paginated list of Resource objects.
 // It contains information about the total number of pages in the list and an array of Resource entries.
-message ResourceList {
+message ApiResourceSearchResultRecordList {
   // The total number of pages in the paginated list of Resource objects.
   int32 total_pages = 1;
   // An array of Resource objects contained in the current page of the paginated list.
-  repeated Resource entries = 2;
+  repeated ApiResourceSearchResultRecord entries = 2;
 }
 
 // SearchByTextInput is a message type that represents the input parameters
@@ -74,7 +74,7 @@ message SearchByTextInput {
 // The SearchByResourceTypeInput message represents the input parameters required for
 // executing a search operation based on a specified resource type within a given
 // company's product.
-message SearchByResourceTypeInput {
+message SearchApiResourcesByKindInput {
   // This is the unique identifier for the company
   // associated with the search query. The search operation will only consider resources
   // associated with this company.
@@ -85,7 +85,7 @@ message SearchByResourceTypeInput {
   string product_id = 2;
   // This field indicates the type of resource that the search operation will be focusing on.
   // The possible resource types are defined by the ResourceType enum.
-  cloud.planton.apis.v1.commons.resource.enums.ResourceType resource_type = 3;
+  cloud.planton.apis.v1.commons.resource.enums.ApiResourceKind resource_type = 3;
   // This field contains the pagination information used for retrieving specific paginated
   // data. It enables the client to specify the number of records per page and the page number.
   cloud.planton.apis.v1.commons.rpc.pagination.model.PageInfo page_info = 4;
