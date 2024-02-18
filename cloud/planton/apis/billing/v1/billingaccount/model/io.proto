@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.billing.v1.account.model;
+package cloud.planton.apis.billing.v1.billingaccount.model;
 
-import "cloud/planton/apis/billing/v1/account/model/state.proto";
+import "cloud/planton/apis/billing/v1/billingaccount/model/state.proto";
 
 //wrapper for id of the billing account.
 message BillingAccountId {

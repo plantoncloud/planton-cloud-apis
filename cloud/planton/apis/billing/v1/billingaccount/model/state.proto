@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.billing.v1.account.model;
+package cloud.planton.apis.billing.v1.billingaccount.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";

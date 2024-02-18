@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/billing/v1/account/service/command.proto
+// source: cloud/planton/apis/billing/v1/billingaccount/service/command.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/billing/v1/account/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/billing/v1/billingaccount/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,9 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	BillingAccountCommandController_Update_FullMethodName  = "/cloud.planton.apis.billing.v1.account.service.BillingAccountCommandController/update"
-	BillingAccountCommandController_Delete_FullMethodName  = "/cloud.planton.apis.billing.v1.account.service.BillingAccountCommandController/delete"
-	BillingAccountCommandController_Restore_FullMethodName = "/cloud.planton.apis.billing.v1.account.service.BillingAccountCommandController/restore"
+	BillingAccountCommandController_Update_FullMethodName  = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountCommandController/update"
+	BillingAccountCommandController_Delete_FullMethodName  = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountCommandController/delete"
+	BillingAccountCommandController_Restore_FullMethodName = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountCommandController/restore"
 )
 
 // BillingAccountCommandControllerClient is the client API for BillingAccountCommandController service.
@@ -169,7 +169,7 @@ func _BillingAccountCommandController_Restore_Handler(srv interface{}, ctx conte
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var BillingAccountCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.billing.v1.account.service.BillingAccountCommandController",
+	ServiceName: "cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountCommandController",
 	HandlerType: (*BillingAccountCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -186,5 +186,5 @@ var BillingAccountCommandController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/billing/v1/account/service/command.proto",
+	Metadata: "cloud/planton/apis/billing/v1/billingaccount/service/command.proto",
 }

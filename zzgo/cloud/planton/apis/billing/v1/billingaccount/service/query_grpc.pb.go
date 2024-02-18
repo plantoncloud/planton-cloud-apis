@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/billing/v1/account/service/query.proto
+// source: cloud/planton/apis/billing/v1/billingaccount/service/query.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/billing/v1/account/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/billing/v1/billingaccount/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	grpc "google.golang.org/grpc"
@@ -22,10 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	BillingAccountQueryController_ListBillingAccounts_FullMethodName                 = "/cloud.planton.apis.billing.v1.account.service.BillingAccountQueryController/listBillingAccounts"
-	BillingAccountQueryController_GetBillingAccountByBillingAccountId_FullMethodName = "/cloud.planton.apis.billing.v1.account.service.BillingAccountQueryController/getBillingAccountByBillingAccountId"
-	BillingAccountQueryController_GetBillingAccountByCompanyId_FullMethodName        = "/cloud.planton.apis.billing.v1.account.service.BillingAccountQueryController/getBillingAccountByCompanyId"
-	BillingAccountQueryController_GetCustomerPortalSessionByCompanyId_FullMethodName = "/cloud.planton.apis.billing.v1.account.service.BillingAccountQueryController/getCustomerPortalSessionByCompanyId"
+	BillingAccountQueryController_ListBillingAccounts_FullMethodName                 = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/listBillingAccounts"
+	BillingAccountQueryController_GetBillingAccountByBillingAccountId_FullMethodName = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByBillingAccountId"
+	BillingAccountQueryController_GetBillingAccountByCompanyId_FullMethodName        = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByCompanyId"
+	BillingAccountQueryController_GetCustomerPortalSessionByCompanyId_FullMethodName = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getCustomerPortalSessionByCompanyId"
 )
 
 // BillingAccountQueryControllerClient is the client API for BillingAccountQueryController service.
@@ -206,7 +206,7 @@ func _BillingAccountQueryController_GetCustomerPortalSessionByCompanyId_Handler(
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var BillingAccountQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.billing.v1.account.service.BillingAccountQueryController",
+	ServiceName: "cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController",
 	HandlerType: (*BillingAccountQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -227,5 +227,5 @@ var BillingAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/billing/v1/account/service/query.proto",
+	Metadata: "cloud/planton/apis/billing/v1/billingaccount/service/query.proto",
 }
