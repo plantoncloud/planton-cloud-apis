@@ -1,4 +1,4 @@
-package buf.gen.cloud.planton.apis.resourcemanager.company;
+package buf.gen.cloud.planton.apis.resourcemanager.v1.company;
 
 import build.buf.gen.cloud.planton.apis.resourcemanager.v1.company.model.Company;
 import build.buf.protovalidate.Validator;

@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.code2cloud.v1.codeproject;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.codeproject.model.CodeProject;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 

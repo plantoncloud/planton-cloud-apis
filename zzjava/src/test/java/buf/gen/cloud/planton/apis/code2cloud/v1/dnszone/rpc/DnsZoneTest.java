@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.code2cloud.v1.rpc;
+package buf.gen.cloud.planton.apis.code2cloud.v1.dnszone.rpc;
 
-import build.buf.gen.cloud.planton.apis.v1.code2cloud.dnszone.model.DnsZone;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone;
 import build.buf.protovalidate.Validator;
 import org.junit.jupiter.api.Test;
 
