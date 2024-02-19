@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.apiresource.testing.metadata;
 
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "buf/validate/validate.proto";
 
@@ -12,7 +12,7 @@ message ApiResourceIdExtractionTestWithOutIdPrefix {
 }
 
 message ApiResourceIdExtractionTestWithIdPrefix {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "hc-";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "hc-";
   string first_name = 1;
   string last_name = 2;
 }

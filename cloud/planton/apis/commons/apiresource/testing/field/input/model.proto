@@ -6,7 +6,7 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 // A message with a string field that must match a regex, and a string field without regex.
 message RegexFieldsTest {
@@ -152,44 +152,44 @@ message MultipleErrorsTest {
 }
 
 message MetadataIdRequiredTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = true;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_constraints_description) = "Id must be present.";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description) = "Id must be present.";
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 1;
 }
 
 // Test case 2: Message with metadata where id has regex constraint
 message MetadataIdRegexTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = true;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_regex) = "^[a-z0-9]+(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen.";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_regex) = "^[a-z0-9]+(-[a-z0-9]+)*$";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description) = "At least 1 character. Lowercase letters, numbers, and hyphens. Must not start or end with hyphen.";
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 1;
 }
 
 // Test case 3: Message with metadata where id has min and max length constraints
 message MetadataIdLengthTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = true;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_min_length) = 3;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_max_length) = 10;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_constraints_description) = "Id must be between 3 to 10 characters long.";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_min_length) = 3;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_max_length) = 10;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description) = "Id must be between 3 to 10 characters long.";
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 1;
 }
 
 // Test case 4: Message with metadata where is_id_computed is true (validations on id should be skipped)
 message MetadataIdComputedTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 1;
 }
 
 // Test case 5: Message with metadata where name has regex and length constraints
 message MetadataNameConstraintsTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.name_regex) = "^[a-z0-9]+(-[a-z0-9]+)*$";
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.name_min_length) = 2;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.name_max_length) = 20;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.name_constraints_description) = "Name must be between 2 to 20 alphabetic characters.";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_regex) = "^[a-z0-9]+(-[a-z0-9]+)*$";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_min_length) = 2;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_max_length) = 20;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_constraints_description) = "Name must be between 2 to 20 alphabetic characters.";
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 1;
 }

@@ -10,7 +10,7 @@ import "cloud/planton/apis/code2cloud/v1/environment/enums/secretsbackendprovide
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 //environment
 message Environment {
@@ -20,7 +20,7 @@ message Environment {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
   //id format "<product-id>-<environment-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
@@ -240,7 +240,7 @@ message EnvironmentStatus {
 
 //environment-variable
 message EnvironmentVariable {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "var";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "var";
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
@@ -273,7 +273,7 @@ message EnvironmentVariable {
 
 //environment-secret
 message EnvironmentSecret {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "sec";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "sec";
   //the name must adhere to the following constraints:
   // - it must be between 1 and 64 characters.
   // - it can only contain english letters (a-z, a-z), numbers (0-9), hyphens (-), and underscores (_).
