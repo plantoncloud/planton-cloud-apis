@@ -6,6 +6,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/identityaccount/model/state.proto";
+import "buf/validate/validate.proto";
 
 // wrapper to get list of identity accounts
 message IdentityAccounts {
@@ -53,10 +54,10 @@ message ListWithIdentityCompanyId {
 
 message GetByCompanyByNameQueryInput {
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
   string name = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
 }
 

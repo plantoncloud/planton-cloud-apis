@@ -12,6 +12,11 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 // cloud-account
 message CloudAccount {
+  option (buf.validate.message).cel = {
+      id: "metadata",
+      message: "Name is mandatory",
+      expression: "has(this.metadata)"
+  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = cloud_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
@@ -39,8 +44,6 @@ message CloudAccount {
   // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
   // The constraints are enforced by the regular expression "^ca-.{1,22}$".
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 15,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -49,15 +52,25 @@ message CloudAccount {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Must start with a lowercase letter",
+      message: "Name Must start with a lowercase letter",
       // https://regex101.com/r/qpK7XF/1
       expression: "this.name.matches('^[a-z].*$')"
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Must not end with a hyphen",
+      message: "Name Must not end with a hyphen",
       // https://regex101.com/r/reQjcB/1
       expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 1 and 12 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 12"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.version.message",
+      message: "Version message is mandatory and cannot be empty",
+      expression: "has(this.version.message)"
     }
   ];
 
@@ -70,6 +83,12 @@ message CloudAccount {
 
 // company cloud account
 message CloudAccountSpec {
+  option (buf.validate.message).cel = {
+    id: "spec.cloud_provider",
+    expression: "this.cloud_provider == 0"
+        "? 'cloud provider is mandatory'"
+        ": ''"
+  };
   option (buf.validate.message).cel = {
     id: "spec.gcp.org_id",
     expression: "this.cloud_provider == 2 && size(this.gcp.org_id) == 0"
@@ -102,13 +121,12 @@ message CloudAccountSpec {
   };
   // company to which company cloud account belongs to.
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
 
   // cloud provider.
   // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider cloud_provider = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
