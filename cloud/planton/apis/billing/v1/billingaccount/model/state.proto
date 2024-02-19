@@ -39,7 +39,7 @@ message BillingAccount {
 message BillingAccountSpec {
   //id of the company for which the billing account is created
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
 
   // Represents the customer's information on Stripe.
@@ -76,14 +76,14 @@ message BillingSubscription {
 message StripeCustomer {
   //id of the customer created for the company on stripe
   string customer_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
 }
 
 message StripeSubscription {
   //id of the subscription created for the company on stripe
   string subscription_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.min_len = 1
   ];
 }
 

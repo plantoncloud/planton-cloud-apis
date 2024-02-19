@@ -10,6 +10,11 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 
 //product
 message Product {
+  option (buf.validate.message).cel = {
+    id: "metadata",
+    message: "Name is mandatory",
+    expression: "has(this.metadata)"
+  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
@@ -41,7 +46,7 @@ message Product {
 message ProductSpec {
   //company to which the product belongs to.
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 

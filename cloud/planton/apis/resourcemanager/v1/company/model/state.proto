@@ -10,6 +10,11 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 
 // company on planton-cloud
 message Company {
+  option (buf.validate.message).cel = {
+    id: "metadata",
+    message: "Name is mandatory",
+    expression: "has(this.metadata)"
+  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = identity_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "status.audit.spec_audit.created_by.id";
@@ -27,13 +32,16 @@ message Company {
   // metadata for the resource
   // id for this resource should not exceed 9 characters.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
-    (buf.validate.field).string.min_len = 2,
-    (buf.validate.field).string.max_len = 9,
     (buf.validate.field).cel = {
       id: "metadata.id",
       message: "Only lowercase letters and numbers are allowed",
       // https://regex101.com/r/NKTohE/1
       expression: "this.id.matches('^[a-z0-9]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 2 and 9 characters long",
+      expression: "size(this.name) > 1 && size(this.name) <= 9"
     }
   ];
 
