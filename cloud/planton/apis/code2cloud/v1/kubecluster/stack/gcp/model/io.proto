@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.stack.gcp.model;
 
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
 import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/provider/gcpgke/enums/podservicesecondaryrangecidrsetnum/pod_service_secondary_range_cidr_set_num.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/gkepodservicesecondaryrangecidrsetnum/gke_pod_service_secondary_range_cidr_set_num.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
@@ -78,7 +78,7 @@ message ClusterConfig {
   // secondary range set number to select for cora/dora kube-cluster.
   // one set can be used only by one cluster.
   // this value should be different for each kube-cluster in a gcp project.
-  cloud.planton.apis.code2cloud.v1.kubecluster.provider.gcpgke.enums.podservicesecondaryrangecidrsetnum.GkeKubePodServiceSecondaryRangeCidrSetNum kube_pod_secondary_range_cidr_set_num = 2;
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.gkepodservicesecondaryrangecidrsetnum.GkePodServiceSecondaryRangeCidrSetNum kube_pod_secondary_range_cidr_set_num = 2;
 }
 
 message Addons {
