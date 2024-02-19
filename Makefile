@@ -1,9 +1,8 @@
 version ?= local
 .PHONY: build
 build:
-	rm -rf internal/generated zzjava/src/main
+	rm -rf internal/generated zzjava/src/main zzgo
 	mkdir -p internal/generated zzjava/src/main/java zzgo
-	find zzgo -type f -name "*.go" -exec rm -f {} +
 	buf generate --include-imports
 	cp -R internal/generated/java/. zzjava/src/main/java/
 	cp -R internal/generated/go/github.com/plantoncloud/planton-cloud-apis/zzgo/. zzgo/
