@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kubecluster.provider.gcpgke.enums.podservicesecondaryrangecidrsetnum;
+package cloud.planton.apis.code2cloud.v1.kubecluster.enums.gkepodservicesecondaryrangecidrsetnum;
 
 //https://jodies.de/ipcalc?host=10.0.0.0&mask1=10&mask2=15
 
@@ -30,8 +30,8 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.provider.gcpgke.enums.podse
 // a maximum of 15 clusters can be created in each environment with this allocation
 // 15 clusters should meet all the near term requirements.
 // more enums can be added later using the left out cidr blocks from 10.0.0.0/15 chunk
-enum GkeKubePodServiceSecondaryRangeCidrSetNum {
-  GKE_KUBE_POD_SERVICE_SECONDARY_RANGE_CIDR_SET_NUM_UNSPECIFIED = 0;
+enum GkePodServiceSecondaryRangeCidrSetNum {
+  GKE_POD_SERVICE_SECONDARY_RANGE_CIDR_SET_NUM_UNSPECIFIED = 0;
   one = 1;
   two = 2;
   three = 3;
