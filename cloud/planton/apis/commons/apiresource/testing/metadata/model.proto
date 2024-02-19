@@ -6,12 +6,12 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "buf/validate/validate.proto";
 
-message ResourceIdExtractionTestWithOutIdPrefix {
+message ApiResourceIdExtractionTestWithOutIdPrefix {
   string first_name = 1;
   string last_name = 2;
 }
 
-message ResourceIdExtractionTestWithIdPrefix {
+message ApiResourceIdExtractionTestWithIdPrefix {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "hc-";
   string first_name = 1;
   string last_name = 2;

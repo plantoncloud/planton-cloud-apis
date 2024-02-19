@@ -85,7 +85,7 @@ message GetResourceCountByCompanyIdInput {
 // It includes the resource's type and name for clear identification and the total count of such resources.
 // This message is useful in contexts where detailed inventory, asset management, or resource planning is required,
 // allowing for precise tracking and reporting of various resources.
-message ResourceCount {
+message ApiResourceCount {
   // resource_kind categorizes the resource, aiding in grouping and differentiating between various kinds
   // of resources (e.g., postgres_cluster, redis_cluster, kube_cluster etc.;).
   string resource_kind = 1;
@@ -102,11 +102,11 @@ message ResourceCount {
 // ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
 // of resource counts across different types and names within a specific context, such as a company.
 // Each entry in the 'entries' field details the type, name, and count of a distinct resource.
-message ResourcesCount {
+message ApiResourcesCount {
   // entries is a collection of ResourceCount messages, each of which details the type, name,
   // and count of an individual resource. This repeated field allows for representing a diverse
   // array of resources within a single, structured response.
-  repeated ResourceCount entries = 1;
+  repeated ApiResourceCount entries = 1;
 }
 
 // GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi

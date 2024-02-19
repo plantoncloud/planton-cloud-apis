@@ -70,7 +70,7 @@ message MicroserviceInstance {
 //microservice-instance spec
 message MicroserviceInstanceSpec {
   //resource parent
-  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
   //review-<id> where id is the merge request number

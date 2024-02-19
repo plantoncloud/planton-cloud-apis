@@ -67,7 +67,7 @@ message KafkaCluster {
 //kafka-cluster spec
 message KafkaClusterSpec {
   //resource parent
-  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //list of kafka topics.
   repeated KafkaTopic kafka_topics = 2;

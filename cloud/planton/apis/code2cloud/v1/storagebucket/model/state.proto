@@ -53,7 +53,7 @@ message StorageBucket {
 //storage-bucket spec
 message StorageBucketSpec {
   //resource parent
-  cloud.planton.apis.code2cloud.v1.environment.model.ResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //(optional for create) flag to indicate if storage-bucket should have external(public) access.
   //defaults to "false"

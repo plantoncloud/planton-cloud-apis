@@ -346,7 +346,7 @@ message EnvironmentEndpointDomain {
 }
 
 // owner details common for all environment level resources
-message ResourceEnvironmentInfo {
+message ApiResourceEnvironmentInfo {
   //company to which the environment resource belongs to.
   //value is computed from the environment.
   string company_id = 1 [
