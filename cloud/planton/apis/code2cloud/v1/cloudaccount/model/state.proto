@@ -13,7 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 // cloud-account
 message CloudAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = cloud_account;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
@@ -22,14 +21,14 @@ message CloudAccount {
   //id format "ca-<company-id>-<cloud-account-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
-  // resource api-version
+  //resource api-version
   string api_version = 1 [
     (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
-  // resource kind
+  //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "CloudAccount"
   ];
 
   // metadata for the resource

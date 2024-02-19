@@ -2,20 +2,21 @@ syntax = "proto3";
 
 package cloud.planton.apis.iam.v1.iamrole.model;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 
 // iam-role
 message IamRole {
-  // resource api version
+  //resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "iam.planton.cloud/v1"
   ];
 
-  // resource kind
-  string kind = 2[
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  //resource kind
+  string kind = 2 [
+    (buf.validate.field).string.const = "IamRole"
   ];
 
   // metadata for the resource

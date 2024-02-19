@@ -16,7 +16,6 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/sta
 // identification information.
 message ApiResourceVersion {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = api_resource_version;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "ver";
 

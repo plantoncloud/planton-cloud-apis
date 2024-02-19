@@ -11,11 +11,9 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 //custom-endpoint
 message CustomEndpoint {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = custom_endpoint;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "cep";
   //id format "cep-<product-id>-<normalized-endpoint-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
@@ -27,7 +25,7 @@ message CustomEndpoint {
 
   //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "CustomEndpoint"
   ];
 
   //resource metadata

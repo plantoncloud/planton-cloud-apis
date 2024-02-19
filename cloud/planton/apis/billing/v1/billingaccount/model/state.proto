@@ -11,7 +11,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 //billing-account
 message BillingAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = billing_account;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 

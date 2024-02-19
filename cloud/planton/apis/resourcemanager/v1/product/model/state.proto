@@ -11,11 +11,9 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 //product
 message Product {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = product;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   //id format "<company-id>-<product-key>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 

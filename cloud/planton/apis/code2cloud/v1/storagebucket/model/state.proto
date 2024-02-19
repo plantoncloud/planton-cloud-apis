@@ -13,11 +13,9 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 //storage-bucket
 message StorageBucket {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = storage_bucket;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "bkt";
   //id format "bkt-<environment-id>-<normalized-storage-bucket-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
@@ -29,7 +27,7 @@ message StorageBucket {
 
   //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "StorageBucket"
   ];
 
   //resource metadata

@@ -15,31 +15,16 @@ message ApiResourceMetadata {
   string id = 2;
   // labels for the resource
   map<string, string> labels = 3;
-}
-
-//metadata for all resource objects on planton-cloud
-message VersionedApiResourceMetadata {
-  // name of the resource
-  string name = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
-  // id of the resource
-  string id = 2;
-  // labels for the resource
-  map<string, string> labels = 3;
   //metadata for resource version
-  ApiResourceMetadataApiResourceVersion version = 4;
+  ApiResourceMetadataVersion version = 4;
 }
 
 // version information for api-resource to be used in api-resource metadata
-message ApiResourceMetadataApiResourceVersion {
+message ApiResourceMetadataVersion {
   string id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = false
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
-  string message = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
+  string message = 2;
 }
 
 // ResourceAudit represents auditing information for a resource,

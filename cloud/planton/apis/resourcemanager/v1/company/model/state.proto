@@ -11,11 +11,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 // company on planton-cloud
 message Company {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = identity_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "status.audit.spec_audit.created_by.id";
-
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = true;
 
   // resource api-version
   string api_version = 1 [

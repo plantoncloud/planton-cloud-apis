@@ -14,11 +14,9 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 //code-server
 message CodeServer {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_server;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "cs";
   //id format "cs-<product-id>-<code-server-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
@@ -30,7 +28,7 @@ message CodeServer {
 
   //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "CodeServer"
   ];
 
   //resource metadata

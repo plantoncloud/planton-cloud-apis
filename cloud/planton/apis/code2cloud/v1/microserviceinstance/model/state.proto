@@ -20,20 +20,18 @@ message MicroserviceInstance {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "msi";
   //id format "msi-<environment-id>-<microservice-instance-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
     (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
   //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "MicroserviceInstance"
   ];
 
   //resource metadata

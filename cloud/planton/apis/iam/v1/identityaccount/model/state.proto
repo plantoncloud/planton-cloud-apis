@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.iam.v1.identityaccount.model;
 
+import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -10,16 +11,15 @@ import "cloud/planton/apis/iam/v1/identityaccount/enums/identityaccounttype/iden
 // identity-account for user-account or machine-account
 message IdentityAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = identity_account;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
 
-  // resource api version
+  //resource api-version
   string api_version = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
-  // resource kind
-  string kind = 2[
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+  //resource kind
+  string kind = 2 [
+    (buf.validate.field).string.const = "IdentityAccount"
   ];
 
   // metadata for the resource

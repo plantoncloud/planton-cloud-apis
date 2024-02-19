@@ -15,22 +15,20 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 //dns-zone
 message DnsZone {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = dns_zone;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "dns";
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
-  // resource api-version
+  //resource api-version
   string api_version = 1 [
     (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
   ];
 
-  // resource kind
+  //resource kind
   string kind = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).string.const = "DnsZone"
   ];
 
   // metadata for the resource

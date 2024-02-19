@@ -12,10 +12,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoption
 // stack
 message Stack {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = false;
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "st";
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_required) = false;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
 
   // resource api-version

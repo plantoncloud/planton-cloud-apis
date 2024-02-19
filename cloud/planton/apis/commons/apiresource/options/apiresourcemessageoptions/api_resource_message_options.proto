@@ -16,4 +16,8 @@ extend google.protobuf.MessageOptions {
   bool is_runnable = 60002;
   // The owner information for the resource.
   cloud.planton.apis.commons.apiresource.model.ApiResourceOwnerInfo owner = 60003;
+  // flag to indicate if the api-resource is versioned.
+  // changes to the api-resources are captured using api-resource-versions only for those
+  // api-resources that have this flag enabled.
+  bool is_versioned = 60004;
 }
