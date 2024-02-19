@@ -72,7 +72,7 @@ message ResourceGroupVersionKind {
 // product environment identifiers.
 message ApiResourceRecord {
   // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo spec_audit = 98;
   // Unique identifier for the resource.
   // example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;

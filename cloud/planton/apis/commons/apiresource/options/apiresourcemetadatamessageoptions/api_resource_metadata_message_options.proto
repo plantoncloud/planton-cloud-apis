@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions;
+package cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions;
 
 import "google/protobuf/descriptor.proto";
 

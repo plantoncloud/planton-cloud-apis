@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.apiresource.testing.message;
 
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
 import "buf/validate/validate.proto";

@@ -8,10 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.p
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
-import "google/protobuf/duration.proto";
-import "google/protobuf/field_mask.proto";
-import "google/protobuf/timestamp.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 // cloud-account
 message CloudAccount {
@@ -24,10 +21,10 @@ message CloudAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "ca";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "ca";
 
   //id format "ca-<company-id>-<cloud-account-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [

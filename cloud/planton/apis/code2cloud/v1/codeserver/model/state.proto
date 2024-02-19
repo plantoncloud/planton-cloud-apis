@@ -8,7 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/codeserver/enums/githubappinstallownert
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadataoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //code-server
@@ -22,9 +22,9 @@ message CodeServer {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.id_prefix) = "cs";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "cs";
   //id format "cs-<product-id>-<code-server-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadataoptions.is_id_computed) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
   string api_version = 1 [
