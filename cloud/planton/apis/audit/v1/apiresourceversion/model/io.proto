@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.auditing.v1.apiresourceversion.model;
+package cloud.planton.apis.audit.v1.apiresourceversion.model;
 
-import "cloud/planton/apis/auditing/v1/apiresourceversion/model/state.proto";
+import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 

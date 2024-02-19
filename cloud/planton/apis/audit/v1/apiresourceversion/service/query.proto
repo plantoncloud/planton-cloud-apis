@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.audit.v1.apiresourceversion.service;
+
+import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
+import "cloud/planton/apis/audit/v1/apiresourceversion/model/io.proto";
+
+//api-resource-version query controller
+service ApiResourceVersionQueryController {
+  //look up a cloud-account by id
+  //todo: add authorization
+  rpc getById(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionId)
+      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion);
+
+  // list of api-resource-versions
+  rpc listByFilters(cloud.planton.apis.audit.v1.apiresourceversion.model.ListApiResourceVersionsInput)
+      returns(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionList);
+  // look up api-resource-version by version-id
+  rpc getByIdWithContextSize(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionWithContextSizeInput)
+      returns(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion);
+  // count of api-resource-versions
+  rpc getCount(cloud.planton.apis.audit.v1.apiresourceversion.model.GetApiResourceVersionCountInput)
+      returns(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionCount);
+}

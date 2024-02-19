@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.auditing.v1.apiresourceversion.model;
+package cloud.planton.apis.audit.v1.apiresourceversion.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
@@ -59,7 +59,7 @@ message ApiResourceVersionSpec {
   // The differences between the original and new state, represented in a unified diff format.
   string diff_unified_format = 8;
   // operation done on the state which ended up in creating this new version.
-  string operation_type = 9;
+  string api_resource_event_type = 9;
   // unique identifier for the stack job.
   string stack_job_id = 10;
 }
@@ -73,5 +73,5 @@ message ApiResourceVersionStatus {
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // represents the current status of the stack job.
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType  status = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType  stack_job_execution_status = 1;
 }

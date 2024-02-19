@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/auditing/v1/apiresourceversion/service/query.proto
+// source: cloud/planton/apis/audit/v1/apiresourceversion/service/query.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/auditing/v1/apiresourceversion/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/audit/v1/apiresourceversion/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,10 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceVersionQueryController_GetById_FullMethodName                = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionQueryController/getById"
-	ApiResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionQueryController/listByFilters"
-	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionQueryController/getByIdWithContextSize"
-	ApiResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionQueryController/getCount"
+	ApiResourceVersionQueryController_GetById_FullMethodName                = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getById"
+	ApiResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/listByFilters"
+	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getByIdWithContextSize"
+	ApiResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getCount"
 )
 
 // ApiResourceVersionQueryControllerClient is the client API for ApiResourceVersionQueryController service.
@@ -204,7 +204,7 @@ func _ApiResourceVersionQueryController_GetCount_Handler(srv interface{}, ctx co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApiResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionQueryController",
+	ServiceName: "cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController",
 	HandlerType: (*ApiResourceVersionQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -225,5 +225,5 @@ var ApiResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/auditing/v1/apiresourceversion/service/query.proto",
+	Metadata: "cloud/planton/apis/audit/v1/apiresourceversion/service/query.proto",
 }

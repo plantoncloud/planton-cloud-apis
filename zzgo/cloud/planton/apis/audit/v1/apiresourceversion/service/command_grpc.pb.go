@@ -2,14 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/auditing/v1/apiresourceversion/service/command.proto
+// source: cloud/planton/apis/audit/v1/apiresourceversion/service/command.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/auditing/v1/apiresourceversion/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/audit/v1/apiresourceversion/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,8 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceVersionCommandController_Create_FullMethodName                        = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionCommandController/create"
-	ApiResourceVersionCommandController_StartStackJobProgressFollower_FullMethodName = "/cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionCommandController/startStackJobProgressFollower"
+	ApiResourceVersionCommandController_Create_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionCommandController/create"
 )
 
 // ApiResourceVersionCommandControllerClient is the client API for ApiResourceVersionCommandController service.
@@ -31,9 +29,6 @@ const (
 type ApiResourceVersionCommandControllerClient interface {
 	// create an api-resource-version resource
 	Create(ctx context.Context, in *model.ApiResourceVersion, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
-	// when a stack-job is started in other microservices, the status of the stack-job should be updated
-	// in the resource-versions that contain that stack-job-id.
-	StartStackJobProgressFollower(ctx context.Context, in *model1.StackJobId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
 }
 
 type apiResourceVersionCommandControllerClient struct {
@@ -53,24 +48,12 @@ func (c *apiResourceVersionCommandControllerClient) Create(ctx context.Context, 
 	return out, nil
 }
 
-func (c *apiResourceVersionCommandControllerClient) StartStackJobProgressFollower(ctx context.Context, in *model1.StackJobId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
-	out := new(model.ApiResourceVersion)
-	err := c.cc.Invoke(ctx, ApiResourceVersionCommandController_StartStackJobProgressFollower_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ApiResourceVersionCommandControllerServer is the server API for ApiResourceVersionCommandController service.
 // All implementations should embed UnimplementedApiResourceVersionCommandControllerServer
 // for forward compatibility
 type ApiResourceVersionCommandControllerServer interface {
 	// create an api-resource-version resource
 	Create(context.Context, *model.ApiResourceVersion) (*model.ApiResourceVersion, error)
-	// when a stack-job is started in other microservices, the status of the stack-job should be updated
-	// in the resource-versions that contain that stack-job-id.
-	StartStackJobProgressFollower(context.Context, *model1.StackJobId) (*model.ApiResourceVersion, error)
 }
 
 // UnimplementedApiResourceVersionCommandControllerServer should be embedded to have forward compatible implementations.
@@ -79,9 +62,6 @@ type UnimplementedApiResourceVersionCommandControllerServer struct {
 
 func (UnimplementedApiResourceVersionCommandControllerServer) Create(context.Context, *model.ApiResourceVersion) (*model.ApiResourceVersion, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedApiResourceVersionCommandControllerServer) StartStackJobProgressFollower(context.Context, *model1.StackJobId) (*model.ApiResourceVersion, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method StartStackJobProgressFollower not implemented")
 }
 
 // UnsafeApiResourceVersionCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -113,40 +93,18 @@ func _ApiResourceVersionCommandController_Create_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ApiResourceVersionCommandController_StartStackJobProgressFollower_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.StackJobId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApiResourceVersionCommandControllerServer).StartStackJobProgressFollower(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ApiResourceVersionCommandController_StartStackJobProgressFollower_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceVersionCommandControllerServer).StartStackJobProgressFollower(ctx, req.(*model1.StackJobId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ApiResourceVersionCommandController_ServiceDesc is the grpc.ServiceDesc for ApiResourceVersionCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApiResourceVersionCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.auditing.v1.apiresourceversion.service.ApiResourceVersionCommandController",
+	ServiceName: "cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionCommandController",
 	HandlerType: (*ApiResourceVersionCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "create",
 			Handler:    _ApiResourceVersionCommandController_Create_Handler,
 		},
-		{
-			MethodName: "startStackJobProgressFollower",
-			Handler:    _ApiResourceVersionCommandController_StartStackJobProgressFollower_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "cloud/planton/apis/auditing/v1/apiresourceversion/service/command.proto",
+	Metadata: "cloud/planton/apis/audit/v1/apiresourceversion/service/command.proto",
 }
