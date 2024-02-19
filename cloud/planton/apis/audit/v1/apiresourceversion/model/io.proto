@@ -57,3 +57,7 @@ message ApiResourceVersionCount {
   // value for the count of resource versions
   int32 value = 1;
 }
+
+message UpdateStackJobIdInput {
+  string stack_job_id = 1;
+}

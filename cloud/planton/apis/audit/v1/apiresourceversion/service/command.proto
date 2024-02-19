@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.audit.v1.apiresourceversion.service;
 
 import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
+import "cloud/planton/apis/audit/v1/apiresourceversion/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
@@ -13,5 +14,10 @@ service ApiResourceVersionCommandController {
   rpc create(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion)
       returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion) {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+  }
+
+  rpc updateStackJobId(cloud.planton.apis.audit.v1.apiresourceversion.model.UpdateStackJobIdInput)
+      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion) {
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
   }
 }
