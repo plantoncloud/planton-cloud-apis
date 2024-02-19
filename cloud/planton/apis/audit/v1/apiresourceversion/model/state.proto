@@ -35,7 +35,7 @@ message ApiResourceVersion {
   ApiResourceVersionSpec spec = 4;
 
   // status
-  ApiResourceVersionSpec status = 5;
+  ApiResourceVersionStatus status = 5;
 }
 
 message ApiResourceVersionSpec {
