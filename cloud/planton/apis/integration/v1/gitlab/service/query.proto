@@ -8,7 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
 import "cloud/planton/apis/integration/v1/gitlab/model/io.proto";
 
 //gitlab proxy query controller
-service GitlabProxyQueryController {
+service GitlabQueryController {
   //list projects for the requested group, including projects in sub-groups on gitlab
   //https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
   //todo: we have to add pagination support for response.

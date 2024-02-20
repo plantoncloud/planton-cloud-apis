@@ -22,16 +22,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GitlabProxyQueryController_ListProjects_FullMethodName                = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyQueryController/listProjects"
-	GitlabProxyQueryController_GetProject_FullMethodName                  = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyQueryController/getProject"
-	GitlabProxyQueryController_GetGroup_FullMethodName                    = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyQueryController/getGroup"
-	GitlabProxyQueryController_GetGitlabCodeProjectProfile_FullMethodName = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyQueryController/getGitlabCodeProjectProfile"
+	GitlabQueryController_ListProjects_FullMethodName                = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabQueryController/listProjects"
+	GitlabQueryController_GetProject_FullMethodName                  = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabQueryController/getProject"
+	GitlabQueryController_GetGroup_FullMethodName                    = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabQueryController/getGroup"
+	GitlabQueryController_GetGitlabCodeProjectProfile_FullMethodName = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabQueryController/getGitlabCodeProjectProfile"
 )
 
-// GitlabProxyQueryControllerClient is the client API for GitlabProxyQueryController service.
+// GitlabQueryControllerClient is the client API for GitlabQueryController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GitlabProxyQueryControllerClient interface {
+type GitlabQueryControllerClient interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
@@ -44,54 +44,54 @@ type GitlabProxyQueryControllerClient interface {
 	GetGitlabCodeProjectProfile(ctx context.Context, in *model.GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error)
 }
 
-type gitlabProxyQueryControllerClient struct {
+type gitlabQueryControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGitlabProxyQueryControllerClient(cc grpc.ClientConnInterface) GitlabProxyQueryControllerClient {
-	return &gitlabProxyQueryControllerClient{cc}
+func NewGitlabQueryControllerClient(cc grpc.ClientConnInterface) GitlabQueryControllerClient {
+	return &gitlabQueryControllerClient{cc}
 }
 
-func (c *gitlabProxyQueryControllerClient) ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error) {
+func (c *gitlabQueryControllerClient) ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error) {
 	out := new(model1.CodeProjects)
-	err := c.cc.Invoke(ctx, GitlabProxyQueryController_ListProjects_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabQueryController_ListProjects_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetProject(ctx context.Context, in *model.GetProjectQueryInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *gitlabQueryControllerClient) GetProject(ctx context.Context, in *model.GetProjectQueryInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetProject_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabQueryController_GetProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetGroup(ctx context.Context, in *model.GetGroupQueryInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
+func (c *gitlabQueryControllerClient) GetGroup(ctx context.Context, in *model.GetGroupQueryInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
 	out := new(model2.CodeServer)
-	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetGroup_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabQueryController_GetGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyQueryControllerClient) GetGitlabCodeProjectProfile(ctx context.Context, in *model.GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
+func (c *gitlabQueryControllerClient) GetGitlabCodeProjectProfile(ctx context.Context, in *model.GetGitlabCodeProjectProfileQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
 	out := new(model1.CodeProjectProfile)
-	err := c.cc.Invoke(ctx, GitlabProxyQueryController_GetGitlabCodeProjectProfile_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabQueryController_GetGitlabCodeProjectProfile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GitlabProxyQueryControllerServer is the server API for GitlabProxyQueryController service.
-// All implementations should embed UnimplementedGitlabProxyQueryControllerServer
+// GitlabQueryControllerServer is the server API for GitlabQueryController service.
+// All implementations should embed UnimplementedGitlabQueryControllerServer
 // for forward compatibility
-type GitlabProxyQueryControllerServer interface {
+type GitlabQueryControllerServer interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
@@ -104,128 +104,128 @@ type GitlabProxyQueryControllerServer interface {
 	GetGitlabCodeProjectProfile(context.Context, *model.GetGitlabCodeProjectProfileQueryInput) (*model1.CodeProjectProfile, error)
 }
 
-// UnimplementedGitlabProxyQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGitlabProxyQueryControllerServer struct {
+// UnimplementedGitlabQueryControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGitlabQueryControllerServer struct {
 }
 
-func (UnimplementedGitlabProxyQueryControllerServer) ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjects, error) {
+func (UnimplementedGitlabQueryControllerServer) ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjects, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProjects not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetProject(context.Context, *model.GetProjectQueryInput) (*model1.CodeProject, error) {
+func (UnimplementedGitlabQueryControllerServer) GetProject(context.Context, *model.GetProjectQueryInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetProject not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetGroup(context.Context, *model.GetGroupQueryInput) (*model2.CodeServer, error) {
+func (UnimplementedGitlabQueryControllerServer) GetGroup(context.Context, *model.GetGroupQueryInput) (*model2.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGroup not implemented")
 }
-func (UnimplementedGitlabProxyQueryControllerServer) GetGitlabCodeProjectProfile(context.Context, *model.GetGitlabCodeProjectProfileQueryInput) (*model1.CodeProjectProfile, error) {
+func (UnimplementedGitlabQueryControllerServer) GetGitlabCodeProjectProfile(context.Context, *model.GetGitlabCodeProjectProfileQueryInput) (*model1.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGitlabCodeProjectProfile not implemented")
 }
 
-// UnsafeGitlabProxyQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GitlabProxyQueryControllerServer will
+// UnsafeGitlabQueryControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GitlabQueryControllerServer will
 // result in compilation errors.
-type UnsafeGitlabProxyQueryControllerServer interface {
-	mustEmbedUnimplementedGitlabProxyQueryControllerServer()
+type UnsafeGitlabQueryControllerServer interface {
+	mustEmbedUnimplementedGitlabQueryControllerServer()
 }
 
-func RegisterGitlabProxyQueryControllerServer(s grpc.ServiceRegistrar, srv GitlabProxyQueryControllerServer) {
-	s.RegisterService(&GitlabProxyQueryController_ServiceDesc, srv)
+func RegisterGitlabQueryControllerServer(s grpc.ServiceRegistrar, srv GitlabQueryControllerServer) {
+	s.RegisterService(&GitlabQueryController_ServiceDesc, srv)
 }
 
-func _GitlabProxyQueryController_ListProjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabQueryController_ListProjects_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.ListProjectsQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyQueryControllerServer).ListProjects(ctx, in)
+		return srv.(GitlabQueryControllerServer).ListProjects(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyQueryController_ListProjects_FullMethodName,
+		FullMethod: GitlabQueryController_ListProjects_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyQueryControllerServer).ListProjects(ctx, req.(*model.ListProjectsQueryInput))
+		return srv.(GitlabQueryControllerServer).ListProjects(ctx, req.(*model.ListProjectsQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyQueryController_GetProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabQueryController_GetProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetProjectQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyQueryControllerServer).GetProject(ctx, in)
+		return srv.(GitlabQueryControllerServer).GetProject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyQueryController_GetProject_FullMethodName,
+		FullMethod: GitlabQueryController_GetProject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyQueryControllerServer).GetProject(ctx, req.(*model.GetProjectQueryInput))
+		return srv.(GitlabQueryControllerServer).GetProject(ctx, req.(*model.GetProjectQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyQueryController_GetGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabQueryController_GetGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetGroupQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyQueryControllerServer).GetGroup(ctx, in)
+		return srv.(GitlabQueryControllerServer).GetGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyQueryController_GetGroup_FullMethodName,
+		FullMethod: GitlabQueryController_GetGroup_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyQueryControllerServer).GetGroup(ctx, req.(*model.GetGroupQueryInput))
+		return srv.(GitlabQueryControllerServer).GetGroup(ctx, req.(*model.GetGroupQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyQueryController_GetGitlabCodeProjectProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabQueryController_GetGitlabCodeProjectProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetGitlabCodeProjectProfileQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyQueryControllerServer).GetGitlabCodeProjectProfile(ctx, in)
+		return srv.(GitlabQueryControllerServer).GetGitlabCodeProjectProfile(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyQueryController_GetGitlabCodeProjectProfile_FullMethodName,
+		FullMethod: GitlabQueryController_GetGitlabCodeProjectProfile_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyQueryControllerServer).GetGitlabCodeProjectProfile(ctx, req.(*model.GetGitlabCodeProjectProfileQueryInput))
+		return srv.(GitlabQueryControllerServer).GetGitlabCodeProjectProfile(ctx, req.(*model.GetGitlabCodeProjectProfileQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GitlabProxyQueryController_ServiceDesc is the grpc.ServiceDesc for GitlabProxyQueryController service.
+// GitlabQueryController_ServiceDesc is the grpc.ServiceDesc for GitlabQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GitlabProxyQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyQueryController",
-	HandlerType: (*GitlabProxyQueryControllerServer)(nil),
+var GitlabQueryController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.integration.v1.gitlab.service.GitlabQueryController",
+	HandlerType: (*GitlabQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "listProjects",
-			Handler:    _GitlabProxyQueryController_ListProjects_Handler,
+			Handler:    _GitlabQueryController_ListProjects_Handler,
 		},
 		{
 			MethodName: "getProject",
-			Handler:    _GitlabProxyQueryController_GetProject_Handler,
+			Handler:    _GitlabQueryController_GetProject_Handler,
 		},
 		{
 			MethodName: "getGroup",
-			Handler:    _GitlabProxyQueryController_GetGroup_Handler,
+			Handler:    _GitlabQueryController_GetGroup_Handler,
 		},
 		{
 			MethodName: "getGitlabCodeProjectProfile",
-			Handler:    _GitlabProxyQueryController_GetGitlabCodeProjectProfile_Handler,
+			Handler:    _GitlabQueryController_GetGitlabCodeProjectProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

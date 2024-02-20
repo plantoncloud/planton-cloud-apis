@@ -22,17 +22,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GithubProxyCommandController_CreRepository_FullMethodName                 = "/cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController/creRepository"
-	GithubProxyCommandController_ApplyTemplate_FullMethodName                 = "/cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController/applyTemplate"
-	GithubProxyCommandController_AddSecretsToRepo_FullMethodName              = "/cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController/addSecretsToRepo"
-	GithubProxyCommandController_AddSecretsToOrg_FullMethodName               = "/cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController/addSecretsToOrg"
-	GithubProxyCommandController_SynchronizeMagicPipelineFiles_FullMethodName = "/cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController/synchronizeMagicPipelineFiles"
+	GithubCommandController_CreRepository_FullMethodName                 = "/cloud.planton.apis.integration.v1.github.service.GithubCommandController/creRepository"
+	GithubCommandController_ApplyTemplate_FullMethodName                 = "/cloud.planton.apis.integration.v1.github.service.GithubCommandController/applyTemplate"
+	GithubCommandController_AddSecretsToRepo_FullMethodName              = "/cloud.planton.apis.integration.v1.github.service.GithubCommandController/addSecretsToRepo"
+	GithubCommandController_AddSecretsToOrg_FullMethodName               = "/cloud.planton.apis.integration.v1.github.service.GithubCommandController/addSecretsToOrg"
+	GithubCommandController_SynchronizeMagicPipelineFiles_FullMethodName = "/cloud.planton.apis.integration.v1.github.service.GithubCommandController/synchronizeMagicPipelineFiles"
 )
 
-// GithubProxyCommandControllerClient is the client API for GithubProxyCommandController service.
+// GithubCommandControllerClient is the client API for GithubCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GithubProxyCommandControllerClient interface {
+type GithubCommandControllerClient interface {
 	// create a new repository on github
 	// https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
 	// https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
@@ -49,63 +49,63 @@ type GithubProxyCommandControllerClient interface {
 	SynchronizeMagicPipelineFiles(ctx context.Context, in *model.SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error)
 }
 
-type githubProxyCommandControllerClient struct {
+type githubCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGithubProxyCommandControllerClient(cc grpc.ClientConnInterface) GithubProxyCommandControllerClient {
-	return &githubProxyCommandControllerClient{cc}
+func NewGithubCommandControllerClient(cc grpc.ClientConnInterface) GithubCommandControllerClient {
+	return &githubCommandControllerClient{cc}
 }
 
-func (c *githubProxyCommandControllerClient) CreRepository(ctx context.Context, in *model.CreRepositoryCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *githubCommandControllerClient) CreRepository(ctx context.Context, in *model.CreRepositoryCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GithubProxyCommandController_CreRepository_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GithubCommandController_CreRepository_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *model.GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
+func (c *githubCommandControllerClient) ApplyTemplate(ctx context.Context, in *model.GithubApplyTemplateCommandInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
 	out := new(model1.CodeProjectProfile)
-	err := c.cc.Invoke(ctx, GithubProxyCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GithubCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) AddSecretsToRepo(ctx context.Context, in *model.AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *githubCommandControllerClient) AddSecretsToRepo(ctx context.Context, in *model.AddSecretsToRepoCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GithubProxyCommandController_AddSecretsToRepo_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GithubCommandController_AddSecretsToRepo_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) AddSecretsToOrg(ctx context.Context, in *model.AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
+func (c *githubCommandControllerClient) AddSecretsToOrg(ctx context.Context, in *model.AddSecretsToOrgCommandInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
 	out := new(model2.CodeServer)
-	err := c.cc.Invoke(ctx, GithubProxyCommandController_AddSecretsToOrg_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GithubCommandController_AddSecretsToOrg_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *githubProxyCommandControllerClient) SynchronizeMagicPipelineFiles(ctx context.Context, in *model.SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *githubCommandControllerClient) SynchronizeMagicPipelineFiles(ctx context.Context, in *model.SynchronizeGithubMagicPipelineFilesCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GithubProxyCommandController_SynchronizeMagicPipelineFiles_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GithubCommandController_SynchronizeMagicPipelineFiles_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GithubProxyCommandControllerServer is the server API for GithubProxyCommandController service.
-// All implementations should embed UnimplementedGithubProxyCommandControllerServer
+// GithubCommandControllerServer is the server API for GithubCommandController service.
+// All implementations should embed UnimplementedGithubCommandControllerServer
 // for forward compatibility
-type GithubProxyCommandControllerServer interface {
+type GithubCommandControllerServer interface {
 	// create a new repository on github
 	// https://docs.github.com/en/rest/apps/installations?apiVersion=2022-11-28#add-a-repository-to-an-app-installation
 	// https://docs.github.com/en/rest/repos/repos#create-a-repository-for-the-authenticated-user
@@ -122,153 +122,153 @@ type GithubProxyCommandControllerServer interface {
 	SynchronizeMagicPipelineFiles(context.Context, *model.SynchronizeGithubMagicPipelineFilesCommandInput) (*model1.CodeProject, error)
 }
 
-// UnimplementedGithubProxyCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGithubProxyCommandControllerServer struct {
+// UnimplementedGithubCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGithubCommandControllerServer struct {
 }
 
-func (UnimplementedGithubProxyCommandControllerServer) CreRepository(context.Context, *model.CreRepositoryCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGithubCommandControllerServer) CreRepository(context.Context, *model.CreRepositoryCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreRepository not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) ApplyTemplate(context.Context, *model.GithubApplyTemplateCommandInput) (*model1.CodeProjectProfile, error) {
+func (UnimplementedGithubCommandControllerServer) ApplyTemplate(context.Context, *model.GithubApplyTemplateCommandInput) (*model1.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApplyTemplate not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToRepo(context.Context, *model.AddSecretsToRepoCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGithubCommandControllerServer) AddSecretsToRepo(context.Context, *model.AddSecretsToRepoCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecretsToRepo not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) AddSecretsToOrg(context.Context, *model.AddSecretsToOrgCommandInput) (*model2.CodeServer, error) {
+func (UnimplementedGithubCommandControllerServer) AddSecretsToOrg(context.Context, *model.AddSecretsToOrgCommandInput) (*model2.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddSecretsToOrg not implemented")
 }
-func (UnimplementedGithubProxyCommandControllerServer) SynchronizeMagicPipelineFiles(context.Context, *model.SynchronizeGithubMagicPipelineFilesCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGithubCommandControllerServer) SynchronizeMagicPipelineFiles(context.Context, *model.SynchronizeGithubMagicPipelineFilesCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeMagicPipelineFiles not implemented")
 }
 
-// UnsafeGithubProxyCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GithubProxyCommandControllerServer will
+// UnsafeGithubCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GithubCommandControllerServer will
 // result in compilation errors.
-type UnsafeGithubProxyCommandControllerServer interface {
-	mustEmbedUnimplementedGithubProxyCommandControllerServer()
+type UnsafeGithubCommandControllerServer interface {
+	mustEmbedUnimplementedGithubCommandControllerServer()
 }
 
-func RegisterGithubProxyCommandControllerServer(s grpc.ServiceRegistrar, srv GithubProxyCommandControllerServer) {
-	s.RegisterService(&GithubProxyCommandController_ServiceDesc, srv)
+func RegisterGithubCommandControllerServer(s grpc.ServiceRegistrar, srv GithubCommandControllerServer) {
+	s.RegisterService(&GithubCommandController_ServiceDesc, srv)
 }
 
-func _GithubProxyCommandController_CreRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GithubCommandController_CreRepository_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.CreRepositoryCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GithubProxyCommandControllerServer).CreRepository(ctx, in)
+		return srv.(GithubCommandControllerServer).CreRepository(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GithubProxyCommandController_CreRepository_FullMethodName,
+		FullMethod: GithubCommandController_CreRepository_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubProxyCommandControllerServer).CreRepository(ctx, req.(*model.CreRepositoryCommandInput))
+		return srv.(GithubCommandControllerServer).CreRepository(ctx, req.(*model.CreRepositoryCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GithubProxyCommandController_ApplyTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GithubCommandController_ApplyTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GithubApplyTemplateCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GithubProxyCommandControllerServer).ApplyTemplate(ctx, in)
+		return srv.(GithubCommandControllerServer).ApplyTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GithubProxyCommandController_ApplyTemplate_FullMethodName,
+		FullMethod: GithubCommandController_ApplyTemplate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubProxyCommandControllerServer).ApplyTemplate(ctx, req.(*model.GithubApplyTemplateCommandInput))
+		return srv.(GithubCommandControllerServer).ApplyTemplate(ctx, req.(*model.GithubApplyTemplateCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GithubProxyCommandController_AddSecretsToRepo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GithubCommandController_AddSecretsToRepo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddSecretsToRepoCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GithubProxyCommandControllerServer).AddSecretsToRepo(ctx, in)
+		return srv.(GithubCommandControllerServer).AddSecretsToRepo(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GithubProxyCommandController_AddSecretsToRepo_FullMethodName,
+		FullMethod: GithubCommandController_AddSecretsToRepo_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubProxyCommandControllerServer).AddSecretsToRepo(ctx, req.(*model.AddSecretsToRepoCommandInput))
+		return srv.(GithubCommandControllerServer).AddSecretsToRepo(ctx, req.(*model.AddSecretsToRepoCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GithubProxyCommandController_AddSecretsToOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GithubCommandController_AddSecretsToOrg_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddSecretsToOrgCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GithubProxyCommandControllerServer).AddSecretsToOrg(ctx, in)
+		return srv.(GithubCommandControllerServer).AddSecretsToOrg(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GithubProxyCommandController_AddSecretsToOrg_FullMethodName,
+		FullMethod: GithubCommandController_AddSecretsToOrg_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubProxyCommandControllerServer).AddSecretsToOrg(ctx, req.(*model.AddSecretsToOrgCommandInput))
+		return srv.(GithubCommandControllerServer).AddSecretsToOrg(ctx, req.(*model.AddSecretsToOrgCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GithubProxyCommandController_SynchronizeMagicPipelineFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GithubCommandController_SynchronizeMagicPipelineFiles_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.SynchronizeGithubMagicPipelineFilesCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GithubProxyCommandControllerServer).SynchronizeMagicPipelineFiles(ctx, in)
+		return srv.(GithubCommandControllerServer).SynchronizeMagicPipelineFiles(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GithubProxyCommandController_SynchronizeMagicPipelineFiles_FullMethodName,
+		FullMethod: GithubCommandController_SynchronizeMagicPipelineFiles_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubProxyCommandControllerServer).SynchronizeMagicPipelineFiles(ctx, req.(*model.SynchronizeGithubMagicPipelineFilesCommandInput))
+		return srv.(GithubCommandControllerServer).SynchronizeMagicPipelineFiles(ctx, req.(*model.SynchronizeGithubMagicPipelineFilesCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GithubProxyCommandController_ServiceDesc is the grpc.ServiceDesc for GithubProxyCommandController service.
+// GithubCommandController_ServiceDesc is the grpc.ServiceDesc for GithubCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GithubProxyCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.integration.v1.github.service.GithubProxyCommandController",
-	HandlerType: (*GithubProxyCommandControllerServer)(nil),
+var GithubCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.integration.v1.github.service.GithubCommandController",
+	HandlerType: (*GithubCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "creRepository",
-			Handler:    _GithubProxyCommandController_CreRepository_Handler,
+			Handler:    _GithubCommandController_CreRepository_Handler,
 		},
 		{
 			MethodName: "applyTemplate",
-			Handler:    _GithubProxyCommandController_ApplyTemplate_Handler,
+			Handler:    _GithubCommandController_ApplyTemplate_Handler,
 		},
 		{
 			MethodName: "addSecretsToRepo",
-			Handler:    _GithubProxyCommandController_AddSecretsToRepo_Handler,
+			Handler:    _GithubCommandController_AddSecretsToRepo_Handler,
 		},
 		{
 			MethodName: "addSecretsToOrg",
-			Handler:    _GithubProxyCommandController_AddSecretsToOrg_Handler,
+			Handler:    _GithubCommandController_AddSecretsToOrg_Handler,
 		},
 		{
 			MethodName: "synchronizeMagicPipelineFiles",
-			Handler:    _GithubProxyCommandController_SynchronizeMagicPipelineFiles_Handler,
+			Handler:    _GithubCommandController_SynchronizeMagicPipelineFiles_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

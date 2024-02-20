@@ -8,7 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
 import "cloud/planton/apis/integration/v1/gitlab/model/io.proto";
 
 //gitlab proxy command controller
-service GitlabProxyCommandController {
+service GitlabCommandController {
   //create new project on gitlab
   //https://docs.gitlab.com/ee/api/projects.html#create-project
   rpc creProject(cloud.planton.apis.integration.v1.gitlab.model.CreProjectCommandInput)

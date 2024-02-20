@@ -22,17 +22,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GitlabProxyCommandController_CreProject_FullMethodName            = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController/creProject"
-	GitlabProxyCommandController_ApplyTemplate_FullMethodName         = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController/applyTemplate"
-	GitlabProxyCommandController_AddVariablesToProject_FullMethodName = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController/addVariablesToProject"
-	GitlabProxyCommandController_AddVariablesToGroup_FullMethodName   = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController/addVariablesToGroup"
-	GitlabProxyCommandController_AddFilesToProject_FullMethodName     = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController/addFilesToProject"
+	GitlabCommandController_CreProject_FullMethodName            = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController/creProject"
+	GitlabCommandController_ApplyTemplate_FullMethodName         = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController/applyTemplate"
+	GitlabCommandController_AddVariablesToProject_FullMethodName = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController/addVariablesToProject"
+	GitlabCommandController_AddVariablesToGroup_FullMethodName   = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController/addVariablesToGroup"
+	GitlabCommandController_AddFilesToProject_FullMethodName     = "/cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController/addFilesToProject"
 )
 
-// GitlabProxyCommandControllerClient is the client API for GitlabProxyCommandController service.
+// GitlabCommandControllerClient is the client API for GitlabCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GitlabProxyCommandControllerClient interface {
+type GitlabCommandControllerClient interface {
 	// create new project on gitlab
 	// https://docs.gitlab.com/ee/api/projects.html#create-project
 	CreProject(ctx context.Context, in *model.CreProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error)
@@ -46,63 +46,63 @@ type GitlabProxyCommandControllerClient interface {
 	AddFilesToProject(ctx context.Context, in *model.AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error)
 }
 
-type gitlabProxyCommandControllerClient struct {
+type gitlabCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGitlabProxyCommandControllerClient(cc grpc.ClientConnInterface) GitlabProxyCommandControllerClient {
-	return &gitlabProxyCommandControllerClient{cc}
+func NewGitlabCommandControllerClient(cc grpc.ClientConnInterface) GitlabCommandControllerClient {
+	return &gitlabCommandControllerClient{cc}
 }
 
-func (c *gitlabProxyCommandControllerClient) CreProject(ctx context.Context, in *model.CreProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *gitlabCommandControllerClient) CreProject(ctx context.Context, in *model.CreProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GitlabProxyCommandController_CreProject_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabCommandController_CreProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) ApplyTemplate(ctx context.Context, in *model.GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
+func (c *gitlabCommandControllerClient) ApplyTemplate(ctx context.Context, in *model.GitlabApplyTemplateCommandInput, opts ...grpc.CallOption) (*model1.CodeProjectProfile, error) {
 	out := new(model1.CodeProjectProfile)
-	err := c.cc.Invoke(ctx, GitlabProxyCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabCommandController_ApplyTemplate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddVariablesToProject(ctx context.Context, in *model.AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *gitlabCommandControllerClient) AddVariablesToProject(ctx context.Context, in *model.AddVariablesToProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddVariablesToProject_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabCommandController_AddVariablesToProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddVariablesToGroup(ctx context.Context, in *model.AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
+func (c *gitlabCommandControllerClient) AddVariablesToGroup(ctx context.Context, in *model.AddVariablesToGroupCommandInput, opts ...grpc.CallOption) (*model2.CodeServer, error) {
 	out := new(model2.CodeServer)
-	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddVariablesToGroup_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabCommandController_AddVariablesToGroup_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitlabProxyCommandControllerClient) AddFilesToProject(ctx context.Context, in *model.AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
+func (c *gitlabCommandControllerClient) AddFilesToProject(ctx context.Context, in *model.AddFilesToGitlabProjectCommandInput, opts ...grpc.CallOption) (*model1.CodeProject, error) {
 	out := new(model1.CodeProject)
-	err := c.cc.Invoke(ctx, GitlabProxyCommandController_AddFilesToProject_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabCommandController_AddFilesToProject_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GitlabProxyCommandControllerServer is the server API for GitlabProxyCommandController service.
-// All implementations should embed UnimplementedGitlabProxyCommandControllerServer
+// GitlabCommandControllerServer is the server API for GitlabCommandController service.
+// All implementations should embed UnimplementedGitlabCommandControllerServer
 // for forward compatibility
-type GitlabProxyCommandControllerServer interface {
+type GitlabCommandControllerServer interface {
 	// create new project on gitlab
 	// https://docs.gitlab.com/ee/api/projects.html#create-project
 	CreProject(context.Context, *model.CreProjectCommandInput) (*model1.CodeProject, error)
@@ -116,153 +116,153 @@ type GitlabProxyCommandControllerServer interface {
 	AddFilesToProject(context.Context, *model.AddFilesToGitlabProjectCommandInput) (*model1.CodeProject, error)
 }
 
-// UnimplementedGitlabProxyCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGitlabProxyCommandControllerServer struct {
+// UnimplementedGitlabCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGitlabCommandControllerServer struct {
 }
 
-func (UnimplementedGitlabProxyCommandControllerServer) CreProject(context.Context, *model.CreProjectCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGitlabCommandControllerServer) CreProject(context.Context, *model.CreProjectCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreProject not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) ApplyTemplate(context.Context, *model.GitlabApplyTemplateCommandInput) (*model1.CodeProjectProfile, error) {
+func (UnimplementedGitlabCommandControllerServer) ApplyTemplate(context.Context, *model.GitlabApplyTemplateCommandInput) (*model1.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApplyTemplate not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToProject(context.Context, *model.AddVariablesToProjectCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGitlabCommandControllerServer) AddVariablesToProject(context.Context, *model.AddVariablesToProjectCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddVariablesToProject not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddVariablesToGroup(context.Context, *model.AddVariablesToGroupCommandInput) (*model2.CodeServer, error) {
+func (UnimplementedGitlabCommandControllerServer) AddVariablesToGroup(context.Context, *model.AddVariablesToGroupCommandInput) (*model2.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddVariablesToGroup not implemented")
 }
-func (UnimplementedGitlabProxyCommandControllerServer) AddFilesToProject(context.Context, *model.AddFilesToGitlabProjectCommandInput) (*model1.CodeProject, error) {
+func (UnimplementedGitlabCommandControllerServer) AddFilesToProject(context.Context, *model.AddFilesToGitlabProjectCommandInput) (*model1.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddFilesToProject not implemented")
 }
 
-// UnsafeGitlabProxyCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GitlabProxyCommandControllerServer will
+// UnsafeGitlabCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GitlabCommandControllerServer will
 // result in compilation errors.
-type UnsafeGitlabProxyCommandControllerServer interface {
-	mustEmbedUnimplementedGitlabProxyCommandControllerServer()
+type UnsafeGitlabCommandControllerServer interface {
+	mustEmbedUnimplementedGitlabCommandControllerServer()
 }
 
-func RegisterGitlabProxyCommandControllerServer(s grpc.ServiceRegistrar, srv GitlabProxyCommandControllerServer) {
-	s.RegisterService(&GitlabProxyCommandController_ServiceDesc, srv)
+func RegisterGitlabCommandControllerServer(s grpc.ServiceRegistrar, srv GitlabCommandControllerServer) {
+	s.RegisterService(&GitlabCommandController_ServiceDesc, srv)
 }
 
-func _GitlabProxyCommandController_CreProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabCommandController_CreProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.CreProjectCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyCommandControllerServer).CreProject(ctx, in)
+		return srv.(GitlabCommandControllerServer).CreProject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyCommandController_CreProject_FullMethodName,
+		FullMethod: GitlabCommandController_CreProject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyCommandControllerServer).CreProject(ctx, req.(*model.CreProjectCommandInput))
+		return srv.(GitlabCommandControllerServer).CreProject(ctx, req.(*model.CreProjectCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyCommandController_ApplyTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabCommandController_ApplyTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GitlabApplyTemplateCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyCommandControllerServer).ApplyTemplate(ctx, in)
+		return srv.(GitlabCommandControllerServer).ApplyTemplate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyCommandController_ApplyTemplate_FullMethodName,
+		FullMethod: GitlabCommandController_ApplyTemplate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyCommandControllerServer).ApplyTemplate(ctx, req.(*model.GitlabApplyTemplateCommandInput))
+		return srv.(GitlabCommandControllerServer).ApplyTemplate(ctx, req.(*model.GitlabApplyTemplateCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyCommandController_AddVariablesToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabCommandController_AddVariablesToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddVariablesToProjectCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyCommandControllerServer).AddVariablesToProject(ctx, in)
+		return srv.(GitlabCommandControllerServer).AddVariablesToProject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyCommandController_AddVariablesToProject_FullMethodName,
+		FullMethod: GitlabCommandController_AddVariablesToProject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyCommandControllerServer).AddVariablesToProject(ctx, req.(*model.AddVariablesToProjectCommandInput))
+		return srv.(GitlabCommandControllerServer).AddVariablesToProject(ctx, req.(*model.AddVariablesToProjectCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyCommandController_AddVariablesToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabCommandController_AddVariablesToGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddVariablesToGroupCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyCommandControllerServer).AddVariablesToGroup(ctx, in)
+		return srv.(GitlabCommandControllerServer).AddVariablesToGroup(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyCommandController_AddVariablesToGroup_FullMethodName,
+		FullMethod: GitlabCommandController_AddVariablesToGroup_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyCommandControllerServer).AddVariablesToGroup(ctx, req.(*model.AddVariablesToGroupCommandInput))
+		return srv.(GitlabCommandControllerServer).AddVariablesToGroup(ctx, req.(*model.AddVariablesToGroupCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabProxyCommandController_AddFilesToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabCommandController_AddFilesToProject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddFilesToGitlabProjectCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitlabProxyCommandControllerServer).AddFilesToProject(ctx, in)
+		return srv.(GitlabCommandControllerServer).AddFilesToProject(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitlabProxyCommandController_AddFilesToProject_FullMethodName,
+		FullMethod: GitlabCommandController_AddFilesToProject_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabProxyCommandControllerServer).AddFilesToProject(ctx, req.(*model.AddFilesToGitlabProjectCommandInput))
+		return srv.(GitlabCommandControllerServer).AddFilesToProject(ctx, req.(*model.AddFilesToGitlabProjectCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GitlabProxyCommandController_ServiceDesc is the grpc.ServiceDesc for GitlabProxyCommandController service.
+// GitlabCommandController_ServiceDesc is the grpc.ServiceDesc for GitlabCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GitlabProxyCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.integration.v1.gitlab.service.GitlabProxyCommandController",
-	HandlerType: (*GitlabProxyCommandControllerServer)(nil),
+var GitlabCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.integration.v1.gitlab.service.GitlabCommandController",
+	HandlerType: (*GitlabCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "creProject",
-			Handler:    _GitlabProxyCommandController_CreProject_Handler,
+			Handler:    _GitlabCommandController_CreProject_Handler,
 		},
 		{
 			MethodName: "applyTemplate",
-			Handler:    _GitlabProxyCommandController_ApplyTemplate_Handler,
+			Handler:    _GitlabCommandController_ApplyTemplate_Handler,
 		},
 		{
 			MethodName: "addVariablesToProject",
-			Handler:    _GitlabProxyCommandController_AddVariablesToProject_Handler,
+			Handler:    _GitlabCommandController_AddVariablesToProject_Handler,
 		},
 		{
 			MethodName: "addVariablesToGroup",
-			Handler:    _GitlabProxyCommandController_AddVariablesToGroup_Handler,
+			Handler:    _GitlabCommandController_AddVariablesToGroup_Handler,
 		},
 		{
 			MethodName: "addFilesToProject",
-			Handler:    _GitlabProxyCommandController_AddFilesToProject_Handler,
+			Handler:    _GitlabCommandController_AddFilesToProject_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

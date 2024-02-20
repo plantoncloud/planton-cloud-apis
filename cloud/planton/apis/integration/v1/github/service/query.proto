@@ -8,7 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
 import "cloud/planton/apis/integration/v1/github/model/io.proto";
 
 //github proxy query controller
-service GithubProxyQueryController {
+service GithubQueryController {
   //list repositories for the requested organization or user on github
   //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
   //todo: we have to add pagination support for response.
