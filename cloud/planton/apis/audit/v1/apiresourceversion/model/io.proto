@@ -59,8 +59,25 @@ message ApiResourceVersionCount {
   int32 value = 1;
 }
 
-message UpsertInput {
+// ApiResourceVersionUpsertInput is crafted for the specific use case of inserting or updating versions of API resources.
+// It captures the essential information required to manage the lifecycle and versioning of API resources efficiently.
+// The message includes a unique identifier for the resource, along with its new and original states, facilitating
+// robust version control, conflict resolution. The flexibility offered by google.protobuf.Any for state representations
+// allows this message to accommodate various data structures and types, enabling versatile API resource management
+// across different domains and applications.
+message ApiResourceVersionUpsertInput {
+  // resource_id serves as a unique identifier for the API resource subject to the upsert operation,
+  // enabling precise targeting of the resource within the system.
   string resource_id = 1;
+
+  // new_state holds the proposed new state of the API resource, encapsulated in a google.protobuf.Any type,
+  // to support a broad spectrum of data formats and structures. This field is crucial for conveying the updated
+  // state information that should be applied to the resource.
   google.protobuf.Any new_state = 2;
+
+  // original_state provides the API resource's state prior to the upsert operation, also using a google.protobuf.Any type,
+  // to enable conflict detection and resolution by comparing the original and new states. This comparison ensures
+  // that updates are applied correctly, based on the most recent state of the resource.
   google.protobuf.Any original_state = 3;
 }
+
