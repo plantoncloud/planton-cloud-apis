@@ -8,7 +8,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 // the type of access or relation the user has to the object.
 message FgaTuple {
   // audit information associated with the fga tuple.
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo audit = 99;
   // unique identifier of each record
   // id value is "<ulid>" generated for each record
   string id = 1;
