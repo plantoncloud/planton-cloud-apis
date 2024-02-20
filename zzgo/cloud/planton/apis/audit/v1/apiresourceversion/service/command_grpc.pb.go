@@ -20,17 +20,15 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceVersionCommandController_Create_FullMethodName           = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionCommandController/create"
-	ApiResourceVersionCommandController_UpdateStackJobId_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionCommandController/updateStackJobId"
+	ApiResourceVersionCommandController_Upsert_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionCommandController/upsert"
 )
 
 // ApiResourceVersionCommandControllerClient is the client API for ApiResourceVersionCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiResourceVersionCommandControllerClient interface {
-	// create an api-resource-version resource
-	Create(ctx context.Context, in *model.ApiResourceVersion, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
-	UpdateStackJobId(ctx context.Context, in *model.UpdateStackJobIdInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
+	// create or update an api-resource-version resource
+	Upsert(ctx context.Context, in *model.UpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
 }
 
 type apiResourceVersionCommandControllerClient struct {
@@ -41,18 +39,9 @@ func NewApiResourceVersionCommandControllerClient(cc grpc.ClientConnInterface) A
 	return &apiResourceVersionCommandControllerClient{cc}
 }
 
-func (c *apiResourceVersionCommandControllerClient) Create(ctx context.Context, in *model.ApiResourceVersion, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
+func (c *apiResourceVersionCommandControllerClient) Upsert(ctx context.Context, in *model.UpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
 	out := new(model.ApiResourceVersion)
-	err := c.cc.Invoke(ctx, ApiResourceVersionCommandController_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *apiResourceVersionCommandControllerClient) UpdateStackJobId(ctx context.Context, in *model.UpdateStackJobIdInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
-	out := new(model.ApiResourceVersion)
-	err := c.cc.Invoke(ctx, ApiResourceVersionCommandController_UpdateStackJobId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ApiResourceVersionCommandController_Upsert_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,20 +52,16 @@ func (c *apiResourceVersionCommandControllerClient) UpdateStackJobId(ctx context
 // All implementations should embed UnimplementedApiResourceVersionCommandControllerServer
 // for forward compatibility
 type ApiResourceVersionCommandControllerServer interface {
-	// create an api-resource-version resource
-	Create(context.Context, *model.ApiResourceVersion) (*model.ApiResourceVersion, error)
-	UpdateStackJobId(context.Context, *model.UpdateStackJobIdInput) (*model.ApiResourceVersion, error)
+	// create or update an api-resource-version resource
+	Upsert(context.Context, *model.UpsertInput) (*model.ApiResourceVersion, error)
 }
 
 // UnimplementedApiResourceVersionCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedApiResourceVersionCommandControllerServer struct {
 }
 
-func (UnimplementedApiResourceVersionCommandControllerServer) Create(context.Context, *model.ApiResourceVersion) (*model.ApiResourceVersion, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedApiResourceVersionCommandControllerServer) UpdateStackJobId(context.Context, *model.UpdateStackJobIdInput) (*model.ApiResourceVersion, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateStackJobId not implemented")
+func (UnimplementedApiResourceVersionCommandControllerServer) Upsert(context.Context, *model.UpsertInput) (*model.ApiResourceVersion, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Upsert not implemented")
 }
 
 // UnsafeApiResourceVersionCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -90,38 +75,20 @@ func RegisterApiResourceVersionCommandControllerServer(s grpc.ServiceRegistrar, 
 	s.RegisterService(&ApiResourceVersionCommandController_ServiceDesc, srv)
 }
 
-func _ApiResourceVersionCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ApiResourceVersion)
+func _ApiResourceVersionCommandController_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.UpsertInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiResourceVersionCommandControllerServer).Create(ctx, in)
+		return srv.(ApiResourceVersionCommandControllerServer).Upsert(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiResourceVersionCommandController_Create_FullMethodName,
+		FullMethod: ApiResourceVersionCommandController_Upsert_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceVersionCommandControllerServer).Create(ctx, req.(*model.ApiResourceVersion))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ApiResourceVersionCommandController_UpdateStackJobId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.UpdateStackJobIdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ApiResourceVersionCommandControllerServer).UpdateStackJobId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ApiResourceVersionCommandController_UpdateStackJobId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceVersionCommandControllerServer).UpdateStackJobId(ctx, req.(*model.UpdateStackJobIdInput))
+		return srv.(ApiResourceVersionCommandControllerServer).Upsert(ctx, req.(*model.UpsertInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -134,12 +101,8 @@ var ApiResourceVersionCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ApiResourceVersionCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "create",
-			Handler:    _ApiResourceVersionCommandController_Create_Handler,
-		},
-		{
-			MethodName: "updateStackJobId",
-			Handler:    _ApiResourceVersionCommandController_UpdateStackJobId_Handler,
+			MethodName: "upsert",
+			Handler:    _ApiResourceVersionCommandController_Upsert_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

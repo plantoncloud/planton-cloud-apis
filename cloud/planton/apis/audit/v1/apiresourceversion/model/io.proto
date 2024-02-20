@@ -5,6 +5,7 @@ package cloud.planton.apis.audit.v1.apiresourceversion.model;
 import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "google/protobuf/any.proto";
 
 // wrapper for api-resource-version id
 message ApiResourceVersionId {
@@ -58,6 +59,8 @@ message ApiResourceVersionCount {
   int32 value = 1;
 }
 
-message UpdateStackJobIdInput {
-  string stack_job_id = 1;
+message UpsertInput {
+  string resource_id = 1;
+  google.protobuf.Any new_state = 2;
+  google.protobuf.Any original_state = 3;
 }
