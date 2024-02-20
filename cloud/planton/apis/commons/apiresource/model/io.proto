@@ -56,15 +56,6 @@ message ApiResourceRefreshCommandInput {
   string version_message = 2;
 }
 
-
-// resource group version kind
-// this is only used in cli to load any api-resource yaml manifest and detect api-resource kind
-message ResourceGroupVersionKind {
-  string api_version = 1 [json_name = "apiVersion"];
-  string kind = 2;
-}
-
-
 // Record is a message type that represents a single record object in list view.
 // Record object has all fields that are required to show in list view
 // It contains identifying and contextual information about the resource,
