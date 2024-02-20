@@ -106,7 +106,7 @@ message StackJobSpec {
   ];
 
   // event type of the resource that triggered the stack job
-  string resource_event = 10 [
+  string api_resource_event_type = 10 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
