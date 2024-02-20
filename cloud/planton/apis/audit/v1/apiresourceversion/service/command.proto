@@ -10,14 +10,9 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 
 //api-resource-version command controller
 service ApiResourceVersionCommandController {
-  //create an api-resource-version resource
-  rpc create(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion)
+  //create or update an api-resource-version resource
+  rpc upsert(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput)
       returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion) {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
-  }
-
-  rpc updateStackJobId(cloud.planton.apis.audit.v1.apiresourceversion.model.UpdateStackJobIdInput)
-      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion) {
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
   }
 }
