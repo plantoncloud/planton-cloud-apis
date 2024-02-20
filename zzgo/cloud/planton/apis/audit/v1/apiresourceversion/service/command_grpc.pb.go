@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiResourceVersionCommandControllerClient interface {
 	// create or update an api-resource-version resource
-	Upsert(ctx context.Context, in *model.UpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
+	Upsert(ctx context.Context, in *model.ApiResourceVersionUpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
 }
 
 type apiResourceVersionCommandControllerClient struct {
@@ -39,7 +39,7 @@ func NewApiResourceVersionCommandControllerClient(cc grpc.ClientConnInterface) A
 	return &apiResourceVersionCommandControllerClient{cc}
 }
 
-func (c *apiResourceVersionCommandControllerClient) Upsert(ctx context.Context, in *model.UpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
+func (c *apiResourceVersionCommandControllerClient) Upsert(ctx context.Context, in *model.ApiResourceVersionUpsertInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
 	out := new(model.ApiResourceVersion)
 	err := c.cc.Invoke(ctx, ApiResourceVersionCommandController_Upsert_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -53,14 +53,14 @@ func (c *apiResourceVersionCommandControllerClient) Upsert(ctx context.Context, 
 // for forward compatibility
 type ApiResourceVersionCommandControllerServer interface {
 	// create or update an api-resource-version resource
-	Upsert(context.Context, *model.UpsertInput) (*model.ApiResourceVersion, error)
+	Upsert(context.Context, *model.ApiResourceVersionUpsertInput) (*model.ApiResourceVersion, error)
 }
 
 // UnimplementedApiResourceVersionCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedApiResourceVersionCommandControllerServer struct {
 }
 
-func (UnimplementedApiResourceVersionCommandControllerServer) Upsert(context.Context, *model.UpsertInput) (*model.ApiResourceVersion, error) {
+func (UnimplementedApiResourceVersionCommandControllerServer) Upsert(context.Context, *model.ApiResourceVersionUpsertInput) (*model.ApiResourceVersion, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Upsert not implemented")
 }
 
@@ -76,7 +76,7 @@ func RegisterApiResourceVersionCommandControllerServer(s grpc.ServiceRegistrar, 
 }
 
 func _ApiResourceVersionCommandController_Upsert_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.UpsertInput)
+	in := new(model.ApiResourceVersionUpsertInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func _ApiResourceVersionCommandController_Upsert_Handler(srv interface{}, ctx co
 		FullMethod: ApiResourceVersionCommandController_Upsert_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceVersionCommandControllerServer).Upsert(ctx, req.(*model.UpsertInput))
+		return srv.(ApiResourceVersionCommandControllerServer).Upsert(ctx, req.(*model.ApiResourceVersionUpsertInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
