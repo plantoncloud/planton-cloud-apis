@@ -6,6 +6,13 @@ package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype;
 // These events are emitted while a stack job is running.
 enum StackJobProgressEventType {
   STACK_JOB_PROGRESS_EVENT_TYPE_UNSPECIFIED = 0;
-  status_event = 1;
-  pulumi_engine_event = 12;
+  // this event is used to indicate that a specific pulumi operation has been transitioned from one status to another status during the execution of the stack-job.
+  // this event is created by planton-cloud's pulumi-stack-job-runner sdk.
+  pulumi_operation_status_event = 1;
+  //this event is used to indicate that a new engine event has been emitted by pulumi engine while
+  // executing one of the pulumi operation as part of executing the stack-job.
+  pulumi_engine_event = 2;
+  //this event is used to mark the end of stream in redis.
+  //this event is created by stack-job listener kafka processor after the completion of the stack-job.
+  stack_job_completed_event = 3;
 }

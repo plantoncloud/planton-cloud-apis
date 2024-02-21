@@ -12,9 +12,9 @@ service StackJobCommandController {
   rpc create(cloud.planton.apis.iac.v1.stackjob.model.StackJob) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob);
   //update stack-job
   rpc update(cloud.planton.apis.iac.v1.stackjob.model.StackJob) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob);
-  //rpc to set execution-status for a stack-job.
-  //since the start of running of a stack-job happens in other services, stack service is notified of that event.
-  //upon receiving this notification, stack service starts a stack-job progress follower that
+  //rpc to notify that a stack-job started running.
+  //since the start of running of a stack-job happens in other services, iac service is notified of that event.
+  //upon receiving this notification, iac service starts a stack-job progress follower that
   // takes care of updating the status of stack-job in the database.
   rpc notifyRunning(cloud.planton.apis.iac.v1.stackjob.model.StackJobId) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob);
 }

@@ -1,10 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.model.pulumiengine;
+package cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine;
 
 import "cloud/planton/apis/iac/v1/stackjob/enums/pulumiengineeventtype/pulumi_engine_event_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogresseventtype/stack_job_progress_event_type.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatuseventtype/stack_job_progress_status_event_type.proto";
 
 message PulumiEngineEvent {
   cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype.PulumiEngineEventType event_type = 1;
