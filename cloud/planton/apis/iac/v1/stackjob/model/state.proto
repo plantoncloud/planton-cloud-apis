@@ -4,10 +4,11 @@ package cloud.planton.apis.iac.v1.stackjob.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/pulumioperationstatustype/pulumi_operation_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/stack_job_execution_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "google/protobuf/timestamp.proto";
@@ -186,14 +187,13 @@ message StackJobPulumiOperationsStatus {
 
 // progress of a pulumi operation in a stack-job
 message StackJobPulumiOperationStatus {
-  //flag to indicate if the pulumi operation has started
-  bool is_started = 1;
-  //flag to indicate if the pulumi operation has been completed
-  bool is_completed = 2;
-  //flag to indicate if the pulumi operation has been successfully completed
-  bool is_succeeded = 3;
-  //list of errors reported during the operation execution
-  repeated string errors = 4;
-  //duration seconds for the operation
-  int32 duration_seconds = 5;
+  // status of the pulumi operation
+  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status = 1;
+  //list of errors reported during the operation execution.
+  //this list is only populated when there are errors reported by pulumi engine while performing the operation.
+  repeated string errors = 2;
+  // timestamp for the start time for pulumi operation
+  google.protobuf.Timestamp start_time = 3;
+  // timestamp for the end time for pulumi operation
+  google.protobuf.Timestamp end_time = 4;
 }
