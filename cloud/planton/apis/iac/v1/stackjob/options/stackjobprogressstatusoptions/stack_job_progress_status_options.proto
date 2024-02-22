@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.options.stackjobexecutionstatusoptions;
+package cloud.planton.apis.iac.v1.stackjob.options.stackjobprogressstatusoptions;
 
 import "google/protobuf/descriptor.proto";
 

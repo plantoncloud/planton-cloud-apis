@@ -2,41 +2,44 @@ syntax = "proto3";
 
 package cloud.planton.apis.iac.v1.stackjob.model.progress;
 
+import "cloud/planton/apis/iac/v1/stackjob/enums/pulumioperationstatustype/pulumi_operation_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogresseventtype/stack_job_progress_event_type.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/pulumioperationstatustype/pulumi_operation_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/io.proto";
 import "google/protobuf/timestamp.proto";
 
 // stack-job progress event
 message StackJobProgressEvent {
-  // stack-job operation for which generated progress event
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 1;
   // type of the event created during the execution of a stack-job
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype.StackJobProgressEventType event_type = 2;
-  //The time when the progress event was first received and written to persistent storage.
-  google.protobuf.Timestamp timestamp = 3;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype.StackJobProgressEventType event_type = 1;
   // stack-job progress status is populated when event_type is "StackJobProgressEventType.pulumi_operation_status_event"
-  StackJobProgressPulumiOperationStatusPayload pulumi_operation_status_payload = 4;
+  StackJobProgressPulumiOperationStatusPayload pulumi_operation_status_payload = 2;
   // pulumi engine event is only populated when event_type is "StackJobProgressEventType.pulumi_engine_event"
-  cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiEngineEvent engine_event_payload = 5;
+  cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiEngineEventPayload pulumi_engine_event_payload = 3;
   // pulumi engine event is only populated when event_type is "StackJobProgressEventType.stack_job_completed_event"
-  StackJobProgressCompletedStatusPayload stack_job_completed_event_payload = 6;
+  StackJobProgressCompletedStatusPayload stack_job_completed_event_payload = 4;
 }
 
 // stack-job progress pulumi-operation status payload
 message StackJobProgressPulumiOperationStatusPayload {
+  //The time when the progress event payload was created.
+  google.protobuf.Timestamp payload_timestamp = 99;
+  // stack-job operation for which the event is generated
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 98;
+
   // type of the stack-job progress status event
-  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status =1;;
   // errors is populated for failed event
   repeated string errors = 2;
 }
 
 // stack-job progress completed status payload
 message StackJobProgressCompletedStatusPayload {
+  //The time when the progress event payload was created.
+  google.protobuf.Timestamp payload_timestamp = 99;
+
   // flag to indicate if the job has failed
   bool is_failed = 1;
-
   // reason for stack-job failure
   string failed_reason = 2;
 }

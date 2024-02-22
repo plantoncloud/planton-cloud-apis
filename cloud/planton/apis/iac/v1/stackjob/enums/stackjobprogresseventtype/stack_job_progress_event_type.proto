@@ -12,7 +12,14 @@ enum StackJobProgressEventType {
   //this event is used to indicate that a new engine event has been emitted by pulumi engine while
   // executing one of the pulumi operation as part of executing the stack-job.
   pulumi_engine_event = 2;
-  //this event is used to mark the end of stream in redis.
+  //this event is created by planton-cloud's pulumi-stack-job-runner sdk.
+  //this event is used to send the outputs of a pulumi stack of an api-resource to the client.
+  //this even will not have a corresponding event payload as the outputs for each api-resource
+  // stack are modelled separately.
+  //the actual outputs themselves are populated in the stack-job stream response payload.
+  stack_job_outputs_event = 4;
   //this event is created by stack-job listener kafka processor after the completion of the stack-job.
-  stack_job_completed_event = 3;
+  //this event is used to mark the end of stream in redis.
+  //any subscriptions for the stack-job progress stream can use this event to decide to stop reading from the stream.
+  stack_job_completed_event = 5;
 }
