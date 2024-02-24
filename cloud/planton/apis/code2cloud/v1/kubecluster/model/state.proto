@@ -11,8 +11,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 
 // kube-cluster
 message KubeCluster {
