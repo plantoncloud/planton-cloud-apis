@@ -413,185 +413,6 @@ func (x *StackJobMinutesMTD) GetMinutes() int32 {
 	return 0
 }
 
-// GetResourceCountByCompanyIdInput is used for requests aimed at obtaining the number of resources
-// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company.
-// The focus on company identification via the company_id field enables targeted queries for resource
-// counts within the specified company's context, supporting operations like auditing, resource management,
-// and planning.
-type GetResourceCountByCompanyIdInput struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// company_id uniquely identifies a company within the system. The field is formatted as a string.
-	CompanyId string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
-}
-
-func (x *GetResourceCountByCompanyIdInput) Reset() {
-	*x = GetResourceCountByCompanyIdInput{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *GetResourceCountByCompanyIdInput) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetResourceCountByCompanyIdInput) ProtoMessage() {}
-
-func (x *GetResourceCountByCompanyIdInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetResourceCountByCompanyIdInput.ProtoReflect.Descriptor instead.
-func (*GetResourceCountByCompanyIdInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *GetResourceCountByCompanyIdInput) GetCompanyId() string {
-	if x != nil {
-		return x.CompanyId
-	}
-	return ""
-}
-
-// ResourceCount encapsulates count of a specific resource type within an organization.
-// It includes the resource's type and name for clear identification and the total count of such resources.
-// This message is useful in contexts where detailed inventory, asset management, or resource planning is required,
-// allowing for precise tracking and reporting of various resources.
-type ApiResourceCount struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// resource_kind categorizes the resource, aiding in grouping and differentiating between various kinds
-	// of resources (e.g., postgres_cluster, redis_cluster, kube_cluster etc.;).
-	ResourceKind string `protobuf:"bytes,1,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
-	// resource_name provides the specific name or identifier of the resource, offering a more user readable
-	// text that complements the resource_kind field.
-	ResourceName string `protobuf:"bytes,2,opt,name=resource_name,json=resourceName,proto3" json:"resource_name,omitempty"`
-	// count represents the total number of resources of the specified type and name, enabling quantitative
-	// assessments and management decisions based on the available resources.
-	Count int32 `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
-}
-
-func (x *ApiResourceCount) Reset() {
-	*x = ApiResourceCount{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ApiResourceCount) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApiResourceCount) ProtoMessage() {}
-
-func (x *ApiResourceCount) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApiResourceCount.ProtoReflect.Descriptor instead.
-func (*ApiResourceCount) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *ApiResourceCount) GetResourceKind() string {
-	if x != nil {
-		return x.ResourceKind
-	}
-	return ""
-}
-
-func (x *ApiResourceCount) GetResourceName() string {
-	if x != nil {
-		return x.ResourceName
-	}
-	return ""
-}
-
-func (x *ApiResourceCount) GetCount() int32 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
-}
-
-// ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
-// of resource counts across different types and names within a specific context, such as a company.
-// Each entry in the 'entries' field details the type, name, and count of a distinct resource.
-type ApiResourcesCount struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	// entries is a collection of ResourceCount messages, each of which details the type, name,
-	// and count of an individual resource. This repeated field allows for representing a diverse
-	// array of resources within a single, structured response.
-	Entries []*ApiResourceCount `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *ApiResourcesCount) Reset() {
-	*x = ApiResourcesCount{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[8]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *ApiResourcesCount) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApiResourcesCount) ProtoMessage() {}
-
-func (x *ApiResourcesCount) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[8]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApiResourcesCount.ProtoReflect.Descriptor instead.
-func (*ApiResourcesCount) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *ApiResourcesCount) GetEntries() []*ApiResourceCount {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
 // GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi
 // resources associated with a specified company. The inclusion of the company_id field allows for
 // targeted queries to assess the scope of Pulumi resource utilization within a particular company,
@@ -608,7 +429,7 @@ type GetPulumiResourceCountByCompanyIdInput struct {
 func (x *GetPulumiResourceCountByCompanyIdInput) Reset() {
 	*x = GetPulumiResourceCountByCompanyIdInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[9]
+		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -621,7 +442,7 @@ func (x *GetPulumiResourceCountByCompanyIdInput) String() string {
 func (*GetPulumiResourceCountByCompanyIdInput) ProtoMessage() {}
 
 func (x *GetPulumiResourceCountByCompanyIdInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[9]
+	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -634,7 +455,7 @@ func (x *GetPulumiResourceCountByCompanyIdInput) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use GetPulumiResourceCountByCompanyIdInput.ProtoReflect.Descriptor instead.
 func (*GetPulumiResourceCountByCompanyIdInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{9}
+	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetPulumiResourceCountByCompanyIdInput) GetCompanyId() string {
@@ -661,7 +482,7 @@ type TotalPulumiResourceCount struct {
 func (x *TotalPulumiResourceCount) Reset() {
 	*x = TotalPulumiResourceCount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[10]
+		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -674,7 +495,7 @@ func (x *TotalPulumiResourceCount) String() string {
 func (*TotalPulumiResourceCount) ProtoMessage() {}
 
 func (x *TotalPulumiResourceCount) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[10]
+	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -687,7 +508,7 @@ func (x *TotalPulumiResourceCount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TotalPulumiResourceCount.ProtoReflect.Descriptor instead.
 func (*TotalPulumiResourceCount) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{10}
+	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *TotalPulumiResourceCount) GetCount() int32 {
@@ -807,56 +628,37 @@ var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDesc = []byte{
 	0x6e, 0x79, 0x49, 0x64, 0x22, 0x2e, 0x0a, 0x12, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62,
 	0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73, 0x4d, 0x54, 0x44, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x69,
 	0x6e, 0x75, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x07, 0x6d, 0x69, 0x6e,
-	0x75, 0x74, 0x65, 0x73, 0x22, 0x41, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x6f, 0x75,
-	0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e,
-	0x79, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70,
-	0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6f,
-	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22, 0x72, 0x0a, 0x10, 0x41, 0x70, 0x69, 0x52, 0x65,
-	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x23, 0x0a, 0x0d, 0x72,
-	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x6b, 0x69, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x4b, 0x69, 0x6e, 0x64,
-	0x12, 0x23, 0x0a, 0x0d, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x6e, 0x61, 0x6d,
-	0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
-	0x65, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x22, 0x69, 0x0a, 0x11, 0x41,
-	0x70, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x12, 0x54, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28,
-	0x0b, 0x32, 0x3a, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
-	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74,
-	0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x70, 0x69,
-	0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x07, 0x65,
-	0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x47, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x50, 0x75, 0x6c,
-	0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74,
-	0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74,
-	0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01,
-	0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22,
-	0x30, 0x0a, 0x18, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65,
-	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x42, 0xe5, 0x02, 0x0a, 0x36, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e,
-	0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
-	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74,
-	0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x07, 0x49, 0x6f,
-	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x58, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
-	0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61,
-	0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70,
-	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x61, 0x63, 0x2f,
-	0x76, 0x31, 0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2f, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0xa2, 0x02, 0x07, 0x43, 0x50, 0x41, 0x49, 0x56, 0x53, 0x4d, 0xaa, 0x02, 0x28, 0x43, 0x6c,
-	0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73,
-	0x2e, 0x49, 0x61, 0x63, 0x2e, 0x56, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62,
-	0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x28, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50,
-	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x61, 0x63, 0x5c,
-	0x56, 0x31, 0x5c, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x5c, 0x4d, 0x6f, 0x64, 0x65,
-	0x6c, 0xe2, 0x02, 0x34, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
-	0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x61, 0x63, 0x5c, 0x56, 0x31, 0x5c, 0x53, 0x74,
-	0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x2e, 0x43, 0x6c, 0x6f, 0x75, 0x64,
-	0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a,
-	0x3a, 0x49, 0x61, 0x63, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a,
-	0x6f, 0x62, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x33,
+	0x75, 0x74, 0x65, 0x73, 0x22, 0x47, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x50, 0x75, 0x6c, 0x75, 0x6d,
+	0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79,
+	0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x1d,
+	0x0a, 0x0a, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22, 0x30, 0x0a,
+	0x18, 0x54, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f,
+	0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x14, 0x0a, 0x05, 0x63, 0x6f, 0x75,
+	0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x05, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x42,
+	0xe5, 0x02, 0x0a, 0x36, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65,
+	0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
+	0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63,
+	0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x07, 0x49, 0x6f, 0x50, 0x72,
+	0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x58, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f,
+	0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70,
+	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70, 0x69,
+	0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x61, 0x63, 0x2f, 0x76, 0x31,
+	0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0xa2,
+	0x02, 0x07, 0x43, 0x50, 0x41, 0x49, 0x56, 0x53, 0x4d, 0xaa, 0x02, 0x28, 0x43, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x49,
+	0x61, 0x63, 0x2e, 0x56, 0x31, 0x2e, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x4d,
+	0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x28, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x61, 0x63, 0x5c, 0x56, 0x31,
+	0x5c, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xe2,
+	0x02, 0x34, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c,
+	0x41, 0x70, 0x69, 0x73, 0x5c, 0x49, 0x61, 0x63, 0x5c, 0x56, 0x31, 0x5c, 0x53, 0x74, 0x61, 0x63,
+	0x6b, 0x6a, 0x6f, 0x62, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65,
+	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x2e, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a,
+	0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x49,
+	0x61, 0x63, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62,
+	0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -871,7 +673,7 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP() []byte
 	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_goTypes = []interface{}{
 	(*StackJobId)(nil),                                         // 0: cloud.planton.apis.iac.v1.stackjob.model.StackJobId
 	(*ListStackJobsByFiltersQueryInput)(nil),                   // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput
@@ -879,30 +681,26 @@ var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_goTypes = []interface
 	(*CreateStackJobCommandInput)(nil),                         // 3: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput
 	(*GetStackJobMinutesByCompanyIdInput)(nil),                 // 4: cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByCompanyIdInput
 	(*StackJobMinutesMTD)(nil),                                 // 5: cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
-	(*GetResourceCountByCompanyIdInput)(nil),                   // 6: cloud.planton.apis.iac.v1.stackjob.model.GetResourceCountByCompanyIdInput
-	(*ApiResourceCount)(nil),                                   // 7: cloud.planton.apis.iac.v1.stackjob.model.ApiResourceCount
-	(*ApiResourcesCount)(nil),                                  // 8: cloud.planton.apis.iac.v1.stackjob.model.ApiResourcesCount
-	(*GetPulumiResourceCountByCompanyIdInput)(nil),             // 9: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput
-	(*TotalPulumiResourceCount)(nil),                           // 10: cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
-	(*rpc.PageInfo)(nil),                                       // 11: cloud.planton.apis.commons.rpc.PageInfo
-	(apiresourcekind.ApiResourceKind)(0),                       // 12: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	(stackjoboperationtype.StackJobOperationType)(0),           // 13: cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
-	(stackjobprogressstatustype.StackJobProgressStatusType)(0), // 14: cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
-	(*StackJob)(nil),                                           // 15: cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	(*GetPulumiResourceCountByCompanyIdInput)(nil),             // 6: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput
+	(*TotalPulumiResourceCount)(nil),                           // 7: cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
+	(*rpc.PageInfo)(nil),                                       // 8: cloud.planton.apis.commons.rpc.PageInfo
+	(apiresourcekind.ApiResourceKind)(0),                       // 9: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	(stackjoboperationtype.StackJobOperationType)(0),           // 10: cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	(stackjobprogressstatustype.StackJobProgressStatusType)(0), // 11: cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
+	(*StackJob)(nil),                                           // 12: cloud.planton.apis.iac.v1.stackjob.model.StackJob
 }
 var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_depIdxs = []int32{
-	11, // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	12, // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	13, // 2: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
-	14, // 3: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.progress_status:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
-	15, // 4: cloud.planton.apis.iac.v1.stackjob.model.StackJobList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	13, // 5: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
-	7,  // 6: cloud.planton.apis.iac.v1.stackjob.model.ApiResourcesCount.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.ApiResourceCount
-	7,  // [7:7] is the sub-list for method output_type
-	7,  // [7:7] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	8,  // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	9,  // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	10, // 2: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	11, // 3: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.progress_status:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
+	12, // 4: cloud.planton.apis.iac.v1.stackjob.model.StackJobList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	10, // 5: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	6,  // [6:6] is the sub-list for method output_type
+	6,  // [6:6] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() }
@@ -985,42 +783,6 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetResourceCountByCompanyIdInput); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ApiResourceCount); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ApiResourcesCount); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GetPulumiResourceCountByCompanyIdInput); i {
 			case 0:
 				return &v.state
@@ -1032,7 +794,7 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*TotalPulumiResourceCount); i {
 			case 0:
 				return &v.state
@@ -1051,7 +813,7 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

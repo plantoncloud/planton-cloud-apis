@@ -115,3 +115,41 @@ message GetByApiResourceKindInput {
   //  included in the search results.
   cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter lookup_filter = 5;
 }
+
+// ResourceCount encapsulates count of a specific resource type within an organization.
+// It includes the resource's type and name for clear identification and the total count of such resources.
+// This message is useful in contexts where detailed inventory, asset management, or resource planning is required,
+// allowing for precise tracking and reporting of various resources.
+message ApiResourceCount {
+  // resource_kind categorizes the resource, aiding in grouping and differentiating between various kinds
+  // of resources (e.g., postgres_cluster, redis_cluster, kube_cluster etc.;).
+  string resource_kind = 1;
+
+  // resource_name provides the specific name or identifier of the resource, offering a more user readable
+  // text that complements the resource_kind field.
+  string resource_name = 2;
+
+  // count represents the total number of resources of the specified type and name, enabling quantitative
+  // assessments and management decisions based on the available resources.
+  int32 count = 3;
+}
+
+// ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
+// of resource counts across different types and names within a specific context, such as a company.
+// Each entry in the 'entries' field details the type, name, and count of a distinct resource.
+message ApiResourcesCount {
+  // entries is a collection of ResourceCount messages, each of which details the type, name,
+  // and count of an individual resource. This repeated field allows for representing a diverse
+  // array of resources within a single, structured response.
+  repeated ApiResourceCount entries = 1;
+}
+
+// GetResourceCountByCompanyIdInput is used for requests aimed at obtaining the number of resources
+// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company.
+// The focus on company identification via the company_id field enables targeted queries for resource
+// counts within the specified company's context, supporting operations like auditing, resource management,
+// and planning.
+message GetResourceCountByCompanyIdInput {
+  // company_id uniquely identifies a company within the system. The field is formatted as a string.
+  string company_id = 1;
+}
