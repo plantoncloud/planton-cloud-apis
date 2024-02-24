@@ -33,9 +33,9 @@ type StackJobCommandControllerClient interface {
 	Create(ctx context.Context, in *model.StackJob, opts ...grpc.CallOption) (*model.StackJob, error)
 	// update stack-job
 	Update(ctx context.Context, in *model.StackJob, opts ...grpc.CallOption) (*model.StackJob, error)
-	// rpc to set execution-status for a stack-job.
-	// since the start of running of a stack-job happens in other services, stack service is notified of that event.
-	// upon receiving this notification, stack service starts a stack-job progress follower that
+	// rpc to notify that a stack-job started running.
+	// since the start of running of a stack-job happens in other services, iac service is notified of that event.
+	// upon receiving this notification, iac service starts a stack-job progress follower that
 	// takes care of updating the status of stack-job in the database.
 	NotifyRunning(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*model.StackJob, error)
 }
@@ -83,9 +83,9 @@ type StackJobCommandControllerServer interface {
 	Create(context.Context, *model.StackJob) (*model.StackJob, error)
 	// update stack-job
 	Update(context.Context, *model.StackJob) (*model.StackJob, error)
-	// rpc to set execution-status for a stack-job.
-	// since the start of running of a stack-job happens in other services, stack service is notified of that event.
-	// upon receiving this notification, stack service starts a stack-job progress follower that
+	// rpc to notify that a stack-job started running.
+	// since the start of running of a stack-job happens in other services, iac service is notified of that event.
+	// upon receiving this notification, iac service starts a stack-job progress follower that
 	// takes care of updating the status of stack-job in the database.
 	NotifyRunning(context.Context, *model.StackJobId) (*model.StackJob, error)
 }

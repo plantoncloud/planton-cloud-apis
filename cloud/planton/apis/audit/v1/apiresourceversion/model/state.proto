@@ -8,7 +8,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/stack_job_execution_status_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stack_job_progress_status_type.proto";
 
 // The ApiResourceVersion message represents a record of a resource state modification
 // in a system's resource. It stores the original and new states of the resource,
@@ -73,5 +73,5 @@ message ApiResourceVersionStatus {
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // represents the current status of the stack job.
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType  stack_job_execution_status = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType  stack_job_progress_status = 1;
 }

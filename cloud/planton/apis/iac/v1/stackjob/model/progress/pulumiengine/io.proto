@@ -1,30 +1,40 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.model.pulumiengine;
+package cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine;
 
 import "cloud/planton/apis/iac/v1/stackjob/enums/pulumiengineeventtype/pulumi_engine_event_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogresseventtype/stack_job_progress_event_type.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatuseventtype/stack_job_progress_status_event_type.proto";
+import "google/protobuf/timestamp.proto";
 
-message PulumiEngineEvent {
-  cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype.PulumiEngineEventType event_type = 1;
-  int32 sequence = 2;
-  int32 timestamp = 3;
-  CancelEvent cancel_event = 4;
-  StdoutEngineEvent stdout_event = 5;
-  DiagnosticEvent diagnostic_event = 6;
-  PreludeEvent prelude_event = 7;
-  SummaryEvent summary_event = 8;
-  ResourcePreEvent resource_preEvent = 9;
-  ResOutputsEvent res_outputs_event = 10;
-  ResOpFailedEvent res_op_failed_event = 11;
-  PolicyEvent policy_event = 12;
-  PolicyRemediationEvent policy_remediation_event = 13;
+// pulumi-engine event payload created by planton-cloud's stack-job runner sdks
+message PulumiEngineEventPayload {
+  //The time when the progress event payload was created.
+  google.protobuf.Timestamp payload_timestamp = 99;
+  // stack-job operation for which the event is generated
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 98;
+  // stack-job progress pulumi-engine event-type
+  cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype.PulumiEngineEventType event_type = 97;
+
+  //below part of the event payload is captured by planton-cloud stack-job runner sdks from pulumi engine
+  //https://github.com/pulumi/pulumi/blob/96a9a77167b9dc1167e081c2669931cda63c1511/sdk/go/common/apitype/events.go#L201
+  int32 sequence = 1;
+  int32 timestamp = 2;
+  CancelEvent cancel_event = 3;
+  StdoutEngineEvent stdout_event = 4;
+  DiagnosticEvent diagnostic_event = 5;
+  PreludeEvent prelude_event = 6;
+  SummaryEvent summary_event = 7;
+  ResourcePreEvent resource_preEvent = 8;
+  ResOutputsEvent res_outputs_event = 9;
+  ResOpFailedEvent res_op_failed_event = 10;
+  PolicyEvent policy_event = 11;
+  PolicyRemediationEvent policy_remediation_event = 12;
 }
 
 // wrapper for list of pulumi engine-events
 message EngineEvents {
-  repeated PulumiEngineEvent items = 1;
+  repeated PulumiEngineEventPayload items = 1;
 }
 
 message CancelEvent {}

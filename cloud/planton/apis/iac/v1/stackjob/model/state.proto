@@ -4,11 +4,12 @@ package cloud.planton.apis.iac.v1.stackjob.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/stack_job_execution_status_type.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/pulumioperationstatustype/pulumi_operation_status_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stack_job_progress_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -110,11 +111,6 @@ message StackJobSpec {
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
-
-  //pulumi operations for stack-job
-  StackJobPulumiOperationsSpec pulumi_operations = 11 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
 }
 
 // stack-job status
@@ -125,75 +121,57 @@ message StackJobStatus {
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
-  // execution status of the stack-job
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType execution_status = 1;
-
-  // execution start time of stack job
-  google.protobuf.Timestamp execution_start_time = 2;
-
-  // execution end time of stack job
-  google.protobuf.Timestamp execution_end_time = 3;
+  // stack-job progress status
+  StackJobStatusProgressStatus progress  = 1;
 
   // status of pulumi operations
-  StackJobPulumiOperationsStatus pulumi_operations = 4;
+  StackJobStatusPulumiOperationsStatus pulumi_operations = 4;
 }
 
-// pulumi operations spec for a stack job
-message StackJobPulumiOperationsSpec {
-  //flag to indicate if pulumi refresh is required for this job
-  bool is_refresh_required = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+// stack-job progress status
+message StackJobStatusProgressStatus {
+  // progress status of the stack-job
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType status = 1;
 
-  //flag to indicate if pulumi preview(apply) is required for this job
-  bool is_apply_preview_required = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+  // execution start time of stack job
+  google.protobuf.Timestamp start_time = 2;
 
-  //flag to indicate if pulumi preview(destroy) is required for this job
-  bool is_destroy_preview_required = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+  // execution end time of stack job
+  google.protobuf.Timestamp end_time = 3;
 
-  //flag to indicate if pulumi up is required for this job
-  bool is_apply_required = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //flag to indicate if pulumi destroy is required for this job
-  bool is_destroy_required = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+  // if the job has failed, this attribute contains the reason for failure.
+  string failure_reason = 4;
 }
 
 // pulumi operations status of the stack job
-message StackJobPulumiOperationsStatus {
+message StackJobStatusPulumiOperationsStatus {
   // status of refresh operation populated only when pulumi refresh is required for the stack-job
-  StackJobPulumiOperationStatus refresh_status = 1;
+  StackJobStatusPulumiOperationStatus refresh = 1;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  StackJobPulumiOperationStatus apply_preview_status = 2;
+  StackJobStatusPulumiOperationStatus apply_preview = 2;
 
   // status of refresh operation populated only when pulumi preview(apply) is required for the stack-job
-  StackJobPulumiOperationStatus destroy_preview_status = 3;
+  StackJobStatusPulumiOperationStatus destroy_preview = 3;
 
   // status of apply operation populated only when pulumi apply is required for the stack-job
-  StackJobPulumiOperationStatus apply_status = 4;
+  StackJobStatusPulumiOperationStatus apply = 4;
 
   // status of apply operation populated only when pulumi destroy is required for the stack-job
-  StackJobPulumiOperationStatus destroy_status = 5;
+  StackJobStatusPulumiOperationStatus destroy = 5;
 }
 
 // progress of a pulumi operation in a stack-job
-message StackJobPulumiOperationStatus {
-  //flag to indicate if the pulumi operation has started
-  bool is_started = 1;
-  //flag to indicate if the pulumi operation has been completed
-  bool is_completed = 2;
-  //flag to indicate if the pulumi operation has been successfully completed
-  bool is_succeeded = 3;
-  //list of errors reported during the operation execution
-  repeated string errors = 4;
-  //duration seconds for the operation
-  int32 duration_seconds = 5;
+message StackJobStatusPulumiOperationStatus {
+  //flag to indicate if the pulumi operation is required for the stack-job
+  bool is_required = 1;
+  // status of the pulumi operation
+  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status = 2;
+  // timestamp for the start time for pulumi operation
+  google.protobuf.Timestamp start_time = 3;
+  // timestamp for the end time for pulumi operation
+  google.protobuf.Timestamp end_time = 4;
+  //list of errors reported during the operation execution.
+  //this list is only populated when the operation fails or pulumi-engine emits diagnostic events of severity "error".
+  repeated string errors = 5;
 }

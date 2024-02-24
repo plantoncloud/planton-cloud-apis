@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.model;
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobexecutionstatustype/stack_job_execution_status_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stack_job_progress_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
@@ -30,8 +30,8 @@ message ListStackJobsByFiltersQueryInput {
   string resource_id = 6;
   // stack operation type
   cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 7;
-  // execution status of the stack-job
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobexecutionstatustype.StackJobExecutionStatusType execution_status = 8;
+  // progress status of the stack-job
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType progress_status = 8;
 }
 
 // paginated list of stack-jobs
