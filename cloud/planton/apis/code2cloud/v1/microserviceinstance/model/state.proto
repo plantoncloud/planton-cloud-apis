@@ -7,7 +7,6 @@ import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/microserviceinstance/enums/podcontrollertype/pod_controller_type.proto";
-import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
