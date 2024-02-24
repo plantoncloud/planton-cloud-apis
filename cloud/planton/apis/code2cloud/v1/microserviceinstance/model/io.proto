@@ -48,3 +48,13 @@ message ByEnvironmentIdByCodeProjectIdInput {
 message MicroserviceInstanceEnvVarMap {
   map<string, string> value = 1;
 }
+
+//input for rpc to get env-var map which is typically required to build .env files
+message GetMicroserviceInstanceEnvVarMapInput {
+  //id of the microservice instance
+  string microservice_instance_id = 1;
+  //map of environment variables
+  map<string,string> variables = 2;
+  //map of environment secrets
+  map<string,string> secrets = 3;
+}

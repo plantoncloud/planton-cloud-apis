@@ -76,14 +76,14 @@ service MicroserviceInstanceQueryController {
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
       returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances);
 
-  rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance)
+  rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput)
       returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_instance;
     //note: this rpc may also require that the requester to have update access to the environment
     // if the provided microservice-instance contains references to environment secrets.
     // this is not enforced here, but is enforced in the request processing.
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_instance_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "microservice_instance_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get environment variables of microservice-instance";
   }
 }
