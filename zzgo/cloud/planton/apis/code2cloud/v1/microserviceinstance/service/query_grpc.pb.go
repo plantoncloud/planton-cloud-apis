@@ -65,7 +65,7 @@ type MicroserviceInstanceQueryControllerClient interface {
 	GetByCodeProjectId(ctx context.Context, in *model5.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
 	FindByCodeProjectUrl(ctx context.Context, in *model5.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
-	GetEnvVarMap(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error)
+	GetEnvVarMap(ctx context.Context, in *model.GetMicroserviceInstanceEnvVarMapInput, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
 type microserviceInstanceQueryControllerClient struct {
@@ -189,7 +189,7 @@ func (c *microserviceInstanceQueryControllerClient) FindByCodeProjectUrl(ctx con
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) GetEnvVarMap(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error) {
+func (c *microserviceInstanceQueryControllerClient) GetEnvVarMap(ctx context.Context, in *model.GetMicroserviceInstanceEnvVarMapInput, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error) {
 	out := new(model.MicroserviceInstanceEnvVarMap)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_GetEnvVarMap_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -223,7 +223,7 @@ type MicroserviceInstanceQueryControllerServer interface {
 	GetByCodeProjectId(context.Context, *model5.CodeProjectId) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
 	FindByCodeProjectUrl(context.Context, *model5.CodeProjectUrl) (*model.MicroserviceInstances, error)
-	GetEnvVarMap(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstanceEnvVarMap, error)
+	GetEnvVarMap(context.Context, *model.GetMicroserviceInstanceEnvVarMapInput) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
 // UnimplementedMicroserviceInstanceQueryControllerServer should be embedded to have forward compatible implementations.
@@ -260,7 +260,7 @@ func (UnimplementedMicroserviceInstanceQueryControllerServer) GetByCodeProjectId
 func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByCodeProjectUrl(context.Context, *model5.CodeProjectUrl) (*model.MicroserviceInstances, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) GetEnvVarMap(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstanceEnvVarMap, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) GetEnvVarMap(context.Context, *model.GetMicroserviceInstanceEnvVarMapInput) (*model.MicroserviceInstanceEnvVarMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEnvVarMap not implemented")
 }
 
@@ -459,7 +459,7 @@ func _MicroserviceInstanceQueryController_FindByCodeProjectUrl_Handler(srv inter
 }
 
 func _MicroserviceInstanceQueryController_GetEnvVarMap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MicroserviceInstance)
+	in := new(model.GetMicroserviceInstanceEnvVarMapInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -471,7 +471,7 @@ func _MicroserviceInstanceQueryController_GetEnvVarMap_Handler(srv interface{}, 
 		FullMethod: MicroserviceInstanceQueryController_GetEnvVarMap_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceQueryControllerServer).GetEnvVarMap(ctx, req.(*model.MicroserviceInstance))
+		return srv.(MicroserviceInstanceQueryControllerServer).GetEnvVarMap(ctx, req.(*model.GetMicroserviceInstanceEnvVarMapInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
