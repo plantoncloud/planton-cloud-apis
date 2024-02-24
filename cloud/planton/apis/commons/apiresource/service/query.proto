@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.service;
 
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 service ApiResourceListViewQueryController {
   // The `listByResourceKind` RPC service method enables clients to execute a search operation
@@ -17,4 +18,16 @@ service ApiResourceListViewQueryController {
   // and be associated with the specified company and product.
   rpc listByResourceKind(cloud.planton.apis.commons.apiresource.model.GetByApiResourceKindInput)
       returns (cloud.planton.apis.commons.apiresource.model.ApiResourceRecordList);
+
+  // getResourceCountByCompanyId retrieves detailed information about the count of different resources
+  // associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
+  // containing the company_id of interest. It returns a ResourceCount message, which includes the type
+  // and name of the resource along with its total count within the specified company.
+  rpc getResourceCountByCompanyId(cloud.planton.apis.commons.apiresource.model.GetResourceCountByCompanyIdInput)
+      returns (cloud.planton.apis.commons.apiresource.model.ApiResourcesCount) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get resource count";
+  }
 }

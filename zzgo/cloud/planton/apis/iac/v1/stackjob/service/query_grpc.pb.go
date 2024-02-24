@@ -27,7 +27,6 @@ const (
 	StackJobQueryController_GetProgressEventStream_FullMethodName            = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getProgressEventStream"
 	StackJobQueryController_GetStackJobProgressSnapshotStream_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobProgressSnapshotStream"
 	StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName  = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesMTDByCompanyId"
-	StackJobQueryController_GetResourceCountByCompanyId_FullMethodName       = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getResourceCountByCompanyId"
 	StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByCompanyId"
 )
 
@@ -52,11 +51,6 @@ type StackJobQueryControllerClient interface {
 	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesMTDByCompanyId(ctx context.Context, in *model.GetStackJobMinutesByCompanyIdInput, opts ...grpc.CallOption) (*model.StackJobMinutesMTD, error)
-	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
-	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
-	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
-	// and name of the resource along with its total count within the specified company.
-	GetResourceCountByCompanyId(ctx context.Context, in *model.GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.ApiResourcesCount, error)
 	// getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
 	// associated with a specified company. This operation requires an input of type
 	// GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
@@ -166,15 +160,6 @@ func (c *stackJobQueryControllerClient) GetStackJobMinutesMTDByCompanyId(ctx con
 	return out, nil
 }
 
-func (c *stackJobQueryControllerClient) GetResourceCountByCompanyId(ctx context.Context, in *model.GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.ApiResourcesCount, error) {
-	out := new(model.ApiResourcesCount)
-	err := c.cc.Invoke(ctx, StackJobQueryController_GetResourceCountByCompanyId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *stackJobQueryControllerClient) GetPulumiResourceCountByCompanyId(ctx context.Context, in *model.GetPulumiResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.TotalPulumiResourceCount, error) {
 	out := new(model.TotalPulumiResourceCount)
 	err := c.cc.Invoke(ctx, StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName, in, out, opts...)
@@ -205,11 +190,6 @@ type StackJobQueryControllerServer interface {
 	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesMTDByCompanyId(context.Context, *model.GetStackJobMinutesByCompanyIdInput) (*model.StackJobMinutesMTD, error)
-	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
-	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
-	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
-	// and name of the resource along with its total count within the specified company.
-	GetResourceCountByCompanyId(context.Context, *model.GetResourceCountByCompanyIdInput) (*model.ApiResourcesCount, error)
 	// getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
 	// associated with a specified company. This operation requires an input of type
 	// GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
@@ -238,9 +218,6 @@ func (UnimplementedStackJobQueryControllerServer) GetStackJobProgressSnapshotStr
 }
 func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesMTDByCompanyId(context.Context, *model.GetStackJobMinutesByCompanyIdInput) (*model.StackJobMinutesMTD, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStackJobMinutesMTDByCompanyId not implemented")
-}
-func (UnimplementedStackJobQueryControllerServer) GetResourceCountByCompanyId(context.Context, *model.GetResourceCountByCompanyIdInput) (*model.ApiResourcesCount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetResourceCountByCompanyId not implemented")
 }
 func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountByCompanyId(context.Context, *model.GetPulumiResourceCountByCompanyIdInput) (*model.TotalPulumiResourceCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountByCompanyId not implemented")
@@ -353,24 +330,6 @@ func _StackJobQueryController_GetStackJobMinutesMTDByCompanyId_Handler(srv inter
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StackJobQueryController_GetResourceCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetResourceCountByCompanyIdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StackJobQueryControllerServer).GetResourceCountByCompanyId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StackJobQueryController_GetResourceCountByCompanyId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackJobQueryControllerServer).GetResourceCountByCompanyId(ctx, req.(*model.GetResourceCountByCompanyIdInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetPulumiResourceCountByCompanyIdInput)
 	if err := dec(in); err != nil {
@@ -407,10 +366,6 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getStackJobMinutesMTDByCompanyId",
 			Handler:    _StackJobQueryController_GetStackJobMinutesMTDByCompanyId_Handler,
-		},
-		{
-			MethodName: "getResourceCountByCompanyId",
-			Handler:    _StackJobQueryController_GetResourceCountByCompanyId_Handler,
 		},
 		{
 			MethodName: "getPulumiResourceCountByCompanyId",

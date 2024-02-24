@@ -31,12 +31,6 @@ service StackJobQueryController {
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
   rpc getStackJobMinutesMTDByCompanyId(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByCompanyIdInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD);
-  // getResourceCountByCompanyId retrieves detailed information about the count of different resources
-  // associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
-  // containing the company_id of interest. It returns a ResourceCount message, which includes the type
-  // and name of the resource along with its total count within the specified company.
-  rpc getResourceCountByCompanyId(cloud.planton.apis.iac.v1.stackjob.model.GetResourceCountByCompanyIdInput)
-      returns (cloud.planton.apis.iac.v1.stackjob.model.ApiResourcesCount);
   // getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
   // associated with a specified company. This operation requires an input of type
   // GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
