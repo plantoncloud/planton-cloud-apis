@@ -60,8 +60,8 @@ message MicroserviceInstance {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 20 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 20"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",

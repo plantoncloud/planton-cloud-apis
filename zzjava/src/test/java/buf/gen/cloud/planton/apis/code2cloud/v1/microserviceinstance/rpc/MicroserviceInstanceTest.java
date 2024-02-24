@@ -66,12 +66,12 @@ public final class MicroserviceInstanceTest {
         var result = validator.validate(microserviceInstance );
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 20 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
     @Test
-    public void testMicroserviceInstance_ShouldReturnValidationErrorIfNameLengthIsGreaterThan12() throws ValidationException {
+    public void testMicroserviceInstance_ShouldReturnValidationErrorIfNameLengthIsGreaterThan20() throws ValidationException {
         var microserviceInstance  = MicroserviceInstance.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setName("this is test name to check length validation")
@@ -82,12 +82,12 @@ public final class MicroserviceInstanceTest {
         var result = validator.validate(microserviceInstance );
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 20 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
     @Test
-    public void testMicroserviceInstance_ShouldNotReturnValidationErrorIfNameLengthIsLessThan12() throws ValidationException {
+    public void testMicroserviceInstance_ShouldNotReturnValidationErrorIfNameLengthIsLessThan20() throws ValidationException {
         var microserviceInstance  = MicroserviceInstance.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setName("test")
@@ -98,7 +98,7 @@ public final class MicroserviceInstanceTest {
         var result = validator.validate(microserviceInstance );
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 20 characters long")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
     }
 

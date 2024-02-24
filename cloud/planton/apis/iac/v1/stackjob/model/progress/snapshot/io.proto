@@ -6,16 +6,18 @@ import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 //complete snapshot of a stack-job log
 message StackJobProgressSnapshot {
+  //status of the stack-job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobStatusProgressStatus job_progress = 1;
   //snapshot of 'pulumi refresh' operation
-  StackJobProgressPulumiOperationSnapshot refresh_snapshot = 1;
+  StackJobProgressPulumiOperationSnapshot refresh_snapshot = 2;
   //snapshot of 'pulumi preview'(apply) operation
-  StackJobProgressPulumiOperationSnapshot apply_preview_snapshot = 2;
+  StackJobProgressPulumiOperationSnapshot apply_preview_snapshot = 3;
   //snapshot of 'pulumi preview'(destroy) operation
-  StackJobProgressPulumiOperationSnapshot destroy_preview_snapshot = 3;
+  StackJobProgressPulumiOperationSnapshot destroy_preview_snapshot = 4;
   //snapshot of 'pulumi up' operation
-  StackJobProgressPulumiOperationSnapshot apply_snapshot = 4;
+  StackJobProgressPulumiOperationSnapshot apply_snapshot = 5;
   //snapshot of 'pulumi destory' operation
-  StackJobProgressPulumiOperationSnapshot destroy_snapshot = 5;
+  StackJobProgressPulumiOperationSnapshot destroy_snapshot = 6;
 }
 
 //snapshot of the pulumi operation
