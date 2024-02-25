@@ -7,7 +7,7 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 service StackJobQueryController {
@@ -43,6 +43,6 @@ service StackJobQueryController {
   rpc getPulumiResourceCountByCompanyId(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount);
   //retrieve all pulumi resources in a pulumi stack for a given stack-job-id
-  rpc getPulumiResourcesByStackJobId(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
+  rpc findPulumiResourcesByStackJobId(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns (cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources);
 }
