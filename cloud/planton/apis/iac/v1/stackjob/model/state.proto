@@ -122,7 +122,7 @@ message StackJobStatus {
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // stack-job progress status
-  StackJobStatusProgressStatus progress  = 1;
+  StackJobStatusProgressStatus progress = 1;
 
   // status of pulumi operations
   StackJobStatusPulumiOperationsStatus pulumi_operations = 4;
@@ -163,15 +163,20 @@ message StackJobStatusPulumiOperationsStatus {
 
 // progress of a pulumi operation in a stack-job
 message StackJobStatusPulumiOperationStatus {
+  // unique identifier for the operation-status.
+  //this is in the format "<stack-job-id>-<operation-type>".
+  //this attribute acts as a binder between the stack-job entity and
+  // pulumi-operation-status entity in database and is unused otherwise.
+  string id = 1;
   //flag to indicate if the pulumi operation is required for the stack-job
-  bool is_required = 1;
+  bool is_required = 2;
   // status of the pulumi operation
-  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status = 2;
+  cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype.PulumiOperationStatusType status = 3;
   // timestamp for the start time for pulumi operation
-  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp start_time = 4;
   // timestamp for the end time for pulumi operation
-  google.protobuf.Timestamp end_time = 4;
+  google.protobuf.Timestamp end_time = 5;
   //list of errors reported during the operation execution.
   //this list is only populated when the operation fails or pulumi-engine emits diagnostic events of severity "error".
-  repeated string errors = 5;
+  repeated string errors = 6;
 }
