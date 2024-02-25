@@ -10,6 +10,7 @@ import (
 	context "context"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stack/model"
+	pulumiengine "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,8 +22,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackQueryController_GetById_FullMethodName         = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getById"
-	StackQueryController_GetByResourceId_FullMethodName = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getByResourceId"
+	StackQueryController_GetById_FullMethodName                     = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getById"
+	StackQueryController_GetByResourceId_FullMethodName             = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getByResourceId"
+	StackQueryController_GetPulumiResourcesByStackId_FullMethodName = "/cloud.planton.apis.iac.v1.stack.service.StackQueryController/getPulumiResourcesByStackId"
 )
 
 // StackQueryControllerClient is the client API for StackQueryController service.
@@ -33,6 +35,9 @@ type StackQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.StackId, opts ...grpc.CallOption) (*model.Stack, error)
 	// lookup a stack by resource-id
 	GetByResourceId(ctx context.Context, in *model1.ApiResourceId, opts ...grpc.CallOption) (*model.Stack, error)
+	// retrieve all pulumi resources in a pulumi stack for a given stack-id.
+	// retrieves pulumi-resources associated with most recent stack-job for a given stack.
+	GetPulumiResourcesByStackId(ctx context.Context, in *model.StackId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error)
 }
 
 type stackQueryControllerClient struct {
@@ -61,6 +66,15 @@ func (c *stackQueryControllerClient) GetByResourceId(ctx context.Context, in *mo
 	return out, nil
 }
 
+func (c *stackQueryControllerClient) GetPulumiResourcesByStackId(ctx context.Context, in *model.StackId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error) {
+	out := new(pulumiengine.PulumiResources)
+	err := c.cc.Invoke(ctx, StackQueryController_GetPulumiResourcesByStackId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StackQueryControllerServer is the server API for StackQueryController service.
 // All implementations should embed UnimplementedStackQueryControllerServer
 // for forward compatibility
@@ -69,6 +83,9 @@ type StackQueryControllerServer interface {
 	GetById(context.Context, *model.StackId) (*model.Stack, error)
 	// lookup a stack by resource-id
 	GetByResourceId(context.Context, *model1.ApiResourceId) (*model.Stack, error)
+	// retrieve all pulumi resources in a pulumi stack for a given stack-id.
+	// retrieves pulumi-resources associated with most recent stack-job for a given stack.
+	GetPulumiResourcesByStackId(context.Context, *model.StackId) (*pulumiengine.PulumiResources, error)
 }
 
 // UnimplementedStackQueryControllerServer should be embedded to have forward compatible implementations.
@@ -80,6 +97,9 @@ func (UnimplementedStackQueryControllerServer) GetById(context.Context, *model.S
 }
 func (UnimplementedStackQueryControllerServer) GetByResourceId(context.Context, *model1.ApiResourceId) (*model.Stack, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByResourceId not implemented")
+}
+func (UnimplementedStackQueryControllerServer) GetPulumiResourcesByStackId(context.Context, *model.StackId) (*pulumiengine.PulumiResources, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourcesByStackId not implemented")
 }
 
 // UnsafeStackQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -129,6 +149,24 @@ func _StackQueryController_GetByResourceId_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StackQueryController_GetPulumiResourcesByStackId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.StackId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StackQueryControllerServer).GetPulumiResourcesByStackId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StackQueryController_GetPulumiResourcesByStackId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StackQueryControllerServer).GetPulumiResourcesByStackId(ctx, req.(*model.StackId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StackQueryController_ServiceDesc is the grpc.ServiceDesc for StackQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -143,6 +181,10 @@ var StackQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getByResourceId",
 			Handler:    _StackQueryController_GetByResourceId_Handler,
+		},
+		{
+			MethodName: "getPulumiResourcesByStackId",
+			Handler:    _StackQueryController_GetPulumiResourcesByStackId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

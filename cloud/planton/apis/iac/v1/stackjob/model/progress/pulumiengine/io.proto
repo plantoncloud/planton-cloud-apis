@@ -187,3 +187,8 @@ message ResOpFailedEvent {
 message PulumiResourcesPayload {
   repeated cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResource pulumi_resources = 1;
 }
+
+// list of pulumi resources
+message PulumiResources {
+  repeated cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResource entries = 1;
+}

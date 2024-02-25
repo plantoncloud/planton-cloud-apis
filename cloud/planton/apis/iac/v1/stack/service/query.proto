@@ -5,10 +5,15 @@ package cloud.planton.apis.iac.v1.stack.service;
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/iac/v1/stack/model/io.proto";
 import "cloud/planton/apis/iac/v1/stack/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/io.proto";
 
 service StackQueryController {
   //look up stack by stack-id
   rpc getById(cloud.planton.apis.iac.v1.stack.model.StackId) returns(cloud.planton.apis.iac.v1.stack.model.Stack);
   //lookup a stack by resource-id
   rpc getByResourceId(cloud.planton.apis.commons.apiresource.model.ApiResourceId) returns(cloud.planton.apis.iac.v1.stack.model.Stack);
+  //retrieve all pulumi resources in a pulumi stack for a given stack-id.
+  //retrieves pulumi-resources associated with most recent stack-job for a given stack.
+  rpc getPulumiResourcesByStackId(cloud.planton.apis.iac.v1.stack.model.StackId)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources);
 }
