@@ -5,6 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine;
 import "cloud/planton/apis/iac/v1/stackjob/enums/pulumiengineeventtype/pulumi_engine_event_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogresseventtype/stack_job_progress_event_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/state.proto";
 import "google/protobuf/timestamp.proto";
 
 // pulumi-engine event payload created by planton-cloud's stack-job runner sdks
@@ -179,4 +180,10 @@ message ResOpFailedEvent {
   StepEventMetadata metadata = 1;
   int32 status = 2;
   int32 steps = 3;
+}
+
+// pulumi resources payload used in the stack-job response stream to send the list of pulumi-resources to the client
+// after the completion of a stack-job.
+message PulumiResourcesPayload {
+  repeated cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResource pulumi_resources = 1;
 }

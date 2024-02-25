@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine;
+
+import "google/protobuf/timestamp.proto";
+
+//protobuf port of ResourceV3 in https://github.com/pulumi/pulumi/blob/88290d8cb2234773c71fb120ddaff206b7935847/sdk/go/common/apitype/core.go#L286
+message PulumiResource {
+  //id of the stack-job in which the resource has been exported.
+  string stack_job_id = 99;
+  //unique identifier for the resource with in the system.
+  string ulid = 98;
+
+  string urn = 1;
+  bool custom = 2;
+  bool delete = 3;
+  string type = 4;
+  string parent = 5;
+  bool protect = 6;
+  bool external = 7;
+  repeated string init_errors = 9;
+  string provider = 10;
+  bool pending_replacement = 11;
+  bool retain_on_delete = 12;
+  google.protobuf.Timestamp created = 13;
+  google.protobuf.Timestamp modified = 14;
+  string source_position = 15;
+}

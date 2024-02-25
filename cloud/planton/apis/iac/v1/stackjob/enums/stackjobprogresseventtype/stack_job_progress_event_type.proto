@@ -7,22 +7,25 @@ package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype;
 // important: these events are used for writing messages to redis streams.
 enum StackJobProgressEventType {
   STACK_JOB_PROGRESS_EVENT_TYPE_UNSPECIFIED = 0;
+  //this event is created by stack-job listener kafka processor after the job starts or completes.
+  //this event is used to mark the beginning or end of stream in redis.
+  //any subscriptions for the stack-job progress stream can use this event to decide to stop
+  // reading from the stream on job completion.
+  stack_job_status_changed_event = 1;
   // this event is used to indicate that a specific pulumi operation has been transitioned from one status to another
   // status during the execution of the stack-job.
   // this event is created by planton-cloud's pulumi-stack-job-runner sdk.
-  pulumi_operation_status_event = 1;
+  pulumi_operation_status_event = 2;
   //this event is used to indicate that a new engine event has been emitted by pulumi engine while
   // executing one of the pulumi operation as part of executing the stack-job.
-  pulumi_engine_event = 2;
+  pulumi_engine_event = 3;
   //this event is created by planton-cloud's pulumi-stack-job-runner sdk.
   //this event is used to send the outputs of a pulumi stack of an api-resource to the client.
   //this even will not have a corresponding event payload as the outputs for each api-resource
   // stack are modelled separately.
   //the actual outputs themselves are populated in the stack-job stream response payload.
   stack_job_outputs_event = 4;
-  //this event is created by stack-job listener kafka processor after the job starts or completes.
-  //this event is used to mark the beginning or end of stream in redis.
-  //any subscriptions for the stack-job progress stream can use this event to decide to stop
-  // reading from the stream on job completion.
-  stack_job_status_changed_event = 5;
+  //this event is created by planton-cloud's pulumi-stack-job-runner sdk.
+  //this event is used to send the resources of a pulumi stack of an api-resource to the client.
+  pulumi_resources_event = 5;
 }
