@@ -20,10 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceVersionQueryController_GetById_FullMethodName                = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getById"
-	ApiResourceVersionQueryController_ListByFilters_FullMethodName          = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/listByFilters"
-	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getByIdWithContextSize"
-	ApiResourceVersionQueryController_GetCount_FullMethodName               = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getCount"
+	ApiResourceVersionQueryController_GetById_FullMethodName                     = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getById"
+	ApiResourceVersionQueryController_ListByFilters_FullMethodName               = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/listByFilters"
+	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName      = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getByIdWithContextSize"
+	ApiResourceVersionQueryController_GetCount_FullMethodName                    = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getCount"
+	ApiResourceVersionQueryController_GetResourceCountByCompanyId_FullMethodName = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getResourceCountByCompanyId"
 )
 
 // ApiResourceVersionQueryControllerClient is the client API for ApiResourceVersionQueryController service.
@@ -39,6 +40,11 @@ type ApiResourceVersionQueryControllerClient interface {
 	GetByIdWithContextSize(ctx context.Context, in *model.ApiResourceVersionWithContextSizeInput, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
 	// count of api-resource-versions
 	GetCount(ctx context.Context, in *model.GetApiResourceVersionCountInput, opts ...grpc.CallOption) (*model.ApiResourceVersionCount, error)
+	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
+	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
+	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
+	// and name of the resource along with its total count within the specified company.
+	GetResourceCountByCompanyId(ctx context.Context, in *model.GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.ApiResourcesCount, error)
 }
 
 type apiResourceVersionQueryControllerClient struct {
@@ -85,6 +91,15 @@ func (c *apiResourceVersionQueryControllerClient) GetCount(ctx context.Context, 
 	return out, nil
 }
 
+func (c *apiResourceVersionQueryControllerClient) GetResourceCountByCompanyId(ctx context.Context, in *model.GetResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.ApiResourcesCount, error) {
+	out := new(model.ApiResourcesCount)
+	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_GetResourceCountByCompanyId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ApiResourceVersionQueryControllerServer is the server API for ApiResourceVersionQueryController service.
 // All implementations should embed UnimplementedApiResourceVersionQueryControllerServer
 // for forward compatibility
@@ -98,6 +113,11 @@ type ApiResourceVersionQueryControllerServer interface {
 	GetByIdWithContextSize(context.Context, *model.ApiResourceVersionWithContextSizeInput) (*model.ApiResourceVersion, error)
 	// count of api-resource-versions
 	GetCount(context.Context, *model.GetApiResourceVersionCountInput) (*model.ApiResourceVersionCount, error)
+	// getResourceCountByCompanyId retrieves detailed information about the count of different resources
+	// associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
+	// containing the company_id of interest. It returns a ResourceCount message, which includes the type
+	// and name of the resource along with its total count within the specified company.
+	GetResourceCountByCompanyId(context.Context, *model.GetResourceCountByCompanyIdInput) (*model.ApiResourcesCount, error)
 }
 
 // UnimplementedApiResourceVersionQueryControllerServer should be embedded to have forward compatible implementations.
@@ -115,6 +135,9 @@ func (UnimplementedApiResourceVersionQueryControllerServer) GetByIdWithContextSi
 }
 func (UnimplementedApiResourceVersionQueryControllerServer) GetCount(context.Context, *model.GetApiResourceVersionCountInput) (*model.ApiResourceVersionCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCount not implemented")
+}
+func (UnimplementedApiResourceVersionQueryControllerServer) GetResourceCountByCompanyId(context.Context, *model.GetResourceCountByCompanyIdInput) (*model.ApiResourcesCount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetResourceCountByCompanyId not implemented")
 }
 
 // UnsafeApiResourceVersionQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -200,6 +223,24 @@ func _ApiResourceVersionQueryController_GetCount_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiResourceVersionQueryController_GetResourceCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetResourceCountByCompanyIdInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiResourceVersionQueryControllerServer).GetResourceCountByCompanyId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiResourceVersionQueryController_GetResourceCountByCompanyId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiResourceVersionQueryControllerServer).GetResourceCountByCompanyId(ctx, req.(*model.GetResourceCountByCompanyIdInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ApiResourceVersionQueryController_ServiceDesc is the grpc.ServiceDesc for ApiResourceVersionQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -222,6 +263,10 @@ var ApiResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getCount",
 			Handler:    _ApiResourceVersionQueryController_GetCount_Handler,
+		},
+		{
+			MethodName: "getResourceCountByCompanyId",
+			Handler:    _ApiResourceVersionQueryController_GetResourceCountByCompanyId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
