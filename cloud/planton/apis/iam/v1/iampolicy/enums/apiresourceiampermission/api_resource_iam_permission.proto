@@ -163,4 +163,11 @@ enum ApiResourceIamPermission {
   storage_bucket_get = 109;
   storage_bucket_restore = 110;
   storage_bucket_update = 111;
+
+  // helm_release
+  helm_release_create = 112;
+  helm_release_delete = 113;
+  helm_release_get = 114;
+  helm_release_restore = 115;
+  helm_release_update = 116;
 }

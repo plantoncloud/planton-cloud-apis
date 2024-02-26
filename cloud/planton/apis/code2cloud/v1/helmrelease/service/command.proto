@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.helmrelease.service;
+
+import "cloud/planton/apis/code2cloud/v1/helmrelease/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/helmrelease/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+
+//redis-cluster command controller
+service HelmReleaseCommandController {
+  //preview creating redis-cluster
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //create redis-cluster
+  rpc create(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+  }
+  //preview updating an existing redis-cluster
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //update an existing redis-cluster
+  rpc update(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+  }
+  //preview deleting an existing redis-cluster
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
+  }
+  //delete an existing redis-cluster
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
+  }
+  //preview restoring a previously deleted redis-cluster
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //restore a previously deleted redis-cluster
+  rpc restore(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
+  }
+  //create-stack-job for redis-cluster
+  rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for redis-cluster";
+  }
+  //restart a redis-cluster running in a environment.
+  //redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
+  rpc restart(cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmReleaseId)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restart redis-cluster";
+  }
+  //pause a redis-cluster running in a environment.
+  //redis-cluster is paused by scaling down number of replicas of
+  //the kubernetes stateful sets to zero in the environment.
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = paused;
+  }
+  //unpause a previously paused redis-cluster running in a environment.
+  //unpause is done by scaling the number of pods back to the number of
+  //replicas configured for the redis-cluster.
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = unpaused;
+  }
+  //preview refresh a redis-cluster that was previously created
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a redis-cluster that was previously created
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh redis-cluster";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
+  }
+}
