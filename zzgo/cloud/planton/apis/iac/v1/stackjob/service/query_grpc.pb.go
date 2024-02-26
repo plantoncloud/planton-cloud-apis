@@ -29,7 +29,7 @@ const (
 	StackJobQueryController_GetStackJobProgressSnapshotStream_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobProgressSnapshotStream"
 	StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName  = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesMTDByCompanyId"
 	StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByCompanyId"
-	StackJobQueryController_GetPulumiResourcesByStackJobId_FullMethodName    = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourcesByStackJobId"
+	StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName   = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/findPulumiResourcesByStackJobId"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -62,7 +62,7 @@ type StackJobQueryControllerClient interface {
 	// cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
 	GetPulumiResourceCountByCompanyId(ctx context.Context, in *model.GetPulumiResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.TotalPulumiResourceCount, error)
 	// retrieve all pulumi resources in a pulumi stack for a given stack-job-id
-	GetPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error)
+	FindPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error)
 }
 
 type stackJobQueryControllerClient struct {
@@ -173,9 +173,9 @@ func (c *stackJobQueryControllerClient) GetPulumiResourceCountByCompanyId(ctx co
 	return out, nil
 }
 
-func (c *stackJobQueryControllerClient) GetPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error) {
+func (c *stackJobQueryControllerClient) FindPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error) {
 	out := new(pulumiengine.PulumiResources)
-	err := c.cc.Invoke(ctx, StackJobQueryController_GetPulumiResourcesByStackJobId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -212,7 +212,7 @@ type StackJobQueryControllerServer interface {
 	// cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
 	GetPulumiResourceCountByCompanyId(context.Context, *model.GetPulumiResourceCountByCompanyIdInput) (*model.TotalPulumiResourceCount, error)
 	// retrieve all pulumi resources in a pulumi stack for a given stack-job-id
-	GetPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error)
+	FindPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error)
 }
 
 // UnimplementedStackJobQueryControllerServer should be embedded to have forward compatible implementations.
@@ -237,8 +237,8 @@ func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesMTDByCompany
 func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountByCompanyId(context.Context, *model.GetPulumiResourceCountByCompanyIdInput) (*model.TotalPulumiResourceCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountByCompanyId not implemented")
 }
-func (UnimplementedStackJobQueryControllerServer) GetPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourcesByStackJobId not implemented")
+func (UnimplementedStackJobQueryControllerServer) FindPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindPulumiResourcesByStackJobId not implemented")
 }
 
 // UnsafeStackJobQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -366,20 +366,20 @@ func _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler(srv inte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StackJobQueryController_GetPulumiResourcesByStackJobId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StackJobQueryController_FindPulumiResourcesByStackJobId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.StackJobId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StackJobQueryControllerServer).GetPulumiResourcesByStackJobId(ctx, in)
+		return srv.(StackJobQueryControllerServer).FindPulumiResourcesByStackJobId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StackJobQueryController_GetPulumiResourcesByStackJobId_FullMethodName,
+		FullMethod: StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackJobQueryControllerServer).GetPulumiResourcesByStackJobId(ctx, req.(*model.StackJobId))
+		return srv.(StackJobQueryControllerServer).FindPulumiResourcesByStackJobId(ctx, req.(*model.StackJobId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -408,8 +408,8 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler,
 		},
 		{
-			MethodName: "getPulumiResourcesByStackJobId",
-			Handler:    _StackJobQueryController_GetPulumiResourcesByStackJobId_Handler,
+			MethodName: "findPulumiResourcesByStackJobId",
+			Handler:    _StackJobQueryController_FindPulumiResourcesByStackJobId_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
