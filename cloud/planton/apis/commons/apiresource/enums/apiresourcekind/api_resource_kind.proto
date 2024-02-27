@@ -34,4 +34,5 @@ enum ApiResourceKind {
   keycloak_server = 28;
   elasticsearch_cluster = 29;
   openfga_server = 30;
+  argocd_instance = 31;
 }
