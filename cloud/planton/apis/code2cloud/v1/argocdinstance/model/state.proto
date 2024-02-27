@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.mongodbcluster.model;
+package cloud.planton.apis.code2cloud.v1.argocdinstance.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
@@ -11,20 +11,20 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-//mongodb-cluster
-message MongoDBCluster {
+//argocd-instance
+message ArgoCDInstance {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
     expression: "has(this.metadata)"
   };
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = mongodb_cluster;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = argocd_instance;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "mdb";
-  //id format "mdb-<environment-id>-<mongodb-cluster-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "acd";
+  //id format "rdc-<environment-id>-<argocd-instance-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -34,7 +34,7 @@ message MongoDBCluster {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "MongoDBCluster"
+    (buf.validate.field).string.const = "ArgoCDInstance"
   ];
 
   //resource metadata
@@ -72,23 +72,23 @@ message MongoDBCluster {
   ];
 
   //spec
-  MongoDBClusterSpec spec = 4;
+  ArgoCDInstanceSpec spec = 4;
 
   //status
-  MongoDBClusterStatus status = 5;
+  ArgoCDInstanceStatus status = 5;
 }
 
-//mongodb-cluster spec
-message MongoDBClusterSpec {
+//argocd-instance spec
+message ArgoCDInstanceSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  MongoDBClusterSpecKubernetesSpec kubernetes = 2;
+  ArgoCDInstanceSpecKubernetesSpec kubernetes = 2;
 }
 
-//mongodb-cluster status.
-message MongoDBClusterStatus {
+//argocd-instance status.
+message ArgoCDInstanceStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,50 +99,30 @@ message MongoDBClusterStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  MongoDBClusterStatusKubernetesStatus kubernetes = 1;
+  ArgoCDInstanceStatusKubernetesStatus kubernetes = 1;
 }
 
-// mongodb-cluster kubernetes spec
-message MongoDBClusterSpecKubernetesSpec {
-  //mongodb-container spec
-  MongoDBClusterSpecKubernetesSpecRedisContainerSpec mongodb_container = 1;
+// argocd-instance kubernetes spec
+message ArgoCDInstanceSpecKubernetesSpec {
+  //jenkins-container spec
+  ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec jenkins_container = 1;
 
-  //mongodb-cluster ingress-spec
-  MongoDBClusterSpecKubernetesSpecIngressSpec ingress = 2;
+  //argocd-instance ingress-spec
+  ArgoCDInstanceSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// mongodb-cluster kubernetes mongodb-container spec
-message MongoDBClusterSpecKubernetesSpecRedisContainerSpec {
-  //number of mongodb pods.
-  //recommended default 1
-  int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
-
-  //mongodb container cpu and memory resources.
+// argocd-instance kubernetes jenkins-container spec
+message ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec {
+  //jenkins container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
-
-  //flag to toggle persistence for mongodb data.
-  //when enabled, mongodb in-memory data will be persisted to a storage volume.
-  //the backup data from persistent volume is restored into mongodb memory between pod restarts.
-  //defaults to false.
-  bool is_persistence_enabled = 3;
-
-  //size of persistent volume attached to each mongodb pod
-  //if the client does not provide a value, the default value is configured.
-  //this attribute is ignored when persistence is not enabled.
-  //this persistent volume is used for backing up in-memory data.
-  //data from the persistent volume will be restored into memory between pod restarts.
-  //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
-  string disk_size = 4;
 }
 
-// mongodb-cluster kubernetes ingress spec
-message MongoDBClusterSpecKubernetesSpecIngressSpec {
+// argocd-instance kubernetes ingress spec
+message ArgoCDInstanceSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -160,32 +140,32 @@ message MongoDBClusterSpecKubernetesSpecIngressSpec {
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating mongodb endpoints.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating jenkins endpoints.
   string endpoint_domain_name = 3;
 }
 
-//mongodb-cluster kubernetes status
-message MongoDBClusterStatusKubernetesStatus {
-  //kubernetes namespace in which mongodb-cluster is created.
+//argocd-instance kubernetes status
+message ArgoCDInstanceStatusKubernetesStatus {
+  //kubernetes namespace in which argocd-instance is created.
   string namespace = 1;
 
-  //kubernetes service name for mongodb-cluster.
-  //ex: main-mongodb-cluster
-  //in the above example, "main" is the name of the mongodb-cluster
+  //kubernetes service name for argocd-instance.
+  //ex: main-argocd-instance
+  //in the above example, "main" is the name of the argocd-instance
   string service = 2;
 
-  //command to setup port-forwarding to open mongodb-cluster from developers laptop.
-  //this might come handy when mongodb-cluster ingress is disabled for security reasons.
-  //this is rendered by combining mongodb_cluster_kubernetes_service and kubernetes_namespace
-  //ex: kubectl port-forward svc/mongodb_cluster_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access mongodb-cluster using http://localhost:8080/mongodb
+  //command to setup port-forwarding to open argocd-instance from developers laptop.
+  //this might come handy when argocd-instance ingress is disabled for security reasons.
+  //this is rendered by combining argocd_instance_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/argocd_instance_kubernetes_service -n kubernetes_namespace 6379:6379
+  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/jenkins
   string port_forward_command = 3;
 
-  //kubernetes endpoint to connect to mongodb-cluster from the web browser.
-  //ex: main-mongodb-cluster.namespace.svc.cluster.local:6379
+  //kubernetes endpoint to connect to argocd-instance from the web browser.
+  //ex: main-argocd-instance.namespace.svc.cluster.local:6379
   string kube_endpoint = 4;
 
-  //public endpoint to open mongodb-cluster from clients outside kubernetes.
-  //ex: https://mdb-planton-pcs-dev-main.data.dev.planton.live:6379/mongodb
+  //public endpoint to open argocd-instance from clients outside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/jenkins
   string ingress_endpoint = 5;
 }

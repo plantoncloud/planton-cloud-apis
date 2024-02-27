@@ -205,4 +205,11 @@ enum ApiResourceIamPermission {
   openfga_server_get = 139;
   openfga_server_restore = 140;
   openfga_server_update = 141;
+
+  // argocd_instance
+  argocd_instance_create = 142;
+  argocd_instance_delete = 143;
+  argocd_instance_get = 144;
+  argocd_instance_restore = 145;
+  argocd_instance_update = 146;
 }
