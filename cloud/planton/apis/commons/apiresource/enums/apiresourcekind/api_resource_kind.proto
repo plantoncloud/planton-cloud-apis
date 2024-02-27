@@ -35,4 +35,5 @@ enum ApiResourceKind {
   elasticsearch_cluster = 29;
   openfga_server = 30;
   argocd_instance = 31;
+  prometheus_server = 32;
 }

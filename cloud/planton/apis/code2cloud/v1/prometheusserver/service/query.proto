@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.prometheusserver.service;
+
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/prometheusserver/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/prometheusserver/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+
+//prometheus-server query controller
+service PrometheusServerQueryController {
+  //list all prometheus-servers on planton cluster for the requested page.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServerList);
+
+  //look up prometheus-server using prometheus-server id
+  rpc getById(cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServerId)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = prometheus_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = prometheus_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view prometheus-server";
+  }
+
+  //find prometheus-servers by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServers);
+
+  //find prometheus-servers by environment
+  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServers);
+  //find prometheus-servers by kube-cluster
+
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServers);
+
+  //look up prometheus-server sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServerId)
+      returns (cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServerPassword) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = prometheus_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = prometheus_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view prometheus-server password";
+  }
+
+  //lookup pods of a prometheus-server deployed to a environment
+  rpc findPods(cloud.planton.apis.code2cloud.v1.prometheusserver.model.PrometheusServerId)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = prometheus_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = prometheus_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view prometheus-server pods";
+  }
+}
