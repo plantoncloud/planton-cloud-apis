@@ -43,7 +43,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubeClusterQueryControllerClient interface {
-	// list all kube-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all kube-clusters for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// lookup kube-cluster using kube-cluster id
 	GetById(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeCluster, error)
@@ -204,7 +204,7 @@ func (x *kubeClusterQueryControllerGetPodLogStreamClient) Recv() (*wrapperspb.St
 // All implementations should embed UnimplementedKubeClusterQueryControllerServer
 // for forward compatibility
 type KubeClusterQueryControllerServer interface {
-	// list all kube-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all kube-clusters for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.KubeClusterList, error)
 	// lookup kube-cluster using kube-cluster id
 	GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error)

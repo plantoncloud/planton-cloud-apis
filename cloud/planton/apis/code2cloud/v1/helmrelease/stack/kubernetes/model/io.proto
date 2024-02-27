@@ -7,31 +7,24 @@ import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 
-//input for redis-cluster stack
+//input for helm-release stack
 message HelmReleaseKubernetesStackInput {
   //stack job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
   //pulumi stack credentials
   HelmReleaseKubernetesStackCredentialsInput credentials_input = 2;
-  //inputs used for creating stack resources
-  HelmReleaseKubernetesStackResourceInput resource_input = 3;
+  //helm-release
+  cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease helm_release = 3;
 }
 
 //stack credentials input
 message HelmReleaseKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating redis-cluster resources on kubernetes cluster
+  //kubernetes provider credential for creating helm-release resources on kubernetes cluster
   cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
 }
 
-//stack resource input
-message HelmReleaseKubernetesStackResourceInput {
-  //redis-cluster
-  cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmRelease helm_release = 1;}
-
-//redis-cluster stack outputs
+//helm-release stack outputs
 message HelmReleaseKubernetesStackOutputs {
-  //status of the redis-cluster upon stack-job
-  cloud.planton.apis.code2cloud.v1.helmrelease.model.HelmReleaseStatus helm_release_status = 1;
 }
 
 //stack response

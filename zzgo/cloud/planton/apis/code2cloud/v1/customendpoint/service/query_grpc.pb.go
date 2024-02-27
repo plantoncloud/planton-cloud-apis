@@ -35,7 +35,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CustomEndpointQueryControllerClient interface {
-	// list all custom-endpoints on planton cloud for the requested page. This is intended for use on portal.
+	// list all custom-endpoints for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CustomEndpointList, error)
 	// look up custom-endpoint using custom-endpoint id
 	GetById(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
@@ -117,7 +117,7 @@ func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx
 // All implementations should embed UnimplementedCustomEndpointQueryControllerServer
 // for forward compatibility
 type CustomEndpointQueryControllerServer interface {
-	// list all custom-endpoints on planton cloud for the requested page. This is intended for use on portal.
+	// list all custom-endpoints for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.CustomEndpointList, error)
 	// look up custom-endpoint using custom-endpoint id
 	GetById(context.Context, *model.CustomEndpointId) (*model.CustomEndpoint, error)

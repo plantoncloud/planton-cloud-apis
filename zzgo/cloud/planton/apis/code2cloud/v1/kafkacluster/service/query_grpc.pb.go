@@ -38,7 +38,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KafkaClusterQueryControllerClient interface {
-	// list all kafka-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all kafka-clusters for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KafkaClusterList, error)
 	// look up kafka-cluster using kafka-cluster id
 	GetById(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaCluster, error)
@@ -131,7 +131,7 @@ func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *mo
 // All implementations should embed UnimplementedKafkaClusterQueryControllerServer
 // for forward compatibility
 type KafkaClusterQueryControllerServer interface {
-	// list all kafka-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all kafka-clusters for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.KafkaClusterList, error)
 	// look up kafka-cluster using kafka-cluster id
 	GetById(context.Context, *model.KafkaClusterId) (*model.KafkaCluster, error)

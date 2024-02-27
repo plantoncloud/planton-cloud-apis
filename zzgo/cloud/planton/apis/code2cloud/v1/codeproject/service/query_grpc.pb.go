@@ -36,7 +36,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CodeProjectQueryControllerClient interface {
-	// list all code projects on planton cloud for the requested page. This is intended for use on portal.
+	// list all code projects for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// look up a code project by code project id
 	GetById(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProject, error)
@@ -130,7 +130,7 @@ func (c *codeProjectQueryControllerClient) GetCodeProjectProfileById(ctx context
 // All implementations should embed UnimplementedCodeProjectQueryControllerServer
 // for forward compatibility
 type CodeProjectQueryControllerServer interface {
-	// list all code projects on planton cloud for the requested page. This is intended for use on portal.
+	// list all code projects for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.CodeProjectList, error)
 	// look up a code project by code project id
 	GetById(context.Context, *model.CodeProjectId) (*model.CodeProject, error)

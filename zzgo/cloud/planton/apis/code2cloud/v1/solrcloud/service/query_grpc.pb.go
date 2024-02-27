@@ -38,7 +38,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SolrCloudQueryControllerClient interface {
-	// list all solr-clouds on planton cloud for the requested page. This is intended for use on portal.
+	// list all solr-clouds for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error)
@@ -131,7 +131,7 @@ func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model
 // All implementations should embed UnimplementedSolrCloudQueryControllerServer
 // for forward compatibility
 type SolrCloudQueryControllerServer interface {
-	// list all solr-clouds on planton cloud for the requested page. This is intended for use on portal.
+	// list all solr-clouds for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(context.Context, *model.SolrCloudId) (*model.SolrCloud, error)

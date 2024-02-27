@@ -31,9 +31,6 @@ const (
 	HelmReleaseCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/previewRestore"
 	HelmReleaseCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/restore"
 	HelmReleaseCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/createStackJob"
-	HelmReleaseCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/restart"
-	HelmReleaseCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/pause"
-	HelmReleaseCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/unpause"
 	HelmReleaseCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/previewRefresh"
 	HelmReleaseCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/refresh"
 )
@@ -42,38 +39,27 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type HelmReleaseCommandControllerClient interface {
-	// preview creating redis-cluster
+	// preview creating helm-release
 	PreviewCreate(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// create redis-cluster
+	// create helm-release
 	Create(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// preview updating an existing redis-cluster
+	// preview updating an existing helm-release
 	PreviewUpdate(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// update an existing redis-cluster
+	// update an existing helm-release
 	Update(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// preview deleting an existing redis-cluster
+	// preview deleting an existing helm-release
 	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// delete an existing redis-cluster
+	// delete an existing helm-release
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// preview restoring a previously deleted redis-cluster
+	// preview restoring a previously deleted helm-release
 	PreviewRestore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// restore a previously deleted redis-cluster
+	// restore a previously deleted helm-release
 	Restore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// create-stack-job for redis-cluster
+	// create-stack-job for helm-release
 	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// restart a redis-cluster running in a environment.
-	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
-	Restart(ctx context.Context, in *model.HelmReleaseId, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// pause a redis-cluster running in a environment.
-	// redis-cluster is paused by scaling down number of replicas of
-	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// unpause a previously paused redis-cluster running in a environment.
-	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the redis-cluster.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// preview refresh a redis-cluster that was previously created
+	// preview refresh a helm-release that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// refresh a redis-cluster that was previously created
+	// refresh a helm-release that was previously created
 	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 }
 
@@ -166,33 +152,6 @@ func (c *helmReleaseCommandControllerClient) CreateStackJob(ctx context.Context,
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) Restart(ctx context.Context, in *model.HelmReleaseId, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Restart_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *helmReleaseCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Pause_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *helmReleaseCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Unpause_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -215,38 +174,27 @@ func (c *helmReleaseCommandControllerClient) Refresh(ctx context.Context, in *mo
 // All implementations should embed UnimplementedHelmReleaseCommandControllerServer
 // for forward compatibility
 type HelmReleaseCommandControllerServer interface {
-	// preview creating redis-cluster
+	// preview creating helm-release
 	PreviewCreate(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// create redis-cluster
+	// create helm-release
 	Create(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// preview updating an existing redis-cluster
+	// preview updating an existing helm-release
 	PreviewUpdate(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// update an existing redis-cluster
+	// update an existing helm-release
 	Update(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// preview deleting an existing redis-cluster
+	// preview deleting an existing helm-release
 	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error)
-	// delete an existing redis-cluster
+	// delete an existing helm-release
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error)
-	// preview restoring a previously deleted redis-cluster
+	// preview restoring a previously deleted helm-release
 	PreviewRestore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// restore a previously deleted redis-cluster
+	// restore a previously deleted helm-release
 	Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// create-stack-job for redis-cluster
+	// create-stack-job for helm-release
 	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.HelmRelease, error)
-	// restart a redis-cluster running in a environment.
-	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
-	Restart(context.Context, *model.HelmReleaseId) (*model.HelmRelease, error)
-	// pause a redis-cluster running in a environment.
-	// redis-cluster is paused by scaling down number of replicas of
-	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.HelmRelease, error)
-	// unpause a previously paused redis-cluster running in a environment.
-	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the redis-cluster.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.HelmRelease, error)
-	// preview refresh a redis-cluster that was previously created
+	// preview refresh a helm-release that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error)
-	// refresh a redis-cluster that was previously created
+	// refresh a helm-release that was previously created
 	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error)
 }
 
@@ -280,15 +228,6 @@ func (UnimplementedHelmReleaseCommandControllerServer) Restore(context.Context, 
 }
 func (UnimplementedHelmReleaseCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) Restart(context.Context, *model.HelmReleaseId) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
 func (UnimplementedHelmReleaseCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -470,60 +409,6 @@ func _HelmReleaseCommandController_CreateStackJob_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HelmReleaseCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.HelmReleaseId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).Restart(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_Restart_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Restart(ctx, req.(*model.HelmReleaseId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _HelmReleaseCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).Pause(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_Pause_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _HelmReleaseCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).Unpause(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_Unpause_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _HelmReleaseCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -602,18 +487,6 @@ var HelmReleaseCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "createStackJob",
 			Handler:    _HelmReleaseCommandController_CreateStackJob_Handler,
-		},
-		{
-			MethodName: "restart",
-			Handler:    _HelmReleaseCommandController_Restart_Handler,
-		},
-		{
-			MethodName: "pause",
-			Handler:    _HelmReleaseCommandController_Pause_Handler,
-		},
-		{
-			MethodName: "unpause",
-			Handler:    _HelmReleaseCommandController_Unpause_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

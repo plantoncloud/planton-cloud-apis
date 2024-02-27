@@ -38,7 +38,7 @@ const (
 type ArtifactStoreQueryControllerClient interface {
 	// get artifact-store by id
 	GetById(ctx context.Context, in *model.ArtifactStoreId, opts ...grpc.CallOption) (*model.ArtifactStore, error)
-	// list all artifact-stores on planton cloud for the requested page. This is intended for use on portal.
+	// list all artifact-stores for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
 	// look up artifact-stores by product id.
 	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error)
@@ -132,7 +132,7 @@ func (c *artifactStoreQueryControllerClient) ListArtifactStorePackageVersions(ct
 type ArtifactStoreQueryControllerServer interface {
 	// get artifact-store by id
 	GetById(context.Context, *model.ArtifactStoreId) (*model.ArtifactStore, error)
-	// list all artifact-stores on planton cloud for the requested page. This is intended for use on portal.
+	// list all artifact-stores for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.ArtifactStoreList, error)
 	// look up artifact-stores by product id.
 	FindByProductId(context.Context, *model1.ProductId) (*model.ArtifactStores, error)

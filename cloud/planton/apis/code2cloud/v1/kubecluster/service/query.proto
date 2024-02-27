@@ -14,7 +14,7 @@ import "google/protobuf/wrappers.proto";
 
 // kube-cluster query controller
 service KubeClusterQueryController {
-  // list all kube-clusters on planton cloud for the requested page. This is intended for use on portal.
+  // list all kube-clusters for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList);
 

@@ -35,11 +35,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MachineAccountQueryControllerClient interface {
-	// retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all machine accounts on planton cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	// lookup machine account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
-	// retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all machine accounts on planton cloud.
 	FindByCompanyId(ctx context.Context, in *model.MachineAccountCompanyId, opts ...grpc.CallOption) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(ctx context.Context, in *model.IdentityAccountEmail, opts ...grpc.CallOption) (*model.IdentityAccount, error)
@@ -117,11 +117,11 @@ func (c *machineAccountQueryControllerClient) GetClientSecretByMachineAccountEma
 // All implementations should embed UnimplementedMachineAccountQueryControllerServer
 // for forward compatibility
 type MachineAccountQueryControllerServer interface {
-	// retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all machine accounts on planton cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error)
 	// lookup machine account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)
-	// retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all machine accounts on planton cloud.
 	FindByCompanyId(context.Context, *model.MachineAccountCompanyId) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(context.Context, *model.IdentityAccountEmail) (*model.IdentityAccount, error)
@@ -325,7 +325,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserAccountQueryControllerClient interface {
-	// retrieve paginated list of all user accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all user accounts on planton cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	// todo: add authorization
 	// lookup user-account by identity account id.
@@ -339,7 +339,7 @@ type UserAccountQueryControllerClient interface {
 	// if rpc returns authorization error then the user is not supposed to login to backoffice
 	// otherwise if rpc returns boolean response then the user is allowed to login to backoffice.
 	IsBackofficeUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
-	// retrieve paginated list of all associate accounts of a company. this is intended for use on portal.
+	// retrieve paginated list of all associate accounts of a company.
 	ListAssociatesByCompanyId(ctx context.Context, in *model.ListWithIdentityCompanyId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	GetMembersCountByCompanyId(ctx context.Context, in *model.MembersCountByCompanyIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
 	GetMembersCountByProductId(ctx context.Context, in *model.MembersCountByProductIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
@@ -420,7 +420,7 @@ func (c *userAccountQueryControllerClient) GetMembersCountByProductId(ctx contex
 // All implementations should embed UnimplementedUserAccountQueryControllerServer
 // for forward compatibility
 type UserAccountQueryControllerServer interface {
-	// retrieve paginated list of all user accounts on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all user accounts on planton cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error)
 	// todo: add authorization
 	// lookup user-account by identity account id.
@@ -434,7 +434,7 @@ type UserAccountQueryControllerServer interface {
 	// if rpc returns authorization error then the user is not supposed to login to backoffice
 	// otherwise if rpc returns boolean response then the user is allowed to login to backoffice.
 	IsBackofficeUser(context.Context, *emptypb.Empty) (*wrapperspb.BoolValue, error)
-	// retrieve paginated list of all associate accounts of a company. this is intended for use on portal.
+	// retrieve paginated list of all associate accounts of a company.
 	ListAssociatesByCompanyId(context.Context, *model.ListWithIdentityCompanyId) (*model.IdentityAccountsList, error)
 	GetMembersCountByCompanyId(context.Context, *model.MembersCountByCompanyIdInput) (*model.MembersCount, error)
 	GetMembersCountByProductId(context.Context, *model.MembersCountByProductIdInput) (*model.MembersCount, error)

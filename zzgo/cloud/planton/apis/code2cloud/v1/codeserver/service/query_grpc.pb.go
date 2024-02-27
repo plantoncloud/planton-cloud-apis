@@ -31,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CodeServerQueryControllerClient interface {
-	// list all code servers on planton cloud for the requested page. This is intended for use on portal.
+	// list all code servers for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CodeServerList, error)
 	// look up a code server using code server id
 	GetById(ctx context.Context, in *model.CodeServerId, opts ...grpc.CallOption) (*model.CodeServer, error)
@@ -79,7 +79,7 @@ func (c *codeServerQueryControllerClient) FindByProductId(ctx context.Context, i
 // All implementations should embed UnimplementedCodeServerQueryControllerServer
 // for forward compatibility
 type CodeServerQueryControllerServer interface {
-	// list all code servers on planton cloud for the requested page. This is intended for use on portal.
+	// list all code servers for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.CodeServerList, error)
 	// look up a code server using code server id
 	GetById(context.Context, *model.CodeServerId) (*model.CodeServer, error)

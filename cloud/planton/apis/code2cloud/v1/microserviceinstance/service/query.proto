@@ -15,7 +15,7 @@ import "google/protobuf/wrappers.proto";
 
 //microservice-instance query controller
 service MicroserviceInstanceQueryController {
-  //list all microservice-instances on planton instance for the requested page. This is intended for use on portal.
+  //list all microservice-instances on planton instance for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceList);
 

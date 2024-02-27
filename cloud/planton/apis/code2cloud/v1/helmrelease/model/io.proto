@@ -4,17 +4,17 @@ package cloud.planton.apis.code2cloud.v1.helmrelease.model;
 
 import "cloud/planton/apis/code2cloud/v1/helmrelease/model/state.proto";
 
-//wrapper for id field of redis-cluster
+//wrapper for id field of helm-release
 message HelmReleaseId {
   string value = 1;
 }
 
-//list of redis-clusters
+//list of helm-releases
 message HelmReleases {
   repeated HelmRelease entries = 1;
 }
 
-//response for paginated query to list redis-clusters
+//response for paginated query to list helm-releases
 message HelmReleaseList {
   int32 total_pages = 1;
   repeated HelmRelease entries = 2;

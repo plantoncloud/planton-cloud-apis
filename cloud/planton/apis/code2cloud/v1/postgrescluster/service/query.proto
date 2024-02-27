@@ -13,7 +13,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //postgres-cluster query controller
 service PostgresClusterQueryController {
-  //list all postgres-clusters on planton cloud for the requested page. This is intended for use on portal.
+  //list all postgres-clusters for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresClusterList);
 

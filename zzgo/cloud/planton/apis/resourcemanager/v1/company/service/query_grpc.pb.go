@@ -31,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CompanyQueryControllerClient interface {
-	// list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
+	// list all the companies for the requested page. This is intended to be used on back-office portal.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CompanyList, error)
 	// get a company using company id
 	GetById(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model.Company, error)
@@ -77,7 +77,7 @@ func (c *companyQueryControllerClient) FindCompanies(ctx context.Context, in *pr
 // All implementations should embed UnimplementedCompanyQueryControllerServer
 // for forward compatibility
 type CompanyQueryControllerServer interface {
-	// list all the companies on planton cloud for the requested page. This is intended to be used on back-office portal.
+	// list all the companies for the requested page. This is intended to be used on back-office portal.
 	List(context.Context, *rpc.PageInfo) (*model.CompanyList, error)
 	// get a company using company id
 	GetById(context.Context, *model.CompanyId) (*model.Company, error)

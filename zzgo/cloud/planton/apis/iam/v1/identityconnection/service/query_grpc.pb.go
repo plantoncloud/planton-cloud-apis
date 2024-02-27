@@ -30,7 +30,7 @@ const (
 type IdentityConnectionQueryControllerClient interface {
 	// lookup identity account by id.
 	GetById(ctx context.Context, in *model.IdentityConnectionId, opts ...grpc.CallOption) (*model.IdentityConnection, error)
-	// retrieve paginated list of all identity connections on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all identity connections on planton cloud.
 	FindByCompanyId(ctx context.Context, in *model.IdentityConnectionCompanyId, opts ...grpc.CallOption) (*model.IdentityConnections, error)
 }
 
@@ -66,7 +66,7 @@ func (c *identityConnectionQueryControllerClient) FindByCompanyId(ctx context.Co
 type IdentityConnectionQueryControllerServer interface {
 	// lookup identity account by id.
 	GetById(context.Context, *model.IdentityConnectionId) (*model.IdentityConnection, error)
-	// retrieve paginated list of all identity connections on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all identity connections on planton cloud.
 	FindByCompanyId(context.Context, *model.IdentityConnectionCompanyId) (*model.IdentityConnections, error)
 }
 

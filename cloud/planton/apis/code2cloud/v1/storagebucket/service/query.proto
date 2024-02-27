@@ -12,7 +12,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //storage-bucket query controller
 service StorageBucketQueryController {
-  //list all storage-buckets on planton-cloud for the requested page. This is intended for use on portal.
+  //list all storage-buckets on planton-cloud for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketList);
 

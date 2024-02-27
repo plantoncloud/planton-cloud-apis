@@ -19,7 +19,7 @@ service ArtifactStoreQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
   }
-  //list all artifact-stores on planton cloud for the requested page. This is intended for use on portal.
+  //list all artifact-stores for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList);
   //look up artifact-stores by product id.

@@ -12,7 +12,7 @@ import "google/protobuf/wrappers.proto";
 
 // machine-account query controller
 service MachineAccountQueryController {
-  // retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+  // retrieve paginated list of all machine accounts on planton cloud.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList);
 
@@ -25,7 +25,7 @@ service MachineAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
   }
 
-  // retrieve paginated list of all machine accounts on planton cloud. this is intended for use on portal.
+  // retrieve paginated list of all machine accounts on planton cloud.
   rpc findByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountCompanyId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccounts) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
@@ -66,7 +66,7 @@ service MachineAccountQueryController {
 
 // user-account query controller
 service UserAccountQueryController {
-  // retrieve paginated list of all user accounts on planton cloud. this is intended for use on portal.
+  // retrieve paginated list of all user accounts on planton cloud.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList);
 
@@ -91,7 +91,7 @@ service UserAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to login to back office";
   }
 
-  // retrieve paginated list of all associate accounts of a company. this is intended for use on portal.
+  // retrieve paginated list of all associate accounts of a company.
   rpc listAssociatesByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.ListWithIdentityCompanyId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;

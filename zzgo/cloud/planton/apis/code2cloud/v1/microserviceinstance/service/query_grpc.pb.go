@@ -44,7 +44,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MicroserviceInstanceQueryControllerClient interface {
-	// list all microservice-instances on planton instance for the requested page. This is intended for use on portal.
+	// list all microservice-instances on planton instance for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error)
 	// look up microservice-instance using microservice-instance id
 	GetById(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
@@ -202,7 +202,7 @@ func (c *microserviceInstanceQueryControllerClient) GetEnvVarMap(ctx context.Con
 // All implementations should embed UnimplementedMicroserviceInstanceQueryControllerServer
 // for forward compatibility
 type MicroserviceInstanceQueryControllerServer interface {
-	// list all microservice-instances on planton instance for the requested page. This is intended for use on portal.
+	// list all microservice-instances on planton instance for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.MicroserviceInstanceList, error)
 	// look up microservice-instance using microservice-instance id
 	GetById(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error)
