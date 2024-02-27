@@ -13,14 +13,14 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //argocd-instance query controller
-service ArgoCDInstanceQueryController {
+service ArgocdInstanceQueryController {
   //list all argocd-instances on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceList);
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceList);
 
   //look up argocd-instance using argocd-instance id
-  rpc getById(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc getById(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceId)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -30,18 +30,18 @@ service ArgoCDInstanceQueryController {
   //find argocd-instances by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstances);
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstances);
 
   //find argocd-instances by environment
   rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstances);
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstances);
   //find argocd-instances by kube-cluster
 
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstances);
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstances);
 
   //lookup pods of a argocd-instance deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceId)
+  rpc findPods(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceId)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_get;

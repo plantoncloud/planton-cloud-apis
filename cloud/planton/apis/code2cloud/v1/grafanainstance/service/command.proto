@@ -93,7 +93,7 @@ service GrafanaInstanceCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for argocd-instance";
   }
   //restart a argocd-instance running in a environment.
-  //argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
+  //argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
   rpc restart(cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceId)
       returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = grafana_instance;

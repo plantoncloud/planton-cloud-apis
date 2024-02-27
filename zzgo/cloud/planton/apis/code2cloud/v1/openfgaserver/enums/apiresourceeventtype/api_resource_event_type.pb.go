@@ -21,31 +21,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type OpenFGAServerApiResourceEventType int32
+type OpenfgaServerApiResourceEventType int32
 
 const (
-	OpenFGAServerApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED OpenFGAServerApiResourceEventType = 0
-	OpenFGAServerApiResourceEventType_created                                           OpenFGAServerApiResourceEventType = 1
-	OpenFGAServerApiResourceEventType_updated                                           OpenFGAServerApiResourceEventType = 2
-	OpenFGAServerApiResourceEventType_deleted                                           OpenFGAServerApiResourceEventType = 3
-	OpenFGAServerApiResourceEventType_restored                                          OpenFGAServerApiResourceEventType = 4
-	OpenFGAServerApiResourceEventType_refreshed                                         OpenFGAServerApiResourceEventType = 5
-	OpenFGAServerApiResourceEventType_stack_job_progress_updated                        OpenFGAServerApiResourceEventType = 6
-	OpenFGAServerApiResourceEventType_stack_job_refresh_requested                       OpenFGAServerApiResourceEventType = 7
-	OpenFGAServerApiResourceEventType_stack_job_refresh_completed                       OpenFGAServerApiResourceEventType = 8
-	OpenFGAServerApiResourceEventType_stack_job_apply_preview_requested                 OpenFGAServerApiResourceEventType = 9
-	OpenFGAServerApiResourceEventType_stack_job_apply_requested                         OpenFGAServerApiResourceEventType = 10
-	OpenFGAServerApiResourceEventType_stack_job_apply_completed                         OpenFGAServerApiResourceEventType = 11
-	OpenFGAServerApiResourceEventType_stack_job_destroy_preview_requested               OpenFGAServerApiResourceEventType = 12
-	OpenFGAServerApiResourceEventType_stack_job_destroy_requested                       OpenFGAServerApiResourceEventType = 13
-	OpenFGAServerApiResourceEventType_stack_job_destroy_completed                       OpenFGAServerApiResourceEventType = 14
-	OpenFGAServerApiResourceEventType_paused                                            OpenFGAServerApiResourceEventType = 15
-	OpenFGAServerApiResourceEventType_unpaused                                          OpenFGAServerApiResourceEventType = 16
+	OpenfgaServerApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED OpenfgaServerApiResourceEventType = 0
+	OpenfgaServerApiResourceEventType_created                                           OpenfgaServerApiResourceEventType = 1
+	OpenfgaServerApiResourceEventType_updated                                           OpenfgaServerApiResourceEventType = 2
+	OpenfgaServerApiResourceEventType_deleted                                           OpenfgaServerApiResourceEventType = 3
+	OpenfgaServerApiResourceEventType_restored                                          OpenfgaServerApiResourceEventType = 4
+	OpenfgaServerApiResourceEventType_refreshed                                         OpenfgaServerApiResourceEventType = 5
+	OpenfgaServerApiResourceEventType_stack_job_progress_updated                        OpenfgaServerApiResourceEventType = 6
+	OpenfgaServerApiResourceEventType_stack_job_refresh_requested                       OpenfgaServerApiResourceEventType = 7
+	OpenfgaServerApiResourceEventType_stack_job_refresh_completed                       OpenfgaServerApiResourceEventType = 8
+	OpenfgaServerApiResourceEventType_stack_job_apply_preview_requested                 OpenfgaServerApiResourceEventType = 9
+	OpenfgaServerApiResourceEventType_stack_job_apply_requested                         OpenfgaServerApiResourceEventType = 10
+	OpenfgaServerApiResourceEventType_stack_job_apply_completed                         OpenfgaServerApiResourceEventType = 11
+	OpenfgaServerApiResourceEventType_stack_job_destroy_preview_requested               OpenfgaServerApiResourceEventType = 12
+	OpenfgaServerApiResourceEventType_stack_job_destroy_requested                       OpenfgaServerApiResourceEventType = 13
+	OpenfgaServerApiResourceEventType_stack_job_destroy_completed                       OpenfgaServerApiResourceEventType = 14
+	OpenfgaServerApiResourceEventType_paused                                            OpenfgaServerApiResourceEventType = 15
+	OpenfgaServerApiResourceEventType_unpaused                                          OpenfgaServerApiResourceEventType = 16
 )
 
-// Enum value maps for OpenFGAServerApiResourceEventType.
+// Enum value maps for OpenfgaServerApiResourceEventType.
 var (
-	OpenFGAServerApiResourceEventType_name = map[int32]string{
+	OpenfgaServerApiResourceEventType_name = map[int32]string{
 		0:  "REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED",
 		1:  "created",
 		2:  "updated",
@@ -64,7 +64,7 @@ var (
 		15: "paused",
 		16: "unpaused",
 	}
-	OpenFGAServerApiResourceEventType_value = map[string]int32{
+	OpenfgaServerApiResourceEventType_value = map[string]int32{
 		"REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED": 0,
 		"created":                             1,
 		"updated":                             2,
@@ -85,30 +85,30 @@ var (
 	}
 )
 
-func (x OpenFGAServerApiResourceEventType) Enum() *OpenFGAServerApiResourceEventType {
-	p := new(OpenFGAServerApiResourceEventType)
+func (x OpenfgaServerApiResourceEventType) Enum() *OpenfgaServerApiResourceEventType {
+	p := new(OpenfgaServerApiResourceEventType)
 	*p = x
 	return p
 }
 
-func (x OpenFGAServerApiResourceEventType) String() string {
+func (x OpenfgaServerApiResourceEventType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (OpenFGAServerApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
+func (OpenfgaServerApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0].Descriptor()
 }
 
-func (OpenFGAServerApiResourceEventType) Type() protoreflect.EnumType {
+func (OpenfgaServerApiResourceEventType) Type() protoreflect.EnumType {
 	return &file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0]
 }
 
-func (x OpenFGAServerApiResourceEventType) Number() protoreflect.EnumNumber {
+func (x OpenfgaServerApiResourceEventType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use OpenFGAServerApiResourceEventType.Descriptor instead.
-func (OpenFGAServerApiResourceEventType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerApiResourceEventType.Descriptor instead.
+func (OpenfgaServerApiResourceEventType) EnumDescriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_rawDescGZIP(), []int{0}
 }
 
@@ -134,7 +134,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventty
 	0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
 	0x65, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x65, 0x6e, 0x75,
 	0x6d, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2a,
-	0xbc, 0x05, 0x0a, 0x21, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0xbc, 0x05, 0x0a, 0x21, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x41, 0x70, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x45, 0x76, 0x65, 0x6e,
 	0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x35, 0x0a, 0x31, 0x52, 0x45, 0x44, 0x49, 0x53, 0x5f, 0x43,
 	0x4c, 0x55, 0x53, 0x54, 0x45, 0x52, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x52, 0x45, 0x53, 0x4f, 0x55,
@@ -231,7 +231,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventt
 
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_goTypes = []interface{}{
-	(OpenFGAServerApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.enums.apiresourceeventtype.OpenFGAServerApiResourceEventType
+	(OpenfgaServerApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.enums.apiresourceeventtype.OpenfgaServerApiResourceEventType
 }
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_enums_apiresourceeventtype_api_resource_event_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

@@ -5,22 +5,22 @@ package cloud.planton.apis.code2cloud.v1.mongodbcluster.model;
 import "cloud/planton/apis/code2cloud/v1/mongodbcluster/model/state.proto";
 
 //wrapper for id field of mongodb-cluster
-message MongoDBClusterId {
+message MongodbClusterId {
   string value = 1;
 }
 
 //list of mongodb-clusters
-message MongoDBClusters {
-  repeated MongoDBCluster entries = 1;
+message MongodbClusters {
+  repeated MongodbCluster entries = 1;
 }
 
 //wrapper for mongodb-cluster password
-message MongoDBClusterPassword {
+message MongodbClusterPassword {
   string value = 1;
 }
 
 //response for paginated query to list mongodb-clusters
-message MongoDBClusterList {
+message MongodbClusterList {
   int32 total_pages = 1;
-  repeated MongoDBCluster entries = 2;
+  repeated MongodbCluster entries = 2;
 }

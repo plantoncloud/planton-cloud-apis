@@ -5,17 +5,17 @@ package cloud.planton.apis.code2cloud.v1.argocdinstance.model;
 import "cloud/planton/apis/code2cloud/v1/argocdinstance/model/state.proto";
 
 //wrapper for id field of argocd-instance
-message ArgoCDInstanceId {
+message ArgocdInstanceId {
   string value = 1;
 }
 
 //list of argocd-instances
-message ArgoCDInstances {
-  repeated ArgoCDInstance entries = 1;
+message ArgocdInstances {
+  repeated ArgocdInstance entries = 1;
 }
 
 //response for paginated query to list argocd-instances
-message ArgoCDInstanceList {
+message ArgocdInstanceList {
   int32 total_pages = 1;
-  repeated ArgoCDInstance entries = 2;
+  repeated ArgocdInstance entries = 2;
 }

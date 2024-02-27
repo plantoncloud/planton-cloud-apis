@@ -21,31 +21,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type ArgoCDInstanceApiResourceEventType int32
+type ArgocdInstanceApiResourceEventType int32
 
 const (
-	ArgoCDInstanceApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED ArgoCDInstanceApiResourceEventType = 0
-	ArgoCDInstanceApiResourceEventType_created                                           ArgoCDInstanceApiResourceEventType = 1
-	ArgoCDInstanceApiResourceEventType_updated                                           ArgoCDInstanceApiResourceEventType = 2
-	ArgoCDInstanceApiResourceEventType_deleted                                           ArgoCDInstanceApiResourceEventType = 3
-	ArgoCDInstanceApiResourceEventType_restored                                          ArgoCDInstanceApiResourceEventType = 4
-	ArgoCDInstanceApiResourceEventType_refreshed                                         ArgoCDInstanceApiResourceEventType = 5
-	ArgoCDInstanceApiResourceEventType_stack_job_progress_updated                        ArgoCDInstanceApiResourceEventType = 6
-	ArgoCDInstanceApiResourceEventType_stack_job_refresh_requested                       ArgoCDInstanceApiResourceEventType = 7
-	ArgoCDInstanceApiResourceEventType_stack_job_refresh_completed                       ArgoCDInstanceApiResourceEventType = 8
-	ArgoCDInstanceApiResourceEventType_stack_job_apply_preview_requested                 ArgoCDInstanceApiResourceEventType = 9
-	ArgoCDInstanceApiResourceEventType_stack_job_apply_requested                         ArgoCDInstanceApiResourceEventType = 10
-	ArgoCDInstanceApiResourceEventType_stack_job_apply_completed                         ArgoCDInstanceApiResourceEventType = 11
-	ArgoCDInstanceApiResourceEventType_stack_job_destroy_preview_requested               ArgoCDInstanceApiResourceEventType = 12
-	ArgoCDInstanceApiResourceEventType_stack_job_destroy_requested                       ArgoCDInstanceApiResourceEventType = 13
-	ArgoCDInstanceApiResourceEventType_stack_job_destroy_completed                       ArgoCDInstanceApiResourceEventType = 14
-	ArgoCDInstanceApiResourceEventType_paused                                            ArgoCDInstanceApiResourceEventType = 15
-	ArgoCDInstanceApiResourceEventType_unpaused                                          ArgoCDInstanceApiResourceEventType = 16
+	ArgocdInstanceApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED ArgocdInstanceApiResourceEventType = 0
+	ArgocdInstanceApiResourceEventType_created                                           ArgocdInstanceApiResourceEventType = 1
+	ArgocdInstanceApiResourceEventType_updated                                           ArgocdInstanceApiResourceEventType = 2
+	ArgocdInstanceApiResourceEventType_deleted                                           ArgocdInstanceApiResourceEventType = 3
+	ArgocdInstanceApiResourceEventType_restored                                          ArgocdInstanceApiResourceEventType = 4
+	ArgocdInstanceApiResourceEventType_refreshed                                         ArgocdInstanceApiResourceEventType = 5
+	ArgocdInstanceApiResourceEventType_stack_job_progress_updated                        ArgocdInstanceApiResourceEventType = 6
+	ArgocdInstanceApiResourceEventType_stack_job_refresh_requested                       ArgocdInstanceApiResourceEventType = 7
+	ArgocdInstanceApiResourceEventType_stack_job_refresh_completed                       ArgocdInstanceApiResourceEventType = 8
+	ArgocdInstanceApiResourceEventType_stack_job_apply_preview_requested                 ArgocdInstanceApiResourceEventType = 9
+	ArgocdInstanceApiResourceEventType_stack_job_apply_requested                         ArgocdInstanceApiResourceEventType = 10
+	ArgocdInstanceApiResourceEventType_stack_job_apply_completed                         ArgocdInstanceApiResourceEventType = 11
+	ArgocdInstanceApiResourceEventType_stack_job_destroy_preview_requested               ArgocdInstanceApiResourceEventType = 12
+	ArgocdInstanceApiResourceEventType_stack_job_destroy_requested                       ArgocdInstanceApiResourceEventType = 13
+	ArgocdInstanceApiResourceEventType_stack_job_destroy_completed                       ArgocdInstanceApiResourceEventType = 14
+	ArgocdInstanceApiResourceEventType_paused                                            ArgocdInstanceApiResourceEventType = 15
+	ArgocdInstanceApiResourceEventType_unpaused                                          ArgocdInstanceApiResourceEventType = 16
 )
 
-// Enum value maps for ArgoCDInstanceApiResourceEventType.
+// Enum value maps for ArgocdInstanceApiResourceEventType.
 var (
-	ArgoCDInstanceApiResourceEventType_name = map[int32]string{
+	ArgocdInstanceApiResourceEventType_name = map[int32]string{
 		0:  "REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED",
 		1:  "created",
 		2:  "updated",
@@ -64,7 +64,7 @@ var (
 		15: "paused",
 		16: "unpaused",
 	}
-	ArgoCDInstanceApiResourceEventType_value = map[string]int32{
+	ArgocdInstanceApiResourceEventType_value = map[string]int32{
 		"REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED": 0,
 		"created":                             1,
 		"updated":                             2,
@@ -85,30 +85,30 @@ var (
 	}
 )
 
-func (x ArgoCDInstanceApiResourceEventType) Enum() *ArgoCDInstanceApiResourceEventType {
-	p := new(ArgoCDInstanceApiResourceEventType)
+func (x ArgocdInstanceApiResourceEventType) Enum() *ArgocdInstanceApiResourceEventType {
+	p := new(ArgocdInstanceApiResourceEventType)
 	*p = x
 	return p
 }
 
-func (x ArgoCDInstanceApiResourceEventType) String() string {
+func (x ArgocdInstanceApiResourceEventType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ArgoCDInstanceApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
+func (ArgocdInstanceApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0].Descriptor()
 }
 
-func (ArgoCDInstanceApiResourceEventType) Type() protoreflect.EnumType {
+func (ArgocdInstanceApiResourceEventType) Type() protoreflect.EnumType {
 	return &file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0]
 }
 
-func (x ArgoCDInstanceApiResourceEventType) Number() protoreflect.EnumNumber {
+func (x ArgocdInstanceApiResourceEventType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ArgoCDInstanceApiResourceEventType.Descriptor instead.
-func (ArgoCDInstanceApiResourceEventType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceApiResourceEventType.Descriptor instead.
+func (ArgocdInstanceApiResourceEventType) EnumDescriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_rawDescGZIP(), []int{0}
 }
 
@@ -134,7 +134,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventt
 	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75,
 	0x72, 0x63, 0x65, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x65,
 	0x6e, 0x75, 0x6d, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2a, 0xbd, 0x05, 0x0a, 0x22, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74,
+	0x6f, 0x2a, 0xbd, 0x05, 0x0a, 0x22, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74,
 	0x61, 0x6e, 0x63, 0x65, 0x41, 0x70, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x45,
 	0x76, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x35, 0x0a, 0x31, 0x52, 0x45, 0x44, 0x49,
 	0x53, 0x5f, 0x43, 0x4c, 0x55, 0x53, 0x54, 0x45, 0x52, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x52, 0x45,
@@ -232,7 +232,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceevent
 
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_goTypes = []interface{}{
-	(ArgoCDInstanceApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.enums.apiresourceeventtype.ArgoCDInstanceApiResourceEventType
+	(ArgocdInstanceApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.enums.apiresourceeventtype.ArgocdInstanceApiResourceEventType
 }
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_enums_apiresourceeventtype_api_resource_event_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

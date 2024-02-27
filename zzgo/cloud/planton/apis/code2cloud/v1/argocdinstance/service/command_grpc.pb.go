@@ -22,606 +22,606 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArgoCDInstanceCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/previewCreate"
-	ArgoCDInstanceCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/create"
-	ArgoCDInstanceCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/previewUpdate"
-	ArgoCDInstanceCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/update"
-	ArgoCDInstanceCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/previewDelete"
-	ArgoCDInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/delete"
-	ArgoCDInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/previewRestore"
-	ArgoCDInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/restore"
-	ArgoCDInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/createStackJob"
-	ArgoCDInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/restart"
-	ArgoCDInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/pause"
-	ArgoCDInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/unpause"
-	ArgoCDInstanceCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/previewRefresh"
-	ArgoCDInstanceCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController/refresh"
+	ArgocdInstanceCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewCreate"
+	ArgocdInstanceCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/create"
+	ArgocdInstanceCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewUpdate"
+	ArgocdInstanceCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/update"
+	ArgocdInstanceCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewDelete"
+	ArgocdInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/delete"
+	ArgocdInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewRestore"
+	ArgocdInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/restore"
+	ArgocdInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/createStackJob"
+	ArgocdInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/restart"
+	ArgocdInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/pause"
+	ArgocdInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/unpause"
+	ArgocdInstanceCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewRefresh"
+	ArgocdInstanceCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/refresh"
 )
 
-// ArgoCDInstanceCommandControllerClient is the client API for ArgoCDInstanceCommandController service.
+// ArgocdInstanceCommandControllerClient is the client API for ArgocdInstanceCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ArgoCDInstanceCommandControllerClient interface {
+type ArgocdInstanceCommandControllerClient interface {
 	// preview creating argocd-instance
-	PreviewCreate(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	PreviewCreate(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// create argocd-instance
-	Create(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Create(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// preview updating an existing argocd-instance
-	PreviewUpdate(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	PreviewUpdate(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// update an existing argocd-instance
-	Update(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Update(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// preview deleting an existing argocd-instance
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// delete an existing argocd-instance
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// preview restoring a previously deleted argocd-instance
-	PreviewRestore(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	PreviewRestore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// restore a previously deleted argocd-instance
-	Restore(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Restore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// create-stack-job for argocd-instance
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
-	Restart(ctx context.Context, in *model.ArgoCDInstanceId, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	// argocd-instance is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
+	Restart(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// pause a argocd-instance running in a environment.
 	// argocd-instance is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// unpause a previously paused argocd-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-instance.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// preview refresh a argocd-instance that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// refresh a argocd-instance that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 }
 
-type argoCDInstanceCommandControllerClient struct {
+type argocdInstanceCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewArgoCDInstanceCommandControllerClient(cc grpc.ClientConnInterface) ArgoCDInstanceCommandControllerClient {
-	return &argoCDInstanceCommandControllerClient{cc}
+func NewArgocdInstanceCommandControllerClient(cc grpc.ClientConnInterface) ArgocdInstanceCommandControllerClient {
+	return &argocdInstanceCommandControllerClient{cc}
 }
 
-func (c *argoCDInstanceCommandControllerClient) PreviewCreate(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) PreviewCreate(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_PreviewCreate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Create(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Create_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Create(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) PreviewUpdate(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) PreviewUpdate(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Update(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Update_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Update(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Delete_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) PreviewRestore(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) PreviewRestore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Restore(ctx context.Context, in *model.ArgoCDInstance, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Restore_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Restore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Restore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Restart(ctx context.Context, in *model.ArgoCDInstanceId, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Restart_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Restart(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Restart_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Pause_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Unpause_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *argoCDInstanceCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgoCDInstance, error) {
-	out := new(model.ArgoCDInstance)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceCommandController_Refresh_FullMethodName, in, out, opts...)
+func (c *argocdInstanceCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
+	out := new(model.ArgocdInstance)
+	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ArgoCDInstanceCommandControllerServer is the server API for ArgoCDInstanceCommandController service.
-// All implementations should embed UnimplementedArgoCDInstanceCommandControllerServer
+// ArgocdInstanceCommandControllerServer is the server API for ArgocdInstanceCommandController service.
+// All implementations should embed UnimplementedArgocdInstanceCommandControllerServer
 // for forward compatibility
-type ArgoCDInstanceCommandControllerServer interface {
+type ArgocdInstanceCommandControllerServer interface {
 	// preview creating argocd-instance
-	PreviewCreate(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	PreviewCreate(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// create argocd-instance
-	Create(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	Create(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// preview updating an existing argocd-instance
-	PreviewUpdate(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	PreviewUpdate(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// update an existing argocd-instance
-	Update(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	Update(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// preview deleting an existing argocd-instance
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgoCDInstance, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdInstance, error)
 	// delete an existing argocd-instance
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgoCDInstance, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdInstance, error)
 	// preview restoring a previously deleted argocd-instance
-	PreviewRestore(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	PreviewRestore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// restore a previously deleted argocd-instance
-	Restore(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error)
+	Restore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// create-stack-job for argocd-instance
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgoCDInstance, error)
+	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgocdInstance, error)
 	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
-	Restart(context.Context, *model.ArgoCDInstanceId) (*model.ArgoCDInstance, error)
+	// argocd-instance is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
+	Restart(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error)
 	// pause a argocd-instance running in a environment.
 	// argocd-instance is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgoCDInstance, error)
+	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgocdInstance, error)
 	// unpause a previously paused argocd-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-instance.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgoCDInstance, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgocdInstance, error)
 	// preview refresh a argocd-instance that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgoCDInstance, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdInstance, error)
 	// refresh a argocd-instance that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgoCDInstance, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdInstance, error)
 }
 
-// UnimplementedArgoCDInstanceCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedArgoCDInstanceCommandControllerServer struct {
+// UnimplementedArgocdInstanceCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedArgocdInstanceCommandControllerServer struct {
 }
 
-func (UnimplementedArgoCDInstanceCommandControllerServer) PreviewCreate(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) PreviewCreate(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Create(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Create(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) PreviewUpdate(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) PreviewUpdate(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Update(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Update(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) PreviewRestore(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) PreviewRestore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Restore(context.Context, *model.ArgoCDInstance) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Restore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Restart(context.Context, *model.ArgoCDInstanceId) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Restart(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedArgoCDInstanceCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgoCDInstance, error) {
+func (UnimplementedArgocdInstanceCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
-// UnsafeArgoCDInstanceCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ArgoCDInstanceCommandControllerServer will
+// UnsafeArgocdInstanceCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ArgocdInstanceCommandControllerServer will
 // result in compilation errors.
-type UnsafeArgoCDInstanceCommandControllerServer interface {
-	mustEmbedUnimplementedArgoCDInstanceCommandControllerServer()
+type UnsafeArgocdInstanceCommandControllerServer interface {
+	mustEmbedUnimplementedArgocdInstanceCommandControllerServer()
 }
 
-func RegisterArgoCDInstanceCommandControllerServer(s grpc.ServiceRegistrar, srv ArgoCDInstanceCommandControllerServer) {
-	s.RegisterService(&ArgoCDInstanceCommandController_ServiceDesc, srv)
+func RegisterArgocdInstanceCommandControllerServer(s grpc.ServiceRegistrar, srv ArgocdInstanceCommandControllerServer) {
+	s.RegisterService(&ArgocdInstanceCommandController_ServiceDesc, srv)
 }
 
-func _ArgoCDInstanceCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewCreate(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_PreviewCreate_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_PreviewCreate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewCreate(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewCreate(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Create(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Create_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Create(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).Create(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewUpdate(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_PreviewUpdate_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_PreviewUpdate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewUpdate(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewUpdate(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Update(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Update_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Update(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).Update(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewDelete(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_PreviewDelete_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Delete(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Delete_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewRestore(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewRestore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_PreviewRestore_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_PreviewRestore_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewRestore(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewRestore(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstance)
+func _ArgocdInstanceCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstance)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Restore(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Restore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Restore_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Restore_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Restore(ctx, req.(*model.ArgoCDInstance))
+		return srv.(ArgocdInstanceCommandControllerServer).Restore(ctx, req.(*model.ArgocdInstance))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model2.CreateStackJobCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).CreateStackJob(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).CreateStackJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_CreateStackJob_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_CreateStackJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstanceId)
+func _ArgocdInstanceCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstanceId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Restart(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Restart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Restart_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Restart_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Restart(ctx, req.(*model.ArgoCDInstanceId))
+		return srv.(ArgocdInstanceCommandControllerServer).Restart(ctx, req.(*model.ArgocdInstanceId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Pause(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Pause(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Pause_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Unpause(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Unpause(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Unpause_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewRefresh(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewRefresh(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_PreviewRefresh_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgoCDInstanceCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ArgocdInstanceCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceCommandControllerServer).Refresh(ctx, in)
+		return srv.(ArgocdInstanceCommandControllerServer).Refresh(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceCommandController_Refresh_FullMethodName,
+		FullMethod: ArgocdInstanceCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArgocdInstanceCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ArgoCDInstanceCommandController_ServiceDesc is the grpc.ServiceDesc for ArgoCDInstanceCommandController service.
+// ArgocdInstanceCommandController_ServiceDesc is the grpc.ServiceDesc for ArgocdInstanceCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ArgoCDInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgoCDInstanceCommandController",
-	HandlerType: (*ArgoCDInstanceCommandControllerServer)(nil),
+var ArgocdInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController",
+	HandlerType: (*ArgocdInstanceCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "previewCreate",
-			Handler:    _ArgoCDInstanceCommandController_PreviewCreate_Handler,
+			Handler:    _ArgocdInstanceCommandController_PreviewCreate_Handler,
 		},
 		{
 			MethodName: "create",
-			Handler:    _ArgoCDInstanceCommandController_Create_Handler,
+			Handler:    _ArgocdInstanceCommandController_Create_Handler,
 		},
 		{
 			MethodName: "previewUpdate",
-			Handler:    _ArgoCDInstanceCommandController_PreviewUpdate_Handler,
+			Handler:    _ArgocdInstanceCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _ArgoCDInstanceCommandController_Update_Handler,
+			Handler:    _ArgocdInstanceCommandController_Update_Handler,
 		},
 		{
 			MethodName: "previewDelete",
-			Handler:    _ArgoCDInstanceCommandController_PreviewDelete_Handler,
+			Handler:    _ArgocdInstanceCommandController_PreviewDelete_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _ArgoCDInstanceCommandController_Delete_Handler,
+			Handler:    _ArgocdInstanceCommandController_Delete_Handler,
 		},
 		{
 			MethodName: "previewRestore",
-			Handler:    _ArgoCDInstanceCommandController_PreviewRestore_Handler,
+			Handler:    _ArgocdInstanceCommandController_PreviewRestore_Handler,
 		},
 		{
 			MethodName: "restore",
-			Handler:    _ArgoCDInstanceCommandController_Restore_Handler,
+			Handler:    _ArgocdInstanceCommandController_Restore_Handler,
 		},
 		{
 			MethodName: "createStackJob",
-			Handler:    _ArgoCDInstanceCommandController_CreateStackJob_Handler,
+			Handler:    _ArgocdInstanceCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
-			Handler:    _ArgoCDInstanceCommandController_Restart_Handler,
+			Handler:    _ArgocdInstanceCommandController_Restart_Handler,
 		},
 		{
 			MethodName: "pause",
-			Handler:    _ArgoCDInstanceCommandController_Pause_Handler,
+			Handler:    _ArgocdInstanceCommandController_Pause_Handler,
 		},
 		{
 			MethodName: "unpause",
-			Handler:    _ArgoCDInstanceCommandController_Unpause_Handler,
+			Handler:    _ArgocdInstanceCommandController_Unpause_Handler,
 		},
 		{
 			MethodName: "previewRefresh",
-			Handler:    _ArgoCDInstanceCommandController_PreviewRefresh_Handler,
+			Handler:    _ArgocdInstanceCommandController_PreviewRefresh_Handler,
 		},
 		{
 			MethodName: "refresh",
-			Handler:    _ArgoCDInstanceCommandController_Refresh_Handler,
+			Handler:    _ArgocdInstanceCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -12,7 +12,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 //mongodb-cluster
-message MongoDBCluster {
+message MongodbCluster {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
@@ -72,23 +72,23 @@ message MongoDBCluster {
   ];
 
   //spec
-  MongoDBClusterSpec spec = 4;
+  MongodbClusterSpec spec = 4;
 
   //status
-  MongoDBClusterStatus status = 5;
+  MongodbClusterStatus status = 5;
 }
 
 //mongodb-cluster spec
-message MongoDBClusterSpec {
+message MongodbClusterSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  MongoDBClusterSpecKubernetesSpec kubernetes = 2;
+  MongodbClusterSpecKubernetesSpec kubernetes = 2;
 }
 
 //mongodb-cluster status.
-message MongoDBClusterStatus {
+message MongodbClusterStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,21 +99,21 @@ message MongoDBClusterStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  MongoDBClusterStatusKubernetesStatus kubernetes = 1;
+  MongodbClusterStatusKubernetesStatus kubernetes = 1;
 }
 
 // mongodb-cluster kubernetes spec
-message MongoDBClusterSpecKubernetesSpec {
+message MongodbClusterSpecKubernetesSpec {
   //mongodb-container spec
-  MongoDBClusterSpecKubernetesSpecRedisContainerSpec mongodb_container = 1;
+  MongodbClusterSpecKubernetesSpecMongodbContainerSpec mongodb_container = 1;
 
   //mongodb-cluster ingress-spec
-  MongoDBClusterSpecKubernetesSpecIngressSpec ingress = 2;
+  MongodbClusterSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
 // mongodb-cluster kubernetes mongodb-container spec
-message MongoDBClusterSpecKubernetesSpecRedisContainerSpec {
+message MongodbClusterSpecKubernetesSpecMongodbContainerSpec {
   //number of mongodb pods.
   //recommended default 1
   int32 replicas = 1 [
@@ -142,7 +142,7 @@ message MongoDBClusterSpecKubernetesSpecRedisContainerSpec {
 }
 
 // mongodb-cluster kubernetes ingress spec
-message MongoDBClusterSpecKubernetesSpecIngressSpec {
+message MongodbClusterSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -165,7 +165,7 @@ message MongoDBClusterSpecKubernetesSpecIngressSpec {
 }
 
 //mongodb-cluster kubernetes status
-message MongoDBClusterStatusKubernetesStatus {
+message MongodbClusterStatusKubernetesStatus {
   //kubernetes namespace in which mongodb-cluster is created.
   string namespace = 1;
 

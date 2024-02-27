@@ -61,7 +61,7 @@ type GrafanaInstanceCommandControllerClient interface {
 	// create-stack-job for argocd-instance
 	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
+	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// pause a argocd-instance running in a environment.
 	// argocd-instance is paused by scaling down number of replicas of
@@ -234,7 +234,7 @@ type GrafanaInstanceCommandControllerServer interface {
 	// create-stack-job for argocd-instance
 	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GrafanaInstance, error)
 	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
+	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
 	// pause a argocd-instance running in a environment.
 	// argocd-instance is paused by scaling down number of replicas of

@@ -21,7 +21,7 @@ const (
 )
 
 // wrapper for id field of mongodb-cluster
-type MongoDBClusterId struct {
+type MongodbClusterId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type MongoDBClusterId struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *MongoDBClusterId) Reset() {
-	*x = MongoDBClusterId{}
+func (x *MongodbClusterId) Reset() {
+	*x = MongodbClusterId{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *MongoDBClusterId) Reset() {
 	}
 }
 
-func (x *MongoDBClusterId) String() string {
+func (x *MongodbClusterId) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MongoDBClusterId) ProtoMessage() {}
+func (*MongodbClusterId) ProtoMessage() {}
 
-func (x *MongoDBClusterId) ProtoReflect() protoreflect.Message {
+func (x *MongodbClusterId) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,12 +56,12 @@ func (x *MongoDBClusterId) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MongoDBClusterId.ProtoReflect.Descriptor instead.
-func (*MongoDBClusterId) Descriptor() ([]byte, []int) {
+// Deprecated: Use MongodbClusterId.ProtoReflect.Descriptor instead.
+func (*MongodbClusterId) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *MongoDBClusterId) GetValue() string {
+func (x *MongodbClusterId) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -69,16 +69,16 @@ func (x *MongoDBClusterId) GetValue() string {
 }
 
 // list of mongodb-clusters
-type MongoDBClusters struct {
+type MongodbClusters struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Entries []*MongoDBCluster `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries []*MongodbCluster `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *MongoDBClusters) Reset() {
-	*x = MongoDBClusters{}
+func (x *MongodbClusters) Reset() {
+	*x = MongodbClusters{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -86,13 +86,13 @@ func (x *MongoDBClusters) Reset() {
 	}
 }
 
-func (x *MongoDBClusters) String() string {
+func (x *MongodbClusters) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MongoDBClusters) ProtoMessage() {}
+func (*MongodbClusters) ProtoMessage() {}
 
-func (x *MongoDBClusters) ProtoReflect() protoreflect.Message {
+func (x *MongodbClusters) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -104,12 +104,12 @@ func (x *MongoDBClusters) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MongoDBClusters.ProtoReflect.Descriptor instead.
-func (*MongoDBClusters) Descriptor() ([]byte, []int) {
+// Deprecated: Use MongodbClusters.ProtoReflect.Descriptor instead.
+func (*MongodbClusters) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *MongoDBClusters) GetEntries() []*MongoDBCluster {
+func (x *MongodbClusters) GetEntries() []*MongodbCluster {
 	if x != nil {
 		return x.Entries
 	}
@@ -117,7 +117,7 @@ func (x *MongoDBClusters) GetEntries() []*MongoDBCluster {
 }
 
 // wrapper for mongodb-cluster password
-type MongoDBClusterPassword struct {
+type MongodbClusterPassword struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -125,8 +125,8 @@ type MongoDBClusterPassword struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *MongoDBClusterPassword) Reset() {
-	*x = MongoDBClusterPassword{}
+func (x *MongodbClusterPassword) Reset() {
+	*x = MongodbClusterPassword{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -134,13 +134,13 @@ func (x *MongoDBClusterPassword) Reset() {
 	}
 }
 
-func (x *MongoDBClusterPassword) String() string {
+func (x *MongodbClusterPassword) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MongoDBClusterPassword) ProtoMessage() {}
+func (*MongodbClusterPassword) ProtoMessage() {}
 
-func (x *MongoDBClusterPassword) ProtoReflect() protoreflect.Message {
+func (x *MongodbClusterPassword) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,12 +152,12 @@ func (x *MongoDBClusterPassword) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MongoDBClusterPassword.ProtoReflect.Descriptor instead.
-func (*MongoDBClusterPassword) Descriptor() ([]byte, []int) {
+// Deprecated: Use MongodbClusterPassword.ProtoReflect.Descriptor instead.
+func (*MongodbClusterPassword) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *MongoDBClusterPassword) GetValue() string {
+func (x *MongodbClusterPassword) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -165,17 +165,17 @@ func (x *MongoDBClusterPassword) GetValue() string {
 }
 
 // response for paginated query to list mongodb-clusters
-type MongoDBClusterList struct {
+type MongodbClusterList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	TotalPages int32             `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*MongoDBCluster `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries    []*MongodbCluster `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *MongoDBClusterList) Reset() {
-	*x = MongoDBClusterList{}
+func (x *MongodbClusterList) Reset() {
+	*x = MongodbClusterList{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,13 +183,13 @@ func (x *MongoDBClusterList) Reset() {
 	}
 }
 
-func (x *MongoDBClusterList) String() string {
+func (x *MongodbClusterList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MongoDBClusterList) ProtoMessage() {}
+func (*MongodbClusterList) ProtoMessage() {}
 
-func (x *MongoDBClusterList) ProtoReflect() protoreflect.Message {
+func (x *MongodbClusterList) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -201,19 +201,19 @@ func (x *MongoDBClusterList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MongoDBClusterList.ProtoReflect.Descriptor instead.
-func (*MongoDBClusterList) Descriptor() ([]byte, []int) {
+// Deprecated: Use MongodbClusterList.ProtoReflect.Descriptor instead.
+func (*MongodbClusterList) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *MongoDBClusterList) GetTotalPages() int32 {
+func (x *MongodbClusterList) GetTotalPages() int32 {
 	if x != nil {
 		return x.TotalPages
 	}
 	return 0
 }
 
-func (x *MongoDBClusterList) GetEntries() []*MongoDBCluster {
+func (x *MongodbClusterList) GetEntries() []*MongodbCluster {
 	if x != nil {
 		return x.Entries
 	}
@@ -235,28 +235,28 @@ var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDesc 
 	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x6f, 0x6e, 0x67, 0x6f, 0x64,
 	0x62, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x73,
 	0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a, 0x10, 0x4d, 0x6f,
-	0x6e, 0x67, 0x6f, 0x44, 0x42, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14,
+	0x6e, 0x67, 0x6f, 0x64, 0x62, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14,
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x22, 0x72, 0x0a, 0x0f, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x44, 0x42, 0x43,
+	0x61, 0x6c, 0x75, 0x65, 0x22, 0x72, 0x0a, 0x0f, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x64, 0x62, 0x43,
 	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x73, 0x12, 0x5f, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69,
 	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x45, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
 	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x6e, 0x67,
 	0x6f, 0x64, 0x62, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x44, 0x42, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
+	0x2e, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x64, 0x62, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52,
 	0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x2e, 0x0a, 0x16, 0x4d, 0x6f, 0x6e, 0x67,
-	0x6f, 0x44, 0x42, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x6f, 0x64, 0x62, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
 	0x72, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x96, 0x01, 0x0a, 0x12, 0x4d, 0x6f, 0x6e,
-	0x67, 0x6f, 0x44, 0x42, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12,
+	0x67, 0x6f, 0x64, 0x62, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12,
 	0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73,
 	0x12, 0x5f, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
 	0x0b, 0x32, 0x45, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
 	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x6e, 0x67, 0x6f, 0x64, 0x62, 0x63, 0x6c, 0x75, 0x73,
-	0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x44,
-	0x42, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
+	0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x64,
+	0x62, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
 	0x73, 0x42, 0xb3, 0x03, 0x0a, 0x43, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e,
 	0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
 	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
@@ -301,15 +301,15 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_rawDesc
 
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_goTypes = []interface{}{
-	(*MongoDBClusterId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterId
-	(*MongoDBClusters)(nil),        // 1: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusters
-	(*MongoDBClusterPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterPassword
-	(*MongoDBClusterList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterList
-	(*MongoDBCluster)(nil),         // 4: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster
+	(*MongodbClusterId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId
+	(*MongodbClusters)(nil),        // 1: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters
+	(*MongodbClusterPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterPassword
+	(*MongodbClusterList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterList
+	(*MongodbCluster)(nil),         // 4: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster
 }
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusters.entries:type_name -> cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster
-	4, // 1: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterList.entries:type_name -> cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster
+	4, // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters.entries:type_name -> cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster
+	4, // 1: cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterList.entries:type_name -> cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -325,7 +325,7 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_init() 
 	file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_state_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MongoDBClusterId); i {
+			switch v := v.(*MongodbClusterId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -337,7 +337,7 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_init() 
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MongoDBClusters); i {
+			switch v := v.(*MongodbClusters); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -349,7 +349,7 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_init() 
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MongoDBClusterPassword); i {
+			switch v := v.(*MongodbClusterPassword); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -361,7 +361,7 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_init() 
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_mongodbcluster_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MongoDBClusterList); i {
+			switch v := v.(*MongodbClusterList); i {
 			case 0:
 				return &v.state
 			case 1:

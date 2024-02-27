@@ -61,7 +61,7 @@ type GitLabServerCommandControllerClient interface {
 	// create-stack-job for gitlab-server
 	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
 	// restart a gitlab-server running in a environment.
-	// gitlab-server is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
+	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServer, error)
 	// pause a gitlab-server running in a environment.
 	// gitlab-server is paused by scaling down number of replicas of
@@ -234,7 +234,7 @@ type GitLabServerCommandControllerServer interface {
 	// create-stack-job for gitlab-server
 	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GitLabServer, error)
 	// restart a gitlab-server running in a environment.
-	// gitlab-server is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
+	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.GitLabServerId) (*model.GitLabServer, error)
 	// pause a gitlab-server running in a environment.
 	// gitlab-server is paused by scaling down number of replicas of

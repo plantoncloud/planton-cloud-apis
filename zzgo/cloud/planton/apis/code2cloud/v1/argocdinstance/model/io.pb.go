@@ -21,7 +21,7 @@ const (
 )
 
 // wrapper for id field of argocd-instance
-type ArgoCDInstanceId struct {
+type ArgocdInstanceId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type ArgoCDInstanceId struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *ArgoCDInstanceId) Reset() {
-	*x = ArgoCDInstanceId{}
+func (x *ArgocdInstanceId) Reset() {
+	*x = ArgocdInstanceId{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *ArgoCDInstanceId) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceId) String() string {
+func (x *ArgocdInstanceId) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceId) ProtoMessage() {}
+func (*ArgocdInstanceId) ProtoMessage() {}
 
-func (x *ArgoCDInstanceId) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceId) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,12 +56,12 @@ func (x *ArgoCDInstanceId) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceId.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceId) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceId.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceId) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ArgoCDInstanceId) GetValue() string {
+func (x *ArgocdInstanceId) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -69,16 +69,16 @@ func (x *ArgoCDInstanceId) GetValue() string {
 }
 
 // list of argocd-instances
-type ArgoCDInstances struct {
+type ArgocdInstances struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Entries []*ArgoCDInstance `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries []*ArgocdInstance `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *ArgoCDInstances) Reset() {
-	*x = ArgoCDInstances{}
+func (x *ArgocdInstances) Reset() {
+	*x = ArgocdInstances{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -86,13 +86,13 @@ func (x *ArgoCDInstances) Reset() {
 	}
 }
 
-func (x *ArgoCDInstances) String() string {
+func (x *ArgocdInstances) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstances) ProtoMessage() {}
+func (*ArgocdInstances) ProtoMessage() {}
 
-func (x *ArgoCDInstances) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstances) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -104,12 +104,12 @@ func (x *ArgoCDInstances) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstances.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstances) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstances.ProtoReflect.Descriptor instead.
+func (*ArgocdInstances) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ArgoCDInstances) GetEntries() []*ArgoCDInstance {
+func (x *ArgocdInstances) GetEntries() []*ArgocdInstance {
 	if x != nil {
 		return x.Entries
 	}
@@ -117,17 +117,17 @@ func (x *ArgoCDInstances) GetEntries() []*ArgoCDInstance {
 }
 
 // response for paginated query to list argocd-instances
-type ArgoCDInstanceList struct {
+type ArgocdInstanceList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	TotalPages int32             `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*ArgoCDInstance `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries    []*ArgocdInstance `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *ArgoCDInstanceList) Reset() {
-	*x = ArgoCDInstanceList{}
+func (x *ArgocdInstanceList) Reset() {
+	*x = ArgocdInstanceList{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -135,13 +135,13 @@ func (x *ArgoCDInstanceList) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceList) String() string {
+func (x *ArgocdInstanceList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceList) ProtoMessage() {}
+func (*ArgocdInstanceList) ProtoMessage() {}
 
-func (x *ArgoCDInstanceList) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceList) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -153,19 +153,19 @@ func (x *ArgoCDInstanceList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceList.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceList) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceList.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceList) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ArgoCDInstanceList) GetTotalPages() int32 {
+func (x *ArgocdInstanceList) GetTotalPages() int32 {
 	if x != nil {
 		return x.TotalPages
 	}
 	return 0
 }
 
-func (x *ArgoCDInstanceList) GetEntries() []*ArgoCDInstance {
+func (x *ArgocdInstanceList) GetEntries() []*ArgocdInstance {
 	if x != nil {
 		return x.Entries
 	}
@@ -187,24 +187,24 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_rawDesc 
 	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64,
 	0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x73,
 	0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x28, 0x0a, 0x10, 0x41, 0x72,
-	0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x49, 0x64, 0x12, 0x14,
+	0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x49, 0x64, 0x12, 0x14,
 	0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76,
-	0x61, 0x6c, 0x75, 0x65, 0x22, 0x72, 0x0a, 0x0f, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e,
+	0x61, 0x6c, 0x75, 0x65, 0x22, 0x72, 0x0a, 0x0f, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e,
 	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x73, 0x12, 0x5f, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69,
 	0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x45, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
 	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f,
 	0x63, 0x64, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
+	0x2e, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52,
 	0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x96, 0x01, 0x0a, 0x12, 0x41, 0x72, 0x67,
-	0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x12,
 	0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73,
 	0x12, 0x5f, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28,
 	0x0b, 0x32, 0x45, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
 	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73, 0x74, 0x61,
-	0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44,
+	0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64,
 	0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
 	0x73, 0x42, 0xb3, 0x03, 0x0a, 0x43, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e,
 	0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
@@ -250,14 +250,14 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_rawDesc
 
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_goTypes = []interface{}{
-	(*ArgoCDInstanceId)(nil),   // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceId
-	(*ArgoCDInstances)(nil),    // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstances
-	(*ArgoCDInstanceList)(nil), // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceList
-	(*ArgoCDInstance)(nil),     // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
+	(*ArgocdInstanceId)(nil),   // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceId
+	(*ArgocdInstances)(nil),    // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstances
+	(*ArgocdInstanceList)(nil), // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceList
+	(*ArgocdInstance)(nil),     // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
 }
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_depIdxs = []int32{
-	3, // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstances.entries:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
-	3, // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceList.entries:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
+	3, // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstances.entries:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
+	3, // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceList.entries:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -273,7 +273,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_init() 
 	file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceId); i {
+			switch v := v.(*ArgocdInstanceId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -285,7 +285,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_init() 
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstances); i {
+			switch v := v.(*ArgocdInstances); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -297,7 +297,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_init() 
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceList); i {
+			switch v := v.(*ArgocdInstanceList); i {
 			case 0:
 				return &v.state
 			case 1:

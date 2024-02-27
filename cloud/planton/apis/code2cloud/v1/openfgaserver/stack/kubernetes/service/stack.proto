@@ -4,9 +4,9 @@ package cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service;
 
 import "cloud/planton/apis/code2cloud/v1/openfgaserver/stack/kubernetes/model/io.proto";
 
-service OpenFGAServerKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackOutputs);
+service OpenfgaServerKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackOutputs);
 }

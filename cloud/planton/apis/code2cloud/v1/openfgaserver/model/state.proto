@@ -12,7 +12,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 //openfga-server
-message OpenFGAServer {
+message OpenfgaServer {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
@@ -72,23 +72,23 @@ message OpenFGAServer {
   ];
 
   //spec
-  OpenFGAServerSpec spec = 4;
+  OpenfgaServerSpec spec = 4;
 
   //status
-  OpenFGAServerStatus status = 5;
+  OpenfgaServerStatus status = 5;
 }
 
 //openfga-server spec
-message OpenFGAServerSpec {
+message OpenfgaServerSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  OpenFGAServerSpecKubernetesSpec kubernetes = 2;
+  OpenfgaServerSpecKubernetesSpec kubernetes = 2;
 }
 
 //openfga-server status.
-message OpenFGAServerStatus {
+message OpenfgaServerStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,50 +99,29 @@ message OpenFGAServerStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  OpenFGAServerStatusKubernetesStatus kubernetes = 1;
+  OpenfgaServerStatusKubernetesStatus kubernetes = 1;
 }
 
 // openfga-server kubernetes spec
-message OpenFGAServerSpecKubernetesSpec {
+message OpenfgaServerSpecKubernetesSpec {
   //openfga-container spec
-  OpenFGAServerSpecKubernetesSpecRedisContainerSpec openfga_container = 1;
+  OpenfgaServerSpecKubernetesSpecOpenfgaContainerSpec openfga_container = 1;
 
   //openfga-server ingress-spec
-  OpenFGAServerSpecKubernetesSpecIngressSpec ingress = 2;
-
+  OpenfgaServerSpecKubernetesSpecIngressSpec ingress = 2;
 }
 
 // openfga-server kubernetes openfga-container spec
-message OpenFGAServerSpecKubernetesSpecRedisContainerSpec {
-  //number of openfga pods.
-  //recommended default 1
-  int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
-
+message OpenfgaServerSpecKubernetesSpecOpenfgaContainerSpec {
   //openfga container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
-
-  //flag to toggle persistence for openfga data.
-  //when enabled, openfga in-memory data will be persisted to a storage volume.
-  //the backup data from persistent volume is restored into openfga memory between pod restarts.
-  //defaults to false.
-  bool is_persistence_enabled = 3;
-
-  //size of persistent volume attached to each openfga pod
-  //if the client does not provide a value, the default value is configured.
-  //this attribute is ignored when persistence is not enabled.
-  //this persistent volume is used for backing up in-memory data.
-  //data from the persistent volume will be restored into memory between pod restarts.
-  //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
-  string disk_size = 4;
 }
 
 // openfga-server kubernetes ingress spec
-message OpenFGAServerSpecKubernetesSpecIngressSpec {
+message OpenfgaServerSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -165,7 +144,7 @@ message OpenFGAServerSpecKubernetesSpecIngressSpec {
 }
 
 //openfga-server kubernetes status
-message OpenFGAServerStatusKubernetesStatus {
+message OpenfgaServerStatusKubernetesStatus {
   //kubernetes namespace in which openfga-server is created.
   string namespace = 1;
 

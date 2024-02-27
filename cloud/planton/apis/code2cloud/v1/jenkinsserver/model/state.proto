@@ -105,7 +105,7 @@ message JenkinsServerStatus {
 // jenkins-server kubernetes spec
 message JenkinsServerSpecKubernetesSpec {
   //jenkins-container spec
-  JenkinsServerSpecKubernetesSpecRedisContainerSpec jenkins_container = 1;
+  JenkinsServerSpecKubernetesSpecJenkinsContainerSpec jenkins_container = 1;
 
   //jenkins-server ingress-spec
   JenkinsServerSpecKubernetesSpecIngressSpec ingress = 2;
@@ -113,7 +113,7 @@ message JenkinsServerSpecKubernetesSpec {
 }
 
 // jenkins-server kubernetes jenkins-container spec
-message JenkinsServerSpecKubernetesSpecRedisContainerSpec {
+message JenkinsServerSpecKubernetesSpecJenkinsContainerSpec {
   //jenkins container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [

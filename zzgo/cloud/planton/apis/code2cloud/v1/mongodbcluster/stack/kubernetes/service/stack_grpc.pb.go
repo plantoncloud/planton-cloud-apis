@@ -20,32 +20,32 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MongoDBClusterKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongoDBClusterKubernetesStackController/execute"
-	MongoDBClusterKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongoDBClusterKubernetesStackController/getStackOutputs"
+	MongodbClusterKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongodbClusterKubernetesStackController/execute"
+	MongodbClusterKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongodbClusterKubernetesStackController/getStackOutputs"
 )
 
-// MongoDBClusterKubernetesStackControllerClient is the client API for MongoDBClusterKubernetesStackController service.
+// MongodbClusterKubernetesStackControllerClient is the client API for MongodbClusterKubernetesStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MongoDBClusterKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.MongoDBClusterKubernetesStackInput, opts ...grpc.CallOption) (MongoDBClusterKubernetesStackController_ExecuteClient, error)
-	GetStackOutputs(ctx context.Context, in *model.MongoDBClusterKubernetesStackInput, opts ...grpc.CallOption) (*model.MongoDBClusterKubernetesStackOutputs, error)
+type MongodbClusterKubernetesStackControllerClient interface {
+	Execute(ctx context.Context, in *model.MongodbClusterKubernetesStackInput, opts ...grpc.CallOption) (MongodbClusterKubernetesStackController_ExecuteClient, error)
+	GetStackOutputs(ctx context.Context, in *model.MongodbClusterKubernetesStackInput, opts ...grpc.CallOption) (*model.MongodbClusterKubernetesStackOutputs, error)
 }
 
-type mongoDBClusterKubernetesStackControllerClient struct {
+type mongodbClusterKubernetesStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMongoDBClusterKubernetesStackControllerClient(cc grpc.ClientConnInterface) MongoDBClusterKubernetesStackControllerClient {
-	return &mongoDBClusterKubernetesStackControllerClient{cc}
+func NewMongodbClusterKubernetesStackControllerClient(cc grpc.ClientConnInterface) MongodbClusterKubernetesStackControllerClient {
+	return &mongodbClusterKubernetesStackControllerClient{cc}
 }
 
-func (c *mongoDBClusterKubernetesStackControllerClient) Execute(ctx context.Context, in *model.MongoDBClusterKubernetesStackInput, opts ...grpc.CallOption) (MongoDBClusterKubernetesStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &MongoDBClusterKubernetesStackController_ServiceDesc.Streams[0], MongoDBClusterKubernetesStackController_Execute_FullMethodName, opts...)
+func (c *mongodbClusterKubernetesStackControllerClient) Execute(ctx context.Context, in *model.MongodbClusterKubernetesStackInput, opts ...grpc.CallOption) (MongodbClusterKubernetesStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &MongodbClusterKubernetesStackController_ServiceDesc.Streams[0], MongodbClusterKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &mongoDBClusterKubernetesStackControllerExecuteClient{stream}
+	x := &mongodbClusterKubernetesStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -55,117 +55,117 @@ func (c *mongoDBClusterKubernetesStackControllerClient) Execute(ctx context.Cont
 	return x, nil
 }
 
-type MongoDBClusterKubernetesStackController_ExecuteClient interface {
-	Recv() (*model.MongoDBClusterKubernetesStackResponse, error)
+type MongodbClusterKubernetesStackController_ExecuteClient interface {
+	Recv() (*model.MongodbClusterKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
-type mongoDBClusterKubernetesStackControllerExecuteClient struct {
+type mongodbClusterKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *mongoDBClusterKubernetesStackControllerExecuteClient) Recv() (*model.MongoDBClusterKubernetesStackResponse, error) {
-	m := new(model.MongoDBClusterKubernetesStackResponse)
+func (x *mongodbClusterKubernetesStackControllerExecuteClient) Recv() (*model.MongodbClusterKubernetesStackResponse, error) {
+	m := new(model.MongodbClusterKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *mongoDBClusterKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.MongoDBClusterKubernetesStackInput, opts ...grpc.CallOption) (*model.MongoDBClusterKubernetesStackOutputs, error) {
-	out := new(model.MongoDBClusterKubernetesStackOutputs)
-	err := c.cc.Invoke(ctx, MongoDBClusterKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
+func (c *mongodbClusterKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.MongodbClusterKubernetesStackInput, opts ...grpc.CallOption) (*model.MongodbClusterKubernetesStackOutputs, error) {
+	out := new(model.MongodbClusterKubernetesStackOutputs)
+	err := c.cc.Invoke(ctx, MongodbClusterKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MongoDBClusterKubernetesStackControllerServer is the server API for MongoDBClusterKubernetesStackController service.
-// All implementations should embed UnimplementedMongoDBClusterKubernetesStackControllerServer
+// MongodbClusterKubernetesStackControllerServer is the server API for MongodbClusterKubernetesStackController service.
+// All implementations should embed UnimplementedMongodbClusterKubernetesStackControllerServer
 // for forward compatibility
-type MongoDBClusterKubernetesStackControllerServer interface {
-	Execute(*model.MongoDBClusterKubernetesStackInput, MongoDBClusterKubernetesStackController_ExecuteServer) error
-	GetStackOutputs(context.Context, *model.MongoDBClusterKubernetesStackInput) (*model.MongoDBClusterKubernetesStackOutputs, error)
+type MongodbClusterKubernetesStackControllerServer interface {
+	Execute(*model.MongodbClusterKubernetesStackInput, MongodbClusterKubernetesStackController_ExecuteServer) error
+	GetStackOutputs(context.Context, *model.MongodbClusterKubernetesStackInput) (*model.MongodbClusterKubernetesStackOutputs, error)
 }
 
-// UnimplementedMongoDBClusterKubernetesStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedMongoDBClusterKubernetesStackControllerServer struct {
+// UnimplementedMongodbClusterKubernetesStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedMongodbClusterKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedMongoDBClusterKubernetesStackControllerServer) Execute(*model.MongoDBClusterKubernetesStackInput, MongoDBClusterKubernetesStackController_ExecuteServer) error {
+func (UnimplementedMongodbClusterKubernetesStackControllerServer) Execute(*model.MongodbClusterKubernetesStackInput, MongodbClusterKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
-func (UnimplementedMongoDBClusterKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.MongoDBClusterKubernetesStackInput) (*model.MongoDBClusterKubernetesStackOutputs, error) {
+func (UnimplementedMongodbClusterKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.MongodbClusterKubernetesStackInput) (*model.MongodbClusterKubernetesStackOutputs, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStackOutputs not implemented")
 }
 
-// UnsafeMongoDBClusterKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MongoDBClusterKubernetesStackControllerServer will
+// UnsafeMongodbClusterKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MongodbClusterKubernetesStackControllerServer will
 // result in compilation errors.
-type UnsafeMongoDBClusterKubernetesStackControllerServer interface {
-	mustEmbedUnimplementedMongoDBClusterKubernetesStackControllerServer()
+type UnsafeMongodbClusterKubernetesStackControllerServer interface {
+	mustEmbedUnimplementedMongodbClusterKubernetesStackControllerServer()
 }
 
-func RegisterMongoDBClusterKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv MongoDBClusterKubernetesStackControllerServer) {
-	s.RegisterService(&MongoDBClusterKubernetesStackController_ServiceDesc, srv)
+func RegisterMongodbClusterKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv MongodbClusterKubernetesStackControllerServer) {
+	s.RegisterService(&MongodbClusterKubernetesStackController_ServiceDesc, srv)
 }
 
-func _MongoDBClusterKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.MongoDBClusterKubernetesStackInput)
+func _MongodbClusterKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.MongodbClusterKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(MongoDBClusterKubernetesStackControllerServer).Execute(m, &mongoDBClusterKubernetesStackControllerExecuteServer{stream})
+	return srv.(MongodbClusterKubernetesStackControllerServer).Execute(m, &mongodbClusterKubernetesStackControllerExecuteServer{stream})
 }
 
-type MongoDBClusterKubernetesStackController_ExecuteServer interface {
-	Send(*model.MongoDBClusterKubernetesStackResponse) error
+type MongodbClusterKubernetesStackController_ExecuteServer interface {
+	Send(*model.MongodbClusterKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
-type mongoDBClusterKubernetesStackControllerExecuteServer struct {
+type mongodbClusterKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *mongoDBClusterKubernetesStackControllerExecuteServer) Send(m *model.MongoDBClusterKubernetesStackResponse) error {
+func (x *mongodbClusterKubernetesStackControllerExecuteServer) Send(m *model.MongodbClusterKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _MongoDBClusterKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MongoDBClusterKubernetesStackInput)
+func _MongodbClusterKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MongodbClusterKubernetesStackInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongoDBClusterKubernetesStackControllerServer).GetStackOutputs(ctx, in)
+		return srv.(MongodbClusterKubernetesStackControllerServer).GetStackOutputs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongoDBClusterKubernetesStackController_GetStackOutputs_FullMethodName,
+		FullMethod: MongodbClusterKubernetesStackController_GetStackOutputs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongoDBClusterKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.MongoDBClusterKubernetesStackInput))
+		return srv.(MongodbClusterKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.MongodbClusterKubernetesStackInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// MongoDBClusterKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for MongoDBClusterKubernetesStackController service.
+// MongodbClusterKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for MongodbClusterKubernetesStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var MongoDBClusterKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongoDBClusterKubernetesStackController",
-	HandlerType: (*MongoDBClusterKubernetesStackControllerServer)(nil),
+var MongodbClusterKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service.MongodbClusterKubernetesStackController",
+	HandlerType: (*MongodbClusterKubernetesStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "getStackOutputs",
-			Handler:    _MongoDBClusterKubernetesStackController_GetStackOutputs_Handler,
+			Handler:    _MongodbClusterKubernetesStackController_GetStackOutputs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _MongoDBClusterKubernetesStackController_Execute_Handler,
+			Handler:       _MongodbClusterKubernetesStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},

@@ -25,7 +25,7 @@ const (
 )
 
 // input for openfga-server stack
-type OpenFGAServerKubernetesStackInput struct {
+type OpenfgaServerKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -33,13 +33,13 @@ type OpenFGAServerKubernetesStackInput struct {
 	// stack job
 	StackJob *model.StackJob `protobuf:"bytes,1,opt,name=stack_job,json=stackJob,proto3" json:"stack_job,omitempty"`
 	// pulumi stack credentials
-	CredentialsInput *OpenFGAServerKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
+	CredentialsInput *OpenfgaServerKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
 	// inputs used for creating stack resources
-	ResourceInput *OpenFGAServerKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
+	ResourceInput *OpenfgaServerKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
 }
 
-func (x *OpenFGAServerKubernetesStackInput) Reset() {
-	*x = OpenFGAServerKubernetesStackInput{}
+func (x *OpenfgaServerKubernetesStackInput) Reset() {
+	*x = OpenfgaServerKubernetesStackInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -47,13 +47,13 @@ func (x *OpenFGAServerKubernetesStackInput) Reset() {
 	}
 }
 
-func (x *OpenFGAServerKubernetesStackInput) String() string {
+func (x *OpenfgaServerKubernetesStackInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerKubernetesStackInput) ProtoMessage() {}
+func (*OpenfgaServerKubernetesStackInput) ProtoMessage() {}
 
-func (x *OpenFGAServerKubernetesStackInput) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerKubernetesStackInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -65,26 +65,26 @@ func (x *OpenFGAServerKubernetesStackInput) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerKubernetesStackInput.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerKubernetesStackInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerKubernetesStackInput.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerKubernetesStackInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *OpenFGAServerKubernetesStackInput) GetStackJob() *model.StackJob {
+func (x *OpenfgaServerKubernetesStackInput) GetStackJob() *model.StackJob {
 	if x != nil {
 		return x.StackJob
 	}
 	return nil
 }
 
-func (x *OpenFGAServerKubernetesStackInput) GetCredentialsInput() *OpenFGAServerKubernetesStackCredentialsInput {
+func (x *OpenfgaServerKubernetesStackInput) GetCredentialsInput() *OpenfgaServerKubernetesStackCredentialsInput {
 	if x != nil {
 		return x.CredentialsInput
 	}
 	return nil
 }
 
-func (x *OpenFGAServerKubernetesStackInput) GetResourceInput() *OpenFGAServerKubernetesStackResourceInput {
+func (x *OpenfgaServerKubernetesStackInput) GetResourceInput() *OpenfgaServerKubernetesStackResourceInput {
 	if x != nil {
 		return x.ResourceInput
 	}
@@ -92,7 +92,7 @@ func (x *OpenFGAServerKubernetesStackInput) GetResourceInput() *OpenFGAServerKub
 }
 
 // stack credentials input
-type OpenFGAServerKubernetesStackCredentialsInput struct {
+type OpenfgaServerKubernetesStackCredentialsInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -101,8 +101,8 @@ type OpenFGAServerKubernetesStackCredentialsInput struct {
 	Kubernetes *credentials.KubernetesProviderCredential `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *OpenFGAServerKubernetesStackCredentialsInput) Reset() {
-	*x = OpenFGAServerKubernetesStackCredentialsInput{}
+func (x *OpenfgaServerKubernetesStackCredentialsInput) Reset() {
+	*x = OpenfgaServerKubernetesStackCredentialsInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -110,13 +110,13 @@ func (x *OpenFGAServerKubernetesStackCredentialsInput) Reset() {
 	}
 }
 
-func (x *OpenFGAServerKubernetesStackCredentialsInput) String() string {
+func (x *OpenfgaServerKubernetesStackCredentialsInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerKubernetesStackCredentialsInput) ProtoMessage() {}
+func (*OpenfgaServerKubernetesStackCredentialsInput) ProtoMessage() {}
 
-func (x *OpenFGAServerKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -128,12 +128,12 @@ func (x *OpenFGAServerKubernetesStackCredentialsInput) ProtoReflect() protorefle
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *OpenFGAServerKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
+func (x *OpenfgaServerKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -141,17 +141,17 @@ func (x *OpenFGAServerKubernetesStackCredentialsInput) GetKubernetes() *credenti
 }
 
 // stack resource input
-type OpenFGAServerKubernetesStackResourceInput struct {
+type OpenfgaServerKubernetesStackResourceInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// openfga-server
-	OpenfgaServer *model1.OpenFGAServer `protobuf:"bytes,1,opt,name=openfga_server,json=openfgaServer,proto3" json:"openfga_server,omitempty"`
+	OpenfgaServer *model1.OpenfgaServer `protobuf:"bytes,1,opt,name=openfga_server,json=openfgaServer,proto3" json:"openfga_server,omitempty"`
 }
 
-func (x *OpenFGAServerKubernetesStackResourceInput) Reset() {
-	*x = OpenFGAServerKubernetesStackResourceInput{}
+func (x *OpenfgaServerKubernetesStackResourceInput) Reset() {
+	*x = OpenfgaServerKubernetesStackResourceInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -159,13 +159,13 @@ func (x *OpenFGAServerKubernetesStackResourceInput) Reset() {
 	}
 }
 
-func (x *OpenFGAServerKubernetesStackResourceInput) String() string {
+func (x *OpenfgaServerKubernetesStackResourceInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerKubernetesStackResourceInput) ProtoMessage() {}
+func (*OpenfgaServerKubernetesStackResourceInput) ProtoMessage() {}
 
-func (x *OpenFGAServerKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -177,12 +177,12 @@ func (x *OpenFGAServerKubernetesStackResourceInput) ProtoReflect() protoreflect.
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OpenFGAServerKubernetesStackResourceInput) GetOpenfgaServer() *model1.OpenFGAServer {
+func (x *OpenfgaServerKubernetesStackResourceInput) GetOpenfgaServer() *model1.OpenfgaServer {
 	if x != nil {
 		return x.OpenfgaServer
 	}
@@ -190,17 +190,17 @@ func (x *OpenFGAServerKubernetesStackResourceInput) GetOpenfgaServer() *model1.O
 }
 
 // openfga-server stack outputs
-type OpenFGAServerKubernetesStackOutputs struct {
+type OpenfgaServerKubernetesStackOutputs struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// status of the openfga-server upon stack-job
-	OpenfgaServerStatus *model1.OpenFGAServerStatus `protobuf:"bytes,1,opt,name=openfga_server_status,json=openfgaServerStatus,proto3" json:"openfga_server_status,omitempty"`
+	OpenfgaServerStatus *model1.OpenfgaServerStatus `protobuf:"bytes,1,opt,name=openfga_server_status,json=openfgaServerStatus,proto3" json:"openfga_server_status,omitempty"`
 }
 
-func (x *OpenFGAServerKubernetesStackOutputs) Reset() {
-	*x = OpenFGAServerKubernetesStackOutputs{}
+func (x *OpenfgaServerKubernetesStackOutputs) Reset() {
+	*x = OpenfgaServerKubernetesStackOutputs{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,13 +208,13 @@ func (x *OpenFGAServerKubernetesStackOutputs) Reset() {
 	}
 }
 
-func (x *OpenFGAServerKubernetesStackOutputs) String() string {
+func (x *OpenfgaServerKubernetesStackOutputs) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerKubernetesStackOutputs) ProtoMessage() {}
+func (*OpenfgaServerKubernetesStackOutputs) ProtoMessage() {}
 
-func (x *OpenFGAServerKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,12 +226,12 @@ func (x *OpenFGAServerKubernetesStackOutputs) ProtoReflect() protoreflect.Messag
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerKubernetesStackOutputs.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerKubernetesStackOutputs) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerKubernetesStackOutputs.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerKubernetesStackOutputs) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *OpenFGAServerKubernetesStackOutputs) GetOpenfgaServerStatus() *model1.OpenFGAServerStatus {
+func (x *OpenfgaServerKubernetesStackOutputs) GetOpenfgaServerStatus() *model1.OpenfgaServerStatus {
 	if x != nil {
 		return x.OpenfgaServerStatus
 	}
@@ -239,7 +239,7 @@ func (x *OpenFGAServerKubernetesStackOutputs) GetOpenfgaServerStatus() *model1.O
 }
 
 // stack response
-type OpenFGAServerKubernetesStackResponse struct {
+type OpenfgaServerKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -247,11 +247,11 @@ type OpenFGAServerKubernetesStackResponse struct {
 	// stack-job progress event
 	ProgressEvent *progress.StackJobProgressEvent `protobuf:"bytes,1,opt,name=progress_event,json=progressEvent,proto3" json:"progress_event,omitempty"`
 	// stack outputs
-	Outputs *OpenFGAServerKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
+	Outputs *OpenfgaServerKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
 }
 
-func (x *OpenFGAServerKubernetesStackResponse) Reset() {
-	*x = OpenFGAServerKubernetesStackResponse{}
+func (x *OpenfgaServerKubernetesStackResponse) Reset() {
+	*x = OpenfgaServerKubernetesStackResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -259,13 +259,13 @@ func (x *OpenFGAServerKubernetesStackResponse) Reset() {
 	}
 }
 
-func (x *OpenFGAServerKubernetesStackResponse) String() string {
+func (x *OpenfgaServerKubernetesStackResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerKubernetesStackResponse) ProtoMessage() {}
+func (*OpenfgaServerKubernetesStackResponse) ProtoMessage() {}
 
-func (x *OpenFGAServerKubernetesStackResponse) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerKubernetesStackResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -277,19 +277,19 @@ func (x *OpenFGAServerKubernetesStackResponse) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerKubernetesStackResponse.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerKubernetesStackResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerKubernetesStackResponse.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerKubernetesStackResponse) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *OpenFGAServerKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
+func (x *OpenfgaServerKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
 	if x != nil {
 		return x.ProgressEvent
 	}
 	return nil
 }
 
-func (x *OpenFGAServerKubernetesStackResponse) GetOutputs() *OpenFGAServerKubernetesStackOutputs {
+func (x *OpenfgaServerKubernetesStackResponse) GetOutputs() *OpenfgaServerKubernetesStackOutputs {
 	if x != nil {
 		return x.Outputs
 	}
@@ -324,7 +324,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x69, 0x73, 0x2f, 0x69, 0x61, 0x63, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a,
 	0x6f, 0x62, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x70, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73,
 	0x73, 0x2f, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb1, 0x03, 0x0a, 0x21, 0x4f,
-	0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65,
+	0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65,
 	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x49, 0x6e, 0x70, 0x75, 0x74,
 	0x12, 0x4f, 0x0a, 0x09, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x6a, 0x6f, 0x62, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
@@ -337,7 +337,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31,
 	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x73,
 	0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61,
 	0x63, 0x6b, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70,
 	0x75, 0x74, 0x52, 0x10, 0x63, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x49,
@@ -347,11 +347,11 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31,
 	0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x73,
 	0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61,
 	0x63, 0x6b, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52,
 	0x0d, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0xa2,
-	0x01, 0x0a, 0x2c, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x01, 0x0a, 0x2c, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x43,
 	0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12,
 	0x72, 0x0a, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20,
@@ -361,7 +361,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x43, 0x72, 0x65,
 	0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x52, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
-	0x74, 0x65, 0x73, 0x22, 0x97, 0x01, 0x0a, 0x29, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53,
+	0x74, 0x65, 0x73, 0x22, 0x97, 0x01, 0x0a, 0x29, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53,
 	0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x70, 0x75,
 	0x74, 0x12, 0x6a, 0x0a, 0x0e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x5f, 0x73, 0x65, 0x72,
@@ -369,9 +369,9 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63,
 	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6f, 0x70, 0x65,
 	0x6e, 0x66, 0x67, 0x61, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x0d,
+	0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x0d,
 	0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x22, 0xa4, 0x01,
-	0x0a, 0x23, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b,
+	0x0a, 0x23, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b,
 	0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f, 0x75,
 	0x74, 0x70, 0x75, 0x74, 0x73, 0x12, 0x7d, 0x0a, 0x15, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61,
 	0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01,
@@ -379,9 +379,9 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e,
-	0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
+	0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
 	0x13, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74,
-	0x61, 0x74, 0x75, 0x73, 0x22, 0x9e, 0x02, 0x0a, 0x24, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41,
+	0x61, 0x74, 0x75, 0x73, 0x22, 0x9e, 0x02, 0x0a, 0x24, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61,
 	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
 	0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a,
 	0x0e, 0x70, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x18,
@@ -396,7 +396,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_i
 	0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x76, 0x31, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74,
-	0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41,
+	0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61,
 	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
 	0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x52, 0x07, 0x6f, 0x75,
 	0x74, 0x70, 0x75, 0x74, 0x73, 0x42, 0x97, 0x04, 0x0a, 0x53, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e,
@@ -450,26 +450,26 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_goTypes = []interface{}{
-	(*OpenFGAServerKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput
-	(*OpenFGAServerKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackCredentialsInput
-	(*OpenFGAServerKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResourceInput
-	(*OpenFGAServerKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackOutputs
-	(*OpenFGAServerKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResponse
+	(*OpenfgaServerKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput
+	(*OpenfgaServerKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackCredentialsInput
+	(*OpenfgaServerKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResourceInput
+	(*OpenfgaServerKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackOutputs
+	(*OpenfgaServerKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResponse
 	(*model.StackJob)(nil),                               // 5: cloud.planton.apis.iac.v1.stackjob.model.StackJob
 	(*credentials.KubernetesProviderCredential)(nil),     // 6: cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	(*model1.OpenFGAServer)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer
-	(*model1.OpenFGAServerStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerStatus
+	(*model1.OpenfgaServer)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer
+	(*model1.OpenfgaServerStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerStatus
 	(*progress.StackJobProgressEvent)(nil),               // 9: cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
 }
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	1, // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackCredentialsInput
-	2, // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResourceInput
-	6, // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	7, // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResourceInput.openfga_server:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer
-	8, // 5: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackOutputs.openfga_server_status:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerStatus
-	9, // 6: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
-	3, // 7: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenFGAServerKubernetesStackOutputs
+	5, // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	1, // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackCredentialsInput
+	2, // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResourceInput
+	6, // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
+	7, // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResourceInput.openfga_server:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer
+	8, // 5: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackOutputs.openfga_server_status:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerStatus
+	9, // 6: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
+	3, // 7: cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.model.OpenfgaServerKubernetesStackOutputs
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name
@@ -486,7 +486,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerKubernetesStackInput); i {
+			switch v := v.(*OpenfgaServerKubernetesStackInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -498,7 +498,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerKubernetesStackCredentialsInput); i {
+			switch v := v.(*OpenfgaServerKubernetesStackCredentialsInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -510,7 +510,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerKubernetesStackResourceInput); i {
+			switch v := v.(*OpenfgaServerKubernetesStackResourceInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -522,7 +522,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerKubernetesStackOutputs); i {
+			switch v := v.(*OpenfgaServerKubernetesStackOutputs); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -534,7 +534,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_stack_kubernetes_model_io_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerKubernetesStackResponse); i {
+			switch v := v.(*OpenfgaServerKubernetesStackResponse); i {
 			case 0:
 				return &v.state
 			case 1:

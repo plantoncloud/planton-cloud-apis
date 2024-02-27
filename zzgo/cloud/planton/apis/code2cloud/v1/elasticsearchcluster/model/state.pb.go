@@ -254,7 +254,7 @@ type ElasticsearchClusterSpecKubernetesSpec struct {
 	unknownFields protoimpl.UnknownFields
 
 	// elasticsearch-container spec
-	ElasticsearchContainer *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec `protobuf:"bytes,1,opt,name=elasticsearch_container,json=elasticsearchContainer,proto3" json:"elasticsearch_container,omitempty"`
+	ElasticsearchContainer *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec `protobuf:"bytes,1,opt,name=elasticsearch_container,json=elasticsearchContainer,proto3" json:"elasticsearch_container,omitempty"`
 	// elasticsearch-cluster ingress-spec
 	Ingress *ElasticsearchClusterSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
 }
@@ -291,7 +291,7 @@ func (*ElasticsearchClusterSpecKubernetesSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpec) GetElasticsearchContainer() *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec {
+func (x *ElasticsearchClusterSpecKubernetesSpec) GetElasticsearchContainer() *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec {
 	if x != nil {
 		return x.ElasticsearchContainer
 	}
@@ -306,7 +306,7 @@ func (x *ElasticsearchClusterSpecKubernetesSpec) GetIngress() *ElasticsearchClus
 }
 
 // elasticsearch-cluster kubernetes elasticsearch-container spec
-type ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec struct {
+type ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -331,8 +331,8 @@ type ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec struct {
 	DiskSize string `protobuf:"bytes,4,opt,name=disk_size,json=diskSize,proto3" json:"disk_size,omitempty"`
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) Reset() {
-	*x = ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec{}
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) Reset() {
+	*x = ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -340,13 +340,13 @@ func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) Reset() {
 	}
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) String() string {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) ProtoMessage() {}
+func (*ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) ProtoMessage() {}
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) ProtoReflect() protoreflect.Message {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -358,33 +358,33 @@ func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) ProtoReflect(
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec.ProtoReflect.Descriptor instead.
-func (*ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec.ProtoReflect.Descriptor instead.
+func (*ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) GetReplicas() int32 {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) GetReplicas() int32 {
 	if x != nil {
 		return x.Replicas
 	}
 	return 0
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) GetResources() *model2.ContainerResources {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) GetResources() *model2.ContainerResources {
 	if x != nil {
 		return x.Resources
 	}
 	return nil
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) GetIsPersistenceEnabled() bool {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) GetIsPersistenceEnabled() bool {
 	if x != nil {
 		return x.IsPersistenceEnabled
 	}
 	return false
 }
 
-func (x *ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec) GetDiskSize() string {
+func (x *ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec) GetDiskSize() string {
 	if x != nil {
 		return x.DiskSize
 	}
@@ -715,33 +715,34 @@ var file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto
 	0x64, 0x65, 0x6c, 0x2e, 0x45, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63,
 	0x68, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4b, 0x75,
 	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x0a,
-	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xe4, 0x02, 0x0a, 0x26, 0x45,
+	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xec, 0x02, 0x0a, 0x26, 0x45,
 	0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73,
 	0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
-	0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0xae, 0x01, 0x0a, 0x17, 0x65, 0x6c, 0x61, 0x73, 0x74, 0x69,
+	0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0xb6, 0x01, 0x0a, 0x17, 0x65, 0x6c, 0x61, 0x73, 0x74, 0x69,
 	0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65,
-	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x75, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
+	0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x7d, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
 	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64,
 	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6c, 0x61, 0x73, 0x74,
 	0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e,
 	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x45, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61,
 	0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75,
-	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x65, 0x64, 0x69,
-	0x73, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x52, 0x16,
-	0x65, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6f, 0x6e,
-	0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x88, 0x01, 0x0a, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65,
-	0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
-	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6c, 0x61, 0x73,
-	0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
-	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x45, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65,
-	0x61, 0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b,
-	0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67,
-	0x72, 0x65, 0x73, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73,
-	0x73, 0x22, 0x9b, 0x02, 0x0a, 0x38, 0x45, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61,
-	0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75,
-	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x65, 0x64, 0x69,
-	0x73, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x20,
+	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x45, 0x6c, 0x61, 0x73,
+	0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
+	0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x52, 0x16, 0x65, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73,
+	0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x12, 0x88,
+	0x01, 0x0a, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
+	0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63,
+	0x68, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x45,
+	0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73,
+	0x74, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
+	0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x53, 0x70, 0x65, 0x63,
+	0x52, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x22, 0xa3, 0x02, 0x0a, 0x40, 0x45, 0x6c,
+	0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6c, 0x75, 0x73, 0x74,
+	0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
+	0x53, 0x70, 0x65, 0x63, 0x45, 0x6c, 0x61, 0x73, 0x74, 0x69, 0x63, 0x73, 0x65, 0x61, 0x72, 0x63,
+	0x68, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x20,
 	0x0a, 0x08, 0x72, 0x65, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05,
 	0x42, 0x04, 0xc0, 0xb8, 0x18, 0x01, 0x52, 0x08, 0x72, 0x65, 0x70, 0x6c, 0x69, 0x63, 0x61, 0x73,
 	0x12, 0x6a, 0x0a, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x18, 0x02, 0x20,
@@ -854,19 +855,19 @@ func file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_prot
 
 var file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_goTypes = []interface{}{
-	(*ElasticsearchCluster)(nil),                                     // 0: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchCluster
-	(*ElasticsearchClusterSpec)(nil),                                 // 1: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpec
-	(*ElasticsearchClusterStatus)(nil),                               // 2: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus
-	(*ElasticsearchClusterSpecKubernetesSpec)(nil),                   // 3: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpec
-	(*ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec)(nil), // 4: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec
-	(*ElasticsearchClusterSpecKubernetesSpecIngressSpec)(nil),        // 5: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecIngressSpec
-	(*ElasticsearchClusterStatusKubernetesStatus)(nil),               // 6: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatusKubernetesStatus
-	(*model.ApiResourceMetadata)(nil),                                // 7: cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
-	(*model1.ApiResourceEnvironmentInfo)(nil),                        // 8: cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
-	(*model.RunnableApiResourceLifecycle)(nil),                       // 9: cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
-	(*model.ApiResourceAudit)(nil),                                   // 10: cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
-	(*model2.ContainerResources)(nil),                                // 11: cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
-	(kubernetesworkloadingresstype.KubernetesWorkloadIngressType)(0), // 12: cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
+	(*ElasticsearchCluster)(nil),                                             // 0: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchCluster
+	(*ElasticsearchClusterSpec)(nil),                                         // 1: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpec
+	(*ElasticsearchClusterStatus)(nil),                                       // 2: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus
+	(*ElasticsearchClusterSpecKubernetesSpec)(nil),                           // 3: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpec
+	(*ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec)(nil), // 4: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec
+	(*ElasticsearchClusterSpecKubernetesSpecIngressSpec)(nil),                // 5: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecIngressSpec
+	(*ElasticsearchClusterStatusKubernetesStatus)(nil),                       // 6: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatusKubernetesStatus
+	(*model.ApiResourceMetadata)(nil),                                        // 7: cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
+	(*model1.ApiResourceEnvironmentInfo)(nil),                                // 8: cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
+	(*model.RunnableApiResourceLifecycle)(nil),                               // 9: cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
+	(*model.ApiResourceAudit)(nil),                                           // 10: cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
+	(*model2.ContainerResources)(nil),                                        // 11: cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
+	(kubernetesworkloadingresstype.KubernetesWorkloadIngressType)(0),         // 12: cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_depIdxs = []int32{
 	7,  // 0: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchCluster.metadata:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
@@ -877,9 +878,9 @@ var file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto
 	9,  // 5: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus.lifecycle:type_name -> cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
 	10, // 6: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus.audit:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
 	6,  // 7: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatusKubernetesStatus
-	4,  // 8: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpec.elasticsearch_container:type_name -> cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec
+	4,  // 8: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpec.elasticsearch_container:type_name -> cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec
 	5,  // 9: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecIngressSpec
-	11, // 10: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
+	11, // 10: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
 	12, // 11: cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type
@@ -943,7 +944,7 @@ func file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_prot
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_elasticsearchcluster_model_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec); i {
+			switch v := v.(*ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -104,17 +104,17 @@ message GrafanaInstanceStatus {
 
 // argocd-instance kubernetes spec
 message GrafanaInstanceSpecKubernetesSpec {
-  //jenkins-container spec
-  GrafanaInstanceSpecKubernetesSpecRedisContainerSpec jenkins_container = 1;
+  //grafana-container spec
+  GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec grafana_container = 1;
 
   //argocd-instance ingress-spec
   GrafanaInstanceSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// argocd-instance kubernetes jenkins-container spec
-message GrafanaInstanceSpecKubernetesSpecRedisContainerSpec {
-  //jenkins container cpu and memory resources.
+// argocd-instance kubernetes grafana-container spec
+message GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec {
+  //grafana container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
@@ -140,7 +140,7 @@ message GrafanaInstanceSpecKubernetesSpecIngressSpec {
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating jenkins endpoints.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating grafana endpoints.
   string endpoint_domain_name = 3;
 }
 
@@ -158,7 +158,7 @@ message GrafanaInstanceStatusKubernetesStatus {
   //this might come handy when argocd-instance ingress is disabled for security reasons.
   //this is rendered by combining grafana_instance_kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/grafana_instance_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/jenkins
+  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/grafana
   string port_forward_command = 3;
 
   //kubernetes endpoint to connect to argocd-instance from the web browser.
@@ -166,6 +166,6 @@ message GrafanaInstanceStatusKubernetesStatus {
   string kube_endpoint = 4;
 
   //public endpoint to open argocd-instance from clients outside kubernetes.
-  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/jenkins
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/grafana
   string ingress_endpoint = 5;
 }
