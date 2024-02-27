@@ -31,4 +31,5 @@ enum ApiResourceKind {
   helm_release = 25;
   jenkins_server = 26;
   mongodb_cluster = 27;
+  keycloak_server = 28;
 }
