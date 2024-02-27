@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.prometheusserver.model;
+
+import "cloud/planton/apis/code2cloud/v1/prometheusserver/model/state.proto";
+
+//wrapper for id field of prometheus-server
+message PrometheusServerId {
+  string value = 1;
+}
+
+//list of prometheus-servers
+message PrometheusServers {
+  repeated PrometheusServer entries = 1;
+}
+
+//wrapper for prometheus-server password
+message PrometheusServerPassword {
+  string value = 1;
+}
+
+//response for paginated query to list prometheus-servers
+message PrometheusServerList {
+  int32 total_pages = 1;
+  repeated PrometheusServer entries = 2;
+}
