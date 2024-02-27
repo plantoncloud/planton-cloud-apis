@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.grafanainstance.model;
+
+import "cloud/planton/apis/code2cloud/v1/grafanainstance/model/state.proto";
+
+//wrapper for id field of argocd-instance
+message GrafanaInstanceId {
+  string value = 1;
+}
+
+//list of argocd-instances
+message GrafanaInstances {
+  repeated GrafanaInstance entries = 1;
+}
+
+//response for paginated query to list argocd-instances
+message GrafanaInstanceList {
+  int32 total_pages = 1;
+  repeated GrafanaInstance entries = 2;
+}

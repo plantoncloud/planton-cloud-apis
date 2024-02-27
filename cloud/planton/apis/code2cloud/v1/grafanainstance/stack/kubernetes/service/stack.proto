@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/grafanainstance/stack/kubernetes/model/io.proto";
+
+service GrafanaInstanceKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.model.GrafanaInstanceKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.model.GrafanaInstanceKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.model.GrafanaInstanceKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.model.GrafanaInstanceKubernetesStackOutputs);
+}

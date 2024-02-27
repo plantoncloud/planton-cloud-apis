@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.grafanainstance.stack.kubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/grafanainstance/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for argocd-instance stack
+message GrafanaInstanceKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  GrafanaInstanceKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  GrafanaInstanceKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message GrafanaInstanceKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating argocd-instance resources on kubernetes cluster
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message GrafanaInstanceKubernetesStackResourceInput {
+  //argocd-instance
+  cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstance grafana_instance = 1;}
+
+//argocd-instance stack outputs
+message GrafanaInstanceKubernetesStackOutputs {
+  //status of the argocd-instance upon stack-job
+  cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceStatus grafana_instance_status = 1;
+}
+
+//stack response
+message GrafanaInstanceKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  GrafanaInstanceKubernetesStackOutputs outputs = 3;
+}

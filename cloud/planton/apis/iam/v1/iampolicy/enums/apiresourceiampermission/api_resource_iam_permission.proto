@@ -226,4 +226,11 @@ enum ApiResourceIamPermission {
   gitlab_server_get = 154;
   gitlab_server_restore = 155;
   gitlab_server_update = 156;
+
+  // grafana_instance
+  grafana_instance_create = 157;
+  grafana_instance_delete = 158;
+  grafana_instance_get = 159;
+  grafana_instance_restore = 160;
+  grafana_instance_update = 161;
 }
