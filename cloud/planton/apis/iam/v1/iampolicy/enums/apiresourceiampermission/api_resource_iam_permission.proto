@@ -177,4 +177,11 @@ enum ApiResourceIamPermission {
   jenkins_server_get = 119;
   jenkins_server_restore = 120;
   jenkins_server_update = 121;
+
+  // mongodb_cluster
+  mongodb_cluster_create = 122;
+  mongodb_cluster_delete = 123;
+  mongodb_cluster_get = 124;
+  mongodb_cluster_restore = 125;
+  mongodb_cluster_update = 126;
 }

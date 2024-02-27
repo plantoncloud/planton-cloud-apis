@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.mongodbcluster.model;
+
+import "cloud/planton/apis/code2cloud/v1/mongodbcluster/model/state.proto";
+
+//wrapper for id field of mongodb-cluster
+message MongodbClusterId {
+  string value = 1;
+}
+
+//list of mongodb-clusters
+message MongodbClusters {
+  repeated MongodbCluster entries = 1;
+}
+
+//wrapper for mongodb-cluster password
+message MongodbClusterPassword {
+  string value = 1;
+}
+
+//response for paginated query to list mongodb-clusters
+message MongodbClusterList {
+  int32 total_pages = 1;
+  repeated MongodbCluster entries = 2;
+}

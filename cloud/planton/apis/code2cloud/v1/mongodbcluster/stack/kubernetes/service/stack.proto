@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/mongodbcluster/stack/kubernetes/model/io.proto";
+
+service MongodbClusterKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackOutputs);
+}

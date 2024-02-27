@@ -30,4 +30,5 @@ enum ApiResourceKind {
   storage_bucket = 24;
   helm_release = 25;
   jenkins_server = 26;
+  mongodb_cluster = 27;
 }
