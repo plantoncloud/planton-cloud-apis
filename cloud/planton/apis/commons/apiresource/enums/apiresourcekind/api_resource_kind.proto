@@ -32,4 +32,5 @@ enum ApiResourceKind {
   jenkins_server = 26;
   mongodb_cluster = 27;
   keycloak_server = 28;
+  elasticsearch_cluster = 29;
 }

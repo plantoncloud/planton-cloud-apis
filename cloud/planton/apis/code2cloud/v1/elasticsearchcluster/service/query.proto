@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service;
+
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+
+//elasticsearch-cluster query controller
+service ElasticsearchClusterQueryController {
+  //list all elasticsearch-clusters on planton cluster for the requested page.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterList);
+
+  //look up elasticsearch-cluster using elasticsearch-cluster id
+  rpc getById(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_cluster_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view elasticsearch-cluster";
+  }
+
+  //find elasticsearch-clusters by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusters);
+
+  //find elasticsearch-clusters by environment
+  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusters);
+  //find elasticsearch-clusters by kube-cluster
+
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusters);
+
+  //look up elasticsearch-cluster sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterPassword) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view elasticsearch-cluster password";
+  }
+
+  //lookup pods of a elasticsearch-cluster deployed to a environment
+  rpc findPods(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterId)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_cluster_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view elasticsearch-cluster pods";
+  }
+}

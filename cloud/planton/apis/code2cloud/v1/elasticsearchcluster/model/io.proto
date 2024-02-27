@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model;
+
+import "cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model/state.proto";
+
+//wrapper for id field of elasticsearch-cluster
+message ElasticsearchClusterId {
+  string value = 1;
+}
+
+//list of elasticsearch-clusters
+message ElasticsearchClusters {
+  repeated ElasticsearchCluster entries = 1;
+}
+
+//wrapper for elasticsearch-cluster password
+message ElasticsearchClusterPassword {
+  string value = 1;
+}
+
+//response for paginated query to list elasticsearch-clusters
+message ElasticsearchClusterList {
+  int32 total_pages = 1;
+  repeated ElasticsearchCluster entries = 2;
+}

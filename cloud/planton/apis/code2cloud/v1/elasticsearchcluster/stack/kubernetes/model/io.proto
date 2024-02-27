@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for elasticsearch-cluster stack
+message ElasticsearchClusterKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  ElasticsearchClusterKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  ElasticsearchClusterKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message ElasticsearchClusterKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating elasticsearch-cluster resources on kubernetes cluster
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message ElasticsearchClusterKubernetesStackResourceInput {
+  //elasticsearch-cluster
+  cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchCluster elasticsearch_cluster = 1;}
+
+//elasticsearch-cluster stack outputs
+message ElasticsearchClusterKubernetesStackOutputs {
+  //status of the elasticsearch-cluster upon stack-job
+  cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterStatus elasticsearch_cluster_status = 1;
+}
+
+//stack response
+message ElasticsearchClusterKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  ElasticsearchClusterKubernetesStackOutputs outputs = 3;
+}

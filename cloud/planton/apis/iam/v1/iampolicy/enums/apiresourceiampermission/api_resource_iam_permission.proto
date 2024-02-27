@@ -191,4 +191,11 @@ enum ApiResourceIamPermission {
   keycloak_server_get = 129;
   keycloak_server_restore = 130;
   keycloak_server_update = 131;
+
+  // elasticsearch_cluster
+  elasticsearch_cluster_create = 132;
+  elasticsearch_cluster_delete = 133;
+  elasticsearch_cluster_get = 134;
+  elasticsearch_cluster_restore = 135;
+  elasticsearch_cluster_update = 136;
 }
