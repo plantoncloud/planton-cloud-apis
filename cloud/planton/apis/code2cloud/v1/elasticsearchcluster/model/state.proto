@@ -105,7 +105,7 @@ message ElasticsearchClusterStatus {
 // elasticsearch-cluster kubernetes spec
 message ElasticsearchClusterSpecKubernetesSpec {
   //elasticsearch-container spec
-  ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec elasticsearch_container = 1;
+  ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec elasticsearch_container = 1;
 
   //elasticsearch-cluster ingress-spec
   ElasticsearchClusterSpecKubernetesSpecIngressSpec ingress = 2;
@@ -113,7 +113,7 @@ message ElasticsearchClusterSpecKubernetesSpec {
 }
 
 // elasticsearch-cluster kubernetes elasticsearch-container spec
-message ElasticsearchClusterSpecKubernetesSpecRedisContainerSpec {
+message ElasticsearchClusterSpecKubernetesSpecElasticsearchContainerSpec {
   //number of elasticsearch pods.
   //recommended default 1
   int32 replicas = 1 [

@@ -21,31 +21,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type MongoDBClusterApiResourceEventType int32
+type MongodbClusterApiResourceEventType int32
 
 const (
-	MongoDBClusterApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED MongoDBClusterApiResourceEventType = 0
-	MongoDBClusterApiResourceEventType_created                                           MongoDBClusterApiResourceEventType = 1
-	MongoDBClusterApiResourceEventType_updated                                           MongoDBClusterApiResourceEventType = 2
-	MongoDBClusterApiResourceEventType_deleted                                           MongoDBClusterApiResourceEventType = 3
-	MongoDBClusterApiResourceEventType_restored                                          MongoDBClusterApiResourceEventType = 4
-	MongoDBClusterApiResourceEventType_refreshed                                         MongoDBClusterApiResourceEventType = 5
-	MongoDBClusterApiResourceEventType_stack_job_progress_updated                        MongoDBClusterApiResourceEventType = 6
-	MongoDBClusterApiResourceEventType_stack_job_refresh_requested                       MongoDBClusterApiResourceEventType = 7
-	MongoDBClusterApiResourceEventType_stack_job_refresh_completed                       MongoDBClusterApiResourceEventType = 8
-	MongoDBClusterApiResourceEventType_stack_job_apply_preview_requested                 MongoDBClusterApiResourceEventType = 9
-	MongoDBClusterApiResourceEventType_stack_job_apply_requested                         MongoDBClusterApiResourceEventType = 10
-	MongoDBClusterApiResourceEventType_stack_job_apply_completed                         MongoDBClusterApiResourceEventType = 11
-	MongoDBClusterApiResourceEventType_stack_job_destroy_preview_requested               MongoDBClusterApiResourceEventType = 12
-	MongoDBClusterApiResourceEventType_stack_job_destroy_requested                       MongoDBClusterApiResourceEventType = 13
-	MongoDBClusterApiResourceEventType_stack_job_destroy_completed                       MongoDBClusterApiResourceEventType = 14
-	MongoDBClusterApiResourceEventType_paused                                            MongoDBClusterApiResourceEventType = 15
-	MongoDBClusterApiResourceEventType_unpaused                                          MongoDBClusterApiResourceEventType = 16
+	MongodbClusterApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED MongodbClusterApiResourceEventType = 0
+	MongodbClusterApiResourceEventType_created                                           MongodbClusterApiResourceEventType = 1
+	MongodbClusterApiResourceEventType_updated                                           MongodbClusterApiResourceEventType = 2
+	MongodbClusterApiResourceEventType_deleted                                           MongodbClusterApiResourceEventType = 3
+	MongodbClusterApiResourceEventType_restored                                          MongodbClusterApiResourceEventType = 4
+	MongodbClusterApiResourceEventType_refreshed                                         MongodbClusterApiResourceEventType = 5
+	MongodbClusterApiResourceEventType_stack_job_progress_updated                        MongodbClusterApiResourceEventType = 6
+	MongodbClusterApiResourceEventType_stack_job_refresh_requested                       MongodbClusterApiResourceEventType = 7
+	MongodbClusterApiResourceEventType_stack_job_refresh_completed                       MongodbClusterApiResourceEventType = 8
+	MongodbClusterApiResourceEventType_stack_job_apply_preview_requested                 MongodbClusterApiResourceEventType = 9
+	MongodbClusterApiResourceEventType_stack_job_apply_requested                         MongodbClusterApiResourceEventType = 10
+	MongodbClusterApiResourceEventType_stack_job_apply_completed                         MongodbClusterApiResourceEventType = 11
+	MongodbClusterApiResourceEventType_stack_job_destroy_preview_requested               MongodbClusterApiResourceEventType = 12
+	MongodbClusterApiResourceEventType_stack_job_destroy_requested                       MongodbClusterApiResourceEventType = 13
+	MongodbClusterApiResourceEventType_stack_job_destroy_completed                       MongodbClusterApiResourceEventType = 14
+	MongodbClusterApiResourceEventType_paused                                            MongodbClusterApiResourceEventType = 15
+	MongodbClusterApiResourceEventType_unpaused                                          MongodbClusterApiResourceEventType = 16
 )
 
-// Enum value maps for MongoDBClusterApiResourceEventType.
+// Enum value maps for MongodbClusterApiResourceEventType.
 var (
-	MongoDBClusterApiResourceEventType_name = map[int32]string{
+	MongodbClusterApiResourceEventType_name = map[int32]string{
 		0:  "REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED",
 		1:  "created",
 		2:  "updated",
@@ -64,7 +64,7 @@ var (
 		15: "paused",
 		16: "unpaused",
 	}
-	MongoDBClusterApiResourceEventType_value = map[string]int32{
+	MongodbClusterApiResourceEventType_value = map[string]int32{
 		"REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED": 0,
 		"created":                             1,
 		"updated":                             2,
@@ -85,30 +85,30 @@ var (
 	}
 )
 
-func (x MongoDBClusterApiResourceEventType) Enum() *MongoDBClusterApiResourceEventType {
-	p := new(MongoDBClusterApiResourceEventType)
+func (x MongodbClusterApiResourceEventType) Enum() *MongodbClusterApiResourceEventType {
+	p := new(MongodbClusterApiResourceEventType)
 	*p = x
 	return p
 }
 
-func (x MongoDBClusterApiResourceEventType) String() string {
+func (x MongodbClusterApiResourceEventType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (MongoDBClusterApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
+func (MongodbClusterApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0].Descriptor()
 }
 
-func (MongoDBClusterApiResourceEventType) Type() protoreflect.EnumType {
+func (MongodbClusterApiResourceEventType) Type() protoreflect.EnumType {
 	return &file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0]
 }
 
-func (x MongoDBClusterApiResourceEventType) Number() protoreflect.EnumNumber {
+func (x MongodbClusterApiResourceEventType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use MongoDBClusterApiResourceEventType.Descriptor instead.
-func (MongoDBClusterApiResourceEventType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use MongodbClusterApiResourceEventType.Descriptor instead.
+func (MongodbClusterApiResourceEventType) EnumDescriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_rawDescGZIP(), []int{0}
 }
 
@@ -134,7 +134,7 @@ var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventt
 	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75,
 	0x72, 0x63, 0x65, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x65,
 	0x6e, 0x75, 0x6d, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x2a, 0xbd, 0x05, 0x0a, 0x22, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x44, 0x42, 0x43, 0x6c, 0x75,
+	0x6f, 0x2a, 0xbd, 0x05, 0x0a, 0x22, 0x4d, 0x6f, 0x6e, 0x67, 0x6f, 0x64, 0x62, 0x43, 0x6c, 0x75,
 	0x73, 0x74, 0x65, 0x72, 0x41, 0x70, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x45,
 	0x76, 0x65, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x35, 0x0a, 0x31, 0x52, 0x45, 0x44, 0x49,
 	0x53, 0x5f, 0x43, 0x4c, 0x55, 0x53, 0x54, 0x45, 0x52, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x52, 0x45,
@@ -232,7 +232,7 @@ func file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceevent
 
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_goTypes = []interface{}{
-	(MongoDBClusterApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.enums.apiresourceeventtype.MongoDBClusterApiResourceEventType
+	(MongodbClusterApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.mongodbcluster.enums.apiresourceeventtype.MongodbClusterApiResourceEventType
 }
 var file_cloud_planton_apis_code2cloud_v1_mongodbcluster_enums_apiresourceeventtype_api_resource_event_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

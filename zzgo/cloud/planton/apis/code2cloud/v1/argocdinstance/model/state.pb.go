@@ -29,7 +29,7 @@ const (
 )
 
 // argocd-instance
-type ArgoCDInstance struct {
+type ArgocdInstance struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -41,13 +41,13 @@ type ArgoCDInstance struct {
 	// resource metadata
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// spec
-	Spec *ArgoCDInstanceSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *ArgocdInstanceSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
 	// status
-	Status *ArgoCDInstanceStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	Status *ArgocdInstanceStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 }
 
-func (x *ArgoCDInstance) Reset() {
-	*x = ArgoCDInstance{}
+func (x *ArgocdInstance) Reset() {
+	*x = ArgocdInstance{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,13 +55,13 @@ func (x *ArgoCDInstance) Reset() {
 	}
 }
 
-func (x *ArgoCDInstance) String() string {
+func (x *ArgocdInstance) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstance) ProtoMessage() {}
+func (*ArgocdInstance) ProtoMessage() {}
 
-func (x *ArgoCDInstance) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstance) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -73,40 +73,40 @@ func (x *ArgoCDInstance) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstance.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstance) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstance.ProtoReflect.Descriptor instead.
+func (*ArgocdInstance) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ArgoCDInstance) GetApiVersion() string {
+func (x *ArgocdInstance) GetApiVersion() string {
 	if x != nil {
 		return x.ApiVersion
 	}
 	return ""
 }
 
-func (x *ArgoCDInstance) GetKind() string {
+func (x *ArgocdInstance) GetKind() string {
 	if x != nil {
 		return x.Kind
 	}
 	return ""
 }
 
-func (x *ArgoCDInstance) GetMetadata() *model.ApiResourceMetadata {
+func (x *ArgocdInstance) GetMetadata() *model.ApiResourceMetadata {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *ArgoCDInstance) GetSpec() *ArgoCDInstanceSpec {
+func (x *ArgocdInstance) GetSpec() *ArgocdInstanceSpec {
 	if x != nil {
 		return x.Spec
 	}
 	return nil
 }
 
-func (x *ArgoCDInstance) GetStatus() *ArgoCDInstanceStatus {
+func (x *ArgocdInstance) GetStatus() *ArgocdInstanceStatus {
 	if x != nil {
 		return x.Status
 	}
@@ -114,7 +114,7 @@ func (x *ArgoCDInstance) GetStatus() *ArgoCDInstanceStatus {
 }
 
 // argocd-instance spec
-type ArgoCDInstanceSpec struct {
+type ArgocdInstanceSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -122,11 +122,11 @@ type ArgoCDInstanceSpec struct {
 	// resource parent
 	EnvironmentInfo *model1.ApiResourceEnvironmentInfo `protobuf:"bytes,1,opt,name=environment_info,json=environmentInfo,proto3" json:"environment_info,omitempty"`
 	// kubernetes spec
-	Kubernetes *ArgoCDInstanceSpecKubernetesSpec `protobuf:"bytes,2,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
+	Kubernetes *ArgocdInstanceSpecKubernetesSpec `protobuf:"bytes,2,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *ArgoCDInstanceSpec) Reset() {
-	*x = ArgoCDInstanceSpec{}
+func (x *ArgocdInstanceSpec) Reset() {
+	*x = ArgocdInstanceSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -134,13 +134,13 @@ func (x *ArgoCDInstanceSpec) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceSpec) String() string {
+func (x *ArgocdInstanceSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceSpec) ProtoMessage() {}
+func (*ArgocdInstanceSpec) ProtoMessage() {}
 
-func (x *ArgoCDInstanceSpec) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,19 +152,19 @@ func (x *ArgoCDInstanceSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceSpec.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceSpec.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ArgoCDInstanceSpec) GetEnvironmentInfo() *model1.ApiResourceEnvironmentInfo {
+func (x *ArgocdInstanceSpec) GetEnvironmentInfo() *model1.ApiResourceEnvironmentInfo {
 	if x != nil {
 		return x.EnvironmentInfo
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceSpec) GetKubernetes() *ArgoCDInstanceSpecKubernetesSpec {
+func (x *ArgocdInstanceSpec) GetKubernetes() *ArgocdInstanceSpecKubernetesSpec {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -172,7 +172,7 @@ func (x *ArgoCDInstanceSpec) GetKubernetes() *ArgoCDInstanceSpecKubernetesSpec {
 }
 
 // argocd-instance status.
-type ArgoCDInstanceStatus struct {
+type ArgocdInstanceStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -184,11 +184,11 @@ type ArgoCDInstanceStatus struct {
 	// id of the stack-job
 	StackJobId string `protobuf:"bytes,97,opt,name=stack_job_id,json=stackJobId,proto3" json:"stack_job_id,omitempty"`
 	// kubernetes status
-	Kubernetes *ArgoCDInstanceStatusKubernetesStatus `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
+	Kubernetes *ArgocdInstanceStatusKubernetesStatus `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *ArgoCDInstanceStatus) Reset() {
-	*x = ArgoCDInstanceStatus{}
+func (x *ArgocdInstanceStatus) Reset() {
+	*x = ArgocdInstanceStatus{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -196,13 +196,13 @@ func (x *ArgoCDInstanceStatus) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceStatus) String() string {
+func (x *ArgocdInstanceStatus) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceStatus) ProtoMessage() {}
+func (*ArgocdInstanceStatus) ProtoMessage() {}
 
-func (x *ArgoCDInstanceStatus) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceStatus) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -214,33 +214,33 @@ func (x *ArgoCDInstanceStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceStatus.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceStatus.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceStatus) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ArgoCDInstanceStatus) GetLifecycle() *model.RunnableApiResourceLifecycle {
+func (x *ArgocdInstanceStatus) GetLifecycle() *model.RunnableApiResourceLifecycle {
 	if x != nil {
 		return x.Lifecycle
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceStatus) GetAudit() *model.ApiResourceAudit {
+func (x *ArgocdInstanceStatus) GetAudit() *model.ApiResourceAudit {
 	if x != nil {
 		return x.Audit
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceStatus) GetStackJobId() string {
+func (x *ArgocdInstanceStatus) GetStackJobId() string {
 	if x != nil {
 		return x.StackJobId
 	}
 	return ""
 }
 
-func (x *ArgoCDInstanceStatus) GetKubernetes() *ArgoCDInstanceStatusKubernetesStatus {
+func (x *ArgocdInstanceStatus) GetKubernetes() *ArgocdInstanceStatusKubernetesStatus {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -248,19 +248,19 @@ func (x *ArgoCDInstanceStatus) GetKubernetes() *ArgoCDInstanceStatusKubernetesSt
 }
 
 // argocd-instance kubernetes spec
-type ArgoCDInstanceSpecKubernetesSpec struct {
+type ArgocdInstanceSpecKubernetesSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// jenkins-container spec
-	JenkinsContainer *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec `protobuf:"bytes,1,opt,name=jenkins_container,json=jenkinsContainer,proto3" json:"jenkins_container,omitempty"`
+	// argocd-container spec
+	ArgocdContainer *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec `protobuf:"bytes,1,opt,name=argocd_container,json=argocdContainer,proto3" json:"argocd_container,omitempty"`
 	// argocd-instance ingress-spec
-	Ingress *ArgoCDInstanceSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
+	Ingress *ArgocdInstanceSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpec) Reset() {
-	*x = ArgoCDInstanceSpecKubernetesSpec{}
+func (x *ArgocdInstanceSpecKubernetesSpec) Reset() {
+	*x = ArgocdInstanceSpecKubernetesSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,13 +268,13 @@ func (x *ArgoCDInstanceSpecKubernetesSpec) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpec) String() string {
+func (x *ArgocdInstanceSpecKubernetesSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceSpecKubernetesSpec) ProtoMessage() {}
+func (*ArgocdInstanceSpecKubernetesSpec) ProtoMessage() {}
 
-func (x *ArgoCDInstanceSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -286,38 +286,38 @@ func (x *ArgoCDInstanceSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceSpecKubernetesSpec.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceSpecKubernetesSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceSpecKubernetesSpec.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceSpecKubernetesSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpec) GetJenkinsContainer() *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec {
+func (x *ArgocdInstanceSpecKubernetesSpec) GetArgocdContainer() *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec {
 	if x != nil {
-		return x.JenkinsContainer
+		return x.ArgocdContainer
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpec) GetIngress() *ArgoCDInstanceSpecKubernetesSpecIngressSpec {
+func (x *ArgocdInstanceSpecKubernetesSpec) GetIngress() *ArgocdInstanceSpecKubernetesSpecIngressSpec {
 	if x != nil {
 		return x.Ingress
 	}
 	return nil
 }
 
-// argocd-instance kubernetes jenkins-container spec
-type ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec struct {
+// argocd-instance kubernetes argocd-container spec
+type ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// jenkins container cpu and memory resources.
+	// argocd container cpu and memory resources.
 	// recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
 	Resources *model2.ContainerResources `protobuf:"bytes,1,opt,name=resources,proto3" json:"resources,omitempty"`
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) Reset() {
-	*x = ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec{}
+func (x *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) Reset() {
+	*x = ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -325,13 +325,13 @@ func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) String() string {
+func (x *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) ProtoMessage() {}
+func (*ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) ProtoMessage() {}
 
-func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -343,12 +343,12 @@ func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) ProtoReflect() prot
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) GetResources() *model2.ContainerResources {
+func (x *ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec) GetResources() *model2.ContainerResources {
 	if x != nil {
 		return x.Resources
 	}
@@ -356,7 +356,7 @@ func (x *ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec) GetResources() *mod
 }
 
 // argocd-instance kubernetes ingress spec
-type ArgoCDInstanceSpecKubernetesSpecIngressSpec struct {
+type ArgocdInstanceSpecKubernetesSpecIngressSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -366,12 +366,12 @@ type ArgoCDInstanceSpecKubernetesSpecIngressSpec struct {
 	// ingress type
 	IngressType kubernetesworkloadingresstype.KubernetesWorkloadIngressType `protobuf:"varint,2,opt,name=ingress_type,json=ingressType,proto3,enum=cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType" json:"ingress_type,omitempty"`
 	// endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-	// if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating jenkins endpoints.
+	// if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating argocd endpoints.
 	EndpointDomainName string `protobuf:"bytes,3,opt,name=endpoint_domain_name,json=endpointDomainName,proto3" json:"endpoint_domain_name,omitempty"`
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) Reset() {
-	*x = ArgoCDInstanceSpecKubernetesSpecIngressSpec{}
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) Reset() {
+	*x = ArgocdInstanceSpecKubernetesSpecIngressSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -379,13 +379,13 @@ func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) String() string {
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceSpecKubernetesSpecIngressSpec) ProtoMessage() {}
+func (*ArgocdInstanceSpecKubernetesSpecIngressSpec) ProtoMessage() {}
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -397,26 +397,26 @@ func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflec
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceSpecKubernetesSpecIngressSpec.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceSpecKubernetesSpecIngressSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceSpecKubernetesSpecIngressSpec.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceSpecKubernetesSpecIngressSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) GetIsEnabled() bool {
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) GetIsEnabled() bool {
 	if x != nil {
 		return x.IsEnabled
 	}
 	return false
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) GetIngressType() kubernetesworkloadingresstype.KubernetesWorkloadIngressType {
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) GetIngressType() kubernetesworkloadingresstype.KubernetesWorkloadIngressType {
 	if x != nil {
 		return x.IngressType
 	}
 	return kubernetesworkloadingresstype.KubernetesWorkloadIngressType(0)
 }
 
-func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) GetEndpointDomainName() string {
+func (x *ArgocdInstanceSpecKubernetesSpecIngressSpec) GetEndpointDomainName() string {
 	if x != nil {
 		return x.EndpointDomainName
 	}
@@ -424,7 +424,7 @@ func (x *ArgoCDInstanceSpecKubernetesSpecIngressSpec) GetEndpointDomainName() st
 }
 
 // argocd-instance kubernetes status
-type ArgoCDInstanceStatusKubernetesStatus struct {
+type ArgocdInstanceStatusKubernetesStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -439,18 +439,18 @@ type ArgoCDInstanceStatusKubernetesStatus struct {
 	// this might come handy when argocd-instance ingress is disabled for security reasons.
 	// this is rendered by combining argocd_instance_kubernetes_service and kubernetes_namespace
 	// ex: kubectl port-forward svc/argocd_instance_kubernetes_service -n kubernetes_namespace 6379:6379
-	// running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/jenkins
+	// running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/argocd
 	PortForwardCommand string `protobuf:"bytes,3,opt,name=port_forward_command,json=portForwardCommand,proto3" json:"port_forward_command,omitempty"`
 	// kubernetes endpoint to connect to argocd-instance from the web browser.
 	// ex: main-argocd-instance.namespace.svc.cluster.local:6379
 	KubeEndpoint string `protobuf:"bytes,4,opt,name=kube_endpoint,json=kubeEndpoint,proto3" json:"kube_endpoint,omitempty"`
 	// public endpoint to open argocd-instance from clients outside kubernetes.
-	// ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/jenkins
+	// ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/argocd
 	IngressEndpoint string `protobuf:"bytes,5,opt,name=ingress_endpoint,json=ingressEndpoint,proto3" json:"ingress_endpoint,omitempty"`
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) Reset() {
-	*x = ArgoCDInstanceStatusKubernetesStatus{}
+func (x *ArgocdInstanceStatusKubernetesStatus) Reset() {
+	*x = ArgocdInstanceStatusKubernetesStatus{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -458,13 +458,13 @@ func (x *ArgoCDInstanceStatusKubernetesStatus) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) String() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceStatusKubernetesStatus) ProtoMessage() {}
+func (*ArgocdInstanceStatusKubernetesStatus) ProtoMessage() {}
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceStatusKubernetesStatus) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -476,40 +476,40 @@ func (x *ArgoCDInstanceStatusKubernetesStatus) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceStatusKubernetesStatus.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceStatusKubernetesStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceStatusKubernetesStatus.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceStatusKubernetesStatus) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) GetNamespace() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) GetNamespace() string {
 	if x != nil {
 		return x.Namespace
 	}
 	return ""
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) GetService() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) GetService() string {
 	if x != nil {
 		return x.Service
 	}
 	return ""
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) GetPortForwardCommand() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) GetPortForwardCommand() string {
 	if x != nil {
 		return x.PortForwardCommand
 	}
 	return ""
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) GetKubeEndpoint() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) GetKubeEndpoint() string {
 	if x != nil {
 		return x.KubeEndpoint
 	}
 	return ""
 }
 
-func (x *ArgoCDInstanceStatusKubernetesStatus) GetIngressEndpoint() string {
+func (x *ArgocdInstanceStatusKubernetesStatus) GetIngressEndpoint() string {
 	if x != nil {
 		return x.IngressEndpoint
 	}
@@ -569,7 +569,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f,
 	0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
 	0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x90,
-	0x08, 0x0a, 0x0e, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x08, 0x0a, 0x0e, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
 	0x65, 0x12, 0x43, 0x0a, 0x0b, 0x61, 0x70, 0x69, 0x5f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x22, 0xba, 0x48, 0x1f, 0x72, 0x1d, 0x0a, 0x1b, 0x63,
 	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
@@ -619,13 +619,13 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e,
 	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67,
-	0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x52,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x52,
 	0x04, 0x73, 0x70, 0x65, 0x63, 0x12, 0x63, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
 	0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4b, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c,
 	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32,
 	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69,
 	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72,
-	0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74,
+	0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x3a, 0x75, 0xba, 0x48, 0x33, 0x1a,
 	0x31, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x11, 0x4e, 0x61, 0x6d,
 	0x65, 0x20, 0x69, 0x73, 0x20, 0x6d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x1a, 0x12,
@@ -634,7 +634,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x1f, 0x90, 0xa6, 0x1d, 0x01, 0x9a, 0xa6, 0x1d, 0x28, 0x08, 0x0a, 0x12, 0x24, 0x73, 0x70, 0x65,
 	0x63, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x6e,
 	0x66, 0x6f, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69,
-	0x64, 0x22, 0x88, 0x02, 0x0a, 0x12, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74,
+	0x64, 0x22, 0x88, 0x02, 0x0a, 0x12, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74,
 	0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x12, 0x79, 0x0a, 0x10, 0x65, 0x6e, 0x76, 0x69,
 	0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x4e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
@@ -648,10 +648,10 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64,
 	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63,
 	0x64, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
-	0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70,
+	0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70,
 	0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63,
 	0x52, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xf5, 0x02, 0x0a,
-	0x14, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53,
+	0x14, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53,
 	0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x68, 0x0a, 0x09, 0x6c, 0x69, 0x66, 0x65, 0x63, 0x79, 0x63,
 	0x6c, 0x65, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x4a, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
@@ -671,32 +671,32 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
 	0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61,
 	0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f,
-	0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
 	0x63, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74,
 	0x65, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e,
-	0x65, 0x74, 0x65, 0x73, 0x22, 0xb9, 0x02, 0x0a, 0x20, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49,
+	0x65, 0x74, 0x65, 0x73, 0x22, 0xb8, 0x02, 0x0a, 0x20, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49,
 	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72,
-	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0x96, 0x01, 0x0a, 0x11, 0x6a, 0x65,
-	0x6e, 0x6b, 0x69, 0x6e, 0x73, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x69, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c,
-	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32,
-	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69,
-	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72,
-	0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63,
-	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x65,
-	0x64, 0x69, 0x73, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63,
-	0x52, 0x10, 0x6a, 0x65, 0x6e, 0x6b, 0x69, 0x6e, 0x73, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e,
-	0x65, 0x72, 0x12, 0x7c, 0x0a, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20,
-	0x01, 0x28, 0x0b, 0x32, 0x62, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
-	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73,
-	0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f,
-	0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75,
-	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67, 0x72,
-	0x65, 0x73, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73,
-	0x22, 0xa0, 0x01, 0x0a, 0x32, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61,
-	0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
-	0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x65, 0x64, 0x69, 0x73, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69,
+	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0x95, 0x01, 0x0a, 0x10, 0x61, 0x72,
+	0x67, 0x6f, 0x63, 0x64, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x0b, 0x32, 0x6a, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e,
+	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b,
+	0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x41, 0x72, 0x67,
+	0x6f, 0x63, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63,
+	0x52, 0x0f, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65,
+	0x72, 0x12, 0x7c, 0x0a, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0b, 0x32, 0x62, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
+	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73, 0x74,
+	0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x63,
+	0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62,
+	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67, 0x72, 0x65,
+	0x73, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x22,
+	0xa1, 0x01, 0x0a, 0x33, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
+	0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73,
+	0x53, 0x70, 0x65, 0x63, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69,
 	0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x6a, 0x0a, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75,
 	0x72, 0x63, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x46, 0x2e, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
@@ -704,7 +704,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
 	0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
 	0x65, 0x73, 0x42, 0x04, 0xc0, 0xb8, 0x18, 0x01, 0x52, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72,
-	0x63, 0x65, 0x73, 0x22, 0xc8, 0x04, 0x0a, 0x2b, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e,
+	0x63, 0x65, 0x73, 0x22, 0xc8, 0x04, 0x0a, 0x2b, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e,
 	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e,
 	0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x53,
 	0x70, 0x65, 0x63, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x73, 0x5f, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65,
@@ -741,7 +741,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawDe
 	0x67, 0x72, 0x65, 0x73, 0x73, 0x20, 0x74, 0x79, 0x70, 0x65, 0x20, 0x69, 0x73, 0x20, 0x6d, 0x61,
 	0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x20, 0x74, 0x6f, 0x20, 0x65, 0x6e, 0x61, 0x62, 0x6c,
 	0x65, 0x20, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x27, 0x3a, 0x20, 0x27, 0x27, 0x22, 0xe0,
-	0x01, 0x0a, 0x24, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
+	0x01, 0x0a, 0x24, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
 	0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
 	0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x73,
 	0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65,
@@ -800,13 +800,13 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_rawD
 
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_goTypes = []interface{}{
-	(*ArgoCDInstance)(nil),                                           // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
-	(*ArgoCDInstanceSpec)(nil),                                       // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpec
-	(*ArgoCDInstanceStatus)(nil),                                     // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus
-	(*ArgoCDInstanceSpecKubernetesSpec)(nil),                         // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpec
-	(*ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec)(nil),       // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec
-	(*ArgoCDInstanceSpecKubernetesSpecIngressSpec)(nil),              // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecIngressSpec
-	(*ArgoCDInstanceStatusKubernetesStatus)(nil),                     // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatusKubernetesStatus
+	(*ArgocdInstance)(nil),                                           // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
+	(*ArgocdInstanceSpec)(nil),                                       // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpec
+	(*ArgocdInstanceStatus)(nil),                                     // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus
+	(*ArgocdInstanceSpecKubernetesSpec)(nil),                         // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpec
+	(*ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec)(nil),      // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec
+	(*ArgocdInstanceSpecKubernetesSpecIngressSpec)(nil),              // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecIngressSpec
+	(*ArgocdInstanceStatusKubernetesStatus)(nil),                     // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatusKubernetesStatus
 	(*model.ApiResourceMetadata)(nil),                                // 7: cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
 	(*model1.ApiResourceEnvironmentInfo)(nil),                        // 8: cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
 	(*model.RunnableApiResourceLifecycle)(nil),                       // 9: cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
@@ -815,18 +815,18 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_goTyp
 	(kubernetesworkloadingresstype.KubernetesWorkloadIngressType)(0), // 12: cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_depIdxs = []int32{
-	7,  // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance.metadata:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
-	1,  // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance.spec:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpec
-	2,  // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance.status:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus
-	8,  // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpec.environment_info:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
-	3,  // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpec.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpec
-	9,  // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus.lifecycle:type_name -> cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
-	10, // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus.audit:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
-	6,  // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatusKubernetesStatus
-	4,  // 8: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpec.jenkins_container:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec
-	5,  // 9: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecIngressSpec
-	11, // 10: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
-	12, // 11: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
+	7,  // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance.metadata:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
+	1,  // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance.spec:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpec
+	2,  // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance.status:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus
+	8,  // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpec.environment_info:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
+	3,  // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpec.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpec
+	9,  // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus.lifecycle:type_name -> cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
+	10, // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus.audit:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
+	6,  // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatusKubernetesStatus
+	4,  // 8: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpec.argocd_container:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec
+	5,  // 9: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecIngressSpec
+	11, // 10: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
+	12, // 11: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
@@ -841,7 +841,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstance); i {
+			switch v := v.(*ArgocdInstance); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -853,7 +853,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceSpec); i {
+			switch v := v.(*ArgocdInstanceSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -865,7 +865,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceStatus); i {
+			switch v := v.(*ArgocdInstanceStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -877,7 +877,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceSpecKubernetesSpec); i {
+			switch v := v.(*ArgocdInstanceSpecKubernetesSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -889,7 +889,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec); i {
+			switch v := v.(*ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -901,7 +901,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceSpecKubernetesSpecIngressSpec); i {
+			switch v := v.(*ArgocdInstanceSpecKubernetesSpecIngressSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -913,7 +913,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_init
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_model_state_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceStatusKubernetesStatus); i {
+			switch v := v.(*ArgocdInstanceStatusKubernetesStatus); i {
 			case 0:
 				return &v.state
 			case 1:

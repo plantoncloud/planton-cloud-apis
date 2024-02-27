@@ -12,7 +12,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 //argocd-instance
-message ArgoCDInstance {
+message ArgocdInstance {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
@@ -72,23 +72,23 @@ message ArgoCDInstance {
   ];
 
   //spec
-  ArgoCDInstanceSpec spec = 4;
+  ArgocdInstanceSpec spec = 4;
 
   //status
-  ArgoCDInstanceStatus status = 5;
+  ArgocdInstanceStatus status = 5;
 }
 
 //argocd-instance spec
-message ArgoCDInstanceSpec {
+message ArgocdInstanceSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  ArgoCDInstanceSpecKubernetesSpec kubernetes = 2;
+  ArgocdInstanceSpecKubernetesSpec kubernetes = 2;
 }
 
 //argocd-instance status.
-message ArgoCDInstanceStatus {
+message ArgocdInstanceStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,22 +99,22 @@ message ArgoCDInstanceStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  ArgoCDInstanceStatusKubernetesStatus kubernetes = 1;
+  ArgocdInstanceStatusKubernetesStatus kubernetes = 1;
 }
 
 // argocd-instance kubernetes spec
-message ArgoCDInstanceSpecKubernetesSpec {
-  //jenkins-container spec
-  ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec jenkins_container = 1;
+message ArgocdInstanceSpecKubernetesSpec {
+  //argocd-container spec
+  ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec argocd_container = 1;
 
   //argocd-instance ingress-spec
-  ArgoCDInstanceSpecKubernetesSpecIngressSpec ingress = 2;
+  ArgocdInstanceSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// argocd-instance kubernetes jenkins-container spec
-message ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec {
-  //jenkins container cpu and memory resources.
+// argocd-instance kubernetes argocd-container spec
+message ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec {
+  //argocd container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
@@ -122,7 +122,7 @@ message ArgoCDInstanceSpecKubernetesSpecRedisContainerSpec {
 }
 
 // argocd-instance kubernetes ingress spec
-message ArgoCDInstanceSpecKubernetesSpecIngressSpec {
+message ArgocdInstanceSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -140,12 +140,12 @@ message ArgoCDInstanceSpecKubernetesSpecIngressSpec {
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating jenkins endpoints.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating argocd endpoints.
   string endpoint_domain_name = 3;
 }
 
 //argocd-instance kubernetes status
-message ArgoCDInstanceStatusKubernetesStatus {
+message ArgocdInstanceStatusKubernetesStatus {
   //kubernetes namespace in which argocd-instance is created.
   string namespace = 1;
 
@@ -158,7 +158,7 @@ message ArgoCDInstanceStatusKubernetesStatus {
   //this might come handy when argocd-instance ingress is disabled for security reasons.
   //this is rendered by combining argocd_instance_kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/argocd_instance_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/jenkins
+  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/argocd
   string port_forward_command = 3;
 
   //kubernetes endpoint to connect to argocd-instance from the web browser.
@@ -166,6 +166,6 @@ message ArgoCDInstanceStatusKubernetesStatus {
   string kube_endpoint = 4;
 
   //public endpoint to open argocd-instance from clients outside kubernetes.
-  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/jenkins
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/argocd
   string ingress_endpoint = 5;
 }

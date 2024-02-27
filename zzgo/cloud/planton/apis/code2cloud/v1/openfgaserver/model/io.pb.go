@@ -21,7 +21,7 @@ const (
 )
 
 // wrapper for id field of openfga-server
-type OpenFGAServerId struct {
+type OpenfgaServerId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type OpenFGAServerId struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *OpenFGAServerId) Reset() {
-	*x = OpenFGAServerId{}
+func (x *OpenfgaServerId) Reset() {
+	*x = OpenfgaServerId{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *OpenFGAServerId) Reset() {
 	}
 }
 
-func (x *OpenFGAServerId) String() string {
+func (x *OpenfgaServerId) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerId) ProtoMessage() {}
+func (*OpenfgaServerId) ProtoMessage() {}
 
-func (x *OpenFGAServerId) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerId) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,12 +56,12 @@ func (x *OpenFGAServerId) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerId.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerId) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerId.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerId) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *OpenFGAServerId) GetValue() string {
+func (x *OpenfgaServerId) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -69,16 +69,16 @@ func (x *OpenFGAServerId) GetValue() string {
 }
 
 // list of openfga-servers
-type OpenFGAServers struct {
+type OpenfgaServers struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Entries []*OpenFGAServer `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries []*OpenfgaServer `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *OpenFGAServers) Reset() {
-	*x = OpenFGAServers{}
+func (x *OpenfgaServers) Reset() {
+	*x = OpenfgaServers{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -86,13 +86,13 @@ func (x *OpenFGAServers) Reset() {
 	}
 }
 
-func (x *OpenFGAServers) String() string {
+func (x *OpenfgaServers) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServers) ProtoMessage() {}
+func (*OpenfgaServers) ProtoMessage() {}
 
-func (x *OpenFGAServers) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServers) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -104,12 +104,12 @@ func (x *OpenFGAServers) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServers.ProtoReflect.Descriptor instead.
-func (*OpenFGAServers) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServers.ProtoReflect.Descriptor instead.
+func (*OpenfgaServers) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *OpenFGAServers) GetEntries() []*OpenFGAServer {
+func (x *OpenfgaServers) GetEntries() []*OpenfgaServer {
 	if x != nil {
 		return x.Entries
 	}
@@ -117,7 +117,7 @@ func (x *OpenFGAServers) GetEntries() []*OpenFGAServer {
 }
 
 // wrapper for openfga-server password
-type OpenFGAServerPassword struct {
+type OpenfgaServerPassword struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -125,8 +125,8 @@ type OpenFGAServerPassword struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *OpenFGAServerPassword) Reset() {
-	*x = OpenFGAServerPassword{}
+func (x *OpenfgaServerPassword) Reset() {
+	*x = OpenfgaServerPassword{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -134,13 +134,13 @@ func (x *OpenFGAServerPassword) Reset() {
 	}
 }
 
-func (x *OpenFGAServerPassword) String() string {
+func (x *OpenfgaServerPassword) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerPassword) ProtoMessage() {}
+func (*OpenfgaServerPassword) ProtoMessage() {}
 
-func (x *OpenFGAServerPassword) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerPassword) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,12 +152,12 @@ func (x *OpenFGAServerPassword) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerPassword.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerPassword) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerPassword.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerPassword) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OpenFGAServerPassword) GetValue() string {
+func (x *OpenfgaServerPassword) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -165,17 +165,17 @@ func (x *OpenFGAServerPassword) GetValue() string {
 }
 
 // response for paginated query to list openfga-servers
-type OpenFGAServerList struct {
+type OpenfgaServerList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	TotalPages int32            `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*OpenFGAServer `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries    []*OpenfgaServer `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *OpenFGAServerList) Reset() {
-	*x = OpenFGAServerList{}
+func (x *OpenfgaServerList) Reset() {
+	*x = OpenfgaServerList{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,13 +183,13 @@ func (x *OpenFGAServerList) Reset() {
 	}
 }
 
-func (x *OpenFGAServerList) String() string {
+func (x *OpenfgaServerList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*OpenFGAServerList) ProtoMessage() {}
+func (*OpenfgaServerList) ProtoMessage() {}
 
-func (x *OpenFGAServerList) ProtoReflect() protoreflect.Message {
+func (x *OpenfgaServerList) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -201,19 +201,19 @@ func (x *OpenFGAServerList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use OpenFGAServerList.ProtoReflect.Descriptor instead.
-func (*OpenFGAServerList) Descriptor() ([]byte, []int) {
+// Deprecated: Use OpenfgaServerList.ProtoReflect.Descriptor instead.
+func (*OpenfgaServerList) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *OpenFGAServerList) GetTotalPages() int32 {
+func (x *OpenfgaServerList) GetTotalPages() int32 {
 	if x != nil {
 		return x.TotalPages
 	}
 	return 0
 }
 
-func (x *OpenFGAServerList) GetEntries() []*OpenFGAServer {
+func (x *OpenfgaServerList) GetEntries() []*OpenfgaServer {
 	if x != nil {
 		return x.Entries
 	}
@@ -234,20 +234,20 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDesc =
 	0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x73, 0x74, 0x61, 0x74,
-	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x27, 0x0a, 0x0f, 0x4f, 0x70, 0x65, 0x6e, 0x46,
-	0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x27, 0x0a, 0x0f, 0x4f, 0x70, 0x65, 0x6e, 0x66,
+	0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
 	0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x22, 0x6f, 0x0a, 0x0e, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x22, 0x6f, 0x0a, 0x0e, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x73, 0x12, 0x5d, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20,
 	0x03, 0x28, 0x0b, 0x32, 0x43, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x73, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x46,
-	0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
-	0x73, 0x22, 0x2d, 0x0a, 0x15, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76,
+	0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x70, 0x65, 0x6e, 0x66,
+	0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65,
+	0x73, 0x22, 0x2d, 0x0a, 0x15, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61,
 	0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x22, 0x93, 0x01, 0x0a, 0x11, 0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76,
+	0x22, 0x93, 0x01, 0x0a, 0x11, 0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f,
 	0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74,
 	0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x5d, 0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69,
@@ -255,7 +255,7 @@ var file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDesc =
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
 	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6f, 0x70, 0x65, 0x6e,
 	0x66, 0x67, 0x61, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
-	0x4f, 0x70, 0x65, 0x6e, 0x46, 0x47, 0x41, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x65,
+	0x4f, 0x70, 0x65, 0x6e, 0x66, 0x67, 0x61, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x52, 0x07, 0x65,
 	0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x42, 0xad, 0x03, 0x0a, 0x42, 0x62, 0x75, 0x69, 0x6c, 0x64,
 	0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
 	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65,
@@ -300,15 +300,15 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_rawDescG
 
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_goTypes = []interface{}{
-	(*OpenFGAServerId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerId
-	(*OpenFGAServers)(nil),        // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServers
-	(*OpenFGAServerPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerPassword
-	(*OpenFGAServerList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerList
-	(*OpenFGAServer)(nil),         // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer
+	(*OpenfgaServerId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerId
+	(*OpenfgaServers)(nil),        // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServers
+	(*OpenfgaServerPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerPassword
+	(*OpenfgaServerList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerList
+	(*OpenfgaServer)(nil),         // 4: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer
 }
 var file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServers.entries:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer
-	4, // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerList.entries:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer
+	4, // 0: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServers.entries:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer
+	4, // 1: cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerList.entries:type_name -> cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -324,7 +324,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_init() {
 	file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_state_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerId); i {
+			switch v := v.(*OpenfgaServerId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -336,7 +336,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServers); i {
+			switch v := v.(*OpenfgaServers); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -348,7 +348,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerPassword); i {
+			switch v := v.(*OpenfgaServerPassword); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -360,7 +360,7 @@ func file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_openfgaserver_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*OpenFGAServerList); i {
+			switch v := v.(*OpenfgaServerList); i {
 			case 0:
 				return &v.state
 			case 1:

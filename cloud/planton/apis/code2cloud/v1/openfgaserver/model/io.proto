@@ -5,22 +5,22 @@ package cloud.planton.apis.code2cloud.v1.openfgaserver.model;
 import "cloud/planton/apis/code2cloud/v1/openfgaserver/model/state.proto";
 
 //wrapper for id field of openfga-server
-message OpenFGAServerId {
+message OpenfgaServerId {
   string value = 1;
 }
 
 //list of openfga-servers
-message OpenFGAServers {
-  repeated OpenFGAServer entries = 1;
+message OpenfgaServers {
+  repeated OpenfgaServer entries = 1;
 }
 
 //wrapper for openfga-server password
-message OpenFGAServerPassword {
+message OpenfgaServerPassword {
   string value = 1;
 }
 
 //response for paginated query to list openfga-servers
-message OpenFGAServerList {
+message OpenfgaServerList {
   int32 total_pages = 1;
-  repeated OpenFGAServer entries = 2;
+  repeated OpenfgaServer entries = 2;
 }

@@ -93,7 +93,7 @@ service GitLabServerCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for gitlab-server";
   }
   //restart a gitlab-server running in a environment.
-  //gitlab-server is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
+  //gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
   rpc restart(cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerId)
       returns (cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_server;

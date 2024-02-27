@@ -20,32 +20,32 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArgoCDInstanceKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgoCDInstanceKubernetesStackController/execute"
-	ArgoCDInstanceKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgoCDInstanceKubernetesStackController/getStackOutputs"
+	ArgocdInstanceKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgocdInstanceKubernetesStackController/execute"
+	ArgocdInstanceKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgocdInstanceKubernetesStackController/getStackOutputs"
 )
 
-// ArgoCDInstanceKubernetesStackControllerClient is the client API for ArgoCDInstanceKubernetesStackController service.
+// ArgocdInstanceKubernetesStackControllerClient is the client API for ArgocdInstanceKubernetesStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ArgoCDInstanceKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.ArgoCDInstanceKubernetesStackInput, opts ...grpc.CallOption) (ArgoCDInstanceKubernetesStackController_ExecuteClient, error)
-	GetStackOutputs(ctx context.Context, in *model.ArgoCDInstanceKubernetesStackInput, opts ...grpc.CallOption) (*model.ArgoCDInstanceKubernetesStackOutputs, error)
+type ArgocdInstanceKubernetesStackControllerClient interface {
+	Execute(ctx context.Context, in *model.ArgocdInstanceKubernetesStackInput, opts ...grpc.CallOption) (ArgocdInstanceKubernetesStackController_ExecuteClient, error)
+	GetStackOutputs(ctx context.Context, in *model.ArgocdInstanceKubernetesStackInput, opts ...grpc.CallOption) (*model.ArgocdInstanceKubernetesStackOutputs, error)
 }
 
-type argoCDInstanceKubernetesStackControllerClient struct {
+type argocdInstanceKubernetesStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewArgoCDInstanceKubernetesStackControllerClient(cc grpc.ClientConnInterface) ArgoCDInstanceKubernetesStackControllerClient {
-	return &argoCDInstanceKubernetesStackControllerClient{cc}
+func NewArgocdInstanceKubernetesStackControllerClient(cc grpc.ClientConnInterface) ArgocdInstanceKubernetesStackControllerClient {
+	return &argocdInstanceKubernetesStackControllerClient{cc}
 }
 
-func (c *argoCDInstanceKubernetesStackControllerClient) Execute(ctx context.Context, in *model.ArgoCDInstanceKubernetesStackInput, opts ...grpc.CallOption) (ArgoCDInstanceKubernetesStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &ArgoCDInstanceKubernetesStackController_ServiceDesc.Streams[0], ArgoCDInstanceKubernetesStackController_Execute_FullMethodName, opts...)
+func (c *argocdInstanceKubernetesStackControllerClient) Execute(ctx context.Context, in *model.ArgocdInstanceKubernetesStackInput, opts ...grpc.CallOption) (ArgocdInstanceKubernetesStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ArgocdInstanceKubernetesStackController_ServiceDesc.Streams[0], ArgocdInstanceKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &argoCDInstanceKubernetesStackControllerExecuteClient{stream}
+	x := &argocdInstanceKubernetesStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -55,117 +55,117 @@ func (c *argoCDInstanceKubernetesStackControllerClient) Execute(ctx context.Cont
 	return x, nil
 }
 
-type ArgoCDInstanceKubernetesStackController_ExecuteClient interface {
-	Recv() (*model.ArgoCDInstanceKubernetesStackResponse, error)
+type ArgocdInstanceKubernetesStackController_ExecuteClient interface {
+	Recv() (*model.ArgocdInstanceKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
-type argoCDInstanceKubernetesStackControllerExecuteClient struct {
+type argocdInstanceKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *argoCDInstanceKubernetesStackControllerExecuteClient) Recv() (*model.ArgoCDInstanceKubernetesStackResponse, error) {
-	m := new(model.ArgoCDInstanceKubernetesStackResponse)
+func (x *argocdInstanceKubernetesStackControllerExecuteClient) Recv() (*model.ArgocdInstanceKubernetesStackResponse, error) {
+	m := new(model.ArgocdInstanceKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *argoCDInstanceKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.ArgoCDInstanceKubernetesStackInput, opts ...grpc.CallOption) (*model.ArgoCDInstanceKubernetesStackOutputs, error) {
-	out := new(model.ArgoCDInstanceKubernetesStackOutputs)
-	err := c.cc.Invoke(ctx, ArgoCDInstanceKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
+func (c *argocdInstanceKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.ArgocdInstanceKubernetesStackInput, opts ...grpc.CallOption) (*model.ArgocdInstanceKubernetesStackOutputs, error) {
+	out := new(model.ArgocdInstanceKubernetesStackOutputs)
+	err := c.cc.Invoke(ctx, ArgocdInstanceKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ArgoCDInstanceKubernetesStackControllerServer is the server API for ArgoCDInstanceKubernetesStackController service.
-// All implementations should embed UnimplementedArgoCDInstanceKubernetesStackControllerServer
+// ArgocdInstanceKubernetesStackControllerServer is the server API for ArgocdInstanceKubernetesStackController service.
+// All implementations should embed UnimplementedArgocdInstanceKubernetesStackControllerServer
 // for forward compatibility
-type ArgoCDInstanceKubernetesStackControllerServer interface {
-	Execute(*model.ArgoCDInstanceKubernetesStackInput, ArgoCDInstanceKubernetesStackController_ExecuteServer) error
-	GetStackOutputs(context.Context, *model.ArgoCDInstanceKubernetesStackInput) (*model.ArgoCDInstanceKubernetesStackOutputs, error)
+type ArgocdInstanceKubernetesStackControllerServer interface {
+	Execute(*model.ArgocdInstanceKubernetesStackInput, ArgocdInstanceKubernetesStackController_ExecuteServer) error
+	GetStackOutputs(context.Context, *model.ArgocdInstanceKubernetesStackInput) (*model.ArgocdInstanceKubernetesStackOutputs, error)
 }
 
-// UnimplementedArgoCDInstanceKubernetesStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedArgoCDInstanceKubernetesStackControllerServer struct {
+// UnimplementedArgocdInstanceKubernetesStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedArgocdInstanceKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedArgoCDInstanceKubernetesStackControllerServer) Execute(*model.ArgoCDInstanceKubernetesStackInput, ArgoCDInstanceKubernetesStackController_ExecuteServer) error {
+func (UnimplementedArgocdInstanceKubernetesStackControllerServer) Execute(*model.ArgocdInstanceKubernetesStackInput, ArgocdInstanceKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
-func (UnimplementedArgoCDInstanceKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.ArgoCDInstanceKubernetesStackInput) (*model.ArgoCDInstanceKubernetesStackOutputs, error) {
+func (UnimplementedArgocdInstanceKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.ArgocdInstanceKubernetesStackInput) (*model.ArgocdInstanceKubernetesStackOutputs, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStackOutputs not implemented")
 }
 
-// UnsafeArgoCDInstanceKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ArgoCDInstanceKubernetesStackControllerServer will
+// UnsafeArgocdInstanceKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ArgocdInstanceKubernetesStackControllerServer will
 // result in compilation errors.
-type UnsafeArgoCDInstanceKubernetesStackControllerServer interface {
-	mustEmbedUnimplementedArgoCDInstanceKubernetesStackControllerServer()
+type UnsafeArgocdInstanceKubernetesStackControllerServer interface {
+	mustEmbedUnimplementedArgocdInstanceKubernetesStackControllerServer()
 }
 
-func RegisterArgoCDInstanceKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv ArgoCDInstanceKubernetesStackControllerServer) {
-	s.RegisterService(&ArgoCDInstanceKubernetesStackController_ServiceDesc, srv)
+func RegisterArgocdInstanceKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv ArgocdInstanceKubernetesStackControllerServer) {
+	s.RegisterService(&ArgocdInstanceKubernetesStackController_ServiceDesc, srv)
 }
 
-func _ArgoCDInstanceKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.ArgoCDInstanceKubernetesStackInput)
+func _ArgocdInstanceKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.ArgocdInstanceKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ArgoCDInstanceKubernetesStackControllerServer).Execute(m, &argoCDInstanceKubernetesStackControllerExecuteServer{stream})
+	return srv.(ArgocdInstanceKubernetesStackControllerServer).Execute(m, &argocdInstanceKubernetesStackControllerExecuteServer{stream})
 }
 
-type ArgoCDInstanceKubernetesStackController_ExecuteServer interface {
-	Send(*model.ArgoCDInstanceKubernetesStackResponse) error
+type ArgocdInstanceKubernetesStackController_ExecuteServer interface {
+	Send(*model.ArgocdInstanceKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
-type argoCDInstanceKubernetesStackControllerExecuteServer struct {
+type argocdInstanceKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *argoCDInstanceKubernetesStackControllerExecuteServer) Send(m *model.ArgoCDInstanceKubernetesStackResponse) error {
+func (x *argocdInstanceKubernetesStackControllerExecuteServer) Send(m *model.ArgocdInstanceKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _ArgoCDInstanceKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ArgoCDInstanceKubernetesStackInput)
+func _ArgocdInstanceKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ArgocdInstanceKubernetesStackInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArgoCDInstanceKubernetesStackControllerServer).GetStackOutputs(ctx, in)
+		return srv.(ArgocdInstanceKubernetesStackControllerServer).GetStackOutputs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArgoCDInstanceKubernetesStackController_GetStackOutputs_FullMethodName,
+		FullMethod: ArgocdInstanceKubernetesStackController_GetStackOutputs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgoCDInstanceKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.ArgoCDInstanceKubernetesStackInput))
+		return srv.(ArgocdInstanceKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.ArgocdInstanceKubernetesStackInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ArgoCDInstanceKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for ArgoCDInstanceKubernetesStackController service.
+// ArgocdInstanceKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for ArgocdInstanceKubernetesStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ArgoCDInstanceKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgoCDInstanceKubernetesStackController",
-	HandlerType: (*ArgoCDInstanceKubernetesStackControllerServer)(nil),
+var ArgocdInstanceKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service.ArgocdInstanceKubernetesStackController",
+	HandlerType: (*ArgocdInstanceKubernetesStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "getStackOutputs",
-			Handler:    _ArgoCDInstanceKubernetesStackController_GetStackOutputs_Handler,
+			Handler:    _ArgocdInstanceKubernetesStackController_GetStackOutputs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _ArgoCDInstanceKubernetesStackController_Execute_Handler,
+			Handler:       _ArgocdInstanceKubernetesStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},

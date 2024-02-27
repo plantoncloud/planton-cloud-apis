@@ -105,7 +105,7 @@ message PrometheusServerStatus {
 // prometheus-server kubernetes spec
 message PrometheusServerSpecKubernetesSpec {
   //prometheus-container spec
-  PrometheusServerSpecKubernetesSpecRedisContainerSpec prometheus_container = 1;
+  PrometheusServerSpecKubernetesSpecPrometheusContainerSpec prometheus_container = 1;
 
   //prometheus-server ingress-spec
   PrometheusServerSpecKubernetesSpecIngressSpec ingress = 2;
@@ -113,7 +113,7 @@ message PrometheusServerSpecKubernetesSpec {
 }
 
 // prometheus-server kubernetes prometheus-container spec
-message PrometheusServerSpecKubernetesSpecRedisContainerSpec {
+message PrometheusServerSpecKubernetesSpecPrometheusContainerSpec {
   //number of prometheus pods.
   //recommended default 1
   int32 replicas = 1 [

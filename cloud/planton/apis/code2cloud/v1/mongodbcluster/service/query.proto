@@ -13,14 +13,14 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //mongodb-cluster query controller
-service MongoDBClusterQueryController {
+service MongodbClusterQueryController {
   //list all mongodb-clusters on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterList);
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterList);
 
   //look up mongodb-cluster using mongodb-cluster id
-  rpc getById(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
+  rpc getById(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -30,20 +30,20 @@ service MongoDBClusterQueryController {
   //find mongodb-clusters by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusters);
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
 
   //find mongodb-clusters by environment
   rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusters);
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
   //find mongodb-clusters by kube-cluster
 
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusters);
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
 
   //look up mongodb-cluster sasl password
   //password is retrieved from the kubernetes cluster.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -51,7 +51,7 @@ service MongoDBClusterQueryController {
   }
 
   //lookup pods of a mongodb-cluster deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterId)
+  rpc findPods(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_get;

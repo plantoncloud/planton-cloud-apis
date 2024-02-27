@@ -104,41 +104,21 @@ message GitLabServerStatus {
 
 // gitlab-server kubernetes spec
 message GitLabServerSpecKubernetesSpec {
-  //redis-container spec
-  GitLabServerSpecKubernetesSpecRedisContainerSpec redis_container = 1;
+  //gitlab-container spec
+  GitLabServerSpecKubernetesSpecGitLabContainerSpec gitlab_container = 1;
 
   //gitlab-server ingress-spec
   GitLabServerSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// gitlab-server kubernetes redis-container spec
-message GitLabServerSpecKubernetesSpecRedisContainerSpec {
-  //number of redis pods.
-  //recommended default 1
-  int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
-
-  //redis container cpu and memory resources.
+// gitlab-server kubernetes gitlab-container spec
+message GitLabServerSpecKubernetesSpecGitLabContainerSpec {
+  //gitlab container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
-
-  //flag to toggle persistence for redis data.
-  //when enabled, redis in-memory data will be persisted to a storage volume.
-  //the backup data from persistent volume is restored into redis memory between pod restarts.
-  //defaults to false.
-  bool is_persistence_enabled = 3;
-
-  //size of persistent volume attached to each redis pod
-  //if the client does not provide a value, the default value is configured.
-  //this attribute is ignored when persistence is not enabled.
-  //this persistent volume is used for backing up in-memory data.
-  //data from the persistent volume will be restored into memory between pod restarts.
-  //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
-  string disk_size = 4;
 }
 
 // gitlab-server kubernetes ingress spec
@@ -160,7 +140,7 @@ message GitLabServerSpecKubernetesSpecIngressSpec {
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating redis endpoints.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating gitlab endpoints.
   string endpoint_domain_name = 3;
 }
 
@@ -178,7 +158,7 @@ message GitLabServerStatusKubernetesStatus {
   //this might come handy when gitlab-server ingress is disabled for security reasons.
   //this is rendered by combining gitlab_server_kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/gitlab_server_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access gitlab-server using http://localhost:8080/redis
+  //running the command from this attribute makes it possible to access gitlab-server using http://localhost:8080/gitlab
   string port_forward_command = 3;
 
   //kubernetes endpoint to connect to gitlab-server from the web browser.
@@ -186,6 +166,6 @@ message GitLabServerStatusKubernetesStatus {
   string kube_endpoint = 4;
 
   //public endpoint to open gitlab-server from clients outside kubernetes.
-  //ex: https://gls-planton-pcs-dev-main.data.dev.planton.live:6379/redis
+  //ex: https://gls-planton-pcs-dev-main.data.dev.planton.live:6379/gitlab
   string ingress_endpoint = 5;
 }

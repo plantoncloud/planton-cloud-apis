@@ -25,325 +25,325 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OpenFGAServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/list"
-	OpenFGAServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/getById"
-	OpenFGAServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/findByProductId"
-	OpenFGAServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/findByEnvironmentId"
-	OpenFGAServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/findByKubeClusterId"
-	OpenFGAServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/getPassword"
-	OpenFGAServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController/findPods"
+	OpenfgaServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/list"
+	OpenfgaServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getById"
+	OpenfgaServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findByProductId"
+	OpenfgaServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findByEnvironmentId"
+	OpenfgaServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findByKubeClusterId"
+	OpenfgaServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getPassword"
+	OpenfgaServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findPods"
 )
 
-// OpenFGAServerQueryControllerClient is the client API for OpenFGAServerQueryController service.
+// OpenfgaServerQueryControllerClient is the client API for OpenfgaServerQueryController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type OpenFGAServerQueryControllerClient interface {
+type OpenfgaServerQueryControllerClient interface {
 	// list all openfga-servers on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenFGAServerList, error)
+	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenfgaServerList, error)
 	// look up openfga-server using openfga-server id
-	GetById(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model.OpenFGAServer, error)
+	GetById(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
 	// find openfga-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.OpenFGAServers, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.OpenfgaServers, error)
 	// find openfga-servers by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.OpenFGAServers, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.OpenFGAServers, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.OpenfgaServers, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.OpenfgaServers, error)
 	// look up openfga-server sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model.OpenFGAServerPassword, error)
+	GetPassword(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServerPassword, error)
 	// lookup pods of a openfga-server deployed to a environment
-	FindPods(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
-type openFGAServerQueryControllerClient struct {
+type openfgaServerQueryControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOpenFGAServerQueryControllerClient(cc grpc.ClientConnInterface) OpenFGAServerQueryControllerClient {
-	return &openFGAServerQueryControllerClient{cc}
+func NewOpenfgaServerQueryControllerClient(cc grpc.ClientConnInterface) OpenfgaServerQueryControllerClient {
+	return &openfgaServerQueryControllerClient{cc}
 }
 
-func (c *openFGAServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenFGAServerList, error) {
-	out := new(model.OpenFGAServerList)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_List_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenfgaServerList, error) {
+	out := new(model.OpenfgaServerList)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) GetById(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model.OpenFGAServer, error) {
-	out := new(model.OpenFGAServer)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_GetById_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) GetById(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error) {
+	out := new(model.OpenfgaServer)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_GetById_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.OpenFGAServers, error) {
-	out := new(model.OpenFGAServers)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.OpenfgaServers, error) {
+	out := new(model.OpenfgaServers)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.OpenFGAServers, error) {
-	out := new(model.OpenFGAServers)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.OpenfgaServers, error) {
+	out := new(model.OpenfgaServers)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.OpenFGAServers, error) {
-	out := new(model.OpenFGAServers)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.OpenfgaServers, error) {
+	out := new(model.OpenfgaServers)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) GetPassword(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model.OpenFGAServerPassword, error) {
-	out := new(model.OpenFGAServerPassword)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_GetPassword_FullMethodName, in, out, opts...)
+func (c *openfgaServerQueryControllerClient) GetPassword(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServerPassword, error) {
+	out := new(model.OpenfgaServerPassword)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_GetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *openFGAServerQueryControllerClient) FindPods(ctx context.Context, in *model.OpenFGAServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
+func (c *openfgaServerQueryControllerClient) FindPods(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
 	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, OpenFGAServerQueryController_FindPods_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// OpenFGAServerQueryControllerServer is the server API for OpenFGAServerQueryController service.
-// All implementations should embed UnimplementedOpenFGAServerQueryControllerServer
+// OpenfgaServerQueryControllerServer is the server API for OpenfgaServerQueryController service.
+// All implementations should embed UnimplementedOpenfgaServerQueryControllerServer
 // for forward compatibility
-type OpenFGAServerQueryControllerServer interface {
+type OpenfgaServerQueryControllerServer interface {
 	// list all openfga-servers on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.OpenFGAServerList, error)
+	List(context.Context, *rpc.PageInfo) (*model.OpenfgaServerList, error)
 	// look up openfga-server using openfga-server id
-	GetById(context.Context, *model.OpenFGAServerId) (*model.OpenFGAServer, error)
+	GetById(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error)
 	// find openfga-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.OpenFGAServers, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.OpenfgaServers, error)
 	// find openfga-servers by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.OpenFGAServers, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.OpenFGAServers, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.OpenfgaServers, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.OpenfgaServers, error)
 	// look up openfga-server sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(context.Context, *model.OpenFGAServerId) (*model.OpenFGAServerPassword, error)
+	GetPassword(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServerPassword, error)
 	// lookup pods of a openfga-server deployed to a environment
-	FindPods(context.Context, *model.OpenFGAServerId) (*model4.Pods, error)
+	FindPods(context.Context, *model.OpenfgaServerId) (*model4.Pods, error)
 }
 
-// UnimplementedOpenFGAServerQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedOpenFGAServerQueryControllerServer struct {
+// UnimplementedOpenfgaServerQueryControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedOpenfgaServerQueryControllerServer struct {
 }
 
-func (UnimplementedOpenFGAServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.OpenFGAServerList, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.OpenfgaServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) GetById(context.Context, *model.OpenFGAServerId) (*model.OpenFGAServer, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) GetById(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.OpenFGAServers, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.OpenfgaServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.OpenFGAServers, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.OpenfgaServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.OpenFGAServers, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.OpenfgaServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) GetPassword(context.Context, *model.OpenFGAServerId) (*model.OpenFGAServerPassword, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) GetPassword(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedOpenFGAServerQueryControllerServer) FindPods(context.Context, *model.OpenFGAServerId) (*model4.Pods, error) {
+func (UnimplementedOpenfgaServerQueryControllerServer) FindPods(context.Context, *model.OpenfgaServerId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
-// UnsafeOpenFGAServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to OpenFGAServerQueryControllerServer will
+// UnsafeOpenfgaServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to OpenfgaServerQueryControllerServer will
 // result in compilation errors.
-type UnsafeOpenFGAServerQueryControllerServer interface {
-	mustEmbedUnimplementedOpenFGAServerQueryControllerServer()
+type UnsafeOpenfgaServerQueryControllerServer interface {
+	mustEmbedUnimplementedOpenfgaServerQueryControllerServer()
 }
 
-func RegisterOpenFGAServerQueryControllerServer(s grpc.ServiceRegistrar, srv OpenFGAServerQueryControllerServer) {
-	s.RegisterService(&OpenFGAServerQueryController_ServiceDesc, srv)
+func RegisterOpenfgaServerQueryControllerServer(s grpc.ServiceRegistrar, srv OpenfgaServerQueryControllerServer) {
+	s.RegisterService(&OpenfgaServerQueryController_ServiceDesc, srv)
 }
 
-func _OpenFGAServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OpenfgaServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(rpc.PageInfo)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).List(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_List_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
+		return srv.(OpenfgaServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OpenFGAServerId)
+func _OpenfgaServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.OpenfgaServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).GetById(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).GetById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_GetById_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).GetById(ctx, req.(*model.OpenFGAServerId))
+		return srv.(OpenfgaServerQueryControllerServer).GetById(ctx, req.(*model.OpenfgaServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OpenfgaServerQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ProductId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).FindByProductId(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).FindByProductId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_FindByProductId_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_FindByProductId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
+		return srv.(OpenfgaServerQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OpenfgaServerQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model2.EnvironmentId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).FindByEnvironmentId(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).FindByEnvironmentId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_FindByEnvironmentId_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_FindByEnvironmentId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
+		return srv.(OpenfgaServerQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OpenfgaServerQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model3.KubeClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).FindByKubeClusterId(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).FindByKubeClusterId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_FindByKubeClusterId_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_FindByKubeClusterId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
+		return srv.(OpenfgaServerQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OpenFGAServerId)
+func _OpenfgaServerQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.OpenfgaServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).GetPassword(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).GetPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_GetPassword_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_GetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).GetPassword(ctx, req.(*model.OpenFGAServerId))
+		return srv.(OpenfgaServerQueryControllerServer).GetPassword(ctx, req.(*model.OpenfgaServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenFGAServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OpenFGAServerId)
+func _OpenfgaServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.OpenfgaServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerQueryControllerServer).FindPods(ctx, in)
+		return srv.(OpenfgaServerQueryControllerServer).FindPods(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerQueryController_FindPods_FullMethodName,
+		FullMethod: OpenfgaServerQueryController_FindPods_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerQueryControllerServer).FindPods(ctx, req.(*model.OpenFGAServerId))
+		return srv.(OpenfgaServerQueryControllerServer).FindPods(ctx, req.(*model.OpenfgaServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// OpenFGAServerQueryController_ServiceDesc is the grpc.ServiceDesc for OpenFGAServerQueryController service.
+// OpenfgaServerQueryController_ServiceDesc is the grpc.ServiceDesc for OpenfgaServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var OpenFGAServerQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenFGAServerQueryController",
-	HandlerType: (*OpenFGAServerQueryControllerServer)(nil),
+var OpenfgaServerQueryController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController",
+	HandlerType: (*OpenfgaServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "list",
-			Handler:    _OpenFGAServerQueryController_List_Handler,
+			Handler:    _OpenfgaServerQueryController_List_Handler,
 		},
 		{
 			MethodName: "getById",
-			Handler:    _OpenFGAServerQueryController_GetById_Handler,
+			Handler:    _OpenfgaServerQueryController_GetById_Handler,
 		},
 		{
 			MethodName: "findByProductId",
-			Handler:    _OpenFGAServerQueryController_FindByProductId_Handler,
+			Handler:    _OpenfgaServerQueryController_FindByProductId_Handler,
 		},
 		{
 			MethodName: "findByEnvironmentId",
-			Handler:    _OpenFGAServerQueryController_FindByEnvironmentId_Handler,
+			Handler:    _OpenfgaServerQueryController_FindByEnvironmentId_Handler,
 		},
 		{
 			MethodName: "findByKubeClusterId",
-			Handler:    _OpenFGAServerQueryController_FindByKubeClusterId_Handler,
+			Handler:    _OpenfgaServerQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",
-			Handler:    _OpenFGAServerQueryController_GetPassword_Handler,
+			Handler:    _OpenfgaServerQueryController_GetPassword_Handler,
 		},
 		{
 			MethodName: "findPods",
-			Handler:    _OpenFGAServerQueryController_FindPods_Handler,
+			Handler:    _OpenfgaServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

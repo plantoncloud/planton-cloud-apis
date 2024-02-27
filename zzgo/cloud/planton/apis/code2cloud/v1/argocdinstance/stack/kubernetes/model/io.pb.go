@@ -25,7 +25,7 @@ const (
 )
 
 // input for argocd-instance stack
-type ArgoCDInstanceKubernetesStackInput struct {
+type ArgocdInstanceKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -33,13 +33,13 @@ type ArgoCDInstanceKubernetesStackInput struct {
 	// stack job
 	StackJob *model.StackJob `protobuf:"bytes,1,opt,name=stack_job,json=stackJob,proto3" json:"stack_job,omitempty"`
 	// pulumi stack credentials
-	CredentialsInput *ArgoCDInstanceKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
+	CredentialsInput *ArgocdInstanceKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
 	// inputs used for creating stack resources
-	ResourceInput *ArgoCDInstanceKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
+	ResourceInput *ArgocdInstanceKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
 }
 
-func (x *ArgoCDInstanceKubernetesStackInput) Reset() {
-	*x = ArgoCDInstanceKubernetesStackInput{}
+func (x *ArgocdInstanceKubernetesStackInput) Reset() {
+	*x = ArgocdInstanceKubernetesStackInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -47,13 +47,13 @@ func (x *ArgoCDInstanceKubernetesStackInput) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceKubernetesStackInput) String() string {
+func (x *ArgocdInstanceKubernetesStackInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceKubernetesStackInput) ProtoMessage() {}
+func (*ArgocdInstanceKubernetesStackInput) ProtoMessage() {}
 
-func (x *ArgoCDInstanceKubernetesStackInput) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceKubernetesStackInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -65,26 +65,26 @@ func (x *ArgoCDInstanceKubernetesStackInput) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceKubernetesStackInput.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceKubernetesStackInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceKubernetesStackInput.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceKubernetesStackInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *ArgoCDInstanceKubernetesStackInput) GetStackJob() *model.StackJob {
+func (x *ArgocdInstanceKubernetesStackInput) GetStackJob() *model.StackJob {
 	if x != nil {
 		return x.StackJob
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceKubernetesStackInput) GetCredentialsInput() *ArgoCDInstanceKubernetesStackCredentialsInput {
+func (x *ArgocdInstanceKubernetesStackInput) GetCredentialsInput() *ArgocdInstanceKubernetesStackCredentialsInput {
 	if x != nil {
 		return x.CredentialsInput
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceKubernetesStackInput) GetResourceInput() *ArgoCDInstanceKubernetesStackResourceInput {
+func (x *ArgocdInstanceKubernetesStackInput) GetResourceInput() *ArgocdInstanceKubernetesStackResourceInput {
 	if x != nil {
 		return x.ResourceInput
 	}
@@ -92,7 +92,7 @@ func (x *ArgoCDInstanceKubernetesStackInput) GetResourceInput() *ArgoCDInstanceK
 }
 
 // stack credentials input
-type ArgoCDInstanceKubernetesStackCredentialsInput struct {
+type ArgocdInstanceKubernetesStackCredentialsInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -101,8 +101,8 @@ type ArgoCDInstanceKubernetesStackCredentialsInput struct {
 	Kubernetes *credentials.KubernetesProviderCredential `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *ArgoCDInstanceKubernetesStackCredentialsInput) Reset() {
-	*x = ArgoCDInstanceKubernetesStackCredentialsInput{}
+func (x *ArgocdInstanceKubernetesStackCredentialsInput) Reset() {
+	*x = ArgocdInstanceKubernetesStackCredentialsInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -110,13 +110,13 @@ func (x *ArgoCDInstanceKubernetesStackCredentialsInput) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceKubernetesStackCredentialsInput) String() string {
+func (x *ArgocdInstanceKubernetesStackCredentialsInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceKubernetesStackCredentialsInput) ProtoMessage() {}
+func (*ArgocdInstanceKubernetesStackCredentialsInput) ProtoMessage() {}
 
-func (x *ArgoCDInstanceKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -128,12 +128,12 @@ func (x *ArgoCDInstanceKubernetesStackCredentialsInput) ProtoReflect() protorefl
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ArgoCDInstanceKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
+func (x *ArgocdInstanceKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -141,17 +141,17 @@ func (x *ArgoCDInstanceKubernetesStackCredentialsInput) GetKubernetes() *credent
 }
 
 // stack resource input
-type ArgoCDInstanceKubernetesStackResourceInput struct {
+type ArgocdInstanceKubernetesStackResourceInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// argocd-instance
-	ArgocdInstance *model1.ArgoCDInstance `protobuf:"bytes,1,opt,name=argocd_instance,json=argocdInstance,proto3" json:"argocd_instance,omitempty"`
+	ArgocdInstance *model1.ArgocdInstance `protobuf:"bytes,1,opt,name=argocd_instance,json=argocdInstance,proto3" json:"argocd_instance,omitempty"`
 }
 
-func (x *ArgoCDInstanceKubernetesStackResourceInput) Reset() {
-	*x = ArgoCDInstanceKubernetesStackResourceInput{}
+func (x *ArgocdInstanceKubernetesStackResourceInput) Reset() {
+	*x = ArgocdInstanceKubernetesStackResourceInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -159,13 +159,13 @@ func (x *ArgoCDInstanceKubernetesStackResourceInput) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceKubernetesStackResourceInput) String() string {
+func (x *ArgocdInstanceKubernetesStackResourceInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceKubernetesStackResourceInput) ProtoMessage() {}
+func (*ArgocdInstanceKubernetesStackResourceInput) ProtoMessage() {}
 
-func (x *ArgoCDInstanceKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -177,12 +177,12 @@ func (x *ArgoCDInstanceKubernetesStackResourceInput) ProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ArgoCDInstanceKubernetesStackResourceInput) GetArgocdInstance() *model1.ArgoCDInstance {
+func (x *ArgocdInstanceKubernetesStackResourceInput) GetArgocdInstance() *model1.ArgocdInstance {
 	if x != nil {
 		return x.ArgocdInstance
 	}
@@ -190,17 +190,17 @@ func (x *ArgoCDInstanceKubernetesStackResourceInput) GetArgocdInstance() *model1
 }
 
 // argocd-instance stack outputs
-type ArgoCDInstanceKubernetesStackOutputs struct {
+type ArgocdInstanceKubernetesStackOutputs struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// status of the argocd-instance upon stack-job
-	ArgocdInstanceStatus *model1.ArgoCDInstanceStatus `protobuf:"bytes,1,opt,name=argocd_instance_status,json=argocdInstanceStatus,proto3" json:"argocd_instance_status,omitempty"`
+	ArgocdInstanceStatus *model1.ArgocdInstanceStatus `protobuf:"bytes,1,opt,name=argocd_instance_status,json=argocdInstanceStatus,proto3" json:"argocd_instance_status,omitempty"`
 }
 
-func (x *ArgoCDInstanceKubernetesStackOutputs) Reset() {
-	*x = ArgoCDInstanceKubernetesStackOutputs{}
+func (x *ArgocdInstanceKubernetesStackOutputs) Reset() {
+	*x = ArgocdInstanceKubernetesStackOutputs{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,13 +208,13 @@ func (x *ArgoCDInstanceKubernetesStackOutputs) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceKubernetesStackOutputs) String() string {
+func (x *ArgocdInstanceKubernetesStackOutputs) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceKubernetesStackOutputs) ProtoMessage() {}
+func (*ArgocdInstanceKubernetesStackOutputs) ProtoMessage() {}
 
-func (x *ArgoCDInstanceKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,12 +226,12 @@ func (x *ArgoCDInstanceKubernetesStackOutputs) ProtoReflect() protoreflect.Messa
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceKubernetesStackOutputs.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceKubernetesStackOutputs) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceKubernetesStackOutputs.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceKubernetesStackOutputs) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ArgoCDInstanceKubernetesStackOutputs) GetArgocdInstanceStatus() *model1.ArgoCDInstanceStatus {
+func (x *ArgocdInstanceKubernetesStackOutputs) GetArgocdInstanceStatus() *model1.ArgocdInstanceStatus {
 	if x != nil {
 		return x.ArgocdInstanceStatus
 	}
@@ -239,7 +239,7 @@ func (x *ArgoCDInstanceKubernetesStackOutputs) GetArgocdInstanceStatus() *model1
 }
 
 // stack response
-type ArgoCDInstanceKubernetesStackResponse struct {
+type ArgocdInstanceKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -247,11 +247,11 @@ type ArgoCDInstanceKubernetesStackResponse struct {
 	// stack-job progress event
 	ProgressEvent *progress.StackJobProgressEvent `protobuf:"bytes,1,opt,name=progress_event,json=progressEvent,proto3" json:"progress_event,omitempty"`
 	// stack outputs
-	Outputs *ArgoCDInstanceKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
+	Outputs *ArgocdInstanceKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
 }
 
-func (x *ArgoCDInstanceKubernetesStackResponse) Reset() {
-	*x = ArgoCDInstanceKubernetesStackResponse{}
+func (x *ArgocdInstanceKubernetesStackResponse) Reset() {
+	*x = ArgocdInstanceKubernetesStackResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -259,13 +259,13 @@ func (x *ArgoCDInstanceKubernetesStackResponse) Reset() {
 	}
 }
 
-func (x *ArgoCDInstanceKubernetesStackResponse) String() string {
+func (x *ArgocdInstanceKubernetesStackResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ArgoCDInstanceKubernetesStackResponse) ProtoMessage() {}
+func (*ArgocdInstanceKubernetesStackResponse) ProtoMessage() {}
 
-func (x *ArgoCDInstanceKubernetesStackResponse) ProtoReflect() protoreflect.Message {
+func (x *ArgocdInstanceKubernetesStackResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -277,19 +277,19 @@ func (x *ArgoCDInstanceKubernetesStackResponse) ProtoReflect() protoreflect.Mess
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ArgoCDInstanceKubernetesStackResponse.ProtoReflect.Descriptor instead.
-func (*ArgoCDInstanceKubernetesStackResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ArgocdInstanceKubernetesStackResponse.ProtoReflect.Descriptor instead.
+func (*ArgocdInstanceKubernetesStackResponse) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ArgoCDInstanceKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
+func (x *ArgocdInstanceKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
 	if x != nil {
 		return x.ProgressEvent
 	}
 	return nil
 }
 
-func (x *ArgoCDInstanceKubernetesStackResponse) GetOutputs() *ArgoCDInstanceKubernetesStackOutputs {
+func (x *ArgocdInstanceKubernetesStackResponse) GetOutputs() *ArgocdInstanceKubernetesStackOutputs {
 	if x != nil {
 		return x.Outputs
 	}
@@ -324,7 +324,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x61, 0x63, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74, 0x61,
 	0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x70, 0x72, 0x6f, 0x67,
 	0x72, 0x65, 0x73, 0x73, 0x2f, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xb6, 0x03,
-	0x0a, 0x22, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
+	0x0a, 0x22, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
 	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x49,
 	0x6e, 0x70, 0x75, 0x74, 0x12, 0x4f, 0x0a, 0x09, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x6a, 0x6f,
 	0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x32, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
@@ -337,8 +337,8 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73, 0x74, 0x61,
 	0x6e, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e,
-	0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x43,
-	0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
+	0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67, 0x6f, 0x63,
+	0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
 	0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69,
 	0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52, 0x10, 0x63, 0x72, 0x65, 0x64, 0x65, 0x6e,
 	0x74, 0x69, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x99, 0x01, 0x0a, 0x0e, 0x72,
@@ -348,11 +348,11 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e, 0x73,
 	0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65,
 	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67,
-	0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72,
 	0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52, 0x0d, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
-	0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0xa3, 0x01, 0x0a, 0x2d, 0x41, 0x72, 0x67, 0x6f, 0x43,
-	0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
+	0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0xa3, 0x01, 0x0a, 0x2d, 0x41, 0x72, 0x67, 0x6f, 0x63,
+	0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65,
 	0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69,
 	0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x72, 0x0a, 0x0a, 0x6b, 0x75, 0x62, 0x65,
 	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x52, 0x2e, 0x63,
@@ -362,7 +362,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x61, 0x6c, 0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72,
 	0x6f, 0x76, 0x69, 0x64, 0x65, 0x72, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c,
 	0x52, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0x9c, 0x01, 0x0a,
-	0x2a, 0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b,
+	0x2a, 0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b,
 	0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65,
 	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x6e, 0x0a, 0x0f, 0x61,
 	0x72, 0x67, 0x6f, 0x63, 0x64, 0x5f, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x18, 0x01,
@@ -370,9 +370,9 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69, 0x6e,
 	0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72, 0x67,
-	0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x0e, 0x61, 0x72, 0x67,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x0e, 0x61, 0x72, 0x67,
 	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x22, 0xaa, 0x01, 0x0a, 0x24,
-	0x41, 0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75,
+	0x41, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75,
 	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f, 0x75, 0x74,
 	0x70, 0x75, 0x74, 0x73, 0x12, 0x81, 0x01, 0x0a, 0x16, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x5f,
 	0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18,
@@ -380,10 +380,10 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32,
 	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69,
 	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41, 0x72,
-	0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74,
+	0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x52, 0x14, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e,
 	0x63, 0x65, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0xa1, 0x02, 0x0a, 0x25, 0x41, 0x72, 0x67,
-	0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72,
+	0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
 	0x73, 0x65, 0x12, 0x6f, 0x0a, 0x0e, 0x70, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x65,
 	0x76, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x48, 0x2e, 0x63, 0x6c, 0x6f,
@@ -398,7 +398,7 @@ var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_
 	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x72, 0x67, 0x6f, 0x63, 0x64, 0x69,
 	0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75,
 	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x41,
-	0x72, 0x67, 0x6f, 0x43, 0x44, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62,
+	0x72, 0x67, 0x6f, 0x63, 0x64, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4b, 0x75, 0x62,
 	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f, 0x75, 0x74, 0x70,
 	0x75, 0x74, 0x73, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x42, 0x9d, 0x04, 0x0a,
 	0x54, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63,
@@ -452,26 +452,26 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_goTypes = []interface{}{
-	(*ArgoCDInstanceKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput
-	(*ArgoCDInstanceKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackCredentialsInput
-	(*ArgoCDInstanceKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResourceInput
-	(*ArgoCDInstanceKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackOutputs
-	(*ArgoCDInstanceKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResponse
+	(*ArgocdInstanceKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput
+	(*ArgocdInstanceKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackCredentialsInput
+	(*ArgocdInstanceKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResourceInput
+	(*ArgocdInstanceKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackOutputs
+	(*ArgocdInstanceKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResponse
 	(*model.StackJob)(nil),                                // 5: cloud.planton.apis.iac.v1.stackjob.model.StackJob
 	(*credentials.KubernetesProviderCredential)(nil),      // 6: cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	(*model1.ArgoCDInstance)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
-	(*model1.ArgoCDInstanceStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus
+	(*model1.ArgocdInstance)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
+	(*model1.ArgocdInstanceStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus
 	(*progress.StackJobProgressEvent)(nil),                // 9: cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
 }
 var file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	1, // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackCredentialsInput
-	2, // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResourceInput
-	6, // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	7, // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResourceInput.argocd_instance:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance
-	8, // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackOutputs.argocd_instance_status:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus
-	9, // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
-	3, // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackOutputs
+	5, // 0: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	1, // 1: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackCredentialsInput
+	2, // 2: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResourceInput
+	6, // 3: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
+	7, // 4: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResourceInput.argocd_instance:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance
+	8, // 5: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackOutputs.argocd_instance_status:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus
+	9, // 6: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
+	3, // 7: cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackOutputs
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name
@@ -488,7 +488,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceKubernetesStackInput); i {
+			switch v := v.(*ArgocdInstanceKubernetesStackInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -500,7 +500,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceKubernetesStackCredentialsInput); i {
+			switch v := v.(*ArgocdInstanceKubernetesStackCredentialsInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -512,7 +512,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceKubernetesStackResourceInput); i {
+			switch v := v.(*ArgocdInstanceKubernetesStackResourceInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -524,7 +524,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceKubernetesStackOutputs); i {
+			switch v := v.(*ArgocdInstanceKubernetesStackOutputs); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -536,7 +536,7 @@ func file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_argocdinstance_stack_kubernetes_model_io_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ArgoCDInstanceKubernetesStackResponse); i {
+			switch v := v.(*ArgocdInstanceKubernetesStackResponse); i {
 			case 0:
 				return &v.state
 			case 1:

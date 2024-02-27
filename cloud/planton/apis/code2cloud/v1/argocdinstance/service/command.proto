@@ -11,10 +11,10 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //argocd-instance command controller
-service ArgoCDInstanceCommandController {
+service ArgocdInstanceCommandController {
   //preview creating argocd-instance
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
@@ -22,8 +22,8 @@ service ArgoCDInstanceCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //create argocd-instance
-  rpc create(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc create(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
@@ -31,8 +31,8 @@ service ArgoCDInstanceCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
   //preview updating an existing argocd-instance
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -40,8 +40,8 @@ service ArgoCDInstanceCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing argocd-instance
-  rpc update(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc update(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -50,7 +50,7 @@ service ArgoCDInstanceCommandController {
   }
   //preview deleting an existing argocd-instance
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -59,7 +59,7 @@ service ArgoCDInstanceCommandController {
   }
   //delete an existing argocd-instance
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -67,8 +67,8 @@ service ArgoCDInstanceCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
   }
   //preview restoring a previously deleted argocd-instance
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -76,8 +76,8 @@ service ArgoCDInstanceCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //restore a previously deleted argocd-instance
-  rpc restore(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -86,16 +86,16 @@ service ArgoCDInstanceCommandController {
   }
   //create-stack-job for argocd-instance
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for argocd-instance";
   }
   //restart a argocd-instance running in a environment.
-  //argocd-instance is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
-  rpc restart(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+  //argocd-instance is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
+  rpc restart(cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceId)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -105,7 +105,7 @@ service ArgoCDInstanceCommandController {
   //argocd-instance is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -116,7 +116,7 @@ service ArgoCDInstanceCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the argocd-instance.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -125,7 +125,7 @@ service ArgoCDInstanceCommandController {
   }
   //preview refresh a argocd-instance that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -134,7 +134,7 @@ service ArgoCDInstanceCommandController {
   }
   //refresh a argocd-instance that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance) {
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_instance_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";

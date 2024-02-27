@@ -105,7 +105,7 @@ message KeycloakServerStatus {
 // keycloak-server kubernetes spec
 message KeycloakServerSpecKubernetesSpec {
   //keycloak-container spec
-  KeycloakServerSpecKubernetesSpecRedisContainerSpec keycloak_container = 1;
+  KeycloakServerSpecKubernetesSpecKeycloakContainerSpec keycloak_container = 1;
 
   //keycloak-server ingress-spec
   KeycloakServerSpecKubernetesSpecIngressSpec ingress = 2;
@@ -113,32 +113,12 @@ message KeycloakServerSpecKubernetesSpec {
 }
 
 // keycloak-server kubernetes keycloak-container spec
-message KeycloakServerSpecKubernetesSpecRedisContainerSpec {
-  //number of keycloak pods.
-  //recommended default 1
-  int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
-
+message KeycloakServerSpecKubernetesSpecKeycloakContainerSpec {
   //keycloak container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
-
-  //flag to toggle persistence for keycloak data.
-  //when enabled, keycloak in-memory data will be persisted to a storage volume.
-  //the backup data from persistent volume is restored into keycloak memory between pod restarts.
-  //defaults to false.
-  bool is_persistence_enabled = 3;
-
-  //size of persistent volume attached to each keycloak pod
-  //if the client does not provide a value, the default value is configured.
-  //this attribute is ignored when persistence is not enabled.
-  //this persistent volume is used for backing up in-memory data.
-  //data from the persistent volume will be restored into memory between pod restarts.
-  //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
-  string disk_size = 4;
 }
 
 // keycloak-server kubernetes ingress spec

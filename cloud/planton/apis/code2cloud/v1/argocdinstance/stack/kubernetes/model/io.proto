@@ -8,36 +8,36 @@ import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 
 //input for argocd-instance stack
-message ArgoCDInstanceKubernetesStackInput {
+message ArgocdInstanceKubernetesStackInput {
   //stack job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
   //pulumi stack credentials
-  ArgoCDInstanceKubernetesStackCredentialsInput credentials_input = 2;
+  ArgocdInstanceKubernetesStackCredentialsInput credentials_input = 2;
   //inputs used for creating stack resources
-  ArgoCDInstanceKubernetesStackResourceInput resource_input = 3;
+  ArgocdInstanceKubernetesStackResourceInput resource_input = 3;
 }
 
 //stack credentials input
-message ArgoCDInstanceKubernetesStackCredentialsInput {
+message ArgocdInstanceKubernetesStackCredentialsInput {
   //kubernetes provider credential for creating argocd-instance resources on kubernetes cluster
   cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
 }
 
 //stack resource input
-message ArgoCDInstanceKubernetesStackResourceInput {
+message ArgocdInstanceKubernetesStackResourceInput {
   //argocd-instance
-  cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstance argocd_instance = 1;}
+  cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstance argocd_instance = 1;}
 
 //argocd-instance stack outputs
-message ArgoCDInstanceKubernetesStackOutputs {
+message ArgocdInstanceKubernetesStackOutputs {
   //status of the argocd-instance upon stack-job
-  cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgoCDInstanceStatus argocd_instance_status = 1;
+  cloud.planton.apis.code2cloud.v1.argocdinstance.model.ArgocdInstanceStatus argocd_instance_status = 1;
 }
 
 //stack response
-message ArgoCDInstanceKubernetesStackResponse {
+message ArgocdInstanceKubernetesStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  ArgoCDInstanceKubernetesStackOutputs outputs = 3;
+  ArgocdInstanceKubernetesStackOutputs outputs = 3;
 }

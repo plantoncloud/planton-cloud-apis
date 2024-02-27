@@ -4,9 +4,9 @@ package cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.service
 
 import "cloud/planton/apis/code2cloud/v1/argocdinstance/stack/kubernetes/model/io.proto";
 
-service ArgoCDInstanceKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgoCDInstanceKubernetesStackOutputs);
+service ArgocdInstanceKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.argocdinstance.stack.kubernetes.model.ArgocdInstanceKubernetesStackOutputs);
 }

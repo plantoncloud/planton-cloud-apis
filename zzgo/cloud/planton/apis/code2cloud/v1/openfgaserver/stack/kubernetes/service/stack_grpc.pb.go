@@ -20,32 +20,32 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OpenFGAServerKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenFGAServerKubernetesStackController/execute"
-	OpenFGAServerKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenFGAServerKubernetesStackController/getStackOutputs"
+	OpenfgaServerKubernetesStackController_Execute_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenfgaServerKubernetesStackController/execute"
+	OpenfgaServerKubernetesStackController_GetStackOutputs_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenfgaServerKubernetesStackController/getStackOutputs"
 )
 
-// OpenFGAServerKubernetesStackControllerClient is the client API for OpenFGAServerKubernetesStackController service.
+// OpenfgaServerKubernetesStackControllerClient is the client API for OpenfgaServerKubernetesStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type OpenFGAServerKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.OpenFGAServerKubernetesStackInput, opts ...grpc.CallOption) (OpenFGAServerKubernetesStackController_ExecuteClient, error)
-	GetStackOutputs(ctx context.Context, in *model.OpenFGAServerKubernetesStackInput, opts ...grpc.CallOption) (*model.OpenFGAServerKubernetesStackOutputs, error)
+type OpenfgaServerKubernetesStackControllerClient interface {
+	Execute(ctx context.Context, in *model.OpenfgaServerKubernetesStackInput, opts ...grpc.CallOption) (OpenfgaServerKubernetesStackController_ExecuteClient, error)
+	GetStackOutputs(ctx context.Context, in *model.OpenfgaServerKubernetesStackInput, opts ...grpc.CallOption) (*model.OpenfgaServerKubernetesStackOutputs, error)
 }
 
-type openFGAServerKubernetesStackControllerClient struct {
+type openfgaServerKubernetesStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewOpenFGAServerKubernetesStackControllerClient(cc grpc.ClientConnInterface) OpenFGAServerKubernetesStackControllerClient {
-	return &openFGAServerKubernetesStackControllerClient{cc}
+func NewOpenfgaServerKubernetesStackControllerClient(cc grpc.ClientConnInterface) OpenfgaServerKubernetesStackControllerClient {
+	return &openfgaServerKubernetesStackControllerClient{cc}
 }
 
-func (c *openFGAServerKubernetesStackControllerClient) Execute(ctx context.Context, in *model.OpenFGAServerKubernetesStackInput, opts ...grpc.CallOption) (OpenFGAServerKubernetesStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &OpenFGAServerKubernetesStackController_ServiceDesc.Streams[0], OpenFGAServerKubernetesStackController_Execute_FullMethodName, opts...)
+func (c *openfgaServerKubernetesStackControllerClient) Execute(ctx context.Context, in *model.OpenfgaServerKubernetesStackInput, opts ...grpc.CallOption) (OpenfgaServerKubernetesStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &OpenfgaServerKubernetesStackController_ServiceDesc.Streams[0], OpenfgaServerKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &openFGAServerKubernetesStackControllerExecuteClient{stream}
+	x := &openfgaServerKubernetesStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -55,117 +55,117 @@ func (c *openFGAServerKubernetesStackControllerClient) Execute(ctx context.Conte
 	return x, nil
 }
 
-type OpenFGAServerKubernetesStackController_ExecuteClient interface {
-	Recv() (*model.OpenFGAServerKubernetesStackResponse, error)
+type OpenfgaServerKubernetesStackController_ExecuteClient interface {
+	Recv() (*model.OpenfgaServerKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
-type openFGAServerKubernetesStackControllerExecuteClient struct {
+type openfgaServerKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *openFGAServerKubernetesStackControllerExecuteClient) Recv() (*model.OpenFGAServerKubernetesStackResponse, error) {
-	m := new(model.OpenFGAServerKubernetesStackResponse)
+func (x *openfgaServerKubernetesStackControllerExecuteClient) Recv() (*model.OpenfgaServerKubernetesStackResponse, error) {
+	m := new(model.OpenfgaServerKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-func (c *openFGAServerKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.OpenFGAServerKubernetesStackInput, opts ...grpc.CallOption) (*model.OpenFGAServerKubernetesStackOutputs, error) {
-	out := new(model.OpenFGAServerKubernetesStackOutputs)
-	err := c.cc.Invoke(ctx, OpenFGAServerKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
+func (c *openfgaServerKubernetesStackControllerClient) GetStackOutputs(ctx context.Context, in *model.OpenfgaServerKubernetesStackInput, opts ...grpc.CallOption) (*model.OpenfgaServerKubernetesStackOutputs, error) {
+	out := new(model.OpenfgaServerKubernetesStackOutputs)
+	err := c.cc.Invoke(ctx, OpenfgaServerKubernetesStackController_GetStackOutputs_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// OpenFGAServerKubernetesStackControllerServer is the server API for OpenFGAServerKubernetesStackController service.
-// All implementations should embed UnimplementedOpenFGAServerKubernetesStackControllerServer
+// OpenfgaServerKubernetesStackControllerServer is the server API for OpenfgaServerKubernetesStackController service.
+// All implementations should embed UnimplementedOpenfgaServerKubernetesStackControllerServer
 // for forward compatibility
-type OpenFGAServerKubernetesStackControllerServer interface {
-	Execute(*model.OpenFGAServerKubernetesStackInput, OpenFGAServerKubernetesStackController_ExecuteServer) error
-	GetStackOutputs(context.Context, *model.OpenFGAServerKubernetesStackInput) (*model.OpenFGAServerKubernetesStackOutputs, error)
+type OpenfgaServerKubernetesStackControllerServer interface {
+	Execute(*model.OpenfgaServerKubernetesStackInput, OpenfgaServerKubernetesStackController_ExecuteServer) error
+	GetStackOutputs(context.Context, *model.OpenfgaServerKubernetesStackInput) (*model.OpenfgaServerKubernetesStackOutputs, error)
 }
 
-// UnimplementedOpenFGAServerKubernetesStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedOpenFGAServerKubernetesStackControllerServer struct {
+// UnimplementedOpenfgaServerKubernetesStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedOpenfgaServerKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedOpenFGAServerKubernetesStackControllerServer) Execute(*model.OpenFGAServerKubernetesStackInput, OpenFGAServerKubernetesStackController_ExecuteServer) error {
+func (UnimplementedOpenfgaServerKubernetesStackControllerServer) Execute(*model.OpenfgaServerKubernetesStackInput, OpenfgaServerKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
-func (UnimplementedOpenFGAServerKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.OpenFGAServerKubernetesStackInput) (*model.OpenFGAServerKubernetesStackOutputs, error) {
+func (UnimplementedOpenfgaServerKubernetesStackControllerServer) GetStackOutputs(context.Context, *model.OpenfgaServerKubernetesStackInput) (*model.OpenfgaServerKubernetesStackOutputs, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetStackOutputs not implemented")
 }
 
-// UnsafeOpenFGAServerKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to OpenFGAServerKubernetesStackControllerServer will
+// UnsafeOpenfgaServerKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to OpenfgaServerKubernetesStackControllerServer will
 // result in compilation errors.
-type UnsafeOpenFGAServerKubernetesStackControllerServer interface {
-	mustEmbedUnimplementedOpenFGAServerKubernetesStackControllerServer()
+type UnsafeOpenfgaServerKubernetesStackControllerServer interface {
+	mustEmbedUnimplementedOpenfgaServerKubernetesStackControllerServer()
 }
 
-func RegisterOpenFGAServerKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv OpenFGAServerKubernetesStackControllerServer) {
-	s.RegisterService(&OpenFGAServerKubernetesStackController_ServiceDesc, srv)
+func RegisterOpenfgaServerKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv OpenfgaServerKubernetesStackControllerServer) {
+	s.RegisterService(&OpenfgaServerKubernetesStackController_ServiceDesc, srv)
 }
 
-func _OpenFGAServerKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.OpenFGAServerKubernetesStackInput)
+func _OpenfgaServerKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.OpenfgaServerKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(OpenFGAServerKubernetesStackControllerServer).Execute(m, &openFGAServerKubernetesStackControllerExecuteServer{stream})
+	return srv.(OpenfgaServerKubernetesStackControllerServer).Execute(m, &openfgaServerKubernetesStackControllerExecuteServer{stream})
 }
 
-type OpenFGAServerKubernetesStackController_ExecuteServer interface {
-	Send(*model.OpenFGAServerKubernetesStackResponse) error
+type OpenfgaServerKubernetesStackController_ExecuteServer interface {
+	Send(*model.OpenfgaServerKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
-type openFGAServerKubernetesStackControllerExecuteServer struct {
+type openfgaServerKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *openFGAServerKubernetesStackControllerExecuteServer) Send(m *model.OpenFGAServerKubernetesStackResponse) error {
+func (x *openfgaServerKubernetesStackControllerExecuteServer) Send(m *model.OpenfgaServerKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func _OpenFGAServerKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OpenFGAServerKubernetesStackInput)
+func _OpenfgaServerKubernetesStackController_GetStackOutputs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.OpenfgaServerKubernetesStackInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OpenFGAServerKubernetesStackControllerServer).GetStackOutputs(ctx, in)
+		return srv.(OpenfgaServerKubernetesStackControllerServer).GetStackOutputs(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OpenFGAServerKubernetesStackController_GetStackOutputs_FullMethodName,
+		FullMethod: OpenfgaServerKubernetesStackController_GetStackOutputs_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenFGAServerKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.OpenFGAServerKubernetesStackInput))
+		return srv.(OpenfgaServerKubernetesStackControllerServer).GetStackOutputs(ctx, req.(*model.OpenfgaServerKubernetesStackInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// OpenFGAServerKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for OpenFGAServerKubernetesStackController service.
+// OpenfgaServerKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for OpenfgaServerKubernetesStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var OpenFGAServerKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenFGAServerKubernetesStackController",
-	HandlerType: (*OpenFGAServerKubernetesStackControllerServer)(nil),
+var OpenfgaServerKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.openfgaserver.stack.kubernetes.service.OpenfgaServerKubernetesStackController",
+	HandlerType: (*OpenfgaServerKubernetesStackControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "getStackOutputs",
-			Handler:    _OpenFGAServerKubernetesStackController_GetStackOutputs_Handler,
+			Handler:    _OpenfgaServerKubernetesStackController_GetStackOutputs_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _OpenFGAServerKubernetesStackController_Execute_Handler,
+			Handler:       _OpenfgaServerKubernetesStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},
