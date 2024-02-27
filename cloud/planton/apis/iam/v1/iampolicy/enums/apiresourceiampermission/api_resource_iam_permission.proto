@@ -198,4 +198,11 @@ enum ApiResourceIamPermission {
   elasticsearch_cluster_get = 134;
   elasticsearch_cluster_restore = 135;
   elasticsearch_cluster_update = 136;
+
+  // openfga_server
+  openfga_server_create = 137;
+  openfga_server_delete = 138;
+  openfga_server_get = 139;
+  openfga_server_restore = 140;
+  openfga_server_update = 141;
 }

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.mongodbcluster.model;
+package cloud.planton.apis.code2cloud.v1.openfgaserver.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
@@ -11,20 +11,20 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-//mongodb-cluster
-message MongoDBCluster {
+//openfga-server
+message OpenFGAServer {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
     expression: "has(this.metadata)"
   };
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = mongodb_cluster;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = openfga_server;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "rdc";
-  //id format "rdc-<environment-id>-<mongodb-cluster-name>"
+  //id format "rdc-<environment-id>-<openfga-server-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -34,7 +34,7 @@ message MongoDBCluster {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "MongoDBCluster"
+    (buf.validate.field).string.const = "OpenFGAServer"
   ];
 
   //resource metadata
@@ -72,23 +72,23 @@ message MongoDBCluster {
   ];
 
   //spec
-  MongoDBClusterSpec spec = 4;
+  OpenFGAServerSpec spec = 4;
 
   //status
-  MongoDBClusterStatus status = 5;
+  OpenFGAServerStatus status = 5;
 }
 
-//mongodb-cluster spec
-message MongoDBClusterSpec {
+//openfga-server spec
+message OpenFGAServerSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  MongoDBClusterSpecKubernetesSpec kubernetes = 2;
+  OpenFGAServerSpecKubernetesSpec kubernetes = 2;
 }
 
-//mongodb-cluster status.
-message MongoDBClusterStatus {
+//openfga-server status.
+message OpenFGAServerStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,40 +99,40 @@ message MongoDBClusterStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  MongoDBClusterStatusKubernetesStatus kubernetes = 1;
+  OpenFGAServerStatusKubernetesStatus kubernetes = 1;
 }
 
-// mongodb-cluster kubernetes spec
-message MongoDBClusterSpecKubernetesSpec {
-  //mongodb-container spec
-  MongoDBClusterSpecKubernetesSpecRedisContainerSpec mongodb_container = 1;
+// openfga-server kubernetes spec
+message OpenFGAServerSpecKubernetesSpec {
+  //openfga-container spec
+  OpenFGAServerSpecKubernetesSpecRedisContainerSpec openfga_container = 1;
 
-  //mongodb-cluster ingress-spec
-  MongoDBClusterSpecKubernetesSpecIngressSpec ingress = 2;
+  //openfga-server ingress-spec
+  OpenFGAServerSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// mongodb-cluster kubernetes mongodb-container spec
-message MongoDBClusterSpecKubernetesSpecRedisContainerSpec {
-  //number of mongodb pods.
+// openfga-server kubernetes openfga-container spec
+message OpenFGAServerSpecKubernetesSpecRedisContainerSpec {
+  //number of openfga pods.
   //recommended default 1
   int32 replicas = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
 
-  //mongodb container cpu and memory resources.
+  //openfga container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
   ];
 
-  //flag to toggle persistence for mongodb data.
-  //when enabled, mongodb in-memory data will be persisted to a storage volume.
-  //the backup data from persistent volume is restored into mongodb memory between pod restarts.
+  //flag to toggle persistence for openfga data.
+  //when enabled, openfga in-memory data will be persisted to a storage volume.
+  //the backup data from persistent volume is restored into openfga memory between pod restarts.
   //defaults to false.
   bool is_persistence_enabled = 3;
 
-  //size of persistent volume attached to each mongodb pod
+  //size of persistent volume attached to each openfga pod
   //if the client does not provide a value, the default value is configured.
   //this attribute is ignored when persistence is not enabled.
   //this persistent volume is used for backing up in-memory data.
@@ -141,8 +141,8 @@ message MongoDBClusterSpecKubernetesSpecRedisContainerSpec {
   string disk_size = 4;
 }
 
-// mongodb-cluster kubernetes ingress spec
-message MongoDBClusterSpecKubernetesSpecIngressSpec {
+// openfga-server kubernetes ingress spec
+message OpenFGAServerSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -160,32 +160,32 @@ message MongoDBClusterSpecKubernetesSpecIngressSpec {
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating mongodb endpoints.
+  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating openfga endpoints.
   string endpoint_domain_name = 3;
 }
 
-//mongodb-cluster kubernetes status
-message MongoDBClusterStatusKubernetesStatus {
-  //kubernetes namespace in which mongodb-cluster is created.
+//openfga-server kubernetes status
+message OpenFGAServerStatusKubernetesStatus {
+  //kubernetes namespace in which openfga-server is created.
   string namespace = 1;
 
-  //kubernetes service name for mongodb-cluster.
-  //ex: main-mongodb-cluster
-  //in the above example, "main" is the name of the mongodb-cluster
+  //kubernetes service name for openfga-server.
+  //ex: main-openfga-server
+  //in the above example, "main" is the name of the openfga-server
   string service = 2;
 
-  //command to setup port-forwarding to open mongodb-cluster from developers laptop.
-  //this might come handy when mongodb-cluster ingress is disabled for security reasons.
-  //this is rendered by combining mongodb_cluster_kubernetes_service and kubernetes_namespace
-  //ex: kubectl port-forward svc/mongodb_cluster_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access mongodb-cluster using http://localhost:8080/mongodb
+  //command to setup port-forwarding to open openfga-server from developers laptop.
+  //this might come handy when openfga-server ingress is disabled for security reasons.
+  //this is rendered by combining openfga_server_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/openfga_server_kubernetes_service -n kubernetes_namespace 6379:6379
+  //running the command from this attribute makes it possible to access openfga-server using http://localhost:8080/openfga
   string port_forward_command = 3;
 
-  //kubernetes endpoint to connect to mongodb-cluster from the web browser.
-  //ex: main-mongodb-cluster.namespace.svc.cluster.local:6379
+  //kubernetes endpoint to connect to openfga-server from the web browser.
+  //ex: main-openfga-server.namespace.svc.cluster.local:6379
   string kube_endpoint = 4;
 
-  //public endpoint to open mongodb-cluster from clients outside kubernetes.
-  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/mongodb
+  //public endpoint to open openfga-server from clients outside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/openfga
   string ingress_endpoint = 5;
 }

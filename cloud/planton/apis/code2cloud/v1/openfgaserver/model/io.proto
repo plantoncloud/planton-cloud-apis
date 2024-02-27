@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.openfgaserver.model;
+
+import "cloud/planton/apis/code2cloud/v1/openfgaserver/model/state.proto";
+
+//wrapper for id field of openfga-server
+message OpenFGAServerId {
+  string value = 1;
+}
+
+//list of openfga-servers
+message OpenFGAServers {
+  repeated OpenFGAServer entries = 1;
+}
+
+//wrapper for openfga-server password
+message OpenFGAServerPassword {
+  string value = 1;
+}
+
+//response for paginated query to list openfga-servers
+message OpenFGAServerList {
+  int32 total_pages = 1;
+  repeated OpenFGAServer entries = 2;
+}
