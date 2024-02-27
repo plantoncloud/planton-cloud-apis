@@ -37,4 +37,5 @@ enum ApiResourceKind {
   argocd_instance = 31;
   prometheus_server = 32;
   gitlab_server = 33;
+  grafana_instance = 34;
 }
