@@ -4,9 +4,9 @@ package cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.service
 
 import "cloud/planton/apis/code2cloud/v1/mongodbcluster/stack/kubernetes/model/io.proto";
 
-service MongodbClusterKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongodbClusterKubernetesStackOutputs);
+service MongoDBClusterKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongoDBClusterKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongoDBClusterKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongoDBClusterKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.stack.kubernetes.model.MongoDBClusterKubernetesStackOutputs);
 }

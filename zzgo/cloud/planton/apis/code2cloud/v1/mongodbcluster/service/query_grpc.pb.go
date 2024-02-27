@@ -25,325 +25,325 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MongodbClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/list"
-	MongodbClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/getById"
-	MongodbClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/findByProductId"
-	MongodbClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/findByEnvironmentId"
-	MongodbClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/findByKubeClusterId"
-	MongodbClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/getPassword"
-	MongodbClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/findPods"
+	MongoDBClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/list"
+	MongoDBClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/getById"
+	MongoDBClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/findByProductId"
+	MongoDBClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/findByEnvironmentId"
+	MongoDBClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/findByKubeClusterId"
+	MongoDBClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/getPassword"
+	MongoDBClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController/findPods"
 )
 
-// MongodbClusterQueryControllerClient is the client API for MongodbClusterQueryController service.
+// MongoDBClusterQueryControllerClient is the client API for MongoDBClusterQueryController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type MongodbClusterQueryControllerClient interface {
+type MongoDBClusterQueryControllerClient interface {
 	// list all mongodb-clusters on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MongodbClusterList, error)
+	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MongoDBClusterList, error)
 	// look up mongodb-cluster using mongodb-cluster id
-	GetById(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbCluster, error)
+	GetById(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model.MongoDBCluster, error)
 	// find mongodb-clusters by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.MongodbClusters, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.MongoDBClusters, error)
 	// find mongodb-clusters by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.MongodbClusters, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.MongodbClusters, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.MongoDBClusters, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.MongoDBClusters, error)
 	// look up mongodb-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbClusterPassword, error)
+	GetPassword(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model.MongoDBClusterPassword, error)
 	// lookup pods of a mongodb-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
-type mongodbClusterQueryControllerClient struct {
+type mongoDBClusterQueryControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewMongodbClusterQueryControllerClient(cc grpc.ClientConnInterface) MongodbClusterQueryControllerClient {
-	return &mongodbClusterQueryControllerClient{cc}
+func NewMongoDBClusterQueryControllerClient(cc grpc.ClientConnInterface) MongoDBClusterQueryControllerClient {
+	return &mongoDBClusterQueryControllerClient{cc}
 }
 
-func (c *mongodbClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MongodbClusterList, error) {
-	out := new(model.MongodbClusterList)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_List_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MongoDBClusterList, error) {
+	out := new(model.MongoDBClusterList)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) GetById(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbCluster, error) {
-	out := new(model.MongodbCluster)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_GetById_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) GetById(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model.MongoDBCluster, error) {
+	out := new(model.MongoDBCluster)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_GetById_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.MongodbClusters, error) {
-	out := new(model.MongodbClusters)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.MongoDBClusters, error) {
+	out := new(model.MongoDBClusters)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.MongodbClusters, error) {
-	out := new(model.MongodbClusters)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.MongoDBClusters, error) {
+	out := new(model.MongoDBClusters)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.MongodbClusters, error) {
-	out := new(model.MongodbClusters)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.MongoDBClusters, error) {
+	out := new(model.MongoDBClusters)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) GetPassword(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbClusterPassword, error) {
-	out := new(model.MongodbClusterPassword)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_GetPassword_FullMethodName, in, out, opts...)
+func (c *mongoDBClusterQueryControllerClient) GetPassword(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model.MongoDBClusterPassword, error) {
+	out := new(model.MongoDBClusterPassword)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_GetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) FindPods(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
+func (c *mongoDBClusterQueryControllerClient) FindPods(ctx context.Context, in *model.MongoDBClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
 	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_FindPods_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, MongoDBClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// MongodbClusterQueryControllerServer is the server API for MongodbClusterQueryController service.
-// All implementations should embed UnimplementedMongodbClusterQueryControllerServer
+// MongoDBClusterQueryControllerServer is the server API for MongoDBClusterQueryController service.
+// All implementations should embed UnimplementedMongoDBClusterQueryControllerServer
 // for forward compatibility
-type MongodbClusterQueryControllerServer interface {
+type MongoDBClusterQueryControllerServer interface {
 	// list all mongodb-clusters on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.MongodbClusterList, error)
+	List(context.Context, *rpc.PageInfo) (*model.MongoDBClusterList, error)
 	// look up mongodb-cluster using mongodb-cluster id
-	GetById(context.Context, *model.MongodbClusterId) (*model.MongodbCluster, error)
+	GetById(context.Context, *model.MongoDBClusterId) (*model.MongoDBCluster, error)
 	// find mongodb-clusters by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.MongodbClusters, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.MongoDBClusters, error)
 	// find mongodb-clusters by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.MongodbClusters, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.MongodbClusters, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.MongoDBClusters, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.MongoDBClusters, error)
 	// look up mongodb-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(context.Context, *model.MongodbClusterId) (*model.MongodbClusterPassword, error)
+	GetPassword(context.Context, *model.MongoDBClusterId) (*model.MongoDBClusterPassword, error)
 	// lookup pods of a mongodb-cluster deployed to a environment
-	FindPods(context.Context, *model.MongodbClusterId) (*model4.Pods, error)
+	FindPods(context.Context, *model.MongoDBClusterId) (*model4.Pods, error)
 }
 
-// UnimplementedMongodbClusterQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedMongodbClusterQueryControllerServer struct {
+// UnimplementedMongoDBClusterQueryControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedMongoDBClusterQueryControllerServer struct {
 }
 
-func (UnimplementedMongodbClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.MongodbClusterList, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.MongoDBClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) GetById(context.Context, *model.MongodbClusterId) (*model.MongodbCluster, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) GetById(context.Context, *model.MongoDBClusterId) (*model.MongoDBCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.MongodbClusters, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.MongoDBClusters, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.MongodbClusters, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.MongoDBClusters, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.MongodbClusters, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.MongoDBClusters, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) GetPassword(context.Context, *model.MongodbClusterId) (*model.MongodbClusterPassword, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) GetPassword(context.Context, *model.MongoDBClusterId) (*model.MongoDBClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedMongodbClusterQueryControllerServer) FindPods(context.Context, *model.MongodbClusterId) (*model4.Pods, error) {
+func (UnimplementedMongoDBClusterQueryControllerServer) FindPods(context.Context, *model.MongoDBClusterId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
-// UnsafeMongodbClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to MongodbClusterQueryControllerServer will
+// UnsafeMongoDBClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to MongoDBClusterQueryControllerServer will
 // result in compilation errors.
-type UnsafeMongodbClusterQueryControllerServer interface {
-	mustEmbedUnimplementedMongodbClusterQueryControllerServer()
+type UnsafeMongoDBClusterQueryControllerServer interface {
+	mustEmbedUnimplementedMongoDBClusterQueryControllerServer()
 }
 
-func RegisterMongodbClusterQueryControllerServer(s grpc.ServiceRegistrar, srv MongodbClusterQueryControllerServer) {
-	s.RegisterService(&MongodbClusterQueryController_ServiceDesc, srv)
+func RegisterMongoDBClusterQueryControllerServer(s grpc.ServiceRegistrar, srv MongoDBClusterQueryControllerServer) {
+	s.RegisterService(&MongoDBClusterQueryController_ServiceDesc, srv)
 }
 
-func _MongodbClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MongoDBClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(rpc.PageInfo)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).List(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_List_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
+		return srv.(MongoDBClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MongodbClusterId)
+func _MongoDBClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MongoDBClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).GetById(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).GetById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_GetById_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).GetById(ctx, req.(*model.MongodbClusterId))
+		return srv.(MongoDBClusterQueryControllerServer).GetById(ctx, req.(*model.MongoDBClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MongoDBClusterQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ProductId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).FindByProductId(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).FindByProductId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_FindByProductId_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_FindByProductId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
+		return srv.(MongoDBClusterQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MongoDBClusterQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model2.EnvironmentId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).FindByEnvironmentId(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).FindByEnvironmentId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_FindByEnvironmentId_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_FindByEnvironmentId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
+		return srv.(MongoDBClusterQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _MongoDBClusterQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model3.KubeClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).FindByKubeClusterId(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).FindByKubeClusterId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_FindByKubeClusterId_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_FindByKubeClusterId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
+		return srv.(MongoDBClusterQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MongodbClusterId)
+func _MongoDBClusterQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MongoDBClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).GetPassword(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).GetPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_GetPassword_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_GetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).GetPassword(ctx, req.(*model.MongodbClusterId))
+		return srv.(MongoDBClusterQueryControllerServer).GetPassword(ctx, req.(*model.MongoDBClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MongodbClusterId)
+func _MongoDBClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MongoDBClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).FindPods(ctx, in)
+		return srv.(MongoDBClusterQueryControllerServer).FindPods(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MongodbClusterQueryController_FindPods_FullMethodName,
+		FullMethod: MongoDBClusterQueryController_FindPods_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).FindPods(ctx, req.(*model.MongodbClusterId))
+		return srv.(MongoDBClusterQueryControllerServer).FindPods(ctx, req.(*model.MongoDBClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// MongodbClusterQueryController_ServiceDesc is the grpc.ServiceDesc for MongodbClusterQueryController service.
+// MongoDBClusterQueryController_ServiceDesc is the grpc.ServiceDesc for MongoDBClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var MongodbClusterQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController",
-	HandlerType: (*MongodbClusterQueryControllerServer)(nil),
+var MongoDBClusterQueryController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongoDBClusterQueryController",
+	HandlerType: (*MongoDBClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "list",
-			Handler:    _MongodbClusterQueryController_List_Handler,
+			Handler:    _MongoDBClusterQueryController_List_Handler,
 		},
 		{
 			MethodName: "getById",
-			Handler:    _MongodbClusterQueryController_GetById_Handler,
+			Handler:    _MongoDBClusterQueryController_GetById_Handler,
 		},
 		{
 			MethodName: "findByProductId",
-			Handler:    _MongodbClusterQueryController_FindByProductId_Handler,
+			Handler:    _MongoDBClusterQueryController_FindByProductId_Handler,
 		},
 		{
 			MethodName: "findByEnvironmentId",
-			Handler:    _MongodbClusterQueryController_FindByEnvironmentId_Handler,
+			Handler:    _MongoDBClusterQueryController_FindByEnvironmentId_Handler,
 		},
 		{
 			MethodName: "findByKubeClusterId",
-			Handler:    _MongodbClusterQueryController_FindByKubeClusterId_Handler,
+			Handler:    _MongoDBClusterQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",
-			Handler:    _MongodbClusterQueryController_GetPassword_Handler,
+			Handler:    _MongoDBClusterQueryController_GetPassword_Handler,
 		},
 		{
 			MethodName: "findPods",
-			Handler:    _MongodbClusterQueryController_FindPods_Handler,
+			Handler:    _MongoDBClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

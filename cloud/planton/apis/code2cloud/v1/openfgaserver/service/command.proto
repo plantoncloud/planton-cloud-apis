@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.openfgaserver.service;
+
+import "cloud/planton/apis/code2cloud/v1/openfgaserver/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/openfgaserver/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+
+//openfga-server command controller
+service OpenFGAServerCommandController {
+  //preview creating openfga-server
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //create openfga-server
+  rpc create(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+  }
+  //preview updating an existing openfga-server
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //update an existing openfga-server
+  rpc update(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+  }
+  //preview deleting an existing openfga-server
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
+  }
+  //delete an existing openfga-server
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
+  }
+  //preview restoring a previously deleted openfga-server
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //restore a previously deleted openfga-server
+  rpc restore(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
+  }
+  //create-stack-job for openfga-server
+  rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-job for openfga-server";
+  }
+  //restart a openfga-server running in a environment.
+  //openfga-server is restarted by deleting running "openfga" pods which will be automatically recreated by kubernetes
+  rpc restart(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServerId)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restart openfga-server";
+  }
+  //pause a openfga-server running in a environment.
+  //openfga-server is paused by scaling down number of replicas of
+  //the kubernetes stateful sets to zero in the environment.
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = paused;
+  }
+  //unpause a previously paused openfga-server running in a environment.
+  //unpause is done by scaling the number of pods back to the number of
+  //replicas configured for the openfga-server.
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = unpaused;
+  }
+  //preview refresh a openfga-server that was previously created
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+  }
+  //refresh a openfga-server that was previously created
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenFGAServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh openfga-server";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
+  }
+}

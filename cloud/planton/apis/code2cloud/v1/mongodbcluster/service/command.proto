@@ -11,10 +11,10 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 
 //mongodb-cluster command controller
-service MongodbClusterCommandController {
+service MongoDBClusterCommandController {
   //preview creating mongodb-cluster
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
@@ -22,8 +22,8 @@ service MongodbClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //create mongodb-cluster
-  rpc create(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc create(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
@@ -31,8 +31,8 @@ service MongodbClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
   }
   //preview updating an existing mongodb-cluster
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -40,8 +40,8 @@ service MongodbClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //update an existing mongodb-cluster
-  rpc update(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc update(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -50,7 +50,7 @@ service MongodbClusterCommandController {
   }
   //preview deleting an existing mongodb-cluster
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -59,7 +59,7 @@ service MongodbClusterCommandController {
   }
   //delete an existing mongodb-cluster
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -67,8 +67,8 @@ service MongodbClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
   }
   //preview restoring a previously deleted mongodb-cluster
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -76,8 +76,8 @@ service MongodbClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
   }
   //restore a previously deleted mongodb-cluster
-  rpc restore(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -86,7 +86,7 @@ service MongodbClusterCommandController {
   }
   //create-stack-job for mongodb-cluster
   rpc createStackJob(cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -94,8 +94,8 @@ service MongodbClusterCommandController {
   }
   //restart a mongodb-cluster running in a environment.
   //mongodb-cluster is restarted by deleting running "mongodb" pods which will be automatically recreated by kubernetes
-  rpc restart(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+  rpc restart(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -105,7 +105,7 @@ service MongodbClusterCommandController {
   //mongodb-cluster is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -116,7 +116,7 @@ service MongodbClusterCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the mongodb-cluster.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -125,7 +125,7 @@ service MongodbClusterCommandController {
   }
   //preview refresh a mongodb-cluster that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -134,7 +134,7 @@ service MongodbClusterCommandController {
   }
   //refresh a mongodb-cluster that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongoDBCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
