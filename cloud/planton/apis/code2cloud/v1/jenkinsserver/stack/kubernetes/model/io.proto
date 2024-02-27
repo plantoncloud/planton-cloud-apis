@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/jenkinsserver/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for jenkins-server stack
+message JenkinsServerKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  JenkinsServerKubernetesStackCredentialsInput credentials_input = 2;
+  //inputs used for creating stack resources
+  JenkinsServerKubernetesStackResourceInput resource_input = 3;
+}
+
+//stack credentials input
+message JenkinsServerKubernetesStackCredentialsInput {
+  //kubernetes provider credential for creating jenkins-server resources on kubernetes cluster
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
+}
+
+//stack resource input
+message JenkinsServerKubernetesStackResourceInput {
+  //jenkins-server
+  cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServer jenkins_server = 1;}
+
+//jenkins-server stack outputs
+message JenkinsServerKubernetesStackOutputs {
+  //status of the jenkins-server upon stack-job
+  cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerStatus jenkins_server_status = 1;
+}
+
+//stack response
+message JenkinsServerKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  JenkinsServerKubernetesStackOutputs outputs = 3;
+}

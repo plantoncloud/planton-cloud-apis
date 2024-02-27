@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.jenkinsserver.service;
+
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/jenkinsserver/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/jenkinsserver/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+
+//jenkins-server query controller
+service JenkinsServerQueryController {
+  //list all jenkins-servers on planton cluster for the requested page.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerList);
+
+  //look up jenkins-server using jenkins-server id
+  rpc getById(cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerId)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = jenkins_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = jenkins_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-server";
+  }
+
+  //find jenkins-servers by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServers);
+
+  //find jenkins-servers by environment
+  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServers);
+  //find jenkins-servers by kube-cluster
+
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServers);
+
+  //lookup pods of a jenkins-server deployed to a environment
+  rpc findPods(cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerId)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = jenkins_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = jenkins_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-server pods";
+  }
+}

@@ -29,4 +29,5 @@ enum ApiResourceKind {
   stack_job = 23;
   storage_bucket = 24;
   helm_release = 25;
+  jenkins_server = 26;
 }
