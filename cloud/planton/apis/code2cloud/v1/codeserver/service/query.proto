@@ -10,7 +10,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //code server query controller
 service CodeServerQueryController {
-  //list all code servers on planton cloud for the requested page. This is intended for use on portal.
+  //list all code servers for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns(cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerList);
 

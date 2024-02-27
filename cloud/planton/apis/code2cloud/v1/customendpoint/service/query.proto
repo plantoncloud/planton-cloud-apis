@@ -11,7 +11,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //custom-endpoint query controller
 service CustomEndpointQueryController {
-  //list all custom-endpoints on planton cloud for the requested page. This is intended for use on portal.
+  //list all custom-endpoints for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointList);
 

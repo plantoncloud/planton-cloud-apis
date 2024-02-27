@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for id field of redis-cluster
+// wrapper for id field of helm-release
 type HelmReleaseId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -68,7 +68,7 @@ func (x *HelmReleaseId) GetValue() string {
 	return ""
 }
 
-// list of redis-clusters
+// list of helm-releases
 type HelmReleases struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -116,7 +116,7 @@ func (x *HelmReleases) GetEntries() []*HelmRelease {
 	return nil
 }
 
-// response for paginated query to list redis-clusters
+// response for paginated query to list helm-releases
 type HelmReleaseList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

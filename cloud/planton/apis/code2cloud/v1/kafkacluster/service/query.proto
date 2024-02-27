@@ -13,7 +13,7 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 
 //kafka-cluster query controller
 service KafkaClusterQueryController {
-  //list all kafka-clusters on planton cloud for the requested page. This is intended for use on portal.
+  //list all kafka-clusters for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterList);
 

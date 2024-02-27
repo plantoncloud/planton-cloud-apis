@@ -14,7 +14,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //solr-cloud query controller
 service SolrCloudQueryController {
-  //list all solr-clouds on planton cloud for the requested page. This is intended for use on portal.
+  //list all solr-clouds for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloudList);
 

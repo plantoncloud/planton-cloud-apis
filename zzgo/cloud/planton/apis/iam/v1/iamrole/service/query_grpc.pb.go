@@ -31,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IamRoleQueryControllerClient interface {
-	// retrieve paginated list of all iam roles on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all iam roles on planton cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IamRoleList, error)
 	// lookup iam role by role id
 	GetById(ctx context.Context, in *model.IamRoleId, opts ...grpc.CallOption) (*model.IamRole, error)
@@ -92,7 +92,7 @@ func (c *iamRoleQueryControllerClient) GetIamPrincipalTypesByApiResourceKind(ctx
 // All implementations should embed UnimplementedIamRoleQueryControllerServer
 // for forward compatibility
 type IamRoleQueryControllerServer interface {
-	// retrieve paginated list of all iam roles on planton cloud. this is intended for use on portal.
+	// retrieve paginated list of all iam roles on planton cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IamRoleList, error)
 	// lookup iam role by role id
 	GetById(context.Context, *model.IamRoleId) (*model.IamRole, error)

@@ -14,7 +14,7 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //redis-cluster query controller
 service RedisClusterQueryController {
-  //list all redis-clusters on planton cluster for the requested page. This is intended for use on portal.
+  //list all redis-clusters on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.code2cloud.v1.rediscluster.model.RedisClusterList);
 

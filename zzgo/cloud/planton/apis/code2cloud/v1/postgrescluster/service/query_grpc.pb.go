@@ -38,7 +38,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PostgresClusterQueryControllerClient interface {
-	// list all postgres-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all postgres-clusters for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error)
@@ -132,7 +132,7 @@ func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in 
 // All implementations should embed UnimplementedPostgresClusterQueryControllerServer
 // for forward compatibility
 type PostgresClusterQueryControllerServer interface {
-	// list all postgres-clusters on planton cloud for the requested page. This is intended for use on portal.
+	// list all postgres-clusters for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error)

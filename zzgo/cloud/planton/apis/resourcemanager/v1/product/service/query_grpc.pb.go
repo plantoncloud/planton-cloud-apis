@@ -31,7 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductQueryControllerClient interface {
-	// list all products on planton cloud for the requested page. This is intended to be used on back-office portal.
+	// list all products for the requested page. This is intended to be used on back-office portal.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ProductList, error)
 	// get details of a product by product id
 	GetById(ctx context.Context, in *model.ProductId, opts ...grpc.CallOption) (*model.Product, error)
@@ -79,7 +79,7 @@ func (c *productQueryControllerClient) FindByCompanyId(ctx context.Context, in *
 // All implementations should embed UnimplementedProductQueryControllerServer
 // for forward compatibility
 type ProductQueryControllerServer interface {
-	// list all products on planton cloud for the requested page. This is intended to be used on back-office portal.
+	// list all products for the requested page. This is intended to be used on back-office portal.
 	List(context.Context, *rpc.PageInfo) (*model.ProductList, error)
 	// get details of a product by product id
 	GetById(context.Context, *model.ProductId) (*model.Product, error)
