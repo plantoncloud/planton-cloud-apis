@@ -219,4 +219,11 @@ enum ApiResourceIamPermission {
   prometheus_server_get = 149;
   prometheus_server_restore = 150;
   prometheus_server_update = 151;
+
+  // gitlab_server
+  gitlab_server_create = 152;
+  gitlab_server_delete = 153;
+  gitlab_server_get = 154;
+  gitlab_server_restore = 155;
+  gitlab_server_update = 156;
 }

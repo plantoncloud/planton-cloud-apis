@@ -36,4 +36,5 @@ enum ApiResourceKind {
   openfga_server = 30;
   argocd_instance = 31;
   prometheus_server = 32;
+  gitlab_server = 33;
 }

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.gitlabserver.model;
+
+import "cloud/planton/apis/code2cloud/v1/gitlabserver/model/state.proto";
+
+//wrapper for id field of gitlab-server
+message GitLabServerId {
+  string value = 1;
+}
+
+//list of gitlab-servers
+message GitLabServers {
+  repeated GitLabServer entries = 1;
+}
+
+//wrapper for gitlab-server password
+message GitLabServerPassword {
+  string value = 1;
+}
+
+//response for paginated query to list gitlab-servers
+message GitLabServerList {
+  int32 total_pages = 1;
+  repeated GitLabServer entries = 2;
+}
