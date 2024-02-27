@@ -170,4 +170,11 @@ enum ApiResourceIamPermission {
   helm_release_get = 114;
   helm_release_restore = 115;
   helm_release_update = 116;
+
+  // jenkins_server
+  jenkins_server_create = 117;
+  jenkins_server_delete = 118;
+  jenkins_server_get = 119;
+  jenkins_server_restore = 120;
+  jenkins_server_update = 121;
 }

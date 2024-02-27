@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.jenkinsserver.model;
+
+import "cloud/planton/apis/code2cloud/v1/jenkinsserver/model/state.proto";
+
+//wrapper for id field of jenkins-server
+message JenkinsServerId {
+  string value = 1;
+}
+
+//list of jenkins-servers
+message JenkinsServers {
+  repeated JenkinsServer entries = 1;
+}
+
+//response for paginated query to list jenkins-servers
+message JenkinsServerList {
+  int32 total_pages = 1;
+  repeated JenkinsServer entries = 2;
+}

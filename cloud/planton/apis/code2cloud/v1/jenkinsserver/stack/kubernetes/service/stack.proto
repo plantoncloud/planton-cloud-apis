@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/jenkinsserver/stack/kubernetes/model/io.proto";
+
+service JenkinsServerKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.model.JenkinsServerKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.model.JenkinsServerKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.model.JenkinsServerKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.stack.kubernetes.model.JenkinsServerKubernetesStackOutputs);
+}
