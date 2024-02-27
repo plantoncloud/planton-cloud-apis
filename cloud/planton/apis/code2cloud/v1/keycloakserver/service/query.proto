@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.keycloakserver.service;
+
+import "cloud/planton/apis/code2cloud/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/keycloakserver/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/keycloakserver/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+
+//keycloak-server query controller
+service KeycloakServerQueryController {
+  //list all keycloak-servers on planton cluster for the requested page.
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerList);
+
+  //look up keycloak-server using keycloak-server id
+  rpc getById(cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerId)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServer) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = keycloak_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = keycloak_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view keycloak-server";
+  }
+
+  //find keycloak-servers by product id.
+  //response contains only the resources that the authenticated user account has viewer access to.
+  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
+
+  //find keycloak-servers by environment
+  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
+  //find keycloak-servers by kube-cluster
+
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
+
+  //look up keycloak-server sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerId)
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerPassword) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = keycloak_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = keycloak_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view keycloak-server password";
+  }
+
+  //lookup pods of a keycloak-server deployed to a environment
+  rpc findPods(cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerId)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = keycloak_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = keycloak_server_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view keycloak-server pods";
+  }
+}

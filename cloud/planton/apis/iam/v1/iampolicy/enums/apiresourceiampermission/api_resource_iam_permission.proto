@@ -184,4 +184,11 @@ enum ApiResourceIamPermission {
   mongodb_cluster_get = 124;
   mongodb_cluster_restore = 125;
   mongodb_cluster_update = 126;
+
+  // keycloak_server
+  keycloak_server_create = 127;
+  keycloak_server_delete = 128;
+  keycloak_server_get = 129;
+  keycloak_server_restore = 130;
+  keycloak_server_update = 131;
 }
