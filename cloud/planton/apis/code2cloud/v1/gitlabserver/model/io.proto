@@ -5,22 +5,22 @@ package cloud.planton.apis.code2cloud.v1.gitlabserver.model;
 import "cloud/planton/apis/code2cloud/v1/gitlabserver/model/state.proto";
 
 //wrapper for id field of gitlab-server
-message GitLabServerId {
+message GitlabServerId {
   string value = 1;
 }
 
 //list of gitlab-servers
-message GitLabServers {
-  repeated GitLabServer entries = 1;
+message GitlabServers {
+  repeated GitlabServer entries = 1;
 }
 
 //wrapper for gitlab-server password
-message GitLabServerPassword {
+message GitlabServerPassword {
   string value = 1;
 }
 
 //response for paginated query to list gitlab-servers
-message GitLabServerList {
+message GitlabServerList {
   int32 total_pages = 1;
-  repeated GitLabServer entries = 2;
+  repeated GitlabServer entries = 2;
 }

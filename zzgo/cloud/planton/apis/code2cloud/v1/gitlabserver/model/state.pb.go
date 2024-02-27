@@ -29,7 +29,7 @@ const (
 )
 
 // gitlab-server
-type GitLabServer struct {
+type GitlabServer struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -41,13 +41,13 @@ type GitLabServer struct {
 	// resource metadata
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// spec
-	Spec *GitLabServerSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
+	Spec *GitlabServerSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
 	// status
-	Status *GitLabServerStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
+	Status *GitlabServerStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 }
 
-func (x *GitLabServer) Reset() {
-	*x = GitLabServer{}
+func (x *GitlabServer) Reset() {
+	*x = GitlabServer{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -55,13 +55,13 @@ func (x *GitLabServer) Reset() {
 	}
 }
 
-func (x *GitLabServer) String() string {
+func (x *GitlabServer) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServer) ProtoMessage() {}
+func (*GitlabServer) ProtoMessage() {}
 
-func (x *GitLabServer) ProtoReflect() protoreflect.Message {
+func (x *GitlabServer) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -73,40 +73,40 @@ func (x *GitLabServer) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServer.ProtoReflect.Descriptor instead.
-func (*GitLabServer) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServer.ProtoReflect.Descriptor instead.
+func (*GitlabServer) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GitLabServer) GetApiVersion() string {
+func (x *GitlabServer) GetApiVersion() string {
 	if x != nil {
 		return x.ApiVersion
 	}
 	return ""
 }
 
-func (x *GitLabServer) GetKind() string {
+func (x *GitlabServer) GetKind() string {
 	if x != nil {
 		return x.Kind
 	}
 	return ""
 }
 
-func (x *GitLabServer) GetMetadata() *model.ApiResourceMetadata {
+func (x *GitlabServer) GetMetadata() *model.ApiResourceMetadata {
 	if x != nil {
 		return x.Metadata
 	}
 	return nil
 }
 
-func (x *GitLabServer) GetSpec() *GitLabServerSpec {
+func (x *GitlabServer) GetSpec() *GitlabServerSpec {
 	if x != nil {
 		return x.Spec
 	}
 	return nil
 }
 
-func (x *GitLabServer) GetStatus() *GitLabServerStatus {
+func (x *GitlabServer) GetStatus() *GitlabServerStatus {
 	if x != nil {
 		return x.Status
 	}
@@ -114,7 +114,7 @@ func (x *GitLabServer) GetStatus() *GitLabServerStatus {
 }
 
 // gitlab-server spec
-type GitLabServerSpec struct {
+type GitlabServerSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -122,11 +122,11 @@ type GitLabServerSpec struct {
 	// resource parent
 	EnvironmentInfo *model1.ApiResourceEnvironmentInfo `protobuf:"bytes,1,opt,name=environment_info,json=environmentInfo,proto3" json:"environment_info,omitempty"`
 	// kubernetes spec
-	Kubernetes *GitLabServerSpecKubernetesSpec `protobuf:"bytes,2,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
+	Kubernetes *GitlabServerSpecKubernetesSpec `protobuf:"bytes,2,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *GitLabServerSpec) Reset() {
-	*x = GitLabServerSpec{}
+func (x *GitlabServerSpec) Reset() {
+	*x = GitlabServerSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -134,13 +134,13 @@ func (x *GitLabServerSpec) Reset() {
 	}
 }
 
-func (x *GitLabServerSpec) String() string {
+func (x *GitlabServerSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerSpec) ProtoMessage() {}
+func (*GitlabServerSpec) ProtoMessage() {}
 
-func (x *GitLabServerSpec) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,19 +152,19 @@ func (x *GitLabServerSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerSpec.ProtoReflect.Descriptor instead.
-func (*GitLabServerSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerSpec.ProtoReflect.Descriptor instead.
+func (*GitlabServerSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GitLabServerSpec) GetEnvironmentInfo() *model1.ApiResourceEnvironmentInfo {
+func (x *GitlabServerSpec) GetEnvironmentInfo() *model1.ApiResourceEnvironmentInfo {
 	if x != nil {
 		return x.EnvironmentInfo
 	}
 	return nil
 }
 
-func (x *GitLabServerSpec) GetKubernetes() *GitLabServerSpecKubernetesSpec {
+func (x *GitlabServerSpec) GetKubernetes() *GitlabServerSpecKubernetesSpec {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -172,7 +172,7 @@ func (x *GitLabServerSpec) GetKubernetes() *GitLabServerSpecKubernetesSpec {
 }
 
 // gitlab-server status.
-type GitLabServerStatus struct {
+type GitlabServerStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -184,11 +184,11 @@ type GitLabServerStatus struct {
 	// id of the stack-job
 	StackJobId string `protobuf:"bytes,97,opt,name=stack_job_id,json=stackJobId,proto3" json:"stack_job_id,omitempty"`
 	// kubernetes status
-	Kubernetes *GitLabServerStatusKubernetesStatus `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
+	Kubernetes *GitlabServerStatusKubernetesStatus `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *GitLabServerStatus) Reset() {
-	*x = GitLabServerStatus{}
+func (x *GitlabServerStatus) Reset() {
+	*x = GitlabServerStatus{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -196,13 +196,13 @@ func (x *GitLabServerStatus) Reset() {
 	}
 }
 
-func (x *GitLabServerStatus) String() string {
+func (x *GitlabServerStatus) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerStatus) ProtoMessage() {}
+func (*GitlabServerStatus) ProtoMessage() {}
 
-func (x *GitLabServerStatus) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerStatus) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -214,33 +214,33 @@ func (x *GitLabServerStatus) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerStatus.ProtoReflect.Descriptor instead.
-func (*GitLabServerStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerStatus.ProtoReflect.Descriptor instead.
+func (*GitlabServerStatus) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GitLabServerStatus) GetLifecycle() *model.RunnableApiResourceLifecycle {
+func (x *GitlabServerStatus) GetLifecycle() *model.RunnableApiResourceLifecycle {
 	if x != nil {
 		return x.Lifecycle
 	}
 	return nil
 }
 
-func (x *GitLabServerStatus) GetAudit() *model.ApiResourceAudit {
+func (x *GitlabServerStatus) GetAudit() *model.ApiResourceAudit {
 	if x != nil {
 		return x.Audit
 	}
 	return nil
 }
 
-func (x *GitLabServerStatus) GetStackJobId() string {
+func (x *GitlabServerStatus) GetStackJobId() string {
 	if x != nil {
 		return x.StackJobId
 	}
 	return ""
 }
 
-func (x *GitLabServerStatus) GetKubernetes() *GitLabServerStatusKubernetesStatus {
+func (x *GitlabServerStatus) GetKubernetes() *GitlabServerStatusKubernetesStatus {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -248,19 +248,19 @@ func (x *GitLabServerStatus) GetKubernetes() *GitLabServerStatusKubernetesStatus
 }
 
 // gitlab-server kubernetes spec
-type GitLabServerSpecKubernetesSpec struct {
+type GitlabServerSpecKubernetesSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// gitlab-container spec
-	GitlabContainer *GitLabServerSpecKubernetesSpecGitLabContainerSpec `protobuf:"bytes,1,opt,name=gitlab_container,json=gitlabContainer,proto3" json:"gitlab_container,omitempty"`
+	GitlabContainer *GitlabServerSpecKubernetesSpecGitlabContainerSpec `protobuf:"bytes,1,opt,name=gitlab_container,json=gitlabContainer,proto3" json:"gitlab_container,omitempty"`
 	// gitlab-server ingress-spec
-	Ingress *GitLabServerSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
+	Ingress *GitlabServerSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
 }
 
-func (x *GitLabServerSpecKubernetesSpec) Reset() {
-	*x = GitLabServerSpecKubernetesSpec{}
+func (x *GitlabServerSpecKubernetesSpec) Reset() {
+	*x = GitlabServerSpecKubernetesSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -268,13 +268,13 @@ func (x *GitLabServerSpecKubernetesSpec) Reset() {
 	}
 }
 
-func (x *GitLabServerSpecKubernetesSpec) String() string {
+func (x *GitlabServerSpecKubernetesSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerSpecKubernetesSpec) ProtoMessage() {}
+func (*GitlabServerSpecKubernetesSpec) ProtoMessage() {}
 
-func (x *GitLabServerSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -286,19 +286,19 @@ func (x *GitLabServerSpecKubernetesSpec) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerSpecKubernetesSpec.ProtoReflect.Descriptor instead.
-func (*GitLabServerSpecKubernetesSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerSpecKubernetesSpec.ProtoReflect.Descriptor instead.
+func (*GitlabServerSpecKubernetesSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GitLabServerSpecKubernetesSpec) GetGitlabContainer() *GitLabServerSpecKubernetesSpecGitLabContainerSpec {
+func (x *GitlabServerSpecKubernetesSpec) GetGitlabContainer() *GitlabServerSpecKubernetesSpecGitlabContainerSpec {
 	if x != nil {
 		return x.GitlabContainer
 	}
 	return nil
 }
 
-func (x *GitLabServerSpecKubernetesSpec) GetIngress() *GitLabServerSpecKubernetesSpecIngressSpec {
+func (x *GitlabServerSpecKubernetesSpec) GetIngress() *GitlabServerSpecKubernetesSpecIngressSpec {
 	if x != nil {
 		return x.Ingress
 	}
@@ -306,7 +306,7 @@ func (x *GitLabServerSpecKubernetesSpec) GetIngress() *GitLabServerSpecKubernete
 }
 
 // gitlab-server kubernetes gitlab-container spec
-type GitLabServerSpecKubernetesSpecGitLabContainerSpec struct {
+type GitlabServerSpecKubernetesSpecGitlabContainerSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -316,8 +316,8 @@ type GitLabServerSpecKubernetesSpecGitLabContainerSpec struct {
 	Resources *model2.ContainerResources `protobuf:"bytes,1,opt,name=resources,proto3" json:"resources,omitempty"`
 }
 
-func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) Reset() {
-	*x = GitLabServerSpecKubernetesSpecGitLabContainerSpec{}
+func (x *GitlabServerSpecKubernetesSpecGitlabContainerSpec) Reset() {
+	*x = GitlabServerSpecKubernetesSpecGitlabContainerSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -325,13 +325,13 @@ func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) Reset() {
 	}
 }
 
-func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) String() string {
+func (x *GitlabServerSpecKubernetesSpecGitlabContainerSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerSpecKubernetesSpecGitLabContainerSpec) ProtoMessage() {}
+func (*GitlabServerSpecKubernetesSpecGitlabContainerSpec) ProtoMessage() {}
 
-func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerSpecKubernetesSpecGitlabContainerSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -343,12 +343,12 @@ func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) ProtoReflect() proto
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerSpecKubernetesSpecGitLabContainerSpec.ProtoReflect.Descriptor instead.
-func (*GitLabServerSpecKubernetesSpecGitLabContainerSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerSpecKubernetesSpecGitlabContainerSpec.ProtoReflect.Descriptor instead.
+func (*GitlabServerSpecKubernetesSpecGitlabContainerSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) GetResources() *model2.ContainerResources {
+func (x *GitlabServerSpecKubernetesSpecGitlabContainerSpec) GetResources() *model2.ContainerResources {
 	if x != nil {
 		return x.Resources
 	}
@@ -356,7 +356,7 @@ func (x *GitLabServerSpecKubernetesSpecGitLabContainerSpec) GetResources() *mode
 }
 
 // gitlab-server kubernetes ingress spec
-type GitLabServerSpecKubernetesSpecIngressSpec struct {
+type GitlabServerSpecKubernetesSpecIngressSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -370,8 +370,8 @@ type GitLabServerSpecKubernetesSpecIngressSpec struct {
 	EndpointDomainName string `protobuf:"bytes,3,opt,name=endpoint_domain_name,json=endpointDomainName,proto3" json:"endpoint_domain_name,omitempty"`
 }
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) Reset() {
-	*x = GitLabServerSpecKubernetesSpecIngressSpec{}
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) Reset() {
+	*x = GitlabServerSpecKubernetesSpecIngressSpec{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -379,13 +379,13 @@ func (x *GitLabServerSpecKubernetesSpecIngressSpec) Reset() {
 	}
 }
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) String() string {
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerSpecKubernetesSpecIngressSpec) ProtoMessage() {}
+func (*GitlabServerSpecKubernetesSpecIngressSpec) ProtoMessage() {}
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -397,26 +397,26 @@ func (x *GitLabServerSpecKubernetesSpecIngressSpec) ProtoReflect() protoreflect.
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerSpecKubernetesSpecIngressSpec.ProtoReflect.Descriptor instead.
-func (*GitLabServerSpecKubernetesSpecIngressSpec) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerSpecKubernetesSpecIngressSpec.ProtoReflect.Descriptor instead.
+func (*GitlabServerSpecKubernetesSpecIngressSpec) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) GetIsEnabled() bool {
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) GetIsEnabled() bool {
 	if x != nil {
 		return x.IsEnabled
 	}
 	return false
 }
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) GetIngressType() kubernetesworkloadingresstype.KubernetesWorkloadIngressType {
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) GetIngressType() kubernetesworkloadingresstype.KubernetesWorkloadIngressType {
 	if x != nil {
 		return x.IngressType
 	}
 	return kubernetesworkloadingresstype.KubernetesWorkloadIngressType(0)
 }
 
-func (x *GitLabServerSpecKubernetesSpecIngressSpec) GetEndpointDomainName() string {
+func (x *GitlabServerSpecKubernetesSpecIngressSpec) GetEndpointDomainName() string {
 	if x != nil {
 		return x.EndpointDomainName
 	}
@@ -424,7 +424,7 @@ func (x *GitLabServerSpecKubernetesSpecIngressSpec) GetEndpointDomainName() stri
 }
 
 // gitlab-server kubernetes status
-type GitLabServerStatusKubernetesStatus struct {
+type GitlabServerStatusKubernetesStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -449,8 +449,8 @@ type GitLabServerStatusKubernetesStatus struct {
 	IngressEndpoint string `protobuf:"bytes,5,opt,name=ingress_endpoint,json=ingressEndpoint,proto3" json:"ingress_endpoint,omitempty"`
 }
 
-func (x *GitLabServerStatusKubernetesStatus) Reset() {
-	*x = GitLabServerStatusKubernetesStatus{}
+func (x *GitlabServerStatusKubernetesStatus) Reset() {
+	*x = GitlabServerStatusKubernetesStatus{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -458,13 +458,13 @@ func (x *GitLabServerStatusKubernetesStatus) Reset() {
 	}
 }
 
-func (x *GitLabServerStatusKubernetesStatus) String() string {
+func (x *GitlabServerStatusKubernetesStatus) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerStatusKubernetesStatus) ProtoMessage() {}
+func (*GitlabServerStatusKubernetesStatus) ProtoMessage() {}
 
-func (x *GitLabServerStatusKubernetesStatus) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerStatusKubernetesStatus) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -476,40 +476,40 @@ func (x *GitLabServerStatusKubernetesStatus) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerStatusKubernetesStatus.ProtoReflect.Descriptor instead.
-func (*GitLabServerStatusKubernetesStatus) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerStatusKubernetesStatus.ProtoReflect.Descriptor instead.
+func (*GitlabServerStatusKubernetesStatus) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *GitLabServerStatusKubernetesStatus) GetNamespace() string {
+func (x *GitlabServerStatusKubernetesStatus) GetNamespace() string {
 	if x != nil {
 		return x.Namespace
 	}
 	return ""
 }
 
-func (x *GitLabServerStatusKubernetesStatus) GetService() string {
+func (x *GitlabServerStatusKubernetesStatus) GetService() string {
 	if x != nil {
 		return x.Service
 	}
 	return ""
 }
 
-func (x *GitLabServerStatusKubernetesStatus) GetPortForwardCommand() string {
+func (x *GitlabServerStatusKubernetesStatus) GetPortForwardCommand() string {
 	if x != nil {
 		return x.PortForwardCommand
 	}
 	return ""
 }
 
-func (x *GitLabServerStatusKubernetesStatus) GetKubeEndpoint() string {
+func (x *GitlabServerStatusKubernetesStatus) GetKubeEndpoint() string {
 	if x != nil {
 		return x.KubeEndpoint
 	}
 	return ""
 }
 
-func (x *GitLabServerStatusKubernetesStatus) GetIngressEndpoint() string {
+func (x *GitlabServerStatusKubernetesStatus) GetIngressEndpoint() string {
 	if x != nil {
 		return x.IngressEndpoint
 	}
@@ -569,13 +569,13 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x6d, 0x65, 0x74, 0x61,
 	0x64, 0x61, 0x74, 0x61, 0x5f, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x5f, 0x6f, 0x70, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x84, 0x08, 0x0a, 0x0c, 0x47,
-	0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x43, 0x0a, 0x0b, 0x61,
+	0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x12, 0x43, 0x0a, 0x0b, 0x61,
 	0x70, 0x69, 0x5f, 0x76, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
 	0x42, 0x22, 0xba, 0x48, 0x1f, 0x72, 0x1d, 0x0a, 0x1b, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2f, 0x76, 0x31, 0x52, 0x0a, 0x61, 0x70, 0x69, 0x56, 0x65, 0x72, 0x73, 0x69, 0x6f, 0x6e,
 	0x12, 0x27, 0x0a, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x13,
-	0xba, 0x48, 0x10, 0x72, 0x0e, 0x0a, 0x0c, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72,
+	0xba, 0x48, 0x10, 0x72, 0x0e, 0x0a, 0x0c, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x52, 0x04, 0x6b, 0x69, 0x6e, 0x64, 0x12, 0xd2, 0x04, 0x0a, 0x08, 0x6d, 0x65,
 	0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x41, 0x2e, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69,
@@ -618,13 +618,13 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69,
 	0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e,
 	0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53,
+	0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53,
 	0x70, 0x65, 0x63, 0x52, 0x04, 0x73, 0x70, 0x65, 0x63, 0x12, 0x5f, 0x0a, 0x06, 0x73, 0x74, 0x61,
 	0x74, 0x75, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x47, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63,
 	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74,
 	0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
-	0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74,
+	0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74,
 	0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x3a, 0x75, 0xba, 0x48, 0x33, 0x1a,
 	0x31, 0x0a, 0x08, 0x6d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0x12, 0x11, 0x4e, 0x61, 0x6d,
 	0x65, 0x20, 0x69, 0x73, 0x20, 0x6d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x1a, 0x12,
@@ -633,7 +633,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x21, 0x90, 0xa6, 0x1d, 0x01, 0x9a, 0xa6, 0x1d, 0x28, 0x08, 0x0a, 0x12, 0x24, 0x73, 0x70, 0x65,
 	0x63, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x6e,
 	0x66, 0x6f, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69,
-	0x64, 0x22, 0x82, 0x02, 0x0a, 0x10, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
+	0x64, 0x22, 0x82, 0x02, 0x0a, 0x10, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12, 0x79, 0x0a, 0x10, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f,
 	0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x6e, 0x66, 0x6f, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x4e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
@@ -646,10 +646,10 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x02, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x53, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c,
 	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32,
 	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73,
-	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c,
+	0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c,
 	0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65,
 	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x52, 0x0a, 0x6b, 0x75, 0x62, 0x65,
-	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xef, 0x02, 0x0a, 0x12, 0x47, 0x69, 0x74, 0x4c, 0x61,
+	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xef, 0x02, 0x0a, 0x12, 0x47, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x68, 0x0a,
 	0x09, 0x6c, 0x69, 0x66, 0x65, 0x63, 0x79, 0x63, 0x6c, 0x65, 0x18, 0x63, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x4a, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
@@ -669,31 +669,31 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x01, 0x28, 0x0b, 0x32, 0x57, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72,
-	0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62,
+	0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62,
 	0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4b, 0x75, 0x62, 0x65,
 	0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x0a, 0x6b, 0x75,
 	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0xae, 0x02, 0x0a, 0x1e, 0x47, 0x69, 0x74,
-	0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62,
+	0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62,
 	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0x91, 0x01, 0x0a, 0x10,
 	0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x5f, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72,
 	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x66, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
 	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65,
 	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62,
 	0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74,
-	0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62,
-	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x47, 0x69, 0x74, 0x4c, 0x61,
+	0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62,
+	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x47, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x52, 0x0f,
 	0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x12,
 	0x78, 0x0a, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b,
 	0x32, 0x5e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
 	0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72,
-	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72,
+	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
 	0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x53, 0x70, 0x65, 0x63,
 	0x52, 0x07, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x22, 0x9f, 0x01, 0x0a, 0x31, 0x47, 0x69,
-	0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75,
-	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x47, 0x69, 0x74, 0x4c,
+	0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x4b, 0x75,
+	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x47, 0x69, 0x74, 0x6c,
 	0x61, 0x62, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63, 0x12,
 	0x6a, 0x0a, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x0b, 0x32, 0x46, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
@@ -702,7 +702,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65,
 	0x72, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x42, 0x04, 0xc0, 0xb8, 0x18, 0x01,
 	0x52, 0x09, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x22, 0xc6, 0x04, 0x0a, 0x29,
-	0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63,
+	0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x70, 0x65, 0x63,
 	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x70, 0x65, 0x63, 0x49, 0x6e,
 	0x67, 0x72, 0x65, 0x73, 0x73, 0x53, 0x70, 0x65, 0x63, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x73, 0x5f,
 	0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69,
@@ -738,7 +738,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDesc
 	0x30, 0x3f, 0x20, 0x27, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x20, 0x74, 0x79, 0x70, 0x65,
 	0x20, 0x69, 0x73, 0x20, 0x6d, 0x61, 0x6e, 0x64, 0x61, 0x74, 0x6f, 0x72, 0x79, 0x20, 0x74, 0x6f,
 	0x20, 0x65, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x20, 0x69, 0x6e, 0x67, 0x72, 0x65, 0x73, 0x73, 0x27,
-	0x3a, 0x20, 0x27, 0x27, 0x22, 0xde, 0x01, 0x0a, 0x22, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53,
+	0x3a, 0x20, 0x27, 0x27, 0x22, 0xde, 0x01, 0x0a, 0x22, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53,
 	0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x1c, 0x0a, 0x09, 0x6e,
 	0x61, 0x6d, 0x65, 0x73, 0x70, 0x61, 0x63, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
@@ -796,13 +796,13 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_rawDes
 
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_goTypes = []interface{}{
-	(*GitLabServer)(nil),                                             // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
-	(*GitLabServerSpec)(nil),                                         // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpec
-	(*GitLabServerStatus)(nil),                                       // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus
-	(*GitLabServerSpecKubernetesSpec)(nil),                           // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpec
-	(*GitLabServerSpecKubernetesSpecGitLabContainerSpec)(nil),        // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecGitLabContainerSpec
-	(*GitLabServerSpecKubernetesSpecIngressSpec)(nil),                // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecIngressSpec
-	(*GitLabServerStatusKubernetesStatus)(nil),                       // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatusKubernetesStatus
+	(*GitlabServer)(nil),                                             // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	(*GitlabServerSpec)(nil),                                         // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpec
+	(*GitlabServerStatus)(nil),                                       // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus
+	(*GitlabServerSpecKubernetesSpec)(nil),                           // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpec
+	(*GitlabServerSpecKubernetesSpecGitlabContainerSpec)(nil),        // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecGitlabContainerSpec
+	(*GitlabServerSpecKubernetesSpecIngressSpec)(nil),                // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecIngressSpec
+	(*GitlabServerStatusKubernetesStatus)(nil),                       // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatusKubernetesStatus
 	(*model.ApiResourceMetadata)(nil),                                // 7: cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
 	(*model1.ApiResourceEnvironmentInfo)(nil),                        // 8: cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
 	(*model.RunnableApiResourceLifecycle)(nil),                       // 9: cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
@@ -811,18 +811,18 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_goTypes
 	(kubernetesworkloadingresstype.KubernetesWorkloadIngressType)(0), // 12: cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 }
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_depIdxs = []int32{
-	7,  // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer.metadata:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
-	1,  // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer.spec:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpec
-	2,  // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer.status:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus
-	8,  // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpec.environment_info:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
-	3,  // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpec.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpec
-	9,  // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus.lifecycle:type_name -> cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
-	10, // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus.audit:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
-	6,  // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatusKubernetesStatus
-	4,  // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpec.gitlab_container:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecGitLabContainerSpec
-	5,  // 9: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecIngressSpec
-	11, // 10: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecGitLabContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
-	12, // 11: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
+	7,  // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer.metadata:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata
+	1,  // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer.spec:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpec
+	2,  // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer.status:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus
+	8,  // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpec.environment_info:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo
+	3,  // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpec.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpec
+	9,  // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus.lifecycle:type_name -> cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle
+	10, // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus.audit:type_name -> cloud.planton.apis.commons.apiresource.model.ApiResourceAudit
+	6,  // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus.kubernetes:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatusKubernetesStatus
+	4,  // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpec.gitlab_container:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecGitlabContainerSpec
+	5,  // 9: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpec.ingress:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecIngressSpec
+	11, // 10: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecGitlabContainerSpec.resources:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources
+	12, // 11: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerSpecKubernetesSpecIngressSpec.ingress_type:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
@@ -837,7 +837,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServer); i {
+			switch v := v.(*GitlabServer); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -849,7 +849,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerSpec); i {
+			switch v := v.(*GitlabServerSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -861,7 +861,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerStatus); i {
+			switch v := v.(*GitlabServerStatus); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -873,7 +873,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerSpecKubernetesSpec); i {
+			switch v := v.(*GitlabServerSpecKubernetesSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -885,7 +885,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerSpecKubernetesSpecGitLabContainerSpec); i {
+			switch v := v.(*GitlabServerSpecKubernetesSpecGitlabContainerSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -897,7 +897,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerSpecKubernetesSpecIngressSpec); i {
+			switch v := v.(*GitlabServerSpecKubernetesSpecIngressSpec); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -909,7 +909,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerStatusKubernetesStatus); i {
+			switch v := v.(*GitlabServerStatusKubernetesStatus); i {
 			case 0:
 				return &v.state
 			case 1:

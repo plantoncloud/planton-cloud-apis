@@ -25,325 +25,325 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GitLabServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/list"
-	GitLabServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/getById"
-	GitLabServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/findByProductId"
-	GitLabServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/findByEnvironmentId"
-	GitLabServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/findByKubeClusterId"
-	GitLabServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/getPassword"
-	GitLabServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController/findPods"
+	GitlabServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/list"
+	GitlabServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/getById"
+	GitlabServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByProductId"
+	GitlabServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByEnvironmentId"
+	GitlabServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByKubeClusterId"
+	GitlabServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/getPassword"
+	GitlabServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findPods"
 )
 
-// GitLabServerQueryControllerClient is the client API for GitLabServerQueryController service.
+// GitlabServerQueryControllerClient is the client API for GitlabServerQueryController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GitLabServerQueryControllerClient interface {
+type GitlabServerQueryControllerClient interface {
 	// list all gitlab-servers on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitLabServerList, error)
+	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitlabServerList, error)
 	// look up gitlab-server using gitlab-server id
-	GetById(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	GetById(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitLabServers, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServers, error)
 	// find gitlab-servers by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitLabServers, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitLabServers, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServers, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServers, error)
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServerPassword, error)
+	GetPassword(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServerPassword, error)
 	// lookup pods of a gitlab-server deployed to a environment
-	FindPods(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
-type gitLabServerQueryControllerClient struct {
+type gitlabServerQueryControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGitLabServerQueryControllerClient(cc grpc.ClientConnInterface) GitLabServerQueryControllerClient {
-	return &gitLabServerQueryControllerClient{cc}
+func NewGitlabServerQueryControllerClient(cc grpc.ClientConnInterface) GitlabServerQueryControllerClient {
+	return &gitlabServerQueryControllerClient{cc}
 }
 
-func (c *gitLabServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitLabServerList, error) {
-	out := new(model.GitLabServerList)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_List_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitlabServerList, error) {
+	out := new(model.GitlabServerList)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) GetById(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_GetById_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) GetById(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_GetById_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitLabServers, error) {
-	out := new(model.GitLabServers)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
+	out := new(model.GitlabServers)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitLabServers, error) {
-	out := new(model.GitLabServers)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
+	out := new(model.GitlabServers)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitLabServers, error) {
-	out := new(model.GitLabServers)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
+	out := new(model.GitlabServers)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) GetPassword(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServerPassword, error) {
-	out := new(model.GitLabServerPassword)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_GetPassword_FullMethodName, in, out, opts...)
+func (c *gitlabServerQueryControllerClient) GetPassword(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServerPassword, error) {
+	out := new(model.GitlabServerPassword)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_GetPassword_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerQueryControllerClient) FindPods(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
+func (c *gitlabServerQueryControllerClient) FindPods(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
 	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, GitLabServerQueryController_FindPods_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GitLabServerQueryControllerServer is the server API for GitLabServerQueryController service.
-// All implementations should embed UnimplementedGitLabServerQueryControllerServer
+// GitlabServerQueryControllerServer is the server API for GitlabServerQueryController service.
+// All implementations should embed UnimplementedGitlabServerQueryControllerServer
 // for forward compatibility
-type GitLabServerQueryControllerServer interface {
+type GitlabServerQueryControllerServer interface {
 	// list all gitlab-servers on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.GitLabServerList, error)
+	List(context.Context, *rpc.PageInfo) (*model.GitlabServerList, error)
 	// look up gitlab-server using gitlab-server id
-	GetById(context.Context, *model.GitLabServerId) (*model.GitLabServer, error)
+	GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.GitLabServers, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServers, error)
 	// find gitlab-servers by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitLabServers, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitLabServers, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServers, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServers, error)
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
-	GetPassword(context.Context, *model.GitLabServerId) (*model.GitLabServerPassword, error)
+	GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error)
 	// lookup pods of a gitlab-server deployed to a environment
-	FindPods(context.Context, *model.GitLabServerId) (*model4.Pods, error)
+	FindPods(context.Context, *model.GitlabServerId) (*model4.Pods, error)
 }
 
-// UnimplementedGitLabServerQueryControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGitLabServerQueryControllerServer struct {
+// UnimplementedGitlabServerQueryControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGitlabServerQueryControllerServer struct {
 }
 
-func (UnimplementedGitLabServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.GitLabServerList, error) {
+func (UnimplementedGitlabServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.GitlabServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) GetById(context.Context, *model.GitLabServerId) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerQueryControllerServer) GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GitLabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitLabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitLabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServers, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) GetPassword(context.Context, *model.GitLabServerId) (*model.GitLabServerPassword, error) {
+func (UnimplementedGitlabServerQueryControllerServer) GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedGitLabServerQueryControllerServer) FindPods(context.Context, *model.GitLabServerId) (*model4.Pods, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindPods(context.Context, *model.GitlabServerId) (*model4.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
-// UnsafeGitLabServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GitLabServerQueryControllerServer will
+// UnsafeGitlabServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GitlabServerQueryControllerServer will
 // result in compilation errors.
-type UnsafeGitLabServerQueryControllerServer interface {
-	mustEmbedUnimplementedGitLabServerQueryControllerServer()
+type UnsafeGitlabServerQueryControllerServer interface {
+	mustEmbedUnimplementedGitlabServerQueryControllerServer()
 }
 
-func RegisterGitLabServerQueryControllerServer(s grpc.ServiceRegistrar, srv GitLabServerQueryControllerServer) {
-	s.RegisterService(&GitLabServerQueryController_ServiceDesc, srv)
+func RegisterGitlabServerQueryControllerServer(s grpc.ServiceRegistrar, srv GitlabServerQueryControllerServer) {
+	s.RegisterService(&GitlabServerQueryController_ServiceDesc, srv)
 }
 
-func _GitLabServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(rpc.PageInfo)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).List(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).List(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_List_FullMethodName,
+		FullMethod: GitlabServerQueryController_List_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
+		return srv.(GitlabServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServerId)
+func _GitlabServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).GetById(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).GetById(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_GetById_FullMethodName,
+		FullMethod: GitlabServerQueryController_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).GetById(ctx, req.(*model.GitLabServerId))
+		return srv.(GitlabServerQueryControllerServer).GetById(ctx, req.(*model.GitlabServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ProductId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).FindByProductId(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).FindByProductId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_FindByProductId_FullMethodName,
+		FullMethod: GitlabServerQueryController_FindByProductId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
+		return srv.(GitlabServerQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model2.EnvironmentId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).FindByEnvironmentId(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).FindByEnvironmentId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_FindByEnvironmentId_FullMethodName,
+		FullMethod: GitlabServerQueryController_FindByEnvironmentId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
+		return srv.(GitlabServerQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model3.KubeClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).FindByKubeClusterId(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).FindByKubeClusterId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_FindByKubeClusterId_FullMethodName,
+		FullMethod: GitlabServerQueryController_FindByKubeClusterId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
+		return srv.(GitlabServerQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServerId)
+func _GitlabServerQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).GetPassword(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).GetPassword(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_GetPassword_FullMethodName,
+		FullMethod: GitlabServerQueryController_GetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).GetPassword(ctx, req.(*model.GitLabServerId))
+		return srv.(GitlabServerQueryControllerServer).GetPassword(ctx, req.(*model.GitlabServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServerId)
+func _GitlabServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerQueryControllerServer).FindPods(ctx, in)
+		return srv.(GitlabServerQueryControllerServer).FindPods(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerQueryController_FindPods_FullMethodName,
+		FullMethod: GitlabServerQueryController_FindPods_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerQueryControllerServer).FindPods(ctx, req.(*model.GitLabServerId))
+		return srv.(GitlabServerQueryControllerServer).FindPods(ctx, req.(*model.GitlabServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GitLabServerQueryController_ServiceDesc is the grpc.ServiceDesc for GitLabServerQueryController service.
+// GitlabServerQueryController_ServiceDesc is the grpc.ServiceDesc for GitlabServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GitLabServerQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerQueryController",
-	HandlerType: (*GitLabServerQueryControllerServer)(nil),
+var GitlabServerQueryController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController",
+	HandlerType: (*GitlabServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "list",
-			Handler:    _GitLabServerQueryController_List_Handler,
+			Handler:    _GitlabServerQueryController_List_Handler,
 		},
 		{
 			MethodName: "getById",
-			Handler:    _GitLabServerQueryController_GetById_Handler,
+			Handler:    _GitlabServerQueryController_GetById_Handler,
 		},
 		{
 			MethodName: "findByProductId",
-			Handler:    _GitLabServerQueryController_FindByProductId_Handler,
+			Handler:    _GitlabServerQueryController_FindByProductId_Handler,
 		},
 		{
 			MethodName: "findByEnvironmentId",
-			Handler:    _GitLabServerQueryController_FindByEnvironmentId_Handler,
+			Handler:    _GitlabServerQueryController_FindByEnvironmentId_Handler,
 		},
 		{
 			MethodName: "findByKubeClusterId",
-			Handler:    _GitLabServerQueryController_FindByKubeClusterId_Handler,
+			Handler:    _GitlabServerQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",
-			Handler:    _GitLabServerQueryController_GetPassword_Handler,
+			Handler:    _GitlabServerQueryController_GetPassword_Handler,
 		},
 		{
 			MethodName: "findPods",
-			Handler:    _GitLabServerQueryController_FindPods_Handler,
+			Handler:    _GitlabServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

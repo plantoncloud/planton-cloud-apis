@@ -21,7 +21,7 @@ const (
 )
 
 // wrapper for id field of gitlab-server
-type GitLabServerId struct {
+type GitlabServerId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -29,8 +29,8 @@ type GitLabServerId struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *GitLabServerId) Reset() {
-	*x = GitLabServerId{}
+func (x *GitlabServerId) Reset() {
+	*x = GitlabServerId{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -38,13 +38,13 @@ func (x *GitLabServerId) Reset() {
 	}
 }
 
-func (x *GitLabServerId) String() string {
+func (x *GitlabServerId) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerId) ProtoMessage() {}
+func (*GitlabServerId) ProtoMessage() {}
 
-func (x *GitLabServerId) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerId) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,12 +56,12 @@ func (x *GitLabServerId) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerId.ProtoReflect.Descriptor instead.
-func (*GitLabServerId) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerId.ProtoReflect.Descriptor instead.
+func (*GitlabServerId) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GitLabServerId) GetValue() string {
+func (x *GitlabServerId) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -69,16 +69,16 @@ func (x *GitLabServerId) GetValue() string {
 }
 
 // list of gitlab-servers
-type GitLabServers struct {
+type GitlabServers struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Entries []*GitLabServer `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries []*GitlabServer `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *GitLabServers) Reset() {
-	*x = GitLabServers{}
+func (x *GitlabServers) Reset() {
+	*x = GitlabServers{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -86,13 +86,13 @@ func (x *GitLabServers) Reset() {
 	}
 }
 
-func (x *GitLabServers) String() string {
+func (x *GitlabServers) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServers) ProtoMessage() {}
+func (*GitlabServers) ProtoMessage() {}
 
-func (x *GitLabServers) ProtoReflect() protoreflect.Message {
+func (x *GitlabServers) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -104,12 +104,12 @@ func (x *GitLabServers) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServers.ProtoReflect.Descriptor instead.
-func (*GitLabServers) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServers.ProtoReflect.Descriptor instead.
+func (*GitlabServers) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GitLabServers) GetEntries() []*GitLabServer {
+func (x *GitlabServers) GetEntries() []*GitlabServer {
 	if x != nil {
 		return x.Entries
 	}
@@ -117,7 +117,7 @@ func (x *GitLabServers) GetEntries() []*GitLabServer {
 }
 
 // wrapper for gitlab-server password
-type GitLabServerPassword struct {
+type GitlabServerPassword struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -125,8 +125,8 @@ type GitLabServerPassword struct {
 	Value string `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 }
 
-func (x *GitLabServerPassword) Reset() {
-	*x = GitLabServerPassword{}
+func (x *GitlabServerPassword) Reset() {
+	*x = GitlabServerPassword{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -134,13 +134,13 @@ func (x *GitLabServerPassword) Reset() {
 	}
 }
 
-func (x *GitLabServerPassword) String() string {
+func (x *GitlabServerPassword) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerPassword) ProtoMessage() {}
+func (*GitlabServerPassword) ProtoMessage() {}
 
-func (x *GitLabServerPassword) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerPassword) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -152,12 +152,12 @@ func (x *GitLabServerPassword) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerPassword.ProtoReflect.Descriptor instead.
-func (*GitLabServerPassword) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerPassword.ProtoReflect.Descriptor instead.
+func (*GitlabServerPassword) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GitLabServerPassword) GetValue() string {
+func (x *GitlabServerPassword) GetValue() string {
 	if x != nil {
 		return x.Value
 	}
@@ -165,17 +165,17 @@ func (x *GitLabServerPassword) GetValue() string {
 }
 
 // response for paginated query to list gitlab-servers
-type GitLabServerList struct {
+type GitlabServerList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	TotalPages int32           `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*GitLabServer `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
+	Entries    []*GitlabServer `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
 }
 
-func (x *GitLabServerList) Reset() {
-	*x = GitLabServerList{}
+func (x *GitlabServerList) Reset() {
+	*x = GitlabServerList{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -183,13 +183,13 @@ func (x *GitLabServerList) Reset() {
 	}
 }
 
-func (x *GitLabServerList) String() string {
+func (x *GitlabServerList) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerList) ProtoMessage() {}
+func (*GitlabServerList) ProtoMessage() {}
 
-func (x *GitLabServerList) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerList) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -201,19 +201,19 @@ func (x *GitLabServerList) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerList.ProtoReflect.Descriptor instead.
-func (*GitLabServerList) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerList.ProtoReflect.Descriptor instead.
+func (*GitlabServerList) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GitLabServerList) GetTotalPages() int32 {
+func (x *GitlabServerList) GetTotalPages() int32 {
 	if x != nil {
 		return x.TotalPages
 	}
 	return 0
 }
 
-func (x *GitLabServerList) GetEntries() []*GitLabServer {
+func (x *GitlabServerList) GetEntries() []*GitlabServer {
 	if x != nil {
 		return x.Entries
 	}
@@ -234,27 +234,27 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDesc = 
 	0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x26, 0x0a, 0x0e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65,
+	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x26, 0x0a, 0x0e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65,
 	0x72, 0x76, 0x65, 0x72, 0x49, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x6c, 0x0a, 0x0d,
-	0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x12, 0x5b, 0x0a,
+	0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x73, 0x12, 0x5b, 0x0a,
 	0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x41,
 	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
 	0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76,
 	0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d,
-	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x22, 0x2c, 0x0a, 0x14, 0x47, 0x69,
-	0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
 	0x72, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x90, 0x01, 0x0a, 0x10, 0x47, 0x69, 0x74,
-	0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x0a,
+	0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x1f, 0x0a,
 	0x0b, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01,
 	0x28, 0x05, 0x52, 0x0a, 0x74, 0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x5b,
 	0x0a, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32,
 	0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
 	0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
 	0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e,
-	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x52, 0x07, 0x65, 0x6e, 0x74, 0x72, 0x69, 0x65, 0x73, 0x42, 0xa7, 0x03, 0x0a, 0x41,
 	0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
@@ -299,15 +299,15 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_rawDescGZ
 
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_goTypes = []interface{}{
-	(*GitLabServerId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerId
-	(*GitLabServers)(nil),        // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServers
-	(*GitLabServerPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerPassword
-	(*GitLabServerList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerList
-	(*GitLabServer)(nil),         // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
+	(*GitlabServerId)(nil),       // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerId
+	(*GitlabServers)(nil),        // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServers
+	(*GitlabServerPassword)(nil), // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerPassword
+	(*GitlabServerList)(nil),     // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerList
+	(*GitlabServer)(nil),         // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
 }
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_depIdxs = []int32{
-	4, // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServers.entries:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
-	4, // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerList.entries:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
+	4, // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServers.entries:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	4, // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerList.entries:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name
@@ -323,7 +323,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_init() {
 	file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_state_proto_init()
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerId); i {
+			switch v := v.(*GitlabServerId); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -335,7 +335,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServers); i {
+			switch v := v.(*GitlabServers); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -347,7 +347,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerPassword); i {
+			switch v := v.(*GitlabServerPassword); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -359,7 +359,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerList); i {
+			switch v := v.(*GitlabServerList); i {
 			case 0:
 				return &v.state
 			case 1:

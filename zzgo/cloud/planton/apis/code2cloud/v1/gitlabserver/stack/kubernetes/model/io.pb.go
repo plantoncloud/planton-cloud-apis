@@ -25,7 +25,7 @@ const (
 )
 
 // input for gitlab-server stack
-type GitLabServerKubernetesStackInput struct {
+type GitlabServerKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -33,13 +33,13 @@ type GitLabServerKubernetesStackInput struct {
 	// stack job
 	StackJob *model.StackJob `protobuf:"bytes,1,opt,name=stack_job,json=stackJob,proto3" json:"stack_job,omitempty"`
 	// pulumi stack credentials
-	CredentialsInput *GitLabServerKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
+	CredentialsInput *GitlabServerKubernetesStackCredentialsInput `protobuf:"bytes,2,opt,name=credentials_input,json=credentialsInput,proto3" json:"credentials_input,omitempty"`
 	// inputs used for creating stack resources
-	ResourceInput *GitLabServerKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
+	ResourceInput *GitlabServerKubernetesStackResourceInput `protobuf:"bytes,3,opt,name=resource_input,json=resourceInput,proto3" json:"resource_input,omitempty"`
 }
 
-func (x *GitLabServerKubernetesStackInput) Reset() {
-	*x = GitLabServerKubernetesStackInput{}
+func (x *GitlabServerKubernetesStackInput) Reset() {
+	*x = GitlabServerKubernetesStackInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -47,13 +47,13 @@ func (x *GitLabServerKubernetesStackInput) Reset() {
 	}
 }
 
-func (x *GitLabServerKubernetesStackInput) String() string {
+func (x *GitlabServerKubernetesStackInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerKubernetesStackInput) ProtoMessage() {}
+func (*GitlabServerKubernetesStackInput) ProtoMessage() {}
 
-func (x *GitLabServerKubernetesStackInput) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerKubernetesStackInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -65,26 +65,26 @@ func (x *GitLabServerKubernetesStackInput) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerKubernetesStackInput.ProtoReflect.Descriptor instead.
-func (*GitLabServerKubernetesStackInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerKubernetesStackInput.ProtoReflect.Descriptor instead.
+func (*GitlabServerKubernetesStackInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GitLabServerKubernetesStackInput) GetStackJob() *model.StackJob {
+func (x *GitlabServerKubernetesStackInput) GetStackJob() *model.StackJob {
 	if x != nil {
 		return x.StackJob
 	}
 	return nil
 }
 
-func (x *GitLabServerKubernetesStackInput) GetCredentialsInput() *GitLabServerKubernetesStackCredentialsInput {
+func (x *GitlabServerKubernetesStackInput) GetCredentialsInput() *GitlabServerKubernetesStackCredentialsInput {
 	if x != nil {
 		return x.CredentialsInput
 	}
 	return nil
 }
 
-func (x *GitLabServerKubernetesStackInput) GetResourceInput() *GitLabServerKubernetesStackResourceInput {
+func (x *GitlabServerKubernetesStackInput) GetResourceInput() *GitlabServerKubernetesStackResourceInput {
 	if x != nil {
 		return x.ResourceInput
 	}
@@ -92,7 +92,7 @@ func (x *GitLabServerKubernetesStackInput) GetResourceInput() *GitLabServerKuber
 }
 
 // stack credentials input
-type GitLabServerKubernetesStackCredentialsInput struct {
+type GitlabServerKubernetesStackCredentialsInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -101,8 +101,8 @@ type GitLabServerKubernetesStackCredentialsInput struct {
 	Kubernetes *credentials.KubernetesProviderCredential `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
-func (x *GitLabServerKubernetesStackCredentialsInput) Reset() {
-	*x = GitLabServerKubernetesStackCredentialsInput{}
+func (x *GitlabServerKubernetesStackCredentialsInput) Reset() {
+	*x = GitlabServerKubernetesStackCredentialsInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -110,13 +110,13 @@ func (x *GitLabServerKubernetesStackCredentialsInput) Reset() {
 	}
 }
 
-func (x *GitLabServerKubernetesStackCredentialsInput) String() string {
+func (x *GitlabServerKubernetesStackCredentialsInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerKubernetesStackCredentialsInput) ProtoMessage() {}
+func (*GitlabServerKubernetesStackCredentialsInput) ProtoMessage() {}
 
-func (x *GitLabServerKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerKubernetesStackCredentialsInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -128,12 +128,12 @@ func (x *GitLabServerKubernetesStackCredentialsInput) ProtoReflect() protoreflec
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
-func (*GitLabServerKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerKubernetesStackCredentialsInput.ProtoReflect.Descriptor instead.
+func (*GitlabServerKubernetesStackCredentialsInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GitLabServerKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
+func (x *GitlabServerKubernetesStackCredentialsInput) GetKubernetes() *credentials.KubernetesProviderCredential {
 	if x != nil {
 		return x.Kubernetes
 	}
@@ -141,17 +141,17 @@ func (x *GitLabServerKubernetesStackCredentialsInput) GetKubernetes() *credentia
 }
 
 // stack resource input
-type GitLabServerKubernetesStackResourceInput struct {
+type GitlabServerKubernetesStackResourceInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// gitlab-server
-	GitlabServer *model1.GitLabServer `protobuf:"bytes,1,opt,name=gitlab_server,json=gitlabServer,proto3" json:"gitlab_server,omitempty"`
+	GitlabServer *model1.GitlabServer `protobuf:"bytes,1,opt,name=gitlab_server,json=gitlabServer,proto3" json:"gitlab_server,omitempty"`
 }
 
-func (x *GitLabServerKubernetesStackResourceInput) Reset() {
-	*x = GitLabServerKubernetesStackResourceInput{}
+func (x *GitlabServerKubernetesStackResourceInput) Reset() {
+	*x = GitlabServerKubernetesStackResourceInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -159,13 +159,13 @@ func (x *GitLabServerKubernetesStackResourceInput) Reset() {
 	}
 }
 
-func (x *GitLabServerKubernetesStackResourceInput) String() string {
+func (x *GitlabServerKubernetesStackResourceInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerKubernetesStackResourceInput) ProtoMessage() {}
+func (*GitlabServerKubernetesStackResourceInput) ProtoMessage() {}
 
-func (x *GitLabServerKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerKubernetesStackResourceInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -177,12 +177,12 @@ func (x *GitLabServerKubernetesStackResourceInput) ProtoReflect() protoreflect.M
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
-func (*GitLabServerKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerKubernetesStackResourceInput.ProtoReflect.Descriptor instead.
+func (*GitlabServerKubernetesStackResourceInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GitLabServerKubernetesStackResourceInput) GetGitlabServer() *model1.GitLabServer {
+func (x *GitlabServerKubernetesStackResourceInput) GetGitlabServer() *model1.GitlabServer {
 	if x != nil {
 		return x.GitlabServer
 	}
@@ -190,17 +190,17 @@ func (x *GitLabServerKubernetesStackResourceInput) GetGitlabServer() *model1.Git
 }
 
 // gitlab-server stack outputs
-type GitLabServerKubernetesStackOutputs struct {
+type GitlabServerKubernetesStackOutputs struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// status of the gitlab-server upon stack-job
-	GitlabServerStatus *model1.GitLabServerStatus `protobuf:"bytes,1,opt,name=gitlab_server_status,json=gitlabServerStatus,proto3" json:"gitlab_server_status,omitempty"`
+	GitlabServerStatus *model1.GitlabServerStatus `protobuf:"bytes,1,opt,name=gitlab_server_status,json=gitlabServerStatus,proto3" json:"gitlab_server_status,omitempty"`
 }
 
-func (x *GitLabServerKubernetesStackOutputs) Reset() {
-	*x = GitLabServerKubernetesStackOutputs{}
+func (x *GitlabServerKubernetesStackOutputs) Reset() {
+	*x = GitlabServerKubernetesStackOutputs{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -208,13 +208,13 @@ func (x *GitLabServerKubernetesStackOutputs) Reset() {
 	}
 }
 
-func (x *GitLabServerKubernetesStackOutputs) String() string {
+func (x *GitlabServerKubernetesStackOutputs) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerKubernetesStackOutputs) ProtoMessage() {}
+func (*GitlabServerKubernetesStackOutputs) ProtoMessage() {}
 
-func (x *GitLabServerKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerKubernetesStackOutputs) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -226,12 +226,12 @@ func (x *GitLabServerKubernetesStackOutputs) ProtoReflect() protoreflect.Message
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerKubernetesStackOutputs.ProtoReflect.Descriptor instead.
-func (*GitLabServerKubernetesStackOutputs) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerKubernetesStackOutputs.ProtoReflect.Descriptor instead.
+func (*GitlabServerKubernetesStackOutputs) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GitLabServerKubernetesStackOutputs) GetGitlabServerStatus() *model1.GitLabServerStatus {
+func (x *GitlabServerKubernetesStackOutputs) GetGitlabServerStatus() *model1.GitlabServerStatus {
 	if x != nil {
 		return x.GitlabServerStatus
 	}
@@ -239,7 +239,7 @@ func (x *GitLabServerKubernetesStackOutputs) GetGitlabServerStatus() *model1.Git
 }
 
 // stack response
-type GitLabServerKubernetesStackResponse struct {
+type GitlabServerKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -247,11 +247,11 @@ type GitLabServerKubernetesStackResponse struct {
 	// stack-job progress event
 	ProgressEvent *progress.StackJobProgressEvent `protobuf:"bytes,1,opt,name=progress_event,json=progressEvent,proto3" json:"progress_event,omitempty"`
 	// stack outputs
-	Outputs *GitLabServerKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
+	Outputs *GitlabServerKubernetesStackOutputs `protobuf:"bytes,3,opt,name=outputs,proto3" json:"outputs,omitempty"`
 }
 
-func (x *GitLabServerKubernetesStackResponse) Reset() {
-	*x = GitLabServerKubernetesStackResponse{}
+func (x *GitlabServerKubernetesStackResponse) Reset() {
+	*x = GitlabServerKubernetesStackResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -259,13 +259,13 @@ func (x *GitLabServerKubernetesStackResponse) Reset() {
 	}
 }
 
-func (x *GitLabServerKubernetesStackResponse) String() string {
+func (x *GitlabServerKubernetesStackResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GitLabServerKubernetesStackResponse) ProtoMessage() {}
+func (*GitlabServerKubernetesStackResponse) ProtoMessage() {}
 
-func (x *GitLabServerKubernetesStackResponse) ProtoReflect() protoreflect.Message {
+func (x *GitlabServerKubernetesStackResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -277,19 +277,19 @@ func (x *GitLabServerKubernetesStackResponse) ProtoReflect() protoreflect.Messag
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GitLabServerKubernetesStackResponse.ProtoReflect.Descriptor instead.
-func (*GitLabServerKubernetesStackResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerKubernetesStackResponse.ProtoReflect.Descriptor instead.
+func (*GitlabServerKubernetesStackResponse) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GitLabServerKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
+func (x *GitlabServerKubernetesStackResponse) GetProgressEvent() *progress.StackJobProgressEvent {
 	if x != nil {
 		return x.ProgressEvent
 	}
 	return nil
 }
 
-func (x *GitLabServerKubernetesStackResponse) GetOutputs() *GitLabServerKubernetesStackOutputs {
+func (x *GitlabServerKubernetesStackResponse) GetOutputs() *GitlabServerKubernetesStackOutputs {
 	if x != nil {
 		return x.Outputs
 	}
@@ -323,7 +323,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io
 	0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f,
 	0x69, 0x61, 0x63, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2f,
 	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x70, 0x72, 0x6f, 0x67, 0x72, 0x65, 0x73, 0x73, 0x2f, 0x69,
-	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xac, 0x03, 0x0a, 0x20, 0x47, 0x69, 0x74, 0x4c,
+	0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0xac, 0x03, 0x0a, 0x20, 0x47, 0x69, 0x74, 0x6c,
 	0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74,
 	0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x4f, 0x0a, 0x09,
 	0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x6a, 0x6f, 0x62, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
@@ -337,7 +337,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io
 	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74,
 	0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e,
 	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62,
+	0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62,
 	0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x43, 0x72, 0x65, 0x64,
 	0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52, 0x10, 0x63, 0x72,
 	0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x95,
@@ -347,10 +347,10 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io
 	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2e, 0x6b, 0x75,
 	0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47,
-	0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72,
+	0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72,
 	0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x52, 0x0d, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63,
-	0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0xa1, 0x01, 0x0a, 0x2b, 0x47, 0x69, 0x74, 0x4c, 0x61,
+	0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x22, 0xa1, 0x01, 0x0a, 0x2b, 0x47, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
 	0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c,
 	0x73, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x72, 0x0a, 0x0a, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e,
@@ -361,26 +361,26 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io
 	0x73, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x50, 0x72, 0x6f, 0x76,
 	0x69, 0x64, 0x65, 0x72, 0x43, 0x72, 0x65, 0x64, 0x65, 0x6e, 0x74, 0x69, 0x61, 0x6c, 0x52, 0x0a,
 	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x22, 0x92, 0x01, 0x0a, 0x28, 0x47,
-	0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72,
+	0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72,
 	0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72,
 	0x63, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x66, 0x0a, 0x0d, 0x67, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x41,
 	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
 	0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76,
 	0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d,
-	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65,
 	0x72, 0x52, 0x0c, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x22,
-	0x9f, 0x01, 0x0a, 0x22, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x9f, 0x01, 0x0a, 0x22, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f,
 	0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x12, 0x79, 0x0a, 0x14, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62,
 	0x5f, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x5f, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x01,
 	0x20, 0x01, 0x28, 0x0b, 0x32, 0x47, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
 	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
 	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65,
-	0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61,
+	0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61,
 	0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x12, 0x67,
 	0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x53, 0x74, 0x61, 0x74, 0x75,
-	0x73, 0x22, 0x9b, 0x02, 0x0a, 0x23, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
+	0x73, 0x22, 0x9b, 0x02, 0x0a, 0x23, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76,
 	0x65, 0x72, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63,
 	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x0e, 0x70, 0x72, 0x6f,
 	0x67, 0x72, 0x65, 0x73, 0x73, 0x5f, 0x65, 0x76, 0x65, 0x6e, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28,
@@ -395,7 +395,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io
 	0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e,
 	0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x73, 0x74, 0x61,
 	0x63, 0x6b, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x6d, 0x6f,
-	0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
+	0x64, 0x65, 0x6c, 0x2e, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72,
 	0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4f,
 	0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x52, 0x07, 0x6f, 0x75, 0x74, 0x70, 0x75, 0x74, 0x73, 0x42,
 	0x91, 0x04, 0x0a, 0x52, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65,
@@ -448,26 +448,26 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_goTypes = []interface{}{
-	(*GitLabServerKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput
-	(*GitLabServerKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackCredentialsInput
-	(*GitLabServerKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResourceInput
-	(*GitLabServerKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackOutputs
-	(*GitLabServerKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResponse
+	(*GitlabServerKubernetesStackInput)(nil),            // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput
+	(*GitlabServerKubernetesStackCredentialsInput)(nil), // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackCredentialsInput
+	(*GitlabServerKubernetesStackResourceInput)(nil),    // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResourceInput
+	(*GitlabServerKubernetesStackOutputs)(nil),          // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackOutputs
+	(*GitlabServerKubernetesStackResponse)(nil),         // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResponse
 	(*model.StackJob)(nil),                              // 5: cloud.planton.apis.iac.v1.stackjob.model.StackJob
 	(*credentials.KubernetesProviderCredential)(nil),    // 6: cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	(*model1.GitLabServer)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
-	(*model1.GitLabServerStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus
+	(*model1.GitlabServer)(nil),                         // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	(*model1.GitlabServerStatus)(nil),                   // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus
 	(*progress.StackJobProgressEvent)(nil),              // 9: cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
 }
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_depIdxs = []int32{
-	5, // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	1, // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackCredentialsInput
-	2, // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResourceInput
-	6, // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
-	7, // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResourceInput.gitlab_server:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServer
-	8, // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackOutputs.gitlab_server_status:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitLabServerStatus
-	9, // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
-	3, // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackOutputs
+	5, // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput.stack_job:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	1, // 1: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput.credentials_input:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackCredentialsInput
+	2, // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput.resource_input:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResourceInput
+	6, // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackCredentialsInput.kubernetes:type_name -> cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential
+	7, // 4: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResourceInput.gitlab_server:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	8, // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackOutputs.gitlab_server_status:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerStatus
+	9, // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResponse.progress_event:type_name -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
+	3, // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResponse.outputs:type_name -> cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackOutputs
 	8, // [8:8] is the sub-list for method output_type
 	8, // [8:8] is the sub-list for method input_type
 	8, // [8:8] is the sub-list for extension type_name
@@ -484,7 +484,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 	}
 	if !protoimpl.UnsafeEnabled {
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerKubernetesStackInput); i {
+			switch v := v.(*GitlabServerKubernetesStackInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -496,7 +496,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerKubernetesStackCredentialsInput); i {
+			switch v := v.(*GitlabServerKubernetesStackCredentialsInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -508,7 +508,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerKubernetesStackResourceInput); i {
+			switch v := v.(*GitlabServerKubernetesStackResourceInput); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -520,7 +520,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerKubernetesStackOutputs); i {
+			switch v := v.(*GitlabServerKubernetesStackOutputs); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -532,7 +532,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_i
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_gitlabserver_stack_kubernetes_model_io_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GitLabServerKubernetesStackResponse); i {
+			switch v := v.(*GitlabServerKubernetesStackResponse); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -21,31 +21,31 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GitLabServerApiResourceEventType int32
+type GitlabServerApiResourceEventType int32
 
 const (
-	GitLabServerApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED GitLabServerApiResourceEventType = 0
-	GitLabServerApiResourceEventType_created                                           GitLabServerApiResourceEventType = 1
-	GitLabServerApiResourceEventType_updated                                           GitLabServerApiResourceEventType = 2
-	GitLabServerApiResourceEventType_deleted                                           GitLabServerApiResourceEventType = 3
-	GitLabServerApiResourceEventType_restored                                          GitLabServerApiResourceEventType = 4
-	GitLabServerApiResourceEventType_refreshed                                         GitLabServerApiResourceEventType = 5
-	GitLabServerApiResourceEventType_stack_job_progress_updated                        GitLabServerApiResourceEventType = 6
-	GitLabServerApiResourceEventType_stack_job_refresh_requested                       GitLabServerApiResourceEventType = 7
-	GitLabServerApiResourceEventType_stack_job_refresh_completed                       GitLabServerApiResourceEventType = 8
-	GitLabServerApiResourceEventType_stack_job_apply_preview_requested                 GitLabServerApiResourceEventType = 9
-	GitLabServerApiResourceEventType_stack_job_apply_requested                         GitLabServerApiResourceEventType = 10
-	GitLabServerApiResourceEventType_stack_job_apply_completed                         GitLabServerApiResourceEventType = 11
-	GitLabServerApiResourceEventType_stack_job_destroy_preview_requested               GitLabServerApiResourceEventType = 12
-	GitLabServerApiResourceEventType_stack_job_destroy_requested                       GitLabServerApiResourceEventType = 13
-	GitLabServerApiResourceEventType_stack_job_destroy_completed                       GitLabServerApiResourceEventType = 14
-	GitLabServerApiResourceEventType_paused                                            GitLabServerApiResourceEventType = 15
-	GitLabServerApiResourceEventType_unpaused                                          GitLabServerApiResourceEventType = 16
+	GitlabServerApiResourceEventType_REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED GitlabServerApiResourceEventType = 0
+	GitlabServerApiResourceEventType_created                                           GitlabServerApiResourceEventType = 1
+	GitlabServerApiResourceEventType_updated                                           GitlabServerApiResourceEventType = 2
+	GitlabServerApiResourceEventType_deleted                                           GitlabServerApiResourceEventType = 3
+	GitlabServerApiResourceEventType_restored                                          GitlabServerApiResourceEventType = 4
+	GitlabServerApiResourceEventType_refreshed                                         GitlabServerApiResourceEventType = 5
+	GitlabServerApiResourceEventType_stack_job_progress_updated                        GitlabServerApiResourceEventType = 6
+	GitlabServerApiResourceEventType_stack_job_refresh_requested                       GitlabServerApiResourceEventType = 7
+	GitlabServerApiResourceEventType_stack_job_refresh_completed                       GitlabServerApiResourceEventType = 8
+	GitlabServerApiResourceEventType_stack_job_apply_preview_requested                 GitlabServerApiResourceEventType = 9
+	GitlabServerApiResourceEventType_stack_job_apply_requested                         GitlabServerApiResourceEventType = 10
+	GitlabServerApiResourceEventType_stack_job_apply_completed                         GitlabServerApiResourceEventType = 11
+	GitlabServerApiResourceEventType_stack_job_destroy_preview_requested               GitlabServerApiResourceEventType = 12
+	GitlabServerApiResourceEventType_stack_job_destroy_requested                       GitlabServerApiResourceEventType = 13
+	GitlabServerApiResourceEventType_stack_job_destroy_completed                       GitlabServerApiResourceEventType = 14
+	GitlabServerApiResourceEventType_paused                                            GitlabServerApiResourceEventType = 15
+	GitlabServerApiResourceEventType_unpaused                                          GitlabServerApiResourceEventType = 16
 )
 
-// Enum value maps for GitLabServerApiResourceEventType.
+// Enum value maps for GitlabServerApiResourceEventType.
 var (
-	GitLabServerApiResourceEventType_name = map[int32]string{
+	GitlabServerApiResourceEventType_name = map[int32]string{
 		0:  "REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED",
 		1:  "created",
 		2:  "updated",
@@ -64,7 +64,7 @@ var (
 		15: "paused",
 		16: "unpaused",
 	}
-	GitLabServerApiResourceEventType_value = map[string]int32{
+	GitlabServerApiResourceEventType_value = map[string]int32{
 		"REDIS_CLUSTER_API_RESOURCE_EVENT_TYPE_UNSPECIFIED": 0,
 		"created":                             1,
 		"updated":                             2,
@@ -85,30 +85,30 @@ var (
 	}
 )
 
-func (x GitLabServerApiResourceEventType) Enum() *GitLabServerApiResourceEventType {
-	p := new(GitLabServerApiResourceEventType)
+func (x GitlabServerApiResourceEventType) Enum() *GitlabServerApiResourceEventType {
+	p := new(GitlabServerApiResourceEventType)
 	*p = x
 	return p
 }
 
-func (x GitLabServerApiResourceEventType) String() string {
+func (x GitlabServerApiResourceEventType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (GitLabServerApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
+func (GitlabServerApiResourceEventType) Descriptor() protoreflect.EnumDescriptor {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0].Descriptor()
 }
 
-func (GitLabServerApiResourceEventType) Type() protoreflect.EnumType {
+func (GitlabServerApiResourceEventType) Type() protoreflect.EnumType {
 	return &file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes[0]
 }
 
-func (x GitLabServerApiResourceEventType) Number() protoreflect.EnumNumber {
+func (x GitlabServerApiResourceEventType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use GitLabServerApiResourceEventType.Descriptor instead.
-func (GitLabServerApiResourceEventType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use GitlabServerApiResourceEventType.Descriptor instead.
+func (GitlabServerApiResourceEventType) EnumDescriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_rawDescGZIP(), []int{0}
 }
 
@@ -134,7 +134,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtyp
 	0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f,
 	0x65, 0x76, 0x65, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x5f, 0x65, 0x6e, 0x75, 0x6d, 0x5f,
 	0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2a, 0xbb, 0x05,
-	0x0a, 0x20, 0x47, 0x69, 0x74, 0x4c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x41, 0x70,
+	0x0a, 0x20, 0x47, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x41, 0x70,
 	0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x45, 0x76, 0x65, 0x6e, 0x74, 0x54, 0x79,
 	0x70, 0x65, 0x12, 0x35, 0x0a, 0x31, 0x52, 0x45, 0x44, 0x49, 0x53, 0x5f, 0x43, 0x4c, 0x55, 0x53,
 	0x54, 0x45, 0x52, 0x5f, 0x41, 0x50, 0x49, 0x5f, 0x52, 0x45, 0x53, 0x4f, 0x55, 0x52, 0x43, 0x45,
@@ -230,7 +230,7 @@ func file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventty
 
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_goTypes = []interface{}{
-	(GitLabServerApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.enums.apiresourceeventtype.GitLabServerApiResourceEventType
+	(GitlabServerApiResourceEventType)(0), // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.enums.apiresourceeventtype.GitlabServerApiResourceEventType
 }
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_enums_apiresourceeventtype_api_resource_event_type_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

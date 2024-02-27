@@ -22,606 +22,606 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GitLabServerCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/previewCreate"
-	GitLabServerCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/create"
-	GitLabServerCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/previewUpdate"
-	GitLabServerCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/update"
-	GitLabServerCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/previewDelete"
-	GitLabServerCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/delete"
-	GitLabServerCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/previewRestore"
-	GitLabServerCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/restore"
-	GitLabServerCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/createStackJob"
-	GitLabServerCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/restart"
-	GitLabServerCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/pause"
-	GitLabServerCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/unpause"
-	GitLabServerCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/previewRefresh"
-	GitLabServerCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController/refresh"
+	GitlabServerCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/previewCreate"
+	GitlabServerCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/create"
+	GitlabServerCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/previewUpdate"
+	GitlabServerCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/update"
+	GitlabServerCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/previewDelete"
+	GitlabServerCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/delete"
+	GitlabServerCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/previewRestore"
+	GitlabServerCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/restore"
+	GitlabServerCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/createStackJob"
+	GitlabServerCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/restart"
+	GitlabServerCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/pause"
+	GitlabServerCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/unpause"
+	GitlabServerCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/previewRefresh"
+	GitlabServerCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController/refresh"
 )
 
-// GitLabServerCommandControllerClient is the client API for GitLabServerCommandController service.
+// GitlabServerCommandControllerClient is the client API for GitlabServerCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GitLabServerCommandControllerClient interface {
+type GitlabServerCommandControllerClient interface {
 	// preview creating gitlab-server
-	PreviewCreate(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	PreviewCreate(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// create gitlab-server
-	Create(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Create(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// preview updating an existing gitlab-server
-	PreviewUpdate(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	PreviewUpdate(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// update an existing gitlab-server
-	Update(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Update(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// preview deleting an existing gitlab-server
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// delete an existing gitlab-server
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// preview restoring a previously deleted gitlab-server
-	PreviewRestore(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	PreviewRestore(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// restore a previously deleted gitlab-server
-	Restore(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Restore(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// create-stack-job for gitlab-server
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// restart a gitlab-server running in a environment.
 	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
-	Restart(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Restart(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// pause a gitlab-server running in a environment.
 	// gitlab-server is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// unpause a previously paused gitlab-server running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-server.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// preview refresh a gitlab-server that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// refresh a gitlab-server that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error)
 }
 
-type gitLabServerCommandControllerClient struct {
+type gitlabServerCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGitLabServerCommandControllerClient(cc grpc.ClientConnInterface) GitLabServerCommandControllerClient {
-	return &gitLabServerCommandControllerClient{cc}
+func NewGitlabServerCommandControllerClient(cc grpc.ClientConnInterface) GitlabServerCommandControllerClient {
+	return &gitlabServerCommandControllerClient{cc}
 }
 
-func (c *gitLabServerCommandControllerClient) PreviewCreate(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_PreviewCreate_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) PreviewCreate(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_PreviewCreate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Create(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Create_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Create(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Create_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) PreviewUpdate(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) PreviewUpdate(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Update(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Update_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Update(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_PreviewDelete_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Delete_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) PreviewRestore(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_PreviewRestore_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) PreviewRestore(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Restore(ctx context.Context, in *model.GitLabServer, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Restore_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Restore(ctx context.Context, in *model.GitlabServer, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Restore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_CreateStackJob_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Restart(ctx context.Context, in *model.GitLabServerId, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Restart_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Restart(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Restart_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Pause_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Unpause_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gitLabServerCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitLabServer, error) {
-	out := new(model.GitLabServer)
-	err := c.cc.Invoke(ctx, GitLabServerCommandController_Refresh_FullMethodName, in, out, opts...)
+func (c *gitlabServerCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabServer, error) {
+	out := new(model.GitlabServer)
+	err := c.cc.Invoke(ctx, GitlabServerCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GitLabServerCommandControllerServer is the server API for GitLabServerCommandController service.
-// All implementations should embed UnimplementedGitLabServerCommandControllerServer
+// GitlabServerCommandControllerServer is the server API for GitlabServerCommandController service.
+// All implementations should embed UnimplementedGitlabServerCommandControllerServer
 // for forward compatibility
-type GitLabServerCommandControllerServer interface {
+type GitlabServerCommandControllerServer interface {
 	// preview creating gitlab-server
-	PreviewCreate(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	PreviewCreate(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// create gitlab-server
-	Create(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	Create(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// preview updating an existing gitlab-server
-	PreviewUpdate(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	PreviewUpdate(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// update an existing gitlab-server
-	Update(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	Update(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// preview deleting an existing gitlab-server
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitLabServer, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabServer, error)
 	// delete an existing gitlab-server
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitLabServer, error)
+	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabServer, error)
 	// preview restoring a previously deleted gitlab-server
-	PreviewRestore(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	PreviewRestore(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// restore a previously deleted gitlab-server
-	Restore(context.Context, *model.GitLabServer) (*model.GitLabServer, error)
+	Restore(context.Context, *model.GitlabServer) (*model.GitlabServer, error)
 	// create-stack-job for gitlab-server
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GitLabServer, error)
+	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GitlabServer, error)
 	// restart a gitlab-server running in a environment.
 	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
-	Restart(context.Context, *model.GitLabServerId) (*model.GitLabServer, error)
+	Restart(context.Context, *model.GitlabServerId) (*model.GitlabServer, error)
 	// pause a gitlab-server running in a environment.
 	// gitlab-server is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitLabServer, error)
+	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitlabServer, error)
 	// unpause a previously paused gitlab-server running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-server.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitLabServer, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitlabServer, error)
 	// preview refresh a gitlab-server that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitLabServer, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabServer, error)
 	// refresh a gitlab-server that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitLabServer, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabServer, error)
 }
 
-// UnimplementedGitLabServerCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGitLabServerCommandControllerServer struct {
+// UnimplementedGitlabServerCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGitlabServerCommandControllerServer struct {
 }
 
-func (UnimplementedGitLabServerCommandControllerServer) PreviewCreate(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) PreviewCreate(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Create(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Create(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) PreviewUpdate(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) PreviewUpdate(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Update(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Update(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) PreviewRestore(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) PreviewRestore(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Restore(context.Context, *model.GitLabServer) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Restore(context.Context, *model.GitlabServer) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Restart(context.Context, *model.GitLabServerId) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Restart(context.Context, *model.GitlabServerId) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGitLabServerCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitLabServer, error) {
+func (UnimplementedGitlabServerCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
-// UnsafeGitLabServerCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GitLabServerCommandControllerServer will
+// UnsafeGitlabServerCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GitlabServerCommandControllerServer will
 // result in compilation errors.
-type UnsafeGitLabServerCommandControllerServer interface {
-	mustEmbedUnimplementedGitLabServerCommandControllerServer()
+type UnsafeGitlabServerCommandControllerServer interface {
+	mustEmbedUnimplementedGitlabServerCommandControllerServer()
 }
 
-func RegisterGitLabServerCommandControllerServer(s grpc.ServiceRegistrar, srv GitLabServerCommandControllerServer) {
-	s.RegisterService(&GitLabServerCommandController_ServiceDesc, srv)
+func RegisterGitlabServerCommandControllerServer(s grpc.ServiceRegistrar, srv GitlabServerCommandControllerServer) {
+	s.RegisterService(&GitlabServerCommandController_ServiceDesc, srv)
 }
 
-func _GitLabServerCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).PreviewCreate(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).PreviewCreate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_PreviewCreate_FullMethodName,
+		FullMethod: GitlabServerCommandController_PreviewCreate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).PreviewCreate(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).PreviewCreate(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Create(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Create_FullMethodName,
+		FullMethod: GitlabServerCommandController_Create_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Create(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).Create(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).PreviewUpdate(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).PreviewUpdate(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_PreviewUpdate_FullMethodName,
+		FullMethod: GitlabServerCommandController_PreviewUpdate_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).PreviewUpdate(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).PreviewUpdate(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Update(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Update_FullMethodName,
+		FullMethod: GitlabServerCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Update(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).Update(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).PreviewDelete(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).PreviewDelete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_PreviewDelete_FullMethodName,
+		FullMethod: GitlabServerCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GitlabServerCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Delete(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Delete_FullMethodName,
+		FullMethod: GitlabServerCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GitlabServerCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).PreviewRestore(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).PreviewRestore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_PreviewRestore_FullMethodName,
+		FullMethod: GitlabServerCommandController_PreviewRestore_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).PreviewRestore(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).PreviewRestore(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServer)
+func _GitlabServerCommandController_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServer)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Restore(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Restore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Restore_FullMethodName,
+		FullMethod: GitlabServerCommandController_Restore_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Restore(ctx, req.(*model.GitLabServer))
+		return srv.(GitlabServerCommandControllerServer).Restore(ctx, req.(*model.GitlabServer))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model2.CreateStackJobCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).CreateStackJob(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).CreateStackJob(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_CreateStackJob_FullMethodName,
+		FullMethod: GitlabServerCommandController_CreateStackJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
+		return srv.(GitlabServerCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitLabServerId)
+func _GitlabServerCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GitlabServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Restart(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Restart(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Restart_FullMethodName,
+		FullMethod: GitlabServerCommandController_Restart_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Restart(ctx, req.(*model.GitLabServerId))
+		return srv.(GitlabServerCommandControllerServer).Restart(ctx, req.(*model.GitlabServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Pause(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Pause(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Pause_FullMethodName,
+		FullMethod: GitlabServerCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(GitlabServerCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceUnPauseCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Unpause(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Unpause(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Unpause_FullMethodName,
+		FullMethod: GitlabServerCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(GitlabServerCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).PreviewRefresh(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).PreviewRefresh(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_PreviewRefresh_FullMethodName,
+		FullMethod: GitlabServerCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GitlabServerCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitLabServerCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GitlabServerCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GitLabServerCommandControllerServer).Refresh(ctx, in)
+		return srv.(GitlabServerCommandControllerServer).Refresh(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GitLabServerCommandController_Refresh_FullMethodName,
+		FullMethod: GitlabServerCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitLabServerCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GitlabServerCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GitLabServerCommandController_ServiceDesc is the grpc.ServiceDesc for GitLabServerCommandController service.
+// GitlabServerCommandController_ServiceDesc is the grpc.ServiceDesc for GitlabServerCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GitLabServerCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitLabServerCommandController",
-	HandlerType: (*GitLabServerCommandControllerServer)(nil),
+var GitlabServerCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController",
+	HandlerType: (*GitlabServerCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "previewCreate",
-			Handler:    _GitLabServerCommandController_PreviewCreate_Handler,
+			Handler:    _GitlabServerCommandController_PreviewCreate_Handler,
 		},
 		{
 			MethodName: "create",
-			Handler:    _GitLabServerCommandController_Create_Handler,
+			Handler:    _GitlabServerCommandController_Create_Handler,
 		},
 		{
 			MethodName: "previewUpdate",
-			Handler:    _GitLabServerCommandController_PreviewUpdate_Handler,
+			Handler:    _GitlabServerCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _GitLabServerCommandController_Update_Handler,
+			Handler:    _GitlabServerCommandController_Update_Handler,
 		},
 		{
 			MethodName: "previewDelete",
-			Handler:    _GitLabServerCommandController_PreviewDelete_Handler,
+			Handler:    _GitlabServerCommandController_PreviewDelete_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _GitLabServerCommandController_Delete_Handler,
+			Handler:    _GitlabServerCommandController_Delete_Handler,
 		},
 		{
 			MethodName: "previewRestore",
-			Handler:    _GitLabServerCommandController_PreviewRestore_Handler,
+			Handler:    _GitlabServerCommandController_PreviewRestore_Handler,
 		},
 		{
 			MethodName: "restore",
-			Handler:    _GitLabServerCommandController_Restore_Handler,
+			Handler:    _GitlabServerCommandController_Restore_Handler,
 		},
 		{
 			MethodName: "createStackJob",
-			Handler:    _GitLabServerCommandController_CreateStackJob_Handler,
+			Handler:    _GitlabServerCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",
-			Handler:    _GitLabServerCommandController_Restart_Handler,
+			Handler:    _GitlabServerCommandController_Restart_Handler,
 		},
 		{
 			MethodName: "pause",
-			Handler:    _GitLabServerCommandController_Pause_Handler,
+			Handler:    _GitlabServerCommandController_Pause_Handler,
 		},
 		{
 			MethodName: "unpause",
-			Handler:    _GitLabServerCommandController_Unpause_Handler,
+			Handler:    _GitlabServerCommandController_Unpause_Handler,
 		},
 		{
 			MethodName: "previewRefresh",
-			Handler:    _GitLabServerCommandController_PreviewRefresh_Handler,
+			Handler:    _GitlabServerCommandController_PreviewRefresh_Handler,
 		},
 		{
 			MethodName: "refresh",
-			Handler:    _GitLabServerCommandController_Refresh_Handler,
+			Handler:    _GitlabServerCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

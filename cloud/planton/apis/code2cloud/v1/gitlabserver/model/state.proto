@@ -12,7 +12,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
 //gitlab-server
-message GitLabServer {
+message GitlabServer {
   option (buf.validate.message).cel = {
     id: "metadata",
     message: "Name is mandatory",
@@ -34,7 +34,7 @@ message GitLabServer {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "GitLabServer"
+    (buf.validate.field).string.const = "GitlabServer"
   ];
 
   //resource metadata
@@ -72,23 +72,23 @@ message GitLabServer {
   ];
 
   //spec
-  GitLabServerSpec spec = 4;
+  GitlabServerSpec spec = 4;
 
   //status
-  GitLabServerStatus status = 5;
+  GitlabServerStatus status = 5;
 }
 
 //gitlab-server spec
-message GitLabServerSpec {
+message GitlabServerSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //kubernetes spec
-  GitLabServerSpecKubernetesSpec kubernetes = 2;
+  GitlabServerSpecKubernetesSpec kubernetes = 2;
 }
 
 //gitlab-server status.
-message GitLabServerStatus {
+message GitlabServerStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -99,21 +99,21 @@ message GitLabServerStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  GitLabServerStatusKubernetesStatus kubernetes = 1;
+  GitlabServerStatusKubernetesStatus kubernetes = 1;
 }
 
 // gitlab-server kubernetes spec
-message GitLabServerSpecKubernetesSpec {
+message GitlabServerSpecKubernetesSpec {
   //gitlab-container spec
-  GitLabServerSpecKubernetesSpecGitLabContainerSpec gitlab_container = 1;
+  GitlabServerSpecKubernetesSpecGitlabContainerSpec gitlab_container = 1;
 
   //gitlab-server ingress-spec
-  GitLabServerSpecKubernetesSpecIngressSpec ingress = 2;
+  GitlabServerSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
 // gitlab-server kubernetes gitlab-container spec
-message GitLabServerSpecKubernetesSpecGitLabContainerSpec {
+message GitlabServerSpecKubernetesSpecGitlabContainerSpec {
   //gitlab container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
@@ -122,7 +122,7 @@ message GitLabServerSpecKubernetesSpecGitLabContainerSpec {
 }
 
 // gitlab-server kubernetes ingress spec
-message GitLabServerSpecKubernetesSpecIngressSpec {
+message GitlabServerSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
@@ -145,7 +145,7 @@ message GitLabServerSpecKubernetesSpecIngressSpec {
 }
 
 //gitlab-server kubernetes status
-message GitLabServerStatusKubernetesStatus {
+message GitlabServerStatusKubernetesStatus {
   //kubernetes namespace in which gitlab-server is created.
   string namespace = 1;
 

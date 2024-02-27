@@ -4,9 +4,9 @@ package cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.service;
 
 import "cloud/planton/apis/code2cloud/v1/gitlabserver/stack/kubernetes/model/io.proto";
 
-service GitLabServerKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitLabServerKubernetesStackOutputs);
+service GitlabServerKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.gitlabserver.stack.kubernetes.model.GitlabServerKubernetesStackOutputs);
 }
