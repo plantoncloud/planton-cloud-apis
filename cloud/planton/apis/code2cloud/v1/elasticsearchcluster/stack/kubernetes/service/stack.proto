@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/elasticsearchcluster/stack/kubernetes/model/io.proto";
+
+service ElasticsearchClusterKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.model.ElasticsearchClusterKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.model.ElasticsearchClusterKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.model.ElasticsearchClusterKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.elasticsearchcluster.stack.kubernetes.model.ElasticsearchClusterKubernetesStackOutputs);
+}
