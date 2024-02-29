@@ -624,6 +624,65 @@ func (x *GetResourceCountByCompanyIdInput) GetCompanyId() string {
 	return ""
 }
 
+// GetResourceCountByContextInput is used for requests aimed at obtaining the number of resources
+// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company/ product.
+type GetResourceCountByContextInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// company_id uniquely identifies a company within the system.
+	CompanyId string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
+	// product_id uniquely identifies a product associated with a company within the system.
+	ProductId string `protobuf:"bytes,2,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+}
+
+func (x *GetResourceCountByContextInput) Reset() {
+	*x = GetResourceCountByContextInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetResourceCountByContextInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetResourceCountByContextInput) ProtoMessage() {}
+
+func (x *GetResourceCountByContextInput) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetResourceCountByContextInput.ProtoReflect.Descriptor instead.
+func (*GetResourceCountByContextInput) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *GetResourceCountByContextInput) GetCompanyId() string {
+	if x != nil {
+		return x.CompanyId
+	}
+	return ""
+}
+
+func (x *GetResourceCountByContextInput) GetProductId() string {
+	if x != nil {
+		return x.ProductId
+	}
+	return ""
+}
+
 var File_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto protoreflect.FileDescriptor
 
 var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDesc = []byte{
@@ -725,7 +784,13 @@ var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDesc =
 	0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61,
 	0x6e, 0x79, 0x49, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f, 0x6d,
 	0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x63,
-	0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x42, 0xad, 0x03, 0x0a, 0x42, 0x62, 0x75, 0x69,
+	0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x22, 0x5e, 0x0a, 0x1e, 0x47, 0x65, 0x74, 0x52,
+	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x42, 0x79, 0x43, 0x6f,
+	0x6e, 0x74, 0x65, 0x78, 0x74, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x1d, 0x0a, 0x0a, 0x63, 0x6f,
+	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09,
+	0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x12, 0x1d, 0x0a, 0x0a, 0x70, 0x72, 0x6f,
+	0x64, 0x75, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x70,
+	0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x42, 0xad, 0x03, 0x0a, 0x42, 0x62, 0x75, 0x69,
 	0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x61, 0x75,
 	0x64, 0x69, 0x74, 0x2e, 0x76, 0x31, 0x2e, 0x61, 0x70, 0x69, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72,
@@ -767,7 +832,7 @@ func file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDescG
 	return file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_goTypes = []interface{}{
 	(*ApiResourceVersionId)(nil),                   // 0: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionId
 	(*ApiResourceVersionWithContextSizeInput)(nil), // 1: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionWithContextSizeInput
@@ -779,18 +844,19 @@ var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_goTypes =
 	(*ApiResourceCount)(nil),                       // 7: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceCount
 	(*ApiResourcesCount)(nil),                      // 8: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourcesCount
 	(*GetResourceCountByCompanyIdInput)(nil),       // 9: cloud.planton.apis.audit.v1.apiresourceversion.model.GetResourceCountByCompanyIdInput
-	(*rpc.PageInfo)(nil),                           // 10: cloud.planton.apis.commons.rpc.PageInfo
-	(apiresourcekind.ApiResourceKind)(0),           // 11: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	(*ApiResourceVersion)(nil),                     // 12: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion
-	(*anypb.Any)(nil),                              // 13: google.protobuf.Any
+	(*GetResourceCountByContextInput)(nil),         // 10: cloud.planton.apis.audit.v1.apiresourceversion.model.GetResourceCountByContextInput
+	(*rpc.PageInfo)(nil),                           // 11: cloud.planton.apis.commons.rpc.PageInfo
+	(apiresourcekind.ApiResourceKind)(0),           // 12: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	(*ApiResourceVersion)(nil),                     // 13: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion
+	(*anypb.Any)(nil),                              // 14: google.protobuf.Any
 }
 var file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_depIdxs = []int32{
-	10, // 0: cloud.planton.apis.audit.v1.apiresourceversion.model.ListApiResourceVersionsInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	11, // 1: cloud.planton.apis.audit.v1.apiresourceversion.model.ListApiResourceVersionsInput.kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	12, // 2: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionList.entries:type_name -> cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion
-	11, // 3: cloud.planton.apis.audit.v1.apiresourceversion.model.GetApiResourceVersionCountInput.kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	13, // 4: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput.new_state:type_name -> google.protobuf.Any
-	13, // 5: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput.original_state:type_name -> google.protobuf.Any
+	11, // 0: cloud.planton.apis.audit.v1.apiresourceversion.model.ListApiResourceVersionsInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	12, // 1: cloud.planton.apis.audit.v1.apiresourceversion.model.ListApiResourceVersionsInput.kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	13, // 2: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionList.entries:type_name -> cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion
+	12, // 3: cloud.planton.apis.audit.v1.apiresourceversion.model.GetApiResourceVersionCountInput.kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	14, // 4: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput.new_state:type_name -> google.protobuf.Any
+	14, // 5: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput.original_state:type_name -> google.protobuf.Any
 	7,  // 6: cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourcesCount.entries:type_name -> cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceCount
 	7,  // [7:7] is the sub-list for method output_type
 	7,  // [7:7] is the sub-list for method input_type
@@ -926,6 +992,18 @@ func file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_init() {
 				return nil
 			}
 		}
+		file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetResourceCountByContextInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -933,7 +1011,7 @@ func file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_audit_v1_apiresourceversion_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   10,
+			NumMessages:   11,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

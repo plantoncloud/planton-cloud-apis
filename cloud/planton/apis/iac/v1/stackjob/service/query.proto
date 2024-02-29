@@ -45,4 +45,21 @@ service StackJobQueryController {
   //retrieve all pulumi resources in a pulumi stack for a given stack-job-id
   rpc findPulumiResourcesByStackJobId(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns (cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources);
+  // The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
+  // for a given context. This context is defined by the combination of parameters specified in the
+  // GetPulumiResourceCountByContextInput message, such as company and product identifiers. This operation
+  // is crucial for understanding the scale of Pulumi infrastructure managed by a company for a specific product.
+  rpc getPulumiResourceCountByContextSummary(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount);
+  // getPulumiResourceCountByContextDetailed retrieves detailed information about Pulumi resources
+  // within a given context. This context is specified by the GetPulumiResourceCountByContextInput message,
+  // which includes identifiers for the company, product, and potentially other criteria to narrow down the query.
+  rpc getPulumiResourceCountByContextDetailed(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList);
+  // getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific company/ product.
+  // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
+  // within the context of a company/ product. It requires a GetStackJobMinutesByContextInput message containing the company_id/ product_id
+  // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
+  rpc getStackJobMinutesMTDByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD);
 }

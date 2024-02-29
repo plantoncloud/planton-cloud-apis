@@ -89,3 +89,67 @@ message TotalPulumiResourceCount {
   // count is the total number of Pulumi resources.
   int32 count = 1;
 }
+
+// GetPulumiResourceCountByContextInput is used to request the count of Pulumi resources
+// associated with a specific company and product within the system. The system uniquely identifies
+// companies and products by their respective IDs, and this message is utilized to retrieve resource
+// counts for targeted company-product combinations.
+message GetPulumiResourceCountByContextInput {
+  // company_id uniquely identifies a company within the system.
+  string company_id = 1;
+
+  // product_id uniquely identifies a product associated with a company within the system.
+  string product_id = 2;
+}
+
+// PulumiResourceCountDetailed provides a detailed accounting of Pulumi resources within a specific
+// context defined by a combination of company, product, and environment identifiers. This message
+// is designed to offer granular insights into the types and counts of resources deployed, aiding in
+// infrastructure management and analysis.
+message PulumiResourceCountDetailed {
+  // company_id uniquely identifies a company within the system. This string identifier
+  // ensures that resources are accurately associated with the correct corporate entity.
+  string company_id = 1;
+
+  // product_id uniquely identifies a product offered by the company within the system.
+  // This aids in segmenting resources by product line or offering for more detailed analysis.
+  string product_id = 2;
+
+  // environment_id specifies the deployment environment of the Pulumi resources, such as
+  // development, testing, or production. This differentiation allows for environment-specific
+  // resource tracking and management.
+  string environment_id = 3;
+
+  // resource_id provides a unique identifier for each Pulumi resource within the given context.
+  // This ID facilitates precise tracking and operations on individual resources.
+  string resource_id = 4;
+
+  // resource_kind describes the type of the Pulumi resource (e.g., vm, network, database), offering
+  // insights into the infrastructure composition and enabling type-specific management practices.
+  string resource_kind = 5;
+
+  // resource_count represents the number of instances of the resource kind present within the
+  // specified context. Note: Despite being a string, this field should contain a numeric value.
+  int32 resource_count = 6;
+}
+
+// PulumiResourceCountDetailedList encapsulates a list of PulumiResourceCountDetailed messages,
+// providing a collection of detailed information about Pulumi resources count for each planton cloud resource id
+message PulumiResourceCountDetailedList {
+  // entries is a repeated field containing PulumiResourceCountDetailed messages. Each entry
+  // in this list represents detailed information about a specific planton cloud resource, including
+  // its company, product, environment identifiers, resource kind, and count.
+  repeated PulumiResourceCountDetailed entries = 1;
+}
+
+// GetStackJobMinutesByContextInput is intended for requests to retrieve the total minutes of stack job
+// processing or usage associated with a given company or product. It focuses on identifying the company or product
+// in question, facilitating the aggregation or reporting of stack job minutes at the company/ product level.
+message GetStackJobMinutesByContextInput {
+  // company_id uniquely identifies a company within the system.
+  string company_id = 1;
+
+  // product_id uniquely identifies a product associated with a company within the system.
+  string product_id = 2;
+}
+
