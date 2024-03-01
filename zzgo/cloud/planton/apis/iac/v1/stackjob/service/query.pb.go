@@ -61,7 +61,7 @@ var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_rawDesc = []byte
 	0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69,
 	0x61, 0x63, 0x2f, 0x76, 0x31, 0x2f, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2f, 0x6d,
 	0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x73, 0x74, 0x61, 0x74, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x32, 0xc0, 0x0d, 0x0a, 0x17, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x51, 0x75, 0x65,
+	0x32, 0xf0, 0x10, 0x0a, 0x17, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x51, 0x75, 0x65,
 	0x72, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0x93, 0x01, 0x0a,
 	0x0d, 0x6c, 0x69, 0x73, 0x74, 0x42, 0x79, 0x46, 0x69, 0x6c, 0x74, 0x65, 0x72, 0x73, 0x12, 0x4a,
 	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
@@ -169,7 +169,34 @@ var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_rawDesc = []byte
 	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76,
 	0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
 	0x2e, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x4d, 0x69, 0x6e, 0x75, 0x74, 0x65, 0x73,
-	0x4d, 0x54, 0x44, 0x42, 0xf4, 0x02, 0x0a, 0x38, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75,
+	0x4d, 0x54, 0x44, 0x12, 0xd2, 0x01, 0x0a, 0x29, 0x67, 0x65, 0x74, 0x50, 0x75, 0x6c, 0x75, 0x6d,
+	0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x69,
+	0x6d, 0x65, 0x53, 0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x65, 0x78,
+	0x74, 0x12, 0x58, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
+	0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74,
+	0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x65, 0x74,
+	0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x79, 0x43,
+	0x6f, 0x6e, 0x74, 0x65, 0x78, 0x74, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x1a, 0x4b, 0x2e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62,
+	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x65,
+	0x72, 0x69, 0x65, 0x73, 0x4c, 0x69, 0x73, 0x74, 0x12, 0xd8, 0x01, 0x0a, 0x2c, 0x67, 0x65, 0x74,
+	0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f,
+	0x75, 0x6e, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x79, 0x52,
+	0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x64, 0x12, 0x5b, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69,
+	0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x65, 0x74, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53,
+	0x65, 0x72, 0x69, 0x65, 0x73, 0x42, 0x79, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49,
+	0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x1a, 0x4b, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70,
+	0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e,
+	0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65,
+	0x6c, 0x2e, 0x50, 0x75, 0x6c, 0x75, 0x6d, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
+	0x43, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x69, 0x6d, 0x65, 0x53, 0x65, 0x72, 0x69, 0x65, 0x73, 0x4c,
+	0x69, 0x73, 0x74, 0x42, 0xf4, 0x02, 0x0a, 0x38, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75,
 	0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e,
 	0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
@@ -197,20 +224,23 @@ var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_rawDesc = []byte
 }
 
 var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_goTypes = []interface{}{
-	(*model.ListStackJobsByFiltersQueryInput)(nil),       // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput
-	(*model.StackJobId)(nil),                             // 1: cloud.planton.apis.iac.v1.stackjob.model.StackJobId
-	(*model.GetStackJobMinutesByCompanyIdInput)(nil),     // 2: cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByCompanyIdInput
-	(*model.GetPulumiResourceCountByCompanyIdInput)(nil), // 3: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput
-	(*model.GetPulumiResourceCountByContextInput)(nil),   // 4: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput
-	(*model.GetStackJobMinutesByContextInput)(nil),       // 5: cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput
-	(*model.StackJobList)(nil),                           // 6: cloud.planton.apis.iac.v1.stackjob.model.StackJobList
-	(*model.StackJob)(nil),                               // 7: cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	(*progress.StackJobProgressEvent)(nil),               // 8: cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
-	(*snapshot.StackJobProgressSnapshot)(nil),            // 9: cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot
-	(*model.StackJobMinutesMTD)(nil),                     // 10: cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
-	(*model.TotalPulumiResourceCount)(nil),               // 11: cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
-	(*pulumiengine.PulumiResources)(nil),                 // 12: cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources
-	(*model.PulumiResourceCountDetailedList)(nil),        // 13: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList
+	(*model.ListStackJobsByFiltersQueryInput)(nil),                  // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput
+	(*model.StackJobId)(nil),                                        // 1: cloud.planton.apis.iac.v1.stackjob.model.StackJobId
+	(*model.GetStackJobMinutesByCompanyIdInput)(nil),                // 2: cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByCompanyIdInput
+	(*model.GetPulumiResourceCountByCompanyIdInput)(nil),            // 3: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput
+	(*model.GetPulumiResourceCountByContextInput)(nil),              // 4: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput
+	(*model.GetStackJobMinutesByContextInput)(nil),                  // 5: cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput
+	(*model.GetPulumiResourceCountTimeSeriesByContextInput)(nil),    // 6: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput
+	(*model.GetPulumiResourceCountTimeSeriesByResourceIdInput)(nil), // 7: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput
+	(*model.StackJobList)(nil),                                      // 8: cloud.planton.apis.iac.v1.stackjob.model.StackJobList
+	(*model.StackJob)(nil),                                          // 9: cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	(*progress.StackJobProgressEvent)(nil),                          // 10: cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
+	(*snapshot.StackJobProgressSnapshot)(nil),                       // 11: cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot
+	(*model.StackJobMinutesMTD)(nil),                                // 12: cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
+	(*model.TotalPulumiResourceCount)(nil),                          // 13: cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
+	(*pulumiengine.PulumiResources)(nil),                            // 14: cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources
+	(*model.PulumiResourceCountDetailedList)(nil),                   // 15: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList
+	(*model.PulumiResourceCountTimeSeriesList)(nil),                 // 16: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList
 }
 var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_depIdxs = []int32{
 	0,  // 0: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.listByFilters:input_type -> cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput
@@ -223,18 +253,22 @@ var file_cloud_planton_apis_iac_v1_stackjob_service_query_proto_depIdxs = []int3
 	4,  // 7: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextSummary:input_type -> cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput
 	4,  // 8: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextDetailed:input_type -> cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput
 	5,  // 9: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobMinutesMTDByContext:input_type -> cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput
-	6,  // 10: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.listByFilters:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobList
-	7,  // 11: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getById:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	8,  // 12: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getProgressEventStream:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
-	9,  // 13: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobProgressSnapshotStream:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot
-	10, // 14: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobMinutesMTDByCompanyId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
-	11, // 15: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByCompanyId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
-	12, // 16: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.findPulumiResourcesByStackJobId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources
-	11, // 17: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextSummary:output_type -> cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
-	13, // 18: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextDetailed:output_type -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList
-	10, // 19: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobMinutesMTDByContext:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
+	6,  // 10: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountTimeSeriesByContext:input_type -> cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput
+	7,  // 11: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountTimeSeriesByResourceId:input_type -> cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput
+	8,  // 12: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.listByFilters:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobList
+	9,  // 13: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getById:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	10, // 14: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getProgressEventStream:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent
+	11, // 15: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobProgressSnapshotStream:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot
+	12, // 16: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobMinutesMTDByCompanyId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
+	13, // 17: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByCompanyId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
+	14, // 18: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.findPulumiResourcesByStackJobId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources
+	13, // 19: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextSummary:output_type -> cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount
+	15, // 20: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountByContextDetailed:output_type -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList
+	12, // 21: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getStackJobMinutesMTDByContext:output_type -> cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD
+	16, // 22: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountTimeSeriesByContext:output_type -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList
+	16, // 23: cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController.getPulumiResourceCountTimeSeriesByResourceId:output_type -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList
+	12, // [12:24] is the sub-list for method output_type
+	0,  // [0:12] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
