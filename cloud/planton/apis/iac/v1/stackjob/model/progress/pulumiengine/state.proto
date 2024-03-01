@@ -10,6 +10,8 @@ message PulumiResource {
   string stack_job_id = 99;
   //unique identifier for the resource with in the system.
   string ulid = 98;
+  //name of the resource extracted from the urn attribute
+  string name = 97;
 
   string urn = 1;
   bool custom = 2;
