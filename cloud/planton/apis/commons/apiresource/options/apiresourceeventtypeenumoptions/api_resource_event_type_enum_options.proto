@@ -13,4 +13,8 @@ extend google.protobuf.EnumValueOptions {
   optional cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 90004;
   optional bool is_create_stack_required = 90005;
   optional bool is_status_only_persist_required = 90006;
+  optional string display_name = 90007;
+  optional bool is_spec_event = 90008;
+  optional bool is_status_event = 90009;
+  optional bool is_stack_event = 90010;
 }
