@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stack_job_progress_status_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "google/protobuf/timestamp.proto";
 
 // wrapper for stack-job id
 message StackJobId {
@@ -68,7 +69,7 @@ message GetStackJobMinutesByCompanyIdInput {
 message StackJobMinutesMTD {
   // minutes indicates the total duration of the stack job execution in minutes. This field uses an int32 type to
   // accommodate a wide range of values, from short tasks to long-running operations.
-  int32 minutes = 1;
+  double minutes = 1;
 }
 
 // GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi
@@ -151,5 +152,86 @@ message GetStackJobMinutesByContextInput {
 
   // product_id uniquely identifies a product associated with a company within the system.
   string product_id = 2;
+}
+
+// PulumiResourceCountTimeSeries represents a single data point in a time series for tracking the count
+// of Pulumi resources. Each entry correlates a specific timestamp with a resource count, allowing for
+// detailed analysis of resource usage trends over time.
+message PulumiResourceCountTimeSeries {
+  // interval_timestamp marks the specific point in time this data point represents. The use of
+  // google.protobuf.Timestamp ensures precise temporal tracking, enabling accurate historical analysis
+  // and forecasting.
+  google.protobuf.Timestamp interval_timestamp = 1;
+
+  // resource_count is the number of Pulumi resources recorded at the specified interval_timestamp.
+  // This double value allows for precise representation of resource counts, including fractional parts
+  // if applicable, accommodating scenarios where resource counts are averaged or otherwise not whole numbers.
+  double resource_count = 2;
+}
+
+// PulumiResourceCountTimeSeriesList aggregates multiple PulumiResourceCountTimeSeries entries into a
+// single collection. This facilitates the management and analysis of time series data for Pulumi resources,
+// supporting operations that require data across multiple time intervals, such as trend analysis and
+// resource utilization studies.
+message PulumiResourceCountTimeSeriesList {
+  // entries is a repeated field that holds a sequence of PulumiResourceCountTimeSeries messages,
+  // each representing a distinct time series data point. This collection models the fluctuation of resource
+  // counts over time, enabling comprehensive temporal analysis and visualization of resource metrics.
+  repeated PulumiResourceCountTimeSeries entries = 1;
+}
+
+// GetPulumiResourceCountTimeSeriesByContextInput defines the input parameters for a query
+// to retrieve time-series data of Pulumi resource counts within a specific context, identified
+// by company and product. This message enables clients to request temporal patterns of resource
+// usage, facilitating trend analysis and resource planning based on historical data. The inclusion
+// of start and end timestamps allows for the querying of data within a specific time range, offering
+// targeted insights into resource utilization over defined periods.
+message GetPulumiResourceCountTimeSeriesByContextInput {
+  // company_id uniquely identifies a company within the system. This string identifier is used
+  // to filter the query to only include resources associated with the specified company, ensuring
+  // that the time series data returned is relevant to the querying entity's scope of interest.
+  string company_id = 1;
+  // product_id uniquely identifies a product associated with a company within the system. Specifying
+  // this identifier allows the query to further narrow down the set of resources considered, focusing
+  // the resulting time series on a particular product.
+  string product_id = 2;
+
+  // start_timestamp specifies the beginning of the time range for which resource count time series data
+  // is requested. This field allows clients to define a specific time window, enhancing the precision of
+  // the analysis by focusing on the changes and trends within this defined period.
+  google.protobuf.Timestamp start_timestamp = 3;
+
+  // end_timestamp defines the end of the time range for the query. Together with start_timestamp, it
+  // delineates the temporal boundaries of the data retrieval, enabling focused analysis on resource
+  // utilization and trends over specific intervals, aiding in more accurate forecasting and strategic planning.
+  google.protobuf.Timestamp end_timestamp = 4;
+}
+
+// GetPulumiResourceCountTimeSeriesByResourceIdInput defines the input parameters for a query
+// to retrieve time-series data of Pulumi resource counts based on a unique resource identifier.
+// This message is tailored for in-depth analysis of specific resources, enabling clients to
+// observe temporal patterns and count variations of a single resource over time. By specifying
+// a resource ID and a precise time window through start and end timestamps, clients can obtain
+// detailed insights into resource dynamics, facilitating targeted management and optimization
+// strategies.
+message GetPulumiResourceCountTimeSeriesByResourceIdInput {
+  // resource_id is a unique identifier for a Pulumi resource. This field targets the query to
+  // retrieve time series data specifically for the resource specified, allowing for granular analysis
+  // of its utilization and count changes over time. Such specificity is vital for detailed resource
+  // tracking, performance evaluation, and planning of scaling or optimization efforts.
+  string resource_id = 1;
+
+  // start_timestamp specifies the beginning of the time range for which resource count time series data
+  // is requested. This field enables clients to demarcate the start of a period of interest, ensuring
+  // that the analysis focuses on relevant temporal segments. Precision in defining this start point
+  // enhances the utility of the data in understanding resource trends and making informed decisions.
+  google.protobuf.Timestamp start_timestamp = 2;
+
+  // end_timestamp defines the end of the time range for the query. In conjunction with start_timestamp,
+  // it establishes a clear and focused window for data retrieval. This precision allows for the
+  // extraction of time-bound insights into resource behavior, supporting accurate forecasting,
+  // trend analysis, and strategic resource planning. The ability to specify an end point ensures
+  // that the analysis is both relevant and confined to specific operational periods.
+  google.protobuf.Timestamp end_timestamp = 3;
 }
 

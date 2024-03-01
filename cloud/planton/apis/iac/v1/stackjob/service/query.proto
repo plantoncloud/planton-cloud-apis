@@ -62,4 +62,23 @@ service StackJobQueryController {
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
   rpc getStackJobMinutesMTDByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD);
+
+  // getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
+  // within a specified context, defined by the combination of company and product identifiers.
+  // This RPC is designed to provide clients with detailed insights into how resource usage has
+  // evolved over time, enabling trend analysis, forecasting, and resource optimization strategies.
+  rpc getPulumiResourceCountTimeSeriesByContext(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList);
+
+  // getPulumiResourceCountTimeSeriesByResourceId retrieves a time series of Pulumi resource counts
+  // for a specified resource over a defined time range. This RPC is intended for detailed analysis
+  // of the usage and count fluctuations of individual Pulumi resources, enabling clients to track
+  // specific resources' performance and plan for scaling or optimization based on historical data.
+
+  // By providing a unique resource ID and a time window (start and end timestamps), clients can
+  // obtain granular insights into how a particular resource's count has varied over time. This
+  // capability is crucial for understanding resource utilization trends, identifying potential
+  // bottlenecks, and making informed decisions about infrastructure management and optimization.
+  rpc getPulumiResourceCountTimeSeriesByResourceId(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList);
 }
