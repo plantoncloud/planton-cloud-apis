@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.billing.v1.stripe.service;
+
+import "google/protobuf/empty.proto";
+
+//stripe data command controller
+service StripeDataCommandController {
+  rpc loadStripeProductsAndPrices(google.protobuf.Empty) returns (google.protobuf.Empty);
+}

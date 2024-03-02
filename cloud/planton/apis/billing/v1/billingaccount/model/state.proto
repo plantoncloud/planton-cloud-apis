@@ -42,10 +42,10 @@ message BillingAccountSpec {
     (buf.validate.field).string.min_len = 1
   ];
 
-  // Represents the customer's information on Stripe.
-  // StripeCustomer is a separate message, not shown here, which presumably includes necessary
-  // Stripe-specific information like the customer ID, email, etc.
-  StripeCustomer stripe_customer = 2;
+  //id of the customer created for the company on stripe
+  string stripe_customer_id = 2 [
+    (buf.validate.field).string.min_len = 1
+  ];
   // A list of BillingSubscription objects associated with this billing account.
   // BillingSubscription is another message type, not shown here, which contains details about individual subscriptions.
   repeated BillingSubscription subscriptions = 3;
@@ -71,13 +71,6 @@ message BillingSubscription {
   // List of BillingItem objects associated with this billing subscription.
   // BillingItem is another message type, containing details about individual billing items.
   repeated BillingItem billing_items = 4;
-}
-
-message StripeCustomer {
-  //id of the customer created for the company on stripe
-  string customer_id = 1 [
-    (buf.validate.field).string.min_len = 1
-  ];
 }
 
 message StripeSubscription {
