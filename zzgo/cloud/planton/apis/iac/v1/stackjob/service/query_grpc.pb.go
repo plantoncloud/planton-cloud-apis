@@ -23,18 +23,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StackJobQueryController_ListByFilters_FullMethodName                                = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/listByFilters"
-	StackJobQueryController_GetById_FullMethodName                                      = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getById"
-	StackJobQueryController_GetProgressEventStream_FullMethodName                       = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getProgressEventStream"
-	StackJobQueryController_GetStackJobProgressSnapshotStream_FullMethodName            = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobProgressSnapshotStream"
-	StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName             = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesMTDByCompanyId"
-	StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName            = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByCompanyId"
-	StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName              = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/findPulumiResourcesByStackJobId"
-	StackJobQueryController_GetPulumiResourceCountByContextSummary_FullMethodName       = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByContextSummary"
-	StackJobQueryController_GetPulumiResourceCountByContextDetailed_FullMethodName      = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByContextDetailed"
-	StackJobQueryController_GetStackJobMinutesMTDByContext_FullMethodName               = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesMTDByContext"
-	StackJobQueryController_GetPulumiResourceCountTimeSeriesByContext_FullMethodName    = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByContext"
-	StackJobQueryController_GetPulumiResourceCountTimeSeriesByResourceId_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByResourceId"
+	StackJobQueryController_ListByFilters_FullMethodName                                      = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/listByFilters"
+	StackJobQueryController_GetById_FullMethodName                                            = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getById"
+	StackJobQueryController_GetProgressEventStream_FullMethodName                             = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getProgressEventStream"
+	StackJobQueryController_GetStackJobProgressSnapshotStream_FullMethodName                  = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobProgressSnapshotStream"
+	StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName                    = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/findPulumiResourcesByStackJobId"
+	StackJobQueryController_GetPulumiResourceCountByContextSummary_FullMethodName             = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByContextSummary"
+	StackJobQueryController_GetPulumiResourceCountByContextDetailed_FullMethodName            = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountByContextDetailed"
+	StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesCurrentAndPreviousMonthByContext"
+	StackJobQueryController_GetPulumiResourceCountTimeSeriesByContext_FullMethodName          = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByContext"
+	StackJobQueryController_GetPulumiResourceCountTimeSeriesByResourceId_FullMethodName       = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByResourceId"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -53,19 +51,6 @@ type StackJobQueryControllerClient interface {
 	// rpc to get snapshot of stack-job log
 	// response is optimized to display the stack-job log on non-interactive client-apps
 	GetStackJobProgressSnapshotStream(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (StackJobQueryController_GetStackJobProgressSnapshotStreamClient, error)
-	// getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
-	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
-	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-	GetStackJobMinutesMTDByCompanyId(ctx context.Context, in *model.GetStackJobMinutesByCompanyIdInput, opts ...grpc.CallOption) (*model.StackJobMinutesMTD, error)
-	// getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
-	// associated with a specified company. This operation requires an input of type
-	// GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
-	// company. It returns a TotalPulumiResourceCount message, encapsulating the aggregate count of
-	// Pulumi resources managed under the given company's account. This service is essential for
-	// organizations utilizing Pulumi for infrastructure as code (IaC) to monitor and manage their
-	// cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
-	GetPulumiResourceCountByCompanyId(ctx context.Context, in *model.GetPulumiResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.TotalPulumiResourceCount, error)
 	// retrieve all pulumi resources in a pulumi stack for a given stack-job-id
 	FindPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error)
 	// The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
@@ -81,7 +66,7 @@ type StackJobQueryControllerClient interface {
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
 	// within the context of a company/ product. It requires a GetStackJobMinutesByContextInput message containing the company_id/ product_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-	GetStackJobMinutesMTDByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesMTD, error)
+	GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
 	// within a specified context, defined by the combination of company and product identifiers.
 	// This RPC is designed to provide clients with detailed insights into how resource usage has
@@ -184,24 +169,6 @@ func (x *stackJobQueryControllerGetStackJobProgressSnapshotStreamClient) Recv() 
 	return m, nil
 }
 
-func (c *stackJobQueryControllerClient) GetStackJobMinutesMTDByCompanyId(ctx context.Context, in *model.GetStackJobMinutesByCompanyIdInput, opts ...grpc.CallOption) (*model.StackJobMinutesMTD, error) {
-	out := new(model.StackJobMinutesMTD)
-	err := c.cc.Invoke(ctx, StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *stackJobQueryControllerClient) GetPulumiResourceCountByCompanyId(ctx context.Context, in *model.GetPulumiResourceCountByCompanyIdInput, opts ...grpc.CallOption) (*model.TotalPulumiResourceCount, error) {
-	out := new(model.TotalPulumiResourceCount)
-	err := c.cc.Invoke(ctx, StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *stackJobQueryControllerClient) FindPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error) {
 	out := new(pulumiengine.PulumiResources)
 	err := c.cc.Invoke(ctx, StackJobQueryController_FindPulumiResourcesByStackJobId_FullMethodName, in, out, opts...)
@@ -229,9 +196,9 @@ func (c *stackJobQueryControllerClient) GetPulumiResourceCountByContextDetailed(
 	return out, nil
 }
 
-func (c *stackJobQueryControllerClient) GetStackJobMinutesMTDByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesMTD, error) {
-	out := new(model.StackJobMinutesMTD)
-	err := c.cc.Invoke(ctx, StackJobQueryController_GetStackJobMinutesMTDByContext_FullMethodName, in, out, opts...)
+func (c *stackJobQueryControllerClient) GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesCurrentAndPreviousMonth, error) {
+	out := new(model.StackJobMinutesCurrentAndPreviousMonth)
+	err := c.cc.Invoke(ctx, StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -272,19 +239,6 @@ type StackJobQueryControllerServer interface {
 	// rpc to get snapshot of stack-job log
 	// response is optimized to display the stack-job log on non-interactive client-apps
 	GetStackJobProgressSnapshotStream(*model.StackJobId, StackJobQueryController_GetStackJobProgressSnapshotStreamServer) error
-	// getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
-	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
-	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-	GetStackJobMinutesMTDByCompanyId(context.Context, *model.GetStackJobMinutesByCompanyIdInput) (*model.StackJobMinutesMTD, error)
-	// getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
-	// associated with a specified company. This operation requires an input of type
-	// GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
-	// company. It returns a TotalPulumiResourceCount message, encapsulating the aggregate count of
-	// Pulumi resources managed under the given company's account. This service is essential for
-	// organizations utilizing Pulumi for infrastructure as code (IaC) to monitor and manage their
-	// cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
-	GetPulumiResourceCountByCompanyId(context.Context, *model.GetPulumiResourceCountByCompanyIdInput) (*model.TotalPulumiResourceCount, error)
 	// retrieve all pulumi resources in a pulumi stack for a given stack-job-id
 	FindPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error)
 	// The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
@@ -300,7 +254,7 @@ type StackJobQueryControllerServer interface {
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
 	// within the context of a company/ product. It requires a GetStackJobMinutesByContextInput message containing the company_id/ product_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-	GetStackJobMinutesMTDByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesMTD, error)
+	GetStackJobMinutesCurrentAndPreviousMonthByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
 	// within a specified context, defined by the combination of company and product identifiers.
 	// This RPC is designed to provide clients with detailed insights into how resource usage has
@@ -329,12 +283,6 @@ func (UnimplementedStackJobQueryControllerServer) GetProgressEventStream(*model.
 func (UnimplementedStackJobQueryControllerServer) GetStackJobProgressSnapshotStream(*model.StackJobId, StackJobQueryController_GetStackJobProgressSnapshotStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetStackJobProgressSnapshotStream not implemented")
 }
-func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesMTDByCompanyId(context.Context, *model.GetStackJobMinutesByCompanyIdInput) (*model.StackJobMinutesMTD, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStackJobMinutesMTDByCompanyId not implemented")
-}
-func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountByCompanyId(context.Context, *model.GetPulumiResourceCountByCompanyIdInput) (*model.TotalPulumiResourceCount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountByCompanyId not implemented")
-}
 func (UnimplementedStackJobQueryControllerServer) FindPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPulumiResourcesByStackJobId not implemented")
 }
@@ -344,8 +292,8 @@ func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountByContex
 func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountByContextDetailed(context.Context, *model.GetPulumiResourceCountByContextInput) (*model.PulumiResourceCountDetailedList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountByContextDetailed not implemented")
 }
-func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesMTDByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesMTD, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStackJobMinutesMTDByContext not implemented")
+func (UnimplementedStackJobQueryControllerServer) GetStackJobMinutesCurrentAndPreviousMonthByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesCurrentAndPreviousMonth, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStackJobMinutesCurrentAndPreviousMonthByContext not implemented")
 }
 func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountTimeSeriesByContext(context.Context, *model.GetPulumiResourceCountTimeSeriesByContextInput) (*model.PulumiResourceCountTimeSeriesList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountTimeSeriesByContext not implemented")
@@ -443,42 +391,6 @@ func (x *stackJobQueryControllerGetStackJobProgressSnapshotStreamServer) Send(m 
 	return x.ServerStream.SendMsg(m)
 }
 
-func _StackJobQueryController_GetStackJobMinutesMTDByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetStackJobMinutesByCompanyIdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTDByCompanyId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StackJobQueryController_GetStackJobMinutesMTDByCompanyId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTDByCompanyId(ctx, req.(*model.GetStackJobMinutesByCompanyIdInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetPulumiResourceCountByCompanyIdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StackJobQueryControllerServer).GetPulumiResourceCountByCompanyId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StackJobQueryController_GetPulumiResourceCountByCompanyId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackJobQueryControllerServer).GetPulumiResourceCountByCompanyId(ctx, req.(*model.GetPulumiResourceCountByCompanyIdInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _StackJobQueryController_FindPulumiResourcesByStackJobId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.StackJobId)
 	if err := dec(in); err != nil {
@@ -533,20 +445,20 @@ func _StackJobQueryController_GetPulumiResourceCountByContextDetailed_Handler(sr
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StackJobQueryController_GetStackJobMinutesMTDByContext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetStackJobMinutesByContextInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTDByContext(ctx, in)
+		return srv.(StackJobQueryControllerServer).GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StackJobQueryController_GetStackJobMinutesMTDByContext_FullMethodName,
+		FullMethod: StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackJobQueryControllerServer).GetStackJobMinutesMTDByContext(ctx, req.(*model.GetStackJobMinutesByContextInput))
+		return srv.(StackJobQueryControllerServer).GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx, req.(*model.GetStackJobMinutesByContextInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -603,14 +515,6 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StackJobQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "getStackJobMinutesMTDByCompanyId",
-			Handler:    _StackJobQueryController_GetStackJobMinutesMTDByCompanyId_Handler,
-		},
-		{
-			MethodName: "getPulumiResourceCountByCompanyId",
-			Handler:    _StackJobQueryController_GetPulumiResourceCountByCompanyId_Handler,
-		},
-		{
 			MethodName: "findPulumiResourcesByStackJobId",
 			Handler:    _StackJobQueryController_FindPulumiResourcesByStackJobId_Handler,
 		},
@@ -623,8 +527,8 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _StackJobQueryController_GetPulumiResourceCountByContextDetailed_Handler,
 		},
 		{
-			MethodName: "getStackJobMinutesMTDByContext",
-			Handler:    _StackJobQueryController_GetStackJobMinutesMTDByContext_Handler,
+			MethodName: "getStackJobMinutesCurrentAndPreviousMonthByContext",
+			Handler:    _StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_Handler,
 		},
 		{
 			MethodName: "getPulumiResourceCountTimeSeriesByContext",

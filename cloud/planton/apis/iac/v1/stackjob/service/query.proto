@@ -28,31 +28,6 @@ service StackJobQueryController {
   //response is optimized to display the stack-job log on non-interactive client-apps
   rpc getStackJobProgressSnapshotStream(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns (stream cloud.planton.apis.iac.v1.stackjob.model.progress.snapshot.StackJobProgressSnapshot);
-  // getStackJobMinutesMTBByCompanyId retrieves the total running minutes of stack jobs associated with a specific company.
-  // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-  // within the context of a company. It requires a GetStackJobMinutesByCompanyIdInput message containing the company_id
-  // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-  rpc getStackJobMinutesMTDByCompanyId(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByCompanyIdInput)
-      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view stack job minutes";
-  }
-  // getPulumiResourceCountByCompanyId is an RPC that queries the total count of Pulumi resources
-  // associated with a specified company. This operation requires an input of type
-  // GetPulumiResourceCountByCompanyIdInput, which includes the company_id to identify the target
-  // company. It returns a TotalPulumiResourceCount message, encapsulating the aggregate count of
-  // Pulumi resources managed under the given company's account. This service is essential for
-  // organizations utilizing Pulumi for infrastructure as code (IaC) to monitor and manage their
-  // cloud resource utilization, facilitating effective resource planning, auditing, and optimization.
-  rpc getPulumiResourceCountByCompanyId(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByCompanyIdInput)
-      returns (cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view pulumi resource count";
-  }
   //retrieve all pulumi resources in a pulumi stack for a given stack-job-id
   rpc findPulumiResourcesByStackJobId(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns (cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources);
@@ -71,8 +46,8 @@ service StackJobQueryController {
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
   // within the context of a company/ product. It requires a GetStackJobMinutesByContextInput message containing the company_id/ product_id
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
-  rpc getStackJobMinutesMTDByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
-      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesMTD);
+  rpc getStackJobMinutesCurrentAndPreviousMonthByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
+      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesCurrentAndPreviousMonth);
 
   // getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
   // within a specified context, defined by the combination of company and product identifiers.
