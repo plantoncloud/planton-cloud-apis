@@ -215,23 +215,25 @@ message GetPulumiResourceCountTimeSeriesByContextInput {
 // detailed insights into resource dynamics, facilitating targeted management and optimization
 // strategies.
 message GetPulumiResourceCountTimeSeriesByResourceIdInput {
+  // type of resource id.
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
   // resource_id is a unique identifier for a Pulumi resource. This field targets the query to
   // retrieve time series data specifically for the resource specified, allowing for granular analysis
   // of its utilization and count changes over time. Such specificity is vital for detailed resource
   // tracking, performance evaluation, and planning of scaling or optimization efforts.
-  string resource_id = 1;
+  string resource_id = 2;
 
   // start_timestamp specifies the beginning of the time range for which resource count time series data
   // is requested. This field enables clients to demarcate the start of a period of interest, ensuring
   // that the analysis focuses on relevant temporal segments. Precision in defining this start point
   // enhances the utility of the data in understanding resource trends and making informed decisions.
-  google.protobuf.Timestamp start_timestamp = 2;
+  google.protobuf.Timestamp start_timestamp = 3;
 
   // end_timestamp defines the end of the time range for the query. In conjunction with start_timestamp,
   // it establishes a clear and focused window for data retrieval. This precision allows for the
   // extraction of time-bound insights into resource behavior, supporting accurate forecasting,
   // trend analysis, and strategic resource planning. The ability to specify an end point ensures
   // that the analysis is both relevant and confined to specific operational periods.
-  google.protobuf.Timestamp end_timestamp = 3;
+  google.protobuf.Timestamp end_timestamp = 4;
 }
 
