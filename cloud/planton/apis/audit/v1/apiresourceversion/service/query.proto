@@ -23,23 +23,6 @@ service ApiResourceVersionQueryController {
   rpc getCount(cloud.planton.apis.audit.v1.apiresourceversion.model.GetApiResourceVersionCountInput)
       returns(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionCount);
 
-  // getResourceCountByCompanyId retrieves detailed information about the count of different resources
-  // associated with a given company. The request requires a GetResourceCountByCompanyIdInput message
-  // containing the company_id of interest. It returns a ResourceCount message, which includes the type
-  // and name of the resource along with its total count within the specified company.
-  rpc getResourceCountByCompanyId(cloud.planton.apis.audit.v1.apiresourceversion.model.GetResourceCountByCompanyIdInput)
-      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourcesCount) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get resource count";
-  }
-
   rpc getResourceCountByContext(cloud.planton.apis.audit.v1.apiresourceversion.model.GetResourceCountByContextInput)
-      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourcesCount) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get resource count";
-  }
+      returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourcesCount);
 }
