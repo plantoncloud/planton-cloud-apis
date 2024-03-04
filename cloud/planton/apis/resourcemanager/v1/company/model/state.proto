@@ -40,8 +40,8 @@ message Company {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 2 and 9 characters long",
-      expression: "size(this.name) > 1 && size(this.name) <= 9"
+      message: "Name must be between 2 and 20 characters long",
+      expression: "size(this.name) > 1 && size(this.name) <= 20"
     }
   ];
 
