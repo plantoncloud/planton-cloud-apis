@@ -6,15 +6,22 @@ import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/iac/v1/stack/model/io.proto";
 import "cloud/planton/apis/iac/v1/stack/model/state.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 service StackCommandController {
   //create stack
-  rpc create(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+  rpc create(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+  }
   //update stack
-  rpc update(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+  rpc update(cloud.planton.apis.iac.v1.stack.model.Stack) returns (cloud.planton.apis.iac.v1.stack.model.Stack) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+  }
   //delete stack
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.iac.v1.stack.model.Stack);
+      returns (cloud.planton.apis.iac.v1.stack.model.Stack) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+  }
   //delete stack on pulumi cloud
   rpc deleteOnPulumiCloud(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.iac.v1.stack.model.Stack);
