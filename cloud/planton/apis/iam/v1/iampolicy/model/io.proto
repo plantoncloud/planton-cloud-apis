@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/enums/apiresourceiampermission/api_resource_iam_permission.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/model/state.proto";
 import "cloud/planton/apis/iam/v1/iamrole/model/state.proto";
+import "buf/validate/validate.proto";
 
 message IamPrincipal {
   // id of the principal of the policy that is associated.
@@ -32,7 +33,7 @@ message IamPrincipal {
 // Represents the association of an IAM role and an owner principal.
 message RoleAndOwnerMapping {
   // The IAM role assigned to a principal for authorization.
-  cloud.planton.apis.iam.v1.iamrole.model.IamRole role = 1;
+  cloud.planton.apis.iam.v1.iamrole.model.IamRole role = 1 [(buf.validate.field).skipped = true];
 
   // The owner principal responsible for the role and associated permissions.
   IamPrincipal owner_principal = 2;
@@ -82,7 +83,7 @@ message AddIamPolicyInput {
 
   // Roles to be assigned to the principals for the given resource.
   // Multiple roles can be assigned to the principals, defining their access level and permissions.
-  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2;
+  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
 
   // The type of resource that the IAM policy is to be associated with.
   // Valid values include 'company', 'cloud_account', and other resource types.
@@ -99,7 +100,7 @@ message RemoveIamPolicyInput {
   IamPrincipal principal = 1;
   // Roles to be removed from the principal's IAM policies for the given resource.
   // Multiple roles can be specified for removal, adjusting the principal's access and permissions.
-  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2;
+  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
   // The type of resource from which IAM policies are to be removed.
   // Valid values include 'company', 'cloud_account', and other resource types.
   string resource_kind = 4;
@@ -136,7 +137,7 @@ message UpdateIamPolicyInput {
 
   // Roles to be assigned to the principals for the given resource.
   // Multiple roles can be assigned to the principals, defining their access level and permissions.
-  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2;
+  repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
 
   // The type of resource that the IAM policy is to be associated with.
   // Valid values include 'company', 'cloud_account', and other resource types.
