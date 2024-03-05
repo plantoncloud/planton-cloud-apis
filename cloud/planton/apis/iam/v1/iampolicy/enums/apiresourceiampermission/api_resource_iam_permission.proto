@@ -233,4 +233,6 @@ enum ApiResourceIamPermission {
   grafana_instance_get = 159;
   grafana_instance_restore = 160;
   grafana_instance_update = 161;
+
+  platform_microservice_account = 162;
 }
