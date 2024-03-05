@@ -108,7 +108,14 @@ message StackJobSpec {
 
   // event type of the resource that triggered the stack job
   string api_resource_event_type = 10 [
-    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
+  ];
+
+  // id of the identity-account that created the event
+  // this is used to configure the audit-actor before persisting the state of stack-job resource.
+  string api_resource_event_created_by = 11 [
+    (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 }

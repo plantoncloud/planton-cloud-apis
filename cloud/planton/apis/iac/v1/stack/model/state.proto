@@ -59,6 +59,13 @@ message StackSpec {
   // id of the company to which the resource belongs to.
   // this is used as project name when creating stacks on pulumi cloud.
   string company_id = 4;
+
+  // id of the identity-account that created the resource.
+  // this is used to configure the audit-actor before persisting the state of stack resource.
+  string api_resource_created_by = 5 [
+    (buf.validate.field).ignore_empty = false,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
+  ];
 }
 
 // stack status
