@@ -83,8 +83,14 @@ message HelmReleaseSpec {
   //helm chart repo
   string chart_repo = 2;
 
+  //helm chart name
+  string chart_name = 3;
+
   //helm chart version
-  string chart_version = 3;
+  string chart_version = 4;
+
+  //map of key values for helm input
+  map<string,string> values = 5;
 }
 
 //helm-release status.
