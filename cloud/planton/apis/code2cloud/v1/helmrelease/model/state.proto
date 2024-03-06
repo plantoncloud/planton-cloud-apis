@@ -80,17 +80,8 @@ message HelmReleaseSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //helm chart repo
-  string chart_repo = 2;
-
-  //helm chart name
-  string chart_name = 3;
-
-  //helm chart version
-  string chart_version = 4;
-
-  //map of key values for helm input
-  map<string,string> values = 5;
+  //helm-chart spec
+  HelmReleaseSpecChartSpec helm_chart = 2;
 }
 
 //helm-release status.
@@ -103,4 +94,19 @@ message HelmReleaseStatus {
 
   // id of the stack-job
   string stack_job_id = 97;
+}
+
+//helm-chart spec
+message HelmReleaseSpecChartSpec {
+  //helm chart repo
+  string repo = 1;
+
+  //helm chart name
+  string name = 2;
+
+  //helm chart version
+  string version = 3;
+
+  //map of key values for helm input
+  map<string, string> values = 4;
 }
