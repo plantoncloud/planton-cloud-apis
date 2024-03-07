@@ -11,17 +11,26 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 service StackJobCommandController {
   //create stack-job
   rpc create(cloud.planton.apis.iac.v1.stackjob.model.StackJob) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack job";
   }
   //update stack-job
   rpc update(cloud.planton.apis.iac.v1.stackjob.model.StackJob) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update stack job";
   }
   //rpc to notify that a stack-job started running.
   //since the start of running of a stack-job happens in other services, iac service is notified of that event.
   //upon receiving this notification, iac service starts a stack-job progress follower that
   // takes care of updating the status of stack-job in the database.
   rpc notifyRunning(cloud.planton.apis.iac.v1.stackjob.model.StackJobId) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to notify stack job running progress";
   }
 }
