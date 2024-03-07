@@ -8,4 +8,5 @@ import "cloud/planton/apis/iam/v1/iampolicy/model/io.proto";
 extend google.protobuf.MethodOptions {
   cloud.planton.apis.iam.v1.iampolicy.model.RpcAuthorizationConfig authorization_config = 50056;
   bool is_public = 50057;
+  bool is_skip_authorization = 50058;
 }

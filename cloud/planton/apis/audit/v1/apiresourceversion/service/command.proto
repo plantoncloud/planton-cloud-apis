@@ -14,6 +14,9 @@ service ApiResourceVersionCommandController {
   rpc upsert(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionUpsertInput)
       returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion) {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).is_system_internal = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create or update api version";
   }
 }

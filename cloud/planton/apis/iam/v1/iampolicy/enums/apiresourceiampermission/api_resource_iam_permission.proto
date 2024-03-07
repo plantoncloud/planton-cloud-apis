@@ -235,4 +235,5 @@ enum ApiResourceIamPermission {
   grafana_instance_update = 161;
 
   platform_microservice_account = 162;
+  back_office_admin = 163;
 }

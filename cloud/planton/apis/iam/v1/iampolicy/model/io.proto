@@ -195,6 +195,7 @@ message RpcAuthorizationConfig {
   string field_path = 3;
   // error message to be returned when the permission is not granted to user
   string error_msg = 4;
-  // flag to identity if the authorization is to check with platform microservice identity
-  bool is_system_internal = 5;
+  // identifier value to be configured if identifier is not part of the input
+  // this will be used in case of system internal rpc`s where the resource_id is `planton-cloud`
+  string resource_id = 5;
 }

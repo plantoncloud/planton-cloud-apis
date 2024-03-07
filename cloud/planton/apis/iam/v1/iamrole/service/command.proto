@@ -4,16 +4,32 @@ package cloud.planton.apis.iam.v1.iamrole.service;
 
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/iam/v1/iamrole/model/state.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //iam role command controller
 service IamRoleCommandController {
   // create iam role
   rpc create(cloud.planton.apis.iam.v1.iamrole.model.IamRole)
-      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole);
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create iam role";
+  }
   // update iam role
   rpc update(cloud.planton.apis.iam.v1.iamrole.model.IamRole)
-      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole);
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update iam role";
+  }
   // delete iam role
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole);
+      returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete iam role";
+  }
 }
