@@ -19,7 +19,9 @@ service StackJobQueryController {
   //look up stack-job by stack-job-id
   //todo: need to add authorization
   rpc getById(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
-      returns(cloud.planton.apis.iac.v1.stackjob.model.StackJob);
+      returns(cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
   rpc getProgressEventStream(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
