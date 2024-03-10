@@ -12,7 +12,12 @@ import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
 //company query controller
 service CompanyQueryController {
   // list all the companies for the requested page. This is intended to be used on back-office portal.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.company.model.CompanyList);
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.company.model.CompanyList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list all companies";
+  }
   // get a company using company id
   rpc getById(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
@@ -20,5 +25,8 @@ service CompanyQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view company details";
   }
-  rpc findCompanies(cloud.planton.apis.commons.protobuf.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.company.model.Companies);
+
+  rpc findCompanies(cloud.planton.apis.commons.protobuf.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.company.model.Companies) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 }

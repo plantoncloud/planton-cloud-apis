@@ -9,9 +9,8 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/artifactstore/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,7 +24,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	ArtifactStoreQueryController_GetById_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/getById"
 	ArtifactStoreQueryController_List_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/list"
-	ArtifactStoreQueryController_FindByProductId_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/findByProductId"
 	ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/findByCodeProjectUrl"
 	ArtifactStoreQueryController_ListArtifactStoreDockerImages_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStoreDockerImages"
 	ArtifactStoreQueryController_ListArtifactStorePackages_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackages"
@@ -40,10 +38,8 @@ type ArtifactStoreQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.ArtifactStoreId, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// list all artifact-stores for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
-	// look up artifact-stores by product id.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error)
 	// look up artifact-stores by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model2.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error)
+	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error)
 	// list docker images from the artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStoreDockerImages(ctx context.Context, in *model.ListByArtifactStoreIdRepoNameInput, opts ...grpc.CallOption) (*model.ArtifactStoreDockerImageList, error)
@@ -81,16 +77,7 @@ func (c *artifactStoreQueryControllerClient) List(ctx context.Context, in *rpc.P
 	return out, nil
 }
 
-func (c *artifactStoreQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
-	out := new(model.ArtifactStores)
-	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *artifactStoreQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model2.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
+func (c *artifactStoreQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
 	out := new(model.ArtifactStores)
 	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -134,10 +121,8 @@ type ArtifactStoreQueryControllerServer interface {
 	GetById(context.Context, *model.ArtifactStoreId) (*model.ArtifactStore, error)
 	// list all artifact-stores for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.ArtifactStoreList, error)
-	// look up artifact-stores by product id.
-	FindByProductId(context.Context, *model1.ProductId) (*model.ArtifactStores, error)
 	// look up artifact-stores by code project url
-	FindByCodeProjectUrl(context.Context, *model2.CodeProjectUrl) (*model.ArtifactStores, error)
+	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStores, error)
 	// list docker images from the artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStoreDockerImages(context.Context, *model.ListByArtifactStoreIdRepoNameInput) (*model.ArtifactStoreDockerImageList, error)
@@ -159,10 +144,7 @@ func (UnimplementedArtifactStoreQueryControllerServer) GetById(context.Context, 
 func (UnimplementedArtifactStoreQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.ArtifactStoreList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedArtifactStoreQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.ArtifactStores, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedArtifactStoreQueryControllerServer) FindByCodeProjectUrl(context.Context, *model2.CodeProjectUrl) (*model.ArtifactStores, error) {
+func (UnimplementedArtifactStoreQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStores, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
 func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStoreDockerImages(context.Context, *model.ListByArtifactStoreIdRepoNameInput) (*model.ArtifactStoreDockerImageList, error) {
@@ -222,26 +204,8 @@ func _ArtifactStoreQueryController_List_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactStoreQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactStoreQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactStoreQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactStoreQueryController_FindByCodeProjectUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CodeProjectUrl)
+	in := new(model1.CodeProjectUrl)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -253,7 +217,7 @@ func _ArtifactStoreQueryController_FindByCodeProjectUrl_Handler(srv interface{},
 		FullMethod: ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model2.CodeProjectUrl))
+		return srv.(ArtifactStoreQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model1.CodeProjectUrl))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -326,10 +290,6 @@ var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "list",
 			Handler:    _ArtifactStoreQueryController_List_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _ArtifactStoreQueryController_FindByProductId_Handler,
 		},
 		{
 			MethodName: "findByCodeProjectUrl",

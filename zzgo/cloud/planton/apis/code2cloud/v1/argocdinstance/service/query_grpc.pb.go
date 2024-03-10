@@ -9,11 +9,8 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/argocdinstance/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,12 +22,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ArgocdInstanceQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/list"
-	ArgocdInstanceQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/getById"
-	ArgocdInstanceQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/findByProductId"
-	ArgocdInstanceQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/findByEnvironmentId"
-	ArgocdInstanceQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/findByKubeClusterId"
-	ArgocdInstanceQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/findPods"
+	ArgocdInstanceQueryController_List_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/list"
+	ArgocdInstanceQueryController_GetById_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/getById"
+	ArgocdInstanceQueryController_FindPods_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceQueryController/findPods"
 )
 
 // ArgocdInstanceQueryControllerClient is the client API for ArgocdInstanceQueryController service.
@@ -41,14 +35,8 @@ type ArgocdInstanceQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ArgocdInstanceList, error)
 	// look up argocd-instance using argocd-instance id
 	GetById(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
-	// find argocd-instances by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ArgocdInstances, error)
-	// find argocd-instances by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ArgocdInstances, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ArgocdInstances, error)
 	// lookup pods of a argocd-instance deployed to a environment
-	FindPods(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type argocdInstanceQueryControllerClient struct {
@@ -77,35 +65,8 @@ func (c *argocdInstanceQueryControllerClient) GetById(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *argocdInstanceQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ArgocdInstances, error) {
-	out := new(model.ArgocdInstances)
-	err := c.cc.Invoke(ctx, ArgocdInstanceQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *argocdInstanceQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ArgocdInstances, error) {
-	out := new(model.ArgocdInstances)
-	err := c.cc.Invoke(ctx, ArgocdInstanceQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *argocdInstanceQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ArgocdInstances, error) {
-	out := new(model.ArgocdInstances)
-	err := c.cc.Invoke(ctx, ArgocdInstanceQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *argocdInstanceQueryControllerClient) FindPods(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
+func (c *argocdInstanceQueryControllerClient) FindPods(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model1.Pods, error) {
+	out := new(model1.Pods)
 	err := c.cc.Invoke(ctx, ArgocdInstanceQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -121,14 +82,8 @@ type ArgocdInstanceQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.ArgocdInstanceList, error)
 	// look up argocd-instance using argocd-instance id
 	GetById(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error)
-	// find argocd-instances by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.ArgocdInstances, error)
-	// find argocd-instances by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ArgocdInstances, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ArgocdInstances, error)
 	// lookup pods of a argocd-instance deployed to a environment
-	FindPods(context.Context, *model.ArgocdInstanceId) (*model4.Pods, error)
+	FindPods(context.Context, *model.ArgocdInstanceId) (*model1.Pods, error)
 }
 
 // UnimplementedArgocdInstanceQueryControllerServer should be embedded to have forward compatible implementations.
@@ -141,16 +96,7 @@ func (UnimplementedArgocdInstanceQueryControllerServer) List(context.Context, *r
 func (UnimplementedArgocdInstanceQueryControllerServer) GetById(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedArgocdInstanceQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.ArgocdInstances, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedArgocdInstanceQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ArgocdInstances, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedArgocdInstanceQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ArgocdInstances, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
-func (UnimplementedArgocdInstanceQueryControllerServer) FindPods(context.Context, *model.ArgocdInstanceId) (*model4.Pods, error) {
+func (UnimplementedArgocdInstanceQueryControllerServer) FindPods(context.Context, *model.ArgocdInstanceId) (*model1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
@@ -201,60 +147,6 @@ func _ArgocdInstanceQueryController_GetById_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgocdInstanceQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdInstanceQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArgocdInstanceQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdInstanceQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArgocdInstanceQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdInstanceQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdInstanceQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArgocdInstanceQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.ArgocdInstanceId)
 	if err := dec(in); err != nil {
@@ -287,18 +179,6 @@ var ArgocdInstanceQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _ArgocdInstanceQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _ArgocdInstanceQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _ArgocdInstanceQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _ArgocdInstanceQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "findPods",
