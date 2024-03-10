@@ -21,26 +21,46 @@ service ArtifactStoreQueryController {
   }
   //list all artifact-stores for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList);
-  //look up artifact-stores by product id.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores);
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list artifact stores";
+  }
   //look up artifact-stores by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores);
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores) {
+    // authorization is handled internally
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 
   //list docker images from the artifact-store provided in the input
   //(proxy google artifact-registry server)
   rpc listArtifactStoreDockerImages(cloud.planton.apis.code2cloud.v1.artifactstore.model.ListByArtifactStoreIdRepoNameInput)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreDockerImageList);
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreDockerImageList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = artifact_store_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "artifact_store_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
+  }
 
   //list maven/npm/python packages from the corresponding repositories of artifact-store provided in the input
   //(proxy google artifact-registry server)
   rpc listArtifactStorePackages(cloud.planton.apis.code2cloud.v1.artifactstore.model.ListByArtifactStoreIdRepoNameInput)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStorePackageList);
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStorePackageList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = artifact_store_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "artifact_store_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
+  }
 
   //list maven/npm/python package versions from the corresponding repositories of artifact-store provided in the input
   //(proxy google artifact-registry server)
   rpc listArtifactStorePackageVersions(cloud.planton.apis.code2cloud.v1.artifactstore.model.ListByArtifactStoreIdPackageNameInput)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStorePackageVersionList);
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStorePackageVersionList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = artifact_store;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = artifact_store_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "artifact_store_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
+  }
 }

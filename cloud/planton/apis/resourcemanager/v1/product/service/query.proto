@@ -12,7 +12,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 //product query controller
 service ProductQueryController {
   //list all products for the requested page. This is intended to be used on back-office portal.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.product.model.ProductList);
+  rpc list(cloud.planton.apis.commons.rpc.PageInfo) returns (cloud.planton.apis.resourcemanager.v1.product.model.ProductList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list all products";
+  }
 
   //get details of a product by product id
   rpc getById(cloud.planton.apis.resourcemanager.v1.product.model.ProductId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Product) {
@@ -24,5 +29,7 @@ service ProductQueryController {
 
   //find products by company id.
   //the response should only include the products that the authenticated user has access to.
-  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Products);
+  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns(cloud.planton.apis.resourcemanager.v1.product.model.Products) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 }

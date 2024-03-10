@@ -327,10 +327,8 @@ const (
 type UserAccountQueryControllerClient interface {
 	// retrieve paginated list of all user accounts on planton cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
-	// todo: add authorization
 	// lookup user-account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
-	// todo: add authorization
 	// lookup user-account by identity account email.
 	GetByEmail(ctx context.Context, in *model.IdentityAccountEmail, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// this is to check if a user is authorized to login to back office or not
@@ -422,10 +420,8 @@ func (c *userAccountQueryControllerClient) GetMembersCountByProductId(ctx contex
 type UserAccountQueryControllerServer interface {
 	// retrieve paginated list of all user accounts on planton cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error)
-	// todo: add authorization
 	// lookup user-account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)
-	// todo: add authorization
 	// lookup user-account by identity account email.
 	GetByEmail(context.Context, *model.IdentityAccountEmail) (*model.IdentityAccount, error)
 	// this is to check if a user is authorized to login to back office or not
