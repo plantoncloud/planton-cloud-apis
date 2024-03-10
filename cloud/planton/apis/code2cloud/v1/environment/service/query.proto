@@ -15,7 +15,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 service EnvironmentQueryController {
   //list all environments for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList);
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list environments";
+  }
 
   //look up environment using environment id
   rpc getById(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
@@ -28,11 +33,15 @@ service EnvironmentQueryController {
 
   //find environments by product id
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments);
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 
   //find environments by kube-cluster id
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments);
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 
   //look up environment using environment id
   rpc getByProductIdAndEnvironmentName(cloud.planton.apis.code2cloud.v1.environment.model.GetByProductIdAndEnvironmentNameQueryInput)
@@ -45,11 +54,21 @@ service EnvironmentQueryController {
 
   //look up the build engine environment for the product required for launching the microservice in build engine
   rpc getBuildEngineEnvironmentByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment);
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view build-engine environment";
+  }
 
   //look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
   rpc getSecretsGcpProjectByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject);
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view secrets gcp project of the environment";
+  }
 
   //find workload pods part of environment
   rpc findWorkloadPodsByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
