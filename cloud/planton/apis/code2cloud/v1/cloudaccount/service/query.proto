@@ -18,9 +18,10 @@ service CloudAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view cloud-account";
   }
 
-  //todo: add authorization
+
   //find cloud-accounts by company id.
   //the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
+  //authorization is handled internally by running get authorized cloud account ids
   rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccounts) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
