@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.service;
 
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 service ApiResourceListViewQueryController {
   // The `listByResourceKind` RPC service method enables clients to execute a search operation
@@ -16,5 +17,10 @@ service ApiResourceListViewQueryController {
   // the input search parameters. Each resource in the list should match the specified resource type,
   // and be associated with the specified company and product.
   rpc listByResourceKind(cloud.planton.apis.commons.apiresource.model.GetByApiResourceKindInput)
-      returns (cloud.planton.apis.commons.apiresource.model.ApiResourceRecordList);
+      returns (cloud.planton.apis.commons.apiresource.model.ApiResourceRecordList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list api-resources";
+  }
 }
