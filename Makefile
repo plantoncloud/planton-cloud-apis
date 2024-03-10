@@ -8,7 +8,9 @@ build:
 	cp -R internal/generated/go/github.com/plantoncloud/planton-cloud-apis/zzgo/. zzgo/
 	pushd zzjava;rm -rf build;./gradlew build;popd
 .PHONY: release
-release:
+release: build
+	git tag ${version}
+	git push origin ${version}
 	buf push --tag ${version}
 	pushd zzjava;rm -rf build;./gradlew publish -Prevision=${version};popd
 
