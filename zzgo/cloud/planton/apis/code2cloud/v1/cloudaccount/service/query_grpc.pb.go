@@ -36,9 +36,9 @@ const (
 type CloudAccountQueryControllerClient interface {
 	// look up a cloud-account by id
 	GetById(ctx context.Context, in *model.CloudAccountId, opts ...grpc.CallOption) (*model.CloudAccount, error)
-	// todo: add authorization
 	// find cloud-accounts by company id.
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
+	// authorization is handled internally by running get authorized cloud account ids
 	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
@@ -134,9 +134,9 @@ func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx c
 type CloudAccountQueryControllerServer interface {
 	// look up a cloud-account by id
 	GetById(context.Context, *model.CloudAccountId) (*model.CloudAccount, error)
-	// todo: add authorization
 	// find cloud-accounts by company id.
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
+	// authorization is handled internally by running get authorized cloud account ids
 	FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
 	// todo: add authorization
 	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
