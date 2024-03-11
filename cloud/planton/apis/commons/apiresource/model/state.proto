@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.apiresource.model;
 
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "google/protobuf/timestamp.proto";
 
@@ -23,6 +24,14 @@ message ApiResourceMetadataVersion {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
   string message = 2;
+}
+
+// A message defining the ownership of a resource.
+message ApiResourceOwnerInfo {
+  // The type of the owner, defined in the ApiResourceKind enum.
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+  // The field path of the owner id in a api-resource spec.
+  string id_field_path = 2;
 }
 
 // ResourceAudit represents auditing information for a resource,

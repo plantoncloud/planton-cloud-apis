@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions;
 
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
-import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "google/protobuf/descriptor.proto";
 
 // Extending the google.protobuf.MessageOptions to include custom fields
