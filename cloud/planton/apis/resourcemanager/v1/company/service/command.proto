@@ -10,7 +10,10 @@ import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
 service CompanyCommandController {
   //create a new company on planton cloud
   rpc create(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create company";
   }
   //update an existing company on planton cloud
   rpc update(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {

@@ -236,4 +236,5 @@ enum ApiResourceIamPermission {
 
   platform_microservice_account = 162;
   back_office_admin = 163;
+  platform = 164;
 }
