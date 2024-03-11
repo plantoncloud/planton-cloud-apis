@@ -14,7 +14,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 service StorageBucketQueryController {
   //list all storage-buckets on planton-cloud for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketList);
+      returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters";
+  }
 
   //look up a storage-bucket using storage-bucket id
   rpc getById(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketId)
@@ -24,14 +29,4 @@ service StorageBucketQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view storage-bucket";
   }
-
-  //find storage-buckets by product id.
-  //response contains only objects that the authenticated user account id has viewer access to.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBuckets);
-
-  //find storage-buckets by environment id.
-  //response contains only objects that the authenticated user account id has viewer access to.
-  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBuckets);
 }

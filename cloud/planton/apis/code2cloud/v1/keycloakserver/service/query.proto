@@ -16,7 +16,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 service KeycloakServerQueryController {
   //list all keycloak-servers on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerList);
+      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view helm-releases";
+  }
 
   //look up keycloak-server using keycloak-server id
   rpc getById(cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServerId)
@@ -26,19 +31,6 @@ service KeycloakServerQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view keycloak-server";
   }
-
-  //find keycloak-servers by product id.
-  //response contains only the resources that the authenticated user account has viewer access to.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
-
-  //find keycloak-servers by environment
-  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
-  //find keycloak-servers by kube-cluster
-
-  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.keycloakserver.model.KeycloakServers);
 
   //look up keycloak-server sasl password
   //password is retrieved from the kubernetes cluster.

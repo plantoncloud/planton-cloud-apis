@@ -8,10 +8,8 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/storagebucket/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,10 +21,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StorageBucketQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/list"
-	StorageBucketQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/getById"
-	StorageBucketQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/findByProductId"
-	StorageBucketQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/findByEnvironmentId"
+	StorageBucketQueryController_List_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/list"
+	StorageBucketQueryController_GetById_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/getById"
 )
 
 // StorageBucketQueryControllerClient is the client API for StorageBucketQueryController service.
@@ -37,12 +33,6 @@ type StorageBucketQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.StorageBucketList, error)
 	// look up a storage-bucket using storage-bucket id
 	GetById(ctx context.Context, in *model.StorageBucketId, opts ...grpc.CallOption) (*model.StorageBucket, error)
-	// find storage-buckets by product id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.StorageBuckets, error)
-	// find storage-buckets by environment id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.StorageBuckets, error)
 }
 
 type storageBucketQueryControllerClient struct {
@@ -71,24 +61,6 @@ func (c *storageBucketQueryControllerClient) GetById(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *storageBucketQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.StorageBuckets, error) {
-	out := new(model.StorageBuckets)
-	err := c.cc.Invoke(ctx, StorageBucketQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *storageBucketQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.StorageBuckets, error) {
-	out := new(model.StorageBuckets)
-	err := c.cc.Invoke(ctx, StorageBucketQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // StorageBucketQueryControllerServer is the server API for StorageBucketQueryController service.
 // All implementations should embed UnimplementedStorageBucketQueryControllerServer
 // for forward compatibility
@@ -97,12 +69,6 @@ type StorageBucketQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.StorageBucketList, error)
 	// look up a storage-bucket using storage-bucket id
 	GetById(context.Context, *model.StorageBucketId) (*model.StorageBucket, error)
-	// find storage-buckets by product id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.StorageBuckets, error)
-	// find storage-buckets by environment id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.StorageBuckets, error)
 }
 
 // UnimplementedStorageBucketQueryControllerServer should be embedded to have forward compatible implementations.
@@ -114,12 +80,6 @@ func (UnimplementedStorageBucketQueryControllerServer) List(context.Context, *rp
 }
 func (UnimplementedStorageBucketQueryControllerServer) GetById(context.Context, *model.StorageBucketId) (*model.StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedStorageBucketQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.StorageBuckets, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedStorageBucketQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.StorageBuckets, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
 
 // UnsafeStorageBucketQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -169,42 +129,6 @@ func _StorageBucketQueryController_GetById_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StorageBucketQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _StorageBucketQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // StorageBucketQueryController_ServiceDesc is the grpc.ServiceDesc for StorageBucketQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -219,14 +143,6 @@ var StorageBucketQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _StorageBucketQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _StorageBucketQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _StorageBucketQueryController_FindByEnvironmentId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

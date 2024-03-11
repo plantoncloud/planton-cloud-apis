@@ -8,12 +8,9 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/keycloakserver/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,13 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KeycloakServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/list"
-	KeycloakServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getById"
-	KeycloakServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findByProductId"
-	KeycloakServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findByEnvironmentId"
-	KeycloakServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findByKubeClusterId"
-	KeycloakServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getPassword"
-	KeycloakServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findPods"
+	KeycloakServerQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/list"
+	KeycloakServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getById"
+	KeycloakServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getPassword"
+	KeycloakServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findPods"
 )
 
 // KeycloakServerQueryControllerClient is the client API for KeycloakServerQueryController service.
@@ -42,17 +36,11 @@ type KeycloakServerQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KeycloakServerList, error)
 	// look up keycloak-server using keycloak-server id
 	GetById(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServer, error)
-	// find keycloak-servers by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.KeycloakServers, error)
-	// find keycloak-servers by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.KeycloakServers, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.KeycloakServers, error)
 	// look up keycloak-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServerPassword, error)
 	// lookup pods of a keycloak-server deployed to a environment
-	FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type keycloakServerQueryControllerClient struct {
@@ -81,33 +69,6 @@ func (c *keycloakServerQueryControllerClient) GetById(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *keycloakServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.KeycloakServers, error) {
-	out := new(model.KeycloakServers)
-	err := c.cc.Invoke(ctx, KeycloakServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *keycloakServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.KeycloakServers, error) {
-	out := new(model.KeycloakServers)
-	err := c.cc.Invoke(ctx, KeycloakServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *keycloakServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.KeycloakServers, error) {
-	out := new(model.KeycloakServers)
-	err := c.cc.Invoke(ctx, KeycloakServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *keycloakServerQueryControllerClient) GetPassword(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServerPassword, error) {
 	out := new(model.KeycloakServerPassword)
 	err := c.cc.Invoke(ctx, KeycloakServerQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -117,8 +78,8 @@ func (c *keycloakServerQueryControllerClient) GetPassword(ctx context.Context, i
 	return out, nil
 }
 
-func (c *keycloakServerQueryControllerClient) FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
+func (c *keycloakServerQueryControllerClient) FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model1.Pods, error) {
+	out := new(model1.Pods)
 	err := c.cc.Invoke(ctx, KeycloakServerQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,17 +95,11 @@ type KeycloakServerQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.KeycloakServerList, error)
 	// look up keycloak-server using keycloak-server id
 	GetById(context.Context, *model.KeycloakServerId) (*model.KeycloakServer, error)
-	// find keycloak-servers by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.KeycloakServers, error)
-	// find keycloak-servers by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.KeycloakServers, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.KeycloakServers, error)
 	// look up keycloak-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.KeycloakServerId) (*model.KeycloakServerPassword, error)
 	// lookup pods of a keycloak-server deployed to a environment
-	FindPods(context.Context, *model.KeycloakServerId) (*model4.Pods, error)
+	FindPods(context.Context, *model.KeycloakServerId) (*model1.Pods, error)
 }
 
 // UnimplementedKeycloakServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -157,19 +112,10 @@ func (UnimplementedKeycloakServerQueryControllerServer) List(context.Context, *r
 func (UnimplementedKeycloakServerQueryControllerServer) GetById(context.Context, *model.KeycloakServerId) (*model.KeycloakServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedKeycloakServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.KeycloakServers, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedKeycloakServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.KeycloakServers, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedKeycloakServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.KeycloakServers, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
 func (UnimplementedKeycloakServerQueryControllerServer) GetPassword(context.Context, *model.KeycloakServerId) (*model.KeycloakServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedKeycloakServerQueryControllerServer) FindPods(context.Context, *model.KeycloakServerId) (*model4.Pods, error) {
+func (UnimplementedKeycloakServerQueryControllerServer) FindPods(context.Context, *model.KeycloakServerId) (*model1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
@@ -216,60 +162,6 @@ func _KeycloakServerQueryController_GetById_Handler(srv interface{}, ctx context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KeycloakServerQueryControllerServer).GetById(ctx, req.(*model.KeycloakServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KeycloakServerQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KeycloakServerQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KeycloakServerQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakServerQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KeycloakServerQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KeycloakServerQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KeycloakServerQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakServerQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KeycloakServerQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KeycloakServerQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KeycloakServerQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakServerQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -324,18 +216,6 @@ var KeycloakServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _KeycloakServerQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _KeycloakServerQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _KeycloakServerQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _KeycloakServerQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",

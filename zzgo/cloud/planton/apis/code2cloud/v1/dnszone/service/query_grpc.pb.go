@@ -34,20 +34,15 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DnsZoneQueryControllerClient interface {
-	// todo: add authorization
 	// find dns-zones by company id
 	// the response should only include dns-zones in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model1.DnsZones, error)
-	// todo: add authorization
 	// get details of a dns-zone id
 	GetById(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*model1.DnsZone, error)
-	// todo: add authorization
 	// get details of the exact or a parent of the provided dns-zone name
 	GetExactOrParentDnsZoneByDomainName(ctx context.Context, in *model1.DnsDomainName, opts ...grpc.CallOption) (*model1.DnsZone, error)
-	// todo: add authorization
 	// list all dns-zones for the requested page. This is intended to be used on back-office portal.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model1.DnsZoneList, error)
-	// todo: add authorization
 	// checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
 	IsNameserversDelegated(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
 }
@@ -109,20 +104,15 @@ func (c *dnsZoneQueryControllerClient) IsNameserversDelegated(ctx context.Contex
 // All implementations should embed UnimplementedDnsZoneQueryControllerServer
 // for forward compatibility
 type DnsZoneQueryControllerServer interface {
-	// todo: add authorization
 	// find dns-zones by company id
 	// the response should only include dns-zones in a company that the authenticated user account has viewer access to.
 	FindByCompanyId(context.Context, *model.CompanyId) (*model1.DnsZones, error)
-	// todo: add authorization
 	// get details of a dns-zone id
 	GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error)
-	// todo: add authorization
 	// get details of the exact or a parent of the provided dns-zone name
 	GetExactOrParentDnsZoneByDomainName(context.Context, *model1.DnsDomainName) (*model1.DnsZone, error)
-	// todo: add authorization
 	// list all dns-zones for the requested page. This is intended to be used on back-office portal.
 	List(context.Context, *rpc.PageInfo) (*model1.DnsZoneList, error)
-	// todo: add authorization
 	// checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
 	IsNameserversDelegated(context.Context, *model1.DnsZoneId) (*wrapperspb.BoolValue, error)
 }

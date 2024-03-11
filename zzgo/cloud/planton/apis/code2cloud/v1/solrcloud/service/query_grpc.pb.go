@@ -8,12 +8,9 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/solrcloud/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,13 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SolrCloudQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/list"
-	SolrCloudQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getById"
-	SolrCloudQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findByProductId"
-	SolrCloudQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findByEnvironmentId"
-	SolrCloudQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findByKubeClusterId"
-	SolrCloudQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getPassword"
-	SolrCloudQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findPods"
+	SolrCloudQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/list"
+	SolrCloudQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getById"
+	SolrCloudQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getPassword"
+	SolrCloudQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findPods"
 )
 
 // SolrCloudQueryControllerClient is the client API for SolrCloudQueryController service.
@@ -42,18 +36,11 @@ type SolrCloudQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error)
-	// find solr-clouds by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.SolrClouds, error)
-	// find solr-clouds by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.SolrClouds, error)
-	// find solr-clouds by kubernetes cloud
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.SolrClouds, error)
 	// look up solr-cloud sasl password
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type solrCloudQueryControllerClient struct {
@@ -82,33 +69,6 @@ func (c *solrCloudQueryControllerClient) GetById(ctx context.Context, in *model.
 	return out, nil
 }
 
-func (c *solrCloudQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.SolrClouds, error) {
-	out := new(model.SolrClouds)
-	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *solrCloudQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.SolrClouds, error) {
-	out := new(model.SolrClouds)
-	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *solrCloudQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.SolrClouds, error) {
-	out := new(model.SolrClouds)
-	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *solrCloudQueryControllerClient) GetPassword(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloudPassword, error) {
 	out := new(model.SolrCloudPassword)
 	err := c.cc.Invoke(ctx, SolrCloudQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -118,8 +78,8 @@ func (c *solrCloudQueryControllerClient) GetPassword(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
+func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model1.Pods, error) {
+	out := new(model1.Pods)
 	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -135,18 +95,11 @@ type SolrCloudQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(context.Context, *model.SolrCloudId) (*model.SolrCloud, error)
-	// find solr-clouds by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.SolrClouds, error)
-	// find solr-clouds by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.SolrClouds, error)
-	// find solr-clouds by kubernetes cloud
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.SolrClouds, error)
 	// look up solr-cloud sasl password
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error)
 	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(context.Context, *model.SolrCloudId) (*model4.Pods, error)
+	FindPods(context.Context, *model.SolrCloudId) (*model1.Pods, error)
 }
 
 // UnimplementedSolrCloudQueryControllerServer should be embedded to have forward compatible implementations.
@@ -159,19 +112,10 @@ func (UnimplementedSolrCloudQueryControllerServer) List(context.Context, *rpc.Pa
 func (UnimplementedSolrCloudQueryControllerServer) GetById(context.Context, *model.SolrCloudId) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedSolrCloudQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.SolrClouds, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedSolrCloudQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.SolrClouds, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedSolrCloudQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.SolrClouds, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
 func (UnimplementedSolrCloudQueryControllerServer) GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *model.SolrCloudId) (*model4.Pods, error) {
+func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *model.SolrCloudId) (*model1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
@@ -218,60 +162,6 @@ func _SolrCloudQueryController_GetById_Handler(srv interface{}, ctx context.Cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SolrCloudQueryControllerServer).GetById(ctx, req.(*model.SolrCloudId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SolrCloudQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SolrCloudQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SolrCloudQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -326,18 +216,6 @@ var SolrCloudQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _SolrCloudQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _SolrCloudQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _SolrCloudQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _SolrCloudQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",

@@ -17,7 +17,12 @@ import "google/protobuf/wrappers.proto";
 service MicroserviceInstanceQueryController {
   //list all microservice-instances on planton instance for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceList);
+      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters";
+  }
 
   //look up microservice-instance using microservice-instance id
   rpc getById(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId)
@@ -27,19 +32,6 @@ service MicroserviceInstanceQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice-instance";
   }
-
-  //find microservice-instances by product id.
-  //response contains only the resources that the authenticated user account has viewer access to.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances);
-
-  //find microservice-instances by environment
-  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances);
-
-  //find microservice-instances by kube-cluster
-  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances);
 
   //find microservice-instances in a environment for a code-project
   rpc findByEnvironmentIdByCodeProjectId(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput)
@@ -70,7 +62,12 @@ service MicroserviceInstanceQueryController {
 
   //lookup a microservice-instance by code project id
   rpc getByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance);
+      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice instance of code project";
+  }
 
   //lookup all microservice-instances by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
