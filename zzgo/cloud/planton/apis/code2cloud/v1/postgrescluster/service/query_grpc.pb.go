@@ -8,12 +8,9 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgrescluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,13 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PostgresClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/list"
-	PostgresClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getById"
-	PostgresClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findByProductId"
-	PostgresClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findByEnvironmentId"
-	PostgresClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findByKubeClusterId"
-	PostgresClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getPassword"
-	PostgresClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findPods"
+	PostgresClusterQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/list"
+	PostgresClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getById"
+	PostgresClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getPassword"
+	PostgresClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findPods"
 )
 
 // PostgresClusterQueryControllerClient is the client API for PostgresClusterQueryController service.
@@ -42,19 +36,11 @@ type PostgresClusterQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error)
-	// find postgres-clusters by product id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.PostgresClusters, error)
-	// find postgres-clusters by environment id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.PostgresClusters, error)
-	// find postgres-clusters by kube-cluster
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.PostgresClusters, error)
 	// look up postgres-cluster password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type postgresClusterQueryControllerClient struct {
@@ -83,33 +69,6 @@ func (c *postgresClusterQueryControllerClient) GetById(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *postgresClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.PostgresClusters, error) {
-	out := new(model.PostgresClusters)
-	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *postgresClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.PostgresClusters, error) {
-	out := new(model.PostgresClusters)
-	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *postgresClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.PostgresClusters, error) {
-	out := new(model.PostgresClusters)
-	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *postgresClusterQueryControllerClient) GetPassword(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresClusterPassword, error) {
 	out := new(model.PostgresClusterPassword)
 	err := c.cc.Invoke(ctx, PostgresClusterQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -119,8 +78,8 @@ func (c *postgresClusterQueryControllerClient) GetPassword(ctx context.Context, 
 	return out, nil
 }
 
-func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
+func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model1.Pods, error) {
+	out := new(model1.Pods)
 	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -136,19 +95,11 @@ type PostgresClusterQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error)
-	// find postgres-clusters by product id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.PostgresClusters, error)
-	// find postgres-clusters by environment id.
-	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.PostgresClusters, error)
-	// find postgres-clusters by kube-cluster
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.PostgresClusters, error)
 	// look up postgres-cluster password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error)
 	// lookup pods of a postgres-cluster deployment
-	FindPods(context.Context, *model.PostgresClusterId) (*model4.Pods, error)
+	FindPods(context.Context, *model.PostgresClusterId) (*model1.Pods, error)
 }
 
 // UnimplementedPostgresClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -161,19 +112,10 @@ func (UnimplementedPostgresClusterQueryControllerServer) List(context.Context, *
 func (UnimplementedPostgresClusterQueryControllerServer) GetById(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedPostgresClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.PostgresClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedPostgresClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.PostgresClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedPostgresClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.PostgresClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
 func (UnimplementedPostgresClusterQueryControllerServer) GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *model.PostgresClusterId) (*model4.Pods, error) {
+func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *model.PostgresClusterId) (*model1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
@@ -220,60 +162,6 @@ func _PostgresClusterQueryController_GetById_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(PostgresClusterQueryControllerServer).GetById(ctx, req.(*model.PostgresClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PostgresClusterQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PostgresClusterQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PostgresClusterQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -328,18 +216,6 @@ var PostgresClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _PostgresClusterQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _PostgresClusterQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _PostgresClusterQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _PostgresClusterQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",

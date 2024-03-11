@@ -8,12 +8,9 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/rediscluster/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -25,13 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RedisClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/list"
-	RedisClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getById"
-	RedisClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findByProductId"
-	RedisClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findByEnvironmentId"
-	RedisClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findByKubeClusterId"
-	RedisClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getPassword"
-	RedisClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findPods"
+	RedisClusterQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/list"
+	RedisClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getById"
+	RedisClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getPassword"
+	RedisClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findPods"
 )
 
 // RedisClusterQueryControllerClient is the client API for RedisClusterQueryController service.
@@ -42,17 +36,11 @@ type RedisClusterQueryControllerClient interface {
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.RedisClusterList, error)
 	// look up redis-cluster using redis-cluster id
 	GetById(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisCluster, error)
-	// find redis-clusters by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.RedisClusters, error)
-	// find redis-clusters by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.RedisClusters, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.RedisClusters, error)
 	// look up redis-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
+	FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type redisClusterQueryControllerClient struct {
@@ -81,33 +69,6 @@ func (c *redisClusterQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *redisClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.RedisClusters, error) {
-	out := new(model.RedisClusters)
-	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *redisClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.RedisClusters, error) {
-	out := new(model.RedisClusters)
-	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *redisClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.RedisClusters, error) {
-	out := new(model.RedisClusters)
-	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *redisClusterQueryControllerClient) GetPassword(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisClusterPassword, error) {
 	out := new(model.RedisClusterPassword)
 	err := c.cc.Invoke(ctx, RedisClusterQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -117,8 +78,8 @@ func (c *redisClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
+func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model1.Pods, error) {
+	out := new(model1.Pods)
 	err := c.cc.Invoke(ctx, RedisClusterQueryController_FindPods_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -134,17 +95,11 @@ type RedisClusterQueryControllerServer interface {
 	List(context.Context, *rpc.PageInfo) (*model.RedisClusterList, error)
 	// look up redis-cluster using redis-cluster id
 	GetById(context.Context, *model.RedisClusterId) (*model.RedisCluster, error)
-	// find redis-clusters by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.RedisClusters, error)
-	// find redis-clusters by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.RedisClusters, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.RedisClusters, error)
 	// look up redis-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.RedisClusterId) (*model.RedisClusterPassword, error)
 	// lookup pods of a redis-cluster deployed to a environment
-	FindPods(context.Context, *model.RedisClusterId) (*model4.Pods, error)
+	FindPods(context.Context, *model.RedisClusterId) (*model1.Pods, error)
 }
 
 // UnimplementedRedisClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -157,19 +112,10 @@ func (UnimplementedRedisClusterQueryControllerServer) List(context.Context, *rpc
 func (UnimplementedRedisClusterQueryControllerServer) GetById(context.Context, *model.RedisClusterId) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedRedisClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.RedisClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedRedisClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.RedisClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedRedisClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.RedisClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
 func (UnimplementedRedisClusterQueryControllerServer) GetPassword(context.Context, *model.RedisClusterId) (*model.RedisClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
 }
-func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *model.RedisClusterId) (*model4.Pods, error) {
+func (UnimplementedRedisClusterQueryControllerServer) FindPods(context.Context, *model.RedisClusterId) (*model1.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
@@ -216,60 +162,6 @@ func _RedisClusterQueryController_GetById_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(RedisClusterQueryControllerServer).GetById(ctx, req.(*model.RedisClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RedisClusterQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RedisClusterQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _RedisClusterQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -324,18 +216,6 @@ var RedisClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _RedisClusterQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _RedisClusterQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _RedisClusterQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _RedisClusterQueryController_FindByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "getPassword",

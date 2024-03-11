@@ -13,7 +13,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 service CustomEndpointQueryController {
   //list all custom-endpoints for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointList);
+      returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list custom endpoints";
+  }
 
   //look up custom-endpoint using custom-endpoint id
   rpc getById(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
@@ -27,7 +32,12 @@ service CustomEndpointQueryController {
   //find custom-endpoints by product id.
   //response contains only the endpoint domains that the authenticated user account id as viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoints);
+      returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpoints) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list custom endpoints of prodcut";
+  }
 
   //check cert status for custom-endpoint
   rpc getCustomEndpointCertStatus(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)

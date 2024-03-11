@@ -16,7 +16,12 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 service MongodbClusterQueryController {
   //list all mongodb-clusters on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterList);
+      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters";
+  }
 
   //look up mongodb-cluster using mongodb-cluster id
   rpc getById(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
@@ -26,19 +31,6 @@ service MongodbClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view mongodb-cluster";
   }
-
-  //find mongodb-clusters by product id.
-  //response contains only the resources that the authenticated user account has viewer access to.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
-
-  //find mongodb-clusters by environment
-  rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
-  //find mongodb-clusters by kube-cluster
-
-  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusters);
 
   //look up mongodb-cluster sasl password
   //password is retrieved from the kubernetes cluster.

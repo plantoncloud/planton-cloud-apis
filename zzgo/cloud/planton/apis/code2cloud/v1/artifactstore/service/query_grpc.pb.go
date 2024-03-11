@@ -11,6 +11,7 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/artifactstore/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
 	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,6 +29,7 @@ const (
 	ArtifactStoreQueryController_ListArtifactStoreDockerImages_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStoreDockerImages"
 	ArtifactStoreQueryController_ListArtifactStorePackages_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackages"
 	ArtifactStoreQueryController_ListArtifactStorePackageVersions_FullMethodName = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackageVersions"
+	ArtifactStoreQueryController_FindByProductId_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/findByProductId"
 )
 
 // ArtifactStoreQueryControllerClient is the client API for ArtifactStoreQueryController service.
@@ -49,6 +51,8 @@ type ArtifactStoreQueryControllerClient interface {
 	// list maven/npm/python package versions from the corresponding repositories of artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(ctx context.Context, in *model.ListByArtifactStoreIdPackageNameInput, opts ...grpc.CallOption) (*model.ArtifactStorePackageVersionList, error)
+	// look up artifact-stores by product id.
+	FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error)
 }
 
 type artifactStoreQueryControllerClient struct {
@@ -113,6 +117,15 @@ func (c *artifactStoreQueryControllerClient) ListArtifactStorePackageVersions(ct
 	return out, nil
 }
 
+func (c *artifactStoreQueryControllerClient) FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
+	out := new(model.ArtifactStores)
+	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByProductId_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ArtifactStoreQueryControllerServer is the server API for ArtifactStoreQueryController service.
 // All implementations should embed UnimplementedArtifactStoreQueryControllerServer
 // for forward compatibility
@@ -132,6 +145,8 @@ type ArtifactStoreQueryControllerServer interface {
 	// list maven/npm/python package versions from the corresponding repositories of artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error)
+	// look up artifact-stores by product id.
+	FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStores, error)
 }
 
 // UnimplementedArtifactStoreQueryControllerServer should be embedded to have forward compatible implementations.
@@ -155,6 +170,9 @@ func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackages
 }
 func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListArtifactStorePackageVersions not implemented")
+}
+func (UnimplementedArtifactStoreQueryControllerServer) FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStores, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
 
 // UnsafeArtifactStoreQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -276,6 +294,24 @@ func _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler(srv 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ArtifactStoreQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model2.ProductId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ArtifactStoreQueryControllerServer).FindByProductId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ArtifactStoreQueryController_FindByProductId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ArtifactStoreQueryControllerServer).FindByProductId(ctx, req.(*model2.ProductId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ArtifactStoreQueryController_ServiceDesc is the grpc.ServiceDesc for ArtifactStoreQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -306,6 +342,10 @@ var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "listArtifactStorePackageVersions",
 			Handler:    _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler,
+		},
+		{
+			MethodName: "findByProductId",
+			Handler:    _ArtifactStoreQueryController_FindByProductId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

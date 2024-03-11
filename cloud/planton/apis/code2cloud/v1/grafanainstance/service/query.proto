@@ -12,40 +12,59 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
-//argocd-instance query controller
+//grafana-instance query controller
 service GrafanaInstanceQueryController {
-  //list all argocd-instances on planton cluster for the requested page.
+  //list all grafana-instances on planton cluster for the requested page.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceList);
+      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instance";
+  }
 
-  //look up argocd-instance using argocd-instance id
+  //look up grafana-instance using grafana-instance id
   rpc getById(cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceId)
       returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstance) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = grafana_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = grafana_instance_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view argocd-instance";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instance";
   }
 
-  //find argocd-instances by product id.
+  //find grafana-instances by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances);
+      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instances of product";
+  }
 
-  //find argocd-instances by environment
+  //find grafana-instances by environment
   rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances);
-  //find argocd-instances by kube-cluster
-
+      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instances of environment";
+  }
+  //find grafana-instances by kube-cluster
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances);
+      returns (cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstances) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instances of kube cluster";
+  }
 
-  //lookup pods of a argocd-instance deployed to a environment
+  //lookup pods of a grafana-instance deployed to a environment
   rpc findPods(cloud.planton.apis.code2cloud.v1.grafanainstance.model.GrafanaInstanceId)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = grafana_instance;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = grafana_instance_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view argocd-instance pods";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view grafana-instance pods";
   }
 }

@@ -59,11 +59,9 @@ service CodeServerCommandController {
   //variables on organization on github or group on gitlab etc
   rpc attachMachineAccountByCodeServerId(cloud.planton.apis.code2cloud.v1.codeserver.model.AttachMachineAccountByCodeServerIdCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServer) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    //since this operation requires looking up client-secret, update permission is required.
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_update;
-    //field-path can-not be added as the permission should be evaluated on the id of the machine-account which
-    // needs to be looked up using the provided machine-account email.
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_server;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_server_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "code_server_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to attach machine account";
   }
 }

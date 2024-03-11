@@ -37,17 +37,18 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GrafanaInstanceQueryControllerClient interface {
-	// list all argocd-instances on planton cluster for the requested page.
+	// list all grafana-instances on planton cluster for the requested page.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error)
-	// look up argocd-instance using argocd-instance id
+	// look up grafana-instance using grafana-instance id
 	GetById(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// find argocd-instances by product id.
+	// find grafana-instances by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
 	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
-	// find argocd-instances by environment
+	// find grafana-instances by environment
 	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
+	// find grafana-instances by kube-cluster
 	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
-	// lookup pods of a argocd-instance deployed to a environment
+	// lookup pods of a grafana-instance deployed to a environment
 	FindPods(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
@@ -117,17 +118,18 @@ func (c *grafanaInstanceQueryControllerClient) FindPods(ctx context.Context, in 
 // All implementations should embed UnimplementedGrafanaInstanceQueryControllerServer
 // for forward compatibility
 type GrafanaInstanceQueryControllerServer interface {
-	// list all argocd-instances on planton cluster for the requested page.
+	// list all grafana-instances on planton cluster for the requested page.
 	List(context.Context, *rpc.PageInfo) (*model.GrafanaInstanceList, error)
-	// look up argocd-instance using argocd-instance id
+	// look up grafana-instance using grafana-instance id
 	GetById(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
-	// find argocd-instances by product id.
+	// find grafana-instances by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
 	FindByProductId(context.Context, *model1.ProductId) (*model.GrafanaInstances, error)
-	// find argocd-instances by environment
+	// find grafana-instances by environment
 	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstances, error)
+	// find grafana-instances by kube-cluster
 	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstances, error)
-	// lookup pods of a argocd-instance deployed to a environment
+	// lookup pods of a grafana-instance deployed to a environment
 	FindPods(context.Context, *model.GrafanaInstanceId) (*model4.Pods, error)
 }
 
