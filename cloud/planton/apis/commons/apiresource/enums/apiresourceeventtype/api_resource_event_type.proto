@@ -12,30 +12,41 @@ enum ApiResourceEventType {
   API_RESOURCE_API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Created"
   ];
   updated = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Updated"
   ];
   deleted = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_load_state_from_db) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Deleted"
   ];
   restored = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Restored"
   ];
   refreshed = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_load_state_from_db) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Refreshed"
   ];
   paused = 6 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_load_state_from_db) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Paused"
   ];
   unpaused = 7 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_load_state_from_db) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Unpaused"
   ];
   stack_job_progress_updated = 8[
@@ -50,6 +61,7 @@ enum ApiResourceEventType {
   ];
   stack_job_apply_preview_requested = 11 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_new_version_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Preview"
   ];
   stack_job_apply_requested = 12 [

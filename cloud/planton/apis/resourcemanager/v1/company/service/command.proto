@@ -13,6 +13,8 @@ service CompanyCommandController {
   rpc create(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.version_message_field_path) = "metadata.ver";
   }
   //update an existing company on planton cloud
   rpc update(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
@@ -21,6 +23,7 @@ service CompanyCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update company";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
   }
   //delete an existing company on planton cloud using company id
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
@@ -29,6 +32,7 @@ service CompanyCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete company";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "resource_id";
   }
   //restore a previously deleted company.
   rpc restore(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
@@ -37,5 +41,6 @@ service CompanyCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore company";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
   }
 }

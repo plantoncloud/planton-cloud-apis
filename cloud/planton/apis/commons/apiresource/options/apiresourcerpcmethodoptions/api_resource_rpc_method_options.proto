@@ -7,4 +7,6 @@ import "cloud/planton/apis/commons/apiresource/enums/apiresourceeventtype/api_re
 
 extend google.protobuf.MethodOptions {
   cloud.planton.apis.commons.apiresource.enums.apiresourceeventtype.ApiResourceEventType event_type = 90100;
+  string api_resource_id_field_path = 90101;
+  string version_message_field_path = 90102;
 }
