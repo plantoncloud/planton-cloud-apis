@@ -17,6 +17,8 @@ service ProductCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create product";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_kind) = product;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
   }
   //update an existing product
   rpc update(cloud.planton.apis.resourcemanager.v1.product.model.Product) returns (cloud.planton.apis.resourcemanager.v1.product.model.Product) {
@@ -26,6 +28,8 @@ service ProductCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update product";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_kind) = product;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
   }
   //delete an existing product
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.resourcemanager.v1.product.model.Product) {
@@ -35,6 +39,8 @@ service ProductCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete product";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "resource_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_kind) = product;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
   }
   //restore a previously deleted product
   rpc restore(cloud.planton.apis.resourcemanager.v1.product.model.Product) returns (cloud.planton.apis.resourcemanager.v1.product.model.Product) {
@@ -44,5 +50,7 @@ service ProductCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore product";
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "metadata.id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_kind) = product;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
   }
 }
