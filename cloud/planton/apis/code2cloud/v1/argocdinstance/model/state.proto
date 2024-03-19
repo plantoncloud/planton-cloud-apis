@@ -24,6 +24,10 @@ message ArgocdInstance {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "acd";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_field_paths_to_concat) = "spec.environment_info.environment_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_field_paths_to_concat) = "metadata.name";
+
+
   //id format "rdc-<environment-id>-<argocd-instance-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 

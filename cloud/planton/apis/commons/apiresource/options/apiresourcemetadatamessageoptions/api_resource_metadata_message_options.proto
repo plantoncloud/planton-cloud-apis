@@ -16,4 +16,5 @@ extend google.protobuf.MessageOptions {
   int32 name_min_length = 50009;
   int32 name_max_length = 50010;
   string name_constraints_description = 50011;
+  repeated string id_field_paths_to_concat = 50012;
 }

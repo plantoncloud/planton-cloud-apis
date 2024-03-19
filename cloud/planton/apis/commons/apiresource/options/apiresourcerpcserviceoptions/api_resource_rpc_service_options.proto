@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions;
+
+import "google/protobuf/descriptor.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+
+extend google.protobuf.ServiceOptions {
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind api_resource_kind = 90100;
+}
