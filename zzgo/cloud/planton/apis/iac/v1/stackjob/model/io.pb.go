@@ -1102,6 +1102,64 @@ func (x *GetPulumiResourceCountTimeSeriesByResourceIdInput) GetEndTimestamp() *t
 	return nil
 }
 
+// input for rpc to get recommendation to resolve an error in stack-job
+type GetErrorResolutionRecommendationInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// id of the stack-job
+	StackJobId string `protobuf:"bytes,1,opt,name=stack_job_id,json=stackJobId,proto3" json:"stack_job_id,omitempty"`
+	// error message for which the recommendation is to be queried from chat-gpt
+	ErrorMessage string `protobuf:"bytes,2,opt,name=error_message,json=errorMessage,proto3" json:"error_message,omitempty"`
+}
+
+func (x *GetErrorResolutionRecommendationInput) Reset() {
+	*x = GetErrorResolutionRecommendationInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetErrorResolutionRecommendationInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetErrorResolutionRecommendationInput) ProtoMessage() {}
+
+func (x *GetErrorResolutionRecommendationInput) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetErrorResolutionRecommendationInput.ProtoReflect.Descriptor instead.
+func (*GetErrorResolutionRecommendationInput) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetErrorResolutionRecommendationInput) GetStackJobId() string {
+	if x != nil {
+		return x.StackJobId
+	}
+	return ""
+}
+
+func (x *GetErrorResolutionRecommendationInput) GetErrorMessage() string {
+	if x != nil {
+		return x.ErrorMessage
+	}
+	return ""
+}
+
 var File_cloud_planton_apis_iac_v1_stackjob_model_io_proto protoreflect.FileDescriptor
 
 var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDesc = []byte{
@@ -1318,7 +1376,14 @@ var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDesc = []byte{
 	0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0b, 0x32,
 	0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x52, 0x0c, 0x65, 0x6e, 0x64,
-	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x42, 0xe5, 0x02, 0x0a, 0x36, 0x62, 0x75,
+	0x54, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x22, 0x6e, 0x0a, 0x25, 0x47, 0x65, 0x74,
+	0x45, 0x72, 0x72, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x6f, 0x6c, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x52,
+	0x65, 0x63, 0x6f, 0x6d, 0x6d, 0x65, 0x6e, 0x64, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x49, 0x6e, 0x70,
+	0x75, 0x74, 0x12, 0x20, 0x0a, 0x0c, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x5f, 0x6a, 0x6f, 0x62, 0x5f,
+	0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x4a,
+	0x6f, 0x62, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x0d, 0x65, 0x72, 0x72, 0x6f, 0x72, 0x5f, 0x6d, 0x65,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x65, 0x72, 0x72,
+	0x6f, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x42, 0xe5, 0x02, 0x0a, 0x36, 0x62, 0x75,
 	0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
 	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69,
 	0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d,
@@ -1356,7 +1421,7 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescGZIP() []byte
 	return file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_goTypes = []interface{}{
 	(*StackJobId)(nil),                                         // 0: cloud.planton.apis.iac.v1.stackjob.model.StackJobId
 	(*ListStackJobsByFiltersQueryInput)(nil),                   // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput
@@ -1374,28 +1439,29 @@ var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_goTypes = []interface
 	(*PulumiResourceCountTimeSeriesList)(nil),                  // 13: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList
 	(*GetPulumiResourceCountTimeSeriesByContextInput)(nil),     // 14: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput
 	(*GetPulumiResourceCountTimeSeriesByResourceIdInput)(nil),  // 15: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput
-	(*rpc.PageInfo)(nil),                                       // 16: cloud.planton.apis.commons.rpc.PageInfo
-	(apiresourcekind.ApiResourceKind)(0),                       // 17: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	(stackjoboperationtype.StackJobOperationType)(0),           // 18: cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
-	(stackjobprogressstatustype.StackJobProgressStatusType)(0), // 19: cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
-	(*StackJob)(nil),                                           // 20: cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	(*timestamppb.Timestamp)(nil),                              // 21: google.protobuf.Timestamp
+	(*GetErrorResolutionRecommendationInput)(nil),              // 16: cloud.planton.apis.iac.v1.stackjob.model.GetErrorResolutionRecommendationInput
+	(*rpc.PageInfo)(nil),                                       // 17: cloud.planton.apis.commons.rpc.PageInfo
+	(apiresourcekind.ApiResourceKind)(0),                       // 18: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	(stackjoboperationtype.StackJobOperationType)(0),           // 19: cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	(stackjobprogressstatustype.StackJobProgressStatusType)(0), // 20: cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
+	(*StackJob)(nil),                                           // 21: cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	(*timestamppb.Timestamp)(nil),                              // 22: google.protobuf.Timestamp
 }
 var file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_depIdxs = []int32{
-	16, // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	17, // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	18, // 2: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
-	19, // 3: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.progress_status:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
-	20, // 4: cloud.planton.apis.iac.v1.stackjob.model.StackJobList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
-	18, // 5: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	17, // 0: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	18, // 1: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	19, // 2: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
+	20, // 3: cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput.progress_status:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType
+	21, // 4: cloud.planton.apis.iac.v1.stackjob.model.StackJobList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.StackJob
+	19, // 5: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput.stack_job_operation_type:type_name -> cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType
 	9,  // 6: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailed
-	21, // 7: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeries.interval_timestamp:type_name -> google.protobuf.Timestamp
+	22, // 7: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeries.interval_timestamp:type_name -> google.protobuf.Timestamp
 	12, // 8: cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList.entries:type_name -> cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeries
-	21, // 9: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput.start_timestamp:type_name -> google.protobuf.Timestamp
-	21, // 10: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput.end_timestamp:type_name -> google.protobuf.Timestamp
-	17, // 11: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	21, // 12: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.start_timestamp:type_name -> google.protobuf.Timestamp
-	21, // 13: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.end_timestamp:type_name -> google.protobuf.Timestamp
+	22, // 9: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput.start_timestamp:type_name -> google.protobuf.Timestamp
+	22, // 10: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput.end_timestamp:type_name -> google.protobuf.Timestamp
+	18, // 11: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	22, // 12: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.start_timestamp:type_name -> google.protobuf.Timestamp
+	22, // 13: cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput.end_timestamp:type_name -> google.protobuf.Timestamp
 	14, // [14:14] is the sub-list for method output_type
 	14, // [14:14] is the sub-list for method input_type
 	14, // [14:14] is the sub-list for extension type_name
@@ -1602,6 +1668,18 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() {
 				return nil
 			}
 		}
+		file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetErrorResolutionRecommendationInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -1609,7 +1687,7 @@ func file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_iac_v1_stackjob_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

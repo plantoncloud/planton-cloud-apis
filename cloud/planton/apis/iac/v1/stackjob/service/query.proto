@@ -10,6 +10,7 @@ import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/state.pro
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "google/protobuf/wrappers.proto";
 
 service StackJobQueryController {
   //list of stack-jobs
@@ -69,4 +70,8 @@ service StackJobQueryController {
   // bottlenecks, and making informed decisions about infrastructure management and optimization.
   rpc getPulumiResourceCountTimeSeriesByResourceId(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByResourceIdInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountTimeSeriesList);
+
+  // get a recommendation from chat-gpt for a specific error message of a failed stack-job
+  rpc getErrorResolutionRecommendation(cloud.planton.apis.iac.v1.stackjob.model.GetErrorResolutionRecommendationInput)
+      returns (google.protobuf.StringValue);
 }
