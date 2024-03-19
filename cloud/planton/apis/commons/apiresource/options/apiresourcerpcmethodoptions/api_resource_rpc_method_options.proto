@@ -4,7 +4,13 @@ package cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptio
 
 import "google/protobuf/descriptor.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourceeventtype/api_resource_event_type.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcestateoperationtype/api_resource_state_operation_type.proto";
 
 extend google.protobuf.MethodOptions {
   cloud.planton.apis.commons.apiresource.enums.apiresourceeventtype.ApiResourceEventType event_type = 90100;
+  string api_resource_id_field_path = 90101;
+  cloud.planton.apis.commons.apiresource.enums.apiresourcestateoperationtype.ApiResourceStateOperationType api_resource_state_operation_type = 90102;
+  bool is_api_resource_new_version_required = 90103;
+  bool is_api_resource_load_state_from_db = 90104;
 }
