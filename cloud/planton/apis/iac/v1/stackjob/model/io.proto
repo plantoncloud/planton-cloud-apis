@@ -237,3 +237,10 @@ message GetPulumiResourceCountTimeSeriesByResourceIdInput {
   google.protobuf.Timestamp end_timestamp = 4;
 }
 
+// input for rpc to get recommendation to resolve an error in stack-job
+message GetErrorResolutionRecommendationInput {
+  //id of the stack-job
+  string stack_job_id = 1;
+  //error message for which the recommendation is to be queried from chat-gpt
+  string error_message = 2;
+}

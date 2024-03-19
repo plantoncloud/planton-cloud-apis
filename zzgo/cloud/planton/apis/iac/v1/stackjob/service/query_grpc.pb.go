@@ -15,6 +15,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -33,6 +34,7 @@ const (
 	StackJobQueryController_GetStackJobMinutesCurrentAndPreviousMonthByContext_FullMethodName = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getStackJobMinutesCurrentAndPreviousMonthByContext"
 	StackJobQueryController_GetPulumiResourceCountTimeSeriesByContext_FullMethodName          = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByContext"
 	StackJobQueryController_GetPulumiResourceCountTimeSeriesByResourceId_FullMethodName       = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getPulumiResourceCountTimeSeriesByResourceId"
+	StackJobQueryController_GetErrorResolutionRecommendation_FullMethodName                   = "/cloud.planton.apis.iac.v1.stackjob.service.StackJobQueryController/getErrorResolutionRecommendation"
 )
 
 // StackJobQueryControllerClient is the client API for StackJobQueryController service.
@@ -77,6 +79,8 @@ type StackJobQueryControllerClient interface {
 	// capability is crucial for understanding resource utilization trends, identifying potential
 	// bottlenecks, and making informed decisions about infrastructure management and optimization.
 	GetPulumiResourceCountTimeSeriesByResourceId(ctx context.Context, in *model.GetPulumiResourceCountTimeSeriesByResourceIdInput, opts ...grpc.CallOption) (*model.PulumiResourceCountTimeSeriesList, error)
+	// get a recommendation from chat-gpt for a specific error message of a failed stack-job
+	GetErrorResolutionRecommendation(ctx context.Context, in *model.GetErrorResolutionRecommendationInput, opts ...grpc.CallOption) (*wrapperspb.StringValue, error)
 }
 
 type stackJobQueryControllerClient struct {
@@ -223,6 +227,15 @@ func (c *stackJobQueryControllerClient) GetPulumiResourceCountTimeSeriesByResour
 	return out, nil
 }
 
+func (c *stackJobQueryControllerClient) GetErrorResolutionRecommendation(ctx context.Context, in *model.GetErrorResolutionRecommendationInput, opts ...grpc.CallOption) (*wrapperspb.StringValue, error) {
+	out := new(wrapperspb.StringValue)
+	err := c.cc.Invoke(ctx, StackJobQueryController_GetErrorResolutionRecommendation_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // StackJobQueryControllerServer is the server API for StackJobQueryController service.
 // All implementations should embed UnimplementedStackJobQueryControllerServer
 // for forward compatibility
@@ -265,6 +278,8 @@ type StackJobQueryControllerServer interface {
 	// capability is crucial for understanding resource utilization trends, identifying potential
 	// bottlenecks, and making informed decisions about infrastructure management and optimization.
 	GetPulumiResourceCountTimeSeriesByResourceId(context.Context, *model.GetPulumiResourceCountTimeSeriesByResourceIdInput) (*model.PulumiResourceCountTimeSeriesList, error)
+	// get a recommendation from chat-gpt for a specific error message of a failed stack-job
+	GetErrorResolutionRecommendation(context.Context, *model.GetErrorResolutionRecommendationInput) (*wrapperspb.StringValue, error)
 }
 
 // UnimplementedStackJobQueryControllerServer should be embedded to have forward compatible implementations.
@@ -300,6 +315,9 @@ func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountTimeSeri
 }
 func (UnimplementedStackJobQueryControllerServer) GetPulumiResourceCountTimeSeriesByResourceId(context.Context, *model.GetPulumiResourceCountTimeSeriesByResourceIdInput) (*model.PulumiResourceCountTimeSeriesList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPulumiResourceCountTimeSeriesByResourceId not implemented")
+}
+func (UnimplementedStackJobQueryControllerServer) GetErrorResolutionRecommendation(context.Context, *model.GetErrorResolutionRecommendationInput) (*wrapperspb.StringValue, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetErrorResolutionRecommendation not implemented")
 }
 
 // UnsafeStackJobQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -499,6 +517,24 @@ func _StackJobQueryController_GetPulumiResourceCountTimeSeriesByResourceId_Handl
 	return interceptor(ctx, in, info, handler)
 }
 
+func _StackJobQueryController_GetErrorResolutionRecommendation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetErrorResolutionRecommendationInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StackJobQueryControllerServer).GetErrorResolutionRecommendation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: StackJobQueryController_GetErrorResolutionRecommendation_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StackJobQueryControllerServer).GetErrorResolutionRecommendation(ctx, req.(*model.GetErrorResolutionRecommendationInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // StackJobQueryController_ServiceDesc is the grpc.ServiceDesc for StackJobQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -537,6 +573,10 @@ var StackJobQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPulumiResourceCountTimeSeriesByResourceId",
 			Handler:    _StackJobQueryController_GetPulumiResourceCountTimeSeriesByResourceId_Handler,
+		},
+		{
+			MethodName: "getErrorResolutionRecommendation",
+			Handler:    _StackJobQueryController_GetErrorResolutionRecommendation_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
