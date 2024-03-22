@@ -33,9 +33,7 @@ service MachineAccountQueryController {
   // retrieve paginated list of all machine accounts on planton cloud.
   rpc findByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountCompanyId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccounts) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
 
   // lookup machine account by identity account email.
