@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.kubecluster.enums.ipaddressvisibility;
 
 enum IpAddressVisibility {
-  IP_ADDRESS_VISIBILITY_UNSPECIFIED = 0;
+  unspecified = 0;
   internal = 1;
   external = 2;
 }

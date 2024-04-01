@@ -6,7 +6,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumo
 
 // dns-zone event types
 enum DnsZoneApiResourceEventType {
-  DNS_ZONE_API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_fga_required) = true,

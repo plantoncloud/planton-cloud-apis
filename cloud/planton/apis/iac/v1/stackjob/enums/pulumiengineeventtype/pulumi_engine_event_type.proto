@@ -4,7 +4,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype;
 
 //note: values are intentionally left capitalized as required by pulumi engine api
 enum PulumiEngineEventType {
-  PULUMI_ENGINE_EVENT_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   CANCEL = 1;
   STDOUT = 2;
   DIAGNOSTIC = 3;

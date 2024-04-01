@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressjobstatuschange
 import "cloud/planton/apis/iac/v1/stackjob/options/pulumioperationstatusoptions/pulumi_operation_status_options.proto";
 
 enum StackJobProgressJobStatusChangedEventType {
-  STACK_JOB_PROGRESS_JOB_STATUS_CHANGED_EVENT_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   running = 1;
   completed = 2;
 }

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.artifactstore.enums.artifactstorerepoprovider;
 
 enum ArtifactStoreRepoProvider {
-  ARTIFACT_STORE_REPO_PROVIDER_UNSPECIFIED = 0;
+  unspecified = 0;
   //https://cloud.google.com/artifact-registry
   gcp_artifact_registry = 1;
   //https://aws.amazon.com/codeartifact/
