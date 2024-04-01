@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.locustcluster.model;
+
+import "cloud/planton/apis/code2cloud/v1/locustcluster/model/state.proto";
+
+//wrapper for id field of locust-cluster
+message LocustClusterId {
+  string value = 1;
+}
+
+//list of locust-clusters
+message LocustClusters {
+  repeated LocustCluster entries = 1;
+}
+
+//response for paginated query to list locust-clusters
+message LocustClusterList {
+  int32 total_pages = 1;
+  repeated LocustCluster entries = 2;
+}

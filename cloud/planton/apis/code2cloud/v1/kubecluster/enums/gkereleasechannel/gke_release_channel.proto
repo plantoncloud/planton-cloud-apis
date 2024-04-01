@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.enums.gkereleasechannel;
 
 // note: using uppercase for values since this enum is used as input for google cloud apis
 enum GkeReleaseChannel {
-  GKE_RELEASE_CHANNEL_UNSPECIFIED = 0;
+  unspecified = 0;
   REGULAR = 1;
   STABLE = 2;
   RAPID = 3;

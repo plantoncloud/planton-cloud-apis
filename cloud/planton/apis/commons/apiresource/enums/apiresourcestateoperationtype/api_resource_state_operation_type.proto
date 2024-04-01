@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.enums.apiresourcestateoperationtype;
 
 enum ApiResourceStateOperationType {
-  API_RESOURCE_STATE_OPERATION_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   create = 1;
   update = 2;
   read = 3;

@@ -31,7 +31,7 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.enums.gkepodservicesecondar
 // 15 clusters should meet all the near term requirements.
 // more enums can be added later using the left out cidr blocks from 10.0.0.0/15 chunk
 enum GkePodServiceSecondaryRangeCidrSetNum {
-  GKE_POD_SERVICE_SECONDARY_RANGE_CIDR_SET_NUM_UNSPECIFIED = 0;
+  unspecified = 0;
   one = 1;
   two = 2;
   three = 3;

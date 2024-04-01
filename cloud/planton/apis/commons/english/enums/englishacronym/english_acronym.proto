@@ -7,7 +7,7 @@ package cloud.planton.apis.commons.english.enums.englishacronym;
 // the recommended best practice to prefix the entry with enum name has been intentionally ignored to as the values of the entries are intended to be used to name resources.
 message EnglishAcronym {
   enum EnglishAcronymEnum {
-    ENGLISH_ACRONYM_ENUM_UNSPECIFIED = 0;
+    unspecified = 0;
     // network
     NW = 1;
     // rpc

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.iam.v1.iampolicy.enums.apiresourceiampermission;
 
 enum ApiResourceIamPermission {
-  API_RESOURCE_IAM_PERMISSION_UNSPECIFIED = 0;
+  unspecified = 0;
 
   // artifact_store
   artifact_store_create = 1;
@@ -237,4 +237,11 @@ enum ApiResourceIamPermission {
   platform_microservice_account = 162;
   back_office_admin = 163;
   platform = 164;
+
+  // locust-cluster
+  locust_cluster_create = 165;
+  locust_cluster_delete = 166;
+  locust_cluster_get = 167;
+  locust_cluster_restore = 168;
+  locust_cluster_update = 169;
 }

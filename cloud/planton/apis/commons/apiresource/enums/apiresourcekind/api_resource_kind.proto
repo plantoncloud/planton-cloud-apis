@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.enums.apiresourcekind;
 
 enum ApiResourceKind {
-  API_RESOURCE_KIND_UNSPECIFIED = 0;
+  unspecified = 0;
   api_resource_version = 1;
   artifact_store = 2;
   billing_account = 3;
@@ -38,4 +38,5 @@ enum ApiResourceKind {
   prometheus_server = 32;
   gitlab_server = 33;
   grafana_instance = 34;
+  locust_cluster = 35;
 }

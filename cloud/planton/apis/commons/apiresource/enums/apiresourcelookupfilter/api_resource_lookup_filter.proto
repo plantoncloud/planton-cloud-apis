@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter;
 
 enum ApiResourceLookupFilter {
-  API_RESOURCE_LOOKUP_FILTER_UNSPECIFIED = 0;
+  unspecified = 0;
   // This value indicates that the search operation should return all resources, regardless of their active status.
   // This option allows clients to see a complete overview of resources, both active and inactive.
   all = 1;

@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.iac.v1.stackjob.enums.pulumidiagnosticeventseveritytype;
 
 enum PulumiDiagnosticEventSeverityType {
-  PULUMI_DIAGNOSTIC_EVENT_SEVERITY_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   info = 1;
   warning = 2;
   error = 3;

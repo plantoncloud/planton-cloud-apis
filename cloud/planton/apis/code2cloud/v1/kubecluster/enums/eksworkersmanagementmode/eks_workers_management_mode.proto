@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.kubecluster.enums.eksworkersmanagementmode;
 
 enum EksWorkersManagementMode {
-  EKA_WORKERS_MANAGEMENT_MODE_UNSPECIFIED = 0;
+  unspecified = 0;
   ec2 = 1;
   fargate = 2;
   managed_node_groups = 3;

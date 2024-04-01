@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.operationtype;
 import "cloud/planton/apis/iac/v1/stackjob/options/stackjoboperationtypeoptions/stack_job_operation_type_options.proto";
 
 enum StackJobOperationType {
-  STACK_JOB_OPERATION_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   refresh = 1 [
     (cloud.planton.apis.iac.v1.stackjob.options.stackjoboperationtypeoptions.is_refresh_required) = true
   ];

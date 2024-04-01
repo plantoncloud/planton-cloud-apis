@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.cloudaccount.enums.dnszoneprovider;
 
 // dns-zone provider
 enum DnsZoneProvider {
-  DNS_ZONE_PROVIDER_UNSPECIFIED = 0;
+  unspecified = 0;
   //https://cloud.google.com/dns
   gcp_cloud_dns = 1;
   //https://aws.amazon.com/route53/

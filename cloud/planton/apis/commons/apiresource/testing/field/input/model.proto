@@ -120,7 +120,7 @@ message NestedStringLengthFieldsTest {
 // A message with enum field.
 message EnumFieldTest {
   enum SampleEnum {
-    UNSPECIFIED = 0;
+    unspecified = 0;
     VALUE_1 = 1;
     VALUE_2 = 2;
   }
