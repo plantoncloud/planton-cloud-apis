@@ -205,6 +205,7 @@ service KubeClusterCommandController {
 
 // gcp kube-cluster container node pool command controller
 service KubeClusterNodePoolGcpCommandController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   // add a node pool to a kube-cluster in a kube-cluster
   rpc add(cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
@@ -212,6 +213,12 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add node pool";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
   // update a node pool of a kube-cluster in a kube-cluster
   rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
@@ -220,6 +227,12 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update node pool";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
   // delete a node pool from a kube-cluster in a kube-cluster
   rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.DeleteKubeClusterNodePoolGcpCommandInput)
@@ -228,5 +241,11 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete node pool";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
 }
