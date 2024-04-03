@@ -35,7 +35,7 @@ message LocustCluster {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "ArgoCDInstance"
+    (buf.validate.field).string.const = "LocustCluster"
   ];
 
   //resource metadata
