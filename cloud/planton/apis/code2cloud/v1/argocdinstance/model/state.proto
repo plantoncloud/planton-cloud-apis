@@ -35,7 +35,7 @@ message ArgocdInstance {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "ArgoCDInstance"
+    (buf.validate.field).string.const = "ArgocdInstance"
   ];
 
   //resource metadata
