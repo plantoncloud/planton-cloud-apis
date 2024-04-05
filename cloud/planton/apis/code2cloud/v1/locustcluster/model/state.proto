@@ -40,8 +40,6 @@ message LocustCluster {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -62,8 +60,8 @@ message LocustCluster {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 100 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 100"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -79,14 +77,30 @@ message LocustCluster {
   LocustClusterStatus status = 5;
 }
 
-//locust-cluster spec
+// LocustClusterSpec defines the overall configuration for a Locust load testing cluster.
+// This message encapsulates the environmental context, Kubernetes deployment specifications,
+// load testing parameters, and Helm chart values for customizing the deployment.
 message LocustClusterSpec {
-  //resource parent
+
+  // provides all environment level info
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //kubernetes spec
+  // kubernetes specifies the configuration settings specific to Kubernetes.
   LocustClusterSpecKubernetesSpec kubernetes = 2;
+
+  // load_test defines the parameters of the load test itself, including the main test script,
+  // any additional library files, and extra Python pip packages needed for the test execution.
+  // This specification directs how the Locust nodes will simulate traffic and interact with the target application.
+  LocustClusterSpecLoadTestSpec load_test = 3;
+
+  // helm_values is a map of key-value pairs that provide additional customization options for the Helm chart used
+  // to deploy the Locust cluster. These values allow for further refinement of the deployment, such as customizing
+  // resource limits, setting environment variables, or specifying version tags. For detailed information on the available
+  // options, refer to the Helm chart documentation at:
+  // https://github.com/deliveryhero/helm-charts/tree/master/stable/locust#values
+  map<string, string> helm_values = 4;
 }
+
 
 //locust-cluster status.
 message LocustClusterStatus {
@@ -105,33 +119,33 @@ message LocustClusterStatus {
 
 // locust-cluster kubernetes spec
 message LocustClusterSpecKubernetesSpec {
-  //locust-container spec
-  LocustClusterSpecKubernetesSpecLocustContainerSpec locust_container = 1;
-
+  //master-locust-container spec
+  LocustClusterSpecKubernetesSpecLocustContainerSpec master_container = 1;
+  //worker-locust-container spec
+  LocustClusterSpecKubernetesSpecLocustContainerSpec worker_container = 2;
   //locust-cluster ingress-spec
-  LocustClusterSpecKubernetesSpecIngressSpec ingress = 2;
-
+  LocustClusterSpecKubernetesSpecIngressSpec ingress = 3;
 }
 
 // locust-cluster kubernetes locust-container spec
 message LocustClusterSpecKubernetesSpecLocustContainerSpec {
   //locust container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1;
+  // number of replicas
+  int32 replicas = 2;
 }
 
 // locust-cluster kubernetes ingress spec
 message LocustClusterSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
+    id: "ingress.enabled.endpoint_domain_name.mandatory",
     expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
         "? 'endpoint domain name is mandatory to enable ingress'"
         ": ''"
   };
   option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
+    id: "ingress.enabled.ingress_type.mandatory",
     expression: "this.is_enabled && this.ingress_type == 0"
         "? 'ingress type is mandatory to enable ingress'"
         ": ''"
@@ -170,3 +184,29 @@ message LocustClusterStatusKubernetesStatus {
   //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/locust
   string ingress_endpoint = 5;
 }
+
+
+// LocustClusterSpecLoadTestSpec defines the specification for a load test using a Locust cluster.
+// This message includes the primary Python script for Locust and any additional library files
+// necessary to execute the load test.
+message LocustClusterSpecLoadTestSpec {
+
+  // name specifies the unique identifier or name for this particular load test specification.
+  // It is used to reference or distinguish this test configuration among others within a testing suite or environment.
+  string name = 1;
+
+  // main_py_content contains the Python code for the main Locust test script.
+  // This script defines the behavior of the simulated users and is crucial for executing the load test.
+  string main_py_content = 2;
+
+  // lib_files_content is a map where each entry consists of a filename and its associated Python code content.
+  // These files typically contain additional classes or functions required by the main_py_content script.
+  // The key of the map is the filename, and the value is the file content.
+  map<string,string> lib_files_content = 3;
+
+  // pip_packages lists extra python pip packages that are required for the load test.
+  // These packages will be installed in the environment where the load test is executed,
+  // allowing for extended functionality or custom dependencies to be included easily.
+  repeated string pip_packages = 4;
+}
+
