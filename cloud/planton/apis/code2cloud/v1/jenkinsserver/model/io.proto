@@ -19,3 +19,13 @@ message JenkinsServerList {
   int32 total_pages = 1;
   repeated JenkinsServer entries = 2;
 }
+
+//wrapper for jenkins-server password
+message JenkinsServerPassword {
+  string value = 1;
+}
+
+//wrapper for jenkins-server username
+message JenkinsServerUsername {
+  string value = 1;
+}
