@@ -85,6 +85,13 @@ message MongodbClusterSpec {
 
   //kubernetes spec
   MongodbClusterSpecKubernetesSpec kubernetes = 2;
+
+  // helm_values is a map of key-value pairs that provide additional customization options for the Helm chart used
+  // to deploy the Mongodb Cluster. These values allow for further refinement of the deployment, such as customizing
+  // resource limits, setting environment variables, or specifying version tags. For detailed information on the available
+  // options, refer to the Helm chart documentation at:
+  // https://artifacthub.io/packages/helm/bitnami/mongodb
+  map<string, string> helm_values = 4;
 }
 
 //mongodb-cluster status.
@@ -109,7 +116,6 @@ message MongodbClusterSpecKubernetesSpec {
 
   //mongodb-cluster ingress-spec
   MongodbClusterSpecKubernetesSpecIngressSpec ingress = 2;
-
 }
 
 // mongodb-cluster kubernetes mongodb-container spec
@@ -164,28 +170,19 @@ message MongodbClusterSpecKubernetesSpecIngressSpec {
   string endpoint_domain_name = 3;
 }
 
-//mongodb-cluster kubernetes status
+// MongodbClusterStatusKubernetesStatus represents the status of a MongoDB cluster within a Kubernetes environment.
+// This message includes output details produced after the MongoDB cluster is deployed,
 message MongodbClusterStatusKubernetesStatus {
-  //kubernetes namespace in which mongodb-cluster is created.
+  // namespace specifies the Kubernetes namespace in which the MongoDB cluster is created.
+  // Namespaces are a way to divide cluster resources between multiple users.
   string namespace = 1;
 
-  //kubernetes service name for mongodb-cluster.
-  //ex: main-mongodb-cluster
-  //in the above example, "main" is the name of the mongodb-cluster
-  string service = 2;
+  // root_username is the username for the root account of the MongoDB cluster.
+  // The root account has full access to all databases and collections within the MongoDB cluster.
+  string root_username = 2;
 
-  //command to setup port-forwarding to open mongodb-cluster from developers laptop.
-  //this might come handy when mongodb-cluster ingress is disabled for security reasons.
-  //this is rendered by combining mongodb_cluster_kubernetes_service and kubernetes_namespace
-  //ex: kubectl port-forward svc/mongodb_cluster_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access mongodb-cluster using http://localhost:8080/mongodb
-  string port_forward_command = 3;
-
-  //kubernetes endpoint to connect to mongodb-cluster from the web browser.
-  //ex: main-mongodb-cluster.namespace.svc.cluster.local:6379
-  string kube_endpoint = 4;
-
-  //public endpoint to open mongodb-cluster from clients outside kubernetes.
-  //ex: https://mdb-planton-pcs-dev-main.data.dev.planton.live:6379/mongodb
-  string ingress_endpoint = 5;
+  // root_password_secret_name is the name of the Kubernetes secret that stores the root password for the MongoDB cluster.
+  // Kubernetes secrets are used to store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
+  string root_password_secret_name = 3;
 }
+
