@@ -34,7 +34,7 @@ message MongodbCluster {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "MongoDBCluster"
+    (buf.validate.field).string.const = "MongodbCluster"
   ];
 
   //resource metadata
