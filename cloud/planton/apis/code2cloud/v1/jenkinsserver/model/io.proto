@@ -24,8 +24,3 @@ message JenkinsServerList {
 message JenkinsServerPassword {
   string value = 1;
 }
-
-//wrapper for jenkins-server username
-message JenkinsServerUsername {
-  string value = 1;
-}
