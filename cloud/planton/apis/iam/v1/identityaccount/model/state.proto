@@ -55,7 +55,7 @@ message IdentityAccountSpec {
   ];
   // identity account type to identify with the account is for a machine or user
   cloud.planton.apis.iam.v1.identityaccount.enums.identityaccounttype.IdentityAccountType identity_account_type = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
   // email of the identity account.

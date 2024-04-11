@@ -105,6 +105,6 @@ message StorageBucketGcpSpec {
 
   //gcp region in which the bucket is to be created.
   string region = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }

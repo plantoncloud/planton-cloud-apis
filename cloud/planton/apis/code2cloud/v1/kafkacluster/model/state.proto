@@ -128,20 +128,26 @@ message KafkaClusterSpecKubernetesSpecKafkaBrokerContainerSpec {
   //defaults value "1" is set if client sets the value to 0.
   //recommended default value is "1".
   int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //kafka broker container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //size of the disk to be attached to each broker instance. ex: 30Gi
   //defaults value is set if not provided by the client.
   string disk_size = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi"
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
   ];
 }
 
@@ -152,20 +158,26 @@ message KafkaClusterSpecKubernetesSpecZookeeperContainerSpec {
   //zookeeper is built using raft consensus algorithm.
   //refer to https://raft.github.io/ to learn more on how replica count affect availability.
   int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //zookeeper container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //size of the disk to be attached to each zookeeper instance. ex: 30Gi
   //defaults value is set if not provided by the client.
   string disk_size = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi"
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
   ];
 }
 
@@ -179,13 +191,13 @@ message KafkaClusterSpecKubernetesSpecSchemaRegistryContainerSpec {
   //recommended default value is "1".
   //this value has no effect if the is_schema_registry_enabled is set to false.
   int32 replicas = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //schema-registry container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
@@ -250,7 +262,7 @@ message KafkaTopic {
 
   //topic name
   string name = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 249,

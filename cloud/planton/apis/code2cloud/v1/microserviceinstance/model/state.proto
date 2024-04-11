@@ -173,15 +173,15 @@ message MicroserviceInstanceSpecKubernetesAppContainerEnv {
 message MicroserviceInstanceSpecKubernetesContainerPort {
   //name for the port ex: http, grpc
   string name = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //container port
   int32 container_port = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //network protocol for the port ex: TCP
   string network_protocol = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //(required) application protocol for the microservice.
   //the default is set to "http"
@@ -190,11 +190,11 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
   //this attribute is used during microservice deployment.
   //this attribute is only relevant for deployment and stateful-set pod_controllers.
   string app_protocol = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //kubernetes service port
   int32 service_port = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
@@ -226,7 +226,7 @@ message MicroserviceInstanceSpecKubernetesIngress {
   bool is_enabled = 1;
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //selected endpoint-domain from the environment endpoint-domains to configure dns
   string endpoint_domain_name = 3;
@@ -263,12 +263,12 @@ message MicroserviceInstanceSpecPipeline {
   //id of the code project.
   //allowed values are the list of code projects in the same product.
   string code_project_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //git branch configured to deploy new versions of microservice-instances
   string git_branch = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //toggle to enable or disable review environments to control the creation of ephemeral

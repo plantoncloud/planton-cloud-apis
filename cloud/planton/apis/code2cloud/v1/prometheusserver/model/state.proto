@@ -114,16 +114,22 @@ message PrometheusServerSpecKubernetesSpec {
 
 // prometheus-server kubernetes prometheus-container spec
 message PrometheusServerSpecKubernetesSpecPrometheusContainerSpec {
+  option (buf.validate.message).cel = {
+    id: "spec.kubernetes.container.disk_size.mandatory",
+    expression: "this.is_persistence_enabled && size(this.disk_size) == 0"
+        "? 'disk size is mandatory to enable persistence'"
+        ": ''"
+  };
   //number of prometheus pods.
   //recommended default 1
   int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //prometheus container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //flag to toggle persistence for prometheus data.
@@ -138,7 +144,14 @@ message PrometheusServerSpecKubernetesSpecPrometheusContainerSpec {
   //this persistent volume is used for backing up in-memory data.
   //data from the persistent volume will be restored into memory between pod restarts.
   //this value can not be modified as kubernetes does not allow updating the stateful-set specification after creation.
-  string disk_size = 4;
+  string disk_size = 4[
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
+  ];
 }
 
 // prometheus-server kubernetes ingress spec

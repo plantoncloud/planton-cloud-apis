@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/enums/apiresourcelookupfilter/api
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
 
 // Resource is a message type that represents a single resource object.
 // Resource object has all fields that are required to save in search engine collection.
@@ -101,7 +102,7 @@ message SearchApiResourcesByKindInput {
 message SearchIdentityAccountByEmailInput {
   // Unique identifier for the company associated with the search query.
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   // The email or part of the email to be used as the basis for the search query.
   string search_text = 2;

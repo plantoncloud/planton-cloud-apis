@@ -74,7 +74,7 @@ message NestedRegexFieldsTest {
 // A message with a required field and a non-required field.
 message RequiredFieldsTest {
   string required_string_field = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   string not_required_string_field = 2;
 }
@@ -82,12 +82,12 @@ message RequiredFieldsTest {
 // A message with a required string field that must match a regex.
 message RequiredFieldsWithRegexTest {
   string regex_required_string_field = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_regex) = "^[a-z0-9]{1,9}$",
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.field_constraints_description) = "only lowercase letters (a-z) and digits (0-9). length must be between 1 and 9 characters."
   ];
   string no_regex_required_string_field = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   string no_rules_string = 3;
 }
@@ -95,7 +95,7 @@ message RequiredFieldsWithRegexTest {
 // A message with a required field that must be a specific nested message.
 message RequiredNestedMessageTest {
   RequiredFieldsTest nested_required_field = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
@@ -125,7 +125,7 @@ message EnumFieldTest {
     VALUE_2 = 2;
   }
   SampleEnum enum_field = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.field_constraints_description) = "Enum value must be specified."
   ];
 }
@@ -134,7 +134,7 @@ message EnumFieldTest {
 message DeeplyNestedFieldTest {
   NestedRegexFieldsTest nested_field_1 = 1;
   NestedStringLengthFieldsTest nested_field_2 = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   EnumFieldTest nested_enum_field = 3;
 }
@@ -142,12 +142,12 @@ message DeeplyNestedFieldTest {
 // A message for testing multiple errors in the nested structure.
 message MultipleErrorsTest {
   string field_1 = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_regex) = "^[A-Z]{5}$",
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.field_constraints_description) = "Field must contain exactly 5 uppercase letters."
   ];
   DeeplyNestedFieldTest field_2 = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 

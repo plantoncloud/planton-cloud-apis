@@ -94,7 +94,7 @@ message KubeClusterSpec {
 
   // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -164,7 +164,7 @@ message KubeClusterStatus {
 message KubeClusterGcpSpec {
   //id of the gcp cloud account to be used for creating kube-cluster resources.
   string gcp_cloud_account_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -197,13 +197,13 @@ message KubeClusterGcpSpec {
   // warning: kube-cluster will recreated if this value is updated.
   // https://cloud.google.com/compute/docs/regions-zones
   string region = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   // valid gcp zone in which to create the kube-cluster.
   // https://cloud.google.com/compute/docs/regions-zones
   string zone = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   // flag to indicate that the cluster should be created in a shared vpc network.
@@ -345,7 +345,7 @@ message KubeClusterNodePoolGcp  {
 
   // Type of machine for the node pool. For example, 'n2-custom-8-16234'.
   string machine_type = 3[
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   // Minimum number of nodes in the node pool. Defaults to 1.
@@ -366,7 +366,7 @@ message KubeClusterNodePoolGcp  {
 message KubeClusterAwsSpec {
   //id of the aws cloud account to be used for creating kube-cluster resources.
   string aws_cloud_account_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -374,7 +374,7 @@ message KubeClusterAwsSpec {
   // warning: kube-cluster will recreated if this value is updated.
   // https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
   string region = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   // (optional) id of the vpc to be used for creating kube-cluster.
@@ -384,7 +384,7 @@ message KubeClusterAwsSpec {
 
   // aws eks worker node-groups management mode
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.eksworkersmanagementmode.EksWorkersManagementMode workers_management_mode = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 

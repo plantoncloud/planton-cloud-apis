@@ -9,6 +9,7 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
 
 // wrapper for stack-job id
 message StackJobId {
@@ -51,7 +52,7 @@ message CreateStackJobCommandInput {
   cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
   // reason for creating the stack job
   string message = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
