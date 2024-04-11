@@ -154,6 +154,7 @@ message JenkinsServerStatusKubernetesStatus {
   //kubernetes namespace in which jenkins-server is created.
   string namespace = 1;
 
+  string admin_username = 2;
   //kubernetes secret name for the admin credentials.
-  string admin_credentials_secret_name = 2;
+  string admin_password_secret_name = 3;
 }
