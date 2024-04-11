@@ -50,14 +50,4 @@ service JenkinsServerQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-server password";
   }
-
-  //look up jenkins-server username
-  //username is retrieved from the kubernetes cluster.
-  rpc getUserName(cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerId)
-      returns (cloud.planton.apis.code2cloud.v1.jenkinsserver.model.JenkinsServerUsername) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = jenkins_server;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = jenkins_server_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-server username";
-  }
 }
