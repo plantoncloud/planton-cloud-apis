@@ -39,8 +39,6 @@ message JenkinsServer {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -61,8 +59,8 @@ message JenkinsServer {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 100 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 100"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
