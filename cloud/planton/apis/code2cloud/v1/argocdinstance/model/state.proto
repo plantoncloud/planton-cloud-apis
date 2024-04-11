@@ -118,7 +118,7 @@ message ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec {
   //argocd container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 

@@ -160,7 +160,7 @@ message CloudAccountGcpSpec {
   // The ID of the Google Cloud Organization, required and immutable. For more information,
   // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
   string org_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).string.min_len = 1,
@@ -223,9 +223,7 @@ message CloudAccountAwsSpec {
   // The ID of the AWS Account, required and immutable. For more information,
   string account_id = 1 [
     (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
-    (buf.validate.field).required = false,
-    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "spec.aws.account_id",
       message: "Only numbers (0-9) are allowed",
@@ -235,7 +233,7 @@ message CloudAccountAwsSpec {
 
   //AWS Access Key Id
   string access_key_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).string.len = 20,
     (buf.validate.field).cel = {
@@ -255,7 +253,7 @@ message CloudAccountAwsSpec {
   //AWS Secret Access Key
   string secret_access_key = 3 [
     (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (buf.validate.field).string.len = 40,
     (buf.validate.field).cel = {
       id: "spec.aws.secret_access_key",

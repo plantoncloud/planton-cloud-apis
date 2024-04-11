@@ -4,6 +4,7 @@ package cloud.planton.apis.code2cloud.v1.kafkacluster.model;
 
 import "cloud/planton/apis/code2cloud/v1/kafkacluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for id field of kafka-cluster
 message KafkaClusterId {
@@ -34,7 +35,7 @@ message KafkaClusterPassword {
 message AddKafkaTopicsCommandInput {
   //id of the kafka-cluster to which the kafka topics are added
   string kafka_cluster_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //list of kafka topics to be added to existing list of kafka topics
@@ -110,7 +111,7 @@ message KafkaTopicQueryInput {
   //information is to be retrieved.
   //This field is required, as specified by the is_required field option.
   string kafka_cluster_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //KafkaTopic object that represents the Kafka topic to be queried

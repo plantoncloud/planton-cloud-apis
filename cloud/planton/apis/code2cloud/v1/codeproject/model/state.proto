@@ -76,7 +76,7 @@ message CodeProjectSpec {
 
   //code server to which the code-project belongs to.
   string code_server_id = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -84,7 +84,7 @@ message CodeProjectSpec {
   //(note) the parent path should start with the code_server_group path
   //when creating a project on gitlab, all the groups in the provided path are created if they do not exist.
   string parent_path = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //web or clone(http/ssh) for the code project.

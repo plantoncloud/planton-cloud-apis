@@ -119,7 +119,7 @@ message SolrCloudSpecKubernetesSpecSolrContainerSpec {
   //number of solr pods in solr-cloud
   //recommended default 1.
   int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //solr container image
@@ -129,13 +129,19 @@ message SolrCloudSpecKubernetesSpecSolrContainerSpec {
   //solr container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //size of persistent volume attached to each solr pod.
   //recommended default 1Gi
   string disk_size = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
   ];
 
   //solr config
@@ -167,12 +173,18 @@ message SolrCloudSpecKubernetesSpecZookeeperContainerSpec {
   //zookeeper container cpu and memory resources.
   //recommended default "cpu-request: 50m, memory-request: 256Mi, cpu-limit: 1, memory-limit: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //size of persistent volume attached to each zookeeper pod
   string disk_size = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
   ];
 }
 
@@ -194,12 +206,12 @@ message SolrCloudSpecKubernetesSpecIngressSpec {
   bool is_enabled = 1;
   //ingress type
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
   //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating solr endpoints.
   string endpoint_domain_name = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 

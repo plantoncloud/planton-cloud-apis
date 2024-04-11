@@ -94,7 +94,7 @@ message ArtifactStoreSpec {
 
   //provider for the artifact-store repositories
   cloud.planton.apis.code2cloud.v1.artifactstore.enums.artifactstorerepoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -141,7 +141,7 @@ message ArtifactStoreGcpArtifactRegistrySpec {
   //the allowed values for this attribute are all the gcp cloud accounts that the parent company of the product
   //has required permissions to create artifact-store in.
   string gcp_cloud_account_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -156,7 +156,7 @@ message ArtifactStoreGcpArtifactRegistrySpec {
   //choosing the closest region for the kube-clusters in which the environments of the product are
   //hosted reduces the service startup time as the container images are downloaded faster.
   string region = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //flag to control access to artifacts published to repositories without any authentication.

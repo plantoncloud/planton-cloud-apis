@@ -4,6 +4,7 @@ package cloud.planton.apis.code2cloud.v1.dnszone.model;
 
 import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/dnszone/enums/dnsrecordtype/dns_record_type.proto";
+import "buf/validate/validate.proto";
 
 // list of dns-zones
 message DnsZones {

@@ -84,19 +84,19 @@ message CodeServerSpec {
 
   //Specifies the product to which the code server belongs.
   string product_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the host of the code server, such as "https://github.com".
   string code_server_host = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the provider for the code server.
   cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -116,7 +116,7 @@ message CodeServerGithubSpec {
 
   //ID of the Github App installation provided by Github after successful app installation via OAuth flow.
   int64 app_install_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
@@ -130,18 +130,18 @@ message CodeServerGitlabSpec {
   //name or numerical identifier for gitlab group
   //This value is primarily used in the code project synchronization process.
   string group_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Access token to integrate with Gitlab Server.
   //This value is acquired by browser authorization flow when code server is added via Planton Cloud Console App.
   string access_token = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Refresh token used to fetch a new access token when the current one expires.
   string refresh_token = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
