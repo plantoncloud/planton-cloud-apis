@@ -10,6 +10,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "google/protobuf/struct.proto";
 
 //argocd-instance
 message ArgocdInstance {
@@ -42,11 +43,13 @@ message ArgocdInstance {
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 10,
+
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Only lowercase letters, numbers, and hyphens are allowed",
       // https://regex101.com/r/NKTohE/1
-      expression: "this.name.matches('^[a-z0-9-]+$')"
+      expression: "!this.name.matches('^[a-z0-9-]+$')"
+              "? 'Invalid Name - `' + this.name + '`.Only lowercase letters, numbers, and hyphens are allowed'"
+              ": ''"
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
