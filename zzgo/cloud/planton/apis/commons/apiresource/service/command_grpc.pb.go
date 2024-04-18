@@ -9,6 +9,7 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiResourceStackJobCommandControllerClient interface {
 	// create-stack-job for any api resource
-	CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ApiResourceId, error)
+	CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model1.StackJobId, error)
 }
 
 type apiResourceStackJobCommandControllerClient struct {
@@ -39,8 +40,8 @@ func NewApiResourceStackJobCommandControllerClient(cc grpc.ClientConnInterface) 
 	return &apiResourceStackJobCommandControllerClient{cc}
 }
 
-func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ApiResourceId, error) {
-	out := new(model.ApiResourceId)
+func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model1.StackJobId, error) {
+	out := new(model1.StackJobId)
 	err := c.cc.Invoke(ctx, ApiResourceStackJobCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -53,14 +54,14 @@ func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.
 // for forward compatibility
 type ApiResourceStackJobCommandControllerServer interface {
 	// create-stack-job for any api resource
-	CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model.ApiResourceId, error)
+	CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model1.StackJobId, error)
 }
 
 // UnimplementedApiResourceStackJobCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedApiResourceStackJobCommandControllerServer struct {
 }
 
-func (UnimplementedApiResourceStackJobCommandControllerServer) CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model.ApiResourceId, error) {
+func (UnimplementedApiResourceStackJobCommandControllerServer) CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model1.StackJobId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
