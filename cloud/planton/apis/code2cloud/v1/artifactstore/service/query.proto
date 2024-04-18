@@ -19,14 +19,6 @@ service ArtifactStoreQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
   }
-  //list all artifact-stores for the requested page.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list artifact stores";
-  }
   //look up artifact-stores by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
       returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores) {

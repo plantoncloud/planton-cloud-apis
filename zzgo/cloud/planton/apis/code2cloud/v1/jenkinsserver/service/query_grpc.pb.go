@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/jenkinsserver/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	JenkinsServerQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/list"
 	JenkinsServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/getById"
 	JenkinsServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/findPods"
 	JenkinsServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/getPassword"
@@ -32,8 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JenkinsServerQueryControllerClient interface {
-	// list all jenkins-servers on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.JenkinsServerList, error)
 	// look up jenkins-server using jenkins-server id
 	GetById(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServer, error)
 	// lookup pods of a jenkins-server deployed to a environment
@@ -49,15 +45,6 @@ type jenkinsServerQueryControllerClient struct {
 
 func NewJenkinsServerQueryControllerClient(cc grpc.ClientConnInterface) JenkinsServerQueryControllerClient {
 	return &jenkinsServerQueryControllerClient{cc}
-}
-
-func (c *jenkinsServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.JenkinsServerList, error) {
-	out := new(model.JenkinsServerList)
-	err := c.cc.Invoke(ctx, JenkinsServerQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *jenkinsServerQueryControllerClient) GetById(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServer, error) {
@@ -91,8 +78,6 @@ func (c *jenkinsServerQueryControllerClient) GetPassword(ctx context.Context, in
 // All implementations should embed UnimplementedJenkinsServerQueryControllerServer
 // for forward compatibility
 type JenkinsServerQueryControllerServer interface {
-	// list all jenkins-servers on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.JenkinsServerList, error)
 	// look up jenkins-server using jenkins-server id
 	GetById(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error)
 	// lookup pods of a jenkins-server deployed to a environment
@@ -106,9 +91,6 @@ type JenkinsServerQueryControllerServer interface {
 type UnimplementedJenkinsServerQueryControllerServer struct {
 }
 
-func (UnimplementedJenkinsServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.JenkinsServerList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedJenkinsServerQueryControllerServer) GetById(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -128,24 +110,6 @@ type UnsafeJenkinsServerQueryControllerServer interface {
 
 func RegisterJenkinsServerQueryControllerServer(s grpc.ServiceRegistrar, srv JenkinsServerQueryControllerServer) {
 	s.RegisterService(&JenkinsServerQueryController_ServiceDesc, srv)
-}
-
-func _JenkinsServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(JenkinsServerQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: JenkinsServerQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _JenkinsServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -209,10 +173,6 @@ var JenkinsServerQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController",
 	HandlerType: (*JenkinsServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _JenkinsServerQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _JenkinsServerQueryController_GetById_Handler,

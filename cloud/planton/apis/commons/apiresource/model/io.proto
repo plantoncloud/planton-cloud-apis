@@ -159,7 +159,4 @@ message ListByResourceKindWithoutContext {
   // This field contains the pagination information used for retrieving specific paginated
   // data. It enables the client to specify the number of records per page and the page number.
   cloud.planton.apis.commons.rpc.PageInfo page_info = 2;
-  //  this field is an enumeration used to dictate the active status of the resources
-  //  included in the search results.
-  cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter lookup_filter = 3;
 }

@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/cloudaccount/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	protobuf "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/protobuf"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	grpc "google.golang.org/grpc"
@@ -26,7 +25,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KubeClusterQueryController_List_FullMethodName                                    = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/list"
 	KubeClusterQueryController_GetById_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getById"
 	KubeClusterQueryController_FindByCompanyId_FullMethodName                         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCompanyId"
 	KubeClusterQueryController_FindByCloudAccountId_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCloudAccountId"
@@ -43,8 +41,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubeClusterQueryControllerClient interface {
-	// list all kube-clusters for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// lookup kube-cluster using kube-cluster id
 	GetById(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// find kube-clusters by company id
@@ -76,15 +72,6 @@ type kubeClusterQueryControllerClient struct {
 
 func NewKubeClusterQueryControllerClient(cc grpc.ClientConnInterface) KubeClusterQueryControllerClient {
 	return &kubeClusterQueryControllerClient{cc}
-}
-
-func (c *kubeClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
-	out := new(model.KubeClusterList)
-	err := c.cc.Invoke(ctx, KubeClusterQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *kubeClusterQueryControllerClient) GetById(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeCluster, error) {
@@ -204,8 +191,6 @@ func (x *kubeClusterQueryControllerGetPodLogStreamClient) Recv() (*wrapperspb.St
 // All implementations should embed UnimplementedKubeClusterQueryControllerServer
 // for forward compatibility
 type KubeClusterQueryControllerServer interface {
-	// list all kube-clusters for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.KubeClusterList, error)
 	// lookup kube-cluster using kube-cluster id
 	GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error)
 	// find kube-clusters by company id
@@ -235,9 +220,6 @@ type KubeClusterQueryControllerServer interface {
 type UnimplementedKubeClusterQueryControllerServer struct {
 }
 
-func (UnimplementedKubeClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.KubeClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedKubeClusterQueryControllerServer) GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -278,24 +260,6 @@ type UnsafeKubeClusterQueryControllerServer interface {
 
 func RegisterKubeClusterQueryControllerServer(s grpc.ServiceRegistrar, srv KubeClusterQueryControllerServer) {
 	s.RegisterService(&KubeClusterQueryController_ServiceDesc, srv)
-}
-
-func _KubeClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _KubeClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -488,10 +452,6 @@ var KubeClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController",
 	HandlerType: (*KubeClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _KubeClusterQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _KubeClusterQueryController_GetById_Handler,

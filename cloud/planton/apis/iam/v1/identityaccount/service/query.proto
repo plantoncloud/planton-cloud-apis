@@ -9,18 +9,12 @@ import "cloud/planton/apis/iam/v1/identityaccount/model/io.proto";
 import "cloud/planton/apis/iam/v1/identityaccount/model/state.proto";
 import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 
 // machine-account query controller
 service MachineAccountQueryController {
-  // retrieve paginated list of all machine accounts on planton cloud.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list all machine accounts";
-  }
-
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = identity_account;
   // lookup machine account by identity account id.
   rpc getById(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
@@ -28,6 +22,8 @@ service MachineAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
 
   // retrieve paginated list of all machine accounts on planton cloud.

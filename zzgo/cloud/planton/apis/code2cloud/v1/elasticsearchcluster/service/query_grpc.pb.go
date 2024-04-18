@@ -11,7 +11,6 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -25,7 +24,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ElasticsearchClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/list"
 	ElasticsearchClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/getById"
 	ElasticsearchClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/findByProductId"
 	ElasticsearchClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/findByEnvironmentId"
@@ -38,8 +36,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ElasticsearchClusterQueryControllerClient interface {
-	// list all elasticsearch-clusters on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error)
 	// look up elasticsearch-cluster using elasticsearch-cluster id
 	GetById(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
 	// find elasticsearch-clusters by product id.
@@ -61,15 +57,6 @@ type elasticsearchClusterQueryControllerClient struct {
 
 func NewElasticsearchClusterQueryControllerClient(cc grpc.ClientConnInterface) ElasticsearchClusterQueryControllerClient {
 	return &elasticsearchClusterQueryControllerClient{cc}
-}
-
-func (c *elasticsearchClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error) {
-	out := new(model.ElasticsearchClusterList)
-	err := c.cc.Invoke(ctx, ElasticsearchClusterQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *elasticsearchClusterQueryControllerClient) GetById(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error) {
@@ -130,8 +117,6 @@ func (c *elasticsearchClusterQueryControllerClient) FindPods(ctx context.Context
 // All implementations should embed UnimplementedElasticsearchClusterQueryControllerServer
 // for forward compatibility
 type ElasticsearchClusterQueryControllerServer interface {
-	// list all elasticsearch-clusters on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.ElasticsearchClusterList, error)
 	// look up elasticsearch-cluster using elasticsearch-cluster id
 	GetById(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error)
 	// find elasticsearch-clusters by product id.
@@ -151,9 +136,6 @@ type ElasticsearchClusterQueryControllerServer interface {
 type UnimplementedElasticsearchClusterQueryControllerServer struct {
 }
 
-func (UnimplementedElasticsearchClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.ElasticsearchClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedElasticsearchClusterQueryControllerServer) GetById(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -182,24 +164,6 @@ type UnsafeElasticsearchClusterQueryControllerServer interface {
 
 func RegisterElasticsearchClusterQueryControllerServer(s grpc.ServiceRegistrar, srv ElasticsearchClusterQueryControllerServer) {
 	s.RegisterService(&ElasticsearchClusterQueryController_ServiceDesc, srv)
-}
-
-func _ElasticsearchClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ElasticsearchClusterQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ElasticsearchClusterQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _ElasticsearchClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -317,10 +281,6 @@ var ElasticsearchClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController",
 	HandlerType: (*ElasticsearchClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _ElasticsearchClusterQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _ElasticsearchClusterQueryController_GetById_Handler,

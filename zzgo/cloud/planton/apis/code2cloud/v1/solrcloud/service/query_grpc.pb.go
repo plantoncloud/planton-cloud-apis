@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/solrcloud/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SolrCloudQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/list"
 	SolrCloudQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getById"
 	SolrCloudQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getPassword"
 	SolrCloudQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findPods"
@@ -32,8 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SolrCloudQueryControllerClient interface {
-	// list all solr-clouds for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// look up solr-cloud sasl password
@@ -49,15 +45,6 @@ type solrCloudQueryControllerClient struct {
 
 func NewSolrCloudQueryControllerClient(cc grpc.ClientConnInterface) SolrCloudQueryControllerClient {
 	return &solrCloudQueryControllerClient{cc}
-}
-
-func (c *solrCloudQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.SolrCloudList, error) {
-	out := new(model.SolrCloudList)
-	err := c.cc.Invoke(ctx, SolrCloudQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *solrCloudQueryControllerClient) GetById(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error) {
@@ -91,8 +78,6 @@ func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model
 // All implementations should embed UnimplementedSolrCloudQueryControllerServer
 // for forward compatibility
 type SolrCloudQueryControllerServer interface {
-	// list all solr-clouds for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.SolrCloudList, error)
 	// look up solr-cloud using solr-cloud id
 	GetById(context.Context, *model.SolrCloudId) (*model.SolrCloud, error)
 	// look up solr-cloud sasl password
@@ -106,9 +91,6 @@ type SolrCloudQueryControllerServer interface {
 type UnimplementedSolrCloudQueryControllerServer struct {
 }
 
-func (UnimplementedSolrCloudQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.SolrCloudList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedSolrCloudQueryControllerServer) GetById(context.Context, *model.SolrCloudId) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -128,24 +110,6 @@ type UnsafeSolrCloudQueryControllerServer interface {
 
 func RegisterSolrCloudQueryControllerServer(s grpc.ServiceRegistrar, srv SolrCloudQueryControllerServer) {
 	s.RegisterService(&SolrCloudQueryController_ServiceDesc, srv)
-}
-
-func _SolrCloudQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrCloudQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -209,10 +173,6 @@ var SolrCloudQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController",
 	HandlerType: (*SolrCloudQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _SolrCloudQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _SolrCloudQueryController_GetById_Handler,

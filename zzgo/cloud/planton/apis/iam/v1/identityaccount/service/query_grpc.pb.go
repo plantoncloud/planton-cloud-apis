@@ -23,7 +23,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MachineAccountQueryController_List_FullMethodName                                 = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/list"
 	MachineAccountQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getById"
 	MachineAccountQueryController_FindByCompanyId_FullMethodName                      = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/findByCompanyId"
 	MachineAccountQueryController_GetByEmail_FullMethodName                           = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getByEmail"
@@ -35,8 +34,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MachineAccountQueryControllerClient interface {
-	// retrieve paginated list of all machine accounts on planton cloud.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	// lookup machine account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// retrieve paginated list of all machine accounts on planton cloud.
@@ -57,15 +54,6 @@ type machineAccountQueryControllerClient struct {
 
 func NewMachineAccountQueryControllerClient(cc grpc.ClientConnInterface) MachineAccountQueryControllerClient {
 	return &machineAccountQueryControllerClient{cc}
-}
-
-func (c *machineAccountQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error) {
-	out := new(model.IdentityAccountsList)
-	err := c.cc.Invoke(ctx, MachineAccountQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *machineAccountQueryControllerClient) GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error) {
@@ -117,8 +105,6 @@ func (c *machineAccountQueryControllerClient) GetClientSecretByMachineAccountEma
 // All implementations should embed UnimplementedMachineAccountQueryControllerServer
 // for forward compatibility
 type MachineAccountQueryControllerServer interface {
-	// retrieve paginated list of all machine accounts on planton cloud.
-	List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error)
 	// lookup machine account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)
 	// retrieve paginated list of all machine accounts on planton cloud.
@@ -137,9 +123,6 @@ type MachineAccountQueryControllerServer interface {
 type UnimplementedMachineAccountQueryControllerServer struct {
 }
 
-func (UnimplementedMachineAccountQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedMachineAccountQueryControllerServer) GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -165,24 +148,6 @@ type UnsafeMachineAccountQueryControllerServer interface {
 
 func RegisterMachineAccountQueryControllerServer(s grpc.ServiceRegistrar, srv MachineAccountQueryControllerServer) {
 	s.RegisterService(&MachineAccountQueryController_ServiceDesc, srv)
-}
-
-func _MachineAccountQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MachineAccountQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MachineAccountQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _MachineAccountQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -282,10 +247,6 @@ var MachineAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController",
 	HandlerType: (*MachineAccountQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _MachineAccountQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _MachineAccountQueryController_GetById_Handler,

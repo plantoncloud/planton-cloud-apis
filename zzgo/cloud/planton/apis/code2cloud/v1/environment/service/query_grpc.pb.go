@@ -11,7 +11,6 @@ import (
 	gcp "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -25,7 +24,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	EnvironmentQueryController_List_FullMethodName                                  = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/list"
 	EnvironmentQueryController_GetById_FullMethodName                               = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getById"
 	EnvironmentQueryController_FindByProductId_FullMethodName                       = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/findByProductId"
 	EnvironmentQueryController_FindByKubeClusterId_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/findByKubeClusterId"
@@ -40,8 +38,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnvironmentQueryControllerClient interface {
-	// list all environments for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.EnvironmentList, error)
 	// look up environment using environment id
 	GetById(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error)
 	// find environments by product id
@@ -66,15 +62,6 @@ type environmentQueryControllerClient struct {
 
 func NewEnvironmentQueryControllerClient(cc grpc.ClientConnInterface) EnvironmentQueryControllerClient {
 	return &environmentQueryControllerClient{cc}
-}
-
-func (c *environmentQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.EnvironmentList, error) {
-	out := new(model.EnvironmentList)
-	err := c.cc.Invoke(ctx, EnvironmentQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *environmentQueryControllerClient) GetById(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error) {
@@ -153,8 +140,6 @@ func (c *environmentQueryControllerClient) FindWorkloadNamespacesByEnvironmentId
 // All implementations should embed UnimplementedEnvironmentQueryControllerServer
 // for forward compatibility
 type EnvironmentQueryControllerServer interface {
-	// list all environments for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.EnvironmentList, error)
 	// look up environment using environment id
 	GetById(context.Context, *model.EnvironmentId) (*model.Environment, error)
 	// find environments by product id
@@ -177,9 +162,6 @@ type EnvironmentQueryControllerServer interface {
 type UnimplementedEnvironmentQueryControllerServer struct {
 }
 
-func (UnimplementedEnvironmentQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.EnvironmentList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedEnvironmentQueryControllerServer) GetById(context.Context, *model.EnvironmentId) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -214,24 +196,6 @@ type UnsafeEnvironmentQueryControllerServer interface {
 
 func RegisterEnvironmentQueryControllerServer(s grpc.ServiceRegistrar, srv EnvironmentQueryControllerServer) {
 	s.RegisterService(&EnvironmentQueryController_ServiceDesc, srv)
-}
-
-func _EnvironmentQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _EnvironmentQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -385,10 +349,6 @@ var EnvironmentQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController",
 	HandlerType: (*EnvironmentQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _EnvironmentQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _EnvironmentQueryController_GetById_Handler,
