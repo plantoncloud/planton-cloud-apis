@@ -44,18 +44,6 @@ message StackJobList {
   repeated StackJob entries = 2;
 }
 
-// input for rpc to create a new stack job for any resource.
-message CreateStackJobCommandInput {
-  //id of the resource for which the stack-job is to be created.
-  string resource_id = 1;
-  //operation-type to be used for creating the stack-job.
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
-  // reason for creating the stack job
-  string message = 3 [
-    (buf.validate.field).required = true
-  ];
-}
-
 // GetStackJobMinutesByCompanyIdInput is intended for requests to retrieve the total minutes of stack job
 // processing or usage associated with a given company. It focuses on identifying the company in question,
 // facilitating the aggregation or reporting of stack job minutes at the company level.

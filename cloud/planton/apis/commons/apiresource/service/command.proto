@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.service;
+
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+
+service ApiResourceStackJobCommandController {
+
+  //create-stack-job for any api resource
+  rpc createStackJob(cloud.planton.apis.commons.apiresource.model.CreateStackJobCommandInput)
+      returns (cloud.planton.apis.commons.apiresource.model.ApiResourceId) {
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+
+}

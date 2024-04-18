@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/openfgaserver/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	OpenfgaServerCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/delete"
 	OpenfgaServerCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/previewRestore"
 	OpenfgaServerCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/restore"
-	OpenfgaServerCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/createStackJob"
 	OpenfgaServerCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/restart"
 	OpenfgaServerCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/pause"
 	OpenfgaServerCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerCommandController/unpause"
@@ -58,8 +56,6 @@ type OpenfgaServerCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.OpenfgaServer, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
 	// restore a previously deleted openfga-server
 	Restore(ctx context.Context, in *model.OpenfgaServer, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
-	// create-stack-job for openfga-server
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
 	// restart a openfga-server running in a environment.
 	// openfga-server is restarted by deleting running "openfga" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
@@ -157,15 +153,6 @@ func (c *openfgaServerCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *openfgaServerCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.OpenfgaServer, error) {
-	out := new(model.OpenfgaServer)
-	err := c.cc.Invoke(ctx, OpenfgaServerCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *openfgaServerCommandControllerClient) Restart(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error) {
 	out := new(model.OpenfgaServer)
 	err := c.cc.Invoke(ctx, OpenfgaServerCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type OpenfgaServerCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.OpenfgaServer) (*model.OpenfgaServer, error)
 	// restore a previously deleted openfga-server
 	Restore(context.Context, *model.OpenfgaServer) (*model.OpenfgaServer, error)
-	// create-stack-job for openfga-server
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.OpenfgaServer, error)
 	// restart a openfga-server running in a environment.
 	// openfga-server is restarted by deleting running "openfga" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error)
@@ -277,9 +262,6 @@ func (UnimplementedOpenfgaServerCommandControllerServer) PreviewRestore(context.
 }
 func (UnimplementedOpenfgaServerCommandControllerServer) Restore(context.Context, *model.OpenfgaServer) (*model.OpenfgaServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedOpenfgaServerCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.OpenfgaServer, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedOpenfgaServerCommandControllerServer) Restart(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _OpenfgaServerCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenfgaServerCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OpenfgaServerCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: OpenfgaServerCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaServerCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _OpenfgaServerCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.OpenfgaServerId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var OpenfgaServerCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _OpenfgaServerCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _OpenfgaServerCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

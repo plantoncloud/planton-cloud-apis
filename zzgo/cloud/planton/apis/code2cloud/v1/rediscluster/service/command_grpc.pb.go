@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/rediscluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	RedisClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/delete"
 	RedisClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/previewRestore"
 	RedisClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/restore"
-	RedisClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/createStackJob"
 	RedisClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/restart"
 	RedisClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/pause"
 	RedisClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterCommandController/unpause"
@@ -58,8 +56,6 @@ type RedisClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.RedisCluster, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// restore a previously deleted redis-cluster
 	Restore(ctx context.Context, in *model.RedisCluster, opts ...grpc.CallOption) (*model.RedisCluster, error)
-	// create-stack-job for redis-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// restart a redis-cluster running in a environment.
 	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisCluster, error)
@@ -157,15 +153,6 @@ func (c *redisClusterCommandControllerClient) Restore(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *redisClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.RedisCluster, error) {
-	out := new(model.RedisCluster)
-	err := c.cc.Invoke(ctx, RedisClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *redisClusterCommandControllerClient) Restart(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisCluster, error) {
 	out := new(model.RedisCluster)
 	err := c.cc.Invoke(ctx, RedisClusterCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type RedisClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.RedisCluster) (*model.RedisCluster, error)
 	// restore a previously deleted redis-cluster
 	Restore(context.Context, *model.RedisCluster) (*model.RedisCluster, error)
-	// create-stack-job for redis-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.RedisCluster, error)
 	// restart a redis-cluster running in a environment.
 	// redis-cluster is restarted by deleting running "redis" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.RedisClusterId) (*model.RedisCluster, error)
@@ -277,9 +262,6 @@ func (UnimplementedRedisClusterCommandControllerServer) PreviewRestore(context.C
 }
 func (UnimplementedRedisClusterCommandControllerServer) Restore(context.Context, *model.RedisCluster) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedRedisClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.RedisCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedRedisClusterCommandControllerServer) Restart(context.Context, *model.RedisClusterId) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _RedisClusterCommandController_Restore_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RedisClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _RedisClusterCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.RedisClusterId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var RedisClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _RedisClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _RedisClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

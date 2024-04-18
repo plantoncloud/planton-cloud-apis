@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/solrcloud/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	SolrCloudCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/delete"
 	SolrCloudCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/previewRestore"
 	SolrCloudCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/restore"
-	SolrCloudCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/createStackJob"
 	SolrCloudCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/restart"
 	SolrCloudCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/pause"
 	SolrCloudCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudCommandController/unpause"
@@ -58,8 +56,6 @@ type SolrCloudCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.SolrCloud, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// restore a deleted solr-cloud
 	Restore(ctx context.Context, in *model.SolrCloud, opts ...grpc.CallOption) (*model.SolrCloud, error)
-	// create-stack-job for solr-cloud
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error)
 	// restart a solr-cloud running in a environment.
 	// solr-cloud is restarted by deleting running "solr" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error)
@@ -157,15 +153,6 @@ func (c *solrCloudCommandControllerClient) Restore(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *solrCloudCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.SolrCloud, error) {
-	out := new(model.SolrCloud)
-	err := c.cc.Invoke(ctx, SolrCloudCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *solrCloudCommandControllerClient) Restart(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloud, error) {
 	out := new(model.SolrCloud)
 	err := c.cc.Invoke(ctx, SolrCloudCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type SolrCloudCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.SolrCloud) (*model.SolrCloud, error)
 	// restore a deleted solr-cloud
 	Restore(context.Context, *model.SolrCloud) (*model.SolrCloud, error)
-	// create-stack-job for solr-cloud
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.SolrCloud, error)
 	// restart a solr-cloud running in a environment.
 	// solr-cloud is restarted by deleting running "solr" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.SolrCloudId) (*model.SolrCloud, error)
@@ -277,9 +262,6 @@ func (UnimplementedSolrCloudCommandControllerServer) PreviewRestore(context.Cont
 }
 func (UnimplementedSolrCloudCommandControllerServer) Restore(context.Context, *model.SolrCloud) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedSolrCloudCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.SolrCloud, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedSolrCloudCommandControllerServer) Restart(context.Context, *model.SolrCloudId) (*model.SolrCloud, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _SolrCloudCommandController_Restore_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SolrCloudCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SolrCloudCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.SolrCloudId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var SolrCloudCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _SolrCloudCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _SolrCloudCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

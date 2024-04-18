@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/artifactstore/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	ArtifactStoreCommandController_Delete_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/delete"
 	ArtifactStoreCommandController_PreviewRestore_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/previewRestore"
 	ArtifactStoreCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/restore"
-	ArtifactStoreCommandController_CreateStackJob_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/createStackJob"
 	ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_FullMethodName = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/deleteArtifactStorePackageVersion"
 	ArtifactStoreCommandController_PreviewRefresh_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/previewRefresh"
 	ArtifactStoreCommandController_Refresh_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreCommandController/refresh"
@@ -56,8 +54,6 @@ type ArtifactStoreCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.ArtifactStore, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
 	Restore(ctx context.Context, in *model.ArtifactStore, opts ...grpc.CallOption) (*model.ArtifactStore, error)
-	// create-stack-job for artifact-store
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
 	DeleteArtifactStorePackageVersion(ctx context.Context, in *model.DelArtifactStorePackageVersionCommandInput, opts ...grpc.CallOption) (*model.ArtifactStorePackageVersion, error)
 	// preview refresh a artifact-store that was previously created
@@ -146,15 +142,6 @@ func (c *artifactStoreCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *artifactStoreCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArtifactStore, error) {
-	out := new(model.ArtifactStore)
-	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *artifactStoreCommandControllerClient) DeleteArtifactStorePackageVersion(ctx context.Context, in *model.DelArtifactStorePackageVersionCommandInput, opts ...grpc.CallOption) (*model.ArtifactStorePackageVersion, error) {
 	out := new(model.ArtifactStorePackageVersion)
 	err := c.cc.Invoke(ctx, ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_FullMethodName, in, out, opts...)
@@ -202,8 +189,6 @@ type ArtifactStoreCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
 	Restore(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error)
-	// create-stack-job for artifact-store
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArtifactStore, error)
 	// restore a deleted artifact-store.
 	DeleteArtifactStorePackageVersion(context.Context, *model.DelArtifactStorePackageVersionCommandInput) (*model.ArtifactStorePackageVersion, error)
 	// preview refresh a artifact-store that was previously created
@@ -239,9 +224,6 @@ func (UnimplementedArtifactStoreCommandControllerServer) PreviewRestore(context.
 }
 func (UnimplementedArtifactStoreCommandControllerServer) Restore(context.Context, *model.ArtifactStore) (*model.ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedArtifactStoreCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArtifactStore, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedArtifactStoreCommandControllerServer) DeleteArtifactStorePackageVersion(context.Context, *model.DelArtifactStorePackageVersionCommandInput) (*model.ArtifactStorePackageVersion, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteArtifactStorePackageVersion not implemented")
@@ -408,24 +390,6 @@ func _ArtifactStoreCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactStoreCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArtifactStoreCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArtifactStoreCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArtifactStoreCommandController_DeleteArtifactStorePackageVersion_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.DelArtifactStorePackageVersionCommandInput)
 	if err := dec(in); err != nil {
@@ -518,10 +482,6 @@ var ArtifactStoreCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _ArtifactStoreCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _ArtifactStoreCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "deleteArtifactStorePackageVersion",

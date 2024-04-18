@@ -6,6 +6,8 @@ import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resourc
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcelookupfilter/api_resource_lookup_filter.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
+import "buf/validate/validate.proto";
 
 // wrapper for api-resource-id
 message ApiResourceId {
@@ -159,4 +161,17 @@ message ListByResourceKindWithoutContext {
   // This field contains the pagination information used for retrieving specific paginated
   // data. It enables the client to specify the number of records per page and the page number.
   cloud.planton.apis.commons.rpc.PageInfo page_info = 2;
+}
+
+// input for rpc to create a new stack job for any resource.
+message CreateStackJobCommandInput {
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+  //id of the resource for which the stack-job is to be created.
+  string resource_id = 2;
+  //operation-type to be used for creating the stack-job.
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 3;
+  // reason for creating the stack job
+  string message = 4 [
+    (buf.validate.field).required = true
+  ];
 }

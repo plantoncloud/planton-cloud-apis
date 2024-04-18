@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/storagebucket/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	StorageBucketCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/delete"
 	StorageBucketCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/previewRestore"
 	StorageBucketCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/restore"
-	StorageBucketCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/createStackJob"
 	StorageBucketCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/previewRefresh"
 	StorageBucketCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketCommandController/refresh"
 )
@@ -55,8 +53,6 @@ type StorageBucketCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.StorageBucket, opts ...grpc.CallOption) (*model.StorageBucket, error)
 	// restore a deleted storage-bucket
 	Restore(ctx context.Context, in *model.StorageBucket, opts ...grpc.CallOption) (*model.StorageBucket, error)
-	// create-stack-job for storage-bucket
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.StorageBucket, error)
 	// preview refresh a storage-bucket that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.StorageBucket, error)
 	// refresh a storage-bucket that was previously created
@@ -143,15 +139,6 @@ func (c *storageBucketCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *storageBucketCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.StorageBucket, error) {
-	out := new(model.StorageBucket)
-	err := c.cc.Invoke(ctx, StorageBucketCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *storageBucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.StorageBucket, error) {
 	out := new(model.StorageBucket)
 	err := c.cc.Invoke(ctx, StorageBucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -190,8 +177,6 @@ type StorageBucketCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.StorageBucket) (*model.StorageBucket, error)
 	// restore a deleted storage-bucket
 	Restore(context.Context, *model.StorageBucket) (*model.StorageBucket, error)
-	// create-stack-job for storage-bucket
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.StorageBucket, error)
 	// preview refresh a storage-bucket that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.StorageBucket, error)
 	// refresh a storage-bucket that was previously created
@@ -225,9 +210,6 @@ func (UnimplementedStorageBucketCommandControllerServer) PreviewRestore(context.
 }
 func (UnimplementedStorageBucketCommandControllerServer) Restore(context.Context, *model.StorageBucket) (*model.StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedStorageBucketCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.StorageBucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedStorageBucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -391,24 +373,6 @@ func _StorageBucketCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _StorageBucketCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _StorageBucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -483,10 +447,6 @@ var StorageBucketCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _StorageBucketCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _StorageBucketCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

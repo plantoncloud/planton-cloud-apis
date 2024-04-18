@@ -11,7 +11,7 @@ import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -74,7 +74,7 @@ var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_rawDesc 
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2f, 0x61, 0x70, 0x69,
 	0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x72, 0x70, 0x63, 0x5f, 0x73, 0x65,
 	0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x2e, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x32, 0xc7, 0x12, 0x0a, 0x18, 0x44, 0x6e, 0x73, 0x5a, 0x6f, 0x6e, 0x65, 0x43,
+	0x6f, 0x74, 0x6f, 0x32, 0xe7, 0x10, 0x0a, 0x18, 0x44, 0x6e, 0x73, 0x5a, 0x6f, 0x6e, 0x65, 0x43,
 	0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72,
 	0x12, 0xd1, 0x01, 0x0a, 0x0d, 0x70, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x72, 0x65, 0x61,
 	0x74, 0x65, 0x12, 0x37, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
@@ -180,20 +180,6 @@ var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_rawDesc 
 	0x69, 0x64, 0x22, 0x20, 0x75, 0x6e, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64,
 	0x20, 0x74, 0x6f, 0x20, 0x72, 0x65, 0x73, 0x74, 0x6f, 0x72, 0x65, 0x20, 0x64, 0x6e, 0x73, 0x2d,
 	0x7a, 0x6f, 0x6e, 0x65, 0xa0, 0xff, 0x2b, 0x04, 0xb0, 0xff, 0x2b, 0x02, 0xb8, 0xff, 0x2b, 0x01,
-	0x12, 0xdd, 0x01, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x61, 0x63, 0x6b,
-	0x4a, 0x6f, 0x62, 0x12, 0x44, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
-	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e,
-	0x73, 0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x43,
-	0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x43, 0x6f, 0x6d,
-	0x6d, 0x61, 0x6e, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x1a, 0x37, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63,
-	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x64, 0x6e, 0x73,
-	0x7a, 0x6f, 0x6e, 0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x44, 0x6e, 0x73, 0x5a, 0x6f,
-	0x6e, 0x65, 0x22, 0x4c, 0xc2, 0xb8, 0x18, 0x40, 0x08, 0x2e, 0x10, 0x09, 0x1a, 0x0b, 0x72, 0x65,
-	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x22, 0x2d, 0x75, 0x6e, 0x61, 0x75, 0x74,
-	0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x63, 0x72, 0x65, 0x61, 0x74,
-	0x65, 0x20, 0x73, 0x74, 0x61, 0x63, 0x6b, 0x2d, 0x6a, 0x6f, 0x62, 0x20, 0x66, 0x6f, 0x72, 0x20,
-	0x64, 0x6e, 0x73, 0x2d, 0x7a, 0x6f, 0x6e, 0x65, 0xb0, 0xff, 0x2b, 0x02, 0xc0, 0xff, 0x2b, 0x01,
 	0x12, 0xe8, 0x01, 0x0a, 0x0e, 0x70, 0x72, 0x65, 0x76, 0x69, 0x65, 0x77, 0x52, 0x65, 0x66, 0x72,
 	0x65, 0x73, 0x68, 0x12, 0x4c, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73,
@@ -301,10 +287,9 @@ var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_rawDesc 
 var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_goTypes = []interface{}{
 	(*model.DnsZone)(nil),                          // 0: cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
 	(*model1.ApiResourceDeleteCommandInput)(nil),   // 1: cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput
-	(*model2.CreateStackJobCommandInput)(nil),      // 2: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput
-	(*model1.ApiResourceRefreshCommandInput)(nil),  // 3: cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
-	(*model.AddOrUpdateDnsRecordCommandInput)(nil), // 4: cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
-	(*model.DeleteDnsRecordCommandInput)(nil),      // 5: cloud.planton.apis.code2cloud.v1.dnszone.model.DeleteDnsRecordCommandInput
+	(*model1.ApiResourceRefreshCommandInput)(nil),  // 2: cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	(*model.AddOrUpdateDnsRecordCommandInput)(nil), // 3: cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
+	(*model.DeleteDnsRecordCommandInput)(nil),      // 4: cloud.planton.apis.code2cloud.v1.dnszone.model.DeleteDnsRecordCommandInput
 }
 var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_depIdxs = []int32{
 	0,  // 0: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewCreate:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
@@ -315,28 +300,26 @@ var file_cloud_planton_apis_code2cloud_v1_dnszone_service_command_proto_depIdxs 
 	1,  // 5: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.delete:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput
 	0,  // 6: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRestore:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
 	0,  // 7: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.restore:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	2,  // 8: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.createStackJob:input_type -> cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput
-	3,  // 9: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
-	3,  // 10: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.refresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
-	4,  // 11: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.add:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
-	4,  // 12: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.update:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
-	5,  // 13: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.delete:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DeleteDnsRecordCommandInput
-	0,  // 14: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewCreate:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 15: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.create:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 16: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewUpdate:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 17: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 18: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewDelete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 19: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 20: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRestore:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 21: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.restore:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 22: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.createStackJob:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 23: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRefresh:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 24: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.refresh:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 25: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.add:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 26: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	0,  // 27: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
-	14, // [14:28] is the sub-list for method output_type
-	0,  // [0:14] is the sub-list for method input_type
+	2,  // 8: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	2,  // 9: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.refresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	3,  // 10: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.add:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
+	3,  // 11: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.update:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.AddOrUpdateDnsRecordCommandInput
+	4,  // 12: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.delete:input_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DeleteDnsRecordCommandInput
+	0,  // 13: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewCreate:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 14: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.create:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 15: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewUpdate:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 16: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 17: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewDelete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 18: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 19: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRestore:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 20: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.restore:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 21: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.previewRefresh:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 22: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController.refresh:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 23: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.add:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 24: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	0,  // 25: cloud.planton.apis.code2cloud.v1.dnszone.service.DnsRecordCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone
+	13, // [13:26] is the sub-list for method output_type
+	0,  // [0:13] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

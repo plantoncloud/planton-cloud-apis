@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/cloudaccount/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	CloudAccountCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/delete"
 	CloudAccountCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/previewRestore"
 	CloudAccountCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/restore"
-	CloudAccountCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/createStackJob"
 	CloudAccountCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/previewRefresh"
 	CloudAccountCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountCommandController/refresh"
 )
@@ -56,8 +54,6 @@ type CloudAccountCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.CloudAccount, opts ...grpc.CallOption) (*model.CloudAccount, error)
 	// restore a deleted cloud-account.
 	Restore(ctx context.Context, in *model.CloudAccount, opts ...grpc.CallOption) (*model.CloudAccount, error)
-	// create-stack-job for cloud-account
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error)
 	// preview refresh a cloud-account that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error)
 	// refresh a cloud-account that was previously created
@@ -144,15 +140,6 @@ func (c *cloudAccountCommandControllerClient) Restore(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *cloudAccountCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error) {
-	out := new(model.CloudAccount)
-	err := c.cc.Invoke(ctx, CloudAccountCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *cloudAccountCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error) {
 	out := new(model.CloudAccount)
 	err := c.cc.Invoke(ctx, CloudAccountCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -192,8 +179,6 @@ type CloudAccountCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.CloudAccount) (*model.CloudAccount, error)
 	// restore a deleted cloud-account.
 	Restore(context.Context, *model.CloudAccount) (*model.CloudAccount, error)
-	// create-stack-job for cloud-account
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.CloudAccount, error)
 	// preview refresh a cloud-account that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CloudAccount, error)
 	// refresh a cloud-account that was previously created
@@ -227,9 +212,6 @@ func (UnimplementedCloudAccountCommandControllerServer) PreviewRestore(context.C
 }
 func (UnimplementedCloudAccountCommandControllerServer) Restore(context.Context, *model.CloudAccount) (*model.CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedCloudAccountCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.CloudAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedCloudAccountCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -393,24 +375,6 @@ func _CloudAccountCommandController_Restore_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CloudAccountCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CloudAccountCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CloudAccountCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CloudAccountCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -485,10 +449,6 @@ var CloudAccountCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _CloudAccountCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _CloudAccountCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

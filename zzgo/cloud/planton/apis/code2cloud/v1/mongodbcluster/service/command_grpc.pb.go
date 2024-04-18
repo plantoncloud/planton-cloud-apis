@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/mongodbcluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	MongodbClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/delete"
 	MongodbClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/previewRestore"
 	MongodbClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/restore"
-	MongodbClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/createStackJob"
 	MongodbClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/restart"
 	MongodbClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/pause"
 	MongodbClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterCommandController/unpause"
@@ -58,8 +56,6 @@ type MongodbClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.MongodbCluster, opts ...grpc.CallOption) (*model.MongodbCluster, error)
 	// restore a previously deleted mongodb-cluster
 	Restore(ctx context.Context, in *model.MongodbCluster, opts ...grpc.CallOption) (*model.MongodbCluster, error)
-	// create-stack-job for mongodb-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.MongodbCluster, error)
 	// restart a mongodb-cluster running in a environment.
 	// mongodb-cluster is restarted by deleting running "mongodb" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbCluster, error)
@@ -157,15 +153,6 @@ func (c *mongodbClusterCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *mongodbClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.MongodbCluster, error) {
-	out := new(model.MongodbCluster)
-	err := c.cc.Invoke(ctx, MongodbClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *mongodbClusterCommandControllerClient) Restart(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbCluster, error) {
 	out := new(model.MongodbCluster)
 	err := c.cc.Invoke(ctx, MongodbClusterCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type MongodbClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.MongodbCluster) (*model.MongodbCluster, error)
 	// restore a previously deleted mongodb-cluster
 	Restore(context.Context, *model.MongodbCluster) (*model.MongodbCluster, error)
-	// create-stack-job for mongodb-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.MongodbCluster, error)
 	// restart a mongodb-cluster running in a environment.
 	// mongodb-cluster is restarted by deleting running "mongodb" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.MongodbClusterId) (*model.MongodbCluster, error)
@@ -277,9 +262,6 @@ func (UnimplementedMongodbClusterCommandControllerServer) PreviewRestore(context
 }
 func (UnimplementedMongodbClusterCommandControllerServer) Restore(context.Context, *model.MongodbCluster) (*model.MongodbCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedMongodbClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.MongodbCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedMongodbClusterCommandControllerServer) Restart(context.Context, *model.MongodbClusterId) (*model.MongodbCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _MongodbClusterCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MongodbClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MongodbClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MongodbClusterCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.MongodbClusterId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var MongodbClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _MongodbClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _MongodbClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

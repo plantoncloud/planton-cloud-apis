@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgrescluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	PostgresClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/delete"
 	PostgresClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/previewRestore"
 	PostgresClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/restore"
-	PostgresClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/createStackJob"
 	PostgresClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/restart"
 	PostgresClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/pause"
 	PostgresClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterCommandController/unpause"
@@ -58,8 +56,6 @@ type PostgresClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.PostgresCluster, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
 	Restore(ctx context.Context, in *model.PostgresCluster, opts ...grpc.CallOption) (*model.PostgresCluster, error)
-	// create-stack-job for postgres-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// restart a postgres-cluster running in a environment.
 	// postgres-cluster is restarted by deleting running pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error)
@@ -157,15 +153,6 @@ func (c *postgresClusterCommandControllerClient) Restore(ctx context.Context, in
 	return out, nil
 }
 
-func (c *postgresClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
-	out := new(model.PostgresCluster)
-	err := c.cc.Invoke(ctx, PostgresClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *postgresClusterCommandControllerClient) Restart(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
 	out := new(model.PostgresCluster)
 	err := c.cc.Invoke(ctx, PostgresClusterCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type PostgresClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error)
 	// restore a deleted postgres-cluster in a environment
 	Restore(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error)
-	// create-stack-job for postgres-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.PostgresCluster, error)
 	// restart a postgres-cluster running in a environment.
 	// postgres-cluster is restarted by deleting running pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error)
@@ -277,9 +262,6 @@ func (UnimplementedPostgresClusterCommandControllerServer) PreviewRestore(contex
 }
 func (UnimplementedPostgresClusterCommandControllerServer) Restore(context.Context, *model.PostgresCluster) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedPostgresClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.PostgresCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedPostgresClusterCommandControllerServer) Restart(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _PostgresClusterCommandController_Restore_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PostgresClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _PostgresClusterCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.PostgresClusterId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var PostgresClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _PostgresClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _PostgresClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

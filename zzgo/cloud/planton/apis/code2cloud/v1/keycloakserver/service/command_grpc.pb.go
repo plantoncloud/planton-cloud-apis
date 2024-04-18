@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/keycloakserver/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	KeycloakServerCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/delete"
 	KeycloakServerCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/previewRestore"
 	KeycloakServerCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/restore"
-	KeycloakServerCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/createStackJob"
 	KeycloakServerCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/restart"
 	KeycloakServerCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/pause"
 	KeycloakServerCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerCommandController/unpause"
@@ -58,8 +56,6 @@ type KeycloakServerCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.KeycloakServer, opts ...grpc.CallOption) (*model.KeycloakServer, error)
 	// restore a previously deleted keycloak-server
 	Restore(ctx context.Context, in *model.KeycloakServer, opts ...grpc.CallOption) (*model.KeycloakServer, error)
-	// create-stack-job for keycloak-server
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.KeycloakServer, error)
 	// restart a keycloak-server running in a environment.
 	// keycloak-server is restarted by deleting running "keycloak" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServer, error)
@@ -157,15 +153,6 @@ func (c *keycloakServerCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *keycloakServerCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.KeycloakServer, error) {
-	out := new(model.KeycloakServer)
-	err := c.cc.Invoke(ctx, KeycloakServerCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *keycloakServerCommandControllerClient) Restart(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServer, error) {
 	out := new(model.KeycloakServer)
 	err := c.cc.Invoke(ctx, KeycloakServerCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type KeycloakServerCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.KeycloakServer) (*model.KeycloakServer, error)
 	// restore a previously deleted keycloak-server
 	Restore(context.Context, *model.KeycloakServer) (*model.KeycloakServer, error)
-	// create-stack-job for keycloak-server
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.KeycloakServer, error)
 	// restart a keycloak-server running in a environment.
 	// keycloak-server is restarted by deleting running "keycloak" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.KeycloakServerId) (*model.KeycloakServer, error)
@@ -277,9 +262,6 @@ func (UnimplementedKeycloakServerCommandControllerServer) PreviewRestore(context
 }
 func (UnimplementedKeycloakServerCommandControllerServer) Restore(context.Context, *model.KeycloakServer) (*model.KeycloakServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedKeycloakServerCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.KeycloakServer, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedKeycloakServerCommandControllerServer) Restart(context.Context, *model.KeycloakServerId) (*model.KeycloakServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _KeycloakServerCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KeycloakServerCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KeycloakServerCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KeycloakServerCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakServerCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _KeycloakServerCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.KeycloakServerId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var KeycloakServerCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _KeycloakServerCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _KeycloakServerCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

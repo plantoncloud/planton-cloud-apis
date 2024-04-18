@@ -10,8 +10,7 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,7 +30,6 @@ const (
 	EnvironmentCommandController_Delete_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/delete"
 	EnvironmentCommandController_PreviewRestore_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/previewRestore"
 	EnvironmentCommandController_Restore_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/restore"
-	EnvironmentCommandController_CreateStackJob_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/createStackJob"
 	EnvironmentCommandController_Clone_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/clone"
 	EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/setBuildEngineEnvironment"
 	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/pause"
@@ -64,8 +62,6 @@ type EnvironmentCommandControllerClient interface {
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
-	// create-stack-job for environment
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// clone an existing environment for a product
 	// a environment is cloned by creating the following resources with same spec as the source environment.
 	// 1. microservice deployment environments
@@ -90,7 +86,7 @@ type EnvironmentCommandControllerClient interface {
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -177,15 +173,6 @@ func (c *environmentCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *environmentCommandControllerClient) Clone(ctx context.Context, in *model.CloneEnvironmentCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Clone_FullMethodName, in, out, opts...)
@@ -222,8 +209,8 @@ func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error) {
-	out := new(model3.WorkloadNamespace)
+func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error) {
+	out := new(model2.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -272,8 +259,6 @@ type EnvironmentCommandControllerServer interface {
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(context.Context, *model.Environment) (*model.Environment, error)
-	// create-stack-job for environment
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.Environment, error)
 	// clone an existing environment for a product
 	// a environment is cloned by creating the following resources with same spec as the source environment.
 	// 1. microservice deployment environments
@@ -298,7 +283,7 @@ type EnvironmentCommandControllerServer interface {
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error)
 	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model3.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model2.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -333,9 +318,6 @@ func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Co
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
-}
 func (UnimplementedEnvironmentCommandControllerServer) Clone(context.Context, *model.CloneEnvironmentCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Clone not implemented")
 }
@@ -348,7 +330,7 @@ func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *m
 func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model3.WorkloadNamespace, error) {
+func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model2.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
@@ -509,24 +491,6 @@ func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentCommandControllerServer).Restore(ctx, req.(*model.Environment))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -695,10 +659,6 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _EnvironmentCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _EnvironmentCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "clone",
