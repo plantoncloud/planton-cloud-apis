@@ -12,15 +12,6 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 
 //code project query controller
 service CodeProjectQueryController {
-  //list all code projects for the requested page.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list code-projects";
-  }
-
   //look up a code project by code project id
   rpc getById(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {

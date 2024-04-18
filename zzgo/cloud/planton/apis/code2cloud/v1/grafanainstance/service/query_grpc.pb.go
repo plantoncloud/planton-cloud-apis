@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/grafanainstance/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -25,7 +24,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GrafanaInstanceQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/list"
 	GrafanaInstanceQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/getById"
 	GrafanaInstanceQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findByProductId"
 	GrafanaInstanceQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findByEnvironmentId"
@@ -37,8 +35,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GrafanaInstanceQueryControllerClient interface {
-	// list all grafana-instances on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error)
 	// look up grafana-instance using grafana-instance id
 	GetById(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// find grafana-instances by product id.
@@ -58,15 +54,6 @@ type grafanaInstanceQueryControllerClient struct {
 
 func NewGrafanaInstanceQueryControllerClient(cc grpc.ClientConnInterface) GrafanaInstanceQueryControllerClient {
 	return &grafanaInstanceQueryControllerClient{cc}
-}
-
-func (c *grafanaInstanceQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error) {
-	out := new(model.GrafanaInstanceList)
-	err := c.cc.Invoke(ctx, GrafanaInstanceQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *grafanaInstanceQueryControllerClient) GetById(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error) {
@@ -118,8 +105,6 @@ func (c *grafanaInstanceQueryControllerClient) FindPods(ctx context.Context, in 
 // All implementations should embed UnimplementedGrafanaInstanceQueryControllerServer
 // for forward compatibility
 type GrafanaInstanceQueryControllerServer interface {
-	// list all grafana-instances on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.GrafanaInstanceList, error)
 	// look up grafana-instance using grafana-instance id
 	GetById(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
 	// find grafana-instances by product id.
@@ -137,9 +122,6 @@ type GrafanaInstanceQueryControllerServer interface {
 type UnimplementedGrafanaInstanceQueryControllerServer struct {
 }
 
-func (UnimplementedGrafanaInstanceQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.GrafanaInstanceList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedGrafanaInstanceQueryControllerServer) GetById(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -165,24 +147,6 @@ type UnsafeGrafanaInstanceQueryControllerServer interface {
 
 func RegisterGrafanaInstanceQueryControllerServer(s grpc.ServiceRegistrar, srv GrafanaInstanceQueryControllerServer) {
 	s.RegisterService(&GrafanaInstanceQueryController_ServiceDesc, srv)
-}
-
-func _GrafanaInstanceQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrafanaInstanceQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrafanaInstanceQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaInstanceQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _GrafanaInstanceQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -282,10 +246,6 @@ var GrafanaInstanceQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController",
 	HandlerType: (*GrafanaInstanceQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _GrafanaInstanceQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _GrafanaInstanceQueryController_GetById_Handler,

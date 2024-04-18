@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	protobuf "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/protobuf"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CompanyQueryController_List_FullMethodName          = "/cloud.planton.apis.resourcemanager.v1.company.service.CompanyQueryController/list"
 	CompanyQueryController_GetById_FullMethodName       = "/cloud.planton.apis.resourcemanager.v1.company.service.CompanyQueryController/getById"
 	CompanyQueryController_FindCompanies_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.company.service.CompanyQueryController/findCompanies"
 )
@@ -31,8 +29,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CompanyQueryControllerClient interface {
-	// list all the companies for the requested page. This is intended to be used on back-office portal.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CompanyList, error)
 	// get a company using company id
 	GetById(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model.Company, error)
 	FindCompanies(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.Companies, error)
@@ -44,15 +40,6 @@ type companyQueryControllerClient struct {
 
 func NewCompanyQueryControllerClient(cc grpc.ClientConnInterface) CompanyQueryControllerClient {
 	return &companyQueryControllerClient{cc}
-}
-
-func (c *companyQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CompanyList, error) {
-	out := new(model.CompanyList)
-	err := c.cc.Invoke(ctx, CompanyQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *companyQueryControllerClient) GetById(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model.Company, error) {
@@ -77,8 +64,6 @@ func (c *companyQueryControllerClient) FindCompanies(ctx context.Context, in *pr
 // All implementations should embed UnimplementedCompanyQueryControllerServer
 // for forward compatibility
 type CompanyQueryControllerServer interface {
-	// list all the companies for the requested page. This is intended to be used on back-office portal.
-	List(context.Context, *rpc.PageInfo) (*model.CompanyList, error)
 	// get a company using company id
 	GetById(context.Context, *model.CompanyId) (*model.Company, error)
 	FindCompanies(context.Context, *protobuf.CustomEmpty) (*model.Companies, error)
@@ -88,9 +73,6 @@ type CompanyQueryControllerServer interface {
 type UnimplementedCompanyQueryControllerServer struct {
 }
 
-func (UnimplementedCompanyQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.CompanyList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedCompanyQueryControllerServer) GetById(context.Context, *model.CompanyId) (*model.Company, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -107,24 +89,6 @@ type UnsafeCompanyQueryControllerServer interface {
 
 func RegisterCompanyQueryControllerServer(s grpc.ServiceRegistrar, srv CompanyQueryControllerServer) {
 	s.RegisterService(&CompanyQueryController_ServiceDesc, srv)
-}
-
-func _CompanyQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CompanyQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CompanyQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CompanyQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CompanyQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -170,10 +134,6 @@ var CompanyQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.resourcemanager.v1.company.service.CompanyQueryController",
 	HandlerType: (*CompanyQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _CompanyQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _CompanyQueryController_GetById_Handler,

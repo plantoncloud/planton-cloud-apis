@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgrescluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PostgresClusterQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/list"
 	PostgresClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getById"
 	PostgresClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getPassword"
 	PostgresClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findPods"
@@ -32,8 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type PostgresClusterQueryControllerClient interface {
-	// list all postgres-clusters for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error)
 	// look up postgres-cluster password
@@ -49,15 +45,6 @@ type postgresClusterQueryControllerClient struct {
 
 func NewPostgresClusterQueryControllerClient(cc grpc.ClientConnInterface) PostgresClusterQueryControllerClient {
 	return &postgresClusterQueryControllerClient{cc}
-}
-
-func (c *postgresClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.PostgresClusterList, error) {
-	out := new(model.PostgresClusterList)
-	err := c.cc.Invoke(ctx, PostgresClusterQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *postgresClusterQueryControllerClient) GetById(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresCluster, error) {
@@ -91,8 +78,6 @@ func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in 
 // All implementations should embed UnimplementedPostgresClusterQueryControllerServer
 // for forward compatibility
 type PostgresClusterQueryControllerServer interface {
-	// list all postgres-clusters for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.PostgresClusterList, error)
 	// look up a postgres-cluster using postgres-cluster id
 	GetById(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error)
 	// look up postgres-cluster password
@@ -106,9 +91,6 @@ type PostgresClusterQueryControllerServer interface {
 type UnimplementedPostgresClusterQueryControllerServer struct {
 }
 
-func (UnimplementedPostgresClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.PostgresClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedPostgresClusterQueryControllerServer) GetById(context.Context, *model.PostgresClusterId) (*model.PostgresCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -128,24 +110,6 @@ type UnsafePostgresClusterQueryControllerServer interface {
 
 func RegisterPostgresClusterQueryControllerServer(s grpc.ServiceRegistrar, srv PostgresClusterQueryControllerServer) {
 	s.RegisterService(&PostgresClusterQueryController_ServiceDesc, srv)
-}
-
-func _PostgresClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -209,10 +173,6 @@ var PostgresClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController",
 	HandlerType: (*PostgresClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _PostgresClusterQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _PostgresClusterQueryController_GetById_Handler,

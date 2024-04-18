@@ -14,15 +14,6 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //solr-cloud query controller
 service SolrCloudQueryController {
-  //list all solr-clouds for the requested page.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloudList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters";
-  }
-
   //look up solr-cloud using solr-cloud id
   rpc getById(cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloudId)
       returns (cloud.planton.apis.code2cloud.v1.solrcloud.model.SolrCloud) {

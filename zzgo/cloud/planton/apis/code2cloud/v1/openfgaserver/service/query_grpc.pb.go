@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/openfgaserver/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OpenfgaServerQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/list"
 	OpenfgaServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getById"
 	OpenfgaServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getPassword"
 	OpenfgaServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findPods"
@@ -32,8 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OpenfgaServerQueryControllerClient interface {
-	// list all openfga-servers on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenfgaServerList, error)
 	// look up openfga-server using openfga-server id
 	GetById(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error)
 	// look up openfga-server sasl password
@@ -49,15 +45,6 @@ type openfgaServerQueryControllerClient struct {
 
 func NewOpenfgaServerQueryControllerClient(cc grpc.ClientConnInterface) OpenfgaServerQueryControllerClient {
 	return &openfgaServerQueryControllerClient{cc}
-}
-
-func (c *openfgaServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.OpenfgaServerList, error) {
-	out := new(model.OpenfgaServerList)
-	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *openfgaServerQueryControllerClient) GetById(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServer, error) {
@@ -91,8 +78,6 @@ func (c *openfgaServerQueryControllerClient) FindPods(ctx context.Context, in *m
 // All implementations should embed UnimplementedOpenfgaServerQueryControllerServer
 // for forward compatibility
 type OpenfgaServerQueryControllerServer interface {
-	// list all openfga-servers on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.OpenfgaServerList, error)
 	// look up openfga-server using openfga-server id
 	GetById(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error)
 	// look up openfga-server sasl password
@@ -106,9 +91,6 @@ type OpenfgaServerQueryControllerServer interface {
 type UnimplementedOpenfgaServerQueryControllerServer struct {
 }
 
-func (UnimplementedOpenfgaServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.OpenfgaServerList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedOpenfgaServerQueryControllerServer) GetById(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -128,24 +110,6 @@ type UnsafeOpenfgaServerQueryControllerServer interface {
 
 func RegisterOpenfgaServerQueryControllerServer(s grpc.ServiceRegistrar, srv OpenfgaServerQueryControllerServer) {
 	s.RegisterService(&OpenfgaServerQueryController_ServiceDesc, srv)
-}
-
-func _OpenfgaServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OpenfgaServerQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: OpenfgaServerQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _OpenfgaServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -209,10 +173,6 @@ var OpenfgaServerQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController",
 	HandlerType: (*OpenfgaServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _OpenfgaServerQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _OpenfgaServerQueryController_GetById_Handler,
