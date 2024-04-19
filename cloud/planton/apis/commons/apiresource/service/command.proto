@@ -10,7 +10,5 @@ service ApiResourceStackJobCommandController {
 
   //create-stack-job for any api resource
   rpc createStackJob(cloud.planton.apis.commons.apiresource.model.CreateStackJobCommandInput)
-      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobId) {
-  }
-
+      returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobId);
 }
