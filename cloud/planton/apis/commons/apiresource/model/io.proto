@@ -165,11 +165,17 @@ message ListByResourceKindWithoutContext {
 
 // input for rpc to create a new stack job for any resource.
 message CreateStackJobCommandInput {
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1 [
+    (buf.validate.field).required = true
+  ];
   //id of the resource for which the stack-job is to be created.
-  string resource_id = 2;
+  string resource_id = 2 [
+    (buf.validate.field).required = true
+  ];
   //operation-type to be used for creating the stack-job.
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 3;
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 3 [
+    (buf.validate.field).required = true
+  ];
   // reason for creating the stack job
   string message = 4 [
     (buf.validate.field).required = true
