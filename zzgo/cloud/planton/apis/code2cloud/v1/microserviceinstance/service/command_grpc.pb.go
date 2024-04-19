@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/microserviceinstance/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	MicroserviceInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/delete"
 	MicroserviceInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/previewRestore"
 	MicroserviceInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/restore"
-	MicroserviceInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/createStackJob"
 	MicroserviceInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/restart"
 	MicroserviceInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/pause"
 	MicroserviceInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceCommandController/unpause"
@@ -58,8 +56,6 @@ type MicroserviceInstanceCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
 	Restore(ctx context.Context, in *model.MicroserviceInstance, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
-	// create-stack-job for microservice-instance
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// restart a microservice-instance running in a environment.
 	// microservice-instance is restarted by deleting running pods which will be automatically recreated by kubernetes.
 	Restart(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
@@ -157,15 +153,6 @@ func (c *microserviceInstanceCommandControllerClient) Restore(ctx context.Contex
 	return out, nil
 }
 
-func (c *microserviceInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
-	out := new(model.MicroserviceInstance)
-	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *microserviceInstanceCommandControllerClient) Restart(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
 	out := new(model.MicroserviceInstance)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type MicroserviceInstanceCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error)
 	// restore a deleted microservice-instance of a environment.
 	Restore(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error)
-	// create-stack-job for microservice-instance
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.MicroserviceInstance, error)
 	// restart a microservice-instance running in a environment.
 	// microservice-instance is restarted by deleting running pods which will be automatically recreated by kubernetes.
 	Restart(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error)
@@ -277,9 +262,6 @@ func (UnimplementedMicroserviceInstanceCommandControllerServer) PreviewRestore(c
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Restore(context.Context, *model.MicroserviceInstance) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedMicroserviceInstanceCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.MicroserviceInstance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedMicroserviceInstanceCommandControllerServer) Restart(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _MicroserviceInstanceCommandController_Restore_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MicroserviceInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceInstanceCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceInstanceCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MicroserviceInstanceCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.MicroserviceInstanceId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var MicroserviceInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _MicroserviceInstanceCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _MicroserviceInstanceCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

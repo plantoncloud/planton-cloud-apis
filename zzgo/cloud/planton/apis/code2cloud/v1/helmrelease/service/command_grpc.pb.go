@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/helmrelease/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	HelmReleaseCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/delete"
 	HelmReleaseCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/previewRestore"
 	HelmReleaseCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/restore"
-	HelmReleaseCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/createStackJob"
 	HelmReleaseCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/previewRefresh"
 	HelmReleaseCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseCommandController/refresh"
 )
@@ -55,8 +53,6 @@ type HelmReleaseCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// create-stack-job for helm-release
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// preview refresh a helm-release that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// refresh a helm-release that was previously created
@@ -143,15 +139,6 @@ func (c *helmReleaseCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -190,8 +177,6 @@ type HelmReleaseCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// create-stack-job for helm-release
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.HelmRelease, error)
 	// preview refresh a helm-release that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error)
 	// refresh a helm-release that was previously created
@@ -225,9 +210,6 @@ func (UnimplementedHelmReleaseCommandControllerServer) PreviewRestore(context.Co
 }
 func (UnimplementedHelmReleaseCommandControllerServer) Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedHelmReleaseCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -391,24 +373,6 @@ func _HelmReleaseCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HelmReleaseCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _HelmReleaseCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -483,10 +447,6 @@ var HelmReleaseCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _HelmReleaseCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _HelmReleaseCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/locustcluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	LocustClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/delete"
 	LocustClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/previewRestore"
 	LocustClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/restore"
-	LocustClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/createStackJob"
 	LocustClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/restart"
 	LocustClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/pause"
 	LocustClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterCommandController/unpause"
@@ -58,8 +56,6 @@ type LocustClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.LocustCluster, opts ...grpc.CallOption) (*model.LocustCluster, error)
 	// restore a previously deleted locust-cluster
 	Restore(ctx context.Context, in *model.LocustCluster, opts ...grpc.CallOption) (*model.LocustCluster, error)
-	// create-stack-job for locust-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.LocustCluster, error)
 	// restart a locust-cluster running in a environment.
 	// locust-cluster is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.LocustClusterId, opts ...grpc.CallOption) (*model.LocustCluster, error)
@@ -157,15 +153,6 @@ func (c *locustClusterCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *locustClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.LocustCluster, error) {
-	out := new(model.LocustCluster)
-	err := c.cc.Invoke(ctx, LocustClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *locustClusterCommandControllerClient) Restart(ctx context.Context, in *model.LocustClusterId, opts ...grpc.CallOption) (*model.LocustCluster, error) {
 	out := new(model.LocustCluster)
 	err := c.cc.Invoke(ctx, LocustClusterCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type LocustClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.LocustCluster) (*model.LocustCluster, error)
 	// restore a previously deleted locust-cluster
 	Restore(context.Context, *model.LocustCluster) (*model.LocustCluster, error)
-	// create-stack-job for locust-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.LocustCluster, error)
 	// restart a locust-cluster running in a environment.
 	// locust-cluster is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.LocustClusterId) (*model.LocustCluster, error)
@@ -277,9 +262,6 @@ func (UnimplementedLocustClusterCommandControllerServer) PreviewRestore(context.
 }
 func (UnimplementedLocustClusterCommandControllerServer) Restore(context.Context, *model.LocustCluster) (*model.LocustCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedLocustClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.LocustCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedLocustClusterCommandControllerServer) Restart(context.Context, *model.LocustClusterId) (*model.LocustCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _LocustClusterCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LocustClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LocustClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: LocustClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _LocustClusterCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.LocustClusterId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var LocustClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _LocustClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _LocustClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

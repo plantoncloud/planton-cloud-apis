@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/jenkinsserver/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	JenkinsServerCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/delete"
 	JenkinsServerCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/previewRestore"
 	JenkinsServerCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/restore"
-	JenkinsServerCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/createStackJob"
 	JenkinsServerCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/restart"
 	JenkinsServerCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/pause"
 	JenkinsServerCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerCommandController/unpause"
@@ -58,8 +56,6 @@ type JenkinsServerCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.JenkinsServer, opts ...grpc.CallOption) (*model.JenkinsServer, error)
 	// restore a previously deleted jenkins-server
 	Restore(ctx context.Context, in *model.JenkinsServer, opts ...grpc.CallOption) (*model.JenkinsServer, error)
-	// create-stack-job for jenkins-server
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.JenkinsServer, error)
 	// restart a jenkins-server running in a environment.
 	// jenkins-server is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServer, error)
@@ -157,15 +153,6 @@ func (c *jenkinsServerCommandControllerClient) Restore(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *jenkinsServerCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.JenkinsServer, error) {
-	out := new(model.JenkinsServer)
-	err := c.cc.Invoke(ctx, JenkinsServerCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *jenkinsServerCommandControllerClient) Restart(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServer, error) {
 	out := new(model.JenkinsServer)
 	err := c.cc.Invoke(ctx, JenkinsServerCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type JenkinsServerCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.JenkinsServer) (*model.JenkinsServer, error)
 	// restore a previously deleted jenkins-server
 	Restore(context.Context, *model.JenkinsServer) (*model.JenkinsServer, error)
-	// create-stack-job for jenkins-server
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.JenkinsServer, error)
 	// restart a jenkins-server running in a environment.
 	// jenkins-server is restarted by deleting running "jenkins" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error)
@@ -277,9 +262,6 @@ func (UnimplementedJenkinsServerCommandControllerServer) PreviewRestore(context.
 }
 func (UnimplementedJenkinsServerCommandControllerServer) Restore(context.Context, *model.JenkinsServer) (*model.JenkinsServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedJenkinsServerCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.JenkinsServer, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedJenkinsServerCommandControllerServer) Restart(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _JenkinsServerCommandController_Restore_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _JenkinsServerCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(JenkinsServerCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: JenkinsServerCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsServerCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _JenkinsServerCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.JenkinsServerId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var JenkinsServerCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _JenkinsServerCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _JenkinsServerCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

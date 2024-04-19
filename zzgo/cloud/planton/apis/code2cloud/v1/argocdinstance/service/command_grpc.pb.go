@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/argocdinstance/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	ArgocdInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/delete"
 	ArgocdInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/previewRestore"
 	ArgocdInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/restore"
-	ArgocdInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/createStackJob"
 	ArgocdInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/restart"
 	ArgocdInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/pause"
 	ArgocdInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.argocdinstance.service.ArgocdInstanceCommandController/unpause"
@@ -58,8 +56,6 @@ type ArgocdInstanceCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// restore a previously deleted argocd-instance
 	Restore(ctx context.Context, in *model.ArgocdInstance, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
-	// create-stack-job for argocd-instance
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
 	// restart a argocd-instance running in a environment.
 	// argocd-instance is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model.ArgocdInstance, error)
@@ -157,15 +153,6 @@ func (c *argocdInstanceCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *argocdInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
-	out := new(model.ArgocdInstance)
-	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *argocdInstanceCommandControllerClient) Restart(ctx context.Context, in *model.ArgocdInstanceId, opts ...grpc.CallOption) (*model.ArgocdInstance, error) {
 	out := new(model.ArgocdInstance)
 	err := c.cc.Invoke(ctx, ArgocdInstanceCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type ArgocdInstanceCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
 	// restore a previously deleted argocd-instance
 	Restore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error)
-	// create-stack-job for argocd-instance
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgocdInstance, error)
 	// restart a argocd-instance running in a environment.
 	// argocd-instance is restarted by deleting running "argocd" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error)
@@ -277,9 +262,6 @@ func (UnimplementedArgocdInstanceCommandControllerServer) PreviewRestore(context
 }
 func (UnimplementedArgocdInstanceCommandControllerServer) Restore(context.Context, *model.ArgocdInstance) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedArgocdInstanceCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ArgocdInstance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedArgocdInstanceCommandControllerServer) Restart(context.Context, *model.ArgocdInstanceId) (*model.ArgocdInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _ArgocdInstanceCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgocdInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdInstanceCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdInstanceCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdInstanceCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ArgocdInstanceCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.ArgocdInstanceId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var ArgocdInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _ArgocdInstanceCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _ArgocdInstanceCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

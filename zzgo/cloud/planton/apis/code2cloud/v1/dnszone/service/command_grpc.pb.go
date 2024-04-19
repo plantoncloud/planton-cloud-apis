@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	DnsZoneCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/delete"
 	DnsZoneCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/previewRestore"
 	DnsZoneCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/restore"
-	DnsZoneCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/createStackJob"
 	DnsZoneCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/previewRefresh"
 	DnsZoneCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneCommandController/refresh"
 )
@@ -55,8 +53,6 @@ type DnsZoneCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.DnsZone, opts ...grpc.CallOption) (*model.DnsZone, error)
 	// restore a deleted dns-zone
 	Restore(ctx context.Context, in *model.DnsZone, opts ...grpc.CallOption) (*model.DnsZone, error)
-	// create-stack-job for dns-zone
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.DnsZone, error)
 	// preview refresh a dns-zone that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.DnsZone, error)
 	// refresh a dns-zone that was previously created
@@ -143,15 +139,6 @@ func (c *dnsZoneCommandControllerClient) Restore(ctx context.Context, in *model.
 	return out, nil
 }
 
-func (c *dnsZoneCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.DnsZone, error) {
-	out := new(model.DnsZone)
-	err := c.cc.Invoke(ctx, DnsZoneCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dnsZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.DnsZone, error) {
 	out := new(model.DnsZone)
 	err := c.cc.Invoke(ctx, DnsZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -190,8 +177,6 @@ type DnsZoneCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.DnsZone) (*model.DnsZone, error)
 	// restore a deleted dns-zone
 	Restore(context.Context, *model.DnsZone) (*model.DnsZone, error)
-	// create-stack-job for dns-zone
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.DnsZone, error)
 	// preview refresh a dns-zone that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.DnsZone, error)
 	// refresh a dns-zone that was previously created
@@ -225,9 +210,6 @@ func (UnimplementedDnsZoneCommandControllerServer) PreviewRestore(context.Contex
 }
 func (UnimplementedDnsZoneCommandControllerServer) Restore(context.Context, *model.DnsZone) (*model.DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedDnsZoneCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.DnsZone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedDnsZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -391,24 +373,6 @@ func _DnsZoneCommandController_Restore_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DnsZoneCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DnsZoneCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DnsZoneCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DnsZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -483,10 +447,6 @@ var DnsZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _DnsZoneCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _DnsZoneCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "previewRefresh",
