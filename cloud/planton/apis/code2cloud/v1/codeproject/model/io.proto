@@ -7,10 +7,13 @@ import "cloud/planton/apis/code2cloud/v1/codeproject/enums/codeprojectprofile/co
 import "cloud/planton/apis/code2cloud/v1/codeproject/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/microserviceinstance/model/state.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for code project id
 message CodeProjectId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of code project ids
@@ -20,7 +23,9 @@ message CodeProjectIds {
 
 //wrapper for code project url
 message CodeProjectUrl {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of code projects
@@ -37,9 +42,13 @@ message CodeProjectList {
 //input for command to attach a machine account to code-project on upstream code-server(github/gitlab)
 message AttachMachineAccountByCodeProjectIdCommandInput {
   //email of the machine account to be attached to the code-project
-  string machine_account_email = 1;
+  string machine_account_email = 1 [
+    (buf.validate.field).required = true
+  ];
   //id of the code project to which the machine account is to be attached
-  string code_project_id = 2;
+  string code_project_id = 2 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //code project file
@@ -105,11 +114,17 @@ message BuildEngineProject {
 //input for query rpc to get dynamically generated code pipeline template
 message GenerateCodePipelineTemplateQueryInput {
   //code project profile
-  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile code_project_profile = 1;
+  cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile code_project_profile = 1 [
+    (buf.validate.field).required = true
+  ];
   //git remote url used for looking up code project
-  string git_remote_url = 2;
+  string git_remote_url = 2 [
+    (buf.validate.field).required = true
+  ];
   //list of microservice-instances declared in _kustomize directory
-  repeated cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instances = 3;
+  repeated cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance microservice_instances = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 message GenerateCodePipelineTemplateQueryResp {
