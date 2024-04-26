@@ -12,11 +12,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //dns-zone
 message DnsZone {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = dns_zone;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
@@ -39,6 +34,7 @@ message DnsZone {
   // Id value is automatically computed in the format 'dns-<company_id>-<normalized-domain-name>',
   // and its uniqueness is guaranteed by the backend.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Name should be any valid DNS Domain Name",
@@ -66,6 +62,18 @@ message DnsZone {
 
 // Specification for the DNS Zone
 message DnsZoneSpec {
+  option (buf.validate.message).cel = {
+    id: "spec.gcp",
+    expression: "this.zone_provider == 1 && !has(this.gcp)"
+        "? 'gcp dns zone specification details are required'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.aws",
+    expression: "this.zone_provider == 2 && !has(this.aws)"
+        "? 'aws dns zone specification details are required'"
+        ": ''"
+  };
   // The ID of the company that owns the DNS Zone. This is required and immutable.
   string company_id = 1 [
     (buf.validate.field).required = true,
@@ -78,6 +86,7 @@ message DnsZoneSpec {
   //provider for dns-zone
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.dnszoneprovider.DnsZoneProvider zone_provider = 3 [
     (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 

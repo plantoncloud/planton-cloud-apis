@@ -13,11 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //locust-cluster
 message LocustCluster {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = locust_cluster;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
@@ -39,7 +34,8 @@ message LocustCluster {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -120,9 +116,13 @@ message LocustClusterStatus {
 // locust-cluster kubernetes spec
 message LocustClusterSpecKubernetesSpec {
   //master-locust-container spec
-  LocustClusterSpecKubernetesSpecLocustContainerSpec master_container = 1;
+  LocustClusterSpecKubernetesSpecLocustContainerSpec master_container = 1 [
+    (buf.validate.field).required = true
+  ];
   //worker-locust-container spec
-  LocustClusterSpecKubernetesSpecLocustContainerSpec worker_container = 2;
+  LocustClusterSpecKubernetesSpecLocustContainerSpec worker_container = 2 [
+    (buf.validate.field).required = true
+  ];
   //locust-cluster ingress-spec
   LocustClusterSpecKubernetesSpecIngressSpec ingress = 3;
 }
@@ -131,9 +131,13 @@ message LocustClusterSpecKubernetesSpec {
 message LocustClusterSpecKubernetesSpecLocustContainerSpec {
   //locust container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1;
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
   // number of replicas
-  int32 replicas = 2;
+  int32 replicas = 2 [
+    (buf.validate.field).required = true
+  ];
 }
 
 // locust-cluster kubernetes ingress spec
@@ -193,16 +197,22 @@ message LocustClusterSpecLoadTestSpec {
 
   // name specifies the unique identifier or name for this particular load test specification.
   // It is used to reference or distinguish this test configuration among others within a testing suite or environment.
-  string name = 1;
+  string name = 1 [
+    (buf.validate.field).required = true
+  ];
 
   // main_py_content contains the Python code for the main Locust test script.
   // This script defines the behavior of the simulated users and is crucial for executing the load test.
-  string main_py_content = 2;
+  string main_py_content = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // lib_files_content is a map where each entry consists of a filename and its associated Python code content.
   // These files typically contain additional classes or functions required by the main_py_content script.
   // The key of the map is the filename, and the value is the file content.
-  map<string,string> lib_files_content = 3;
+  map<string,string> lib_files_content = 3 [
+    (buf.validate.field).required = true
+  ];
 
   // pip_packages lists extra python pip packages that are required for the load test.
   // These packages will be installed in the environment where the load test is executed,

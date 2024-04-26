@@ -54,8 +54,8 @@ public final class RedisClusterTest {
         Validator validator = new Validator();
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
-                .filter(violation -> violation.getConstraintId().equals("metadata"))
-                .filter(violation -> violation.getMessage().equals("Name is mandatory")).findFirst();
+                .filter(violation -> violation.getFieldPath().equals("metadata"))
+                .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -96,7 +96,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -104,7 +104,7 @@ public final class RedisClusterTest {
     public void testRedisCluster_ShouldReturnValidationErrorIfNameLengthIsGreaterThan12() throws ValidationException {
         var redisCluster = RedisCluster.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
-                        .setName("this is test name to check length validation")
+                        .setName("this is test name to check length validation, this is test name to check length validation, this is test name to check length validation")
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test redis cluster").build())
                         .build())
                 .build();
@@ -112,7 +112,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -128,7 +128,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
     }
 

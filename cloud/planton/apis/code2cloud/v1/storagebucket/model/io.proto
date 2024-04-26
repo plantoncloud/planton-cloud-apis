@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.storagebucket.model;
 
 import "cloud/planton/apis/code2cloud/v1/storagebucket/model/state.proto";
+import "buf/validate/validate.proto";
 
 //list of storage-buckets
 message StorageBuckets {
@@ -11,7 +12,9 @@ message StorageBuckets {
 
 //wrapper for storage-bucket id
 message StorageBucketId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //response for paginated query to list storage-buckets

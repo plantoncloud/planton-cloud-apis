@@ -23,8 +23,8 @@ public final class ArtifactStoreTest {
         Validator validator = new Validator();
         var result = validator.validate(artifactStore);
         var optionalViolation = result.getViolations().stream()
-                .filter(violation -> violation.getConstraintId().equals("metadata"))
-                .filter(violation -> violation.getMessage().equals("Name is mandatory")).findFirst();
+                .filter(violation -> violation.getFieldPath().equals("metadata"))
+                .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
         assertTrue(optionalViolation.isPresent());
     }
 
@@ -65,15 +65,15 @@ public final class ArtifactStoreTest {
         var result = validator.validate(artifactStore);
         var optionalViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertTrue(optionalViolation.isPresent());
     }
 
     @Test
-    public void testArtifactStore_ShouldReturnValidationErrorIfNameLengthIsGreaterThan12() throws ValidationException {
+    public void testArtifactStore_ShouldReturnValidationErrorIfNameLengthIsGreaterThan100() throws ValidationException {
         var artifactStore = ArtifactStore.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
-                        .setName("this is test name to check length validation")
+                        .setName("this is test name to check length validation, this is test name to check length validation, this is test name to check length validation")
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test artifact store").build())
                         .build())
                 .build();
@@ -81,12 +81,12 @@ public final class ArtifactStoreTest {
         var result = validator.validate(artifactStore);
         var optionalViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertTrue(optionalViolation.isPresent());
     }
 
     @Test
-    public void testArtifactStore_ShouldNotReturnValidationErrorIfNameLengthIsLessThan12() throws ValidationException {
+    public void testArtifactStore_ShouldNotReturnValidationErrorIfNameLengthIsLessThan100() throws ValidationException {
         var artifactStore = ArtifactStore.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setName("test")
@@ -97,7 +97,7 @@ public final class ArtifactStoreTest {
         var result = validator.validate(artifactStore);
         var optionalViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 12 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
         assertFalse(optionalViolation.isPresent());
     }
     

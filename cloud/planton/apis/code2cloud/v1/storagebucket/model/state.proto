@@ -12,11 +12,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //storage-bucket
 message StorageBucket {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = storage_bucket;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
@@ -37,24 +32,24 @@ message StorageBucket {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
-  (buf.validate.field).string.min_len = 3,
-  (buf.validate.field).string.max_len = 63,
-  (buf.validate.field).cel = {
-      id: "metadata.name",
-      message: "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others",
-      //https://regex101.com/r/d1Viju/1
-      expression: "this.name.matches('^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$')"
-    },
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
-      id: "metadata.name",
-      message: "Name must be between 3 and 63 characters long",
-      expression: "size(this.name) > 2 && size(this.name) <= 63"
-    },
-    (buf.validate.field).cel = {
-      id: "metadata.version.message",
-      message: "Version message is mandatory and cannot be empty",
-      expression: "has(this.version.message)"
-    }];
+        id: "metadata.name",
+        message: "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others",
+        //https://regex101.com/r/d1Viju/1
+        expression: "this.name.matches('^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$')"
+      },
+      (buf.validate.field).cel = {
+       id: "metadata.name",
+        message: "Name must be between 3 and 63 characters long",
+        expression: "size(this.name) > 2 && size(this.name) <= 63"
+      },
+      (buf.validate.field).cel = {
+        id: "metadata.version.message",
+        message: "Version message is mandatory and cannot be empty",
+        expression: "has(this.version.message)"
+      }
+  ];
 
   //spec
   StorageBucketSpec spec = 4;
