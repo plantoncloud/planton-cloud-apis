@@ -13,11 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //gitlab-server
 message GitlabServer {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gitlab_server;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
@@ -38,9 +33,8 @@ message GitlabServer {
   ];
 
   //resource metadata
-  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -61,8 +55,8 @@ message GitlabServer {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 100 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 100"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -105,7 +99,9 @@ message GitlabServerStatus {
 // gitlab-server kubernetes spec
 message GitlabServerSpecKubernetesSpec {
   //gitlab-container spec
-  GitlabServerSpecKubernetesSpecGitlabContainerSpec gitlab_container = 1;
+  GitlabServerSpecKubernetesSpecGitlabContainerSpec gitlab_container = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //gitlab-server ingress-spec
   GitlabServerSpecKubernetesSpecIngressSpec ingress = 2;

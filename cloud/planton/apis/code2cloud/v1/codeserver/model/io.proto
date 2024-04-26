@@ -3,10 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.codeserver.model;
 
 import "cloud/planton/apis/code2cloud/v1/codeserver/model/state.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for id field of postgres-cluster
 message CodeServerId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of postgres-clusters
@@ -23,7 +26,11 @@ message CodeServerList {
 //input for command to attach a machine account on upstream code-server(github/gitlab)
 message AttachMachineAccountByCodeServerIdCommandInput {
   //email of the machine account to be attached to the code-project
-  string machine_account_email = 1;
+  string machine_account_email = 1 [
+    (buf.validate.field).required = true
+  ];
   //id of the code server to which the machine account is to be attached
-  string code_server_id = 2;
+  string code_server_id = 2 [
+    (buf.validate.field).required = true
+  ];
 }

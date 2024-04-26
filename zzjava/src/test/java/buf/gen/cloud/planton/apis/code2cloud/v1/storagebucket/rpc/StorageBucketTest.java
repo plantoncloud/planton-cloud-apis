@@ -24,8 +24,8 @@ public final class StorageBucketTest {
         Validator validator = new Validator();
         var result = validator.validate(storageBucket);
         var versionMessageViolation = result.getViolations().stream()
-                .filter(violation -> violation.getConstraintId().equals("metadata"))
-                .filter(violation -> violation.getMessage().equals("Name is mandatory")).findFirst();
+                .filter(violation -> violation.getFieldPath().equals("metadata"))
+                .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
