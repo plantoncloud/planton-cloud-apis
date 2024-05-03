@@ -35,6 +35,17 @@ message Company {
       expression: "this.id.matches('^[a-z0-9]+$')"
     },
     (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.id.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "id must be between 2 and 9 characters long",
+      expression: "size(this.name) > 2 && size(this.name) <= 9"
+    },
+    (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Name must be between 2 and 20 characters long",
       expression: "size(this.name) > 1 && size(this.name) <= 20"
