@@ -42,12 +42,12 @@ message Company {
     },
     (buf.validate.field).cel = {
       id: "metadata.id",
-      message: "id must be between 2 and 9 characters long",
-      expression: "size(this.name) > 2 && size(this.name) <= 9"
+      message: "Must be between 2 and 9 characters long",
+      expression: "size(this.id) > 2 && size(this.id) <= 9"
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 2 and 20 characters long",
+      message: "Must be between 2 and 20 characters long",
       expression: "size(this.name) > 1 && size(this.name) <= 20"
     }
   ];
