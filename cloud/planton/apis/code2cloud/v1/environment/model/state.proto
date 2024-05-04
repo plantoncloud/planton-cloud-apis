@@ -55,8 +55,8 @@ message Environment {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 100 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 100"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -87,9 +87,7 @@ message EnvironmentSpec {
   ];
 
   //description for environment.
-  string description = 3 [
-    (buf.validate.field).required = true
-  ];
+  string description = 3;
 
   //id of the environment from which this environment is created.
   //value is ignored when the environment is not cloned from another environment.
@@ -129,7 +127,6 @@ message EnvironmentSpec {
 message EnvironmentSpecCloudAccountSpec {
   //cloud-provider
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider provider = 1 [
-    (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
@@ -145,7 +142,6 @@ message EnvironmentSpecKubeClusterSpec {
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider provider = 1 [
-    (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];

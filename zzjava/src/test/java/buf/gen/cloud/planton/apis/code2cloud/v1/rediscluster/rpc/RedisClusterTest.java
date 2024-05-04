@@ -96,7 +96,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -112,7 +112,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -128,7 +128,7 @@ public final class RedisClusterTest {
         var result = validator.validate(redisCluster);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
     }
 
