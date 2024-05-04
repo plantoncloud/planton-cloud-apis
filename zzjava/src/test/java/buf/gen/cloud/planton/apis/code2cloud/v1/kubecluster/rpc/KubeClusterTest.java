@@ -1,6 +1,9 @@
 package buf.gen.cloud.planton.apis.code2cloud.v1.kubecluster.rpc;
 
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider;
 import build.buf.gen.cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterGcpSpec;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterSpec;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadataVersion;
 import build.buf.protovalidate.Validator;
@@ -66,7 +69,7 @@ public final class KubeClusterTest {
         var result = validator.validate(cloudAccount);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -82,7 +85,7 @@ public final class KubeClusterTest {
         var result = validator.validate(cloudAccount);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
@@ -98,7 +101,28 @@ public final class KubeClusterTest {
         var result = validator.validate(cloudAccount);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 100 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
+        assertFalse(versionMessageViolation.isPresent());
+    }
+
+
+    @Test
+    public void testKubeCluster_ShouldNotReturnValidationErrorIfAwsInfoIsNotInitiatedInCaseOfGcpProvider() throws ValidationException {
+        var kubeCluster = KubeCluster.newBuilder()
+                .setMetadata(ApiResourceMetadata.newBuilder()
+                        .setName("test")
+                        .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test cloud account").build())
+                        .build())
+                .setSpec(KubeClusterSpec.newBuilder()
+                        .setKubernetesProvider(KubernetesProvider.gcp_gke)
+                        .setGcp(KubeClusterGcpSpec.newBuilder().build())
+                        .build())
+                .build();
+        Validator validator = new Validator();
+        var result = validator.validate(kubeCluster);
+        var versionMessageViolation = result.getViolations().stream()
+                .filter(violation -> violation.getFieldPath().equals("spec.aws.aws_cloud_account_id"))
+                .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
     }
 

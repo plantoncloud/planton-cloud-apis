@@ -43,7 +43,7 @@ message Company {
     (buf.validate.field).cel = {
       id: "metadata.id",
       message: "Must be between 2 and 9 characters long",
-      expression: "size(this.id) > 2 && size(this.id) <= 9"
+      expression: "size(this.id) >= 2 && size(this.id) <= 9"
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
