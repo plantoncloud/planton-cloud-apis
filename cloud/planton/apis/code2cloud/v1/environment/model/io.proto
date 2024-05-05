@@ -207,9 +207,7 @@ message UpdateEnvironmentSecretValueCommandInput {
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 4 [
-    (buf.validate.field).required = true
-  ];
+  string version_message = 4;
 }
 
 //DeleteOrRestoreEnvironmentSecretCommandInput is used to encapsulate the details required
