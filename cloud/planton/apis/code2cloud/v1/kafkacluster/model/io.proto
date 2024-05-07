@@ -4,10 +4,13 @@ package cloud.planton.apis.code2cloud.v1.kafkacluster.model;
 
 import "cloud/planton/apis/code2cloud/v1/kafkacluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for id field of kafka-cluster
 message KafkaClusterId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of kafka-clusters
@@ -34,15 +37,19 @@ message KafkaClusterPassword {
 message AddKafkaTopicsCommandInput {
   //id of the kafka-cluster to which the kafka topics are added
   string kafka_cluster_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //list of kafka topics to be added to existing list of kafka topics
-  repeated KafkaTopic kafka_topics = 2;
+  repeated KafkaTopic kafka_topics = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //response for paginated query to list kafka-clusters
@@ -62,18 +69,24 @@ message AddOrUpdateKafkaTopicCommandInput {
   //kafka-cluster ID, which can be obtained from the kafka-cluster entity itself.
   //The server uses this ID to identify the correct kafka-cluster where the
   //kafka-topic needs to be added or updated.
-  string kafka_cluster_id = 1;
+  string kafka_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //The kafka-topic that needs to be added or updated within the product
   //environment. This field should be populated with a valid KafkaTopic object,
   //which encapsulates the details of the kafka-topic. If an kafka-topic
   //with the kafka-topic-id already exists in the kafka-cluster, the value will be updated.
   //Otherwise, a new kafka-topic will be created with the provided details.
-  KafkaTopic kafka_topic = 2;
+  KafkaTopic kafka_topic = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //DeleteOrRestoreKafkaTopicCommandInput is used to encapsulate the details required for
@@ -87,18 +100,24 @@ message DeleteOrRestoreKafkaTopicCommandInput {
   //kafka-cluster ID, which can be obtained from the kafka-cluster entity itself.
   //The server uses this ID to identify the correct kafka-cluster from which
   //the kafka-topic needs to be deleted or restored.
-  string kafka_cluster_id = 1;
+  string kafka_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //The kafka-topic-id of the kafka-topic that needs to be deleted or restored.
   //This field should be populated with a valid
   //kafka-topic-id, which can be obtained from the kafka-topic entity itself.
   //The server uses this kafka-topic-id to identify the correct kafka-topic that
   //needs to be deleted or restored.
-  string kafka_topic_id = 2;
+  string kafka_topic_id = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //KafkaTopicQueryInput is a message type that serves as input for queries
@@ -110,11 +129,13 @@ message KafkaTopicQueryInput {
   //information is to be retrieved.
   //This field is required, as specified by the is_required field option.
   string kafka_cluster_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //KafkaTopic object that represents the Kafka topic to be queried
   //in the Kafka cluster.
   //This encapsulates all the necessary information about the Kafka topic.
-  KafkaTopic kafka_topic = 2;
+  KafkaTopic kafka_topic = 2 [
+    (buf.validate.field).required = true
+  ];
 }

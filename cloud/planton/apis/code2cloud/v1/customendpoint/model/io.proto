@@ -3,10 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.customendpoint.model;
 
 import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for custom-endpoint Domain id
 message CustomEndpointId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of custom-endpoints
@@ -31,7 +34,9 @@ message AddOrUpdateCustomEndpointRouteCommandInput {
   //custom-endpoint ID, which can be obtained from the custom-endpoint entity itself.
   //The server uses this ID to identify the correct custom-endpoint where the
   //route needs to be added or updated.
-  string custom_endpoint_id = 1;
+  string custom_endpoint_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //The route that needs to be added or updated within the product
   //environment. This field should be populated with a valid CustomEndpointRoute object,
@@ -42,7 +47,9 @@ message AddOrUpdateCustomEndpointRouteCommandInput {
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //DeleteOrRestoreCustomEndpointRouteCommandInput is used to encapsulate the details required for
@@ -56,18 +63,24 @@ message DeleteOrRestoreCustomEndpointRouteCommandInput {
   //custom-endpoint ID, which can be obtained from the custom-endpoint entity itself.
   //The server uses this ID to identify the correct custom-endpoint from which
   //the route needs to be deleted.
-  string custom_endpoint_id = 1;
+  string custom_endpoint_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //The url path prefix of the route that needs to be deleted
   //from the custom-endpoint. This field should be populated with a valid
   //url path prefix, which can be obtained from the route entity itself.
   //The server uses this url path prefix to identify the correct route that
   //needs to be deleted.
-  string url_path_prefix = 2;
+  string url_path_prefix = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //ssl certificate status of custom-endpoint

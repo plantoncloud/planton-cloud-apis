@@ -14,11 +14,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //environment
 message Environment {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
@@ -39,6 +34,7 @@ message Environment {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -59,8 +55,8 @@ message Environment {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -86,7 +82,7 @@ message EnvironmentSpec {
 
   //product to which the environment belongs to
   string product_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -131,11 +127,12 @@ message EnvironmentSpec {
 message EnvironmentSpecCloudAccountSpec {
   //cloud-provider
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider provider = 1 [
+    (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
   //id of the cloud-account
   string cloud_account_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 }
@@ -145,6 +142,7 @@ message EnvironmentSpecKubeClusterSpec {
   //kubernetes-provider for the configured kube-cluster
   //the value is computed from kube-cluster.
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider provider = 1 [
+    (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -152,7 +150,7 @@ message EnvironmentSpecKubeClusterSpec {
   //target kube-cluster to which the workloads like microservice-instances, postgres databases,
   //kafka-clusters etc are deployed to.
   string kube_cluster_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -267,9 +265,9 @@ message EnvironmentVariable {
   //note: in the above regular expression, {0,62} ensures the total length of the string
   //      is 64 characters or less, including the starting and ending characters.
   string name = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_regex) = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+    (buf.validate.field).string.pattern = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
   ];
 
   //human readable identifier for environment variable unique on planton cloud.
@@ -280,7 +278,7 @@ message EnvironmentVariable {
 
   //value for the environment variable.
   string value = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
@@ -300,9 +298,9 @@ message EnvironmentSecret {
   //note: in the above regular expression, {0,62} ensures the total length of the string
   //      is 64 characters or less, including the starting and ending characters.
   string name = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_regex) = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
+    (buf.validate.field).string.pattern = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
   ];
 
   //human readable identifier for environment secret unique on planton cloud.
@@ -327,7 +325,7 @@ message EnvironmentEndpointDomain {
 
   // environment endpoint dns domain name
   string name = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //flag to toggle tls for endpoint-domain.
@@ -374,7 +372,7 @@ message ApiResourceEnvironmentInfo {
   //environment id
   //this value should be provided by the client.
   string environment_id = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 

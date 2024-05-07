@@ -3,10 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.jenkinsserver.model;
 
 import "cloud/planton/apis/code2cloud/v1/jenkinsserver/model/state.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for id field of jenkins-server
 message JenkinsServerId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of jenkins-servers
@@ -18,4 +21,9 @@ message JenkinsServers {
 message JenkinsServerList {
   int32 total_pages = 1;
   repeated JenkinsServer entries = 2;
+}
+
+//wrapper for jenkins-server password
+message JenkinsServerPassword {
+  string value = 1;
 }

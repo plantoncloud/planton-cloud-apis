@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/storagebucket/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,7 +20,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	StorageBucketQueryController_List_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/list"
 	StorageBucketQueryController_GetById_FullMethodName = "/cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController/getById"
 )
 
@@ -29,8 +27,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StorageBucketQueryControllerClient interface {
-	// list all storage-buckets on planton-cloud for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.StorageBucketList, error)
 	// look up a storage-bucket using storage-bucket id
 	GetById(ctx context.Context, in *model.StorageBucketId, opts ...grpc.CallOption) (*model.StorageBucket, error)
 }
@@ -41,15 +37,6 @@ type storageBucketQueryControllerClient struct {
 
 func NewStorageBucketQueryControllerClient(cc grpc.ClientConnInterface) StorageBucketQueryControllerClient {
 	return &storageBucketQueryControllerClient{cc}
-}
-
-func (c *storageBucketQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.StorageBucketList, error) {
-	out := new(model.StorageBucketList)
-	err := c.cc.Invoke(ctx, StorageBucketQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *storageBucketQueryControllerClient) GetById(ctx context.Context, in *model.StorageBucketId, opts ...grpc.CallOption) (*model.StorageBucket, error) {
@@ -65,8 +52,6 @@ func (c *storageBucketQueryControllerClient) GetById(ctx context.Context, in *mo
 // All implementations should embed UnimplementedStorageBucketQueryControllerServer
 // for forward compatibility
 type StorageBucketQueryControllerServer interface {
-	// list all storage-buckets on planton-cloud for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.StorageBucketList, error)
 	// look up a storage-bucket using storage-bucket id
 	GetById(context.Context, *model.StorageBucketId) (*model.StorageBucket, error)
 }
@@ -75,9 +60,6 @@ type StorageBucketQueryControllerServer interface {
 type UnimplementedStorageBucketQueryControllerServer struct {
 }
 
-func (UnimplementedStorageBucketQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.StorageBucketList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedStorageBucketQueryControllerServer) GetById(context.Context, *model.StorageBucketId) (*model.StorageBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -91,24 +73,6 @@ type UnsafeStorageBucketQueryControllerServer interface {
 
 func RegisterStorageBucketQueryControllerServer(s grpc.ServiceRegistrar, srv StorageBucketQueryControllerServer) {
 	s.RegisterService(&StorageBucketQueryController_ServiceDesc, srv)
-}
-
-func _StorageBucketQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageBucketQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StorageBucketQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageBucketQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _StorageBucketQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -136,10 +100,6 @@ var StorageBucketQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.storagebucket.service.StorageBucketQueryController",
 	HandlerType: (*StorageBucketQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _StorageBucketQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _StorageBucketQueryController_GetById_Handler,

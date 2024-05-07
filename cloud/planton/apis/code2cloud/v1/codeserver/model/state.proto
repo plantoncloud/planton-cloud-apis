@@ -12,11 +12,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //code-server
 message CodeServer {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_server;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
@@ -37,6 +32,7 @@ message CodeServer {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -57,8 +53,8 @@ message CodeServer {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -76,6 +72,18 @@ message CodeServer {
 
 //code-server spec
 message CodeServerSpec {
+  option (buf.validate.message).cel = {
+    id: "spec.github",
+    expression: "this.code_server_provider == 1 && !has(this.github)"
+        "? 'github specification details are required'"
+        ": ''"
+  };
+  option (buf.validate.message).cel = {
+    id: "spec.gitlab",
+    expression: "this.code_server_provider == 2 && !has(this.gitlab)"
+        "? 'gitlab specification details are required'"
+        ": ''"
+  };
   //Specifies the company to which the code server belongs.
   //This value is computed from the product.
   string company_id = 1 [
@@ -84,19 +92,21 @@ message CodeServerSpec {
 
   //Specifies the product to which the code server belongs.
   string product_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the host of the code server, such as "https://github.com".
   string code_server_host = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.hostname = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the provider for the code server.
   cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -116,7 +126,7 @@ message CodeServerGithubSpec {
 
   //ID of the Github App installation provided by Github after successful app installation via OAuth flow.
   int64 app_install_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
@@ -130,18 +140,18 @@ message CodeServerGitlabSpec {
   //name or numerical identifier for gitlab group
   //This value is primarily used in the code project synchronization process.
   string group_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Access token to integrate with Gitlab Server.
   //This value is acquired by browser authorization flow when code server is added via Planton Cloud Console App.
   string access_token = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //Refresh token used to fetch a new access token when the current one expires.
   string refresh_token = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 

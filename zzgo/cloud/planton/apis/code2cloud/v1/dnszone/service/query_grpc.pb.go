@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/dnszone/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -26,7 +25,6 @@ const (
 	DnsZoneQueryController_FindByCompanyId_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/findByCompanyId"
 	DnsZoneQueryController_GetById_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/getById"
 	DnsZoneQueryController_GetExactOrParentDnsZoneByDomainName_FullMethodName = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/getExactOrParentDnsZoneByDomainName"
-	DnsZoneQueryController_List_FullMethodName                                = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/list"
 	DnsZoneQueryController_IsNameserversDelegated_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/isNameserversDelegated"
 )
 
@@ -41,8 +39,6 @@ type DnsZoneQueryControllerClient interface {
 	GetById(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
 	GetExactOrParentDnsZoneByDomainName(ctx context.Context, in *model1.DnsDomainName, opts ...grpc.CallOption) (*model1.DnsZone, error)
-	// list all dns-zones for the requested page. This is intended to be used on back-office portal.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model1.DnsZoneList, error)
 	// checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
 	IsNameserversDelegated(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
 }
@@ -82,15 +78,6 @@ func (c *dnsZoneQueryControllerClient) GetExactOrParentDnsZoneByDomainName(ctx c
 	return out, nil
 }
 
-func (c *dnsZoneQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model1.DnsZoneList, error) {
-	out := new(model1.DnsZoneList)
-	err := c.cc.Invoke(ctx, DnsZoneQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *dnsZoneQueryControllerClient) IsNameserversDelegated(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error) {
 	out := new(wrapperspb.BoolValue)
 	err := c.cc.Invoke(ctx, DnsZoneQueryController_IsNameserversDelegated_FullMethodName, in, out, opts...)
@@ -111,8 +98,6 @@ type DnsZoneQueryControllerServer interface {
 	GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
 	GetExactOrParentDnsZoneByDomainName(context.Context, *model1.DnsDomainName) (*model1.DnsZone, error)
-	// list all dns-zones for the requested page. This is intended to be used on back-office portal.
-	List(context.Context, *rpc.PageInfo) (*model1.DnsZoneList, error)
 	// checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
 	IsNameserversDelegated(context.Context, *model1.DnsZoneId) (*wrapperspb.BoolValue, error)
 }
@@ -129,9 +114,6 @@ func (UnimplementedDnsZoneQueryControllerServer) GetById(context.Context, *model
 }
 func (UnimplementedDnsZoneQueryControllerServer) GetExactOrParentDnsZoneByDomainName(context.Context, *model1.DnsDomainName) (*model1.DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetExactOrParentDnsZoneByDomainName not implemented")
-}
-func (UnimplementedDnsZoneQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model1.DnsZoneList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedDnsZoneQueryControllerServer) IsNameserversDelegated(context.Context, *model1.DnsZoneId) (*wrapperspb.BoolValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsNameserversDelegated not implemented")
@@ -202,24 +184,6 @@ func _DnsZoneQueryController_GetExactOrParentDnsZoneByDomainName_Handler(srv int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _DnsZoneQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DnsZoneQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DnsZoneQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DnsZoneQueryController_IsNameserversDelegated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.DnsZoneId)
 	if err := dec(in); err != nil {
@@ -256,10 +220,6 @@ var DnsZoneQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getExactOrParentDnsZoneByDomainName",
 			Handler:    _DnsZoneQueryController_GetExactOrParentDnsZoneByDomainName_Handler,
-		},
-		{
-			MethodName: "list",
-			Handler:    _DnsZoneQueryController_List_Handler,
 		},
 		{
 			MethodName: "isNameserversDelegated",

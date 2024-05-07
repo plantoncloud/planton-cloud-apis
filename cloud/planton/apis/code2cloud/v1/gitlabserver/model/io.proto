@@ -3,10 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.gitlabserver.model;
 
 import "cloud/planton/apis/code2cloud/v1/gitlabserver/model/state.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for id field of gitlab-server
 message GitlabServerId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of gitlab-servers

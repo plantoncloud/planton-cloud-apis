@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/grafanainstance/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	GrafanaInstanceCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/delete"
 	GrafanaInstanceCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/previewRestore"
 	GrafanaInstanceCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/restore"
-	GrafanaInstanceCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/createStackJob"
 	GrafanaInstanceCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/restart"
 	GrafanaInstanceCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/pause"
 	GrafanaInstanceCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceCommandController/unpause"
@@ -58,8 +56,6 @@ type GrafanaInstanceCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// restore a previously deleted argocd-instance
 	Restore(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// create-stack-job for argocd-instance
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// restart a argocd-instance running in a environment.
 	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
@@ -157,15 +153,6 @@ func (c *grafanaInstanceCommandControllerClient) Restore(ctx context.Context, in
 	return out, nil
 }
 
-func (c *grafanaInstanceCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error) {
-	out := new(model.GrafanaInstance)
-	err := c.cc.Invoke(ctx, GrafanaInstanceCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *grafanaInstanceCommandControllerClient) Restart(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error) {
 	out := new(model.GrafanaInstance)
 	err := c.cc.Invoke(ctx, GrafanaInstanceCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type GrafanaInstanceCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
 	// restore a previously deleted argocd-instance
 	Restore(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// create-stack-job for argocd-instance
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GrafanaInstance, error)
 	// restart a argocd-instance running in a environment.
 	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
@@ -277,9 +262,6 @@ func (UnimplementedGrafanaInstanceCommandControllerServer) PreviewRestore(contex
 }
 func (UnimplementedGrafanaInstanceCommandControllerServer) Restore(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedGrafanaInstanceCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.GrafanaInstance, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedGrafanaInstanceCommandControllerServer) Restart(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _GrafanaInstanceCommandController_Restore_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GrafanaInstanceCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrafanaInstanceCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrafanaInstanceCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaInstanceCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GrafanaInstanceCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GrafanaInstanceId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var GrafanaInstanceCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _GrafanaInstanceCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _GrafanaInstanceCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

@@ -12,11 +12,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 // cloud-account
 message CloudAccount {
-  option (buf.validate.message).cel = {
-      id: "metadata",
-      message: "Name is mandatory",
-      expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = cloud_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
@@ -44,6 +39,7 @@ message CloudAccount {
   // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
   // The constraints are enforced by the regular expression "^ca-.{1,22}$".
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -64,8 +60,8 @@ message CloudAccount {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -121,12 +117,14 @@ message CloudAccountSpec {
   };
   // company to which company cloud account belongs to.
   string company_id = 1 [
-    (buf.validate.field).string.min_len = 1
+    (buf.validate.field).required = true
   ];
 
   // cloud provider.
   // depending on the value of this attribute, cloud_account_<cloud_provider_name> object is required.
   cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider cloud_provider = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -160,10 +158,9 @@ message CloudAccountGcpSpec {
   // The ID of the Google Cloud Organization, required and immutable. For more information,
   // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
   string org_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).string.min_len = 1,
     (buf.validate.field).cel = {
       id: "spec.gcp.org_id",
       message: "Only numbers (0-9) are allowed",
@@ -223,9 +220,7 @@ message CloudAccountAwsSpec {
   // The ID of the AWS Account, required and immutable. For more information,
   string account_id = 1 [
     (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
-    (buf.validate.field).required = false,
-    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "spec.aws.account_id",
       message: "Only numbers (0-9) are allowed",
@@ -235,7 +230,7 @@ message CloudAccountAwsSpec {
 
   //AWS Access Key Id
   string access_key_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).string.len = 20,
     (buf.validate.field).cel = {
@@ -255,7 +250,7 @@ message CloudAccountAwsSpec {
   //AWS Secret Access Key
   string secret_access_key = 3 [
     (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (buf.validate.field).string.len = 40,
     (buf.validate.field).cel = {
       id: "spec.aws.secret_access_key",

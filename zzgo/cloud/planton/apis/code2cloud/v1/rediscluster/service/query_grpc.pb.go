@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/rediscluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RedisClusterQueryController_List_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/list"
 	RedisClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getById"
 	RedisClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/getPassword"
 	RedisClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController/findPods"
@@ -32,8 +30,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RedisClusterQueryControllerClient interface {
-	// list all redis-clusters on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.RedisClusterList, error)
 	// look up redis-cluster using redis-cluster id
 	GetById(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisCluster, error)
 	// look up redis-cluster sasl password
@@ -49,15 +45,6 @@ type redisClusterQueryControllerClient struct {
 
 func NewRedisClusterQueryControllerClient(cc grpc.ClientConnInterface) RedisClusterQueryControllerClient {
 	return &redisClusterQueryControllerClient{cc}
-}
-
-func (c *redisClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.RedisClusterList, error) {
-	out := new(model.RedisClusterList)
-	err := c.cc.Invoke(ctx, RedisClusterQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *redisClusterQueryControllerClient) GetById(ctx context.Context, in *model.RedisClusterId, opts ...grpc.CallOption) (*model.RedisCluster, error) {
@@ -91,8 +78,6 @@ func (c *redisClusterQueryControllerClient) FindPods(ctx context.Context, in *mo
 // All implementations should embed UnimplementedRedisClusterQueryControllerServer
 // for forward compatibility
 type RedisClusterQueryControllerServer interface {
-	// list all redis-clusters on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.RedisClusterList, error)
 	// look up redis-cluster using redis-cluster id
 	GetById(context.Context, *model.RedisClusterId) (*model.RedisCluster, error)
 	// look up redis-cluster sasl password
@@ -106,9 +91,6 @@ type RedisClusterQueryControllerServer interface {
 type UnimplementedRedisClusterQueryControllerServer struct {
 }
 
-func (UnimplementedRedisClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.RedisClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedRedisClusterQueryControllerServer) GetById(context.Context, *model.RedisClusterId) (*model.RedisCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -128,24 +110,6 @@ type UnsafeRedisClusterQueryControllerServer interface {
 
 func RegisterRedisClusterQueryControllerServer(s grpc.ServiceRegistrar, srv RedisClusterQueryControllerServer) {
 	s.RegisterService(&RedisClusterQueryController_ServiceDesc, srv)
-}
-
-func _RedisClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(RedisClusterQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: RedisClusterQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -209,10 +173,6 @@ var RedisClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.rediscluster.service.RedisClusterQueryController",
 	HandlerType: (*RedisClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _RedisClusterQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _RedisClusterQueryController_GetById_Handler,

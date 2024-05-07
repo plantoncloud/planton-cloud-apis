@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.pulumioperationstatustype;
 import "cloud/planton/apis/iac/v1/stackjob/options/pulumioperationstatusoptions/pulumi_operation_status_options.proto";
 
 enum PulumiOperationStatusType {
-  PULUMI_OPERATION_STATUS_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   pending = 1;
   running = 2;
   succeeded = 3 [

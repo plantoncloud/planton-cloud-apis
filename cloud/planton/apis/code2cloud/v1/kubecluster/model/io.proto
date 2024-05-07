@@ -6,10 +6,13 @@ import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "buf/validate/validate.proto";
 
 // wrapper for kube-cluster id
 message KubeClusterId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //list of kube-clusters
@@ -31,9 +34,13 @@ message KubeClusterIds {
 // input for paginated rpc requests with kube-cluster-id filter
 message ListByKubeClusterIdInput {
   //page info
-  cloud.planton.apis.commons.rpc.PageInfo page_info = 1;
+  cloud.planton.apis.commons.rpc.PageInfo page_info = 1 [
+    (buf.validate.field).required = true
+  ];
   //kube-cluster id
-  string kube_cluster_id = 2;
+  string kube_cluster_id = 2 [
+    (buf.validate.field).required = true
+  ];
 }
 
 // google cloud region
@@ -78,14 +85,20 @@ message KubeClusterGcpNodePoolCommandInput {
 message AddOrUpdateKubeClusterNodePoolGcpCommandInput {
 
   // kube_cluster_id uniquely identifies the Kube Cluster to which the operation applies.
-  string kube_cluster_id = 1;
+  string kube_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   // gcp_node_pool encapsulates the details about the Node Pool to be added or updated in the specified Kube Cluster.
-  KubeClusterNodePoolGcp gcp_node_pool = 2;
+  KubeClusterNodePoolGcp gcp_node_pool = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 // DeleteOrRestoreKubeClusterNodePoolGcpCommandInput is a protobuf message designed for operations that either
@@ -94,15 +107,21 @@ message AddOrUpdateKubeClusterNodePoolGcpCommandInput {
 message DeleteKubeClusterNodePoolGcpCommandInput {
   // kube_cluster_id is the unique identifier of the Kube Cluster that contains the Node Pool
   // which is targeted for deletion or restoration. This ID helps the server locate the specific Kube Cluster.
-  string kube_cluster_id = 1;
+  string kube_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   // node_pool_id is the unique identifier of the Node Pool within the specified Kube Cluster
   // that needs to be deleted or restored. The server uses this ID to pinpoint the Node Pool for the operation.
-  string node_pool_id = 2;
+  string node_pool_id = 2 [
+    (buf.validate.field).required = true
+  ];
 
   // A descriptive message explaining the reason for the change or operation.
   // This is used for history logging purposes.
-  string version_message = 3;
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 // GetByKubeClusterNodePoolGcpIdInput is a protobuf message used to retrieve a specific GCP Node Pool within a particular Kube Cluster.
@@ -111,11 +130,15 @@ message GetByKubeClusterNodePoolGcpIdInput {
 
   // kube_cluster_id is a unique identifier of the Kube Cluster. This ID is used by the server to identify
   // and locate the specific Kube Cluster that contains the Node Pool of interest.
-  string kube_cluster_id = 1;
+  string kube_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
 
   // node_pool_id is the unique identifier of the GCP Node Pool within the specified Kube Cluster.
   // The server uses this ID to locate the specific Node Pool to be retrieved.
-  string node_pool_id = 2;
+  string node_pool_id = 2 [
+    (buf.validate.field).required = true
+  ];
 }
 
 // kubernetes-cluster components
@@ -213,7 +236,11 @@ message ByKubeClusterByNamespaceByPodInput {
 // input for rpc requests that require kubernetes-cluster id, namespace
 message ByKubeClusterByNamespaceInput {
   // id of the kubernetes-cluster
-  string kube_cluster_id = 1;
+  string kube_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
   // name of the kubernetes namespace
-  string namespace = 2;
+  string namespace = 2 [
+    (buf.validate.field).required = true
+  ];
 }

@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	ElasticsearchClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/delete"
 	ElasticsearchClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/previewRestore"
 	ElasticsearchClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/restore"
-	ElasticsearchClusterCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/createStackJob"
 	ElasticsearchClusterCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/restart"
 	ElasticsearchClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/pause"
 	ElasticsearchClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterCommandController/unpause"
@@ -58,8 +56,6 @@ type ElasticsearchClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.ElasticsearchCluster, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
 	// restore a previously deleted elasticsearch-cluster
 	Restore(ctx context.Context, in *model.ElasticsearchCluster, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
-	// create-stack-job for elasticsearch-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
 	// restart a elasticsearch-cluster running in a environment.
 	// elasticsearch-cluster is restarted by deleting running "elasticsearch" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
@@ -157,15 +153,6 @@ func (c *elasticsearchClusterCommandControllerClient) Restore(ctx context.Contex
 	return out, nil
 }
 
-func (c *elasticsearchClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error) {
-	out := new(model.ElasticsearchCluster)
-	err := c.cc.Invoke(ctx, ElasticsearchClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *elasticsearchClusterCommandControllerClient) Restart(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error) {
 	out := new(model.ElasticsearchCluster)
 	err := c.cc.Invoke(ctx, ElasticsearchClusterCommandController_Restart_FullMethodName, in, out, opts...)
@@ -231,8 +218,6 @@ type ElasticsearchClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.ElasticsearchCluster) (*model.ElasticsearchCluster, error)
 	// restore a previously deleted elasticsearch-cluster
 	Restore(context.Context, *model.ElasticsearchCluster) (*model.ElasticsearchCluster, error)
-	// create-stack-job for elasticsearch-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ElasticsearchCluster, error)
 	// restart a elasticsearch-cluster running in a environment.
 	// elasticsearch-cluster is restarted by deleting running "elasticsearch" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error)
@@ -277,9 +262,6 @@ func (UnimplementedElasticsearchClusterCommandControllerServer) PreviewRestore(c
 }
 func (UnimplementedElasticsearchClusterCommandControllerServer) Restore(context.Context, *model.ElasticsearchCluster) (*model.ElasticsearchCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedElasticsearchClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.ElasticsearchCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedElasticsearchClusterCommandControllerServer) Restart(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
@@ -452,24 +434,6 @@ func _ElasticsearchClusterCommandController_Restore_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElasticsearchClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ElasticsearchClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ElasticsearchClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _ElasticsearchClusterCommandController_Restart_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.ElasticsearchClusterId)
 	if err := dec(in); err != nil {
@@ -598,10 +562,6 @@ var ElasticsearchClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _ElasticsearchClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _ElasticsearchClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "restart",

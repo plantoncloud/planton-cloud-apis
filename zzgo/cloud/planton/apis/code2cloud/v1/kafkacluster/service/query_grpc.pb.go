@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kafkacluster/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -25,7 +24,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KafkaClusterQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/list"
 	KafkaClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getById"
 	KafkaClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByProductId"
 	KafkaClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByEnvironmentId"
@@ -38,8 +36,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KafkaClusterQueryControllerClient interface {
-	// list all kafka-clusters for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KafkaClusterList, error)
 	// look up kafka-cluster using kafka-cluster id
 	GetById(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaCluster, error)
 	// find kafka-clusters by product id.
@@ -62,15 +58,6 @@ type kafkaClusterQueryControllerClient struct {
 
 func NewKafkaClusterQueryControllerClient(cc grpc.ClientConnInterface) KafkaClusterQueryControllerClient {
 	return &kafkaClusterQueryControllerClient{cc}
-}
-
-func (c *kafkaClusterQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.KafkaClusterList, error) {
-	out := new(model.KafkaClusterList)
-	err := c.cc.Invoke(ctx, KafkaClusterQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *kafkaClusterQueryControllerClient) GetById(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaCluster, error) {
@@ -131,8 +118,6 @@ func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *mo
 // All implementations should embed UnimplementedKafkaClusterQueryControllerServer
 // for forward compatibility
 type KafkaClusterQueryControllerServer interface {
-	// list all kafka-clusters for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.KafkaClusterList, error)
 	// look up kafka-cluster using kafka-cluster id
 	GetById(context.Context, *model.KafkaClusterId) (*model.KafkaCluster, error)
 	// find kafka-clusters by product id.
@@ -153,9 +138,6 @@ type KafkaClusterQueryControllerServer interface {
 type UnimplementedKafkaClusterQueryControllerServer struct {
 }
 
-func (UnimplementedKafkaClusterQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.KafkaClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedKafkaClusterQueryControllerServer) GetById(context.Context, *model.KafkaClusterId) (*model.KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -184,24 +166,6 @@ type UnsafeKafkaClusterQueryControllerServer interface {
 
 func RegisterKafkaClusterQueryControllerServer(s grpc.ServiceRegistrar, srv KafkaClusterQueryControllerServer) {
 	s.RegisterService(&KafkaClusterQueryController_ServiceDesc, srv)
-}
-
-func _KafkaClusterQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaClusterQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -319,10 +283,6 @@ var KafkaClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController",
 	HandlerType: (*KafkaClusterQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _KafkaClusterQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _KafkaClusterQueryController_GetById_Handler,

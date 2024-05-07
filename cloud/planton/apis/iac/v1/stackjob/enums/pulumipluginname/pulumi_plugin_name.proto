@@ -5,7 +5,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.pulumipluginname;
 // pulumi plugin name
 // the recommended best practice to prefix the entry with enum name has been intentionally ignored to ensure that the enum's value matches the name of the pulumi plugin.
 enum PulumiPluginName {
-  PLUGIN_PLUGIN_NAME_UNSPECIFIED = 0;
+  unspecified = 0;
   RANDOM = 1;
   KUBERNETES = 2;
   GCP = 3;

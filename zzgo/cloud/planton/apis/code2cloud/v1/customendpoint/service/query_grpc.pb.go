@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/customendpoint/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -23,7 +22,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CustomEndpointQueryController_List_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/list"
 	CustomEndpointQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/getById"
 	CustomEndpointQueryController_FindByProductId_FullMethodName                      = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/findByProductId"
 	CustomEndpointQueryController_GetCustomEndpointCertStatus_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/getCustomEndpointCertStatus"
@@ -35,8 +33,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CustomEndpointQueryControllerClient interface {
-	// list all custom-endpoints for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CustomEndpointList, error)
 	// look up custom-endpoint using custom-endpoint id
 	GetById(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// find custom-endpoints by product id.
@@ -57,15 +53,6 @@ type customEndpointQueryControllerClient struct {
 
 func NewCustomEndpointQueryControllerClient(cc grpc.ClientConnInterface) CustomEndpointQueryControllerClient {
 	return &customEndpointQueryControllerClient{cc}
-}
-
-func (c *customEndpointQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CustomEndpointList, error) {
-	out := new(model.CustomEndpointList)
-	err := c.cc.Invoke(ctx, CustomEndpointQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *customEndpointQueryControllerClient) GetById(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
@@ -117,8 +104,6 @@ func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx
 // All implementations should embed UnimplementedCustomEndpointQueryControllerServer
 // for forward compatibility
 type CustomEndpointQueryControllerServer interface {
-	// list all custom-endpoints for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.CustomEndpointList, error)
 	// look up custom-endpoint using custom-endpoint id
 	GetById(context.Context, *model.CustomEndpointId) (*model.CustomEndpoint, error)
 	// find custom-endpoints by product id.
@@ -137,9 +122,6 @@ type CustomEndpointQueryControllerServer interface {
 type UnimplementedCustomEndpointQueryControllerServer struct {
 }
 
-func (UnimplementedCustomEndpointQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.CustomEndpointList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedCustomEndpointQueryControllerServer) GetById(context.Context, *model.CustomEndpointId) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -165,24 +147,6 @@ type UnsafeCustomEndpointQueryControllerServer interface {
 
 func RegisterCustomEndpointQueryControllerServer(s grpc.ServiceRegistrar, srv CustomEndpointQueryControllerServer) {
 	s.RegisterService(&CustomEndpointQueryController_ServiceDesc, srv)
-}
-
-func _CustomEndpointQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CustomEndpointQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CustomEndpointQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CustomEndpointQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -282,10 +246,6 @@ var CustomEndpointQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController",
 	HandlerType: (*CustomEndpointQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _CustomEndpointQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _CustomEndpointQueryController_GetById_Handler,

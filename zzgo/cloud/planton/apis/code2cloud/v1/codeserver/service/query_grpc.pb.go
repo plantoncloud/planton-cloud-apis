@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeserver/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CodeServerQueryController_List_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.codeserver.service.CodeServerQueryController/list"
 	CodeServerQueryController_GetById_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.codeserver.service.CodeServerQueryController/getById"
 	CodeServerQueryController_FindByProductId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.codeserver.service.CodeServerQueryController/findByProductId"
 )
@@ -31,8 +29,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CodeServerQueryControllerClient interface {
-	// list all code servers for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CodeServerList, error)
 	// look up a code server using code server id
 	GetById(ctx context.Context, in *model.CodeServerId, opts ...grpc.CallOption) (*model.CodeServer, error)
 	// find code servers by product id.
@@ -46,15 +42,6 @@ type codeServerQueryControllerClient struct {
 
 func NewCodeServerQueryControllerClient(cc grpc.ClientConnInterface) CodeServerQueryControllerClient {
 	return &codeServerQueryControllerClient{cc}
-}
-
-func (c *codeServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CodeServerList, error) {
-	out := new(model.CodeServerList)
-	err := c.cc.Invoke(ctx, CodeServerQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *codeServerQueryControllerClient) GetById(ctx context.Context, in *model.CodeServerId, opts ...grpc.CallOption) (*model.CodeServer, error) {
@@ -79,8 +66,6 @@ func (c *codeServerQueryControllerClient) FindByProductId(ctx context.Context, i
 // All implementations should embed UnimplementedCodeServerQueryControllerServer
 // for forward compatibility
 type CodeServerQueryControllerServer interface {
-	// list all code servers for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.CodeServerList, error)
 	// look up a code server using code server id
 	GetById(context.Context, *model.CodeServerId) (*model.CodeServer, error)
 	// find code servers by product id.
@@ -92,9 +77,6 @@ type CodeServerQueryControllerServer interface {
 type UnimplementedCodeServerQueryControllerServer struct {
 }
 
-func (UnimplementedCodeServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.CodeServerList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedCodeServerQueryControllerServer) GetById(context.Context, *model.CodeServerId) (*model.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -111,24 +93,6 @@ type UnsafeCodeServerQueryControllerServer interface {
 
 func RegisterCodeServerQueryControllerServer(s grpc.ServiceRegistrar, srv CodeServerQueryControllerServer) {
 	s.RegisterService(&CodeServerQueryController_ServiceDesc, srv)
-}
-
-func _CodeServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CodeServerQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CodeServerQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _CodeServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -174,10 +138,6 @@ var CodeServerQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.codeserver.service.CodeServerQueryController",
 	HandlerType: (*CodeServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _CodeServerQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _CodeServerQueryController_GetById_Handler,

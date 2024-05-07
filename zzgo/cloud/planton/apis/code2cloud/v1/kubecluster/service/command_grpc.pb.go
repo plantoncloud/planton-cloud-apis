@@ -10,8 +10,7 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -31,7 +30,6 @@ const (
 	KubeClusterCommandController_Delete_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/delete"
 	KubeClusterCommandController_PreviewRestore_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewRestore"
 	KubeClusterCommandController_Restore_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/restore"
-	KubeClusterCommandController_CreateStackJob_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/createStackJob"
 	KubeClusterCommandController_Pause_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/pause"
 	KubeClusterCommandController_Unpause_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/unpause"
 	KubeClusterCommandController_DeleteNamespace_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/deleteNamespace"
@@ -60,8 +58,6 @@ type KubeClusterCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.KubeCluster, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// restore a deleted kube-cluster.
 	Restore(ctx context.Context, in *model.KubeCluster, opts ...grpc.CallOption) (*model.KubeCluster, error)
-	// create-stack-job for kube-cluster
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// pause a kube-cluster.
 	// a kube-cluster is paused by setting the number of nodes in each node pool of the kube-cluster to zero.
 	// microservice, database and kafka cluster workload pods will be deleted as there wont be any nodes to run on.
@@ -75,9 +71,9 @@ type KubeClusterCommandControllerClient interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error)
+	DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error)
+	DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model2.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -164,15 +160,6 @@ func (c *kubeClusterCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
-	out := new(model.KubeCluster)
-	err := c.cc.Invoke(ctx, KubeClusterCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *kubeClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
 	out := new(model.KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_Pause_FullMethodName, in, out, opts...)
@@ -191,8 +178,8 @@ func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model3.WorkloadNamespace, error) {
-	out := new(model3.WorkloadNamespace)
+func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error) {
+	out := new(model2.WorkloadNamespace)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -200,8 +187,8 @@ func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error) {
-	out := new(model3.Pod)
+func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model2.Pod, error) {
+	out := new(model2.Pod)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeletePod_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -247,8 +234,6 @@ type KubeClusterCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.KubeCluster) (*model.KubeCluster, error)
 	// restore a deleted kube-cluster.
 	Restore(context.Context, *model.KubeCluster) (*model.KubeCluster, error)
-	// create-stack-job for kube-cluster
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.KubeCluster, error)
 	// pause a kube-cluster.
 	// a kube-cluster is paused by setting the number of nodes in each node pool of the kube-cluster to zero.
 	// microservice, database and kafka cluster workload pods will be deleted as there wont be any nodes to run on.
@@ -262,9 +247,9 @@ type KubeClusterCommandControllerServer interface {
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error)
 	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model3.WorkloadNamespace, error)
+	DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model2.WorkloadNamespace, error)
 	// delete a pod in kube-cluster kube-cluster
-	DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error)
+	DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model2.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -299,19 +284,16 @@ func (UnimplementedKubeClusterCommandControllerServer) PreviewRestore(context.Co
 func (UnimplementedKubeClusterCommandControllerServer) Restore(context.Context, *model.KubeCluster) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.KubeCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
-}
 func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model3.WorkloadNamespace, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model2.WorkloadNamespace, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
-func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error) {
+func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model2.Pod, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error) {
@@ -476,24 +458,6 @@ func _KubeClusterCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _KubeClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourcePauseCommandInput)
 	if err := dec(in); err != nil {
@@ -640,10 +604,6 @@ var KubeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _KubeClusterCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _KubeClusterCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "pause",

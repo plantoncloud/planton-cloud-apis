@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/customendpoint/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -30,7 +29,6 @@ const (
 	CustomEndpointCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/delete"
 	CustomEndpointCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/previewRestore"
 	CustomEndpointCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/restore"
-	CustomEndpointCommandController_CreateStackJob_FullMethodName = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/createStackJob"
 	CustomEndpointCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/previewRefresh"
 	CustomEndpointCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointCommandController/refresh"
 )
@@ -55,8 +53,6 @@ type CustomEndpointCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.CustomEndpoint, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(ctx context.Context, in *model.CustomEndpoint, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
-	// create-stack-job for custom-endpoint
-	CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// preview refresh a custom-endpoint that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// refresh a custom-endpoint that was previously created
@@ -143,15 +139,6 @@ func (c *customEndpointCommandControllerClient) Restore(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *customEndpointCommandControllerClient) CreateStackJob(ctx context.Context, in *model2.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
-	out := new(model.CustomEndpoint)
-	err := c.cc.Invoke(ctx, CustomEndpointCommandController_CreateStackJob_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *customEndpointCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.CustomEndpoint, error) {
 	out := new(model.CustomEndpoint)
 	err := c.cc.Invoke(ctx, CustomEndpointCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -190,8 +177,6 @@ type CustomEndpointCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error)
 	// restore a deleted custom-endpoint
 	Restore(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error)
-	// create-stack-job for custom-endpoint
-	CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.CustomEndpoint, error)
 	// preview refresh a custom-endpoint that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error)
 	// refresh a custom-endpoint that was previously created
@@ -225,9 +210,6 @@ func (UnimplementedCustomEndpointCommandControllerServer) PreviewRestore(context
 }
 func (UnimplementedCustomEndpointCommandControllerServer) Restore(context.Context, *model.CustomEndpoint) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedCustomEndpointCommandControllerServer) CreateStackJob(context.Context, *model2.CreateStackJobCommandInput) (*model.CustomEndpoint, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 func (UnimplementedCustomEndpointCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -391,24 +373,6 @@ func _CustomEndpointCommandController_Restore_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CustomEndpointCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CreateStackJobCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CustomEndpointCommandControllerServer).CreateStackJob(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CustomEndpointCommandController_CreateStackJob_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointCommandControllerServer).CreateStackJob(ctx, req.(*model2.CreateStackJobCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CustomEndpointCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -483,10 +447,6 @@ var CustomEndpointCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _CustomEndpointCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "createStackJob",
-			Handler:    _CustomEndpointCommandController_CreateStackJob_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

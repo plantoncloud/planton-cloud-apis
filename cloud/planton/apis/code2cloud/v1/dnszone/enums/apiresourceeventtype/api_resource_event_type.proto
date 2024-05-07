@@ -6,7 +6,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumo
 
 // dns-zone event types
 enum DnsZoneApiResourceEventType {
-  DNS_ZONE_API_RESOURCE_EVENT_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_fga_required) = true,
@@ -44,7 +44,6 @@ enum DnsZoneApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = refresh
   ];
   stack_job_refresh_completed = 8 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
   stack_job_apply_preview_requested = 9 [
@@ -57,7 +56,6 @@ enum DnsZoneApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
   ];
   stack_job_apply_completed = 11 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
   stack_job_destroy_preview_requested = 12 [
@@ -70,7 +68,6 @@ enum DnsZoneApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy
   ];
   stack_job_destroy_completed = 14 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
 }

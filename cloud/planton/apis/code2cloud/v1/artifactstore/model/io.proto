@@ -5,10 +5,13 @@ package cloud.planton.apis.code2cloud.v1.artifactstore.model;
 import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
 
 //wrapper for artifact-store id
 message ArtifactStoreId {
-  string value = 1;
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //response for paginated query to list artifact-stores
@@ -28,11 +31,17 @@ message ListByArtifactStoreIdRepoNameInput {
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
   //this input is simply used for rpcs which act as a proxy between planton clients and google cloud apis.
-  cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1;
+  cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1 [
+    (buf.validate.field).required = true
+  ];
   //id of the artifact-store
-  string artifact_store_id = 2;
+  string artifact_store_id = 2 [
+    (buf.validate.field).required = true
+  ];
   //name of the repository
-  string repo_name = 3;
+  string repo_name = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //https://github.com/googleapis/googleapis/blob/1a54b1fa9b194bfef22de18592a6512e51c9afe2/google/devtools/artifactregistry/v1/artifact.proto
@@ -148,11 +157,17 @@ message ListByArtifactStoreIdPackageNameInput {
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
   //this input is simply used for rpcs which act as a proxy between planton clients and google cloud apis.
-  cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1;
+  cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1 [
+    (buf.validate.field).required = true
+  ];
   //id of the artifact-store
-  string artifact_store_id = 2;
+  string artifact_store_id = 2 [
+    (buf.validate.field).required = true
+  ];
   //name of the package required to retrieve versions
-  string package_name = 3;
+  string package_name = 3 [
+    (buf.validate.field).required = true
+  ];
 }
 
 //response for paginated query to list packages from artifact-store repository (proxy google artifact-registry server)
@@ -169,7 +184,11 @@ message ArtifactStorePackageVersionList {
 //input for command to delete a package version from artifact-store
 message DelArtifactStorePackageVersionCommandInput {
   //id of the artifact-store
-  string artifact_store_id = 1;
+  string artifact_store_id = 1 [
+    (buf.validate.field).required = true
+  ];
   //name of the package required to retrieve versions
-  string package_version_name = 2;
+  string package_version_name = 2 [
+    (buf.validate.field).required = true
+  ];
 }

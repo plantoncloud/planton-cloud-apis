@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.cloudaccount.enums.storagebucketprovide
 
 //provider for storage-bucket
 enum StorageBucketProvider {
-  STORAGE_BUCKET_PROVIDER_UNSPECIFIED = 0;
+  unspecified = 0;
   //https://cloud.google.com/storage
   gcp_gcs = 1;
   //https://aws.amazon.com/s3/

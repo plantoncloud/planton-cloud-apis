@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gitlabserver/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -25,7 +24,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GitlabServerQueryController_List_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/list"
 	GitlabServerQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/getById"
 	GitlabServerQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByProductId"
 	GitlabServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByEnvironmentId"
@@ -38,8 +36,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GitlabServerQueryControllerClient interface {
-	// list all gitlab-servers on planton cluster for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitlabServerList, error)
 	// look up gitlab-server using gitlab-server id
 	GetById(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
@@ -61,15 +57,6 @@ type gitlabServerQueryControllerClient struct {
 
 func NewGitlabServerQueryControllerClient(cc grpc.ClientConnInterface) GitlabServerQueryControllerClient {
 	return &gitlabServerQueryControllerClient{cc}
-}
-
-func (c *gitlabServerQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.GitlabServerList, error) {
-	out := new(model.GitlabServerList)
-	err := c.cc.Invoke(ctx, GitlabServerQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *gitlabServerQueryControllerClient) GetById(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error) {
@@ -130,8 +117,6 @@ func (c *gitlabServerQueryControllerClient) FindPods(ctx context.Context, in *mo
 // All implementations should embed UnimplementedGitlabServerQueryControllerServer
 // for forward compatibility
 type GitlabServerQueryControllerServer interface {
-	// list all gitlab-servers on planton cluster for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.GitlabServerList, error)
 	// look up gitlab-server using gitlab-server id
 	GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
@@ -151,9 +136,6 @@ type GitlabServerQueryControllerServer interface {
 type UnimplementedGitlabServerQueryControllerServer struct {
 }
 
-func (UnimplementedGitlabServerQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.GitlabServerList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedGitlabServerQueryControllerServer) GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -182,24 +164,6 @@ type UnsafeGitlabServerQueryControllerServer interface {
 
 func RegisterGitlabServerQueryControllerServer(s grpc.ServiceRegistrar, srv GitlabServerQueryControllerServer) {
 	s.RegisterService(&GitlabServerQueryController_ServiceDesc, srv)
-}
-
-func _GitlabServerQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GitlabServerQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GitlabServerQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabServerQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabServerQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -317,10 +281,6 @@ var GitlabServerQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController",
 	HandlerType: (*GitlabServerQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _GitlabServerQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _GitlabServerQueryController_GetById_Handler,

@@ -14,15 +14,6 @@ import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //openfga-server query controller
 service OpenfgaServerQueryController {
-  //list all openfga-servers on planton cluster for the requested page.
-  rpc list(cloud.planton.apis.commons.rpc.PageInfo)
-      returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = back_office_admin;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_id = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters";
-  }
-
   //look up openfga-server using openfga-server id
   rpc getById(cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServerId)
       returns (cloud.planton.apis.code2cloud.v1.openfgaserver.model.OpenfgaServer) {

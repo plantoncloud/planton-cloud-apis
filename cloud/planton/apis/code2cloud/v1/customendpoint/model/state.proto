@@ -10,11 +10,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //custom-endpoint
 message CustomEndpoint {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = custom_endpoint;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
@@ -35,6 +30,7 @@ message CustomEndpoint {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Name should be any valid DNS Domain Name",
@@ -70,7 +66,7 @@ message CustomEndpointSpec {
 
   //the product to which the custom-endpoint to be added.
   string product_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -82,7 +78,7 @@ message CustomEndpointSpec {
 
   //custom-endpoint to which the requests to the endpoint domain are to be routed to.
   string backend_environment_id = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true,
+    (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
@@ -151,13 +147,13 @@ message CustomEndpointRoute {
   //all requests that match console.example.com/api/* are forwarded to the backend microservice configured in
   //this route.
   string url_path_prefix = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //id of the backend microservice-instance to configure the forwarding rule.
   //ex: msi-planton-pcs-prod-company-main
   string backend_microservice_instance_id = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //service port to which the requests matching the url

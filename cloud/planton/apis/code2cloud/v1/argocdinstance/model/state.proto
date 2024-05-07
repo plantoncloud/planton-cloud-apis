@@ -13,11 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //argocd-instance
 message ArgocdInstance {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = argocd_instance;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
@@ -35,13 +30,12 @@ message ArgocdInstance {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "ArgoCDInstance"
+    (buf.validate.field).string.const = "ArgocdInstance"
   ];
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -62,8 +56,8 @@ message ArgocdInstance {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -106,7 +100,9 @@ message ArgocdInstanceStatus {
 // argocd-instance kubernetes spec
 message ArgocdInstanceSpecKubernetesSpec {
   //argocd-container spec
-  ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec argocd_container = 1;
+  ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec argocd_container = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //argocd-instance ingress-spec
   ArgocdInstanceSpecKubernetesSpecIngressSpec ingress = 2;
@@ -118,7 +114,7 @@ message ArgocdInstanceSpecKubernetesSpecArgocdContainerSpec {
   //argocd container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
@@ -139,7 +135,9 @@ message ArgocdInstanceSpecKubernetesSpecIngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2 [
+      (buf.validate.field).enum.defined_only = true
+  ];
   //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
   //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating argocd endpoints.
   string endpoint_domain_name = 3;

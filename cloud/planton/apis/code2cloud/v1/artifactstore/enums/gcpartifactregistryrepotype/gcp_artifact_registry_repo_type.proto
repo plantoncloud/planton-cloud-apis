@@ -2,7 +2,7 @@ package cloud.planton.apis.code2cloud.v1.artifactstore.enums.gcpartifactregistry
 
 //note: the values are intentionally left capitalized as required by the gcp artifact-registry apis
 enum GcpArtifactRegistryRepoType {
-  GCP_ARTIFACT_REGISTRY_REPO_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   DOCKER = 1;
   NPM = 2;
   MAVEN = 3;

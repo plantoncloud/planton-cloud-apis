@@ -13,11 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //postgres-cluster
 message PostgresCluster {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = postgres_cluster;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
@@ -39,8 +34,7 @@ message PostgresCluster {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -61,8 +55,8 @@ message PostgresCluster {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -105,7 +99,9 @@ message PostgresClusterStatus {
 //postgres-cluster kubernetes spec
 message PostgresClusterSpecKubernetesSpec {
   // postgres-container spec
-  PostgresClusterSpecKubernetesSpecPostgresContainerSpec postgres_container = 2;
+  PostgresClusterSpecKubernetesSpecPostgresContainerSpec postgres_container = 2 [
+    (buf.validate.field).required = true
+  ];
 
   //postgres-cluster ingress
   PostgresClusterSpecKubernetesSpecIngressSpec ingress = 3;
@@ -116,19 +112,25 @@ message PostgresClusterSpecKubernetesSpecPostgresContainerSpec {
   //number of replicas of postgres pods
   //recommended default is 1
   int32 replicas = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //postgres container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 
   //storage to allocate for each postgres instance in gb. ex: 1Gi
   //default is set if the client does not provide a value.
   string disk_size = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
   ];
 }
 

@@ -4,7 +4,7 @@ package cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.kubernet
 
 // kubernetes resource kind
 enum KubernetesApiResourceKind {
-  RESOURCE_KIND_UNSPECIFIED = 0;
+  unspecified = 0;
   Namespace = 1;
   Deployment = 2;
   Service = 3;

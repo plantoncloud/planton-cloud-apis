@@ -8,7 +8,6 @@ package service
 
 import (
 	context "context"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
@@ -22,7 +21,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ProductQueryController_List_FullMethodName            = "/cloud.planton.apis.resourcemanager.v1.product.service.ProductQueryController/list"
 	ProductQueryController_GetById_FullMethodName         = "/cloud.planton.apis.resourcemanager.v1.product.service.ProductQueryController/getById"
 	ProductQueryController_FindByCompanyId_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.product.service.ProductQueryController/findByCompanyId"
 )
@@ -31,8 +29,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductQueryControllerClient interface {
-	// list all products for the requested page. This is intended to be used on back-office portal.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ProductList, error)
 	// get details of a product by product id
 	GetById(ctx context.Context, in *model.ProductId, opts ...grpc.CallOption) (*model.Product, error)
 	// find products by company id.
@@ -46,15 +42,6 @@ type productQueryControllerClient struct {
 
 func NewProductQueryControllerClient(cc grpc.ClientConnInterface) ProductQueryControllerClient {
 	return &productQueryControllerClient{cc}
-}
-
-func (c *productQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.ProductList, error) {
-	out := new(model.ProductList)
-	err := c.cc.Invoke(ctx, ProductQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *productQueryControllerClient) GetById(ctx context.Context, in *model.ProductId, opts ...grpc.CallOption) (*model.Product, error) {
@@ -79,8 +66,6 @@ func (c *productQueryControllerClient) FindByCompanyId(ctx context.Context, in *
 // All implementations should embed UnimplementedProductQueryControllerServer
 // for forward compatibility
 type ProductQueryControllerServer interface {
-	// list all products for the requested page. This is intended to be used on back-office portal.
-	List(context.Context, *rpc.PageInfo) (*model.ProductList, error)
 	// get details of a product by product id
 	GetById(context.Context, *model.ProductId) (*model.Product, error)
 	// find products by company id.
@@ -92,9 +77,6 @@ type ProductQueryControllerServer interface {
 type UnimplementedProductQueryControllerServer struct {
 }
 
-func (UnimplementedProductQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.ProductList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedProductQueryControllerServer) GetById(context.Context, *model.ProductId) (*model.Product, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -111,24 +93,6 @@ type UnsafeProductQueryControllerServer interface {
 
 func RegisterProductQueryControllerServer(s grpc.ServiceRegistrar, srv ProductQueryControllerServer) {
 	s.RegisterService(&ProductQueryController_ServiceDesc, srv)
-}
-
-func _ProductQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ProductQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ProductQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _ProductQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -174,10 +138,6 @@ var ProductQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.resourcemanager.v1.product.service.ProductQueryController",
 	HandlerType: (*ProductQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _ProductQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _ProductQueryController_GetById_Handler,

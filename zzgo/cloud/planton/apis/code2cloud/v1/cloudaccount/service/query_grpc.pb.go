@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/cloudaccount/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/company/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -24,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	CloudAccountQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/getById"
 	CloudAccountQueryController_FindByCompanyId_FullMethodName                      = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findByCompanyId"
-	CloudAccountQueryController_List_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/list"
 	CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_FullMethodName = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findArtifactStoreCreateCloudAccounts"
 	CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findKubeClusterCreateCloudAccounts"
 	CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findDnsZoneCreateCloudAccounts"
@@ -40,24 +38,18 @@ type CloudAccountQueryControllerClient interface {
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
 	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
-	// todo: add authorization
-	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CloudAccountList, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
@@ -86,15 +78,6 @@ func (c *cloudAccountQueryControllerClient) GetById(ctx context.Context, in *mod
 func (c *cloudAccountQueryControllerClient) FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error) {
 	out := new(model.CloudAccounts)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *cloudAccountQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
-	out := new(model.CloudAccountList)
-	err := c.cc.Invoke(ctx, CloudAccountQueryController_List_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -138,24 +121,18 @@ type CloudAccountQueryControllerServer interface {
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
 	FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
-	// todo: add authorization
-	// list all specifications for cloud-accounts  for the requested page. This is intended to be used on back-office portal.
-	List(context.Context, *rpc.PageInfo) (*model.CloudAccountList, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
 	FindKubeClusterCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
-	// todo: add authorization
 	// find cloud-accounts by company id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
@@ -173,9 +150,6 @@ func (UnimplementedCloudAccountQueryControllerServer) GetById(context.Context, *
 }
 func (UnimplementedCloudAccountQueryControllerServer) FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
-}
-func (UnimplementedCloudAccountQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.CloudAccountList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
 func (UnimplementedCloudAccountQueryControllerServer) FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindArtifactStoreCreateCloudAccounts not implemented")
@@ -230,24 +204,6 @@ func _CloudAccountQueryController_FindByCompanyId_Handler(srv interface{}, ctx c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CloudAccountQueryControllerServer).FindByCompanyId(ctx, req.(*model1.CompanyId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CloudAccountQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CloudAccountQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CloudAccountQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -320,10 +276,6 @@ var CloudAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findByCompanyId",
 			Handler:    _CloudAccountQueryController_FindByCompanyId_Handler,
-		},
-		{
-			MethodName: "list",
-			Handler:    _CloudAccountQueryController_List_Handler,
 		},
 		{
 			MethodName: "findArtifactStoreCreateCloudAccounts",

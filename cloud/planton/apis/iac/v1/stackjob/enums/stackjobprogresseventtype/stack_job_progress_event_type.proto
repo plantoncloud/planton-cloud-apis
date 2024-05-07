@@ -6,7 +6,7 @@ package cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype;
 // These events are emitted while a stack job is running.
 // important: these events are used for writing messages to redis streams.
 enum StackJobProgressEventType {
-  STACK_JOB_PROGRESS_EVENT_TYPE_UNSPECIFIED = 0;
+  unspecified = 0;
   //this event is created by stack-job listener kafka processor after the job starts or completes.
   //this event is used to mark the beginning or end of stream in redis.
   //any subscriptions for the stack-job progress stream can use this event to decide to stop

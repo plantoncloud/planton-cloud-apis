@@ -9,6 +9,7 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "google/protobuf/timestamp.proto";
+import "buf/validate/validate.proto";
 
 // wrapper for stack-job id
 message StackJobId {
@@ -41,18 +42,6 @@ message StackJobList {
   int32 total_pages = 1;
   // list of stack-jobs
   repeated StackJob entries = 2;
-}
-
-// input for rpc to create a new stack job for any resource.
-message CreateStackJobCommandInput {
-  //id of the resource for which the stack-job is to be created.
-  string resource_id = 1;
-  //operation-type to be used for creating the stack-job.
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 2;
-  // reason for creating the stack job
-  string message = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
-  ];
 }
 
 // GetStackJobMinutesByCompanyIdInput is intended for requests to retrieve the total minutes of stack job

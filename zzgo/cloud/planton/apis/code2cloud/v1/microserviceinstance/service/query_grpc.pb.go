@@ -10,7 +10,6 @@ import (
 	context "context"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/microserviceinstance/model"
-	rpc "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -24,7 +23,6 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MicroserviceInstanceQueryController_List_FullMethodName                               = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController/list"
 	MicroserviceInstanceQueryController_GetById_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController/getById"
 	MicroserviceInstanceQueryController_FindByEnvironmentIdByCodeProjectId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController/findByEnvironmentIdByCodeProjectId"
 	MicroserviceInstanceQueryController_FindPods_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController/findPods"
@@ -38,8 +36,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type MicroserviceInstanceQueryControllerClient interface {
-	// list all microservice-instances on planton instance for the requested page.
-	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error)
 	// look up microservice-instance using microservice-instance id
 	GetById(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// find microservice-instances in a environment for a code-project
@@ -61,15 +57,6 @@ type microserviceInstanceQueryControllerClient struct {
 
 func NewMicroserviceInstanceQueryControllerClient(cc grpc.ClientConnInterface) MicroserviceInstanceQueryControllerClient {
 	return &microserviceInstanceQueryControllerClient{cc}
-}
-
-func (c *microserviceInstanceQueryControllerClient) List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error) {
-	out := new(model.MicroserviceInstanceList)
-	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_List_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *microserviceInstanceQueryControllerClient) GetById(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error) {
@@ -162,8 +149,6 @@ func (c *microserviceInstanceQueryControllerClient) GetEnvVarMap(ctx context.Con
 // All implementations should embed UnimplementedMicroserviceInstanceQueryControllerServer
 // for forward compatibility
 type MicroserviceInstanceQueryControllerServer interface {
-	// list all microservice-instances on planton instance for the requested page.
-	List(context.Context, *rpc.PageInfo) (*model.MicroserviceInstanceList, error)
 	// look up microservice-instance using microservice-instance id
 	GetById(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error)
 	// find microservice-instances in a environment for a code-project
@@ -183,9 +168,6 @@ type MicroserviceInstanceQueryControllerServer interface {
 type UnimplementedMicroserviceInstanceQueryControllerServer struct {
 }
 
-func (UnimplementedMicroserviceInstanceQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.MicroserviceInstanceList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
-}
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetById(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
@@ -217,24 +199,6 @@ type UnsafeMicroserviceInstanceQueryControllerServer interface {
 
 func RegisterMicroserviceInstanceQueryControllerServer(s grpc.ServiceRegistrar, srv MicroserviceInstanceQueryControllerServer) {
 	s.RegisterService(&MicroserviceInstanceQueryController_ServiceDesc, srv)
-}
-
-func _MicroserviceInstanceQueryController_List_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(rpc.PageInfo)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceInstanceQueryControllerServer).List(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceInstanceQueryController_List_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceInstanceQueryControllerServer).List(ctx, req.(*rpc.PageInfo))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceInstanceQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -373,10 +337,6 @@ var MicroserviceInstanceQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController",
 	HandlerType: (*MicroserviceInstanceQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "list",
-			Handler:    _MicroserviceInstanceQueryController_List_Handler,
-		},
 		{
 			MethodName: "getById",
 			Handler:    _MicroserviceInstanceQueryController_GetById_Handler,

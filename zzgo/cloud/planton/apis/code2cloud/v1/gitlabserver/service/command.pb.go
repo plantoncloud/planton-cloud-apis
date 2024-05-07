@@ -11,7 +11,7 @@ import (
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iac/v1/stackjob/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -75,7 +75,7 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_raw
 	0x70, 0x63, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
 	0x2f, 0x61, 0x70, 0x69, 0x5f, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f, 0x72, 0x70,
 	0x63, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x85, 0x1a, 0x0a, 0x1d, 0x47, 0x69, 0x74, 0x6c,
+	0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x95, 0x18, 0x0a, 0x1d, 0x47, 0x69, 0x74, 0x6c,
 	0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x43, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x43,
 	0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0x80, 0x02, 0x0a, 0x0d, 0x70, 0x72,
 	0x65, 0x76, 0x69, 0x65, 0x77, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x41, 0x2e, 0x63, 0x6c,
@@ -196,21 +196,6 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_raw
 	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x72, 0x65,
 	0x73, 0x74, 0x6f, 0x72, 0x65, 0x20, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62, 0x2d, 0x73, 0x65, 0x72,
 	0x76, 0x65, 0x72, 0xa0, 0xff, 0x2b, 0x04, 0xb0, 0xff, 0x2b, 0x02, 0xb8, 0xff, 0x2b, 0x01, 0x12,
-	0xed, 0x01, 0x0a, 0x0e, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a,
-	0x6f, 0x62, 0x12, 0x44, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x61, 0x63, 0x2e, 0x76, 0x31, 0x2e, 0x73,
-	0x74, 0x61, 0x63, 0x6b, 0x6a, 0x6f, 0x62, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x43, 0x72,
-	0x65, 0x61, 0x74, 0x65, 0x53, 0x74, 0x61, 0x63, 0x6b, 0x4a, 0x6f, 0x62, 0x43, 0x6f, 0x6d, 0x6d,
-	0x61, 0x6e, 0x64, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x1a, 0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
-	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67, 0x69, 0x74, 0x6c,
-	0x61, 0x62, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47,
-	0x69, 0x74, 0x6c, 0x61, 0x62, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72, 0x22, 0x52, 0xc2, 0xb8, 0x18,
-	0x46, 0x08, 0x9c, 0x01, 0x10, 0x21, 0x1a, 0x0b, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
-	0x5f, 0x69, 0x64, 0x22, 0x32, 0x75, 0x6e, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65,
-	0x64, 0x20, 0x74, 0x6f, 0x20, 0x63, 0x72, 0x65, 0x61, 0x74, 0x65, 0x20, 0x73, 0x74, 0x61, 0x63,
-	0x6b, 0x2d, 0x6a, 0x6f, 0x62, 0x20, 0x66, 0x6f, 0x72, 0x20, 0x67, 0x69, 0x74, 0x6c, 0x61, 0x62,
-	0x2d, 0x73, 0x65, 0x72, 0x76, 0x65, 0x72, 0xb0, 0xff, 0x2b, 0x02, 0xc0, 0xff, 0x2b, 0x01, 0x12,
 	0xce, 0x01, 0x0a, 0x07, 0x72, 0x65, 0x73, 0x74, 0x61, 0x72, 0x74, 0x12, 0x43, 0x2e, 0x63, 0x6c,
 	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
 	0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x67,
@@ -318,11 +303,10 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_raw
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_goTypes = []interface{}{
 	(*model.GitlabServer)(nil),                    // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
 	(*model1.ApiResourceDeleteCommandInput)(nil),  // 1: cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput
-	(*model2.CreateStackJobCommandInput)(nil),     // 2: cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput
-	(*model.GitlabServerId)(nil),                  // 3: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerId
-	(*model1.ApiResourcePauseCommandInput)(nil),   // 4: cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput
-	(*model1.ApiResourceUnPauseCommandInput)(nil), // 5: cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput
-	(*model1.ApiResourceRefreshCommandInput)(nil), // 6: cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	(*model.GitlabServerId)(nil),                  // 2: cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerId
+	(*model1.ApiResourcePauseCommandInput)(nil),   // 3: cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput
+	(*model1.ApiResourceUnPauseCommandInput)(nil), // 4: cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput
+	(*model1.ApiResourceRefreshCommandInput)(nil), // 5: cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
 }
 var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_depIdxs = []int32{
 	0,  // 0: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewCreate:input_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
@@ -333,28 +317,26 @@ var file_cloud_planton_apis_code2cloud_v1_gitlabserver_service_command_proto_dep
 	1,  // 5: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.delete:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput
 	0,  // 6: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRestore:input_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
 	0,  // 7: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restore:input_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	2,  // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.createStackJob:input_type -> cloud.planton.apis.iac.v1.stackjob.model.CreateStackJobCommandInput
-	3,  // 9: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restart:input_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerId
-	4,  // 10: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.pause:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput
-	5,  // 11: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.unpause:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput
-	6,  // 12: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
-	6,  // 13: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.refresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
-	0,  // 14: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewCreate:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 15: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.create:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 16: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewUpdate:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 17: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 18: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewDelete:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 19: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 20: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRestore:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 21: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restore:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 22: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.createStackJob:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 23: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restart:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 24: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.pause:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 25: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.unpause:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 26: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRefresh:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	0,  // 27: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.refresh:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
-	14, // [14:28] is the sub-list for method output_type
-	0,  // [0:14] is the sub-list for method input_type
+	2,  // 8: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restart:input_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServerId
+	3,  // 9: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.pause:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput
+	4,  // 10: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.unpause:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput
+	5,  // 11: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRefresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	5,  // 12: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.refresh:input_type -> cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput
+	0,  // 13: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewCreate:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 14: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.create:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 15: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewUpdate:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 16: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.update:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 17: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewDelete:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 18: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.delete:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 19: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRestore:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 20: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restore:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 21: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.restart:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 22: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.pause:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 23: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.unpause:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 24: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.previewRefresh:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	0,  // 25: cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerCommandController.refresh:output_type -> cloud.planton.apis.code2cloud.v1.gitlabserver.model.GitlabServer
+	13, // [13:26] is the sub-list for method output_type
+	0,  // [0:13] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name

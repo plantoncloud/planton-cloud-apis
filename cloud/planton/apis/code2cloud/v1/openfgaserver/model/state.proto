@@ -13,11 +13,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 
 //openfga-server
 message OpenfgaServer {
-  option (buf.validate.message).cel = {
-    id: "metadata",
-    message: "Name is mandatory",
-    expression: "has(this.metadata)"
-  };
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = openfga_server;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
@@ -39,8 +34,7 @@ message OpenfgaServer {
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).string.max_len = 10,
+    (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.name",
       message: "Only lowercase letters, numbers, and hyphens are allowed",
@@ -61,8 +55,8 @@ message OpenfgaServer {
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Name must be between 1 and 12 characters long",
-      expression: "size(this.name) > 0 && size(this.name) <= 12"
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
     },
     (buf.validate.field).cel = {
       id: "metadata.version.message",
@@ -105,7 +99,9 @@ message OpenfgaServerStatus {
 // openfga-server kubernetes spec
 message OpenfgaServerSpecKubernetesSpec {
   //openfga-container spec
-  OpenfgaServerSpecKubernetesSpecOpenfgaContainerSpec openfga_container = 1;
+  OpenfgaServerSpecKubernetesSpecOpenfgaContainerSpec openfga_container = 1 [
+    (buf.validate.field).required = true
+  ];
 
   //openfga-server ingress-spec
   OpenfgaServerSpecKubernetesSpecIngressSpec ingress = 2;
@@ -116,7 +112,7 @@ message OpenfgaServerSpecKubernetesSpecOpenfgaContainerSpec {
   //openfga container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_required) = true
+    (buf.validate.field).required = true
   ];
 }
 
