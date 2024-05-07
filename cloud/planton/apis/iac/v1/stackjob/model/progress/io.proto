@@ -21,6 +21,8 @@ message StackJobProgressEvent {
   cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiEngineEventPayload pulumi_engine_event_payload = 4;
   // pulumi engine event is only populated when event_type is "StackJobProgressEventType.pulumi_resources_event"
   cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResourcesPayload pulumi_resources_payload = 5;
+  // pulumi engine event is only populated when event_type is "StackJobProgressEventType.pulumi_operation_outputs_event"
+  map<string, string> pulumi_operation_outputs = 6;
 }
 
 // stack-job progress pulumi-operation status payload
