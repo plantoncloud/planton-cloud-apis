@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.rpc;
 
-import build.buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.model.*;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadataVersion;
 import build.buf.protovalidate.Validator;
@@ -98,8 +98,93 @@ public final class MicroserviceInstanceTest {
         var result = validator.validate(microserviceInstance );
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 20 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
+    }
+
+
+    @Test
+    public void testMicroserviceInstance_ShouldReturnValidationErrorIfPortNetworkProtocolIsInvalid() throws ValidationException {
+        var microserviceInstance  = MicroserviceInstance.newBuilder()
+                .setMetadata(ApiResourceMetadata.newBuilder()
+                        .setName("test")
+                        .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test microservice instance ").build())
+                        .build())
+                .setSpec(MicroserviceInstanceSpec.newBuilder()
+                        .setKubernetes(MicroserviceInstanceSpecKubernetes.newBuilder()
+                                .setContainer(MicroserviceInstanceSpecKubernetesContainer.newBuilder()
+                                        .setApp(MicroserviceInstanceSpecKubernetesAppContainer.newBuilder()
+                                                .addPorts(MicroserviceInstanceSpecKubernetesContainerPort.newBuilder()
+                                                        .setName("123-web")
+                                                        .setNetworkProtocol("ABC")
+                                                        .build())
+                                                .build())
+                                        .build())
+                                .build())
+                        .build())
+                .build();
+        Validator validator = new Validator();
+        var result = validator.validate(microserviceInstance );
+        var versionMessageViolation = result.getViolations().stream()
+                .filter(violation -> violation.getConstraintId().equals("spec.kubernetes.container.app.ports.network_protocol"))
+                .filter(violation -> violation.getMessage().equals("the network protocol must be one of \"SCTP\", \"TCP\" and \"UDP\"")).findFirst();
+        assertTrue(versionMessageViolation.isPresent());
+    }
+
+    @Test
+    public void testMicroserviceInstance_ShouldNotReturnValidationErrorIfPortNetworkProtocolIsValid() throws ValidationException {
+        var microserviceInstance  = MicroserviceInstance.newBuilder()
+                .setMetadata(ApiResourceMetadata.newBuilder()
+                        .setName("test")
+                        .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test microservice instance ").build())
+                        .build())
+                .setSpec(MicroserviceInstanceSpec.newBuilder()
+                        .setKubernetes(MicroserviceInstanceSpecKubernetes.newBuilder()
+                                .setContainer(MicroserviceInstanceSpecKubernetesContainer.newBuilder()
+                                        .setApp(MicroserviceInstanceSpecKubernetesAppContainer.newBuilder()
+                                                .addPorts(MicroserviceInstanceSpecKubernetesContainerPort.newBuilder()
+                                                        .setName("123-web")
+                                                        .setNetworkProtocol("TCP")
+                                                        .build())
+                                                .build())
+                                        .build())
+                                .build())
+                        .build())
+                .build();
+        Validator validator = new Validator();
+        var result = validator.validate(microserviceInstance );
+        var versionMessageViolation = result.getViolations().stream()
+                .filter(violation -> violation.getConstraintId().equals("spec.kubernetes.container.app.ports.network_protocol"))
+                .filter(violation -> violation.getMessage().equals("the network protocol must be one of \"SCTP\", \"TCP\" and \"UDP\"")).findFirst();
+        assertFalse(versionMessageViolation.isPresent());
+    }
+
+    @Test
+    public void testMicroserviceInstance_ShouldReturnValidationErrorIfPortNameIsInvalid() throws ValidationException {
+        var microserviceInstance  = MicroserviceInstance.newBuilder()
+                .setMetadata(ApiResourceMetadata.newBuilder()
+                        .setName("test")
+                        .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test microservice instance ").build())
+                        .build())
+                .setSpec(MicroserviceInstanceSpec.newBuilder()
+                        .setKubernetes(MicroserviceInstanceSpecKubernetes.newBuilder()
+                                .setContainer(MicroserviceInstanceSpecKubernetesContainer.newBuilder()
+                                        .setApp(MicroserviceInstanceSpecKubernetesAppContainer.newBuilder()
+                                                .addPorts(MicroserviceInstanceSpecKubernetesContainerPort.newBuilder()
+                                                        .setName("-web")
+                                                        .setNetworkProtocol("TCP")
+                                                        .build())
+                                                .build())
+                                        .build())
+                                .build())
+                        .build())
+                .build();
+        Validator validator = new Validator();
+        var result = validator.validate(microserviceInstance );
+        var versionMessageViolation = result.getViolations().stream()
+                .filter(violation -> violation.getConstraintId().equals("spec.kubernetes.container.app.ports.name"))
+                .filter(violation -> violation.getMessage().equals("name for ports must only contain lowercase alphanumeric characters and -. Port names must also start and end with an alphanumeric character. For example, the names 123-abc and web are valid, but 123_abc and -web are not.")).findFirst();
+        assertTrue(versionMessageViolation.isPresent());
     }
 
 }
