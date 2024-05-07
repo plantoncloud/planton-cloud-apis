@@ -113,9 +113,6 @@ service CodeProjectCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to attach machine account";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
-    // api resource rpc method options
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "code_project_id";
   }
 }
 
