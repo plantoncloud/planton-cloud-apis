@@ -192,7 +192,7 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
 
   cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesserviceportprotocol.KubernetesServicePortProtocol network_protocol = 3 [
     (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true
+    (buf.validate.field).enum = { not_in: [0]}
   ];
   //(required) application protocol for the microservice.
   //the default is set to "http"
