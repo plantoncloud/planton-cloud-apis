@@ -11,6 +11,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesserviceportprotocol/kubernetes_service_port_protocol.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -188,14 +189,10 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
   int32 container_port = 2 [
     (buf.validate.field).required = true
   ];
-  //network protocol for the port ex: TCP
-  string network_protocol = 3 [
+
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesserviceportprotocol.KubernetesServicePortProtocol network_protocol = 3 [
     (buf.validate.field).required = true,
-    (buf.validate.field).cel = {
-      id: "spec.kubernetes.container.app.ports.network_protocol",
-      message: 'the network protocol must be one of "SCTP", "TCP" and "UDP"',
-      expression: 'this in ["SCTP", "TCP", "UDP"]',
-    }
+    (buf.validate.field).enum.defined_only = true
   ];
   //(required) application protocol for the microservice.
   //the default is set to "http"
