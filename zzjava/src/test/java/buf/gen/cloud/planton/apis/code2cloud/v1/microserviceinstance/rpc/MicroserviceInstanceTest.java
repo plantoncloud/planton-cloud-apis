@@ -1,6 +1,6 @@
 package buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.rpc;
 
-import build.buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.microserviceinstance.model.*;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadataVersion;
 import build.buf.protovalidate.Validator;
@@ -98,7 +98,7 @@ public final class MicroserviceInstanceTest {
         var result = validator.validate(microserviceInstance );
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 20 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
         assertFalse(versionMessageViolation.isPresent());
     }
 

@@ -11,6 +11,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesserviceportprotocol/kubernetes_service_port_protocol.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -176,15 +177,22 @@ message MicroserviceInstanceSpecKubernetesAppContainerEnv {
 message MicroserviceInstanceSpecKubernetesContainerPort {
   //name for the port ex: http, grpc
   string name = 1 [
-    (buf.validate.field).required = true
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.app.ports.name",
+      message: "name for ports must only contain lowercase alphanumeric characters and -. Port names must also start and end with an alphanumeric character. For example, the names 123-abc and web are valid, but 123_abc and -web are not.",
+      // https://regex101.com/r/dugcdl/1
+      expression: "this.matches('^[a-z0-9][a-z0-9-]*[a-z0-9]$')"
+    }
   ];
   //container port
   int32 container_port = 2 [
     (buf.validate.field).required = true
   ];
-  //network protocol for the port ex: TCP
-  string network_protocol = 3 [
-    (buf.validate.field).required = true
+
+  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesserviceportprotocol.KubernetesServicePortProtocol network_protocol = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
   ];
   //(required) application protocol for the microservice.
   //the default is set to "http"
