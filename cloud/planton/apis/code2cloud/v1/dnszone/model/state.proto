@@ -163,14 +163,17 @@ message DnsZoneAwsStatus {
 
 // dns-record
 message DnsRecord {
+  string id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
   // dns-zone record type.
-  cloud.planton.apis.code2cloud.v1.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 1 [
+  cloud.planton.apis.code2cloud.v1.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 2 [
     (buf.validate.field).required = true
   ];
 
   // name of the dns-zone ex: example.com or dev.example.com.
   // this value should always end with a dot.
-  string name = 2 [
+  string name = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "name",
@@ -181,10 +184,10 @@ message DnsRecord {
 
   // values for the dns-zone record.
   // if the dns_zone_record_type is cname then each value in the list should end with a dot.
-  repeated string values = 3;
+  repeated string values = 4;
 
   // ttl for the domain record in seconds.
-  int32 ttl_seconds = 4 [
+  int32 ttl_seconds = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.int32_default) = 60
   ];
 }
