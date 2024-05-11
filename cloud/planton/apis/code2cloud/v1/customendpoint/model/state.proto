@@ -141,30 +141,33 @@ message CustomEndpointStatus {
 
 //custom-endpoint route
 message CustomEndpointRoute {
+  string id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
   //url path for the custom-endpoint route.
   //(important) url path prefix combined with custom_endpoint_id combined form the composite key.
   //(note) if endpoint domain name is console.example.com, and if the url_path_prefix is /api, then
   //all requests that match console.example.com/api/* are forwarded to the backend microservice configured in
   //this route.
-  string url_path_prefix = 1 [
+  string url_path_prefix = 2 [
     (buf.validate.field).required = true
   ];
 
   //id of the backend microservice-instance to configure the forwarding rule.
   //ex: msi-planton-pcs-prod-company-main
-  string backend_microservice_instance_id = 2 [
+  string backend_microservice_instance_id = 3 [
     (buf.validate.field).required = true
   ];
 
   //service port to which the requests matching the url
   //defaults to 80 if the input contains 0.
-  int32 backend_microservice_service_port = 3 [
+  int32 backend_microservice_service_port = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.int32_default) = 80
   ];
 
   //backend kubernetes endpoint to configure the forwarding rule.
   //this value is computed from the status of the configured microservice-instance
-  string backend_kubernetes_endpoint = 4 [
+  string backend_kubernetes_endpoint = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }
