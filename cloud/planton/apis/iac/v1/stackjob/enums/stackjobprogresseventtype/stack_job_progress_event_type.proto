@@ -28,4 +28,8 @@ enum StackJobProgressEventType {
   //this event is created by planton-cloud's pulumi-stack-job-runner sdk.
   //this event is used to send the resources of a pulumi stack of an api-resource to the client.
   pulumi_resources_event = 5;
+  //this event is created by planton-cloud's pulumi-stack-job-runner sdk.
+  //this event is used to send map of raw map of pulumi stack outputs to the client.
+  //this is different from the stack_job_outputs.
+  pulumi_stack_outputs_event = 6;
 }

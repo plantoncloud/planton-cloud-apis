@@ -13,14 +13,17 @@ import "google/protobuf/timestamp.proto";
 message StackJobProgressEvent {
   // type of the event created during the execution of a stack-job
   cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogresseventtype.StackJobProgressEventType event_type = 1;
-  // pulumi engine event is only populated when event_type is "StackJobProgressEventType.stack_job_status_changed_event"
+  // job status changed event is only populated when event_type is "StackJobProgressEventType.stack_job_status_changed_event"
   StackJobProgressJobStatusChangedPayload job_status_changed_event_payload = 2;
-  // stack-job progress status is populated when event_type is "StackJobProgressEventType.pulumi_operation_status_event"
+  // pulumi operation status status is populated when event_type is "StackJobProgressEventType.pulumi_operation_status_event"
   StackJobProgressPulumiOperationStatusPayload pulumi_operation_status_payload = 3;
   // pulumi engine event is only populated when event_type is "StackJobProgressEventType.pulumi_engine_event"
   cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiEngineEventPayload pulumi_engine_event_payload = 4;
-  // pulumi engine event is only populated when event_type is "StackJobProgressEventType.pulumi_resources_event"
+  // pulumi resources payload is only populated when event_type is "StackJobProgressEventType.pulumi_resources_event"
   cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResourcesPayload pulumi_resources_payload = 5;
+  // pulumi_stack_outputs is only populated when event_type is "StackJobProgressEventType.pulumi_stack_outputs_event"
+  // also outputs if only sent if "apply" operation is executed by the runner.
+  map<string, string> pulumi_stack_outputs = 6;
 }
 
 // stack-job progress pulumi-operation status payload
