@@ -50,7 +50,8 @@ const (
 	StackJobProgressEventType_pulumi_resources_event StackJobProgressEventType = 5
 	// this event is created by planton-cloud's pulumi-stack-job-runner sdk.
 	// this event is used to send map of raw map of pulumi stack outputs to the client.
-	// this is different from the stack_job_outputs.
+	// these outputs are different from strongly modeled outputs as part of the stack for any
+	// API Resource that supports a pulumi blueprint which are streamed with stack_job_outputs_event.
 	StackJobProgressEventType_pulumi_stack_outputs_event StackJobProgressEventType = 6
 )
 
