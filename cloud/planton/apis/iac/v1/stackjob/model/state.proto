@@ -133,10 +133,6 @@ message StackJobStatus {
 
   // status of pulumi operations
   StackJobStatusPulumiOperationsStatus pulumi_operations = 4;
-
-  //outputs emitted by the pulumi engine after execution of apply step.
-  //if the pulumi operations do not include apply step, this will not be populated.
-  map<string,string> pulumi_stack_outputs = 5;
 }
 
 // stack-job progress status

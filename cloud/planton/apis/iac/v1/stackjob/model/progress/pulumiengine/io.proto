@@ -196,3 +196,14 @@ message PulumiResourcesPayload {
 message PulumiResources {
   repeated cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResource entries = 1;
 }
+
+
+// pulumi_stack_outputs is only populated when event_type is "StackJobProgressEventType.pulumi_stack_outputs_event"
+// also outputs if only sent if "apply" operation is executed by the runner.
+message PulumiStackOutputsPayload {
+  // stack-job operation for which the payload is generated
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 1;
+
+  //raw map of pulumi stack outputs
+  map<string, string> outputs = 2;
+}
