@@ -146,8 +146,10 @@ message StackJobStatusProgressStatus {
   // execution end time of stack job
   google.protobuf.Timestamp end_time = 3;
 
-  // if the job has failed, this attribute contains the reason for failure.
-  string failure_reason = 4;
+  // if the job has failed, this attribute contains list of errors describing the cause for failure.
+  // if the job failed because the job result determining pulumi operation has failed, then the
+  // diagnostic messages with severity "error" from that pulumi operation are copied into this field.
+  repeated string errors = 4;
 }
 
 // pulumi operations status of the stack job
