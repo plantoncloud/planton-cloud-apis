@@ -73,5 +73,7 @@ service StackJobQueryController {
 
   // get a recommendation from chat-gpt for a specific error message of a failed stack-job
   rpc getErrorResolutionRecommendation(cloud.planton.apis.iac.v1.stackjob.model.GetErrorResolutionRecommendationInput)
-      returns (google.protobuf.StringValue);
+      returns (google.protobuf.StringValue) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 }
