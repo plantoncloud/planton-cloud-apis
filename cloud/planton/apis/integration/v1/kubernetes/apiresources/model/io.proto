@@ -129,3 +129,28 @@ message FindCertificatesQueryInput {
   //kubernetes label selector to filter results
   string label_selector = 3;
 }
+
+// kubernetes api-resource
+message KubernetesApiResource {
+  // kubernetes api resource version
+  string api_version = 1;
+  // kubernetes api resource group
+  string group = 2;
+  // kubernetes api resource kind
+  string kind = 3;
+  // name of the kubernetes api resource
+  string name = 4;
+}
+
+// list of KubernetesApiResources
+message KubernetesApiResources {
+  repeated KubernetesApiResource entries = 1;
+}
+
+// input for rpc to get list of kubernetes api-resources in a given namespace
+message FindAllKubernetesApiResourcesByNamespaceInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  //name of the kubernetes namespace
+  string namespace = 2;
+}

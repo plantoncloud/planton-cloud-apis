@@ -35,6 +35,7 @@ const (
 	KubeClusterQueryController_FindSslCertificatesByKubeClusterId_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findSslCertificatesByKubeClusterId"
 	KubeClusterQueryController_GetPod_FullMethodName                                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getPod"
 	KubeClusterQueryController_GetPodLogStream_FullMethodName                         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getPodLogStream"
+	KubeClusterQueryController_FindKubernetesApiResources_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findKubernetesApiResources"
 )
 
 // KubeClusterQueryControllerClient is the client API for KubeClusterQueryController service.
@@ -64,6 +65,8 @@ type KubeClusterQueryControllerClient interface {
 	GetPod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error)
 	// get a log stream for a pod running in a kube-cluster kube-cluster
 	GetPodLogStream(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (KubeClusterQueryController_GetPodLogStreamClient, error)
+	// find all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	FindKubernetesApiResources(ctx context.Context, in *model.FindKubernetesApiResourcesInput, opts ...grpc.CallOption) (*model.FindKubernetesApiResourcesResponse, error)
 }
 
 type kubeClusterQueryControllerClient struct {
@@ -187,6 +190,15 @@ func (x *kubeClusterQueryControllerGetPodLogStreamClient) Recv() (*wrapperspb.St
 	return m, nil
 }
 
+func (c *kubeClusterQueryControllerClient) FindKubernetesApiResources(ctx context.Context, in *model.FindKubernetesApiResourcesInput, opts ...grpc.CallOption) (*model.FindKubernetesApiResourcesResponse, error) {
+	out := new(model.FindKubernetesApiResourcesResponse)
+	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindKubernetesApiResources_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubeClusterQueryControllerServer is the server API for KubeClusterQueryController service.
 // All implementations should embed UnimplementedKubeClusterQueryControllerServer
 // for forward compatibility
@@ -214,6 +226,8 @@ type KubeClusterQueryControllerServer interface {
 	GetPod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error)
 	// get a log stream for a pod running in a kube-cluster kube-cluster
 	GetPodLogStream(*model.ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error
+	// find all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	FindKubernetesApiResources(context.Context, *model.FindKubernetesApiResourcesInput) (*model.FindKubernetesApiResourcesResponse, error)
 }
 
 // UnimplementedKubeClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -249,6 +263,9 @@ func (UnimplementedKubeClusterQueryControllerServer) GetPod(context.Context, *mo
 }
 func (UnimplementedKubeClusterQueryControllerServer) GetPodLogStream(*model.ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetPodLogStream not implemented")
+}
+func (UnimplementedKubeClusterQueryControllerServer) FindKubernetesApiResources(context.Context, *model.FindKubernetesApiResourcesInput) (*model.FindKubernetesApiResourcesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindKubernetesApiResources not implemented")
 }
 
 // UnsafeKubeClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -445,6 +462,24 @@ func (x *kubeClusterQueryControllerGetPodLogStreamServer) Send(m *wrapperspb.Str
 	return x.ServerStream.SendMsg(m)
 }
 
+func _KubeClusterQueryController_FindKubernetesApiResources_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.FindKubernetesApiResourcesInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterQueryControllerServer).FindKubernetesApiResources(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterQueryController_FindKubernetesApiResources_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterQueryControllerServer).FindKubernetesApiResources(ctx, req.(*model.FindKubernetesApiResourcesInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubeClusterQueryController_ServiceDesc is the grpc.ServiceDesc for KubeClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -487,6 +522,10 @@ var KubeClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPod",
 			Handler:    _KubeClusterQueryController_GetPod_Handler,
+		},
+		{
+			MethodName: "findKubernetesApiResources",
+			Handler:    _KubeClusterQueryController_FindKubernetesApiResources_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

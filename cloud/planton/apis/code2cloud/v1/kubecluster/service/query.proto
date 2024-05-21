@@ -106,6 +106,10 @@ service KubeClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to stream pod logs";
   }
+
+  //find all kubernetes api-resources corresponding to the api-resource on planton cloud.
+  rpc findKubernetesApiResources(cloud.planton.apis.code2cloud.v1.kubecluster.model.FindKubernetesApiResourcesInput)
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.FindKubernetesApiResourcesResponse);
 }
 
 // gcp kube-cluster container node pool query controller
