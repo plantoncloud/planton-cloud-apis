@@ -9,7 +9,7 @@ service KubernetesApiResourcesQueryController {
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificate);
   rpc findCertificates(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.FindCertificatesQueryInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificates);
-  //find all kubernetes api-resources corresponding to the api-resource on planton cloud.
-  rpc findAllByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.FindAllKubernetesApiResourcesByNamespaceInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
+  //stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+  rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamKubernetesApiResourcesByNamespaceInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
 }

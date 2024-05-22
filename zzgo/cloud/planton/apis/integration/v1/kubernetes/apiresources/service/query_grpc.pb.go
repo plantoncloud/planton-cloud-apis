@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	KubernetesApiResourcesQueryController_GetCertificateByNamespaceByName_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/getCertificateByNamespaceByName"
 	KubernetesApiResourcesQueryController_FindCertificates_FullMethodName                = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/findCertificates"
-	KubernetesApiResourcesQueryController_FindAllByNamespace_FullMethodName              = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/findAllByNamespace"
+	KubernetesApiResourcesQueryController_StreamByNamespace_FullMethodName               = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/streamByNamespace"
 )
 
 // KubernetesApiResourcesQueryControllerClient is the client API for KubernetesApiResourcesQueryController service.
@@ -31,8 +31,8 @@ const (
 type KubernetesApiResourcesQueryControllerClient interface {
 	GetCertificateByNamespaceByName(ctx context.Context, in *model.GetCertificateByNamespaceByNameQueryInput, opts ...grpc.CallOption) (*model.Certificate, error)
 	FindCertificates(ctx context.Context, in *model.FindCertificatesQueryInput, opts ...grpc.CallOption) (*model.Certificates, error)
-	// find all kubernetes api-resources corresponding to the api-resource on planton cloud.
-	FindAllByNamespace(ctx context.Context, in *model.FindAllKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (*model.KubernetesApiResources, error)
+	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	StreamByNamespace(ctx context.Context, in *model.StreamKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamByNamespaceClient, error)
 }
 
 type kubernetesApiResourcesQueryControllerClient struct {
@@ -61,13 +61,36 @@ func (c *kubernetesApiResourcesQueryControllerClient) FindCertificates(ctx conte
 	return out, nil
 }
 
-func (c *kubernetesApiResourcesQueryControllerClient) FindAllByNamespace(ctx context.Context, in *model.FindAllKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (*model.KubernetesApiResources, error) {
-	out := new(model.KubernetesApiResources)
-	err := c.cc.Invoke(ctx, KubernetesApiResourcesQueryController_FindAllByNamespace_FullMethodName, in, out, opts...)
+func (c *kubernetesApiResourcesQueryControllerClient) StreamByNamespace(ctx context.Context, in *model.StreamKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamByNamespaceClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubernetesApiResourcesQueryController_ServiceDesc.Streams[0], KubernetesApiResourcesQueryController_StreamByNamespace_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	return out, nil
+	x := &kubernetesApiResourcesQueryControllerStreamByNamespaceClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type KubernetesApiResourcesQueryController_StreamByNamespaceClient interface {
+	Recv() (*model.KubernetesApiResources, error)
+	grpc.ClientStream
+}
+
+type kubernetesApiResourcesQueryControllerStreamByNamespaceClient struct {
+	grpc.ClientStream
+}
+
+func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceClient) Recv() (*model.KubernetesApiResources, error) {
+	m := new(model.KubernetesApiResources)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
 }
 
 // KubernetesApiResourcesQueryControllerServer is the server API for KubernetesApiResourcesQueryController service.
@@ -76,8 +99,8 @@ func (c *kubernetesApiResourcesQueryControllerClient) FindAllByNamespace(ctx con
 type KubernetesApiResourcesQueryControllerServer interface {
 	GetCertificateByNamespaceByName(context.Context, *model.GetCertificateByNamespaceByNameQueryInput) (*model.Certificate, error)
 	FindCertificates(context.Context, *model.FindCertificatesQueryInput) (*model.Certificates, error)
-	// find all kubernetes api-resources corresponding to the api-resource on planton cloud.
-	FindAllByNamespace(context.Context, *model.FindAllKubernetesApiResourcesByNamespaceInput) (*model.KubernetesApiResources, error)
+	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error
 }
 
 // UnimplementedKubernetesApiResourcesQueryControllerServer should be embedded to have forward compatible implementations.
@@ -90,8 +113,8 @@ func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetCertificateBy
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) FindCertificates(context.Context, *model.FindCertificatesQueryInput) (*model.Certificates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindCertificates not implemented")
 }
-func (UnimplementedKubernetesApiResourcesQueryControllerServer) FindAllByNamespace(context.Context, *model.FindAllKubernetesApiResourcesByNamespaceInput) (*model.KubernetesApiResources, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindAllByNamespace not implemented")
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamByNamespace not implemented")
 }
 
 // UnsafeKubernetesApiResourcesQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -141,22 +164,25 @@ func _KubernetesApiResourcesQueryController_FindCertificates_Handler(srv interfa
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubernetesApiResourcesQueryController_FindAllByNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.FindAllKubernetesApiResourcesByNamespaceInput)
-	if err := dec(in); err != nil {
-		return nil, err
+func _KubernetesApiResourcesQueryController_StreamByNamespace_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.StreamKubernetesApiResourcesByNamespaceInput)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
 	}
-	if interceptor == nil {
-		return srv.(KubernetesApiResourcesQueryControllerServer).FindAllByNamespace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubernetesApiResourcesQueryController_FindAllByNamespace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesApiResourcesQueryControllerServer).FindAllByNamespace(ctx, req.(*model.FindAllKubernetesApiResourcesByNamespaceInput))
-	}
-	return interceptor(ctx, in, info, handler)
+	return srv.(KubernetesApiResourcesQueryControllerServer).StreamByNamespace(m, &kubernetesApiResourcesQueryControllerStreamByNamespaceServer{stream})
+}
+
+type KubernetesApiResourcesQueryController_StreamByNamespaceServer interface {
+	Send(*model.KubernetesApiResources) error
+	grpc.ServerStream
+}
+
+type kubernetesApiResourcesQueryControllerStreamByNamespaceServer struct {
+	grpc.ServerStream
+}
+
+func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceServer) Send(m *model.KubernetesApiResources) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 // KubernetesApiResourcesQueryController_ServiceDesc is the grpc.ServiceDesc for KubernetesApiResourcesQueryController service.
@@ -174,11 +200,13 @@ var KubernetesApiResourcesQueryController_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "findCertificates",
 			Handler:    _KubernetesApiResourcesQueryController_FindCertificates_Handler,
 		},
+	},
+	Streams: []grpc.StreamDesc{
 		{
-			MethodName: "findAllByNamespace",
-			Handler:    _KubernetesApiResourcesQueryController_FindAllByNamespace_Handler,
+			StreamName:    "streamByNamespace",
+			Handler:       _KubernetesApiResourcesQueryController_StreamByNamespace_Handler,
+			ServerStreams: true,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/integration/v1/kubernetes/apiresources/service/query.proto",
 }
