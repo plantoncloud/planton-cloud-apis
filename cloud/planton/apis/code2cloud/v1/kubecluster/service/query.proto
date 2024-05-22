@@ -142,6 +142,10 @@ service KubeClusterKubernetesApiQueryController {
   //because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
   rpc streamKubernetesApiResources(cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubernetesApiResourcesInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
+
+  //get detailed object of a kubernetes api-resource
+  rpc getKubernetesApiResource(cloud.planton.apis.code2cloud.v1.kubecluster.model.GetKubernetesApiResourceInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.GetKubernetesApiResourceResponse);
 }
 
 // kube-cluster kubernetes api-resources command controller

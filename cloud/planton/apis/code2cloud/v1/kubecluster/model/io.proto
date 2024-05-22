@@ -254,10 +254,20 @@ message StreamKubernetesApiResourcesInput {
   string resource_id = 2;
 }
 
-// response for rpc to find all api-resources created for an API Resource on Planton Cloud.
-message FindKubernetesApiResourcesResponse {
-  // namespace on kubernetes created for the API Resource on Planton Cloud.
-  string kubernetes_namespace = 1;
-  // list of kubernetes api-resources with in the namespace created for the API Resource on Planton Cloud.
-  repeated cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resources = 2;
+// input for rpc get kubernetes api-resource object
+message GetKubernetesApiResourceInput {
+  //Planton Cloud API Resource Kind
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+  //id of the api resource on Planton Cloud
+  string resource_id = 2;
+  //kubernetes api-resource
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 3;
+}
+
+// response for rpc get kubernetes api-resource object
+message GetKubernetesApiResourceResponse {
+  //base64 encoded output of the kubernetes api-resource in "kubectl describe" formal
+  string describe_output_base64 = 1;
+  //base64 encoded output of the kubernetes api-resource in "kubectl get -o yaml" format
+  string yaml_output_base64 = 2;
 }

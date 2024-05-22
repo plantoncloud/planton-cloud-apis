@@ -132,12 +132,14 @@ message FindCertificatesQueryInput {
 
 // kubernetes api-resource
 message KubernetesApiResource {
+  // kubernetes namespace
+  string namespace = 1;
   // kubernetes api resource version
-  string api_version = 1;
+  string api_version = 2;
   // kubernetes api resource kind
-  string kind = 2;
+  string kind = 3;
   // name of the kubernetes api resource
-  string name = 3;
+  string name = 4;
 }
 
 // list of KubernetesApiResources
