@@ -134,12 +134,10 @@ message FindCertificatesQueryInput {
 message KubernetesApiResource {
   // kubernetes api resource version
   string api_version = 1;
-  // kubernetes api resource group
-  string group = 2;
   // kubernetes api resource kind
-  string kind = 3;
+  string kind = 2;
   // name of the kubernetes api resource
-  string name = 4;
+  string name = 3;
 }
 
 // list of KubernetesApiResources
