@@ -144,11 +144,6 @@ service KubeClusterKubernetesApiQueryController {
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
 
   //get detailed object of a kubernetes api-resource
-  rpc getKubernetesApiResource(cloud.planton.apis.code2cloud.v1.kubecluster.model.GetKubeClusterKubernetesApiResourceInput)
+  rpc getKubernetesApiResource(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
-}
-
-// kube-cluster kubernetes api-resources command controller
-service KubeClusterKubernetesApiCommandController {
-
 }

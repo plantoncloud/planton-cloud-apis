@@ -238,3 +238,14 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
 }
+
+// kube-cluster kubernetes api-resources command controller
+service KubeClusterKubernetesApiCommandController {
+  //get detailed object of a kubernetes api-resource
+  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+
+  //delete a kubernetes api-resource
+  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesApiResourceInput)
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource);
+}
