@@ -247,7 +247,7 @@ message ByKubeClusterByNamespaceInput {
 }
 
 // input for rpc to find all api-resources created for an API Resource on Planton Cloud.
-message StreamKubernetesApiResourcesInput {
+message StreamKubeClusterKubernetesApiResourcesInput {
   //Planton Cloud API Resource Kind
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
   //id of the api resource on Planton Cloud
@@ -255,19 +255,11 @@ message StreamKubernetesApiResourcesInput {
 }
 
 // input for rpc get kubernetes api-resource object
-message GetKubernetesApiResourceInput {
+message GetKubeClusterKubernetesApiResourceInput {
   //Planton Cloud API Resource Kind
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
   //id of the api resource on Planton Cloud
   string resource_id = 2;
   //kubernetes api-resource
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 3;
-}
-
-// response for rpc get kubernetes api-resource object
-message GetKubernetesApiResourceResponse {
-  //base64 encoded output of the kubernetes api-resource in "kubectl describe" formal
-  string describe_output_base64 = 1;
-  //base64 encoded output of the kubernetes api-resource in "kubectl get -o yaml" format
-  string yaml_output_base64 = 2;
 }

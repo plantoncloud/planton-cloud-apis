@@ -23,6 +23,7 @@ const (
 	KubernetesApiResourcesQueryController_GetCertificateByNamespaceByName_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/getCertificateByNamespaceByName"
 	KubernetesApiResourcesQueryController_FindCertificates_FullMethodName                = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/findCertificates"
 	KubernetesApiResourcesQueryController_StreamByNamespace_FullMethodName               = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/streamByNamespace"
+	KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName        = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/getKubernetesApiResource"
 )
 
 // KubernetesApiResourcesQueryControllerClient is the client API for KubernetesApiResourcesQueryController service.
@@ -33,6 +34,8 @@ type KubernetesApiResourcesQueryControllerClient interface {
 	FindCertificates(ctx context.Context, in *model.FindCertificatesQueryInput, opts ...grpc.CallOption) (*model.Certificates, error)
 	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
 	StreamByNamespace(ctx context.Context, in *model.StreamKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamByNamespaceClient, error)
+	// get detailed object of a kubernetes api-resource
+	GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
 }
 
 type kubernetesApiResourcesQueryControllerClient struct {
@@ -93,6 +96,15 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceClient) Recv() (*
 	return m, nil
 }
 
+func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error) {
+	out := new(model.KubernetesApiResourceDetail)
+	err := c.cc.Invoke(ctx, KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubernetesApiResourcesQueryControllerServer is the server API for KubernetesApiResourcesQueryController service.
 // All implementations should embed UnimplementedKubernetesApiResourcesQueryControllerServer
 // for forward compatibility
@@ -101,6 +113,8 @@ type KubernetesApiResourcesQueryControllerServer interface {
 	FindCertificates(context.Context, *model.FindCertificatesQueryInput) (*model.Certificates, error)
 	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
 	StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error
+	// get detailed object of a kubernetes api-resource
+	GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
 }
 
 // UnimplementedKubernetesApiResourcesQueryControllerServer should be embedded to have forward compatible implementations.
@@ -115,6 +129,9 @@ func (UnimplementedKubernetesApiResourcesQueryControllerServer) FindCertificates
 }
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamByNamespace not implemented")
+}
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKubernetesApiResource not implemented")
 }
 
 // UnsafeKubernetesApiResourcesQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -185,6 +202,24 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceServer) Send(m *m
 	return x.ServerStream.SendMsg(m)
 }
 
+func _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetKubernetesApiResourceInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.GetKubernetesApiResourceInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubernetesApiResourcesQueryController_ServiceDesc is the grpc.ServiceDesc for KubernetesApiResourcesQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -199,6 +234,10 @@ var KubernetesApiResourcesQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findCertificates",
 			Handler:    _KubernetesApiResourcesQueryController_FindCertificates_Handler,
+		},
+		{
+			MethodName: "getKubernetesApiResource",
+			Handler:    _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
