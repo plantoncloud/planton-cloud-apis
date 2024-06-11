@@ -266,7 +266,16 @@ message KubeClusterKubernetesApiResource {
 
 // input for rpc to update a kubernetes api-resource object in a kube-cluster
 message UpdateKubeClusterKubernetesApiResourceInput {
+  // kubernetes api-resource of a kube-cluster
   KubeClusterKubernetesApiResource kube_cluster_kubernetes_api_resource = 1;
   // base64 encoded of the updated kubernetes api-resource manifest
   string kubernetes_api_resource_updated_manifest_yaml_base64 = 2;
+}
+
+// input for rpc to stream logs of a pod on kube-cluster
+message StreamKubeClusterPodLogsInput {
+  // kubernetes api-resource of a kube-cluster
+  KubeClusterKubernetesApiResource kube_cluster_kubernetes_api_resource = 1;
+  //options to configure pod log stream
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 2;
 }

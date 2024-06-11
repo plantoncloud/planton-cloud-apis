@@ -172,3 +172,28 @@ message LookupKubernetesApiResourceInput {
   //kubernetes api-resource
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
 }
+
+// input for rpc to stream logs of a pod
+message StreamPodLogsInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  //kubernetes api-resource
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
+  //options to configure pod log stream
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
+}
+
+//options available to configure pod log stream
+message PodLogStreamOptions {
+  // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
+  string container_name = 1;
+  // If true, get logs for the previous instance of the container if it has restarted.
+  // if this is set to true, the stream does not fetch the logs of restarted container.
+  bool is_fetch_previous_container_logs = 2;
+  // Filters the logs to include only those from the last specified time in format 20s, 1m, 1d etc.
+  string since_duration = 3;
+  // Limits the number of lines to include in the log output. If not specified, all lines will be included.
+  int64 tail_lines = 4;
+  //regex to be used for filtering logs
+  string content_filter_regex = 5;
+}
