@@ -132,12 +132,14 @@ message FindCertificatesQueryInput {
 
 // kubernetes api-resource
 message KubernetesApiResource {
+  // kubernetes namespace
+  string namespace = 1;
   // kubernetes api resource version
-  string api_version = 1;
+  string api_version = 2;
   // kubernetes api resource kind
-  string kind = 2;
+  string kind = 3;
   // name of the kubernetes api resource
-  string name = 3;
+  string name = 4;
 }
 
 // list of KubernetesApiResources
@@ -151,4 +153,20 @@ message StreamKubernetesApiResourcesByNamespaceInput {
   string kube_config_base64 = 1;
   //name of the kubernetes namespace
   string namespace = 2;
+}
+
+// details of a kubernetes api-resource object
+message KubernetesApiResourceDetail {
+  //base64 encoded output of the kubernetes api-resource in "kubectl describe" formal
+  string describe_format_base64 = 1;
+  //base64 encoded output of the kubernetes api-resource in "kubectl get -o yaml" format
+  string yaml_format_base64 = 2;
+}
+
+// input for rpc get kubernetes api-resource object
+message GetKubernetesApiResourceInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  //kubernetes api-resource
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
 }

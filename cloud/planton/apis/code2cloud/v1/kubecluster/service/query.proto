@@ -140,11 +140,10 @@ service KubeClusterKubernetesApiQueryController {
   //stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
   //this is a streaming rpc since the lookup involves several kubernetes api-calls to fetch all the api-resources.
   //because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
-  rpc streamKubernetesApiResources(cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubernetesApiResourcesInput)
+  rpc streamKubernetesApiResources(cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubeClusterKubernetesApiResourcesInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
-}
 
-// kube-cluster kubernetes api-resources command controller
-service KubeClusterKubernetesApiCommandController {
-
+  //get detailed object of a kubernetes api-resource
+  rpc getKubernetesApiResource(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
 }

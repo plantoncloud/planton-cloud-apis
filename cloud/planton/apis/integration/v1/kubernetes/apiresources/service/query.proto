@@ -12,4 +12,7 @@ service KubernetesApiResourcesQueryController {
   //stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
   rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamKubernetesApiResourcesByNamespaceInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
+  //get detailed object of a kubernetes api-resource
+  rpc getKubernetesApiResource(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.GetKubernetesApiResourceInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
 }

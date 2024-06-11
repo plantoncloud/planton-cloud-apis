@@ -720,6 +720,7 @@ var GcpQueryController_ServiceDesc = grpc.ServiceDesc{
 
 const (
 	KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/streamKubernetesApiResources"
+	KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/getKubernetesApiResource"
 )
 
 // KubeClusterKubernetesApiQueryControllerClient is the client API for KubeClusterKubernetesApiQueryController service.
@@ -729,7 +730,9 @@ type KubeClusterKubernetesApiQueryControllerClient interface {
 	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
 	// this is a streaming rpc since the lookup involves several kubernetes api-calls to fetch all the api-resources.
 	// because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
-	StreamKubernetesApiResources(ctx context.Context, in *model.StreamKubernetesApiResourcesInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesClient, error)
+	StreamKubernetesApiResources(ctx context.Context, in *model.StreamKubeClusterKubernetesApiResourcesInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesClient, error)
+	// get detailed object of a kubernetes api-resource
+	GetKubernetesApiResource(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.KubernetesApiResourceDetail, error)
 }
 
 type kubeClusterKubernetesApiQueryControllerClient struct {
@@ -740,7 +743,7 @@ func NewKubeClusterKubernetesApiQueryControllerClient(cc grpc.ClientConnInterfac
 	return &kubeClusterKubernetesApiQueryControllerClient{cc}
 }
 
-func (c *kubeClusterKubernetesApiQueryControllerClient) StreamKubernetesApiResources(ctx context.Context, in *model.StreamKubernetesApiResourcesInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesClient, error) {
+func (c *kubeClusterKubernetesApiQueryControllerClient) StreamKubernetesApiResources(ctx context.Context, in *model.StreamKubeClusterKubernetesApiResourcesInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesClient, error) {
 	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesApiQueryController_ServiceDesc.Streams[0], KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
@@ -772,6 +775,15 @@ func (x *kubeClusterKubernetesApiQueryControllerStreamKubernetesApiResourcesClie
 	return m, nil
 }
 
+func (c *kubeClusterKubernetesApiQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.KubernetesApiResourceDetail, error) {
+	out := new(model3.KubernetesApiResourceDetail)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubeClusterKubernetesApiQueryControllerServer is the server API for KubeClusterKubernetesApiQueryController service.
 // All implementations should embed UnimplementedKubeClusterKubernetesApiQueryControllerServer
 // for forward compatibility
@@ -779,15 +791,20 @@ type KubeClusterKubernetesApiQueryControllerServer interface {
 	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
 	// this is a streaming rpc since the lookup involves several kubernetes api-calls to fetch all the api-resources.
 	// because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
-	StreamKubernetesApiResources(*model.StreamKubernetesApiResourcesInput, KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesServer) error
+	StreamKubernetesApiResources(*model.StreamKubeClusterKubernetesApiResourcesInput, KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesServer) error
+	// get detailed object of a kubernetes api-resource
+	GetKubernetesApiResource(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.KubernetesApiResourceDetail, error)
 }
 
 // UnimplementedKubeClusterKubernetesApiQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedKubeClusterKubernetesApiQueryControllerServer struct {
 }
 
-func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) StreamKubernetesApiResources(*model.StreamKubernetesApiResourcesInput, KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesServer) error {
+func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) StreamKubernetesApiResources(*model.StreamKubeClusterKubernetesApiResourcesInput, KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamKubernetesApiResources not implemented")
+}
+func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) GetKubernetesApiResource(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.KubernetesApiResourceDetail, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetKubernetesApiResource not implemented")
 }
 
 // UnsafeKubeClusterKubernetesApiQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -802,7 +819,7 @@ func RegisterKubeClusterKubernetesApiQueryControllerServer(s grpc.ServiceRegistr
 }
 
 func _KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.StreamKubernetesApiResourcesInput)
+	m := new(model.StreamKubeClusterKubernetesApiResourcesInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -822,13 +839,36 @@ func (x *kubeClusterKubernetesApiQueryControllerStreamKubernetesApiResourcesServ
 	return x.ServerStream.SendMsg(m)
 }
 
+func _KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeClusterKubernetesApiResource)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterKubernetesApiQueryControllerServer).GetKubernetesApiResource(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterKubernetesApiQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.KubeClusterKubernetesApiResource))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubeClusterKubernetesApiQueryController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesApiQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var KubeClusterKubernetesApiQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController",
 	HandlerType: (*KubeClusterKubernetesApiQueryControllerServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "getKubernetesApiResource",
+			Handler:    _KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "streamKubernetesApiResources",
@@ -837,52 +877,4 @@ var KubeClusterKubernetesApiQueryController_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Metadata: "cloud/planton/apis/code2cloud/v1/kubecluster/service/query.proto",
-}
-
-const ()
-
-// KubeClusterKubernetesApiCommandControllerClient is the client API for KubeClusterKubernetesApiCommandController service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type KubeClusterKubernetesApiCommandControllerClient interface {
-}
-
-type kubeClusterKubernetesApiCommandControllerClient struct {
-	cc grpc.ClientConnInterface
-}
-
-func NewKubeClusterKubernetesApiCommandControllerClient(cc grpc.ClientConnInterface) KubeClusterKubernetesApiCommandControllerClient {
-	return &kubeClusterKubernetesApiCommandControllerClient{cc}
-}
-
-// KubeClusterKubernetesApiCommandControllerServer is the server API for KubeClusterKubernetesApiCommandController service.
-// All implementations should embed UnimplementedKubeClusterKubernetesApiCommandControllerServer
-// for forward compatibility
-type KubeClusterKubernetesApiCommandControllerServer interface {
-}
-
-// UnimplementedKubeClusterKubernetesApiCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedKubeClusterKubernetesApiCommandControllerServer struct {
-}
-
-// UnsafeKubeClusterKubernetesApiCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to KubeClusterKubernetesApiCommandControllerServer will
-// result in compilation errors.
-type UnsafeKubeClusterKubernetesApiCommandControllerServer interface {
-	mustEmbedUnimplementedKubeClusterKubernetesApiCommandControllerServer()
-}
-
-func RegisterKubeClusterKubernetesApiCommandControllerServer(s grpc.ServiceRegistrar, srv KubeClusterKubernetesApiCommandControllerServer) {
-	s.RegisterService(&KubeClusterKubernetesApiCommandController_ServiceDesc, srv)
-}
-
-// KubeClusterKubernetesApiCommandController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesApiCommandController service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var KubeClusterKubernetesApiCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiCommandController",
-	HandlerType: (*KubeClusterKubernetesApiCommandControllerServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "cloud/planton/apis/code2cloud/v1/kubecluster/service/query.proto",
 }
