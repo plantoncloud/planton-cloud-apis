@@ -140,6 +140,8 @@ message KubernetesApiResource {
   string kind = 3;
   // name of the kubernetes api resource
   string name = 4;
+  // flag to indicate if the resource is a pod controller
+  bool is_pod_controller = 5;
 }
 
 // list of KubernetesApiResources
