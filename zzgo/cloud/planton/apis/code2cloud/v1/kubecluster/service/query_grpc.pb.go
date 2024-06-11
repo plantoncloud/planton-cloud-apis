@@ -721,6 +721,7 @@ var GcpQueryController_ServiceDesc = grpc.ServiceDesc{
 const (
 	KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/streamKubernetesApiResources"
 	KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/getKubernetesApiResource"
+	KubeClusterKubernetesApiQueryController_ListPods_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/listPods"
 )
 
 // KubeClusterKubernetesApiQueryControllerClient is the client API for KubeClusterKubernetesApiQueryController service.
@@ -733,6 +734,8 @@ type KubeClusterKubernetesApiQueryControllerClient interface {
 	StreamKubernetesApiResources(ctx context.Context, in *model.StreamKubeClusterKubernetesApiResourcesInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesClient, error)
 	// get detailed object of a kubernetes api-resource
 	GetKubernetesApiResource(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.KubernetesApiResourceDetail, error)
+	// list pods of a pod controller like Deployment, StatefulSet etc
+	ListPods(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.Pods, error)
 }
 
 type kubeClusterKubernetesApiQueryControllerClient struct {
@@ -784,6 +787,15 @@ func (c *kubeClusterKubernetesApiQueryControllerClient) GetKubernetesApiResource
 	return out, nil
 }
 
+func (c *kubeClusterKubernetesApiQueryControllerClient) ListPods(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.Pods, error) {
+	out := new(model3.Pods)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiQueryController_ListPods_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubeClusterKubernetesApiQueryControllerServer is the server API for KubeClusterKubernetesApiQueryController service.
 // All implementations should embed UnimplementedKubeClusterKubernetesApiQueryControllerServer
 // for forward compatibility
@@ -794,6 +806,8 @@ type KubeClusterKubernetesApiQueryControllerServer interface {
 	StreamKubernetesApiResources(*model.StreamKubeClusterKubernetesApiResourcesInput, KubeClusterKubernetesApiQueryController_StreamKubernetesApiResourcesServer) error
 	// get detailed object of a kubernetes api-resource
 	GetKubernetesApiResource(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.KubernetesApiResourceDetail, error)
+	// list pods of a pod controller like Deployment, StatefulSet etc
+	ListPods(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.Pods, error)
 }
 
 // UnimplementedKubeClusterKubernetesApiQueryControllerServer should be embedded to have forward compatible implementations.
@@ -805,6 +819,9 @@ func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) StreamKubernet
 }
 func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) GetKubernetesApiResource(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.KubernetesApiResourceDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKubernetesApiResource not implemented")
+}
+func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) ListPods(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.Pods, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPods not implemented")
 }
 
 // UnsafeKubeClusterKubernetesApiQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -857,6 +874,24 @@ func _KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_Handler(s
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterKubernetesApiQueryController_ListPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeClusterKubernetesApiResource)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterKubernetesApiQueryControllerServer).ListPods(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterKubernetesApiQueryController_ListPods_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterKubernetesApiQueryControllerServer).ListPods(ctx, req.(*model.KubeClusterKubernetesApiResource))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubeClusterKubernetesApiQueryController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesApiQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -867,6 +902,10 @@ var KubeClusterKubernetesApiQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getKubernetesApiResource",
 			Handler:    _KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_Handler,
+		},
+		{
+			MethodName: "listPods",
+			Handler:    _KubeClusterKubernetesApiQueryController_ListPods_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
