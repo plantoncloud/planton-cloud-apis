@@ -722,6 +722,7 @@ const (
 	KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/streamKubernetesApiResources"
 	KubeClusterKubernetesApiQueryController_GetKubernetesApiResource_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/getKubernetesApiResource"
 	KubeClusterKubernetesApiQueryController_ListPods_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/listPods"
+	KubeClusterKubernetesApiQueryController_StreamPodLogs_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiQueryController/streamPodLogs"
 )
 
 // KubeClusterKubernetesApiQueryControllerClient is the client API for KubeClusterKubernetesApiQueryController service.
@@ -736,6 +737,8 @@ type KubeClusterKubernetesApiQueryControllerClient interface {
 	GetKubernetesApiResource(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.KubernetesApiResourceDetail, error)
 	// list pods of a pod controller like Deployment, StatefulSet etc
 	ListPods(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model3.Pods, error)
+	// stream logs of a kubernetes pod
+	StreamPodLogs(ctx context.Context, in *model.StreamKubeClusterPodLogsInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamPodLogsClient, error)
 }
 
 type kubeClusterKubernetesApiQueryControllerClient struct {
@@ -796,6 +799,38 @@ func (c *kubeClusterKubernetesApiQueryControllerClient) ListPods(ctx context.Con
 	return out, nil
 }
 
+func (c *kubeClusterKubernetesApiQueryControllerClient) StreamPodLogs(ctx context.Context, in *model.StreamKubeClusterPodLogsInput, opts ...grpc.CallOption) (KubeClusterKubernetesApiQueryController_StreamPodLogsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesApiQueryController_ServiceDesc.Streams[1], KubeClusterKubernetesApiQueryController_StreamPodLogs_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kubeClusterKubernetesApiQueryControllerStreamPodLogsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type KubeClusterKubernetesApiQueryController_StreamPodLogsClient interface {
+	Recv() (*wrapperspb.StringValue, error)
+	grpc.ClientStream
+}
+
+type kubeClusterKubernetesApiQueryControllerStreamPodLogsClient struct {
+	grpc.ClientStream
+}
+
+func (x *kubeClusterKubernetesApiQueryControllerStreamPodLogsClient) Recv() (*wrapperspb.StringValue, error) {
+	m := new(wrapperspb.StringValue)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // KubeClusterKubernetesApiQueryControllerServer is the server API for KubeClusterKubernetesApiQueryController service.
 // All implementations should embed UnimplementedKubeClusterKubernetesApiQueryControllerServer
 // for forward compatibility
@@ -808,6 +843,8 @@ type KubeClusterKubernetesApiQueryControllerServer interface {
 	GetKubernetesApiResource(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.KubernetesApiResourceDetail, error)
 	// list pods of a pod controller like Deployment, StatefulSet etc
 	ListPods(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.Pods, error)
+	// stream logs of a kubernetes pod
+	StreamPodLogs(*model.StreamKubeClusterPodLogsInput, KubeClusterKubernetesApiQueryController_StreamPodLogsServer) error
 }
 
 // UnimplementedKubeClusterKubernetesApiQueryControllerServer should be embedded to have forward compatible implementations.
@@ -822,6 +859,9 @@ func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) GetKubernetesA
 }
 func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) ListPods(context.Context, *model.KubeClusterKubernetesApiResource) (*model3.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPods not implemented")
+}
+func (UnimplementedKubeClusterKubernetesApiQueryControllerServer) StreamPodLogs(*model.StreamKubeClusterPodLogsInput, KubeClusterKubernetesApiQueryController_StreamPodLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamPodLogs not implemented")
 }
 
 // UnsafeKubeClusterKubernetesApiQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -892,6 +932,27 @@ func _KubeClusterKubernetesApiQueryController_ListPods_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterKubernetesApiQueryController_StreamPodLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.StreamKubeClusterPodLogsInput)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(KubeClusterKubernetesApiQueryControllerServer).StreamPodLogs(m, &kubeClusterKubernetesApiQueryControllerStreamPodLogsServer{stream})
+}
+
+type KubeClusterKubernetesApiQueryController_StreamPodLogsServer interface {
+	Send(*wrapperspb.StringValue) error
+	grpc.ServerStream
+}
+
+type kubeClusterKubernetesApiQueryControllerStreamPodLogsServer struct {
+	grpc.ServerStream
+}
+
+func (x *kubeClusterKubernetesApiQueryControllerStreamPodLogsServer) Send(m *wrapperspb.StringValue) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // KubeClusterKubernetesApiQueryController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesApiQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -912,6 +973,11 @@ var KubeClusterKubernetesApiQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "streamKubernetesApiResources",
 			Handler:       _KubeClusterKubernetesApiQueryController_StreamKubernetesApiResources_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "streamPodLogs",
+			Handler:       _KubeClusterKubernetesApiQueryController_StreamPodLogs_Handler,
 			ServerStreams: true,
 		},
 	},

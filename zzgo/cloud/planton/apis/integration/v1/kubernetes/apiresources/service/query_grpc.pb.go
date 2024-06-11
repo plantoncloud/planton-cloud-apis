@@ -12,6 +12,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -25,6 +26,7 @@ const (
 	KubernetesApiResourcesQueryController_StreamByNamespace_FullMethodName               = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/streamByNamespace"
 	KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName        = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/getKubernetesApiResource"
 	KubernetesApiResourcesQueryController_ListPods_FullMethodName                        = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/listPods"
+	KubernetesApiResourcesQueryController_StreamPodLogs_FullMethodName                   = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesQueryController/streamPodLogs"
 )
 
 // KubernetesApiResourcesQueryControllerClient is the client API for KubernetesApiResourcesQueryController service.
@@ -39,6 +41,8 @@ type KubernetesApiResourcesQueryControllerClient interface {
 	GetKubernetesApiResource(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
 	// list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
 	ListPods(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.Pods, error)
+	// stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+	StreamPodLogs(ctx context.Context, in *model.StreamPodLogsInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamPodLogsClient, error)
 }
 
 type kubernetesApiResourcesQueryControllerClient struct {
@@ -117,6 +121,38 @@ func (c *kubernetesApiResourcesQueryControllerClient) ListPods(ctx context.Conte
 	return out, nil
 }
 
+func (c *kubernetesApiResourcesQueryControllerClient) StreamPodLogs(ctx context.Context, in *model.StreamPodLogsInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamPodLogsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubernetesApiResourcesQueryController_ServiceDesc.Streams[1], KubernetesApiResourcesQueryController_StreamPodLogs_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kubernetesApiResourcesQueryControllerStreamPodLogsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type KubernetesApiResourcesQueryController_StreamPodLogsClient interface {
+	Recv() (*wrapperspb.StringValue, error)
+	grpc.ClientStream
+}
+
+type kubernetesApiResourcesQueryControllerStreamPodLogsClient struct {
+	grpc.ClientStream
+}
+
+func (x *kubernetesApiResourcesQueryControllerStreamPodLogsClient) Recv() (*wrapperspb.StringValue, error) {
+	m := new(wrapperspb.StringValue)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // KubernetesApiResourcesQueryControllerServer is the server API for KubernetesApiResourcesQueryController service.
 // All implementations should embed UnimplementedKubernetesApiResourcesQueryControllerServer
 // for forward compatibility
@@ -129,6 +165,8 @@ type KubernetesApiResourcesQueryControllerServer interface {
 	GetKubernetesApiResource(context.Context, *model.LookupKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
 	// list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
 	ListPods(context.Context, *model.LookupKubernetesApiResourceInput) (*model.Pods, error)
+	// stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+	StreamPodLogs(*model.StreamPodLogsInput, KubernetesApiResourcesQueryController_StreamPodLogsServer) error
 }
 
 // UnimplementedKubernetesApiResourcesQueryControllerServer should be embedded to have forward compatible implementations.
@@ -149,6 +187,9 @@ func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApi
 }
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) ListPods(context.Context, *model.LookupKubernetesApiResourceInput) (*model.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPods not implemented")
+}
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamPodLogs(*model.StreamPodLogsInput, KubernetesApiResourcesQueryController_StreamPodLogsServer) error {
+	return status.Errorf(codes.Unimplemented, "method StreamPodLogs not implemented")
 }
 
 // UnsafeKubernetesApiResourcesQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -255,6 +296,27 @@ func _KubernetesApiResourcesQueryController_ListPods_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubernetesApiResourcesQueryController_StreamPodLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.StreamPodLogsInput)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(KubernetesApiResourcesQueryControllerServer).StreamPodLogs(m, &kubernetesApiResourcesQueryControllerStreamPodLogsServer{stream})
+}
+
+type KubernetesApiResourcesQueryController_StreamPodLogsServer interface {
+	Send(*wrapperspb.StringValue) error
+	grpc.ServerStream
+}
+
+type kubernetesApiResourcesQueryControllerStreamPodLogsServer struct {
+	grpc.ServerStream
+}
+
+func (x *kubernetesApiResourcesQueryControllerStreamPodLogsServer) Send(m *wrapperspb.StringValue) error {
+	return x.ServerStream.SendMsg(m)
+}
+
 // KubernetesApiResourcesQueryController_ServiceDesc is the grpc.ServiceDesc for KubernetesApiResourcesQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -283,6 +345,11 @@ var KubernetesApiResourcesQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "streamByNamespace",
 			Handler:       _KubernetesApiResourcesQueryController_StreamByNamespace_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "streamPodLogs",
+			Handler:       _KubernetesApiResourcesQueryController_StreamPodLogs_Handler,
 			ServerStreams: true,
 		},
 	},

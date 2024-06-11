@@ -3,6 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.integration.v1.kubernetes.apiresources.service;
 
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "google/protobuf/wrappers.proto";
 
 service KubernetesApiResourcesQueryController {
   rpc getCertificateByNamespaceByName(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.GetCertificateByNamespaceByNameQueryInput)
@@ -18,4 +19,7 @@ service KubernetesApiResourcesQueryController {
   //list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
   rpc listPods(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.LookupKubernetesApiResourceInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods);
+  //stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+  rpc streamPodLogs(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamPodLogsInput)
+      returns (stream google.protobuf.StringValue);
 }
