@@ -190,8 +190,8 @@ message PodLogStreamOptions {
   // If true, get logs for the previous instance of the container if it has restarted.
   // if this is set to true, the stream does not fetch the logs of restarted container.
   bool is_fetch_previous_container_logs = 2;
-  // Filters the logs to include only those from the last specified number of seconds.
-  int64 since_seconds = 3;
+  // Filters the logs to include only those from the last specified time in format 20s, 1m, 1d etc.
+  string since_duration = 3;
   // Limits the number of lines to include in the log output. If not specified, all lines will be included.
   int64 tail_lines = 4;
   //regex to be used for filtering logs
