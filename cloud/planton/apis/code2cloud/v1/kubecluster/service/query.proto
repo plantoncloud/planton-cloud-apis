@@ -146,4 +146,8 @@ service KubeClusterKubernetesApiQueryController {
   //get detailed object of a kubernetes api-resource
   rpc getKubernetesApiResource(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
+
+  //list pods of a pod controller like Deployment, StatefulSet etc
+  rpc listPods(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods);
 }

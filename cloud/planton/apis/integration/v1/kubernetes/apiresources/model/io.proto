@@ -163,8 +163,8 @@ message KubernetesApiResourceDetail {
   string yaml_format_base64 = 2;
 }
 
-// input for rpc get kubernetes api-resource object
-message GetKubernetesApiResourceInput {
+// input for rpc lookup kubernetes api-resource object
+message LookupKubernetesApiResourceInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
   //kubernetes api-resource
