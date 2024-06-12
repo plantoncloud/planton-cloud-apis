@@ -28,7 +28,7 @@ message WorkloadNamespaces {
 // kubernetes pod
 message Pod {
   // parent api-resource/pod-controller for the pod
-  KubernetesApiResource parent = 1;
+  KubernetesApiResource pod_controller = 1;
   // namespace of the pod
   string namespace = 2;
   // name/id of the pod
@@ -227,4 +227,12 @@ message PodLogLine {
   string container_name = 2;
   //log line content
   string log_line = 3;
+}
+
+// input for rpc to delete kubernetes api-resource
+message DeleteKubernetesApiResourceInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  // kubernetes api-resource to be deleted
+  KubernetesApiResource kubernetes_api_resource = 2;
 }

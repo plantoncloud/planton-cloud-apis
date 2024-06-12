@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.apiresources.service;
+
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "google/protobuf/wrappers.proto";
+
+service KubernetesApiResourcesCommandController {
+  rpc delete(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.DeleteKubernetesApiResourceInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+}
