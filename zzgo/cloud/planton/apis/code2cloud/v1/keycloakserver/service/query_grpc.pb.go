@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/keycloakserver/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	KeycloakServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getById"
 	KeycloakServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/getPassword"
-	KeycloakServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.keycloakserver.service.KeycloakServerQueryController/findPods"
 )
 
 // KeycloakServerQueryControllerClient is the client API for KeycloakServerQueryController service.
@@ -35,8 +33,6 @@ type KeycloakServerQueryControllerClient interface {
 	// look up keycloak-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model.KeycloakServerPassword, error)
-	// lookup pods of a keycloak-server deployed to a environment
-	FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type keycloakServerQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *keycloakServerQueryControllerClient) GetPassword(ctx context.Context, i
 	return out, nil
 }
 
-func (c *keycloakServerQueryControllerClient) FindPods(ctx context.Context, in *model.KeycloakServerId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, KeycloakServerQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // KeycloakServerQueryControllerServer is the server API for KeycloakServerQueryController service.
 // All implementations should embed UnimplementedKeycloakServerQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type KeycloakServerQueryControllerServer interface {
 	// look up keycloak-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.KeycloakServerId) (*model.KeycloakServerPassword, error)
-	// lookup pods of a keycloak-server deployed to a environment
-	FindPods(context.Context, *model.KeycloakServerId) (*model1.Pods, error)
 }
 
 // UnimplementedKeycloakServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedKeycloakServerQueryControllerServer) GetById(context.Context,
 }
 func (UnimplementedKeycloakServerQueryControllerServer) GetPassword(context.Context, *model.KeycloakServerId) (*model.KeycloakServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedKeycloakServerQueryControllerServer) FindPods(context.Context, *model.KeycloakServerId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeKeycloakServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _KeycloakServerQueryController_GetPassword_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KeycloakServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KeycloakServerId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KeycloakServerQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KeycloakServerQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakServerQueryControllerServer).FindPods(ctx, req.(*model.KeycloakServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // KeycloakServerQueryController_ServiceDesc is the grpc.ServiceDesc for KeycloakServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var KeycloakServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _KeycloakServerQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _KeycloakServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

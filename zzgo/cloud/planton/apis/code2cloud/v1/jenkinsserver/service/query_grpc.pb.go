@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/jenkinsserver/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,7 +21,6 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	JenkinsServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/getById"
-	JenkinsServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/findPods"
 	JenkinsServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.jenkinsserver.service.JenkinsServerQueryController/getPassword"
 )
 
@@ -32,8 +30,6 @@ const (
 type JenkinsServerQueryControllerClient interface {
 	// look up jenkins-server using jenkins-server id
 	GetById(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServer, error)
-	// lookup pods of a jenkins-server deployed to a environment
-	FindPods(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model1.Pods, error)
 	// look up jenkins-server password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServerPassword, error)
@@ -56,15 +52,6 @@ func (c *jenkinsServerQueryControllerClient) GetById(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *jenkinsServerQueryControllerClient) FindPods(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, JenkinsServerQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *jenkinsServerQueryControllerClient) GetPassword(ctx context.Context, in *model.JenkinsServerId, opts ...grpc.CallOption) (*model.JenkinsServerPassword, error) {
 	out := new(model.JenkinsServerPassword)
 	err := c.cc.Invoke(ctx, JenkinsServerQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -80,8 +67,6 @@ func (c *jenkinsServerQueryControllerClient) GetPassword(ctx context.Context, in
 type JenkinsServerQueryControllerServer interface {
 	// look up jenkins-server using jenkins-server id
 	GetById(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error)
-	// lookup pods of a jenkins-server deployed to a environment
-	FindPods(context.Context, *model.JenkinsServerId) (*model1.Pods, error)
 	// look up jenkins-server password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.JenkinsServerId) (*model.JenkinsServerPassword, error)
@@ -93,9 +78,6 @@ type UnimplementedJenkinsServerQueryControllerServer struct {
 
 func (UnimplementedJenkinsServerQueryControllerServer) GetById(context.Context, *model.JenkinsServerId) (*model.JenkinsServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedJenkinsServerQueryControllerServer) FindPods(context.Context, *model.JenkinsServerId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 func (UnimplementedJenkinsServerQueryControllerServer) GetPassword(context.Context, *model.JenkinsServerId) (*model.JenkinsServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
@@ -130,24 +112,6 @@ func _JenkinsServerQueryController_GetById_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _JenkinsServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.JenkinsServerId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(JenkinsServerQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: JenkinsServerQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsServerQueryControllerServer).FindPods(ctx, req.(*model.JenkinsServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _JenkinsServerQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.JenkinsServerId)
 	if err := dec(in); err != nil {
@@ -176,10 +140,6 @@ var JenkinsServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _JenkinsServerQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _JenkinsServerQueryController_FindPods_Handler,
 		},
 		{
 			MethodName: "getPassword",

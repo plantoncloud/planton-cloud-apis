@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/locustcluster/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,8 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	LocustClusterQueryController_GetById_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterQueryController/getById"
-	LocustClusterQueryController_FindPods_FullMethodName = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterQueryController/findPods"
+	LocustClusterQueryController_GetById_FullMethodName = "/cloud.planton.apis.code2cloud.v1.locustcluster.service.LocustClusterQueryController/getById"
 )
 
 // LocustClusterQueryControllerClient is the client API for LocustClusterQueryController service.
@@ -31,8 +29,6 @@ const (
 type LocustClusterQueryControllerClient interface {
 	// look up locust-cluster using locust-cluster id
 	GetById(ctx context.Context, in *model.LocustClusterId, opts ...grpc.CallOption) (*model.LocustCluster, error)
-	// lookup pods of a locust-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.LocustClusterId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type locustClusterQueryControllerClient struct {
@@ -52,23 +48,12 @@ func (c *locustClusterQueryControllerClient) GetById(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *locustClusterQueryControllerClient) FindPods(ctx context.Context, in *model.LocustClusterId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, LocustClusterQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // LocustClusterQueryControllerServer is the server API for LocustClusterQueryController service.
 // All implementations should embed UnimplementedLocustClusterQueryControllerServer
 // for forward compatibility
 type LocustClusterQueryControllerServer interface {
 	// look up locust-cluster using locust-cluster id
 	GetById(context.Context, *model.LocustClusterId) (*model.LocustCluster, error)
-	// lookup pods of a locust-cluster deployed to a environment
-	FindPods(context.Context, *model.LocustClusterId) (*model1.Pods, error)
 }
 
 // UnimplementedLocustClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -77,9 +62,6 @@ type UnimplementedLocustClusterQueryControllerServer struct {
 
 func (UnimplementedLocustClusterQueryControllerServer) GetById(context.Context, *model.LocustClusterId) (*model.LocustCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedLocustClusterQueryControllerServer) FindPods(context.Context, *model.LocustClusterId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeLocustClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -111,24 +93,6 @@ func _LocustClusterQueryController_GetById_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _LocustClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.LocustClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(LocustClusterQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: LocustClusterQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustClusterQueryControllerServer).FindPods(ctx, req.(*model.LocustClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // LocustClusterQueryController_ServiceDesc is the grpc.ServiceDesc for LocustClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,10 +103,6 @@ var LocustClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _LocustClusterQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _LocustClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

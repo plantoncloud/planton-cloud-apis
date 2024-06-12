@@ -22,20 +22,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KubeClusterCommandController_PreviewCreate_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewCreate"
-	KubeClusterCommandController_Create_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/create"
-	KubeClusterCommandController_PreviewUpdate_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewUpdate"
-	KubeClusterCommandController_Update_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/update"
-	KubeClusterCommandController_PreviewDelete_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewDelete"
-	KubeClusterCommandController_Delete_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/delete"
-	KubeClusterCommandController_PreviewRestore_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewRestore"
-	KubeClusterCommandController_Restore_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/restore"
-	KubeClusterCommandController_Pause_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/pause"
-	KubeClusterCommandController_Unpause_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/unpause"
-	KubeClusterCommandController_DeleteNamespace_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/deleteNamespace"
-	KubeClusterCommandController_DeletePod_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/deletePod"
-	KubeClusterCommandController_PreviewRefresh_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewRefresh"
-	KubeClusterCommandController_Refresh_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/refresh"
+	KubeClusterCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewCreate"
+	KubeClusterCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/create"
+	KubeClusterCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewUpdate"
+	KubeClusterCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/update"
+	KubeClusterCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewDelete"
+	KubeClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/delete"
+	KubeClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewRestore"
+	KubeClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/restore"
+	KubeClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/pause"
+	KubeClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/unpause"
+	KubeClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/previewRefresh"
+	KubeClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterCommandController/refresh"
 )
 
 // KubeClusterCommandControllerClient is the client API for KubeClusterCommandController service.
@@ -70,10 +68,6 @@ type KubeClusterCommandControllerClient interface {
 	// values configured for the kube-cluster.
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
-	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error)
-	// delete a pod in kube-cluster kube-cluster
-	DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model2.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -178,24 +172,6 @@ func (c *kubeClusterCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *kubeClusterCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByKubeClusterByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error) {
-	out := new(model2.WorkloadNamespace)
-	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClusterCommandControllerClient) DeletePod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model2.Pod, error) {
-	out := new(model2.Pod)
-	err := c.cc.Invoke(ctx, KubeClusterCommandController_DeletePod_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *kubeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KubeCluster, error) {
 	out := new(model.KubeCluster)
 	err := c.cc.Invoke(ctx, KubeClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -246,10 +222,6 @@ type KubeClusterCommandControllerServer interface {
 	// values configured for the kube-cluster.
 	// when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error)
-	// delete a namespace in kube-cluster kube-cluster
-	DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model2.WorkloadNamespace, error)
-	// delete a pod in kube-cluster kube-cluster
-	DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model2.Pod, error)
 	// preview refresh a kube-cluster that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error)
 	// refresh a kube-cluster that was previously created
@@ -289,12 +261,6 @@ func (UnimplementedKubeClusterCommandControllerServer) Pause(context.Context, *m
 }
 func (UnimplementedKubeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedKubeClusterCommandControllerServer) DeleteNamespace(context.Context, *model.ByKubeClusterByNamespaceInput) (*model2.WorkloadNamespace, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
-}
-func (UnimplementedKubeClusterCommandControllerServer) DeletePod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model2.Pod, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePod not implemented")
 }
 func (UnimplementedKubeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -494,42 +460,6 @@ func _KubeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterCommandController_DeleteNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ByKubeClusterByNamespaceInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterCommandControllerServer).DeleteNamespace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterCommandController_DeleteNamespace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).DeleteNamespace(ctx, req.(*model.ByKubeClusterByNamespaceInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusterCommandController_DeletePod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ByKubeClusterByNamespaceByPodInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterCommandControllerServer).DeletePod(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterCommandController_DeletePod_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterCommandControllerServer).DeletePod(ctx, req.(*model.ByKubeClusterByNamespaceByPodInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _KubeClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -612,14 +542,6 @@ var KubeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _KubeClusterCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "deleteNamespace",
-			Handler:    _KubeClusterCommandController_DeleteNamespace_Handler,
-		},
-		{
-			MethodName: "deletePod",
-			Handler:    _KubeClusterCommandController_DeletePod_Handler,
 		},
 		{
 			MethodName: "previewRefresh",

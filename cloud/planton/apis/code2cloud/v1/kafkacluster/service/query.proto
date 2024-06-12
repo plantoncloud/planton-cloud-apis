@@ -59,15 +59,6 @@ service KafkaClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kafka-cluster password";
   }
-
-  //lookup pods of a kafka-cluster deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_cluster_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kafka-cluster pods";
-  }
 }
 
 //kafka-topic query controller

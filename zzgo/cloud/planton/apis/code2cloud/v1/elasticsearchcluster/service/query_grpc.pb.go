@@ -11,7 +11,6 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/elasticsearchcluster/model"
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -29,7 +28,6 @@ const (
 	ElasticsearchClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/findByEnvironmentId"
 	ElasticsearchClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/findByKubeClusterId"
 	ElasticsearchClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/getPassword"
-	ElasticsearchClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.elasticsearchcluster.service.ElasticsearchClusterQueryController/findPods"
 )
 
 // ElasticsearchClusterQueryControllerClient is the client API for ElasticsearchClusterQueryController service.
@@ -47,8 +45,6 @@ type ElasticsearchClusterQueryControllerClient interface {
 	// look up elasticsearch-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusterPassword, error)
-	// lookup pods of a elasticsearch-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type elasticsearchClusterQueryControllerClient struct {
@@ -104,15 +100,6 @@ func (c *elasticsearchClusterQueryControllerClient) GetPassword(ctx context.Cont
 	return out, nil
 }
 
-func (c *elasticsearchClusterQueryControllerClient) FindPods(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, ElasticsearchClusterQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ElasticsearchClusterQueryControllerServer is the server API for ElasticsearchClusterQueryController service.
 // All implementations should embed UnimplementedElasticsearchClusterQueryControllerServer
 // for forward compatibility
@@ -128,8 +115,6 @@ type ElasticsearchClusterQueryControllerServer interface {
 	// look up elasticsearch-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchClusterPassword, error)
-	// lookup pods of a elasticsearch-cluster deployed to a environment
-	FindPods(context.Context, *model.ElasticsearchClusterId) (*model4.Pods, error)
 }
 
 // UnimplementedElasticsearchClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -150,9 +135,6 @@ func (UnimplementedElasticsearchClusterQueryControllerServer) FindByKubeClusterI
 }
 func (UnimplementedElasticsearchClusterQueryControllerServer) GetPassword(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedElasticsearchClusterQueryControllerServer) FindPods(context.Context, *model.ElasticsearchClusterId) (*model4.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeElasticsearchClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -256,24 +238,6 @@ func _ElasticsearchClusterQueryController_GetPassword_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElasticsearchClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ElasticsearchClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ElasticsearchClusterQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ElasticsearchClusterQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchClusterQueryControllerServer).FindPods(ctx, req.(*model.ElasticsearchClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ElasticsearchClusterQueryController_ServiceDesc is the grpc.ServiceDesc for ElasticsearchClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -300,10 +264,6 @@ var ElasticsearchClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _ElasticsearchClusterQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _ElasticsearchClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/openfgaserver/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	OpenfgaServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getById"
 	OpenfgaServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/getPassword"
-	OpenfgaServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.openfgaserver.service.OpenfgaServerQueryController/findPods"
 )
 
 // OpenfgaServerQueryControllerClient is the client API for OpenfgaServerQueryController service.
@@ -35,8 +33,6 @@ type OpenfgaServerQueryControllerClient interface {
 	// look up openfga-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model.OpenfgaServerPassword, error)
-	// lookup pods of a openfga-server deployed to a environment
-	FindPods(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type openfgaServerQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *openfgaServerQueryControllerClient) GetPassword(ctx context.Context, in
 	return out, nil
 }
 
-func (c *openfgaServerQueryControllerClient) FindPods(ctx context.Context, in *model.OpenfgaServerId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, OpenfgaServerQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // OpenfgaServerQueryControllerServer is the server API for OpenfgaServerQueryController service.
 // All implementations should embed UnimplementedOpenfgaServerQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type OpenfgaServerQueryControllerServer interface {
 	// look up openfga-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServerPassword, error)
-	// lookup pods of a openfga-server deployed to a environment
-	FindPods(context.Context, *model.OpenfgaServerId) (*model1.Pods, error)
 }
 
 // UnimplementedOpenfgaServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedOpenfgaServerQueryControllerServer) GetById(context.Context, 
 }
 func (UnimplementedOpenfgaServerQueryControllerServer) GetPassword(context.Context, *model.OpenfgaServerId) (*model.OpenfgaServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedOpenfgaServerQueryControllerServer) FindPods(context.Context, *model.OpenfgaServerId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeOpenfgaServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _OpenfgaServerQueryController_GetPassword_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OpenfgaServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OpenfgaServerId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OpenfgaServerQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: OpenfgaServerQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaServerQueryControllerServer).FindPods(ctx, req.(*model.OpenfgaServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // OpenfgaServerQueryController_ServiceDesc is the grpc.ServiceDesc for OpenfgaServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var OpenfgaServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _OpenfgaServerQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _OpenfgaServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

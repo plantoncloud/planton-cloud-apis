@@ -60,13 +60,4 @@ service ElasticsearchClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view elasticsearch-cluster password";
   }
-
-  //lookup pods of a elasticsearch-cluster deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.elasticsearchcluster.model.ElasticsearchClusterId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_cluster_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view elasticsearch-cluster pods";
-  }
 }

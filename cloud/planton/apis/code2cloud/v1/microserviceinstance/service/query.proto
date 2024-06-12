@@ -33,24 +33,6 @@ service MicroserviceInstanceQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to for environment";
   }
 
-  //lookup pods of a microservice-instance deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_instance;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_instance_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice-instance pods";
-  }
-
-  //get a log stream for a running instance of a microservice-instance
-  rpc getLogStream(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceLogStreamQueryInput)
-      returns (stream google.protobuf.StringValue) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_instance;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_instance_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "microservice_instance_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice log";
-  }
-
   //lookup a microservice-instance by code project id
   rpc getByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance) {

@@ -30,13 +30,4 @@ service PostgresClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view postgres-cluster password";
   }
-
-  //lookup pods of a postgres-cluster deployment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.postgrescluster.model.PostgresClusterId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = postgres_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_cluster_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view postgres-cluster pods";
-  }
 }

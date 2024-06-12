@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kafkacluster/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -29,7 +28,6 @@ const (
 	KafkaClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByEnvironmentId"
 	KafkaClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByKubeClusterId"
 	KafkaClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getPassword"
-	KafkaClusterQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findPods"
 )
 
 // KafkaClusterQueryControllerClient is the client API for KafkaClusterQueryController service.
@@ -48,8 +46,6 @@ type KafkaClusterQueryControllerClient interface {
 	// look up kafka-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaClusterPassword, error)
-	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type kafkaClusterQueryControllerClient struct {
@@ -105,15 +101,6 @@ func (c *kafkaClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *kafkaClusterQueryControllerClient) FindPods(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // KafkaClusterQueryControllerServer is the server API for KafkaClusterQueryController service.
 // All implementations should embed UnimplementedKafkaClusterQueryControllerServer
 // for forward compatibility
@@ -130,8 +117,6 @@ type KafkaClusterQueryControllerServer interface {
 	// look up kafka-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error)
-	// lookup pods of a kafka-cluster deployed to a environment
-	FindPods(context.Context, *model.KafkaClusterId) (*model4.Pods, error)
 }
 
 // UnimplementedKafkaClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -152,9 +137,6 @@ func (UnimplementedKafkaClusterQueryControllerServer) FindByKubeClusterId(contex
 }
 func (UnimplementedKafkaClusterQueryControllerServer) GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedKafkaClusterQueryControllerServer) FindPods(context.Context, *model.KafkaClusterId) (*model4.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeKafkaClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -258,24 +240,6 @@ func _KafkaClusterQueryController_GetPassword_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KafkaClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KafkaClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterQueryControllerServer).FindPods(ctx, req.(*model.KafkaClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // KafkaClusterQueryController_ServiceDesc is the grpc.ServiceDesc for KafkaClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -302,10 +266,6 @@ var KafkaClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _KafkaClusterQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _KafkaClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

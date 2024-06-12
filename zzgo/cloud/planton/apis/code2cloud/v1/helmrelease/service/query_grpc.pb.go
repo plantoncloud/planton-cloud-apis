@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/helmrelease/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,8 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	HelmReleaseQueryController_GetById_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseQueryController/getById"
-	HelmReleaseQueryController_FindPods_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseQueryController/findPods"
+	HelmReleaseQueryController_GetById_FullMethodName = "/cloud.planton.apis.code2cloud.v1.helmrelease.service.HelmReleaseQueryController/getById"
 )
 
 // HelmReleaseQueryControllerClient is the client API for HelmReleaseQueryController service.
@@ -31,8 +29,6 @@ const (
 type HelmReleaseQueryControllerClient interface {
 	// look up helm-release using helm-release id
 	GetById(ctx context.Context, in *model.HelmReleaseId, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// lookup pods of a helm-release deployed to a environment
-	FindPods(ctx context.Context, in *model.HelmReleaseId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type helmReleaseQueryControllerClient struct {
@@ -52,23 +48,12 @@ func (c *helmReleaseQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *helmReleaseQueryControllerClient) FindPods(ctx context.Context, in *model.HelmReleaseId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, HelmReleaseQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // HelmReleaseQueryControllerServer is the server API for HelmReleaseQueryController service.
 // All implementations should embed UnimplementedHelmReleaseQueryControllerServer
 // for forward compatibility
 type HelmReleaseQueryControllerServer interface {
 	// look up helm-release using helm-release id
 	GetById(context.Context, *model.HelmReleaseId) (*model.HelmRelease, error)
-	// lookup pods of a helm-release deployed to a environment
-	FindPods(context.Context, *model.HelmReleaseId) (*model1.Pods, error)
 }
 
 // UnimplementedHelmReleaseQueryControllerServer should be embedded to have forward compatible implementations.
@@ -77,9 +62,6 @@ type UnimplementedHelmReleaseQueryControllerServer struct {
 
 func (UnimplementedHelmReleaseQueryControllerServer) GetById(context.Context, *model.HelmReleaseId) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedHelmReleaseQueryControllerServer) FindPods(context.Context, *model.HelmReleaseId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeHelmReleaseQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -111,24 +93,6 @@ func _HelmReleaseQueryController_GetById_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HelmReleaseQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.HelmReleaseId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseQueryControllerServer).FindPods(ctx, req.(*model.HelmReleaseId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // HelmReleaseQueryController_ServiceDesc is the grpc.ServiceDesc for HelmReleaseQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -139,10 +103,6 @@ var HelmReleaseQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _HelmReleaseQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _HelmReleaseQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

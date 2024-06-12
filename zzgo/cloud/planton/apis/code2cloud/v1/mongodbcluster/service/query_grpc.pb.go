@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/mongodbcluster/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	MongodbClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/getById"
 	MongodbClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/getPassword"
-	MongodbClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.mongodbcluster.service.MongodbClusterQueryController/findPods"
 )
 
 // MongodbClusterQueryControllerClient is the client API for MongodbClusterQueryController service.
@@ -35,8 +33,6 @@ type MongodbClusterQueryControllerClient interface {
 	// look up mongodb-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model.MongodbClusterPassword, error)
-	// lookup pods of a mongodb-cluster deployed to a environment
-	FindPods(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type mongodbClusterQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *mongodbClusterQueryControllerClient) GetPassword(ctx context.Context, i
 	return out, nil
 }
 
-func (c *mongodbClusterQueryControllerClient) FindPods(ctx context.Context, in *model.MongodbClusterId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, MongodbClusterQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // MongodbClusterQueryControllerServer is the server API for MongodbClusterQueryController service.
 // All implementations should embed UnimplementedMongodbClusterQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type MongodbClusterQueryControllerServer interface {
 	// look up mongodb-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.MongodbClusterId) (*model.MongodbClusterPassword, error)
-	// lookup pods of a mongodb-cluster deployed to a environment
-	FindPods(context.Context, *model.MongodbClusterId) (*model1.Pods, error)
 }
 
 // UnimplementedMongodbClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedMongodbClusterQueryControllerServer) GetById(context.Context,
 }
 func (UnimplementedMongodbClusterQueryControllerServer) GetPassword(context.Context, *model.MongodbClusterId) (*model.MongodbClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedMongodbClusterQueryControllerServer) FindPods(context.Context, *model.MongodbClusterId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeMongodbClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _MongodbClusterQueryController_GetPassword_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MongodbClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MongodbClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MongodbClusterQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MongodbClusterQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbClusterQueryControllerServer).FindPods(ctx, req.(*model.MongodbClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // MongodbClusterQueryController_ServiceDesc is the grpc.ServiceDesc for MongodbClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var MongodbClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _MongodbClusterQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _MongodbClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

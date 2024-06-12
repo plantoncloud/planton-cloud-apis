@@ -13,11 +13,11 @@ import (
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/microserviceinstance/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/rpc"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
+	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	_ "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
+	_ "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 )
 
@@ -80,7 +80,7 @@ var file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_pro
 	0x72, 0x2f, 0x76, 0x31, 0x2f, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x2f, 0x6d, 0x6f, 0x64,
 	0x65, 0x6c, 0x2f, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x1a, 0x1e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x77, 0x72, 0x61,
-	0x70, 0x70, 0x65, 0x72, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0xe2, 0x0d, 0x0a, 0x23,
+	0x70, 0x70, 0x65, 0x72, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x92, 0x0a, 0x0a, 0x23,
 	0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x73, 0x74,
 	0x61, 0x6e, 0x63, 0x65, 0x51, 0x75, 0x65, 0x72, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c,
 	0x6c, 0x65, 0x72, 0x12, 0xee, 0x01, 0x0a, 0x07, 0x67, 0x65, 0x74, 0x42, 0x79, 0x49, 0x64, 0x12,
@@ -115,36 +115,7 @@ var file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_pro
 	0x73, 0x22, 0x39, 0xc2, 0xb8, 0x18, 0x35, 0x08, 0x32, 0x10, 0x0a, 0x1a, 0x0e, 0x65, 0x6e, 0x76,
 	0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x22, 0x1f, 0x75, 0x6e, 0x61,
 	0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x66, 0x6f, 0x72,
-	0x20, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0xe8, 0x01, 0x0a,
-	0x08, 0x66, 0x69, 0x6e, 0x64, 0x50, 0x6f, 0x64, 0x73, 0x12, 0x53, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63,
-	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x69, 0x63,
-	0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63,
-	0x65, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x49, 0x64, 0x1a, 0x45,
-	0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61,
-	0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e,
-	0x76, 0x31, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x61, 0x70,
-	0x69, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
-	0x2e, 0x50, 0x6f, 0x64, 0x73, 0x22, 0x40, 0xc2, 0xb8, 0x18, 0x3c, 0x08, 0x54, 0x10, 0x10, 0x1a,
-	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x2f, 0x75, 0x6e, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72,
-	0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x76, 0x69, 0x65, 0x77, 0x20, 0x6d, 0x69, 0x63,
-	0x72, 0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2d, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e,
-	0x63, 0x65, 0x20, 0x70, 0x6f, 0x64, 0x73, 0x12, 0xe2, 0x01, 0x0a, 0x0c, 0x67, 0x65, 0x74, 0x4c,
-	0x6f, 0x67, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x12, 0x67, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
-	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
-	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x69, 0x63, 0x72,
-	0x6f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
-	0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x65, 0x74, 0x4d, 0x69, 0x63, 0x72, 0x6f, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x49, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65, 0x4c, 0x6f,
-	0x67, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x51, 0x75, 0x65, 0x72, 0x79, 0x49, 0x6e, 0x70, 0x75,
-	0x74, 0x1a, 0x1c, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x62, 0x75, 0x66, 0x2e, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22,
-	0x49, 0xc2, 0xb8, 0x18, 0x45, 0x08, 0x54, 0x10, 0x10, 0x1a, 0x18, 0x6d, 0x69, 0x63, 0x72, 0x6f,
-	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5f, 0x69, 0x6e, 0x73, 0x74, 0x61, 0x6e, 0x63, 0x65,
-	0x5f, 0x69, 0x64, 0x22, 0x25, 0x75, 0x6e, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x69, 0x7a, 0x65,
-	0x64, 0x20, 0x74, 0x6f, 0x20, 0x76, 0x69, 0x65, 0x77, 0x20, 0x6d, 0x69, 0x63, 0x72, 0x6f, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x20, 0x6c, 0x6f, 0x67, 0x30, 0x01, 0x12, 0xf7, 0x01, 0x0a,
+	0x20, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x12, 0xf7, 0x01, 0x0a,
 	0x12, 0x67, 0x65, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x64, 0x65, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63,
 	0x74, 0x49, 0x64, 0x12, 0x41, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
 	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c,
@@ -226,38 +197,31 @@ var file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_pro
 }
 
 var file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_proto_goTypes = []interface{}{
-	(*model.MicroserviceInstanceId)(nil),                     // 0: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId
-	(*model.ByEnvironmentIdByCodeProjectIdInput)(nil),        // 1: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput
-	(*model.GetMicroserviceInstanceLogStreamQueryInput)(nil), // 2: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceLogStreamQueryInput
-	(*model1.CodeProjectId)(nil),                             // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
-	(*model1.CodeProjectUrl)(nil),                            // 4: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
-	(*model.GetMicroserviceInstanceEnvVarMapInput)(nil),      // 5: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput
-	(*model.MicroserviceInstance)(nil),                       // 6: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	(*model.MicroserviceInstances)(nil),                      // 7: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
-	(*model2.Pods)(nil),                                      // 8: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods
-	(*wrapperspb.StringValue)(nil),                           // 9: google.protobuf.StringValue
-	(*model.MicroserviceInstanceEnvVarMap)(nil),              // 10: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap
+	(*model.MicroserviceInstanceId)(nil),                // 0: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId
+	(*model.ByEnvironmentIdByCodeProjectIdInput)(nil),   // 1: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput
+	(*model1.CodeProjectId)(nil),                        // 2: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
+	(*model1.CodeProjectUrl)(nil),                       // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
+	(*model.GetMicroserviceInstanceEnvVarMapInput)(nil), // 4: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput
+	(*model.MicroserviceInstance)(nil),                  // 5: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	(*model.MicroserviceInstances)(nil),                 // 6: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
+	(*model.MicroserviceInstanceEnvVarMap)(nil),         // 7: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap
 }
 var file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_proto_depIdxs = []int32{
-	0,  // 0: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getById:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId
-	1,  // 1: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByEnvironmentIdByCodeProjectId:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput
-	0,  // 2: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findPods:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId
-	2,  // 3: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getLogStream:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceLogStreamQueryInput
-	3,  // 4: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getByCodeProjectId:input_type -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
-	4,  // 5: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByCodeProjectUrl:input_type -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
-	5,  // 6: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getEnvVarMap:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput
-	6,  // 7: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getById:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	7,  // 8: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByEnvironmentIdByCodeProjectId:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
-	8,  // 9: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findPods:output_type -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods
-	9,  // 10: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getLogStream:output_type -> google.protobuf.StringValue
-	6,  // 11: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getByCodeProjectId:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	7,  // 12: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByCodeProjectUrl:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
-	10, // 13: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getEnvVarMap:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap
-	7,  // [7:14] is the sub-list for method output_type
-	0,  // [0:7] is the sub-list for method input_type
-	0,  // [0:0] is the sub-list for extension type_name
-	0,  // [0:0] is the sub-list for extension extendee
-	0,  // [0:0] is the sub-list for field type_name
+	0, // 0: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getById:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceId
+	1, // 1: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByEnvironmentIdByCodeProjectId:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput
+	2, // 2: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getByCodeProjectId:input_type -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
+	3, // 3: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByCodeProjectUrl:input_type -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
+	4, // 4: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getEnvVarMap:input_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput
+	5, // 5: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getById:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	6, // 6: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByEnvironmentIdByCodeProjectId:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
+	5, // 7: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getByCodeProjectId:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	6, // 8: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.findByCodeProjectUrl:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances
+	7, // 9: cloud.planton.apis.code2cloud.v1.microserviceinstance.service.MicroserviceInstanceQueryController.getEnvVarMap:output_type -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_code2cloud_v1_microserviceinstance_service_query_proto_init() }

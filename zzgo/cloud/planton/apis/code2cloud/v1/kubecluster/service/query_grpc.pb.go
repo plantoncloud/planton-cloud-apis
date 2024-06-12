@@ -16,7 +16,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -25,16 +24,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KubeClusterQueryController_GetById_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getById"
-	KubeClusterQueryController_FindByCompanyId_FullMethodName                         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCompanyId"
-	KubeClusterQueryController_FindByCloudAccountId_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCloudAccountId"
-	KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findEnvironmentCreateKubeClusters"
-	KubeClusterQueryController_GetKubeClusterComponentsByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getKubeClusterComponentsByKubeClusterId"
-	KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findWorkloadNamespacesByKubeClusterId"
-	KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findWorkloadPodsByKubeClusterId"
-	KubeClusterQueryController_FindSslCertificatesByKubeClusterId_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findSslCertificatesByKubeClusterId"
-	KubeClusterQueryController_GetPod_FullMethodName                                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getPod"
-	KubeClusterQueryController_GetPodLogStream_FullMethodName                         = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getPodLogStream"
+	KubeClusterQueryController_GetById_FullMethodName                               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getById"
+	KubeClusterQueryController_FindByCompanyId_FullMethodName                       = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCompanyId"
+	KubeClusterQueryController_FindByCloudAccountId_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCloudAccountId"
+	KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findEnvironmentCreateKubeClusters"
+	KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findWorkloadNamespacesByKubeClusterId"
+	KubeClusterQueryController_FindSslCertificatesByKubeClusterId_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findSslCertificatesByKubeClusterId"
 )
 
 // KubeClusterQueryControllerClient is the client API for KubeClusterQueryController service.
@@ -52,18 +47,10 @@ type KubeClusterQueryControllerClient interface {
 	// the response should only include kube-clusters that a company is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
 	FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusters, error)
-	// lookup components in a kube-cluster of a kube-cluster
-	GetKubeClusterComponentsByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeClusterComponents, error)
 	// find workload namespaces in a kube-cluster.
 	FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.WorkloadNamespaces, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindWorkloadPodsByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.WorkloadPods, error)
-	// find workload pods part of all environments hosted in a kube-cluster.
 	FindSslCertificatesByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.Certificates, error)
-	// get a pod details
-	GetPod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error)
-	// get a log stream for a pod running in a kube-cluster kube-cluster
-	GetPodLogStream(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (KubeClusterQueryController_GetPodLogStreamClient, error)
 }
 
 type kubeClusterQueryControllerClient struct {
@@ -110,27 +97,9 @@ func (c *kubeClusterQueryControllerClient) FindEnvironmentCreateKubeClusters(ctx
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) GetKubeClusterComponentsByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeClusterComponents, error) {
-	out := new(model.KubeClusterComponents)
-	err := c.cc.Invoke(ctx, KubeClusterQueryController_GetKubeClusterComponentsByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *kubeClusterQueryControllerClient) FindWorkloadNamespacesByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.WorkloadNamespaces, error) {
 	out := new(model3.WorkloadNamespaces)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClusterQueryControllerClient) FindWorkloadPodsByKubeClusterId(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.WorkloadPods, error) {
-	out := new(model3.WorkloadPods)
-	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,47 +113,6 @@ func (c *kubeClusterQueryControllerClient) FindSslCertificatesByKubeClusterId(ct
 		return nil, err
 	}
 	return out, nil
-}
-
-func (c *kubeClusterQueryControllerClient) GetPod(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (*model3.Pod, error) {
-	out := new(model3.Pod)
-	err := c.cc.Invoke(ctx, KubeClusterQueryController_GetPod_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kubeClusterQueryControllerClient) GetPodLogStream(ctx context.Context, in *model.ByKubeClusterByNamespaceByPodInput, opts ...grpc.CallOption) (KubeClusterQueryController_GetPodLogStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &KubeClusterQueryController_ServiceDesc.Streams[0], KubeClusterQueryController_GetPodLogStream_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &kubeClusterQueryControllerGetPodLogStreamClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type KubeClusterQueryController_GetPodLogStreamClient interface {
-	Recv() (*wrapperspb.StringValue, error)
-	grpc.ClientStream
-}
-
-type kubeClusterQueryControllerGetPodLogStreamClient struct {
-	grpc.ClientStream
-}
-
-func (x *kubeClusterQueryControllerGetPodLogStreamClient) Recv() (*wrapperspb.StringValue, error) {
-	m := new(wrapperspb.StringValue)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 // KubeClusterQueryControllerServer is the server API for KubeClusterQueryController service.
@@ -202,18 +130,10 @@ type KubeClusterQueryControllerServer interface {
 	// the response should only include kube-clusters that a company is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
 	FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusters, error)
-	// lookup components in a kube-cluster of a kube-cluster
-	GetKubeClusterComponentsByKubeClusterId(context.Context, *model.KubeClusterId) (*model.KubeClusterComponents, error)
 	// find workload namespaces in a kube-cluster.
 	FindWorkloadNamespacesByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.WorkloadNamespaces, error)
 	// find workload pods part of all environments hosted in a kube-cluster.
-	FindWorkloadPodsByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.WorkloadPods, error)
-	// find workload pods part of all environments hosted in a kube-cluster.
 	FindSslCertificatesByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.Certificates, error)
-	// get a pod details
-	GetPod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error)
-	// get a log stream for a pod running in a kube-cluster kube-cluster
-	GetPodLogStream(*model.ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error
 }
 
 // UnimplementedKubeClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -232,23 +152,11 @@ func (UnimplementedKubeClusterQueryControllerServer) FindByCloudAccountId(contex
 func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusters, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnvironmentCreateKubeClusters not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) GetKubeClusterComponentsByKubeClusterId(context.Context, *model.KubeClusterId) (*model.KubeClusterComponents, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetKubeClusterComponentsByKubeClusterId not implemented")
-}
 func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadNamespacesByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.WorkloadNamespaces, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadNamespacesByKubeClusterId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindWorkloadPodsByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.WorkloadPods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindWorkloadPodsByKubeClusterId not implemented")
-}
 func (UnimplementedKubeClusterQueryControllerServer) FindSslCertificatesByKubeClusterId(context.Context, *model.KubeClusterId) (*model3.Certificates, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindSslCertificatesByKubeClusterId not implemented")
-}
-func (UnimplementedKubeClusterQueryControllerServer) GetPod(context.Context, *model.ByKubeClusterByNamespaceByPodInput) (*model3.Pod, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPod not implemented")
-}
-func (UnimplementedKubeClusterQueryControllerServer) GetPodLogStream(*model.ByKubeClusterByNamespaceByPodInput, KubeClusterQueryController_GetPodLogStreamServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetPodLogStream not implemented")
 }
 
 // UnsafeKubeClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -334,24 +242,6 @@ func _KubeClusterQueryController_FindEnvironmentCreateKubeClusters_Handler(srv i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterQueryController_GetKubeClusterComponentsByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterQueryControllerServer).GetKubeClusterComponentsByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterQueryController_GetKubeClusterComponentsByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).GetKubeClusterComponentsByKubeClusterId(ctx, req.(*model.KubeClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.KubeClusterId)
 	if err := dec(in); err != nil {
@@ -366,24 +256,6 @@ func _KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_Handler(s
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KubeClusterQueryControllerServer).FindWorkloadNamespacesByKubeClusterId(ctx, req.(*model.KubeClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterQueryControllerServer).FindWorkloadPodsByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).FindWorkloadPodsByKubeClusterId(ctx, req.(*model.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -404,45 +276,6 @@ func _KubeClusterQueryController_FindSslCertificatesByKubeClusterId_Handler(srv 
 		return srv.(KubeClusterQueryControllerServer).FindSslCertificatesByKubeClusterId(ctx, req.(*model.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusterQueryController_GetPod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ByKubeClusterByNamespaceByPodInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KubeClusterQueryControllerServer).GetPod(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KubeClusterQueryController_GetPod_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).GetPod(ctx, req.(*model.ByKubeClusterByNamespaceByPodInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KubeClusterQueryController_GetPodLogStream_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.ByKubeClusterByNamespaceByPodInput)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(KubeClusterQueryControllerServer).GetPodLogStream(m, &kubeClusterQueryControllerGetPodLogStreamServer{stream})
-}
-
-type KubeClusterQueryController_GetPodLogStreamServer interface {
-	Send(*wrapperspb.StringValue) error
-	grpc.ServerStream
-}
-
-type kubeClusterQueryControllerGetPodLogStreamServer struct {
-	grpc.ServerStream
-}
-
-func (x *kubeClusterQueryControllerGetPodLogStreamServer) Send(m *wrapperspb.StringValue) error {
-	return x.ServerStream.SendMsg(m)
 }
 
 // KubeClusterQueryController_ServiceDesc is the grpc.ServiceDesc for KubeClusterQueryController service.
@@ -469,33 +302,15 @@ var KubeClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _KubeClusterQueryController_FindEnvironmentCreateKubeClusters_Handler,
 		},
 		{
-			MethodName: "getKubeClusterComponentsByKubeClusterId",
-			Handler:    _KubeClusterQueryController_GetKubeClusterComponentsByKubeClusterId_Handler,
-		},
-		{
 			MethodName: "findWorkloadNamespacesByKubeClusterId",
 			Handler:    _KubeClusterQueryController_FindWorkloadNamespacesByKubeClusterId_Handler,
-		},
-		{
-			MethodName: "findWorkloadPodsByKubeClusterId",
-			Handler:    _KubeClusterQueryController_FindWorkloadPodsByKubeClusterId_Handler,
 		},
 		{
 			MethodName: "findSslCertificatesByKubeClusterId",
 			Handler:    _KubeClusterQueryController_FindSslCertificatesByKubeClusterId_Handler,
 		},
-		{
-			MethodName: "getPod",
-			Handler:    _KubeClusterQueryController_GetPod_Handler,
-		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "getPodLogStream",
-			Handler:       _KubeClusterQueryController_GetPodLogStream_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/code2cloud/v1/kubecluster/service/query.proto",
 }
 

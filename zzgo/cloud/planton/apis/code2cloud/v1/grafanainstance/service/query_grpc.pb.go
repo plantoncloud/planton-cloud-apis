@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/grafanainstance/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -28,7 +27,6 @@ const (
 	GrafanaInstanceQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findByProductId"
 	GrafanaInstanceQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findByEnvironmentId"
 	GrafanaInstanceQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findByKubeClusterId"
-	GrafanaInstanceQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.grafanainstance.service.GrafanaInstanceQueryController/findPods"
 )
 
 // GrafanaInstanceQueryControllerClient is the client API for GrafanaInstanceQueryController service.
@@ -44,8 +42,6 @@ type GrafanaInstanceQueryControllerClient interface {
 	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
 	// find grafana-instances by kube-cluster
 	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
-	// lookup pods of a grafana-instance deployed to a environment
-	FindPods(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type grafanaInstanceQueryControllerClient struct {
@@ -92,15 +88,6 @@ func (c *grafanaInstanceQueryControllerClient) FindByKubeClusterId(ctx context.C
 	return out, nil
 }
 
-func (c *grafanaInstanceQueryControllerClient) FindPods(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, GrafanaInstanceQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GrafanaInstanceQueryControllerServer is the server API for GrafanaInstanceQueryController service.
 // All implementations should embed UnimplementedGrafanaInstanceQueryControllerServer
 // for forward compatibility
@@ -114,8 +101,6 @@ type GrafanaInstanceQueryControllerServer interface {
 	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstances, error)
 	// find grafana-instances by kube-cluster
 	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstances, error)
-	// lookup pods of a grafana-instance deployed to a environment
-	FindPods(context.Context, *model.GrafanaInstanceId) (*model4.Pods, error)
 }
 
 // UnimplementedGrafanaInstanceQueryControllerServer should be embedded to have forward compatible implementations.
@@ -133,9 +118,6 @@ func (UnimplementedGrafanaInstanceQueryControllerServer) FindByEnvironmentId(con
 }
 func (UnimplementedGrafanaInstanceQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstances, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
-}
-func (UnimplementedGrafanaInstanceQueryControllerServer) FindPods(context.Context, *model.GrafanaInstanceId) (*model4.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeGrafanaInstanceQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -221,24 +203,6 @@ func _GrafanaInstanceQueryController_FindByKubeClusterId_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GrafanaInstanceQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GrafanaInstanceId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GrafanaInstanceQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GrafanaInstanceQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaInstanceQueryControllerServer).FindPods(ctx, req.(*model.GrafanaInstanceId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GrafanaInstanceQueryController_ServiceDesc is the grpc.ServiceDesc for GrafanaInstanceQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -261,10 +225,6 @@ var GrafanaInstanceQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findByKubeClusterId",
 			Handler:    _GrafanaInstanceQueryController_FindByKubeClusterId_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _GrafanaInstanceQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

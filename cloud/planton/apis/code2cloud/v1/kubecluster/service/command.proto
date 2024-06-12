@@ -147,23 +147,6 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
-
-  // delete a namespace in kube-cluster kube-cluster
-  rpc deleteNamespace(cloud.planton.apis.code2cloud.v1.kubecluster.model.ByKubeClusterByNamespaceInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.WorkloadNamespace) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete namespace in kube-cluster";
-  }
-  // delete a pod in kube-cluster kube-cluster
-  rpc deletePod(cloud.planton.apis.code2cloud.v1.kubecluster.model.ByKubeClusterByNamespaceByPodInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete pod in kube-cluster";
-  }
   //preview refresh a kube-cluster that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {

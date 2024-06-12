@@ -32,13 +32,4 @@ service MongodbClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view mongodb-cluster password";
   }
-
-  //lookup pods of a mongodb-cluster deployed to a environment
-  rpc findPods(cloud.planton.apis.code2cloud.v1.mongodbcluster.model.MongodbClusterId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_cluster_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view mongodb-cluster pods";
-  }
 }

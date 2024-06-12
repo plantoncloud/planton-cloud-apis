@@ -11,7 +11,6 @@ import (
 	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gitlabserver/model"
 	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model4 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -29,7 +28,6 @@ const (
 	GitlabServerQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByEnvironmentId"
 	GitlabServerQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findByKubeClusterId"
 	GitlabServerQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/getPassword"
-	GitlabServerQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.gitlabserver.service.GitlabServerQueryController/findPods"
 )
 
 // GitlabServerQueryControllerClient is the client API for GitlabServerQueryController service.
@@ -47,8 +45,6 @@ type GitlabServerQueryControllerClient interface {
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServerPassword, error)
-	// lookup pods of a gitlab-server deployed to a environment
-	FindPods(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model4.Pods, error)
 }
 
 type gitlabServerQueryControllerClient struct {
@@ -104,15 +100,6 @@ func (c *gitlabServerQueryControllerClient) GetPassword(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gitlabServerQueryControllerClient) FindPods(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model4.Pods, error) {
-	out := new(model4.Pods)
-	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GitlabServerQueryControllerServer is the server API for GitlabServerQueryController service.
 // All implementations should embed UnimplementedGitlabServerQueryControllerServer
 // for forward compatibility
@@ -128,8 +115,6 @@ type GitlabServerQueryControllerServer interface {
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error)
-	// lookup pods of a gitlab-server deployed to a environment
-	FindPods(context.Context, *model.GitlabServerId) (*model4.Pods, error)
 }
 
 // UnimplementedGitlabServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -150,9 +135,6 @@ func (UnimplementedGitlabServerQueryControllerServer) FindByKubeClusterId(contex
 }
 func (UnimplementedGitlabServerQueryControllerServer) GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedGitlabServerQueryControllerServer) FindPods(context.Context, *model.GitlabServerId) (*model4.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeGitlabServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -256,24 +238,6 @@ func _GitlabServerQueryController_GetPassword_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GitlabServerId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GitlabServerQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GitlabServerQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabServerQueryControllerServer).FindPods(ctx, req.(*model.GitlabServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GitlabServerQueryController_ServiceDesc is the grpc.ServiceDesc for GitlabServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -300,10 +264,6 @@ var GitlabServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _GitlabServerQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _GitlabServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

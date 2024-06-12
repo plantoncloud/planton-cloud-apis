@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/solrcloud/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	SolrCloudQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getById"
 	SolrCloudQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/getPassword"
-	SolrCloudQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.solrcloud.service.SolrCloudQueryController/findPods"
 )
 
 // SolrCloudQueryControllerClient is the client API for SolrCloudQueryController service.
@@ -35,8 +33,6 @@ type SolrCloudQueryControllerClient interface {
 	// look up solr-cloud sasl password
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model.SolrCloudPassword, error)
-	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type solrCloudQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *solrCloudQueryControllerClient) GetPassword(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *solrCloudQueryControllerClient) FindPods(ctx context.Context, in *model.SolrCloudId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, SolrCloudQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // SolrCloudQueryControllerServer is the server API for SolrCloudQueryController service.
 // All implementations should embed UnimplementedSolrCloudQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type SolrCloudQueryControllerServer interface {
 	// look up solr-cloud sasl password
 	// password is retrieved from the kubernetes cloud.
 	GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error)
-	// lookup pods of a solr-cloud deployed to a environment
-	FindPods(context.Context, *model.SolrCloudId) (*model1.Pods, error)
 }
 
 // UnimplementedSolrCloudQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedSolrCloudQueryControllerServer) GetById(context.Context, *mod
 }
 func (UnimplementedSolrCloudQueryControllerServer) GetPassword(context.Context, *model.SolrCloudId) (*model.SolrCloudPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedSolrCloudQueryControllerServer) FindPods(context.Context, *model.SolrCloudId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafeSolrCloudQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _SolrCloudQueryController_GetPassword_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SolrCloudQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.SolrCloudId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SolrCloudQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SolrCloudQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrCloudQueryControllerServer).FindPods(ctx, req.(*model.SolrCloudId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // SolrCloudQueryController_ServiceDesc is the grpc.ServiceDesc for SolrCloudQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var SolrCloudQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _SolrCloudQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _SolrCloudQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

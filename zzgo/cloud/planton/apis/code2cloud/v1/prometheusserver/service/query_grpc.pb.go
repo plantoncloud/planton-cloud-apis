@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/prometheusserver/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	PrometheusServerQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.prometheusserver.service.PrometheusServerQueryController/getById"
 	PrometheusServerQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.prometheusserver.service.PrometheusServerQueryController/getPassword"
-	PrometheusServerQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.prometheusserver.service.PrometheusServerQueryController/findPods"
 )
 
 // PrometheusServerQueryControllerClient is the client API for PrometheusServerQueryController service.
@@ -35,8 +33,6 @@ type PrometheusServerQueryControllerClient interface {
 	// look up prometheus-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.PrometheusServerId, opts ...grpc.CallOption) (*model.PrometheusServerPassword, error)
-	// lookup pods of a prometheus-server deployed to a environment
-	FindPods(ctx context.Context, in *model.PrometheusServerId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type prometheusServerQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *prometheusServerQueryControllerClient) GetPassword(ctx context.Context,
 	return out, nil
 }
 
-func (c *prometheusServerQueryControllerClient) FindPods(ctx context.Context, in *model.PrometheusServerId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, PrometheusServerQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PrometheusServerQueryControllerServer is the server API for PrometheusServerQueryController service.
 // All implementations should embed UnimplementedPrometheusServerQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type PrometheusServerQueryControllerServer interface {
 	// look up prometheus-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.PrometheusServerId) (*model.PrometheusServerPassword, error)
-	// lookup pods of a prometheus-server deployed to a environment
-	FindPods(context.Context, *model.PrometheusServerId) (*model1.Pods, error)
 }
 
 // UnimplementedPrometheusServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedPrometheusServerQueryControllerServer) GetById(context.Contex
 }
 func (UnimplementedPrometheusServerQueryControllerServer) GetPassword(context.Context, *model.PrometheusServerId) (*model.PrometheusServerPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedPrometheusServerQueryControllerServer) FindPods(context.Context, *model.PrometheusServerId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafePrometheusServerQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _PrometheusServerQueryController_GetPassword_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PrometheusServerQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.PrometheusServerId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrometheusServerQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrometheusServerQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusServerQueryControllerServer).FindPods(ctx, req.(*model.PrometheusServerId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PrometheusServerQueryController_ServiceDesc is the grpc.ServiceDesc for PrometheusServerQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var PrometheusServerQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _PrometheusServerQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _PrometheusServerQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgrescluster/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,7 +22,6 @@ const _ = grpc.SupportPackageIsVersion7
 const (
 	PostgresClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getById"
 	PostgresClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/getPassword"
-	PostgresClusterQueryController_FindPods_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.postgrescluster.service.PostgresClusterQueryController/findPods"
 )
 
 // PostgresClusterQueryControllerClient is the client API for PostgresClusterQueryController service.
@@ -35,8 +33,6 @@ type PostgresClusterQueryControllerClient interface {
 	// look up postgres-cluster password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model.PostgresClusterPassword, error)
-	// lookup pods of a postgres-cluster deployment
-	FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model1.Pods, error)
 }
 
 type postgresClusterQueryControllerClient struct {
@@ -65,15 +61,6 @@ func (c *postgresClusterQueryControllerClient) GetPassword(ctx context.Context, 
 	return out, nil
 }
 
-func (c *postgresClusterQueryControllerClient) FindPods(ctx context.Context, in *model.PostgresClusterId, opts ...grpc.CallOption) (*model1.Pods, error) {
-	out := new(model1.Pods)
-	err := c.cc.Invoke(ctx, PostgresClusterQueryController_FindPods_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PostgresClusterQueryControllerServer is the server API for PostgresClusterQueryController service.
 // All implementations should embed UnimplementedPostgresClusterQueryControllerServer
 // for forward compatibility
@@ -83,8 +70,6 @@ type PostgresClusterQueryControllerServer interface {
 	// look up postgres-cluster password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error)
-	// lookup pods of a postgres-cluster deployment
-	FindPods(context.Context, *model.PostgresClusterId) (*model1.Pods, error)
 }
 
 // UnimplementedPostgresClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -96,9 +81,6 @@ func (UnimplementedPostgresClusterQueryControllerServer) GetById(context.Context
 }
 func (UnimplementedPostgresClusterQueryControllerServer) GetPassword(context.Context, *model.PostgresClusterId) (*model.PostgresClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
-}
-func (UnimplementedPostgresClusterQueryControllerServer) FindPods(context.Context, *model.PostgresClusterId) (*model1.Pods, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
 }
 
 // UnsafePostgresClusterQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -148,24 +130,6 @@ func _PostgresClusterQueryController_GetPassword_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PostgresClusterQueryController_FindPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.PostgresClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PostgresClusterQueryControllerServer).FindPods(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PostgresClusterQueryController_FindPods_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresClusterQueryControllerServer).FindPods(ctx, req.(*model.PostgresClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PostgresClusterQueryController_ServiceDesc is the grpc.ServiceDesc for PostgresClusterQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -180,10 +144,6 @@ var PostgresClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getPassword",
 			Handler:    _PostgresClusterQueryController_GetPassword_Handler,
-		},
-		{
-			MethodName: "findPods",
-			Handler:    _PostgresClusterQueryController_FindPods_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
