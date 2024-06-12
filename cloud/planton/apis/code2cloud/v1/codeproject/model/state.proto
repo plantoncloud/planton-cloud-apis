@@ -124,7 +124,7 @@ message CodeProjectSpec {
   //https://cookiecutter.readthedocs.io/en/1.7.2/tutorial1.html#cookiecutter-json
   //when a template code project is synchronized from github, if the project contains cookiecutter.json file in the
   //root directory of the project in the default branch, then the json contents are loaded as key value map and are
-  //persistent in the planton cloud system.
+  //persistent in the planton-cloud system.
   //the stored configuration is used to allow the users to provide the values while creating new projects from the
   //template project.
   map<string, string> cookiecutter_json = 12 [
@@ -133,11 +133,11 @@ message CodeProjectSpec {
   ];
 
   //id of the template code project from which the code project is created.
-  //this value is only populated for code projects created using planton cloud.
+  //this value is only populated for code projects created using planton-cloud.
   string template_code_project_id = 13;
 
   //input values provided when code project is created using a template.
-  //this value is only populated for code projects created using planton cloud.
+  //this value is only populated for code projects created using planton-cloud.
   //conditionally required when creating a code-project from a template.
   map<string, string> cookiecutter_input = 14;
 }

@@ -10,16 +10,17 @@ service KubernetesApiResourcesQueryController {
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificate);
   rpc findCertificates(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.FindCertificatesQueryInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificates);
-  //stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+  //stream all kubernetes api-resources corresponding to the api-resource on planton-cloud.
   rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamKubernetesApiResourcesByNamespaceInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
   //get detailed object of a kubernetes api-resource
   rpc getKubernetesApiResource(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.LookupKubernetesApiResourceInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
-  //list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
-  rpc listPods(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.LookupKubernetesApiResourceInput)
+  //list pods from a namespace.
+  rpc listPods(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ListPodsInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods);
-  //stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+  //stream logs of a pod/s corresponding to the api-resource on planton-cloud based
+  // on specified options.
   rpc streamPodLogs(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamPodLogsInput)
-      returns (stream google.protobuf.StringValue);
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogLine);
 }

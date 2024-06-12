@@ -10,7 +10,7 @@ message GcpFolder {
   string id = 1;
   // display name for the folder.
   // (important) a two character suffix starting with a hyphen is added at the end of the
-  // display name to allow recreating folders with same resource identifier on planton cloud.
+  // display name to allow recreating folders with same resource identifier on planton-cloud.
   string display_name = 2;
   // parent of the folder.
   // parent can be either a gcp organization or another gcp folder.

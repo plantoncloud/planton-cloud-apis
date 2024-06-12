@@ -32,7 +32,7 @@ type GcpFolder struct {
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// display name for the folder.
 	// (important) a two character suffix starting with a hyphen is added at the end of the
-	// display name to allow recreating folders with same resource identifier on planton cloud.
+	// display name to allow recreating folders with same resource identifier on planton-cloud.
 	DisplayName string `protobuf:"bytes,2,opt,name=display_name,json=displayName,proto3" json:"display_name,omitempty"`
 	// parent of the folder.
 	// parent can be either a gcp organization or another gcp folder.

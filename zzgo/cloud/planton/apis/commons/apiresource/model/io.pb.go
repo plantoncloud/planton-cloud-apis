@@ -322,7 +322,7 @@ type ApiResourceRecord struct {
 	// resource audit info
 	SpecAudit *ApiResourceAuditInfo `protobuf:"bytes,98,opt,name=spec_audit,json=specAudit,proto3" json:"spec_audit,omitempty"`
 	// Unique identifier for the resource.
-	// example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
+	// example for resource in planton-cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// A human-readable name for the resource.
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`

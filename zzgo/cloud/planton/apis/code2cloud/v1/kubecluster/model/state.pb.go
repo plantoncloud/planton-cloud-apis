@@ -494,7 +494,7 @@ type KubeClusterGcpSpec struct {
 	// id of the gcp cloud account to be used for creating kube-cluster resources.
 	GcpCloudAccountId string `protobuf:"bytes,1,opt,name=gcp_cloud_account_id,json=gcpCloudAccountId,proto3" json:"gcp_cloud_account_id,omitempty"`
 	// gcp billing account id required to link kube-cluster projects.
-	// planton cloud creates one/two gcp projects per kube-cluster.
+	// planton-cloud creates one/two gcp projects per kube-cluster.
 	// these projects will be linked to this billing account.
 	BillingAccountId string `protobuf:"bytes,2,opt,name=billing_account_id,json=billingAccountId,proto3" json:"billing_account_id,omitempty"`
 	// valid gcp region in which to create the kube-cluster.

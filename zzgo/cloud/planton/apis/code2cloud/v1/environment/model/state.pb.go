@@ -765,7 +765,7 @@ type EnvironmentVariable struct {
 	//
 	//	is 64 characters or less, including the starting and ending characters.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// human readable identifier for environment variable unique on planton cloud.
+	// human readable identifier for environment variable unique on planton-cloud.
 	// value is computed using 'var-<environment-id>-<secret-name>'.
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// value for the environment variable.
@@ -845,7 +845,7 @@ type EnvironmentSecret struct {
 	//
 	//	is 64 characters or less, including the starting and ending characters.
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	// human readable identifier for environment secret unique on planton cloud.
+	// human readable identifier for environment secret unique on planton-cloud.
 	// value is computed using 'sec-<environment-id>-<secret-name>'.
 	Id string `protobuf:"bytes,2,opt,name=id,proto3" json:"id,omitempty"`
 	// id of the secret resource on the secrets management service provider ex: google cloud secrets manager.

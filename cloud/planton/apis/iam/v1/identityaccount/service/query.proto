@@ -26,7 +26,7 @@ service MachineAccountQueryController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
 
-  // retrieve paginated list of all machine accounts on planton cloud.
+  // retrieve paginated list of all machine accounts on planton-cloud.
   rpc findByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountCompanyId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccounts) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
@@ -65,7 +65,7 @@ service MachineAccountQueryController {
 
 // user-account query controller
 service UserAccountQueryController {
-  // retrieve paginated list of all user accounts on planton cloud.
+  // retrieve paginated list of all user accounts on planton-cloud.
   rpc list(cloud.planton.apis.commons.rpc.PageInfo)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;

@@ -11,7 +11,7 @@ import "cloud/planton/apis/resourcemanager/v1/company/model/state.proto";
 //company command controller
 service CompanyCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = company;
-  //create a new company on planton cloud
+  //create a new company on planton-cloud
   rpc create(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
 
@@ -20,7 +20,7 @@ service CompanyCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
 
   }
-  //update an existing company on planton cloud
+  //update an existing company on planton-cloud
   rpc update(cloud.planton.apis.resourcemanager.v1.company.model.Company) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_update;
@@ -31,7 +31,7 @@ service CompanyCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
-  //delete an existing company on planton cloud using company id
+  //delete an existing company on planton-cloud using company id
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput) returns (cloud.planton.apis.resourcemanager.v1.company.model.Company) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_delete;

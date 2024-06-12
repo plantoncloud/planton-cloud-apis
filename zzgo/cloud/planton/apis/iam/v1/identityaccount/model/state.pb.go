@@ -42,7 +42,7 @@ type IdentityAccount struct {
 	// * "auth0|<random-string>" when user signs up using email/password.
 	// * "google-oauth|<random-string>" when user signs up using google.
 	// for machine accounts it is the client_id of the oauth application created for the
-	// m2m app on idp provider and is stored in the planton cloud database.
+	// m2m app on idp provider and is stored in the planton-cloud database.
 	//
 	// name:
 	//

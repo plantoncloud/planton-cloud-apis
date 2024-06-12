@@ -48,7 +48,7 @@ type CloudAccountCommandControllerClient interface {
 	// preview delete a cloud-account that was previously created
 	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error)
 	// delete a cloud-account that was previously created
-	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
+	// warning: deleting a cloud-account from planton-cloud destroys the resources created by planton-cloud in the account
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CloudAccount, error)
 	// preview restoring a deleted cloud-account.
 	PreviewRestore(ctx context.Context, in *model.CloudAccount, opts ...grpc.CallOption) (*model.CloudAccount, error)
@@ -173,7 +173,7 @@ type CloudAccountCommandControllerServer interface {
 	// preview delete a cloud-account that was previously created
 	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CloudAccount, error)
 	// delete a cloud-account that was previously created
-	// warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
+	// warning: deleting a cloud-account from planton-cloud destroys the resources created by planton-cloud in the account
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CloudAccount, error)
 	// preview restoring a deleted cloud-account.
 	PreviewRestore(context.Context, *model.CloudAccount) (*model.CloudAccount, error)
