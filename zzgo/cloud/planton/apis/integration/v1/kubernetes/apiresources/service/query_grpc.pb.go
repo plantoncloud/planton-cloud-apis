@@ -12,7 +12,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -35,13 +34,14 @@ const (
 type KubernetesApiResourcesQueryControllerClient interface {
 	GetCertificateByNamespaceByName(ctx context.Context, in *model.GetCertificateByNamespaceByNameQueryInput, opts ...grpc.CallOption) (*model.Certificate, error)
 	FindCertificates(ctx context.Context, in *model.FindCertificatesQueryInput, opts ...grpc.CallOption) (*model.Certificates, error)
-	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	// stream all kubernetes api-resources corresponding to the api-resource on planton-cloud.
 	StreamByNamespace(ctx context.Context, in *model.StreamKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamByNamespaceClient, error)
 	// get detailed object of a kubernetes api-resource
-	GetKubernetesApiResource(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
-	// list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
-	ListPods(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.Pods, error)
-	// stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+	GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
+	// list pods from a namespace.
+	ListPods(ctx context.Context, in *model.ListPodsInput, opts ...grpc.CallOption) (*model.Pods, error)
+	// stream logs of a pod/s corresponding to the api-resource on planton-cloud based
+	// on specified options.
 	StreamPodLogs(ctx context.Context, in *model.StreamPodLogsInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamPodLogsClient, error)
 }
 
@@ -103,7 +103,7 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceClient) Recv() (*
 	return m, nil
 }
 
-func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error) {
+func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error) {
 	out := new(model.KubernetesApiResourceDetail)
 	err := c.cc.Invoke(ctx, KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(c
 	return out, nil
 }
 
-func (c *kubernetesApiResourcesQueryControllerClient) ListPods(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.Pods, error) {
+func (c *kubernetesApiResourcesQueryControllerClient) ListPods(ctx context.Context, in *model.ListPodsInput, opts ...grpc.CallOption) (*model.Pods, error) {
 	out := new(model.Pods)
 	err := c.cc.Invoke(ctx, KubernetesApiResourcesQueryController_ListPods_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -137,7 +137,7 @@ func (c *kubernetesApiResourcesQueryControllerClient) StreamPodLogs(ctx context.
 }
 
 type KubernetesApiResourcesQueryController_StreamPodLogsClient interface {
-	Recv() (*wrapperspb.StringValue, error)
+	Recv() (*model.PodLogLine, error)
 	grpc.ClientStream
 }
 
@@ -145,8 +145,8 @@ type kubernetesApiResourcesQueryControllerStreamPodLogsClient struct {
 	grpc.ClientStream
 }
 
-func (x *kubernetesApiResourcesQueryControllerStreamPodLogsClient) Recv() (*wrapperspb.StringValue, error) {
-	m := new(wrapperspb.StringValue)
+func (x *kubernetesApiResourcesQueryControllerStreamPodLogsClient) Recv() (*model.PodLogLine, error) {
+	m := new(model.PodLogLine)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -159,13 +159,14 @@ func (x *kubernetesApiResourcesQueryControllerStreamPodLogsClient) Recv() (*wrap
 type KubernetesApiResourcesQueryControllerServer interface {
 	GetCertificateByNamespaceByName(context.Context, *model.GetCertificateByNamespaceByNameQueryInput) (*model.Certificate, error)
 	FindCertificates(context.Context, *model.FindCertificatesQueryInput) (*model.Certificates, error)
-	// stream all kubernetes api-resources corresponding to the api-resource on planton cloud.
+	// stream all kubernetes api-resources corresponding to the api-resource on planton-cloud.
 	StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error
 	// get detailed object of a kubernetes api-resource
-	GetKubernetesApiResource(context.Context, *model.LookupKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
-	// list pods of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
-	ListPods(context.Context, *model.LookupKubernetesApiResourceInput) (*model.Pods, error)
-	// stream logs of a pod controller like Deployment, StatefulSet etc corresponding to the api-resource on planton cloud.
+	GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
+	// list pods from a namespace.
+	ListPods(context.Context, *model.ListPodsInput) (*model.Pods, error)
+	// stream logs of a pod/s corresponding to the api-resource on planton-cloud based
+	// on specified options.
 	StreamPodLogs(*model.StreamPodLogsInput, KubernetesApiResourcesQueryController_StreamPodLogsServer) error
 }
 
@@ -182,10 +183,10 @@ func (UnimplementedKubernetesApiResourcesQueryControllerServer) FindCertificates
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamByNamespace not implemented")
 }
-func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApiResource(context.Context, *model.LookupKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error) {
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKubernetesApiResource not implemented")
 }
-func (UnimplementedKubernetesApiResourcesQueryControllerServer) ListPods(context.Context, *model.LookupKubernetesApiResourceInput) (*model.Pods, error) {
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) ListPods(context.Context, *model.ListPodsInput) (*model.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPods not implemented")
 }
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamPodLogs(*model.StreamPodLogsInput, KubernetesApiResourcesQueryController_StreamPodLogsServer) error {
@@ -261,7 +262,7 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceServer) Send(m *m
 }
 
 func _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.LookupKubernetesApiResourceInput)
+	in := new(model.GetKubernetesApiResourceInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -273,13 +274,13 @@ func _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler(srv
 		FullMethod: KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.LookupKubernetesApiResourceInput))
+		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.GetKubernetesApiResourceInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KubernetesApiResourcesQueryController_ListPods_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.LookupKubernetesApiResourceInput)
+	in := new(model.ListPodsInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -291,7 +292,7 @@ func _KubernetesApiResourcesQueryController_ListPods_Handler(srv interface{}, ct
 		FullMethod: KubernetesApiResourcesQueryController_ListPods_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesApiResourcesQueryControllerServer).ListPods(ctx, req.(*model.LookupKubernetesApiResourceInput))
+		return srv.(KubernetesApiResourcesQueryControllerServer).ListPods(ctx, req.(*model.ListPodsInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -305,7 +306,7 @@ func _KubernetesApiResourcesQueryController_StreamPodLogs_Handler(srv interface{
 }
 
 type KubernetesApiResourcesQueryController_StreamPodLogsServer interface {
-	Send(*wrapperspb.StringValue) error
+	Send(*model.PodLogLine) error
 	grpc.ServerStream
 }
 
@@ -313,7 +314,7 @@ type kubernetesApiResourcesQueryControllerStreamPodLogsServer struct {
 	grpc.ServerStream
 }
 
-func (x *kubernetesApiResourcesQueryControllerStreamPodLogsServer) Send(m *wrapperspb.StringValue) error {
+func (x *kubernetesApiResourcesQueryControllerStreamPodLogsServer) Send(m *model.PodLogLine) error {
 	return x.ServerStream.SendMsg(m)
 }
 

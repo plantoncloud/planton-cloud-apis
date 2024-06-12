@@ -270,7 +270,7 @@ message EnvironmentVariable {
     (buf.validate.field).string.pattern = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
   ];
 
-  //human readable identifier for environment variable unique on planton cloud.
+  //human readable identifier for environment variable unique on planton-cloud.
   //value is computed using 'var-<environment-id>-<secret-name>'.
   string id = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
@@ -303,7 +303,7 @@ message EnvironmentSecret {
     (buf.validate.field).string.pattern = "^[a-za-z0-9]([a-za-z0-9-_]{0,62}[a-za-z0-9])?$"
   ];
 
-  //human readable identifier for environment secret unique on planton cloud.
+  //human readable identifier for environment secret unique on planton-cloud.
   //value is computed using 'sec-<environment-id>-<secret-name>'.
   string id = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true

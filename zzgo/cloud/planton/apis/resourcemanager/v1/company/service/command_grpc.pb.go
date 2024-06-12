@@ -31,11 +31,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CompanyCommandControllerClient interface {
-	// create a new company on planton cloud
+	// create a new company on planton-cloud
 	Create(ctx context.Context, in *model.Company, opts ...grpc.CallOption) (*model.Company, error)
-	// update an existing company on planton cloud
+	// update an existing company on planton-cloud
 	Update(ctx context.Context, in *model.Company, opts ...grpc.CallOption) (*model.Company, error)
-	// delete an existing company on planton cloud using company id
+	// delete an existing company on planton-cloud using company id
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Company, error)
 	// restore a previously deleted company.
 	Restore(ctx context.Context, in *model.Company, opts ...grpc.CallOption) (*model.Company, error)
@@ -89,11 +89,11 @@ func (c *companyCommandControllerClient) Restore(ctx context.Context, in *model.
 // All implementations should embed UnimplementedCompanyCommandControllerServer
 // for forward compatibility
 type CompanyCommandControllerServer interface {
-	// create a new company on planton cloud
+	// create a new company on planton-cloud
 	Create(context.Context, *model.Company) (*model.Company, error)
-	// update an existing company on planton cloud
+	// update an existing company on planton-cloud
 	Update(context.Context, *model.Company) (*model.Company, error)
-	// delete an existing company on planton cloud using company id
+	// delete an existing company on planton-cloud using company id
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Company, error)
 	// restore a previously deleted company.
 	Restore(context.Context, *model.Company) (*model.Company, error)

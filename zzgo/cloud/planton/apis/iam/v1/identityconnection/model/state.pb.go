@@ -26,7 +26,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// identity-connection used for linking a company's identity provider with planton cloud
+// identity-connection used for linking a company's identity provider with planton-cloud
 type IdentityConnection struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

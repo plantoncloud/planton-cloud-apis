@@ -36,7 +36,7 @@ const (
 type MachineAccountQueryControllerClient interface {
 	// lookup machine account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
-	// retrieve paginated list of all machine accounts on planton cloud.
+	// retrieve paginated list of all machine accounts on planton-cloud.
 	FindByCompanyId(ctx context.Context, in *model.MachineAccountCompanyId, opts ...grpc.CallOption) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(ctx context.Context, in *model.IdentityAccountEmail, opts ...grpc.CallOption) (*model.IdentityAccount, error)
@@ -107,7 +107,7 @@ func (c *machineAccountQueryControllerClient) GetClientSecretByMachineAccountEma
 type MachineAccountQueryControllerServer interface {
 	// lookup machine account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)
-	// retrieve paginated list of all machine accounts on planton cloud.
+	// retrieve paginated list of all machine accounts on planton-cloud.
 	FindByCompanyId(context.Context, *model.MachineAccountCompanyId) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(context.Context, *model.IdentityAccountEmail) (*model.IdentityAccount, error)
@@ -286,7 +286,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserAccountQueryControllerClient interface {
-	// retrieve paginated list of all user accounts on planton cloud.
+	// retrieve paginated list of all user accounts on planton-cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	// lookup user-account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
@@ -379,7 +379,7 @@ func (c *userAccountQueryControllerClient) GetMembersCountByProductId(ctx contex
 // All implementations should embed UnimplementedUserAccountQueryControllerServer
 // for forward compatibility
 type UserAccountQueryControllerServer interface {
-	// retrieve paginated list of all user accounts on planton cloud.
+	// retrieve paginated list of all user accounts on planton-cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IdentityAccountsList, error)
 	// lookup user-account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)

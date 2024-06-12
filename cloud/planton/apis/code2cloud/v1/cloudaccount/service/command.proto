@@ -75,7 +75,7 @@ service CloudAccountCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete a cloud-account that was previously created
-  //warning: deleting a cloud-account from planton cloud destroys the resources created by planton cloud in the account
+  //warning: deleting a cloud-account from planton-cloud destroys the resources created by planton-cloud in the account
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;

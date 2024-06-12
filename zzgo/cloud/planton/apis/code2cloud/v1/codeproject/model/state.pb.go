@@ -158,15 +158,15 @@ type CodeProjectSpec struct {
 	// https://cookiecutter.readthedocs.io/en/1.7.2/tutorial1.html#cookiecutter-json
 	// when a template code project is synchronized from github, if the project contains cookiecutter.json file in the
 	// root directory of the project in the default branch, then the json contents are loaded as key value map and are
-	// persistent in the planton cloud system.
+	// persistent in the planton-cloud system.
 	// the stored configuration is used to allow the users to provide the values while creating new projects from the
 	// template project.
 	CookiecutterJson map[string]string `protobuf:"bytes,12,rep,name=cookiecutter_json,json=cookiecutterJson,proto3" json:"cookiecutter_json,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 	// id of the template code project from which the code project is created.
-	// this value is only populated for code projects created using planton cloud.
+	// this value is only populated for code projects created using planton-cloud.
 	TemplateCodeProjectId string `protobuf:"bytes,13,opt,name=template_code_project_id,json=templateCodeProjectId,proto3" json:"template_code_project_id,omitempty"`
 	// input values provided when code project is created using a template.
-	// this value is only populated for code projects created using planton cloud.
+	// this value is only populated for code projects created using planton-cloud.
 	// conditionally required when creating a code-project from a template.
 	CookiecutterInput map[string]string `protobuf:"bytes,14,rep,name=cookiecutter_input,json=cookiecutterInput,proto3" json:"cookiecutter_input,omitempty" protobuf_key:"bytes,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
 }

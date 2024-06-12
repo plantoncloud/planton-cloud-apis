@@ -124,10 +124,10 @@ message PulumiResourceCountDetailed {
 }
 
 // PulumiResourceCountDetailedList encapsulates a list of PulumiResourceCountDetailed messages,
-// providing a collection of detailed information about Pulumi resources count for each planton cloud resource id
+// providing a collection of detailed information about Pulumi resources count for each planton-cloud resource id
 message PulumiResourceCountDetailedList {
   // entries is a repeated field containing PulumiResourceCountDetailed messages. Each entry
-  // in this list represents detailed information about a specific planton cloud resource, including
+  // in this list represents detailed information about a specific planton-cloud resource, including
   // its company, product, environment identifiers, resource kind, and count.
   repeated PulumiResourceCountDetailed entries = 1;
 }

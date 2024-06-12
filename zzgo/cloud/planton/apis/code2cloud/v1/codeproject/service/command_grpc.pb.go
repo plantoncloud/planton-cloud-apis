@@ -39,7 +39,7 @@ type CodeProjectCommandControllerClient interface {
 	// add code-project that already exists on the code-server.
 	Add(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// create a code-project on selected code-server.
-	// new code projects created from planton cloud, can also choose an available code project template.
+	// new code projects created from planton-cloud, can also choose an available code project template.
 	Create(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// update an existing code-project
 	Update(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
@@ -144,7 +144,7 @@ type CodeProjectCommandControllerServer interface {
 	// add code-project that already exists on the code-server.
 	Add(context.Context, *model.CodeProject) (*model.CodeProject, error)
 	// create a code-project on selected code-server.
-	// new code projects created from planton cloud, can also choose an available code project template.
+	// new code projects created from planton-cloud, can also choose an available code project template.
 	Create(context.Context, *model.CodeProject) (*model.CodeProject, error)
 	// update an existing code-project
 	Update(context.Context, *model.CodeProject) (*model.CodeProject, error)

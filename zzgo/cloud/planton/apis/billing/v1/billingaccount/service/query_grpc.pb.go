@@ -32,7 +32,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BillingAccountQueryControllerClient interface {
-	// retrieve paginated list of all billing accounts on planton cloud. this is intended to be used on portal.
+	// retrieve paginated list of all billing accounts on planton-cloud. this is intended to be used on portal.
 	ListBillingAccounts(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.BillingAccountList, error)
 	// lookup billing account using billing account id.
 	GetBillingAccountByBillingAccountId(ctx context.Context, in *model.BillingAccountId, opts ...grpc.CallOption) (*model.BillingAccount, error)
@@ -91,7 +91,7 @@ func (c *billingAccountQueryControllerClient) GetCustomerPortalSessionByCompanyI
 // All implementations should embed UnimplementedBillingAccountQueryControllerServer
 // for forward compatibility
 type BillingAccountQueryControllerServer interface {
-	// retrieve paginated list of all billing accounts on planton cloud. this is intended to be used on portal.
+	// retrieve paginated list of all billing accounts on planton-cloud. this is intended to be used on portal.
 	ListBillingAccounts(context.Context, *rpc.PageInfo) (*model.BillingAccountList, error)
 	// lookup billing account using billing account id.
 	GetBillingAccountByBillingAccountId(context.Context, *model.BillingAccountId) (*model.BillingAccount, error)

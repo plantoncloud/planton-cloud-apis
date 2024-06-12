@@ -626,14 +626,14 @@ func (x *PulumiResourceCountDetailed) GetResourceCount() int32 {
 }
 
 // PulumiResourceCountDetailedList encapsulates a list of PulumiResourceCountDetailed messages,
-// providing a collection of detailed information about Pulumi resources count for each planton cloud resource id
+// providing a collection of detailed information about Pulumi resources count for each planton-cloud resource id
 type PulumiResourceCountDetailedList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
 	// entries is a repeated field containing PulumiResourceCountDetailed messages. Each entry
-	// in this list represents detailed information about a specific planton cloud resource, including
+	// in this list represents detailed information about a specific planton-cloud resource, including
 	// its company, product, environment identifiers, resource kind, and count.
 	Entries []*PulumiResourceCountDetailed `protobuf:"bytes,1,rep,name=entries,proto3" json:"entries,omitempty"`
 }

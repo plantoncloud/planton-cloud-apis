@@ -27,27 +27,29 @@ message WorkloadNamespaces {
 
 // kubernetes pod
 message Pod {
+  // parent api-resource/pod-controller for the pod
+  KubernetesApiResource parent = 1;
   // namespace of the pod
-  string namespace = 1;
-  // id of the pod
-  string pod_id = 2;
+  string namespace = 2;
+  // name/id of the pod
+  string name = 3;
   // pod labels
-  map<string, string> labels = 3;
+  map<string, string> labels = 4;
   // status of the pod
-  string status = 4;
+  string status = 5;
   //reason for the current status. this information is useful when pod in not in running state.
-  string status_reason = 5;
+  string status_reason = 6;
   //description of the reason for the current status. this information is useful when pod in not in running state.
-  string status_message = 6;
+  string status_message = 7;
   // containers in the pod
-  repeated PodContainer containers = 7;
+  repeated PodContainer containers = 8;
   //value derived from containers for easy consumption by clients.
   //displaying the the list of containers in a pod in <ready>/<total> format is useful. this attribute is added to
   //make it easy to display the contents in that format.
-  string containers_in_ready_state = 8;
+  string containers_in_ready_state = 9;
   //sum of the restart counts of each individual container in the pod.
   //this attribute is being added to make it easy for user-facing clients to display this information.
-  int32 containers_restart_count = 9;
+  int32 containers_restart_count = 10;
 }
 
 //container in a kubernetes pod
@@ -165,35 +167,61 @@ message KubernetesApiResourceDetail {
   string yaml_format_base64 = 2;
 }
 
-// input for rpc lookup kubernetes api-resource object
-message LookupKubernetesApiResourceInput {
+// input for rpc get kubernetes api-resource object
+message GetKubernetesApiResourceInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
   //kubernetes api-resource
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
+}
+
+// input for rpc to list pods
+message ListPodsInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  // kubernetes namespace
+  string namespace = 2;
+  //parent(pod-controller) kubernetes api-resource
+  //if this is not specified, all pods from the namespace are included in the response
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 3;
 }
 
 // input for rpc to stream logs of a pod
 message StreamPodLogsInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  //kubernetes api-resource
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
+  // kubernetes namespace
+  string namespace = 2;
   //options to configure pod log stream
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
 }
 
 //options available to configure pod log stream
 message PodLogStreamOptions {
+  // pod-controller kubernetes api-resource i.e Deployment, StatefulSet, ReplicaSet etc
+  // when specified, logs from all the pods with in the controller will be fetched from kubernetes cluster.
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 1;
   // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
-  string container_name = 1;
+  string pod_name_regex = 2;
+  // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
+  string container_name_regex = 3;
   // If true, get logs for the previous instance of the container if it has restarted.
   // if this is set to true, the stream does not fetch the logs of restarted container.
-  bool is_fetch_previous_container_logs = 2;
+  bool is_fetch_previous_container_logs = 4;
   // Filters the logs to include only those from the last specified time in format 20s, 1m, 1d etc.
-  string since_duration = 3;
+  string since_duration = 5;
   // Limits the number of lines to include in the log output. If not specified, all lines will be included.
-  int64 tail_lines = 4;
+  int64 tail_lines = 6;
   //regex to be used for filtering logs
-  string content_filter_regex = 5;
+  string content_filter_regex = 7;
+}
+
+// log line of a pod retried from kubernetes-cluster
+message PodLogLine {
+  //name/id of the pod
+  string pod_name = 1;
+  //name of the container to which the log line belongs to
+  string container_name = 2;
+  //log line content
+  string log_line = 3;
 }

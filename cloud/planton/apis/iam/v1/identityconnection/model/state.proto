@@ -9,7 +9,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/identityconnection/enums/identityconnectionprovider/identity_connection_provider.proto";
 
-//identity-connection used for linking a company's identity provider with planton cloud
+//identity-connection used for linking a company's identity provider with planton-cloud
 message IdentityConnection {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = identity_connection;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;

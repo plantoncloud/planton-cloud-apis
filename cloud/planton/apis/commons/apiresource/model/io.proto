@@ -59,7 +59,7 @@ message ApiResourceRecord {
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo spec_audit = 98;
   // Unique identifier for the resource.
-  // example for resource in planton cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
+  // example for resource in planton-cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;
   // A human-readable name for the resource.
   string name = 2;

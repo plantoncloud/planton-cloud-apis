@@ -143,9 +143,9 @@ type ListByCostAllocationFiltersInput struct {
 	ProductId string `protobuf:"bytes,4,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
 	// id of the environment for which the cost allocations are filtered for the resource requested.
 	EnvironmentId string `protobuf:"bytes,5,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	// type of the resource on planton cloud.
+	// type of the resource on planton-cloud.
 	ResourceKind apiresourcekind.ApiResourceKind `protobuf:"varint,6,opt,name=resource_kind,json=resourceKind,proto3,enum=cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind" json:"resource_kind,omitempty"`
-	// id of the resource on planton cloud.
+	// id of the resource on planton-cloud.
 	// ex: ms-planton-pcs-product which is the id of the microservice.
 	ResourceId string `protobuf:"bytes,7,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 }
@@ -236,9 +236,9 @@ type GetCostAggregateInput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// type of the resource on planton cloud.
+	// type of the resource on planton-cloud.
 	ResourceKind apiresourcekind.ApiResourceKind `protobuf:"varint,1,opt,name=resource_kind,json=resourceKind,proto3,enum=cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind" json:"resource_kind,omitempty"`
-	// id of the resource on planton cloud.
+	// id of the resource on planton-cloud.
 	// ex: ms-planton-pcs-product which is the id of the microservice.
 	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
 	// start timestamp

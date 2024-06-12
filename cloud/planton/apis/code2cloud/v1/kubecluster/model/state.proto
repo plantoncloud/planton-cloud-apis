@@ -165,7 +165,7 @@ message KubeClusterGcpSpec {
   ];
 
   // gcp billing account id required to link kube-cluster projects.
-  // planton cloud creates one/two gcp projects per kube-cluster.
+  // planton-cloud creates one/two gcp projects per kube-cluster.
   // these projects will be linked to this billing account.
   string billing_account_id = 2 [
     (buf.validate.field).ignore_empty = true,
