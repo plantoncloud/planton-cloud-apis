@@ -280,7 +280,7 @@ message ListApiResourcePodsInput {
   string resource_id = 2;
   //details of the parent kubernetes api-resource(pod-controller) to be used to filter pods list
   //if a parent is not specified, pods of all pod-controllers will be included in the response.
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource parent_pod_controller = 3;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 3;
 }
 
 // input for rpc to stream logs of a planton-cloud api-resource on kube-cluster based

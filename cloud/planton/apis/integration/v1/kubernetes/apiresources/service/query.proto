@@ -14,7 +14,7 @@ service KubernetesApiResourcesQueryController {
   rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamKubernetesApiResourcesByNamespaceInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResources);
   //get detailed object of a kubernetes api-resource
-  rpc getKubernetesApiResource(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.LookupKubernetesApiResourceInput)
+  rpc getKubernetesApiResource(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.GetKubernetesApiResourceInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResourceDetail);
   //list pods from a namespace.
   rpc listPods(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ListPodsInput)

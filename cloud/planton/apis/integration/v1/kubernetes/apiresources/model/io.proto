@@ -167,8 +167,8 @@ message KubernetesApiResourceDetail {
   string yaml_format_base64 = 2;
 }
 
-// input for rpc lookup kubernetes api-resource object
-message LookupKubernetesApiResourceInput {
+// input for rpc get kubernetes api-resource object
+message GetKubernetesApiResourceInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
   //kubernetes api-resource
@@ -183,15 +183,17 @@ message ListPodsInput {
   string namespace = 2;
   //parent(pod-controller) kubernetes api-resource
   //if this is not specified, all pods from the namespace are included in the response
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource parent = 3;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 3;
 }
 
 // input for rpc to stream logs of a pod
 message StreamPodLogsInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
+  // kubernetes namespace
+  string namespace = 2;
   //options to configure pod log stream
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 2;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
 }
 
 //options available to configure pod log stream
@@ -200,16 +202,18 @@ message PodLogStreamOptions {
   // when specified, logs from all the pods with in the controller will be fetched from kubernetes cluster.
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 1;
   // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
-  string container_name_regex = 2;
+  string pod_name_regex = 2;
+  // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
+  string container_name_regex = 3;
   // If true, get logs for the previous instance of the container if it has restarted.
   // if this is set to true, the stream does not fetch the logs of restarted container.
-  bool is_fetch_previous_container_logs = 3;
+  bool is_fetch_previous_container_logs = 4;
   // Filters the logs to include only those from the last specified time in format 20s, 1m, 1d etc.
-  string since_duration = 4;
+  string since_duration = 5;
   // Limits the number of lines to include in the log output. If not specified, all lines will be included.
-  int64 tail_lines = 5;
+  int64 tail_lines = 6;
   //regex to be used for filtering logs
-  string content_filter_regex = 6;
+  string content_filter_regex = 7;
 }
 
 // log line of a pod retried from kubernetes-cluster

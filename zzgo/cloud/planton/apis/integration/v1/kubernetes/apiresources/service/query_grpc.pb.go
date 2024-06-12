@@ -37,7 +37,7 @@ type KubernetesApiResourcesQueryControllerClient interface {
 	// stream all kubernetes api-resources corresponding to the api-resource on planton-cloud.
 	StreamByNamespace(ctx context.Context, in *model.StreamKubernetesApiResourcesByNamespaceInput, opts ...grpc.CallOption) (KubernetesApiResourcesQueryController_StreamByNamespaceClient, error)
 	// get detailed object of a kubernetes api-resource
-	GetKubernetesApiResource(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
+	GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error)
 	// list pods from a namespace.
 	ListPods(ctx context.Context, in *model.ListPodsInput, opts ...grpc.CallOption) (*model.Pods, error)
 	// stream logs of a pod/s corresponding to the api-resource on planton-cloud based
@@ -103,7 +103,7 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceClient) Recv() (*
 	return m, nil
 }
 
-func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.LookupKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error) {
+func (c *kubernetesApiResourcesQueryControllerClient) GetKubernetesApiResource(ctx context.Context, in *model.GetKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResourceDetail, error) {
 	out := new(model.KubernetesApiResourceDetail)
 	err := c.cc.Invoke(ctx, KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ type KubernetesApiResourcesQueryControllerServer interface {
 	// stream all kubernetes api-resources corresponding to the api-resource on planton-cloud.
 	StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error
 	// get detailed object of a kubernetes api-resource
-	GetKubernetesApiResource(context.Context, *model.LookupKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
+	GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error)
 	// list pods from a namespace.
 	ListPods(context.Context, *model.ListPodsInput) (*model.Pods, error)
 	// stream logs of a pod/s corresponding to the api-resource on planton-cloud based
@@ -183,7 +183,7 @@ func (UnimplementedKubernetesApiResourcesQueryControllerServer) FindCertificates
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) StreamByNamespace(*model.StreamKubernetesApiResourcesByNamespaceInput, KubernetesApiResourcesQueryController_StreamByNamespaceServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamByNamespace not implemented")
 }
-func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApiResource(context.Context, *model.LookupKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error) {
+func (UnimplementedKubernetesApiResourcesQueryControllerServer) GetKubernetesApiResource(context.Context, *model.GetKubernetesApiResourceInput) (*model.KubernetesApiResourceDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKubernetesApiResource not implemented")
 }
 func (UnimplementedKubernetesApiResourcesQueryControllerServer) ListPods(context.Context, *model.ListPodsInput) (*model.Pods, error) {
@@ -262,7 +262,7 @@ func (x *kubernetesApiResourcesQueryControllerStreamByNamespaceServer) Send(m *m
 }
 
 func _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.LookupKubernetesApiResourceInput)
+	in := new(model.GetKubernetesApiResourceInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -274,7 +274,7 @@ func _KubernetesApiResourcesQueryController_GetKubernetesApiResource_Handler(srv
 		FullMethod: KubernetesApiResourcesQueryController_GetKubernetesApiResource_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.LookupKubernetesApiResourceInput))
+		return srv.(KubernetesApiResourcesQueryControllerServer).GetKubernetesApiResource(ctx, req.(*model.GetKubernetesApiResourceInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
