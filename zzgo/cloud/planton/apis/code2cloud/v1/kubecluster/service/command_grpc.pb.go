@@ -812,9 +812,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubeClusterKubernetesApiCommandControllerClient interface {
 	// get detailed object of a kubernetes api-resource
-	Update(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error)
+	Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error)
 	// delete a kubernetes api-resource
-	Delete(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubeClusterKubernetesApiResource, error)
+	Delete(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error)
 }
 
 type kubeClusterKubernetesApiCommandControllerClient struct {
@@ -825,7 +825,7 @@ func NewKubeClusterKubernetesApiCommandControllerClient(cc grpc.ClientConnInterf
 	return &kubeClusterKubernetesApiCommandControllerClient{cc}
 }
 
-func (c *kubeClusterKubernetesApiCommandControllerClient) Update(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error) {
+func (c *kubeClusterKubernetesApiCommandControllerClient) Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error) {
 	out := new(model2.KubernetesApiResource)
 	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -834,8 +834,8 @@ func (c *kubeClusterKubernetesApiCommandControllerClient) Update(ctx context.Con
 	return out, nil
 }
 
-func (c *kubeClusterKubernetesApiCommandControllerClient) Delete(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubeClusterKubernetesApiResource, error) {
-	out := new(model.KubeClusterKubernetesApiResource)
+func (c *kubeClusterKubernetesApiCommandControllerClient) Delete(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error) {
+	out := new(model2.KubernetesApiResource)
 	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -848,19 +848,19 @@ func (c *kubeClusterKubernetesApiCommandControllerClient) Delete(ctx context.Con
 // for forward compatibility
 type KubeClusterKubernetesApiCommandControllerServer interface {
 	// get detailed object of a kubernetes api-resource
-	Update(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error)
+	Update(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model2.KubernetesApiResource, error)
 	// delete a kubernetes api-resource
-	Delete(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model.KubeClusterKubernetesApiResource, error)
+	Delete(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error)
 }
 
 // UnimplementedKubeClusterKubernetesApiCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedKubeClusterKubernetesApiCommandControllerServer struct {
 }
 
-func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Update(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error) {
+func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Update(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model2.KubernetesApiResource, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Delete(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model.KubeClusterKubernetesApiResource, error) {
+func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Delete(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -876,7 +876,7 @@ func RegisterKubeClusterKubernetesApiCommandControllerServer(s grpc.ServiceRegis
 }
 
 func _KubeClusterKubernetesApiCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KubeClusterKubernetesApiResource)
+	in := new(model.UpdateKubeClusterKubernetesApiResourceInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -888,13 +888,13 @@ func _KubeClusterKubernetesApiCommandController_Update_Handler(srv interface{}, 
 		FullMethod: KubeClusterKubernetesApiCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Update(ctx, req.(*model.KubeClusterKubernetesApiResource))
+		return srv.(KubeClusterKubernetesApiCommandControllerServer).Update(ctx, req.(*model.UpdateKubeClusterKubernetesApiResourceInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KubeClusterKubernetesApiCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.UpdateKubeClusterKubernetesApiResourceInput)
+	in := new(model.KubeClusterKubernetesApiResource)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -906,7 +906,7 @@ func _KubeClusterKubernetesApiCommandController_Delete_Handler(srv interface{}, 
 		FullMethod: KubeClusterKubernetesApiCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Delete(ctx, req.(*model.UpdateKubeClusterKubernetesApiResourceInput))
+		return srv.(KubeClusterKubernetesApiCommandControllerServer).Delete(ctx, req.(*model.KubeClusterKubernetesApiResource))
 	}
 	return interceptor(ctx, in, info, handler)
 }
