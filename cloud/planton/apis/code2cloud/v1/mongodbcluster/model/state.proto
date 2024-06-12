@@ -194,5 +194,25 @@ message MongodbClusterStatusKubernetesStatus {
   // root_password_secret_name is the name of the Kubernetes secret that stores the root password for the MongoDB cluster.
   // Kubernetes secrets are used to store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
   string root_password_secret_name = 3;
+
+  //kubernetes service name for mongodb-cluster
+  //ex: main-mongodb-cluster
+  //in the above example, "main" is the name of the mongodb-cluster
+  string service = 4;
+
+  //command to setup port-forwarding to open mongodb-cluster from developers laptop.
+  //this might come handy when mongodb-cluster ingress is disabled for security reasons.
+  //this is rendered by combining mongodb-cluster kubernetes service and namespace
+  //ex: kubectl port-forward svc/mongodb-cluster -n kubernetes_namespace 27017:27017
+  //running the command from this attribute makes it possible to access mongodb-cluster using http://localhost:8080
+  string port_forward_command = 5;
+
+  //kubernetes endpoint to connect to mongodb-cluster locally
+  //ex: main-mongodb-cluster.namespace.svc.cluster.local:27017
+  string kube_endpoint = 6;
+
+  //public endpoint to open mongodb-cluster from clients outside kubernetes.
+  //ex: https://mdc-planton-pcs-dev-main.data.dev.planton.live:27017
+  string ingress_endpoint = 7;
 }
 
