@@ -8,18 +8,22 @@ enum IdentityAccountApiResourceEventType {
   unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
   updated = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
   deleted = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
   restored = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
 }
