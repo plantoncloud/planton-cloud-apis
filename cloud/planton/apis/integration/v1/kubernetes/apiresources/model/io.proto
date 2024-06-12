@@ -201,10 +201,12 @@ message PodLogStreamOptions {
   // pod-controller kubernetes api-resource i.e Deployment, StatefulSet, ReplicaSet etc
   // when specified, logs from all the pods with in the controller will be fetched from kubernetes cluster.
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 1;
-  // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
-  string pod_name_regex = 2;
-  // The name of the container within the pod. If not specified, logs from the first container in the pod will be fetched.
-  string container_name_regex = 3;
+  // filter to be used for selecting pods from which the logs needs to be fetched. all pods are considered when this is not specified.
+  // the filter input is used for fuzzy search.
+  string pod_name_filter = 2;
+  // filter to be used for selecting the containers within the pod. If not specified, logs from all the containers in the pod will be fetched.
+  // the filter input is used for fuzzy search.
+  string container_name_filter = 3;
   // If true, get logs for the previous instance of the container if it has restarted.
   // if this is set to true, the stream does not fetch the logs of restarted container.
   bool is_fetch_previous_container_logs = 4;
@@ -212,8 +214,9 @@ message PodLogStreamOptions {
   string since_duration = 5;
   // Limits the number of lines to include in the log output. If not specified, all lines will be included.
   int64 tail_lines = 6;
-  //regex to be used for filtering logs
-  string content_filter_regex = 7;
+  //filter to be used for filtering log content.
+  // the filter input is used for fuzzy search.
+  string content_filter = 7;
 }
 
 // log line of a pod retried from kubernetes-cluster
