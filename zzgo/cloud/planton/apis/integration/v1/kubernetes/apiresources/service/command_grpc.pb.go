@@ -20,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	KubernetesApiResourcesCommandController_Update_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/update"
 	KubernetesApiResourcesCommandController_Delete_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/delete"
 )
 
@@ -27,6 +28,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubernetesApiResourcesCommandControllerClient interface {
+	Update(ctx context.Context, in *model.UpdateKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error)
 	Delete(ctx context.Context, in *model.DeleteKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error)
 }
 
@@ -36,6 +38,15 @@ type kubernetesApiResourcesCommandControllerClient struct {
 
 func NewKubernetesApiResourcesCommandControllerClient(cc grpc.ClientConnInterface) KubernetesApiResourcesCommandControllerClient {
 	return &kubernetesApiResourcesCommandControllerClient{cc}
+}
+
+func (c *kubernetesApiResourcesCommandControllerClient) Update(ctx context.Context, in *model.UpdateKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error) {
+	out := new(model.KubernetesApiResource)
+	err := c.cc.Invoke(ctx, KubernetesApiResourcesCommandController_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *kubernetesApiResourcesCommandControllerClient) Delete(ctx context.Context, in *model.DeleteKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error) {
@@ -51,6 +62,7 @@ func (c *kubernetesApiResourcesCommandControllerClient) Delete(ctx context.Conte
 // All implementations should embed UnimplementedKubernetesApiResourcesCommandControllerServer
 // for forward compatibility
 type KubernetesApiResourcesCommandControllerServer interface {
+	Update(context.Context, *model.UpdateKubernetesApiResourceInput) (*model.KubernetesApiResource, error)
 	Delete(context.Context, *model.DeleteKubernetesApiResourceInput) (*model.KubernetesApiResource, error)
 }
 
@@ -58,6 +70,9 @@ type KubernetesApiResourcesCommandControllerServer interface {
 type UnimplementedKubernetesApiResourcesCommandControllerServer struct {
 }
 
+func (UnimplementedKubernetesApiResourcesCommandControllerServer) Update(context.Context, *model.UpdateKubernetesApiResourceInput) (*model.KubernetesApiResource, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
 func (UnimplementedKubernetesApiResourcesCommandControllerServer) Delete(context.Context, *model.DeleteKubernetesApiResourceInput) (*model.KubernetesApiResource, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
@@ -71,6 +86,24 @@ type UnsafeKubernetesApiResourcesCommandControllerServer interface {
 
 func RegisterKubernetesApiResourcesCommandControllerServer(s grpc.ServiceRegistrar, srv KubernetesApiResourcesCommandControllerServer) {
 	s.RegisterService(&KubernetesApiResourcesCommandController_ServiceDesc, srv)
+}
+
+func _KubernetesApiResourcesCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.UpdateKubernetesApiResourceInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubernetesApiResourcesCommandControllerServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubernetesApiResourcesCommandController_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubernetesApiResourcesCommandControllerServer).Update(ctx, req.(*model.UpdateKubernetesApiResourceInput))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _KubernetesApiResourcesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -98,6 +131,10 @@ var KubernetesApiResourcesCommandController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController",
 	HandlerType: (*KubernetesApiResourcesCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "update",
+			Handler:    _KubernetesApiResourcesCommandController_Update_Handler,
+		},
 		{
 			MethodName: "delete",
 			Handler:    _KubernetesApiResourcesCommandController_Delete_Handler,

@@ -269,7 +269,7 @@ message UpdateKubeClusterKubernetesApiResourceInput {
   // kubernetes api-resource of a kube-cluster
   KubeClusterKubernetesApiResource kube_cluster_kubernetes_api_resource = 1;
   // base64 encoded of the updated kubernetes api-resource manifest
-  string kubernetes_api_resource_updated_manifest_yaml_base64 = 2;
+  string updated_manifest_yaml_base64 = 2;
 }
 
 // input for rpc to list pods of an api-resource on kube-cluster

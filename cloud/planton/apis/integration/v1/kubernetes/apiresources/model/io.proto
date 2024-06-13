@@ -236,3 +236,13 @@ message DeleteKubernetesApiResourceInput {
   // kubernetes api-resource to be deleted
   KubernetesApiResource kubernetes_api_resource = 2;
 }
+
+// input for rpc to update kubernetes api-resource
+message UpdateKubernetesApiResourceInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  // kubernetes api-resource to be deleted
+  KubernetesApiResource kubernetes_api_resource = 2;
+  // base64 encoded of the updated kubernetes api-resource manifest
+  string updated_manifest_yaml_base64 = 3;
+}
