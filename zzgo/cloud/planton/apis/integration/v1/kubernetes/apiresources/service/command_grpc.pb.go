@@ -20,8 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KubernetesApiResourcesCommandController_Update_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/update"
-	KubernetesApiResourcesCommandController_Delete_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/delete"
+	KubernetesApiResourcesCommandController_Update_FullMethodName               = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/update"
+	KubernetesApiResourcesCommandController_Delete_FullMethodName               = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/delete"
+	KubernetesApiResourcesCommandController_ExecIntoPodContainer_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesApiResourcesCommandController/execIntoPodContainer"
 )
 
 // KubernetesApiResourcesCommandControllerClient is the client API for KubernetesApiResourcesCommandController service.
@@ -30,6 +31,8 @@ const (
 type KubernetesApiResourcesCommandControllerClient interface {
 	Update(ctx context.Context, in *model.UpdateKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error)
 	Delete(ctx context.Context, in *model.DeleteKubernetesApiResourceInput, opts ...grpc.CallOption) (*model.KubernetesApiResource, error)
+	// mimic kubectl exec
+	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubernetesApiResourcesCommandController_ExecIntoPodContainerClient, error)
 }
 
 type kubernetesApiResourcesCommandControllerClient struct {
@@ -58,12 +61,45 @@ func (c *kubernetesApiResourcesCommandControllerClient) Delete(ctx context.Conte
 	return out, nil
 }
 
+func (c *kubernetesApiResourcesCommandControllerClient) ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubernetesApiResourcesCommandController_ExecIntoPodContainerClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubernetesApiResourcesCommandController_ServiceDesc.Streams[0], KubernetesApiResourcesCommandController_ExecIntoPodContainer_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kubernetesApiResourcesCommandControllerExecIntoPodContainerClient{stream}
+	return x, nil
+}
+
+type KubernetesApiResourcesCommandController_ExecIntoPodContainerClient interface {
+	Send(*model.ExecIntoPodContainerInput) error
+	Recv() (*model.ExecIntoPodContainerResponse, error)
+	grpc.ClientStream
+}
+
+type kubernetesApiResourcesCommandControllerExecIntoPodContainerClient struct {
+	grpc.ClientStream
+}
+
+func (x *kubernetesApiResourcesCommandControllerExecIntoPodContainerClient) Send(m *model.ExecIntoPodContainerInput) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *kubernetesApiResourcesCommandControllerExecIntoPodContainerClient) Recv() (*model.ExecIntoPodContainerResponse, error) {
+	m := new(model.ExecIntoPodContainerResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // KubernetesApiResourcesCommandControllerServer is the server API for KubernetesApiResourcesCommandController service.
 // All implementations should embed UnimplementedKubernetesApiResourcesCommandControllerServer
 // for forward compatibility
 type KubernetesApiResourcesCommandControllerServer interface {
 	Update(context.Context, *model.UpdateKubernetesApiResourceInput) (*model.KubernetesApiResource, error)
 	Delete(context.Context, *model.DeleteKubernetesApiResourceInput) (*model.KubernetesApiResource, error)
+	// mimic kubectl exec
+	ExecIntoPodContainer(KubernetesApiResourcesCommandController_ExecIntoPodContainerServer) error
 }
 
 // UnimplementedKubernetesApiResourcesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -75,6 +111,9 @@ func (UnimplementedKubernetesApiResourcesCommandControllerServer) Update(context
 }
 func (UnimplementedKubernetesApiResourcesCommandControllerServer) Delete(context.Context, *model.DeleteKubernetesApiResourceInput) (*model.KubernetesApiResource, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedKubernetesApiResourcesCommandControllerServer) ExecIntoPodContainer(KubernetesApiResourcesCommandController_ExecIntoPodContainerServer) error {
+	return status.Errorf(codes.Unimplemented, "method ExecIntoPodContainer not implemented")
 }
 
 // UnsafeKubernetesApiResourcesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -124,6 +163,32 @@ func _KubernetesApiResourcesCommandController_Delete_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubernetesApiResourcesCommandController_ExecIntoPodContainer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(KubernetesApiResourcesCommandControllerServer).ExecIntoPodContainer(&kubernetesApiResourcesCommandControllerExecIntoPodContainerServer{stream})
+}
+
+type KubernetesApiResourcesCommandController_ExecIntoPodContainerServer interface {
+	Send(*model.ExecIntoPodContainerResponse) error
+	Recv() (*model.ExecIntoPodContainerInput, error)
+	grpc.ServerStream
+}
+
+type kubernetesApiResourcesCommandControllerExecIntoPodContainerServer struct {
+	grpc.ServerStream
+}
+
+func (x *kubernetesApiResourcesCommandControllerExecIntoPodContainerServer) Send(m *model.ExecIntoPodContainerResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *kubernetesApiResourcesCommandControllerExecIntoPodContainerServer) Recv() (*model.ExecIntoPodContainerInput, error) {
+	m := new(model.ExecIntoPodContainerInput)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // KubernetesApiResourcesCommandController_ServiceDesc is the grpc.ServiceDesc for KubernetesApiResourcesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -140,6 +205,13 @@ var KubernetesApiResourcesCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _KubernetesApiResourcesCommandController_Delete_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "execIntoPodContainer",
+			Handler:       _KubernetesApiResourcesCommandController_ExecIntoPodContainer_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "cloud/planton/apis/integration/v1/kubernetes/apiresources/service/command.proto",
 }

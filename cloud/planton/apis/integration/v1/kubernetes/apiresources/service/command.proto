@@ -9,4 +9,7 @@ service KubernetesApiResourcesCommandController {
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
   rpc delete(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.DeleteKubernetesApiResourceInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+  //mimic kubectl exec
+  rpc execIntoPodContainer(stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
 }

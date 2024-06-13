@@ -293,3 +293,20 @@ message StreamApiResourceLogsInput {
   //options to configure pod log stream
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
 }
+
+// input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
+message KubeClusterExecIntoPodContainerInput {
+  //Planton Cloud API Resource Kind
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
+  //id of the api resource on Planton Cloud
+  string resource_id = 2;
+  // pod details
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod = 3;
+  // container name
+  string container_name = 4;
+  // shell to use to execute the commands ex: sh.
+  // the shell specified here should exist inside the container.
+  string shell = 5;
+  // command to execute ex: pwd
+  string command = 6;
+}

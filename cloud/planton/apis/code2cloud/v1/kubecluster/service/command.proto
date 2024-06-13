@@ -231,4 +231,8 @@ service KubeClusterKubernetesApiCommandController {
   //delete a kubernetes api-resource
   rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+
+  //mimic kubectl exec
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterExecIntoPodContainerInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
 }

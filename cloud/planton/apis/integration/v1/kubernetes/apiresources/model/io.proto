@@ -246,3 +246,26 @@ message UpdateKubernetesApiResourceInput {
   // base64 encoded of the updated kubernetes api-resource manifest
   string updated_manifest_yaml_base64 = 3;
 }
+
+//input for rpc to exec into pod container
+message ExecIntoPodContainerInput {
+  // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
+  string kube_config_base64 = 1;
+  // pod information
+  KubernetesApiResource pod = 2;
+  // container name
+  string container_name = 3;
+  // shell to use to execute the commands ex: sh.
+  // the shell specified here should exist inside the container.
+  string shell = 4;
+  // command to execute ex: pwd
+  string command = 5;
+}
+
+//response for rpc to exec into pod container
+message ExecIntoPodContainerResponse {
+  // standard output of the executed command
+  string stdout = 1;
+  // standard error of the executed command
+  string stderr = 2;
+}
