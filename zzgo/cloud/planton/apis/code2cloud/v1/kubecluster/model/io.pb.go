@@ -1920,6 +1920,101 @@ func (x *StreamApiResourceLogsInput) GetOptions() *model.PodLogStreamOptions {
 	return nil
 }
 
+// input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
+type KubeClusterExecIntoPodContainerInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// Planton Cloud API Resource Kind
+	ResourceKind apiresourcekind.ApiResourceKind `protobuf:"varint,1,opt,name=resource_kind,json=resourceKind,proto3,enum=cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind" json:"resource_kind,omitempty"`
+	// id of the api resource on Planton Cloud
+	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
+	// pod details
+	Pod *model.KubernetesApiResource `protobuf:"bytes,3,opt,name=pod,proto3" json:"pod,omitempty"`
+	// container name
+	ContainerName string `protobuf:"bytes,4,opt,name=container_name,json=containerName,proto3" json:"container_name,omitempty"`
+	// shell to use to execute the commands ex: sh.
+	// the shell specified here should exist inside the container.
+	Shell string `protobuf:"bytes,5,opt,name=shell,proto3" json:"shell,omitempty"`
+	// command to execute ex: pwd
+	Command string `protobuf:"bytes,6,opt,name=command,proto3" json:"command,omitempty"`
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) Reset() {
+	*x = KubeClusterExecIntoPodContainerInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KubeClusterExecIntoPodContainerInput) ProtoMessage() {}
+
+func (x *KubeClusterExecIntoPodContainerInput) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KubeClusterExecIntoPodContainerInput.ProtoReflect.Descriptor instead.
+func (*KubeClusterExecIntoPodContainerInput) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetResourceKind() apiresourcekind.ApiResourceKind {
+	if x != nil {
+		return x.ResourceKind
+	}
+	return apiresourcekind.ApiResourceKind(0)
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetResourceId() string {
+	if x != nil {
+		return x.ResourceId
+	}
+	return ""
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetPod() *model.KubernetesApiResource {
+	if x != nil {
+		return x.Pod
+	}
+	return nil
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetContainerName() string {
+	if x != nil {
+		return x.ContainerName
+	}
+	return ""
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetShell() string {
+	if x != nil {
+		return x.Shell
+	}
+	return ""
+}
+
+func (x *KubeClusterExecIntoPodContainerInput) GetCommand() string {
+	if x != nil {
+		return x.Command
+	}
+	return ""
+}
+
 var File_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto protoreflect.FileDescriptor
 
 var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDesc = []byte{
@@ -2309,34 +2404,58 @@ var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDesc = [
 	0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65, 0x73, 0x2e, 0x61, 0x70, 0x69, 0x72, 0x65,
 	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x50, 0x6f,
 	0x64, 0x4c, 0x6f, 0x67, 0x53, 0x74, 0x72, 0x65, 0x61, 0x6d, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x52, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x42, 0xa1, 0x03, 0x0a, 0x40, 0x62,
-	0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f,
+	0x73, 0x52, 0x07, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x22, 0xfc, 0x02, 0x0a, 0x24, 0x4b,
+	0x75, 0x62, 0x65, 0x43, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x45, 0x78, 0x65, 0x63, 0x49, 0x6e,
+	0x74, 0x6f, 0x50, 0x6f, 0x64, 0x43, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x49, 0x6e,
+	0x70, 0x75, 0x74, 0x12, 0x72, 0x0a, 0x0d, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x5f,
+	0x6b, 0x69, 0x6e, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x4d, 0x2e, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
-	0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6b, 0x75,
-	0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x42,
-	0x07, 0x49, 0x6f, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x62, 0x67, 0x69, 0x74, 0x68,
-	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c,
-	0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75,
-	0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63,
-	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x6b, 0x75, 0x62,
-	0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0xa2, 0x02,
-	0x07, 0x43, 0x50, 0x41, 0x43, 0x56, 0x4b, 0x4d, 0xaa, 0x02, 0x32, 0x43, 0x6c, 0x6f, 0x75, 0x64,
-	0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x43, 0x6f,
-	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x56, 0x31, 0x2e, 0x4b, 0x75, 0x62, 0x65,
-	0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x32,
-	0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70,
-	0x69, 0x73, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x56, 0x31,
-	0x5c, 0x4b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x5c, 0x4d, 0x6f, 0x64,
-	0x65, 0x6c, 0xe2, 0x02, 0x3e, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x5c, 0x56, 0x31, 0x5c, 0x4b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65,
-	0x72, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
-	0x61, 0x74, 0x61, 0xea, 0x02, 0x38, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x43, 0x6f, 0x64, 0x65,
-	0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x4b, 0x75, 0x62, 0x65,
-	0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x61, 0x70, 0x69, 0x72, 0x65, 0x73, 0x6f, 0x75,
+	0x72, 0x63, 0x65, 0x2e, 0x65, 0x6e, 0x75, 0x6d, 0x73, 0x2e, 0x61, 0x70, 0x69, 0x72, 0x65, 0x73,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x6b, 0x69, 0x6e, 0x64, 0x2e, 0x41, 0x70, 0x69, 0x52, 0x65, 0x73,
+	0x6f, 0x75, 0x72, 0x63, 0x65, 0x4b, 0x69, 0x6e, 0x64, 0x52, 0x0c, 0x72, 0x65, 0x73, 0x6f, 0x75,
+	0x72, 0x63, 0x65, 0x4b, 0x69, 0x6e, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x72, 0x65, 0x73, 0x6f, 0x75,
+	0x72, 0x63, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x72, 0x65,
+	0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x49, 0x64, 0x12, 0x68, 0x0a, 0x03, 0x70, 0x6f, 0x64, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x56, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c,
+	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x69, 0x6e, 0x74, 0x65, 0x67,
+	0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x76, 0x31, 0x2e, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e,
+	0x65, 0x74, 0x65, 0x73, 0x2e, 0x61, 0x70, 0x69, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65,
+	0x73, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74,
+	0x65, 0x73, 0x41, 0x70, 0x69, 0x52, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x52, 0x03, 0x70,
+	0x6f, 0x64, 0x12, 0x25, 0x0a, 0x0e, 0x63, 0x6f, 0x6e, 0x74, 0x61, 0x69, 0x6e, 0x65, 0x72, 0x5f,
+	0x6e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0d, 0x63, 0x6f, 0x6e, 0x74,
+	0x61, 0x69, 0x6e, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x73, 0x68, 0x65,
+	0x6c, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x73, 0x68, 0x65, 0x6c, 0x6c, 0x12,
+	0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x18, 0x06, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x07, 0x63, 0x6f, 0x6d, 0x6d, 0x61, 0x6e, 0x64, 0x42, 0xa1, 0x03, 0x0a, 0x40, 0x62, 0x75,
+	0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63,
+	0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x6b, 0x75, 0x62,
+	0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x07,
+	0x49, 0x6f, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x62, 0x67, 0x69, 0x74, 0x68, 0x75,
+	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64,
+	0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x63, 0x6f,
+	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x76, 0x31, 0x2f, 0x6b, 0x75, 0x62, 0x65,
+	0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0xa2, 0x02, 0x07,
+	0x43, 0x50, 0x41, 0x43, 0x56, 0x4b, 0x4d, 0xaa, 0x02, 0x32, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e,
+	0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x43, 0x6f, 0x64,
+	0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x56, 0x31, 0x2e, 0x4b, 0x75, 0x62, 0x65, 0x63,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x32, 0x43,
+	0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69,
+	0x73, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x56, 0x31, 0x5c,
+	0x4b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x5c, 0x4d, 0x6f, 0x64, 0x65,
+	0x6c, 0xe2, 0x02, 0x3e, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f,
+	0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x43, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75,
+	0x64, 0x5c, 0x56, 0x31, 0x5c, 0x4b, 0x75, 0x62, 0x65, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72,
+	0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x38, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e,
+	0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x43, 0x6f, 0x64, 0x65, 0x32,
+	0x63, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x4b, 0x75, 0x62, 0x65, 0x63,
+	0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2351,7 +2470,7 @@ func file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDescGZI
 	return file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_goTypes = []interface{}{
 	(*KubeClusterId)(nil),                                 // 0: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId
 	(*KubeClusters)(nil),                                  // 1: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters
@@ -2386,22 +2505,23 @@ var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_goTypes = [
 	(*UpdateKubeClusterKubernetesApiResourceInput)(nil),   // 30: cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesApiResourceInput
 	(*ListApiResourcePodsInput)(nil),                      // 31: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListApiResourcePodsInput
 	(*StreamApiResourceLogsInput)(nil),                    // 32: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamApiResourceLogsInput
-	(*KubeCluster)(nil),                                   // 33: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
-	(*rpc.PageInfo)(nil),                                  // 34: cloud.planton.apis.commons.rpc.PageInfo
-	(*KubeClusterNodePoolGcp)(nil),                        // 35: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
-	(*model.Pod)(nil),                                     // 36: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	(apiresourcekind.ApiResourceKind)(0),                  // 37: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	(*model.KubernetesApiResource)(nil),                   // 38: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
-	(*model.PodLogStreamOptions)(nil),                     // 39: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions
+	(*KubeClusterExecIntoPodContainerInput)(nil),          // 33: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterExecIntoPodContainerInput
+	(*KubeCluster)(nil),                                   // 34: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
+	(*rpc.PageInfo)(nil),                                  // 35: cloud.planton.apis.commons.rpc.PageInfo
+	(*KubeClusterNodePoolGcp)(nil),                        // 36: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
+	(*model.Pod)(nil),                                     // 37: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	(apiresourcekind.ApiResourceKind)(0),                  // 38: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	(*model.KubernetesApiResource)(nil),                   // 39: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
+	(*model.PodLogStreamOptions)(nil),                     // 40: cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions
 }
 var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_depIdxs = []int32{
-	33, // 0: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
-	33, // 1: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
-	34, // 2: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListByKubeClusterIdInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	34, // 0: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
+	34, // 1: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster
+	35, // 2: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListByKubeClusterIdInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
 	5,  // 3: cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpRegions.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpRegion
 	8,  // 4: cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpZones.entries:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpZone
-	35, // 5: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterGcpNodePoolCommandInput.gcp_node_pool:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
-	35, // 6: cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput.gcp_node_pool:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
+	36, // 5: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterGcpNodePoolCommandInput.gcp_node_pool:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
+	36, // 6: cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput.gcp_node_pool:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterNodePoolGcp
 	15, // 7: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.kube_system:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeSystem
 	16, // 8: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.istio:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.Istio
 	17, // 9: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.cert_manager:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.CertManager
@@ -2413,30 +2533,32 @@ var file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_depIdxs = [
 	23, // 15: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.planton_cloud_kube_agent:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.PlantonCloudKubeAgent
 	24, // 16: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.kube_cost:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCost
 	25, // 17: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterComponents.solr_operator:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.SolrOperator
-	36, // 18: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeSystem.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 19: cloud.planton.apis.code2cloud.v1.kubecluster.model.Istio.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 20: cloud.planton.apis.code2cloud.v1.kubecluster.model.CertManager.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 21: cloud.planton.apis.code2cloud.v1.kubecluster.model.ExternalSecrets.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 22: cloud.planton.apis.code2cloud.v1.kubecluster.model.KafkaOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 23: cloud.planton.apis.code2cloud.v1.kubecluster.model.PostgresOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 24: cloud.planton.apis.code2cloud.v1.kubecluster.model.Prometheus.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 25: cloud.planton.apis.code2cloud.v1.kubecluster.model.OpenCost.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 26: cloud.planton.apis.code2cloud.v1.kubecluster.model.PlantonCloudKubeAgent.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 27: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCost.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	36, // 28: cloud.planton.apis.code2cloud.v1.kubecluster.model.SolrOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
-	37, // 29: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubeClusterKubernetesApiResourcesInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	37, // 30: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	38, // 31: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource.kubernetes_api_resource:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
+	37, // 18: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeSystem.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 19: cloud.planton.apis.code2cloud.v1.kubecluster.model.Istio.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 20: cloud.planton.apis.code2cloud.v1.kubecluster.model.CertManager.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 21: cloud.planton.apis.code2cloud.v1.kubecluster.model.ExternalSecrets.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 22: cloud.planton.apis.code2cloud.v1.kubecluster.model.KafkaOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 23: cloud.planton.apis.code2cloud.v1.kubecluster.model.PostgresOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 24: cloud.planton.apis.code2cloud.v1.kubecluster.model.Prometheus.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 25: cloud.planton.apis.code2cloud.v1.kubecluster.model.OpenCost.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 26: cloud.planton.apis.code2cloud.v1.kubecluster.model.PlantonCloudKubeAgent.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 27: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCost.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	37, // 28: cloud.planton.apis.code2cloud.v1.kubecluster.model.SolrOperator.pods:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod
+	38, // 29: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubeClusterKubernetesApiResourcesInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	38, // 30: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	39, // 31: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource.kubernetes_api_resource:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
 	29, // 32: cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesApiResourceInput.kube_cluster_kubernetes_api_resource:type_name -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource
-	37, // 33: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListApiResourcePodsInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	38, // 34: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListApiResourcePodsInput.pod_controller:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
-	37, // 35: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamApiResourceLogsInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	39, // 36: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamApiResourceLogsInput.options:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions
-	37, // [37:37] is the sub-list for method output_type
-	37, // [37:37] is the sub-list for method input_type
-	37, // [37:37] is the sub-list for extension type_name
-	37, // [37:37] is the sub-list for extension extendee
-	0,  // [0:37] is the sub-list for field type_name
+	38, // 33: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListApiResourcePodsInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	39, // 34: cloud.planton.apis.code2cloud.v1.kubecluster.model.ListApiResourcePodsInput.pod_controller:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
+	38, // 35: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamApiResourceLogsInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	40, // 36: cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamApiResourceLogsInput.options:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions
+	38, // 37: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterExecIntoPodContainerInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	39, // 38: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterExecIntoPodContainerInput.pod:type_name -> cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource
+	39, // [39:39] is the sub-list for method output_type
+	39, // [39:39] is the sub-list for method input_type
+	39, // [39:39] is the sub-list for extension type_name
+	39, // [39:39] is the sub-list for extension extendee
+	0,  // [0:39] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_init() }
@@ -2842,6 +2964,18 @@ func file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_init() {
 				return nil
 			}
 		}
+		file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KubeClusterExecIntoPodContainerInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2849,7 +2983,7 @@ func file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_code2cloud_v1_kubecluster_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   33,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
