@@ -9,7 +9,6 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/customendpoint/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -26,7 +25,6 @@ const (
 	CustomEndpointQueryController_FindByProductId_FullMethodName                      = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/findByProductId"
 	CustomEndpointQueryController_GetCustomEndpointCertStatus_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/getCustomEndpointCertStatus"
 	CustomEndpointQueryController_GetCustomEndpointDsnResolutionStatus_FullMethodName = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/getCustomEndpointDsnResolutionStatus"
-	CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.customendpoint.service.CustomEndpointQueryController/findCustomEndpointCertificates"
 )
 
 // CustomEndpointQueryControllerClient is the client API for CustomEndpointQueryController service.
@@ -43,8 +41,6 @@ type CustomEndpointQueryControllerClient interface {
 	// check status of dns resolution for custom-endpoint.
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpointDnsResolutionStatus, error)
-	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model2.Certificates, error)
 }
 
 type customEndpointQueryControllerClient struct {
@@ -91,15 +87,6 @@ func (c *customEndpointQueryControllerClient) GetCustomEndpointDsnResolutionStat
 	return out, nil
 }
 
-func (c *customEndpointQueryControllerClient) FindCustomEndpointCertificates(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model2.Certificates, error) {
-	out := new(model2.Certificates)
-	err := c.cc.Invoke(ctx, CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CustomEndpointQueryControllerServer is the server API for CustomEndpointQueryController service.
 // All implementations should embed UnimplementedCustomEndpointQueryControllerServer
 // for forward compatibility
@@ -114,8 +101,6 @@ type CustomEndpointQueryControllerServer interface {
 	// check status of dns resolution for custom-endpoint.
 	// confirms if the dns of the custom-endpoint domain is resolving to the correct address.
 	GetCustomEndpointDsnResolutionStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointDnsResolutionStatus, error)
-	// find certificates for custom-endpoint
-	FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*model2.Certificates, error)
 }
 
 // UnimplementedCustomEndpointQueryControllerServer should be embedded to have forward compatible implementations.
@@ -133,9 +118,6 @@ func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointCertSta
 }
 func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointDsnResolutionStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointDnsResolutionStatus, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCustomEndpointDsnResolutionStatus not implemented")
-}
-func (UnimplementedCustomEndpointQueryControllerServer) FindCustomEndpointCertificates(context.Context, *model.CustomEndpointId) (*model2.Certificates, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindCustomEndpointCertificates not implemented")
 }
 
 // UnsafeCustomEndpointQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -221,24 +203,6 @@ func _CustomEndpointQueryController_GetCustomEndpointDsnResolutionStatus_Handler
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CustomEndpointQueryController_FindCustomEndpointCertificates_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.CustomEndpointId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CustomEndpointQueryControllerServer).FindCustomEndpointCertificates(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CustomEndpointQueryController_FindCustomEndpointCertificates_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CustomEndpointQueryControllerServer).FindCustomEndpointCertificates(ctx, req.(*model.CustomEndpointId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CustomEndpointQueryController_ServiceDesc is the grpc.ServiceDesc for CustomEndpointQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -261,10 +225,6 @@ var CustomEndpointQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getCustomEndpointDsnResolutionStatus",
 			Handler:    _CustomEndpointQueryController_GetCustomEndpointDsnResolutionStatus_Handler,
-		},
-		{
-			MethodName: "findCustomEndpointCertificates",
-			Handler:    _CustomEndpointQueryController_FindCustomEndpointCertificates_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
