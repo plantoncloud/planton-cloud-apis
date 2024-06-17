@@ -289,11 +289,13 @@ message UpdateApiResourceKubernetesObjectInput {
 
 // input for rpc to find list of pods on kube-cluster
 message FindKubeClusterPodsInput {
-  //planton-cloud api-resource
-  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //id of the kube-cluster
+  string kube_cluster_id = 1;
+  //kubernetes namespace
+  string namespace = 2;
   //details of the parent kubernetes object(pod-manager) to be used to filter pods list
   //if a parent is not specified, pods of all pod-managers will be included in the response.
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 2;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 3;
 }
 
 // input for rpc to find list of pods of a planton-cloud api-resource
@@ -327,7 +329,7 @@ message ExecIntoKubeClusterPodContainerInput {
   //id of the kube-cluster
   string kube_cluster_id = 1;
   // options required for performing exec into a pod container
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options =2;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options = 2;
 }
 
 // input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
@@ -335,5 +337,5 @@ message ExecIntoApiResourcePodContainerInput {
   //planton-cloud api-resource
   cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
   // options required for performing exec into a pod container
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options =2;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options = 2;
 }

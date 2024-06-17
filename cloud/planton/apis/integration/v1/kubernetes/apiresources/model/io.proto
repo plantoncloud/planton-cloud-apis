@@ -111,33 +111,33 @@ message FindPodsInput {
 message StreamPodLogsInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  // kubernetes namespace
-  string namespace = 2;
   //options to configure pod log stream
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 2;
 }
 
 //options available to configure pod log stream
 message PodLogStreamOptions {
+  // kubernetes namespace
+  string namespace = 1;
   // pod-manager kubernetes object i.e Deployment, StatefulSet, ReplicaSet etc
   // when specified, logs from all the pods with in the controller will be fetched from kubernetes cluster.
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 1;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 2;
   // filter to be used for selecting pods from which the logs needs to be fetched. all pods are considered when this is not specified.
   // the filter input is used for fuzzy search.
-  string pod_name_filter = 2;
+  string pod_name_filter = 3;
   // filter to be used for selecting the containers within the pod. If not specified, logs from all the containers in the pod will be fetched.
   // the filter input is used for fuzzy search.
-  string container_name_filter = 3;
+  string container_name_filter = 4;
   // If true, get logs for the previous instance of the container if it has restarted.
   // if this is set to true, the stream does not fetch the logs of restarted container.
-  bool is_fetch_previous_container_logs = 4;
+  bool is_fetch_previous_container_logs = 5;
   // Filters the logs to include only those from the last specified time in format 20s, 1m, 1d etc.
-  string since_duration = 5;
+  string since_duration = 6;
   // Limits the number of lines to include in the log output. If not specified, all lines will be included.
-  int64 tail_lines = 6;
+  int64 tail_lines = 7;
   //filter to be used for filtering log content.
   // the filter input is used for fuzzy search.
-  string content_filter = 7;
+  string content_filter = 8;
 }
 
 // log line of a pod retried from kubernetes-cluster
