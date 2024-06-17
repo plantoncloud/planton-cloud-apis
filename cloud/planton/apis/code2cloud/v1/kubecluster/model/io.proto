@@ -265,8 +265,8 @@ message KubeClusterKubernetesObject {
 
 // kubernetes object of a planton-cloud api-resource
 message ApiResourceKubernetesObject {
-  // id of the kube-cluster
-  string kube_cluster_id = 1;
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
   //kubernetes object
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject kubernetes_object = 2;
 }

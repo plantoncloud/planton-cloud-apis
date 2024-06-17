@@ -10,7 +10,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/enums/podmanager/pod_manager.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/enums/podmanagertype/pod_manager_type.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -109,7 +109,7 @@ message MicroserviceInstanceSpec {
 message MicroserviceInstanceSpecKubernetes {
   //(required) type of the pod manager to use for the microservice deployment.
   //default is set to "deployment".
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanager.PodManager pod_manager = 1 [
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanagertype.PodManagerType pod_manager_type = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];

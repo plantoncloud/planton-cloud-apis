@@ -26,7 +26,7 @@ type Pod struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// parent api-resource/pod-manager for the pod
+	// pod-manager for the pod
 	PodManager *KubernetesObject `protobuf:"bytes,1,opt,name=pod_manager,json=podManager,proto3" json:"pod_manager,omitempty"`
 	// namespace of the pod
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
@@ -622,7 +622,7 @@ type FindPodsInput struct {
 	KubeConfigBase64 string `protobuf:"bytes,1,opt,name=kube_config_base64,json=kubeConfigBase64,proto3" json:"kube_config_base64,omitempty"`
 	// kubernetes namespace
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// parent(pod-manager) kubernetes object
+	// pod-manager kubernetes object
 	// if this is not specified, all pods from the namespace are included in the response
 	PodManager *KubernetesObject `protobuf:"bytes,3,opt,name=pod_manager,json=podManager,proto3" json:"pod_manager,omitempty"`
 }

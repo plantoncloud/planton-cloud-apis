@@ -226,15 +226,30 @@ service KubeClusterNodePoolGcpCommandController {
 service KubeClusterKubernetesObjectCommandController {
   //update kubernetes object in a kube-cluster
   rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesObjectInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_kubernetes_object.kube_cluster_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update kubernetes-object";
+  }
 
   //delete kubernetes object in a kube-cluster
   rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete kubernetes-object";
+  }
 
   //mimic kubectl exec for a container on kube-cluster
   rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
-      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to exec into pod container";
+  }
 }
 
 // api-resource kubernetes objects command controller
@@ -244,7 +259,7 @@ service ApiResourceKubernetesObjectCommandController {
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
   //delete api-resource kubernetes object
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
+  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.ApiResourceKubernetesObject)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
   //mimic kubectl exec for an api-resource container on kube-cluster

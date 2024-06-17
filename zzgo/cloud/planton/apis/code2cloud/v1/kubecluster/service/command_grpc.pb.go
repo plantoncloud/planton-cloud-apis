@@ -938,7 +938,7 @@ type ApiResourceKubernetesObjectCommandControllerClient interface {
 	// update api-resource kubernetes object
 	Update(ctx context.Context, in *model.UpdateApiResourceKubernetesObjectInput, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
 	// delete api-resource kubernetes object
-	Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
+	Delete(ctx context.Context, in *model.ApiResourceKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
 	// mimic kubectl exec for an api-resource container on kube-cluster
 	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerClient, error)
 }
@@ -960,7 +960,7 @@ func (c *apiResourceKubernetesObjectCommandControllerClient) Update(ctx context.
 	return out, nil
 }
 
-func (c *apiResourceKubernetesObjectCommandControllerClient) Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
+func (c *apiResourceKubernetesObjectCommandControllerClient) Delete(ctx context.Context, in *model.ApiResourceKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
 	out := new(model2.KubernetesObject)
 	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -1007,7 +1007,7 @@ type ApiResourceKubernetesObjectCommandControllerServer interface {
 	// update api-resource kubernetes object
 	Update(context.Context, *model.UpdateApiResourceKubernetesObjectInput) (*model2.KubernetesObject, error)
 	// delete api-resource kubernetes object
-	Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error)
+	Delete(context.Context, *model.ApiResourceKubernetesObject) (*model2.KubernetesObject, error)
 	// mimic kubectl exec for an api-resource container on kube-cluster
 	ExecIntoPodContainer(ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerServer) error
 }
@@ -1019,7 +1019,7 @@ type UnimplementedApiResourceKubernetesObjectCommandControllerServer struct {
 func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) Update(context.Context, *model.UpdateApiResourceKubernetesObjectInput) (*model2.KubernetesObject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error) {
+func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) Delete(context.Context, *model.ApiResourceKubernetesObject) (*model2.KubernetesObject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) ExecIntoPodContainer(ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerServer) error {
@@ -1056,7 +1056,7 @@ func _ApiResourceKubernetesObjectCommandController_Update_Handler(srv interface{
 }
 
 func _ApiResourceKubernetesObjectCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KubeClusterKubernetesObject)
+	in := new(model.ApiResourceKubernetesObject)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1068,7 +1068,7 @@ func _ApiResourceKubernetesObjectCommandController_Delete_Handler(srv interface{
 		FullMethod: ApiResourceKubernetesObjectCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Delete(ctx, req.(*model.KubeClusterKubernetesObject))
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Delete(ctx, req.(*model.ApiResourceKubernetesObject))
 	}
 	return interceptor(ctx, in, info, handler)
 }
