@@ -5,6 +5,7 @@ package cloud.planton.apis.code2cloud.v1.kubecluster.model;
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
@@ -247,66 +248,92 @@ message ByKubeClusterByNamespaceInput {
 }
 
 // input for rpc to find all api-resources created for an API Resource on Planton Cloud.
-message StreamKubeClusterKubernetesApiResourcesInput {
-  //Planton Cloud API Resource Kind
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
-  //id of the api resource on Planton Cloud
-  string resource_id = 2;
+message StreamKubeClusterNamespaceKubernetesObjectsInput {
+  //id of the kube-cluster
+  string kube_cluster_id = 1;
+  //kubernetes namespace
+  string namespace = 2;
 }
 
-// kubernetes api-resource object in a kube-cluster
-message KubeClusterKubernetesApiResource {
-  //Planton Cloud API Resource Kind
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
-  //id of the api resource on Planton Cloud
-  string resource_id = 2;
-  //kubernetes api-resource
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 3;
+// kubernetes object in a kube-cluster
+message KubeClusterKubernetesObject {
+  // id of the kube-cluster
+  string kube_cluster_id = 1;
+  //kubernetes object
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject kubernetes_object = 2;
 }
 
-// input for rpc to update a kubernetes api-resource object in a kube-cluster
-message UpdateKubeClusterKubernetesApiResourceInput {
-  // kubernetes api-resource of a kube-cluster
-  KubeClusterKubernetesApiResource kube_cluster_kubernetes_api_resource = 1;
-  // base64 encoded of the updated kubernetes api-resource manifest
-  string updated_manifest_yaml_base64 = 2;
+// kubernetes object of a planton-cloud api-resource
+message ApiResourceKubernetesObject {
+  // id of the kube-cluster
+  string kube_cluster_id = 1;
+  //kubernetes object
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject kubernetes_object = 2;
 }
 
-// input for rpc to list pods of an api-resource on kube-cluster
-message ListApiResourcePodsInput {
-  //Planton Cloud API Resource Kind
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
-  //id of the api resource on Planton Cloud
-  string resource_id = 2;
-  //details of the parent kubernetes api-resource(pod-controller) to be used to filter pods list
-  //if a parent is not specified, pods of all pod-controllers will be included in the response.
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 3;
+// input for rpc to update a kubernetes object in a kube-cluster
+message UpdateKubeClusterKubernetesObjectInput {
+  // kubernetes object in a kube-cluster
+  KubeClusterKubernetesObject kube_cluster_kubernetes_object = 1;
+  // base64 encoded of the updated kubernetes object yaml
+  string updated_object_yaml_base64 = 2;
 }
 
-// input for rpc to stream logs of a planton-cloud api-resource on kube-cluster based
-// on specified filters
-message StreamApiResourceLogsInput {
-  //Planton Cloud API Resource Kind
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
-  //id of the api resource on Planton Cloud
-  string resource_id = 2;
+// input for rpc to update a kubernetes object of a planton-cloud api-resource
+message UpdateApiResourceKubernetesObjectInput {
+  //kubernetes object of a planton-cloud api-resource
+  ApiResourceKubernetesObject api_resource_kubernetes_object = 1;
+  // base64 encoded of the updated kubernetes object yaml
+  string updated_object_yaml_base64 = 2;
+}
+
+// input for rpc to find list of pods on kube-cluster
+message FindKubeClusterPodsInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //details of the parent kubernetes object(pod-manager) to be used to filter pods list
+  //if a parent is not specified, pods of all pod-managers will be included in the response.
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 2;
+}
+
+// input for rpc to find list of pods of a planton-cloud api-resource
+message FindApiResourcePodsInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //details of the parent kubernetes object(pod-manager) to be used to filter pods list
+  //if a parent is not specified, pods of all pod-managers will be included in the response.
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 2;
+}
+
+// input for rpc to stream logs of a pod on kube-cluster based on specified filters
+message StreamKubeClusterPodLogsInput {
+  //id of the kube-cluster
+  string kube_cluster_id = 1;
   //options to configure pod log stream
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 3;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 2;
+}
+
+// input for rpc to stream logs of a planton-cloud api-resource on specified filters
+message StreamApiResourcePodLogsInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //options to configure pod log stream
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogStreamOptions options = 2;
+}
+
+// input for rpc to exec into a kube-cluster pod container
+// input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
+message ExecIntoKubeClusterPodContainerInput {
+  //id of the kube-cluster
+  string kube_cluster_id = 1;
+  // options required for performing exec into a pod container
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options =2;
 }
 
 // input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
-message KubeClusterExecIntoPodContainerInput {
-  //Planton Cloud API Resource Kind
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1;
-  //id of the api resource on Planton Cloud
-  string resource_id = 2;
-  // pod details
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod = 3;
-  // container name
-  string container_name = 4;
-  // shell to use to execute the commands ex: sh.
-  // the shell specified here should exist inside the container.
-  string shell = 5;
-  // command to execute ex: pwd
-  string command = 6;
+message ExecIntoApiResourcePodContainerInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  // options required for performing exec into a pod container
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options =2;
 }

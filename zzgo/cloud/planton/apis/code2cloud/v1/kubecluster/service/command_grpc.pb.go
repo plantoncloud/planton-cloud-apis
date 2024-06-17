@@ -725,73 +725,73 @@ var KubeClusterNodePoolGcpCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	KubeClusterKubernetesApiCommandController_Update_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiCommandController/update"
-	KubeClusterKubernetesApiCommandController_Delete_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiCommandController/delete"
-	KubeClusterKubernetesApiCommandController_ExecIntoPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiCommandController/execIntoPodContainer"
+	KubeClusterKubernetesObjectCommandController_Update_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/update"
+	KubeClusterKubernetesObjectCommandController_Delete_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/delete"
+	KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/execIntoPodContainer"
 )
 
-// KubeClusterKubernetesApiCommandControllerClient is the client API for KubeClusterKubernetesApiCommandController service.
+// KubeClusterKubernetesObjectCommandControllerClient is the client API for KubeClusterKubernetesObjectCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type KubeClusterKubernetesApiCommandControllerClient interface {
-	// get detailed object of a kubernetes api-resource
-	Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error)
-	// delete a kubernetes api-resource
-	Delete(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error)
-	// mimic kubectl exec
-	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubeClusterKubernetesApiCommandController_ExecIntoPodContainerClient, error)
+type KubeClusterKubernetesObjectCommandControllerClient interface {
+	// update kubernetes object in a kube-cluster
+	Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesObjectInput, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
+	// delete kubernetes object in a kube-cluster
+	Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
+	// mimic kubectl exec for a container on kube-cluster
+	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerClient, error)
 }
 
-type kubeClusterKubernetesApiCommandControllerClient struct {
+type kubeClusterKubernetesObjectCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewKubeClusterKubernetesApiCommandControllerClient(cc grpc.ClientConnInterface) KubeClusterKubernetesApiCommandControllerClient {
-	return &kubeClusterKubernetesApiCommandControllerClient{cc}
+func NewKubeClusterKubernetesObjectCommandControllerClient(cc grpc.ClientConnInterface) KubeClusterKubernetesObjectCommandControllerClient {
+	return &kubeClusterKubernetesObjectCommandControllerClient{cc}
 }
 
-func (c *kubeClusterKubernetesApiCommandControllerClient) Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesApiResourceInput, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error) {
-	out := new(model2.KubernetesApiResource)
-	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiCommandController_Update_FullMethodName, in, out, opts...)
+func (c *kubeClusterKubernetesObjectCommandControllerClient) Update(ctx context.Context, in *model.UpdateKubeClusterKubernetesObjectInput, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
+	out := new(model2.KubernetesObject)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesObjectCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *kubeClusterKubernetesApiCommandControllerClient) Delete(ctx context.Context, in *model.KubeClusterKubernetesApiResource, opts ...grpc.CallOption) (*model2.KubernetesApiResource, error) {
-	out := new(model2.KubernetesApiResource)
-	err := c.cc.Invoke(ctx, KubeClusterKubernetesApiCommandController_Delete_FullMethodName, in, out, opts...)
+func (c *kubeClusterKubernetesObjectCommandControllerClient) Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
+	out := new(model2.KubernetesObject)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesObjectCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *kubeClusterKubernetesApiCommandControllerClient) ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubeClusterKubernetesApiCommandController_ExecIntoPodContainerClient, error) {
-	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesApiCommandController_ServiceDesc.Streams[0], KubeClusterKubernetesApiCommandController_ExecIntoPodContainer_FullMethodName, opts...)
+func (c *kubeClusterKubernetesObjectCommandControllerClient) ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesObjectCommandController_ServiceDesc.Streams[0], KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &kubeClusterKubernetesApiCommandControllerExecIntoPodContainerClient{stream}
+	x := &kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerClient{stream}
 	return x, nil
 }
 
-type KubeClusterKubernetesApiCommandController_ExecIntoPodContainerClient interface {
-	Send(*model.KubeClusterExecIntoPodContainerInput) error
+type KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerClient interface {
+	Send(*model.ExecIntoKubeClusterPodContainerInput) error
 	Recv() (*model2.ExecIntoPodContainerResponse, error)
 	grpc.ClientStream
 }
 
-type kubeClusterKubernetesApiCommandControllerExecIntoPodContainerClient struct {
+type kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerClient struct {
 	grpc.ClientStream
 }
 
-func (x *kubeClusterKubernetesApiCommandControllerExecIntoPodContainerClient) Send(m *model.KubeClusterExecIntoPodContainerInput) error {
+func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerClient) Send(m *model.ExecIntoKubeClusterPodContainerInput) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *kubeClusterKubernetesApiCommandControllerExecIntoPodContainerClient) Recv() (*model2.ExecIntoPodContainerResponse, error) {
+func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerClient) Recv() (*model2.ExecIntoPodContainerResponse, error) {
 	m := new(model2.ExecIntoPodContainerResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -799,125 +799,326 @@ func (x *kubeClusterKubernetesApiCommandControllerExecIntoPodContainerClient) Re
 	return m, nil
 }
 
-// KubeClusterKubernetesApiCommandControllerServer is the server API for KubeClusterKubernetesApiCommandController service.
-// All implementations should embed UnimplementedKubeClusterKubernetesApiCommandControllerServer
+// KubeClusterKubernetesObjectCommandControllerServer is the server API for KubeClusterKubernetesObjectCommandController service.
+// All implementations should embed UnimplementedKubeClusterKubernetesObjectCommandControllerServer
 // for forward compatibility
-type KubeClusterKubernetesApiCommandControllerServer interface {
-	// get detailed object of a kubernetes api-resource
-	Update(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model2.KubernetesApiResource, error)
-	// delete a kubernetes api-resource
-	Delete(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error)
-	// mimic kubectl exec
-	ExecIntoPodContainer(KubeClusterKubernetesApiCommandController_ExecIntoPodContainerServer) error
+type KubeClusterKubernetesObjectCommandControllerServer interface {
+	// update kubernetes object in a kube-cluster
+	Update(context.Context, *model.UpdateKubeClusterKubernetesObjectInput) (*model2.KubernetesObject, error)
+	// delete kubernetes object in a kube-cluster
+	Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error)
+	// mimic kubectl exec for a container on kube-cluster
+	ExecIntoPodContainer(KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerServer) error
 }
 
-// UnimplementedKubeClusterKubernetesApiCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedKubeClusterKubernetesApiCommandControllerServer struct {
+// UnimplementedKubeClusterKubernetesObjectCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedKubeClusterKubernetesObjectCommandControllerServer struct {
 }
 
-func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Update(context.Context, *model.UpdateKubeClusterKubernetesApiResourceInput) (*model2.KubernetesApiResource, error) {
+func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) Update(context.Context, *model.UpdateKubeClusterKubernetesObjectInput) (*model2.KubernetesObject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) Delete(context.Context, *model.KubeClusterKubernetesApiResource) (*model2.KubernetesApiResource, error) {
+func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedKubeClusterKubernetesApiCommandControllerServer) ExecIntoPodContainer(KubeClusterKubernetesApiCommandController_ExecIntoPodContainerServer) error {
+func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) ExecIntoPodContainer(KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerServer) error {
 	return status.Errorf(codes.Unimplemented, "method ExecIntoPodContainer not implemented")
 }
 
-// UnsafeKubeClusterKubernetesApiCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to KubeClusterKubernetesApiCommandControllerServer will
+// UnsafeKubeClusterKubernetesObjectCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to KubeClusterKubernetesObjectCommandControllerServer will
 // result in compilation errors.
-type UnsafeKubeClusterKubernetesApiCommandControllerServer interface {
-	mustEmbedUnimplementedKubeClusterKubernetesApiCommandControllerServer()
+type UnsafeKubeClusterKubernetesObjectCommandControllerServer interface {
+	mustEmbedUnimplementedKubeClusterKubernetesObjectCommandControllerServer()
 }
 
-func RegisterKubeClusterKubernetesApiCommandControllerServer(s grpc.ServiceRegistrar, srv KubeClusterKubernetesApiCommandControllerServer) {
-	s.RegisterService(&KubeClusterKubernetesApiCommandController_ServiceDesc, srv)
+func RegisterKubeClusterKubernetesObjectCommandControllerServer(s grpc.ServiceRegistrar, srv KubeClusterKubernetesObjectCommandControllerServer) {
+	s.RegisterService(&KubeClusterKubernetesObjectCommandController_ServiceDesc, srv)
 }
 
-func _KubeClusterKubernetesApiCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.UpdateKubeClusterKubernetesApiResourceInput)
+func _KubeClusterKubernetesObjectCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.UpdateKubeClusterKubernetesObjectInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Update(ctx, in)
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: KubeClusterKubernetesApiCommandController_Update_FullMethodName,
+		FullMethod: KubeClusterKubernetesObjectCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Update(ctx, req.(*model.UpdateKubeClusterKubernetesApiResourceInput))
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).Update(ctx, req.(*model.UpdateKubeClusterKubernetesObjectInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterKubernetesApiCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.KubeClusterKubernetesApiResource)
+func _KubeClusterKubernetesObjectCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeClusterKubernetesObject)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Delete(ctx, in)
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: KubeClusterKubernetesApiCommandController_Delete_FullMethodName,
+		FullMethod: KubeClusterKubernetesObjectCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterKubernetesApiCommandControllerServer).Delete(ctx, req.(*model.KubeClusterKubernetesApiResource))
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).Delete(ctx, req.(*model.KubeClusterKubernetesObject))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterKubernetesApiCommandController_ExecIntoPodContainer_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(KubeClusterKubernetesApiCommandControllerServer).ExecIntoPodContainer(&kubeClusterKubernetesApiCommandControllerExecIntoPodContainerServer{stream})
+func _KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(KubeClusterKubernetesObjectCommandControllerServer).ExecIntoPodContainer(&kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerServer{stream})
 }
 
-type KubeClusterKubernetesApiCommandController_ExecIntoPodContainerServer interface {
+type KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerServer interface {
 	Send(*model2.ExecIntoPodContainerResponse) error
-	Recv() (*model.KubeClusterExecIntoPodContainerInput, error)
+	Recv() (*model.ExecIntoKubeClusterPodContainerInput, error)
 	grpc.ServerStream
 }
 
-type kubeClusterKubernetesApiCommandControllerExecIntoPodContainerServer struct {
+type kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerServer struct {
 	grpc.ServerStream
 }
 
-func (x *kubeClusterKubernetesApiCommandControllerExecIntoPodContainerServer) Send(m *model2.ExecIntoPodContainerResponse) error {
+func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerServer) Send(m *model2.ExecIntoPodContainerResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *kubeClusterKubernetesApiCommandControllerExecIntoPodContainerServer) Recv() (*model.KubeClusterExecIntoPodContainerInput, error) {
-	m := new(model.KubeClusterExecIntoPodContainerInput)
+func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerServer) Recv() (*model.ExecIntoKubeClusterPodContainerInput, error) {
+	m := new(model.ExecIntoKubeClusterPodContainerInput)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
 	return m, nil
 }
 
-// KubeClusterKubernetesApiCommandController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesApiCommandController service.
+// KubeClusterKubernetesObjectCommandController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesObjectCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var KubeClusterKubernetesApiCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesApiCommandController",
-	HandlerType: (*KubeClusterKubernetesApiCommandControllerServer)(nil),
+var KubeClusterKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController",
+	HandlerType: (*KubeClusterKubernetesObjectCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "update",
-			Handler:    _KubeClusterKubernetesApiCommandController_Update_Handler,
+			Handler:    _KubeClusterKubernetesObjectCommandController_Update_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _KubeClusterKubernetesApiCommandController_Delete_Handler,
+			Handler:    _KubeClusterKubernetesObjectCommandController_Delete_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execIntoPodContainer",
-			Handler:       _KubeClusterKubernetesApiCommandController_ExecIntoPodContainer_Handler,
+			Handler:       _KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
+	Metadata: "cloud/planton/apis/code2cloud/v1/kubecluster/service/command.proto",
+}
+
+const (
+	ApiResourceKubernetesObjectCommandController_Update_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/update"
+	ApiResourceKubernetesObjectCommandController_Delete_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/delete"
+	ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/execIntoPodContainer"
+)
+
+// ApiResourceKubernetesObjectCommandControllerClient is the client API for ApiResourceKubernetesObjectCommandController service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type ApiResourceKubernetesObjectCommandControllerClient interface {
+	// update api-resource kubernetes object
+	Update(ctx context.Context, in *model.UpdateApiResourceKubernetesObjectInput, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
+	// delete api-resource kubernetes object
+	Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
+	// mimic kubectl exec for an api-resource container on kube-cluster
+	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerClient, error)
+}
+
+type apiResourceKubernetesObjectCommandControllerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewApiResourceKubernetesObjectCommandControllerClient(cc grpc.ClientConnInterface) ApiResourceKubernetesObjectCommandControllerClient {
+	return &apiResourceKubernetesObjectCommandControllerClient{cc}
+}
+
+func (c *apiResourceKubernetesObjectCommandControllerClient) Update(ctx context.Context, in *model.UpdateApiResourceKubernetesObjectInput, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
+	out := new(model2.KubernetesObject)
+	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectCommandController_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiResourceKubernetesObjectCommandControllerClient) Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error) {
+	out := new(model2.KubernetesObject)
+	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *apiResourceKubernetesObjectCommandControllerClient) ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerClient, error) {
+	stream, err := c.cc.NewStream(ctx, &ApiResourceKubernetesObjectCommandController_ServiceDesc.Streams[0], ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &apiResourceKubernetesObjectCommandControllerExecIntoPodContainerClient{stream}
+	return x, nil
+}
+
+type ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerClient interface {
+	Send(*model.ExecIntoApiResourcePodContainerInput) error
+	Recv() (*model2.ExecIntoPodContainerResponse, error)
+	grpc.ClientStream
+}
+
+type apiResourceKubernetesObjectCommandControllerExecIntoPodContainerClient struct {
+	grpc.ClientStream
+}
+
+func (x *apiResourceKubernetesObjectCommandControllerExecIntoPodContainerClient) Send(m *model.ExecIntoApiResourcePodContainerInput) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *apiResourceKubernetesObjectCommandControllerExecIntoPodContainerClient) Recv() (*model2.ExecIntoPodContainerResponse, error) {
+	m := new(model2.ExecIntoPodContainerResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// ApiResourceKubernetesObjectCommandControllerServer is the server API for ApiResourceKubernetesObjectCommandController service.
+// All implementations should embed UnimplementedApiResourceKubernetesObjectCommandControllerServer
+// for forward compatibility
+type ApiResourceKubernetesObjectCommandControllerServer interface {
+	// update api-resource kubernetes object
+	Update(context.Context, *model.UpdateApiResourceKubernetesObjectInput) (*model2.KubernetesObject, error)
+	// delete api-resource kubernetes object
+	Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error)
+	// mimic kubectl exec for an api-resource container on kube-cluster
+	ExecIntoPodContainer(ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerServer) error
+}
+
+// UnimplementedApiResourceKubernetesObjectCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedApiResourceKubernetesObjectCommandControllerServer struct {
+}
+
+func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) Update(context.Context, *model.UpdateApiResourceKubernetesObjectInput) (*model2.KubernetesObject, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) ExecIntoPodContainer(ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerServer) error {
+	return status.Errorf(codes.Unimplemented, "method ExecIntoPodContainer not implemented")
+}
+
+// UnsafeApiResourceKubernetesObjectCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ApiResourceKubernetesObjectCommandControllerServer will
+// result in compilation errors.
+type UnsafeApiResourceKubernetesObjectCommandControllerServer interface {
+	mustEmbedUnimplementedApiResourceKubernetesObjectCommandControllerServer()
+}
+
+func RegisterApiResourceKubernetesObjectCommandControllerServer(s grpc.ServiceRegistrar, srv ApiResourceKubernetesObjectCommandControllerServer) {
+	s.RegisterService(&ApiResourceKubernetesObjectCommandController_ServiceDesc, srv)
+}
+
+func _ApiResourceKubernetesObjectCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.UpdateApiResourceKubernetesObjectInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiResourceKubernetesObjectCommandController_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Update(ctx, req.(*model.UpdateApiResourceKubernetesObjectInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiResourceKubernetesObjectCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeClusterKubernetesObject)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiResourceKubernetesObjectCommandController_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).Delete(ctx, req.(*model.KubeClusterKubernetesObject))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(ApiResourceKubernetesObjectCommandControllerServer).ExecIntoPodContainer(&apiResourceKubernetesObjectCommandControllerExecIntoPodContainerServer{stream})
+}
+
+type ApiResourceKubernetesObjectCommandController_ExecIntoPodContainerServer interface {
+	Send(*model2.ExecIntoPodContainerResponse) error
+	Recv() (*model.ExecIntoApiResourcePodContainerInput, error)
+	grpc.ServerStream
+}
+
+type apiResourceKubernetesObjectCommandControllerExecIntoPodContainerServer struct {
+	grpc.ServerStream
+}
+
+func (x *apiResourceKubernetesObjectCommandControllerExecIntoPodContainerServer) Send(m *model2.ExecIntoPodContainerResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *apiResourceKubernetesObjectCommandControllerExecIntoPodContainerServer) Recv() (*model.ExecIntoApiResourcePodContainerInput, error) {
+	m := new(model.ExecIntoApiResourcePodContainerInput)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// ApiResourceKubernetesObjectCommandController_ServiceDesc is the grpc.ServiceDesc for ApiResourceKubernetesObjectCommandController service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var ApiResourceKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController",
+	HandlerType: (*ApiResourceKubernetesObjectCommandControllerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "update",
+			Handler:    _ApiResourceKubernetesObjectCommandController_Update_Handler,
+		},
+		{
+			MethodName: "delete",
+			Handler:    _ApiResourceKubernetesObjectCommandController_Delete_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "execIntoPodContainer",
+			Handler:       _ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

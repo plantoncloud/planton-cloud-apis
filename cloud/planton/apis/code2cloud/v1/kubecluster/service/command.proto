@@ -222,17 +222,32 @@ service KubeClusterNodePoolGcpCommandController {
   }
 }
 
-// kube-cluster kubernetes api-resources command controller
-service KubeClusterKubernetesApiCommandController {
-  //get detailed object of a kubernetes api-resource
-  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesApiResourceInput)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+// kube-cluster kubernetes objects command controller
+service KubeClusterKubernetesObjectCommandController {
+  //update kubernetes object in a kube-cluster
+  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesObjectInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
-  //delete a kubernetes api-resource
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesApiResource)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource);
+  //delete kubernetes object in a kube-cluster
+  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
-  //mimic kubectl exec
-  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterExecIntoPodContainerInput)
+  //mimic kubectl exec for a container on kube-cluster
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
+}
+
+// api-resource kubernetes objects command controller
+service ApiResourceKubernetesObjectCommandController {
+  //update api-resource kubernetes object
+  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateApiResourceKubernetesObjectInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+
+  //delete api-resource kubernetes object
+  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+
+  //mimic kubectl exec for an api-resource container on kube-cluster
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
 }

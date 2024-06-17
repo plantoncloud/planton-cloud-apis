@@ -2,33 +2,10 @@ syntax = "proto3";
 
 package cloud.planton.apis.integration.v1.kubernetes.apiresources.model;
 
-// kubernetes workload namespace
-message WorkloadNamespace {
-  //id of the kube-cluster to which contains the workload namespace
-  string kube_cluster_id = 1;
-  //company to which the workload namespace belongs to
-  string company_id = 2;
-  //product to which the workload namespace belongs to
-  string product_id = 3;
-  //environment_id to which the workload namespace belongs to
-  string environment_id = 4;
-  //the workload for which the namespace is created
-  string workload = 5;
-  // name of the workload namespace
-  string name = 6;
-  // namespace labels
-  map<string, string> labels = 7;
-}
-
-//list of workload namespaces
-message WorkloadNamespaces {
-  repeated WorkloadNamespace entries = 1;
-}
-
 // kubernetes pod
 message Pod {
-  // parent api-resource/pod-controller for the pod
-  KubernetesApiResource pod_controller = 1;
+  // parent api-resource/pod-manager for the pod
+  KubernetesObject pod_manager = 1;
   // namespace of the pod
   string namespace = 2;
   // name/id of the pod
@@ -74,116 +51,60 @@ message Pods {
   repeated Pod entries = 1;
 }
 
-// workload pods
-message WorkloadPods {
-  //all pods with workload=microservice in a kube-cluster are included.
-  repeated Pod microservice_pods = 1;
-  //postgres cluster pods include all ancillary pods associated with the postgres cluster including entity-operator etc
-  repeated Pod postgres_cluster_pods = 2;
-  //kafka cluster pods include all ancillary pods associated with the kafka cluster including schema-registry, kowl etc
-  repeated Pod kafka_cluster_pods = 3;
-  //all pods associated with solr-cloud deployments
-  repeated Pod solr_cloud_pods = 4;
-  //all pods associated with redis-cluster deployments
-  repeated Pod redis_cluster_pods = 5;
-}
-
-// kubernetes certificate
-message Certificate {
-  // namespace of the certificate
-  string namespace = 1;
-  // name of the certificate
-  string name = 2;
-  // certificate labels
-  map<string, string> labels = 3;
-  // primary domain in the certificate
-  string primary_domain = 4;
-  //additional domain names
-  repeated string additional_domains = 5;
-  //certificate issuer reference in the format clusterissuer/issuer-name or issuer/namespace/name
-  string issuer_ref = 6;
-  //name of the kubernetes secret in which certificate is stored
-  string secret_name = 7;
-  //status of the certificate
-  bool is_ready = 8;
-}
-
-//list of certificates
-message Certificates {
-  repeated Certificate entries = 1;
-}
-
-message GetCertificateByNamespaceByNameQueryInput {
-  //base64 encoded kube-config
-  string kube_config_base64 = 1;
-  //name of the kubernetes namespace to look for
-  string namespace = 2;
-  //name of the certificate
-  string name = 3;
-}
-
-//input for query to get list of certificates in a namespace
-message FindCertificatesQueryInput {
-  //base64 encoded kube-config
-  string kube_config_base64 = 1;
-  //name of the kubernetes namespace to list certificates from
-  string namespace = 2;
-  //kubernetes label selector to filter results
-  string label_selector = 3;
-}
-
-// kubernetes api-resource
-message KubernetesApiResource {
+// kubernetes object
+message KubernetesObject {
+  // flag to indicate if the object is kubernetes system object ex: kube-dns pod etc
+  bool is_system_object = 1;
   // kubernetes namespace
-  string namespace = 1;
+  string namespace = 2;
   // kubernetes api resource version
-  string api_version = 2;
+  string api_version = 3;
   // kubernetes api resource kind
-  string kind = 3;
+  string kind = 4;
   // name of the kubernetes api resource
-  string name = 4;
-  // flag to indicate if the resource is a pod controller
-  bool is_pod_controller = 5;
+  string name = 5;
+  // flag to indicate if the resource is a pod manager
+  bool is_pod_manager = 6;
 }
 
-// list of KubernetesApiResources
-message KubernetesApiResources {
-  repeated KubernetesApiResource entries = 1;
+// list of KubernetesObjects
+message KubernetesObjects {
+  repeated KubernetesObject entries = 1;
 }
 
-// input for rpc to stream list of kubernetes api-resources in a given namespace
-message StreamKubernetesApiResourcesByNamespaceInput {
+// input for rpc to stream list of kubernetes objects in a given namespace
+message StreamKubernetesObjectsByNamespaceInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
   //name of the kubernetes namespace
   string namespace = 2;
 }
 
-// details of a kubernetes api-resource object
-message KubernetesApiResourceDetail {
-  //base64 encoded output of the kubernetes api-resource in "kubectl describe" formal
+// details of a kubernetes object
+message KubernetesObjectDetail {
+  //base64 encoded output of the kubernetes object in "kubectl describe" formal
   string describe_format_base64 = 1;
-  //base64 encoded output of the kubernetes api-resource in "kubectl get -o yaml" format
+  //base64 encoded output of the kubernetes object in "kubectl get -o yaml" format
   string yaml_format_base64 = 2;
 }
 
-// input for rpc get kubernetes api-resource object
-message GetKubernetesApiResourceInput {
+// input for rpc get kubernetes object
+message GetKubernetesObjectInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  //kubernetes api-resource
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource kubernetes_api_resource = 2;
+  //kubernetes object
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject kubernetes_object = 2;
 }
 
-// input for rpc to list pods
-message ListPodsInput {
+// input for rpc to find list of pods
+message FindPodsInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
   // kubernetes namespace
   string namespace = 2;
-  //parent(pod-controller) kubernetes api-resource
+  //parent(pod-manager) kubernetes object
   //if this is not specified, all pods from the namespace are included in the response
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 3;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 3;
 }
 
 // input for rpc to stream logs of a pod
@@ -198,9 +119,9 @@ message StreamPodLogsInput {
 
 //options available to configure pod log stream
 message PodLogStreamOptions {
-  // pod-controller kubernetes api-resource i.e Deployment, StatefulSet, ReplicaSet etc
+  // pod-manager kubernetes object i.e Deployment, StatefulSet, ReplicaSet etc
   // when specified, logs from all the pods with in the controller will be fetched from kubernetes cluster.
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesApiResource pod_controller = 1;
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod_manager = 1;
   // filter to be used for selecting pods from which the logs needs to be fetched. all pods are considered when this is not specified.
   // the filter input is used for fuzzy search.
   string pod_name_filter = 2;
@@ -229,37 +150,43 @@ message PodLogLine {
   string log_line = 3;
 }
 
-// input for rpc to delete kubernetes api-resource
-message DeleteKubernetesApiResourceInput {
+// input for rpc to delete kubernetes object
+message DeleteKubernetesObjectInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  // kubernetes api-resource to be deleted
-  KubernetesApiResource kubernetes_api_resource = 2;
+  // kubernetes object to be deleted
+  KubernetesObject kubernetes_object = 2;
 }
 
-// input for rpc to update kubernetes api-resource
-message UpdateKubernetesApiResourceInput {
+// input for rpc to update kubernetes object
+message UpdateKubernetesObjectInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  // kubernetes api-resource to be deleted
-  KubernetesApiResource kubernetes_api_resource = 2;
-  // base64 encoded of the updated kubernetes api-resource manifest
-  string updated_manifest_yaml_base64 = 3;
+  // kubernetes object to be deleted
+  KubernetesObject kubernetes_object = 2;
+  // base64 encoded of the updated kubernetes object yaml
+  string updated_object_yaml_base64 = 3;
+}
+
+// options required for performing exec into a pod container
+message PodContainerExecOptions {
+  // pod details
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject pod = 1;
+  // container name
+  string container_name = 2;
+  // shell to use to execute the commands ex: sh.
+  // the shell specified here should exist inside the container.
+  string shell = 3;
+  // command to execute ex: pwd
+  string command = 4;
 }
 
 //input for rpc to exec into pod container
 message ExecIntoPodContainerInput {
   // base64 encoded kube-config to be used to make the api-call to kubernetes cluster.
   string kube_config_base64 = 1;
-  // pod information
-  KubernetesApiResource pod = 2;
-  // container name
-  string container_name = 3;
-  // shell to use to execute the commands ex: sh.
-  // the shell specified here should exist inside the container.
-  string shell = 4;
-  // command to execute ex: pwd
-  string command = 5;
+  // options required for performing exec into a pod container
+  PodContainerExecOptions options = 2;
 }
 
 //response for rpc to exec into pod container

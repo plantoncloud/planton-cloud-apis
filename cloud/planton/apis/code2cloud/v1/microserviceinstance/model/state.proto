@@ -6,11 +6,11 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/microserviceinstance/enums/podcontrollertype/pod_controller_type.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/enums/podmanager/pod_manager.proto";
 
 //microservice-instance
 message MicroserviceInstance {
@@ -107,9 +107,9 @@ message MicroserviceInstanceSpec {
 
 //microservice-instance kubernetes spec
 message MicroserviceInstanceSpecKubernetes {
-  //(required) type of the pod controller to use for the microservice deployment.
+  //(required) type of the pod manager to use for the microservice deployment.
   //default is set to "deployment".
-  cloud.planton.apis.code2cloud.v1.microserviceinstance.enums.podcontrollertype.PodControllerType pod_controller_type = 1 [
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanager.PodManager pod_manager = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
@@ -202,7 +202,7 @@ message MicroserviceInstanceSpecKubernetesContainerPort {
   //https://kubernetes.io/docs/concepts/services-networking/service/#application-protocol.
   //this field is used for setting up the name of the service port in kubernetes.
   //this attribute is used during microservice deployment.
-  //this attribute is only relevant for deployment and stateful-set pod_controllers.
+  //this attribute is only relevant for deployment and stateful-set pod_managers.
   string app_protocol = 4 [
     (buf.validate.field).required = true
   ];

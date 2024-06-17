@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanager;
+
+enum PodManager {
+  unspecified = 0;
+  deployment = 1;
+  stateful_set = 2;
+  cron_job = 3;
+}

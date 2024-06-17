@@ -48,13 +48,4 @@ service CustomEndpointQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check custom-endpoint dnszone status";
   }
-
-  //find certificates for custom-endpoint
-  rpc findCustomEndpointCertificates(cloud.planton.apis.code2cloud.v1.customendpoint.model.CustomEndpointId)
-      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Certificates) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = custom_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = custom_endpoint_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to look up custom-endpoint certificates";
-  }
 }

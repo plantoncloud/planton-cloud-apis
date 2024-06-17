@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/integration/v1/kubernetes/apiresources/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -34,7 +33,6 @@ const (
 	EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/setBuildEngineEnvironment"
 	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/pause"
 	EnvironmentCommandController_Unpause_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/unpause"
-	EnvironmentCommandController_DeleteNamespace_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/deleteNamespace"
 	EnvironmentCommandController_PreviewRefresh_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/previewRefresh"
 	EnvironmentCommandController_Refresh_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/refresh"
 )
@@ -85,8 +83,6 @@ type EnvironmentCommandControllerClient interface {
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -209,15 +205,6 @@ func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) DeleteNamespace(ctx context.Context, in *model.ByEnvironmentByNamespaceInput, opts ...grpc.CallOption) (*model2.WorkloadNamespace, error) {
-	out := new(model2.WorkloadNamespace)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_DeleteNamespace_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *environmentCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
@@ -282,8 +269,6 @@ type EnvironmentCommandControllerServer interface {
 	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
 	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error)
-	// delete a namespace that is part of the environment running in a kube-cluster kubernetes cluster
-	DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model2.WorkloadNamespace, error)
 	// preview refresh a environment that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
 	// refresh a environment that was previously created
@@ -329,9 +314,6 @@ func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *m
 }
 func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) DeleteNamespace(context.Context, *model.ByEnvironmentByNamespaceInput) (*model2.WorkloadNamespace, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteNamespace not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
@@ -567,24 +549,6 @@ func _EnvironmentCommandController_Unpause_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentCommandController_DeleteNamespace_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ByEnvironmentByNamespaceInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).DeleteNamespace(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_DeleteNamespace_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).DeleteNamespace(ctx, req.(*model.ByEnvironmentByNamespaceInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _EnvironmentCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceRefreshCommandInput)
 	if err := dec(in); err != nil {
@@ -675,10 +639,6 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _EnvironmentCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "deleteNamespace",
-			Handler:    _EnvironmentCommandController_DeleteNamespace_Handler,
 		},
 		{
 			MethodName: "previewRefresh",
