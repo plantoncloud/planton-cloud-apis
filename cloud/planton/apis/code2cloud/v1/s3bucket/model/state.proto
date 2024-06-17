@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.s3bucket.model;
+
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto"
+
+message S3Bucket {
+
+  //resource api-version
+  string api_version = 1;
+  //resource kind
+  string kind = 2;
+  //resource metadata
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+
+  S3BucketSpec spec =4;
+
+  S3BucketStatus status =5;
+}
+
+message S3BucketSpec {
+  //resource parent
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+
+  string acl = 2;
+}
+
+message S3BucketStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+}
