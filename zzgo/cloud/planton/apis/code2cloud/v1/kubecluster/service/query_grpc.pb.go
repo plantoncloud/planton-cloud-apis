@@ -471,7 +471,7 @@ type KubeClusterKubernetesObjectQueryControllerClient interface {
 	// get detailed object of a kubernetes object
 	Get(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model3.KubernetesObjectDetail, error)
 	// find list of namespaces on a kubernetes cluster
-	FindNamespaces(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.KubernetesObjects, error)
+	FindNamespaces(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.KubernetesNamespaces, error)
 	// stream all kubernetes objects from a kubernetes namespace in kube-cluster.
 	// this is a streaming rpc since the lookup involves several kubernetes api-calls to fetch all the kubernetes-api-resources.
 	// because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
@@ -499,8 +499,8 @@ func (c *kubeClusterKubernetesObjectQueryControllerClient) Get(ctx context.Conte
 	return out, nil
 }
 
-func (c *kubeClusterKubernetesObjectQueryControllerClient) FindNamespaces(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.KubernetesObjects, error) {
-	out := new(model3.KubernetesObjects)
+func (c *kubeClusterKubernetesObjectQueryControllerClient) FindNamespaces(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model3.KubernetesNamespaces, error) {
+	out := new(model3.KubernetesNamespaces)
 	err := c.cc.Invoke(ctx, KubeClusterKubernetesObjectQueryController_FindNamespaces_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -588,7 +588,7 @@ type KubeClusterKubernetesObjectQueryControllerServer interface {
 	// get detailed object of a kubernetes object
 	Get(context.Context, *model.KubeClusterKubernetesObject) (*model3.KubernetesObjectDetail, error)
 	// find list of namespaces on a kubernetes cluster
-	FindNamespaces(context.Context, *model.KubeClusterId) (*model3.KubernetesObjects, error)
+	FindNamespaces(context.Context, *model.KubeClusterId) (*model3.KubernetesNamespaces, error)
 	// stream all kubernetes objects from a kubernetes namespace in kube-cluster.
 	// this is a streaming rpc since the lookup involves several kubernetes api-calls to fetch all the kubernetes-api-resources.
 	// because of high number of api calls to upstream kubernetes cluster, the response is streamed to the client.
@@ -606,7 +606,7 @@ type UnimplementedKubeClusterKubernetesObjectQueryControllerServer struct {
 func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) Get(context.Context, *model.KubeClusterKubernetesObject) (*model3.KubernetesObjectDetail, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
-func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) FindNamespaces(context.Context, *model.KubeClusterId) (*model3.KubernetesObjects, error) {
+func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) FindNamespaces(context.Context, *model.KubeClusterId) (*model3.KubernetesNamespaces, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindNamespaces not implemented")
 }
 func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) StreamKubernetesObjects(*model.StreamKubeClusterNamespaceKubernetesObjectsInput, KubeClusterKubernetesObjectQueryController_StreamKubernetesObjectsServer) error {

@@ -196,3 +196,23 @@ message ExecIntoPodContainerResponse {
   // standard error of the executed command
   string stderr = 2;
 }
+
+// kubernetes namespace
+message KubernetesNamespace {
+  // name of the namespace
+  string name = 1;
+  // status of the namespace
+  string status = 2;
+  // age of the namespace
+  string age = 3;
+}
+
+// wrapper for kubernetes namespace
+message KubernetesNamespaces {
+  repeated KubernetesNamespace entries = 1;
+}
+
+// wrapper for base64 encoded kube-config
+message KubeConfigBase64Encoded {
+  string value = 1;
+}
