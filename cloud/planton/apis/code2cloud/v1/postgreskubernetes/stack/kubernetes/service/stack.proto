@@ -6,8 +6,6 @@ import "cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/kubernetes/mod
 
 //postgres-kubernetes stack controller
 service PostgresKubernetesKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model.PostgresKubernetesKubernetesStackInput)
+  rpc execute(cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model.PostgresKubernetesStackInput)
       returns (stream cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model.PostgresKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model.PostgresKubernetesKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model.PostgresKubernetesStackOutputs);
 }
