@@ -20,6 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
+	KubernetesObjectsQueryController_FindNamespaces_FullMethodName      = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesObjectsQueryController/findNamespaces"
 	KubernetesObjectsQueryController_StreamByNamespace_FullMethodName   = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesObjectsQueryController/streamByNamespace"
 	KubernetesObjectsQueryController_GetKubernetesObject_FullMethodName = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesObjectsQueryController/getKubernetesObject"
 	KubernetesObjectsQueryController_FindPods_FullMethodName            = "/cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesObjectsQueryController/findPods"
@@ -30,6 +31,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KubernetesObjectsQueryControllerClient interface {
+	// find list of namespaces on the kubernetes cluster
+	FindNamespaces(ctx context.Context, in *model.KubeConfigBase64Encoded, opts ...grpc.CallOption) (*model.KubernetesNamespaces, error)
 	// stream all kubernetes objects corresponding to a planton-cloud api-resource.
 	StreamByNamespace(ctx context.Context, in *model.StreamKubernetesObjectsByNamespaceInput, opts ...grpc.CallOption) (KubernetesObjectsQueryController_StreamByNamespaceClient, error)
 	// get detailed object of a kubernetes object
@@ -47,6 +50,15 @@ type kubernetesObjectsQueryControllerClient struct {
 
 func NewKubernetesObjectsQueryControllerClient(cc grpc.ClientConnInterface) KubernetesObjectsQueryControllerClient {
 	return &kubernetesObjectsQueryControllerClient{cc}
+}
+
+func (c *kubernetesObjectsQueryControllerClient) FindNamespaces(ctx context.Context, in *model.KubeConfigBase64Encoded, opts ...grpc.CallOption) (*model.KubernetesNamespaces, error) {
+	out := new(model.KubernetesNamespaces)
+	err := c.cc.Invoke(ctx, KubernetesObjectsQueryController_FindNamespaces_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *kubernetesObjectsQueryControllerClient) StreamByNamespace(ctx context.Context, in *model.StreamKubernetesObjectsByNamespaceInput, opts ...grpc.CallOption) (KubernetesObjectsQueryController_StreamByNamespaceClient, error) {
@@ -135,6 +147,8 @@ func (x *kubernetesObjectsQueryControllerStreamPodLogsClient) Recv() (*model.Pod
 // All implementations should embed UnimplementedKubernetesObjectsQueryControllerServer
 // for forward compatibility
 type KubernetesObjectsQueryControllerServer interface {
+	// find list of namespaces on the kubernetes cluster
+	FindNamespaces(context.Context, *model.KubeConfigBase64Encoded) (*model.KubernetesNamespaces, error)
 	// stream all kubernetes objects corresponding to a planton-cloud api-resource.
 	StreamByNamespace(*model.StreamKubernetesObjectsByNamespaceInput, KubernetesObjectsQueryController_StreamByNamespaceServer) error
 	// get detailed object of a kubernetes object
@@ -150,6 +164,9 @@ type KubernetesObjectsQueryControllerServer interface {
 type UnimplementedKubernetesObjectsQueryControllerServer struct {
 }
 
+func (UnimplementedKubernetesObjectsQueryControllerServer) FindNamespaces(context.Context, *model.KubeConfigBase64Encoded) (*model.KubernetesNamespaces, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindNamespaces not implemented")
+}
 func (UnimplementedKubernetesObjectsQueryControllerServer) StreamByNamespace(*model.StreamKubernetesObjectsByNamespaceInput, KubernetesObjectsQueryController_StreamByNamespaceServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamByNamespace not implemented")
 }
@@ -172,6 +189,24 @@ type UnsafeKubernetesObjectsQueryControllerServer interface {
 
 func RegisterKubernetesObjectsQueryControllerServer(s grpc.ServiceRegistrar, srv KubernetesObjectsQueryControllerServer) {
 	s.RegisterService(&KubernetesObjectsQueryController_ServiceDesc, srv)
+}
+
+func _KubernetesObjectsQueryController_FindNamespaces_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeConfigBase64Encoded)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubernetesObjectsQueryControllerServer).FindNamespaces(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubernetesObjectsQueryController_FindNamespaces_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubernetesObjectsQueryControllerServer).FindNamespaces(ctx, req.(*model.KubeConfigBase64Encoded))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _KubernetesObjectsQueryController_StreamByNamespace_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -259,6 +294,10 @@ var KubernetesObjectsQueryController_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cloud.planton.apis.integration.v1.kubernetes.apiresources.service.KubernetesObjectsQueryController",
 	HandlerType: (*KubernetesObjectsQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "findNamespaces",
+			Handler:    _KubernetesObjectsQueryController_FindNamespaces_Handler,
+		},
 		{
 			MethodName: "getKubernetesObject",
 			Handler:    _KubernetesObjectsQueryController_GetKubernetesObject_Handler,

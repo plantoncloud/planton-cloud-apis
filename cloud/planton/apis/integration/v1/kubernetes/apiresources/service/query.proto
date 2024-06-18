@@ -6,6 +6,9 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 import "google/protobuf/wrappers.proto";
 
 service KubernetesObjectsQueryController {
+  // find list of namespaces on the kubernetes cluster
+  rpc findNamespaces(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubeConfigBase64Encoded)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesNamespaces);
   //stream all kubernetes objects corresponding to a planton-cloud api-resource.
   rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.apiresources.model.StreamKubernetesObjectsByNamespaceInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObjects);
