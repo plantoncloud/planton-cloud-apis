@@ -12,9 +12,11 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 import "google/protobuf/wrappers.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 // kube-cluster query controller
 service KubeClusterQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   // lookup kube-cluster using kube-cluster id
   rpc getById(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
@@ -84,6 +86,7 @@ service GcpQueryController {
 
 // kube-cluster kubernetes objects query controller
 service KubeClusterKubernetesObjectQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   //get detailed object of a kubernetes object
   rpc get(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObjectDetail) {
