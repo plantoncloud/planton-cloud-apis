@@ -224,6 +224,7 @@ service KubeClusterNodePoolGcpCommandController {
 
 // kube-cluster kubernetes objects command controller
 service KubeClusterKubernetesObjectCommandController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   //update kubernetes object in a kube-cluster
   rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesObjectInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject) {
@@ -231,6 +232,9 @@ service KubeClusterKubernetesObjectCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_kubernetes_object.kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update kubernetes-object";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_kubernetes_object.kube_cluster_id";
   }
 
   //delete kubernetes object in a kube-cluster
@@ -240,6 +244,9 @@ service KubeClusterKubernetesObjectCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete kubernetes-object";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
 
   //mimic kubectl exec for a container on kube-cluster
