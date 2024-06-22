@@ -285,6 +285,6 @@ service ApiResourceKubernetesObjectCommandController {
    * Send the next command to execute for kube-ctl exec.
    * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
    */
-  rpc browserExecIntoPodContainerNextCommand(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerNextCommandInput)
+  rpc executeNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecuteNextCommandInPodContainerInput)
       returns (google.protobuf.Empty);
 }

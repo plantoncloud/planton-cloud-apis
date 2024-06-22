@@ -927,11 +927,11 @@ var KubeClusterKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	ApiResourceKubernetesObjectCommandController_Update_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/update"
-	ApiResourceKubernetesObjectCommandController_Delete_FullMethodName                                 = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/delete"
-	ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/execIntoPodContainer"
-	ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainer_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/browserExecIntoPodContainer"
-	ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerNextCommand_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/browserExecIntoPodContainerNextCommand"
+	ApiResourceKubernetesObjectCommandController_Update_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/update"
+	ApiResourceKubernetesObjectCommandController_Delete_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/delete"
+	ApiResourceKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/execIntoPodContainer"
+	ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainer_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/browserExecIntoPodContainer"
+	ApiResourceKubernetesObjectCommandController_ExecuteNextCommandInPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectCommandController/executeNextCommandInPodContainer"
 )
 
 // ApiResourceKubernetesObjectCommandControllerClient is the client API for ApiResourceKubernetesObjectCommandController service.
@@ -951,7 +951,7 @@ type ApiResourceKubernetesObjectCommandControllerClient interface {
 	// *
 	// Send the next command to execute for kube-ctl exec.
 	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
-	BrowserExecIntoPodContainerNextCommand(ctx context.Context, in *model.BrowserExecIntoPodContainerNextCommandInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ExecuteNextCommandInPodContainer(ctx context.Context, in *model.ExecuteNextCommandInPodContainerInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type apiResourceKubernetesObjectCommandControllerClient struct {
@@ -1043,9 +1043,9 @@ func (x *apiResourceKubernetesObjectCommandControllerBrowserExecIntoPodContainer
 	return m, nil
 }
 
-func (c *apiResourceKubernetesObjectCommandControllerClient) BrowserExecIntoPodContainerNextCommand(ctx context.Context, in *model.BrowserExecIntoPodContainerNextCommandInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *apiResourceKubernetesObjectCommandControllerClient) ExecuteNextCommandInPodContainer(ctx context.Context, in *model.ExecuteNextCommandInPodContainerInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerNextCommand_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectCommandController_ExecuteNextCommandInPodContainer_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1069,7 +1069,7 @@ type ApiResourceKubernetesObjectCommandControllerServer interface {
 	// *
 	// Send the next command to execute for kube-ctl exec.
 	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
-	BrowserExecIntoPodContainerNextCommand(context.Context, *model.BrowserExecIntoPodContainerNextCommandInput) (*emptypb.Empty, error)
+	ExecuteNextCommandInPodContainer(context.Context, *model.ExecuteNextCommandInPodContainerInput) (*emptypb.Empty, error)
 }
 
 // UnimplementedApiResourceKubernetesObjectCommandControllerServer should be embedded to have forward compatible implementations.
@@ -1088,8 +1088,8 @@ func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) ExecIntoP
 func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) BrowserExecIntoPodContainer(*model.ExecIntoApiResourcePodContainerInput, ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerServer) error {
 	return status.Errorf(codes.Unimplemented, "method BrowserExecIntoPodContainer not implemented")
 }
-func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) BrowserExecIntoPodContainerNextCommand(context.Context, *model.BrowserExecIntoPodContainerNextCommandInput) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method BrowserExecIntoPodContainerNextCommand not implemented")
+func (UnimplementedApiResourceKubernetesObjectCommandControllerServer) ExecuteNextCommandInPodContainer(context.Context, *model.ExecuteNextCommandInPodContainerInput) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExecuteNextCommandInPodContainer not implemented")
 }
 
 // UnsafeApiResourceKubernetesObjectCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -1186,20 +1186,20 @@ func (x *apiResourceKubernetesObjectCommandControllerBrowserExecIntoPodContainer
 	return x.ServerStream.SendMsg(m)
 }
 
-func _ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerNextCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.BrowserExecIntoPodContainerNextCommandInput)
+func _ApiResourceKubernetesObjectCommandController_ExecuteNextCommandInPodContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ExecuteNextCommandInPodContainerInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiResourceKubernetesObjectCommandControllerServer).BrowserExecIntoPodContainerNextCommand(ctx, in)
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).ExecuteNextCommandInPodContainer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerNextCommand_FullMethodName,
+		FullMethod: ApiResourceKubernetesObjectCommandController_ExecuteNextCommandInPodContainer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceKubernetesObjectCommandControllerServer).BrowserExecIntoPodContainerNextCommand(ctx, req.(*model.BrowserExecIntoPodContainerNextCommandInput))
+		return srv.(ApiResourceKubernetesObjectCommandControllerServer).ExecuteNextCommandInPodContainer(ctx, req.(*model.ExecuteNextCommandInPodContainerInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1220,8 +1220,8 @@ var ApiResourceKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ApiResourceKubernetesObjectCommandController_Delete_Handler,
 		},
 		{
-			MethodName: "browserExecIntoPodContainerNextCommand",
-			Handler:    _ApiResourceKubernetesObjectCommandController_BrowserExecIntoPodContainerNextCommand_Handler,
+			MethodName: "executeNextCommandInPodContainer",
+			Handler:    _ApiResourceKubernetesObjectCommandController_ExecuteNextCommandInPodContainer_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

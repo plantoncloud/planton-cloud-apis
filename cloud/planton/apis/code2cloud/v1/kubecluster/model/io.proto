@@ -341,9 +341,11 @@ message ExecIntoApiResourcePodContainerInput {
 }
 
 // input for rpc to execute next command for a shell session in a pod container
-message BrowserExecIntoPodContainerNextCommandInput {
+message ExecuteNextCommandInPodContainerInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
   //pod container exec session id
-  string session_id = 1;
+  string session_id = 2;
   // command to execute inside an existing shell session of a pod container
-  string command = 2;
+  string command = 3;
 }
