@@ -7,10 +7,11 @@ import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "google/protobuf/empty.proto";
 
 // kube-cluster command controller
 service KubeClusterCommandController {
@@ -272,4 +273,18 @@ service ApiResourceKubernetesObjectCommandController {
   //mimic kubectl exec for an api-resource container on kube-cluster
   rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
+
+  /**
+ * Mimic kubectl exec for a container on a kube-cluster from browsers.
+ * This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+ */
+  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerResponse);
+
+  /**
+   * Send the next command to execute for kube-ctl exec.
+   * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+   */
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
+      returns (google.protobuf.Empty);
 }

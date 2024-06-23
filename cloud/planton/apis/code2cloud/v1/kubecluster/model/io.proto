@@ -339,3 +339,21 @@ message ExecIntoApiResourcePodContainerInput {
   // options required for performing exec into a pod container
   cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodContainerExecOptions options = 2;
 }
+
+//id of the stream created for the shell session
+message BrowserExecIntoPodContainerResponse {
+  //pod container exec shell session id
+  string shell_session_id = 1;
+  //shell command execution response
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse command_response = 2;
+}
+
+// input for rpc to execute next command for a shell session in a pod container from a browser
+message BrowserExecuteNextCommandInPodContainerInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //pod container exec shell session id
+  string shell_session_id = 2;
+  // command to execute inside an existing shell session of a pod container
+  string command = 3;
+}
