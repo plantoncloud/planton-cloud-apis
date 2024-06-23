@@ -279,12 +279,12 @@ service ApiResourceKubernetesObjectCommandController {
  * This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
  */
   rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
-      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
+      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerResponse);
 
   /**
    * Send the next command to execute for kube-ctl exec.
    * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
    */
-  rpc executeNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecuteNextCommandInPodContainerInput)
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
       returns (google.protobuf.Empty);
 }
