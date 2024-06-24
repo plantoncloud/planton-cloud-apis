@@ -39,4 +39,5 @@ enum ApiResourceKind {
   gitlab_server = 33;
   grafana_instance = 34;
   locust_cluster = 35;
+  postgres_kubernetes = 36;
 }

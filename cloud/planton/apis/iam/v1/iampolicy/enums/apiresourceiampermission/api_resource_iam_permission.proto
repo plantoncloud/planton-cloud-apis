@@ -244,4 +244,11 @@ enum ApiResourceIamPermission {
   locust_cluster_get = 167;
   locust_cluster_restore = 168;
   locust_cluster_update = 169;
+
+  // postgres_kubernetes
+  postgres_kubernetes_create = 170;
+  postgres_kubernetes_delete = 171;
+  postgres_kubernetes_get = 172;
+  postgres_kubernetes_restore = 173;
+  postgres_kubernetes_update = 174;
 }

@@ -1,72 +1,25 @@
 syntax = "proto3";
 
-package cloud.planton.apis.commons.apiresource.testing.message;
+package cloud.planton.apis.code2cloud.v1.postgreskubernetes.model;
 
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-message MessageLevelProtoValidateConditionalTest {
-  option (buf.validate.message).cel = {
-    id: "gcp_spec.project_id",
-    expression: "this.cloud_provider == 1 && size(this.gcp_spec.project_id) == 0"
-    "? 'gcp project id should be mentioned'"
-    ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "aws_spec.account_id",
-    expression: "this.cloud_provider == 2 && size(this.aws_spec.account_id) == 0"
-        "? 'aws account id should be mentioned'"
-        ": ''"
-  };
-  cloud.planton.apis.commons.apiresource.testing.enums.CloudProviderTest cloud_provider = 1;
-  GcpSpecTest gcp_spec = 2;
-  AwsSpecTest aws_spec = 3;
-}
-
-message GcpSpecTest {
-  string project_id = 1 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).cel = {
-      id: "spec.gcp.project_id",
-      message: "Only lowercase letters, numbers (0-9) are allowed",
-      expression: "this.matches('^[a-z0-9]+$')"
-    }
-  ];
-  string no_validation_field = 2;
-
-}
-
-message AwsSpecTest {
-  string account_id = 1 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).required = false,
-    (buf.validate.field).string.min_len = 1,
-    (buf.validate.field).cel = {
-      id: "spec.aws.account_id",
-      message: "Only lowercase letters, numbers (0-9) are allowed",
-      expression: "this.matches('^[a-z0-9]+$')"
-    }
-  ];
-  string no_validation_field = 2;
-}
-
-//test message of api resource specific to be deployed to kubernetes
-message ApiResourceKubernetesTest {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = unspecified;
+//postgres-kubernetes
+message PostgresKubernetes {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = postgres_kubernetes;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "arkt";
-  //id format "pgc-<environment-id>-<api-resource-kubernetes-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "pgk8s";
+  //id format "pgc-<environment-id>-<postgres-kubernetes-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -76,7 +29,7 @@ message ApiResourceKubernetesTest {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "ApiResourceKubernetes"
+    (buf.validate.field).string.const = "PostgresKubernetes"
   ];
 
   //resource metadata
@@ -113,28 +66,28 @@ message ApiResourceKubernetesTest {
   ];
 
   //spec
-  ApiResourceKubernetesTestSpec spec = 4;
+  PostgresKubernetesSpec spec = 4;
 
   //status
-  ApiResourceKubernetesTestStatus status = 5;
+  PostgresKubernetesStatus status = 5;
 }
 
-//api-resource-kubernetes spec
-message ApiResourceKubernetesTestSpec {
+//postgres-kubernetes spec
+message PostgresKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  // api-resource-container spec
-  ApiResourceKubernetesSpecContainerSpec container = 2 [
+  // postgres-container spec
+  PostgresKubernetesSpecContainerSpec container = 2 [
     (buf.validate.field).required = true
   ];
 
-  //api-resource-kubernetes ingress
+  //postgres-kubernetes ingress
   cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
-//api-resource-kubernetes status
-message ApiResourceKubernetesTestStatus {
+//postgres-kubernetes status
+message PostgresKubernetesStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
@@ -144,45 +97,45 @@ message ApiResourceKubernetesTestStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //name of the kubernetes namespace in which the api-resource-kubernetes has been created.
+  //name of the kubernetes namespace in which the postgres-kubernetes has been created.
   string namespace = 1;
 
-  //name of the kubernetes service created for api-resource-kubernetes.
+  //name of the kubernetes service created for postgres-kubernetes.
   string service = 2;
 
-  //command to setup port-forwarding to open api-resource-kubernetes from developers laptop.
-  //this might come handy when api-resource-kubernetes ingress is disabled for security reasons.
+  //command to setup port-forwarding to open postgres-kubernetes from developers laptop.
+  //this might come handy when postgres-kubernetes ingress is disabled for security reasons.
   //this is rendered by combining kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
-  //running the command from this attribute makes it possible to access api-resource-kubernetes using localhost:5432
+  //running the command from this attribute makes it possible to access postgres-kubernetes using localhost:5432
   string port_forward_command = 3;
 
   //kubernetes endpoint for clients running in the same kubernetes cluster.
   //ex: main-microservice-instance.namespace.svc.instance.local:8080
   string kube_endpoint = 4;
 
-  //external api-resource-kubernetes hostname. port is always 5432.
+  //external postgres-kubernetes hostname. port is always 5432.
   string external_cluster_hostname = 5;
 
-  //internal api-resource-kubernetes hostname. port is always 5432.
+  //internal postgres-kubernetes hostname. port is always 5432.
   string internal_cluster_hostname = 6;
 }
 
-//api-resource-kubernetes kubernetes ingress spec
-message ApiResourceKubernetesSpecContainerSpec {
-  //number of replicas of api-resource pods
+//postgres-kubernetes kubernetes ingress spec
+message PostgresKubernetesSpecContainerSpec {
+  //number of replicas of postgres pods
   //recommended default is 1
   int32 replicas = 1 [
     (buf.validate.field).required = true
   ];
 
-  //api-resource container cpu and memory resources.
+  //postgres container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
     (buf.validate.field).required = true
   ];
 
-  //storage to allocate for each api-resource instance in gb. ex: 1Gi
+  //storage to allocate for each postgres instance in gb. ex: 1Gi
   //default is set if the client does not provide a value.
   string disk_size = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
@@ -194,7 +147,3 @@ message ApiResourceKubernetesSpecContainerSpec {
     }
   ];
 }
-
-
-
-
