@@ -20,30 +20,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PostgresKubernetesKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesKubernetesStackController/execute"
+	PostgresKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesStackController/execute"
 )
 
-// PostgresKubernetesKubernetesStackControllerClient is the client API for PostgresKubernetesKubernetesStackController service.
+// PostgresKubernetesStackControllerClient is the client API for PostgresKubernetesStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type PostgresKubernetesKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.PostgresKubernetesStackInput, opts ...grpc.CallOption) (PostgresKubernetesKubernetesStackController_ExecuteClient, error)
+type PostgresKubernetesStackControllerClient interface {
+	Execute(ctx context.Context, in *model.PostgresKubernetesStackInput, opts ...grpc.CallOption) (PostgresKubernetesStackController_ExecuteClient, error)
 }
 
-type postgresKubernetesKubernetesStackControllerClient struct {
+type postgresKubernetesStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewPostgresKubernetesKubernetesStackControllerClient(cc grpc.ClientConnInterface) PostgresKubernetesKubernetesStackControllerClient {
-	return &postgresKubernetesKubernetesStackControllerClient{cc}
+func NewPostgresKubernetesStackControllerClient(cc grpc.ClientConnInterface) PostgresKubernetesStackControllerClient {
+	return &postgresKubernetesStackControllerClient{cc}
 }
 
-func (c *postgresKubernetesKubernetesStackControllerClient) Execute(ctx context.Context, in *model.PostgresKubernetesStackInput, opts ...grpc.CallOption) (PostgresKubernetesKubernetesStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &PostgresKubernetesKubernetesStackController_ServiceDesc.Streams[0], PostgresKubernetesKubernetesStackController_Execute_FullMethodName, opts...)
+func (c *postgresKubernetesStackControllerClient) Execute(ctx context.Context, in *model.PostgresKubernetesStackInput, opts ...grpc.CallOption) (PostgresKubernetesStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &PostgresKubernetesStackController_ServiceDesc.Streams[0], PostgresKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &postgresKubernetesKubernetesStackControllerExecuteClient{stream}
+	x := &postgresKubernetesStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -53,16 +53,16 @@ func (c *postgresKubernetesKubernetesStackControllerClient) Execute(ctx context.
 	return x, nil
 }
 
-type PostgresKubernetesKubernetesStackController_ExecuteClient interface {
+type PostgresKubernetesStackController_ExecuteClient interface {
 	Recv() (*model.PostgresKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
-type postgresKubernetesKubernetesStackControllerExecuteClient struct {
+type postgresKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *postgresKubernetesKubernetesStackControllerExecuteClient) Recv() (*model.PostgresKubernetesStackResponse, error) {
+func (x *postgresKubernetesStackControllerExecuteClient) Recv() (*model.PostgresKubernetesStackResponse, error) {
 	m := new(model.PostgresKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -70,64 +70,64 @@ func (x *postgresKubernetesKubernetesStackControllerExecuteClient) Recv() (*mode
 	return m, nil
 }
 
-// PostgresKubernetesKubernetesStackControllerServer is the server API for PostgresKubernetesKubernetesStackController service.
-// All implementations should embed UnimplementedPostgresKubernetesKubernetesStackControllerServer
+// PostgresKubernetesStackControllerServer is the server API for PostgresKubernetesStackController service.
+// All implementations should embed UnimplementedPostgresKubernetesStackControllerServer
 // for forward compatibility
-type PostgresKubernetesKubernetesStackControllerServer interface {
-	Execute(*model.PostgresKubernetesStackInput, PostgresKubernetesKubernetesStackController_ExecuteServer) error
+type PostgresKubernetesStackControllerServer interface {
+	Execute(*model.PostgresKubernetesStackInput, PostgresKubernetesStackController_ExecuteServer) error
 }
 
-// UnimplementedPostgresKubernetesKubernetesStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedPostgresKubernetesKubernetesStackControllerServer struct {
+// UnimplementedPostgresKubernetesStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedPostgresKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedPostgresKubernetesKubernetesStackControllerServer) Execute(*model.PostgresKubernetesStackInput, PostgresKubernetesKubernetesStackController_ExecuteServer) error {
+func (UnimplementedPostgresKubernetesStackControllerServer) Execute(*model.PostgresKubernetesStackInput, PostgresKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
-// UnsafePostgresKubernetesKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to PostgresKubernetesKubernetesStackControllerServer will
+// UnsafePostgresKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to PostgresKubernetesStackControllerServer will
 // result in compilation errors.
-type UnsafePostgresKubernetesKubernetesStackControllerServer interface {
-	mustEmbedUnimplementedPostgresKubernetesKubernetesStackControllerServer()
+type UnsafePostgresKubernetesStackControllerServer interface {
+	mustEmbedUnimplementedPostgresKubernetesStackControllerServer()
 }
 
-func RegisterPostgresKubernetesKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv PostgresKubernetesKubernetesStackControllerServer) {
-	s.RegisterService(&PostgresKubernetesKubernetesStackController_ServiceDesc, srv)
+func RegisterPostgresKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv PostgresKubernetesStackControllerServer) {
+	s.RegisterService(&PostgresKubernetesStackController_ServiceDesc, srv)
 }
 
-func _PostgresKubernetesKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _PostgresKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.PostgresKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(PostgresKubernetesKubernetesStackControllerServer).Execute(m, &postgresKubernetesKubernetesStackControllerExecuteServer{stream})
+	return srv.(PostgresKubernetesStackControllerServer).Execute(m, &postgresKubernetesStackControllerExecuteServer{stream})
 }
 
-type PostgresKubernetesKubernetesStackController_ExecuteServer interface {
+type PostgresKubernetesStackController_ExecuteServer interface {
 	Send(*model.PostgresKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
-type postgresKubernetesKubernetesStackControllerExecuteServer struct {
+type postgresKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *postgresKubernetesKubernetesStackControllerExecuteServer) Send(m *model.PostgresKubernetesStackResponse) error {
+func (x *postgresKubernetesStackControllerExecuteServer) Send(m *model.PostgresKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// PostgresKubernetesKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for PostgresKubernetesKubernetesStackController service.
+// PostgresKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for PostgresKubernetesStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var PostgresKubernetesKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesKubernetesStackController",
-	HandlerType: (*PostgresKubernetesKubernetesStackControllerServer)(nil),
+var PostgresKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesStackController",
+	HandlerType: (*PostgresKubernetesStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _PostgresKubernetesKubernetesStackController_Execute_Handler,
+			Handler:       _PostgresKubernetesStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},
