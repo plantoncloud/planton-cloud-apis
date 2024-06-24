@@ -2,13 +2,13 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             (unknown)
-// source: cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/kubernetes/service/stack.proto
+// source: cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/service/stack.proto
 
 package service
 
 import (
 	context "context"
-	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/kubernetes/model"
+	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -20,7 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	PostgresKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesStackController/execute"
+	PostgresKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.service.PostgresKubernetesStackController/execute"
 )
 
 // PostgresKubernetesStackControllerClient is the client API for PostgresKubernetesStackController service.
@@ -121,7 +121,7 @@ func (x *postgresKubernetesStackControllerExecuteServer) Send(m *model.PostgresK
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PostgresKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.service.PostgresKubernetesStackController",
+	ServiceName: "cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.service.PostgresKubernetesStackController",
 	HandlerType: (*PostgresKubernetesStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -131,5 +131,5 @@ var PostgresKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/kubernetes/service/stack.proto",
+	Metadata: "cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/service/stack.proto",
 }
