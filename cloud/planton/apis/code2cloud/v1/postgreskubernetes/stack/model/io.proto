@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.model;
 
 import "cloud/planton/apis/code2cloud/v1/postgreskubernetes/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
