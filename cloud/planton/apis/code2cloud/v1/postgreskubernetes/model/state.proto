@@ -83,7 +83,7 @@ message PostgresKubernetesSpec {
   ];
 
   //postgres-kubernetes ingress
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ApiResourceIngressSpec ingress = 3;
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //postgres-kubernetes status

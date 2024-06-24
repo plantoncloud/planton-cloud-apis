@@ -113,14 +113,14 @@ message ApiResourceKubernetesTest {
   ];
 
   //spec
-  ApiResourceKubernetesSpec spec = 4;
+  ApiResourceKubernetesTestSpec spec = 4;
 
   //status
-  ApiResourceKubernetesStatus status = 5;
+  ApiResourceKubernetesTestStatus status = 5;
 }
 
 //api-resource-kubernetes spec
-message ApiResourceKubernetesSpec {
+message ApiResourceKubernetesTestSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
@@ -130,11 +130,11 @@ message ApiResourceKubernetesSpec {
   ];
 
   //api-resource-kubernetes ingress
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ApiResourceIngressSpec ingress = 3;
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //api-resource-kubernetes status
-message ApiResourceKubernetesStatus {
+message ApiResourceKubernetesTestStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
 
