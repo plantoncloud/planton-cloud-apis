@@ -34,7 +34,7 @@ const (
 type DnsZoneQueryControllerClient interface {
 	// find dns-zones by company id
 	// the response should only include dns-zones in a company that the authenticated user account has viewer access to.
-	FindByCompanyId(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model1.DnsZones, error)
+	FindByCompanyId(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model1.DnsZoneList, error)
 	// get details of a dns-zone id
 	GetById(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
@@ -51,8 +51,8 @@ func NewDnsZoneQueryControllerClient(cc grpc.ClientConnInterface) DnsZoneQueryCo
 	return &dnsZoneQueryControllerClient{cc}
 }
 
-func (c *dnsZoneQueryControllerClient) FindByCompanyId(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model1.DnsZones, error) {
-	out := new(model1.DnsZones)
+func (c *dnsZoneQueryControllerClient) FindByCompanyId(ctx context.Context, in *model.CompanyId, opts ...grpc.CallOption) (*model1.DnsZoneList, error) {
+	out := new(model1.DnsZoneList)
 	err := c.cc.Invoke(ctx, DnsZoneQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -93,7 +93,7 @@ func (c *dnsZoneQueryControllerClient) IsNameserversDelegated(ctx context.Contex
 type DnsZoneQueryControllerServer interface {
 	// find dns-zones by company id
 	// the response should only include dns-zones in a company that the authenticated user account has viewer access to.
-	FindByCompanyId(context.Context, *model.CompanyId) (*model1.DnsZones, error)
+	FindByCompanyId(context.Context, *model.CompanyId) (*model1.DnsZoneList, error)
 	// get details of a dns-zone id
 	GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
@@ -106,7 +106,7 @@ type DnsZoneQueryControllerServer interface {
 type UnimplementedDnsZoneQueryControllerServer struct {
 }
 
-func (UnimplementedDnsZoneQueryControllerServer) FindByCompanyId(context.Context, *model.CompanyId) (*model1.DnsZones, error) {
+func (UnimplementedDnsZoneQueryControllerServer) FindByCompanyId(context.Context, *model.CompanyId) (*model1.DnsZoneList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
 }
 func (UnimplementedDnsZoneQueryControllerServer) GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error) {

@@ -15,13 +15,13 @@ message ArtifactStoreId {
 }
 
 //response for paginated query to list artifact-stores
-message ArtifactStoreList {
+message ArtifactStorePage {
   int32 total_pages = 1;
   repeated ArtifactStore entries = 2;
 }
 
 //list of artifact-stores
-message ArtifactStores {
+message ArtifactStoreList {
   repeated ArtifactStore entries = 1;
 }
 

@@ -33,7 +33,7 @@ type CodeServerQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.CodeServerId, opts ...grpc.CallOption) (*model.CodeServer, error)
 	// find code servers by product id.
 	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeServers, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeServerList, error)
 }
 
 type codeServerQueryControllerClient struct {
@@ -53,8 +53,8 @@ func (c *codeServerQueryControllerClient) GetById(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *codeServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeServers, error) {
-	out := new(model.CodeServers)
+func (c *codeServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeServerList, error) {
+	out := new(model.CodeServerList)
 	err := c.cc.Invoke(ctx, CodeServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,7 +70,7 @@ type CodeServerQueryControllerServer interface {
 	GetById(context.Context, *model.CodeServerId) (*model.CodeServer, error)
 	// find code servers by product id.
 	// response contains only objects that the authenticated user account id has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.CodeServers, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.CodeServerList, error)
 }
 
 // UnimplementedCodeServerQueryControllerServer should be embedded to have forward compatible implementations.
@@ -80,7 +80,7 @@ type UnimplementedCodeServerQueryControllerServer struct {
 func (UnimplementedCodeServerQueryControllerServer) GetById(context.Context, *model.CodeServerId) (*model.CodeServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCodeServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CodeServers, error) {
+func (UnimplementedCodeServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CodeServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
 

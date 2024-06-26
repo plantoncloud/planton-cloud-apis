@@ -78,7 +78,7 @@ message JenkinsKubernetesSpec {
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //jenkins-container spec
-  JenkinsKubernetesSpecKubernetesSpecJenkinsContainerSpec jenkins_container = 2 [
+  JenkinsKubernetesSpecContainerSpec container = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -136,8 +136,8 @@ message JenkinsKubernetesStatus {
   string internal_hostname = 8;
 }
 
-// jenkins-kubernetes kubernetes jenkins-container spec
-message JenkinsKubernetesSpecKubernetesSpecJenkinsContainerSpec {
+// jenkins-kubernetes jenkins-container spec
+message JenkinsKubernetesSpecContainerSpec {
   //jenkins container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [

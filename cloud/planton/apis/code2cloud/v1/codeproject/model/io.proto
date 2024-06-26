@@ -29,12 +29,12 @@ message CodeProjectUrl {
 }
 
 //list of code projects
-message CodeProjects {
+message CodeProjectList {
   repeated CodeProject entries = 1;
 }
 
 //response for paginated query to list code projects
-message CodeProjectList {
+message CodeProjectPage {
   int32 total_pages = 1;
   repeated CodeProject entries = 2;
 }

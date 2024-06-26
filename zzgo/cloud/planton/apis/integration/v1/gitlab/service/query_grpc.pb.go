@@ -35,7 +35,7 @@ type GitlabQueryControllerClient interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
-	ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error)
+	ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectList, error)
 	// get details of a project on gitlab
 	GetProject(ctx context.Context, in *model.GetProjectQueryInput, opts ...grpc.CallOption) (*model1.CodeProject, error)
 	// get details of a group on gitlab
@@ -52,8 +52,8 @@ func NewGitlabQueryControllerClient(cc grpc.ClientConnInterface) GitlabQueryCont
 	return &gitlabQueryControllerClient{cc}
 }
 
-func (c *gitlabQueryControllerClient) ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error) {
-	out := new(model1.CodeProjects)
+func (c *gitlabQueryControllerClient) ListProjects(ctx context.Context, in *model.ListProjectsQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectList, error) {
+	out := new(model1.CodeProjectList)
 	err := c.cc.Invoke(ctx, GitlabQueryController_ListProjects_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ type GitlabQueryControllerServer interface {
 	// list projects for the requested group, including projects in sub-groups on gitlab
 	// https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
 	// todo: we have to add pagination support for response.
-	ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjects, error)
+	ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjectList, error)
 	// get details of a project on gitlab
 	GetProject(context.Context, *model.GetProjectQueryInput) (*model1.CodeProject, error)
 	// get details of a group on gitlab
@@ -108,7 +108,7 @@ type GitlabQueryControllerServer interface {
 type UnimplementedGitlabQueryControllerServer struct {
 }
 
-func (UnimplementedGitlabQueryControllerServer) ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjects, error) {
+func (UnimplementedGitlabQueryControllerServer) ListProjects(context.Context, *model.ListProjectsQueryInput) (*model1.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProjects not implemented")
 }
 func (UnimplementedGitlabQueryControllerServer) GetProject(context.Context, *model.GetProjectQueryInput) (*model1.CodeProject, error) {

@@ -41,4 +41,15 @@ enum ApiResourceKind {
   locust_cluster = 35;
   postgres_kubernetes = 36;
   jenkins_kubernetes = 37;
+  kafka_kubernetes = 38;
+  locust_kubernetes = 39;
+  microservice_kubernetes = 40;
+  mongodb_kubernetes = 41;
+  openfga_kubernetes = 42;
+  prometheus_kubernetes = 43;
+  redis_kubernetes = 44;
+  solr_kubernetes = 45;
+  argocd_kubernetes = 46;
+  elasticsearch_kubernetes = 47;
+  grafana_kubernetes = 48;
 }

@@ -35,7 +35,7 @@ type CustomEndpointQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpoint, error)
 	// find custom-endpoints by product id.
 	// response contains only the endpoint domains that the authenticated user account id as viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CustomEndpoints, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CustomEndpointList, error)
 	// check cert status for custom-endpoint
 	GetCustomEndpointCertStatus(ctx context.Context, in *model.CustomEndpointId, opts ...grpc.CallOption) (*model.CustomEndpointCertStatus, error)
 	// check status of dns resolution for custom-endpoint.
@@ -60,8 +60,8 @@ func (c *customEndpointQueryControllerClient) GetById(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *customEndpointQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CustomEndpoints, error) {
-	out := new(model.CustomEndpoints)
+func (c *customEndpointQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CustomEndpointList, error) {
+	out := new(model.CustomEndpointList)
 	err := c.cc.Invoke(ctx, CustomEndpointQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,7 +95,7 @@ type CustomEndpointQueryControllerServer interface {
 	GetById(context.Context, *model.CustomEndpointId) (*model.CustomEndpoint, error)
 	// find custom-endpoints by product id.
 	// response contains only the endpoint domains that the authenticated user account id as viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.CustomEndpoints, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.CustomEndpointList, error)
 	// check cert status for custom-endpoint
 	GetCustomEndpointCertStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointCertStatus, error)
 	// check status of dns resolution for custom-endpoint.
@@ -110,7 +110,7 @@ type UnimplementedCustomEndpointQueryControllerServer struct {
 func (UnimplementedCustomEndpointQueryControllerServer) GetById(context.Context, *model.CustomEndpointId) (*model.CustomEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCustomEndpointQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CustomEndpoints, error) {
+func (UnimplementedCustomEndpointQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CustomEndpointList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
 func (UnimplementedCustomEndpointQueryControllerServer) GetCustomEndpointCertStatus(context.Context, *model.CustomEndpointId) (*model.CustomEndpointCertStatus, error) {

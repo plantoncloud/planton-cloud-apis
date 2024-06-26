@@ -7,12 +7,12 @@ import "cloud/planton/apis/code2cloud/v1/dnszone/enums/dnsrecordtype/dns_record_
 import "buf/validate/validate.proto";
 
 // list of dns-zones
-message DnsZones {
+message DnsZoneList {
   repeated DnsZone entries = 1;
 }
 
 // response for paginated query to list dns-zones
-message DnsZoneList {
+message DnsZonePage {
   int32 total_pages = 1;
   repeated DnsZone entries = 2;
 }
@@ -33,7 +33,7 @@ message DnsZoneId {
 }
 
 // list of dns-records
-message DnsRecords {
+message DnsRecordList {
   repeated DnsRecord entries = 1;
 }
 

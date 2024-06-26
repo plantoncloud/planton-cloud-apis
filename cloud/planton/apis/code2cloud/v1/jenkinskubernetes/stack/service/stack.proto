@@ -5,6 +5,6 @@ package cloud.planton.apis.code2cloud.v1.jenkinskubernetes.stack.service;
 import "cloud/planton/apis/code2cloud/v1/jenkinskubernetes/stack/model/io.proto";
 
 service JenkinsKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.jenkinskubernetes.stack.model.JenkinsKubernetesKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.jenkinskubernetes.stack.model.JenkinsKubernetesKubernetesStackResponse);
+  rpc execute(cloud.planton.apis.code2cloud.v1.jenkinskubernetes.stack.model.JenkinsKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.jenkinskubernetes.stack.model.JenkinsKubernetesStackResponse);
 }

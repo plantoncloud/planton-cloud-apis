@@ -11,7 +11,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-//argocd-instance
+//grafana-instance
 message GrafanaInstance {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = grafana_instance;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
@@ -19,7 +19,7 @@ message GrafanaInstance {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "gfn";
-  //id format "rdc-<environment-id>-<argocd-instance-name>"
+  //id format "rdc-<environment-id>-<grafana-instance-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -72,7 +72,7 @@ message GrafanaInstance {
   GrafanaInstanceStatus status = 5;
 }
 
-//argocd-instance spec
+//grafana-instance spec
 message GrafanaInstanceSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
@@ -81,7 +81,7 @@ message GrafanaInstanceSpec {
   GrafanaInstanceSpecKubernetesSpec kubernetes = 2;
 }
 
-//argocd-instance status.
+//grafana-instance status.
 message GrafanaInstanceStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
@@ -96,19 +96,19 @@ message GrafanaInstanceStatus {
   GrafanaInstanceStatusKubernetesStatus kubernetes = 1;
 }
 
-// argocd-instance kubernetes spec
+// grafana-instance kubernetes spec
 message GrafanaInstanceSpecKubernetesSpec {
   //grafana-container spec
   GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec grafana_container = 1 [
     (buf.validate.field).required = true
   ];
 
-  //argocd-instance ingress-spec
+  //grafana-instance ingress-spec
   GrafanaInstanceSpecKubernetesSpecIngressSpec ingress = 2;
 
 }
 
-// argocd-instance kubernetes grafana-container spec
+// grafana-instance kubernetes grafana-container spec
 message GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec {
   //grafana container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
@@ -117,7 +117,7 @@ message GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec {
   ];
 }
 
-// argocd-instance kubernetes ingress spec
+// grafana-instance kubernetes ingress spec
 message GrafanaInstanceSpecKubernetesSpecIngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
@@ -140,28 +140,28 @@ message GrafanaInstanceSpecKubernetesSpecIngressSpec {
   string endpoint_domain_name = 3;
 }
 
-//argocd-instance kubernetes status
+//grafana-instance kubernetes status
 message GrafanaInstanceStatusKubernetesStatus {
-  //kubernetes namespace in which argocd-instance is created.
+  //kubernetes namespace in which grafana-instance is created.
   string namespace = 1;
 
-  //kubernetes service name for argocd-instance.
-  //ex: main-argocd-instance
-  //in the above example, "main" is the name of the argocd-instance
+  //kubernetes service name for grafana-instance.
+  //ex: main-grafana-instance
+  //in the above example, "main" is the name of the grafana-instance
   string service = 2;
 
-  //command to setup port-forwarding to open argocd-instance from developers laptop.
-  //this might come handy when argocd-instance ingress is disabled for security reasons.
+  //command to setup port-forwarding to open grafana-instance from developers laptop.
+  //this might come handy when grafana-instance ingress is disabled for security reasons.
   //this is rendered by combining grafana_instance_kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/grafana_instance_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/grafana
+  //running the command from this attribute makes it possible to access grafana-instance using http://localhost:8080/grafana
   string port_forward_command = 3;
 
-  //kubernetes endpoint to connect to argocd-instance from the web browser.
-  //ex: main-argocd-instance.namespace.svc.cluster.local:6379
+  //kubernetes endpoint to connect to grafana-instance from the web browser.
+  //ex: main-grafana-instance.namespace.svc.cluster.local:6379
   string kube_endpoint = 4;
 
-  //public endpoint to open argocd-instance from clients outside kubernetes.
+  //public endpoint to open grafana-instance from clients outside kubernetes.
   //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/grafana
   string ingress_endpoint = 5;
 }

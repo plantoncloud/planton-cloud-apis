@@ -14,12 +14,12 @@ message KafkaClusterId {
 }
 
 //list of kafka-clusters
-message KafkaClusters {
+message KafkaClusterList {
   repeated KafkaCluster entries = 1;
 }
 
 //list of kafka topics
-message KafkaTopics {
+message KafkaTopicList {
   repeated KafkaTopic entries = 1;
 }
 
@@ -53,7 +53,7 @@ message AddKafkaTopicsCommandInput {
 }
 
 //response for paginated query to list kafka-clusters
-message KafkaClusterList {
+message KafkaClusterPage {
   int32 total_pages = 1;
   repeated KafkaCluster entries = 2;
 }

@@ -13,12 +13,12 @@ message HelmReleaseId {
 }
 
 //list of helm-releases
-message HelmReleases {
+message HelmReleaseList {
   repeated HelmRelease entries = 1;
 }
 
 //response for paginated query to list helm-releases
-message HelmReleaseList {
+message HelmReleasePage {
   int32 total_pages = 1;
   repeated HelmRelease entries = 2;
 }

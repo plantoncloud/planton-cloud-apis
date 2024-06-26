@@ -25,7 +25,7 @@ service KafkaClusterQueryController {
   //find kafka-clusters by product id.
   //response contains only the resources that the authenticated user account has viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusters) {
+      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -34,7 +34,7 @@ service KafkaClusterQueryController {
 
   //find kafka-clusters by environment
   rpc findByEnvironmentId(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusters) {
+      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -43,7 +43,7 @@ service KafkaClusterQueryController {
 
   //find kafka-clusters by kube-cluster
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusters) {
+      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -65,7 +65,7 @@ service KafkaClusterQueryController {
 service KafkaTopicQueryController {
   //find kafka topics by kafka-cluster id
   rpc findByKafkaClusterId(cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaTopics) {
+      returns (cloud.planton.apis.code2cloud.v1.kafkacluster.model.KafkaTopicList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

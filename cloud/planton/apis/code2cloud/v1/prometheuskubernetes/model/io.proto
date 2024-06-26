@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.prometheuskubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/prometheuskubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of prometheus-kubernetes
+message PrometheusKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of prometheus-kubernetes
+message PrometheusKubernetesList {
+  repeated PrometheusKubernetes entries = 1;
+}
+
+//wrapper for prometheus-kubernetes password
+message PrometheusKubernetesPassword {
+  string value = 1;
+}
+
+//response for paginated query to list prometheus-kubernetes
+message PrometheusKubernetesPage {
+  int32 total_pages = 1;
+  repeated PrometheusKubernetes entries = 2;
+}

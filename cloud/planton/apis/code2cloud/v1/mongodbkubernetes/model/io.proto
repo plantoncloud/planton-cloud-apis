@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/mongodbkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of mongodb-kubernetes
+message MongodbKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of mongodb-kubernetes
+message MongodbKubernetesList {
+  repeated MongodbKubernetes entries = 1;
+}
+
+//wrapper for mongodb-kubernetes password
+message MongodbKubernetesPassword {
+  string value = 1;
+}
+
+//response for paginated query to list mongodb-kubernetess
+message MongodbKubernetesPage {
+  int32 total_pages = 1;
+  repeated MongodbKubernetes entries = 2;
+}

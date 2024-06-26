@@ -13,12 +13,12 @@ message CustomEndpointId {
 }
 
 //list of custom-endpoints
-message CustomEndpoints {
+message CustomEndpointList {
   repeated CustomEndpoint entries = 1;
 }
 
 //response for paginated query to list custom-endpoints
-message CustomEndpointList {
+message CustomEndpointPage {
   int32 total_pages = 1;
   repeated CustomEndpoint entries = 2;
 }

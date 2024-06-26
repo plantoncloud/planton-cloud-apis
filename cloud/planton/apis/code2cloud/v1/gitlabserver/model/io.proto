@@ -13,7 +13,7 @@ message GitlabServerId {
 }
 
 //list of gitlab-servers
-message GitlabServers {
+message GitlabServerList {
   repeated GitlabServer entries = 1;
 }
 
@@ -23,7 +23,7 @@ message GitlabServerPassword {
 }
 
 //response for paginated query to list gitlab-servers
-message GitlabServerList {
+message GitlabServerPage {
   int32 total_pages = 1;
   repeated GitlabServer entries = 2;
 }

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/elasticsearchkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of elasticsearch-kubernetes
+message ElasticsearchKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of elasticsearch-kubernetes
+message ElasticsearchKubernetesList {
+  repeated ElasticsearchKubernetes entries = 1;
+}
+
+//wrapper for elasticsearch-kubernetes password
+message ElasticsearchKubernetesPassword {
+  string value = 1;
+}
+
+//response for paginated query to list elasticsearch-kubernetes
+message ElasticsearchKubernetesPage {
+  int32 total_pages = 1;
+  repeated ElasticsearchKubernetes entries = 2;
+}

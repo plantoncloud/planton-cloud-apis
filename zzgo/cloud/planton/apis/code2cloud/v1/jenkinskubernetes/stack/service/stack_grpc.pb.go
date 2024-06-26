@@ -27,7 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type JenkinsKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.JenkinsKubernetesKubernetesStackInput, opts ...grpc.CallOption) (JenkinsKubernetesStackController_ExecuteClient, error)
+	Execute(ctx context.Context, in *model.JenkinsKubernetesStackInput, opts ...grpc.CallOption) (JenkinsKubernetesStackController_ExecuteClient, error)
 }
 
 type jenkinsKubernetesStackControllerClient struct {
@@ -38,7 +38,7 @@ func NewJenkinsKubernetesStackControllerClient(cc grpc.ClientConnInterface) Jenk
 	return &jenkinsKubernetesStackControllerClient{cc}
 }
 
-func (c *jenkinsKubernetesStackControllerClient) Execute(ctx context.Context, in *model.JenkinsKubernetesKubernetesStackInput, opts ...grpc.CallOption) (JenkinsKubernetesStackController_ExecuteClient, error) {
+func (c *jenkinsKubernetesStackControllerClient) Execute(ctx context.Context, in *model.JenkinsKubernetesStackInput, opts ...grpc.CallOption) (JenkinsKubernetesStackController_ExecuteClient, error) {
 	stream, err := c.cc.NewStream(ctx, &JenkinsKubernetesStackController_ServiceDesc.Streams[0], JenkinsKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func (c *jenkinsKubernetesStackControllerClient) Execute(ctx context.Context, in
 }
 
 type JenkinsKubernetesStackController_ExecuteClient interface {
-	Recv() (*model.JenkinsKubernetesKubernetesStackResponse, error)
+	Recv() (*model.JenkinsKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
@@ -62,8 +62,8 @@ type jenkinsKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *jenkinsKubernetesStackControllerExecuteClient) Recv() (*model.JenkinsKubernetesKubernetesStackResponse, error) {
-	m := new(model.JenkinsKubernetesKubernetesStackResponse)
+func (x *jenkinsKubernetesStackControllerExecuteClient) Recv() (*model.JenkinsKubernetesStackResponse, error) {
+	m := new(model.JenkinsKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -74,14 +74,14 @@ func (x *jenkinsKubernetesStackControllerExecuteClient) Recv() (*model.JenkinsKu
 // All implementations should embed UnimplementedJenkinsKubernetesStackControllerServer
 // for forward compatibility
 type JenkinsKubernetesStackControllerServer interface {
-	Execute(*model.JenkinsKubernetesKubernetesStackInput, JenkinsKubernetesStackController_ExecuteServer) error
+	Execute(*model.JenkinsKubernetesStackInput, JenkinsKubernetesStackController_ExecuteServer) error
 }
 
 // UnimplementedJenkinsKubernetesStackControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedJenkinsKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedJenkinsKubernetesStackControllerServer) Execute(*model.JenkinsKubernetesKubernetesStackInput, JenkinsKubernetesStackController_ExecuteServer) error {
+func (UnimplementedJenkinsKubernetesStackControllerServer) Execute(*model.JenkinsKubernetesStackInput, JenkinsKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
@@ -97,7 +97,7 @@ func RegisterJenkinsKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv
 }
 
 func _JenkinsKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(model.JenkinsKubernetesKubernetesStackInput)
+	m := new(model.JenkinsKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
@@ -105,7 +105,7 @@ func _JenkinsKubernetesStackController_Execute_Handler(srv interface{}, stream g
 }
 
 type JenkinsKubernetesStackController_ExecuteServer interface {
-	Send(*model.JenkinsKubernetesKubernetesStackResponse) error
+	Send(*model.JenkinsKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
@@ -113,7 +113,7 @@ type jenkinsKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *jenkinsKubernetesStackControllerExecuteServer) Send(m *model.JenkinsKubernetesKubernetesStackResponse) error {
+func (x *jenkinsKubernetesStackControllerExecuteServer) Send(m *model.JenkinsKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 

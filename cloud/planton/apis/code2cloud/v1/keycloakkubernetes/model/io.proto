@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.keycloakkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/keycloakkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of keycloak-kubernetes
+message KeycloakKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of keycloak-kubernetess
+message KeycloakKubernetess {
+  repeated KeycloakKubernetes entries = 1;
+}
+
+//wrapper for keycloak-kubernetes password
+message KeycloakKubernetesPassword {
+  string value = 1;
+}
+
+//response for paginated query to list keycloak-kubernetess
+message KeycloakKubernetesList {
+  int32 total_pages = 1;
+  repeated KeycloakKubernetes entries = 2;
+}

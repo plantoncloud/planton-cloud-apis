@@ -6,12 +6,12 @@ import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
 import "buf/validate/validate.proto";
 
 // list of cloud accounts
-message CloudAccounts {
+message CloudAccountList {
   repeated CloudAccount entries = 1;
 }
 
 // response for paginated query to get list of cloud accounts
-message CloudAccountList {
+message CloudAccountPage {
   int32 total_pages = 1;
   repeated CloudAccount entries = 2;
 }

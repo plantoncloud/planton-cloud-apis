@@ -13,12 +13,12 @@ message JenkinsServerId {
 }
 
 //list of jenkins-servers
-message JenkinsServers {
+message JenkinsServerList {
   repeated JenkinsServer entries = 1;
 }
 
 //response for paginated query to list jenkins-servers
-message JenkinsServerList {
+message JenkinsServerPage {
   int32 total_pages = 1;
   repeated JenkinsServer entries = 2;
 }

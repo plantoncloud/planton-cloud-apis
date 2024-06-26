@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.argocdkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/argocdkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of argocd-kubernetes
+message ArgocdKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of argocd-kubernetess
+message ArgocdKubernetesList {
+  repeated ArgocdKubernetes entries = 1;
+}
+
+//response for paginated query to list argocd-kubernetes
+message ArgocdKubernetesPage {
+  int32 total_pages = 1;
+  repeated ArgocdKubernetes entries = 2;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.solrkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of solr-kubernetes
+message SolrKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of solr-kubernetess
+message SolrKubernetesList {
+  repeated SolrKubernetes entries = 1;
+}
+
+//wrapper for solr-kubernetes password
+message SolrKubernetesPassword {
+  string value = 1;
+}
+
+//response for paginated query to list solr-kubernetes
+message SolrKubernetesPage {
+  int32 total_pages = 1;
+  repeated SolrKubernetes entries = 2;
+}

@@ -13,12 +13,12 @@ message CodeServerId {
 }
 
 //list of postgres-clusters
-message CodeServers {
+message CodeServerList {
   repeated CodeServer entries = 1;
 }
 
 //response for paginated query to list postgres-clusters
-message CodeServerList {
+message CodeServerPage {
   int32 total_pages = 1;
   repeated CodeServer entries = 2;
 }

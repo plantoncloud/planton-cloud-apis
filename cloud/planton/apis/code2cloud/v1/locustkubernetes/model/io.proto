@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.locustkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/locustkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of locust-kubernetes
+message LocustKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of locust-kubernetes
+message LocustKubernetesList {
+  repeated LocustKubernetes entries = 1;
+}
+
+//response for paginated query to list locust-kubernetes
+message LocustKubernetesPage {
+  int32 total_pages = 1;
+  repeated LocustKubernetes entries = 2;
+}
