@@ -137,6 +137,17 @@ service KubeClusterKubernetesObjectQueryController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
 
+  //get details of a pod
+  rpc getPod(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup kubernetes pod";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+
   //stream logs of all kubernetes pods running in a kube-cluster on the specified filters
   rpc streamPodLogs(cloud.planton.apis.code2cloud.v1.kubecluster.model.StreamKubeClusterPodLogsInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.PodLogLine) {
@@ -165,6 +176,10 @@ service ApiResourceKubernetesObjectQueryController {
   //find list of pods that belong to a planton-cloud api-resource with provided filters
   rpc findPods(cloud.planton.apis.code2cloud.v1.kubecluster.model.FindApiResourcePodsInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pods);
+
+  //get details of a pod
+  rpc getPod(cloud.planton.apis.code2cloud.v1.kubecluster.model.ApiResourceKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.Pod);
 
   //stream logs of all kubernetes pods that correspond to a planton-cloud api-resource based
   // on the specified filters
