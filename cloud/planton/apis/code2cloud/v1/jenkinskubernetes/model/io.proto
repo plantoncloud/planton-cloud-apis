@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.jenkinskubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/jenkinskubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of jenkins-kubernetes
+message JenkinsKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of jenkins-kubernetes
+message JenkinsKubernetesList {
+  repeated JenkinsKubernetes entries = 1;
+}
+
+//response for paginated query to list jenkins-kubernetess
+message JenkinsKubernetesPage {
+  int32 total_pages = 1;
+  repeated JenkinsKubernetes entries = 2;
+}
+
+//wrapper for jenkins-kubernetes password
+message JenkinsKubernetesPassword {
+  string value = 1;
+}

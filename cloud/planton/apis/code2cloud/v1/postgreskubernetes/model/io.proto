@@ -13,12 +13,12 @@ message PostgresKubernetesId {
 }
 
 //list of postgres-kubernetess
-message PostgresKubernetess {
+message PostgresKubernetesList {
   repeated PostgresKubernetes entries = 1;
 }
 
 //response for paginated query to list postgres-kubernetess
-message PostgresKubernetesList {
+message PostgresKubernetesPage {
   int32 total_pages = 1;
   repeated PostgresKubernetes entries = 2;
 }

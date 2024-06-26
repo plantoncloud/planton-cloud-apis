@@ -251,4 +251,11 @@ enum ApiResourceIamPermission {
   postgres_kubernetes_get = 172;
   postgres_kubernetes_restore = 173;
   postgres_kubernetes_update = 174;
+
+  // jenkins_kubernetes
+  jenkins_kubernetes_create = 175;
+  jenkins_kubernetes_delete = 176;
+  jenkins_kubernetes_get = 177;
+  jenkins_kubernetes_restore = 178;
+  jenkins_kubernetes_update = 179;
 }

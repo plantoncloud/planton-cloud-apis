@@ -40,4 +40,5 @@ enum ApiResourceKind {
   grafana_instance = 34;
   locust_cluster = 35;
   postgres_kubernetes = 36;
+  jenkins_kubernetes = 37;
 }
