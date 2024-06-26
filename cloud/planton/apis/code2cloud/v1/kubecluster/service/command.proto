@@ -274,14 +274,11 @@ service KubeClusterKubernetesObjectCommandController {
   /**
    * Send the next command to execute for kube-ctl exec.
    * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+   * NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
+    all other api-resources and kube-cluster resources.
    */
   rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
-      returns (google.protobuf.Empty) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "api_resource.resource_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to run command in pod container";
-  }
+      returns (google.protobuf.Empty);
 }
 
 // api-resource kubernetes objects command controller

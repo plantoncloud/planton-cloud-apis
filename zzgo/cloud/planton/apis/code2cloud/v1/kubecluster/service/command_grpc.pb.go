@@ -750,6 +750,8 @@ type KubeClusterKubernetesObjectCommandControllerClient interface {
 	// *
 	// Send the next command to execute for kube-ctl exec.
 	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+	// NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
+	// all other api-resources and kube-cluster resources.
 	BrowserExecuteNextCommandInPodContainer(ctx context.Context, in *model.BrowserExecuteNextCommandInPodContainerInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -868,6 +870,8 @@ type KubeClusterKubernetesObjectCommandControllerServer interface {
 	// *
 	// Send the next command to execute for kube-ctl exec.
 	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+	// NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
+	// all other api-resources and kube-cluster resources.
 	BrowserExecuteNextCommandInPodContainer(context.Context, *model.BrowserExecuteNextCommandInPodContainerInput) (*emptypb.Empty, error)
 }
 
