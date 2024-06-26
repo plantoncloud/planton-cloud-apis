@@ -726,9 +726,11 @@ var KubeClusterNodePoolGcpCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	KubeClusterKubernetesObjectCommandController_Update_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/update"
-	KubeClusterKubernetesObjectCommandController_Delete_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/delete"
-	KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/execIntoPodContainer"
+	KubeClusterKubernetesObjectCommandController_Update_FullMethodName                                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/update"
+	KubeClusterKubernetesObjectCommandController_Delete_FullMethodName                                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/delete"
+	KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/execIntoPodContainer"
+	KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainer_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/browserExecIntoPodContainer"
+	KubeClusterKubernetesObjectCommandController_BrowserExecuteNextCommandInPodContainer_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectCommandController/browserExecuteNextCommandInPodContainer"
 )
 
 // KubeClusterKubernetesObjectCommandControllerClient is the client API for KubeClusterKubernetesObjectCommandController service.
@@ -741,6 +743,14 @@ type KubeClusterKubernetesObjectCommandControllerClient interface {
 	Delete(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model2.KubernetesObject, error)
 	// mimic kubectl exec for a container on kube-cluster
 	ExecIntoPodContainer(ctx context.Context, opts ...grpc.CallOption) (KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerClient, error)
+	// *
+	// Mimic kubectl exec for a container on a kube-cluster from browsers.
+	// This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+	BrowserExecIntoPodContainer(ctx context.Context, in *model.ExecIntoKubeClusterPodContainerInput, opts ...grpc.CallOption) (KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerClient, error)
+	// *
+	// Send the next command to execute for kube-ctl exec.
+	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+	BrowserExecuteNextCommandInPodContainer(ctx context.Context, in *model.BrowserExecuteNextCommandInPodContainerInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type kubeClusterKubernetesObjectCommandControllerClient struct {
@@ -800,6 +810,47 @@ func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerClient)
 	return m, nil
 }
 
+func (c *kubeClusterKubernetesObjectCommandControllerClient) BrowserExecIntoPodContainer(ctx context.Context, in *model.ExecIntoKubeClusterPodContainerInput, opts ...grpc.CallOption) (KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesObjectCommandController_ServiceDesc.Streams[1], KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainer_FullMethodName, opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerClient interface {
+	Recv() (*model.BrowserExecIntoPodContainerResponse, error)
+	grpc.ClientStream
+}
+
+type kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerClient struct {
+	grpc.ClientStream
+}
+
+func (x *kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerClient) Recv() (*model.BrowserExecIntoPodContainerResponse, error) {
+	m := new(model.BrowserExecIntoPodContainerResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *kubeClusterKubernetesObjectCommandControllerClient) BrowserExecuteNextCommandInPodContainer(ctx context.Context, in *model.BrowserExecuteNextCommandInPodContainerInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesObjectCommandController_BrowserExecuteNextCommandInPodContainer_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // KubeClusterKubernetesObjectCommandControllerServer is the server API for KubeClusterKubernetesObjectCommandController service.
 // All implementations should embed UnimplementedKubeClusterKubernetesObjectCommandControllerServer
 // for forward compatibility
@@ -810,6 +861,14 @@ type KubeClusterKubernetesObjectCommandControllerServer interface {
 	Delete(context.Context, *model.KubeClusterKubernetesObject) (*model2.KubernetesObject, error)
 	// mimic kubectl exec for a container on kube-cluster
 	ExecIntoPodContainer(KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerServer) error
+	// *
+	// Mimic kubectl exec for a container on a kube-cluster from browsers.
+	// This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+	BrowserExecIntoPodContainer(*model.ExecIntoKubeClusterPodContainerInput, KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerServer) error
+	// *
+	// Send the next command to execute for kube-ctl exec.
+	// This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+	BrowserExecuteNextCommandInPodContainer(context.Context, *model.BrowserExecuteNextCommandInPodContainerInput) (*emptypb.Empty, error)
 }
 
 // UnimplementedKubeClusterKubernetesObjectCommandControllerServer should be embedded to have forward compatible implementations.
@@ -824,6 +883,12 @@ func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) Delete(co
 }
 func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) ExecIntoPodContainer(KubeClusterKubernetesObjectCommandController_ExecIntoPodContainerServer) error {
 	return status.Errorf(codes.Unimplemented, "method ExecIntoPodContainer not implemented")
+}
+func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) BrowserExecIntoPodContainer(*model.ExecIntoKubeClusterPodContainerInput, KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerServer) error {
+	return status.Errorf(codes.Unimplemented, "method BrowserExecIntoPodContainer not implemented")
+}
+func (UnimplementedKubeClusterKubernetesObjectCommandControllerServer) BrowserExecuteNextCommandInPodContainer(context.Context, *model.BrowserExecuteNextCommandInPodContainerInput) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BrowserExecuteNextCommandInPodContainer not implemented")
 }
 
 // UnsafeKubeClusterKubernetesObjectCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -899,6 +964,45 @@ func (x *kubeClusterKubernetesObjectCommandControllerExecIntoPodContainerServer)
 	return m, nil
 }
 
+func _KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainer_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(model.ExecIntoKubeClusterPodContainerInput)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(KubeClusterKubernetesObjectCommandControllerServer).BrowserExecIntoPodContainer(m, &kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerServer{stream})
+}
+
+type KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainerServer interface {
+	Send(*model.BrowserExecIntoPodContainerResponse) error
+	grpc.ServerStream
+}
+
+type kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerServer struct {
+	grpc.ServerStream
+}
+
+func (x *kubeClusterKubernetesObjectCommandControllerBrowserExecIntoPodContainerServer) Send(m *model.BrowserExecIntoPodContainerResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _KubeClusterKubernetesObjectCommandController_BrowserExecuteNextCommandInPodContainer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.BrowserExecuteNextCommandInPodContainerInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).BrowserExecuteNextCommandInPodContainer(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterKubernetesObjectCommandController_BrowserExecuteNextCommandInPodContainer_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterKubernetesObjectCommandControllerServer).BrowserExecuteNextCommandInPodContainer(ctx, req.(*model.BrowserExecuteNextCommandInPodContainerInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // KubeClusterKubernetesObjectCommandController_ServiceDesc is the grpc.ServiceDesc for KubeClusterKubernetesObjectCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -914,6 +1018,10 @@ var KubeClusterKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "delete",
 			Handler:    _KubeClusterKubernetesObjectCommandController_Delete_Handler,
 		},
+		{
+			MethodName: "browserExecuteNextCommandInPodContainer",
+			Handler:    _KubeClusterKubernetesObjectCommandController_BrowserExecuteNextCommandInPodContainer_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -921,6 +1029,11 @@ var KubeClusterKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:       _KubeClusterKubernetesObjectCommandController_ExecIntoPodContainer_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
+		},
+		{
+			StreamName:    "browserExecIntoPodContainer",
+			Handler:       _KubeClusterKubernetesObjectCommandController_BrowserExecIntoPodContainer_Handler,
+			ServerStreams: true,
 		},
 	},
 	Metadata: "cloud/planton/apis/code2cloud/v1/kubecluster/service/command.proto",

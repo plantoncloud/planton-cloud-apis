@@ -258,6 +258,30 @@ service KubeClusterKubernetesObjectCommandController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to exec into pod container";
   }
+
+  /**
+* Mimic kubectl exec for a container on a kube-cluster from browsers.
+* This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+*/
+  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerResponse) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to exec into pod container";
+  }
+
+  /**
+   * Send the next command to execute for kube-ctl exec.
+   * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+   */
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
+      returns (google.protobuf.Empty) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "api_resource.resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to run command in pod container";
+  }
 }
 
 // api-resource kubernetes objects command controller
