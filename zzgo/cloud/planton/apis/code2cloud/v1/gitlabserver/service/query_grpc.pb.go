@@ -38,10 +38,10 @@ type GitlabServerQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServers, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServerList, error)
 	// find gitlab-servers by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServers, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServers, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServerList, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServerList, error)
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.GitlabServerId, opts ...grpc.CallOption) (*model.GitlabServerPassword, error)
@@ -64,8 +64,8 @@ func (c *gitlabServerQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *gitlabServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
-	out := new(model.GitlabServers)
+func (c *gitlabServerQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabServerList, error) {
+	out := new(model.GitlabServerList)
 	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -73,8 +73,8 @@ func (c *gitlabServerQueryControllerClient) FindByProductId(ctx context.Context,
 	return out, nil
 }
 
-func (c *gitlabServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
-	out := new(model.GitlabServers)
+func (c *gitlabServerQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabServerList, error) {
+	out := new(model.GitlabServerList)
 	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -82,8 +82,8 @@ func (c *gitlabServerQueryControllerClient) FindByEnvironmentId(ctx context.Cont
 	return out, nil
 }
 
-func (c *gitlabServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServers, error) {
-	out := new(model.GitlabServers)
+func (c *gitlabServerQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabServerList, error) {
+	out := new(model.GitlabServerList)
 	err := c.cc.Invoke(ctx, GitlabServerQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -108,10 +108,10 @@ type GitlabServerQueryControllerServer interface {
 	GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error)
 	// find gitlab-servers by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServers, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServerList, error)
 	// find gitlab-servers by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServers, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServers, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServerList, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServerList, error)
 	// look up gitlab-server sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error)
@@ -124,13 +124,13 @@ type UnimplementedGitlabServerQueryControllerServer struct {
 func (UnimplementedGitlabServerQueryControllerServer) GetById(context.Context, *model.GitlabServerId) (*model.GitlabServer, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedGitlabServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GitlabServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedGitlabServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedGitlabServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServers, error) {
+func (UnimplementedGitlabServerQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabServerList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 func (UnimplementedGitlabServerQueryControllerServer) GetPassword(context.Context, *model.GitlabServerId) (*model.GitlabServerPassword, error) {

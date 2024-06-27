@@ -13,17 +13,11 @@ message RedisClusterId {
 }
 
 //list of redis-clusters
-message RedisClusters {
+message RedisClusterList {
   repeated RedisCluster entries = 1;
 }
 
 //wrapper for redis-cluster password
 message RedisClusterPassword {
   string value = 1;
-}
-
-//response for paginated query to list redis-clusters
-message RedisClusterList {
-  int32 total_pages = 1;
-  repeated RedisCluster entries = 2;
 }

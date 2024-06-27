@@ -17,12 +17,6 @@ message MicroserviceKubernetesList {
   repeated MicroserviceKubernetes entries = 1;
 }
 
-//response for paginated query to list microservice-kubernetes
-message MicroserviceKubernetesPage {
-  int32 total_pages = 1;
-  repeated MicroserviceKubernetes entries = 2;
-}
-
 //input for query to get microservice-kubernetes log stream
 message GetMicroserviceKubernetesLogStreamQueryInput {
   //id of the microservice-kubernetes

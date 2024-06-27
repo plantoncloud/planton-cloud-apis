@@ -21,9 +21,3 @@ message PrometheusKubernetesList {
 message PrometheusKubernetesPassword {
   string value = 1;
 }
-
-//response for paginated query to list prometheus-kubernetes
-message PrometheusKubernetesPage {
-  int32 total_pages = 1;
-  repeated PrometheusKubernetes entries = 2;
-}

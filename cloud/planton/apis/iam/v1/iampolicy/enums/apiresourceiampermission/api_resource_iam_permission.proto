@@ -335,4 +335,11 @@ enum ApiResourceIamPermission {
   grafana_kubernetes_get = 232;
   grafana_kubernetes_restore = 233;
   grafana_kubernetes_update = 234;
+
+  // keycloak_kubernetes
+  keycloak_kubernetes_create = 235;
+  keycloak_kubernetes_delete = 236;
+  keycloak_kubernetes_get = 237;
+  keycloak_kubernetes_restore = 238;
+  keycloak_kubernetes_update = 239;
 }

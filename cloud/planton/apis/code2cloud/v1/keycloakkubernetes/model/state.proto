@@ -18,8 +18,8 @@ message KeycloakKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "kcs";
-  //id format "kcs-<environment-id>-<keycloak-kubernetes-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "kck8s";
+  //id format "kck8s-<environment-id>-<keycloak-kubernetes-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -77,8 +77,11 @@ message KeycloakKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //kubernetes spec
-  KeycloakKubernetesSpecKubernetesSpec kubernetes = 2;
+  //keycloak-container spec
+  KeycloakKubernetesSpecContainerSpec keycloak_container = 2;
+
+  //keycloak-kubernetes ingress-spec
+  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //keycloak-kubernetes status.
@@ -92,54 +95,6 @@ message KeycloakKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //kubernetes status
-  KeycloakKubernetesStatusKubernetesStatus kubernetes = 1;
-}
-
-// keycloak-kubernetes kubernetes spec
-message KeycloakKubernetesSpecKubernetesSpec {
-  //keycloak-container spec
-  KeycloakKubernetesSpecKubernetesSpecKeycloakContainerSpec keycloak_container = 1;
-
-  //keycloak-kubernetes ingress-spec
-  KeycloakKubernetesSpecKubernetesSpecIngressSpec ingress = 2;
-
-}
-
-// keycloak-kubernetes kubernetes keycloak-container spec
-message KeycloakKubernetesSpecKubernetesSpecKeycloakContainerSpec {
-  //keycloak container cpu and memory resources.
-  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (buf.validate.field).required = true
-  ];
-}
-
-// keycloak-kubernetes kubernetes ingress spec
-message KeycloakKubernetesSpecKubernetesSpecIngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating keycloak endpoints.
-  string endpoint_domain_name = 3;
-}
-
-//keycloak-kubernetes kubernetes status
-message KeycloakKubernetesStatusKubernetesStatus {
   //kubernetes namespace in which keycloak-kubernetes is created.
   string namespace = 1;
 
@@ -160,6 +115,19 @@ message KeycloakKubernetesStatusKubernetesStatus {
   string kube_endpoint = 4;
 
   //public endpoint to open keycloak-kubernetes from clients outside kubernetes.
-  //ex: https://kcs-planton-pcs-dev-main.data.dev.planton.live:6379/keycloak
-  string ingress_endpoint = 5;
+  //ex: https://kck8s-planton-pcs-dev-main.data.dev.planton.live
+  string external_hostname = 5;
+
+  //internal endpoint to open keycloak-kubernetes from clients inside kubernetes.
+  //ex: https://kck8s-planton-pcs-dev-main.data-internal.dev.planton.live
+  string internal_hostname = 6;
+}
+
+// keycloak-kubernetes kubernetes keycloak-container spec
+message KeycloakKubernetesSpecContainerSpec {
+  //keycloak container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
 }

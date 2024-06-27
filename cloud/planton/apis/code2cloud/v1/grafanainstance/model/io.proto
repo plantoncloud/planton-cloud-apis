@@ -16,9 +16,3 @@ message GrafanaInstanceId {
 message GrafanaInstanceList {
   repeated GrafanaInstance entries = 1;
 }
-
-//response for paginated query to list grafana-instance
-message GrafanaInstancePage {
-  int32 total_pages = 1;
-  repeated GrafanaInstance entries = 2;
-}

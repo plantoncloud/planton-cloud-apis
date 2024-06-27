@@ -24,15 +24,6 @@ service MicroserviceKubernetesQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice-kubernetes";
   }
 
-  //find microservice-kubernetess in a environment for a code-project
-  rpc findByEnvironmentIdByCodeProjectId(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.ByEnvironmentIdByCodeProjectIdInput)
-      returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesPage) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to for environment";
-  }
-
   //lookup a microservice-kubernetes by code project id
   rpc getByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes) {
@@ -41,10 +32,6 @@ service MicroserviceKubernetesQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice kubernetes of code project";
   }
-
-  //lookup all microservice-kubernetess by code project url
-  rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
-      returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesPage);
 
   rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.GetMicroserviceKubernetesEnvVarMapInput)
       returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesEnvVarMap) {

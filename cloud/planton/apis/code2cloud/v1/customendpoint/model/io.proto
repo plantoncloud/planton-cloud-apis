@@ -17,12 +17,6 @@ message CustomEndpointList {
   repeated CustomEndpoint entries = 1;
 }
 
-//response for paginated query to list custom-endpoints
-message CustomEndpointPage {
-  int32 total_pages = 1;
-  repeated CustomEndpoint entries = 2;
-}
-
 //AddOrUpdateCustomEndpointRouteCommandInput is used to encapsulate the details required
 //for adding a new route to a specific custom-endpoint, or updating
 //an existing one. This message is typically used to transmit data between the client and

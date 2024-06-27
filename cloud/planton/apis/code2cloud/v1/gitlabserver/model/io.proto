@@ -21,9 +21,3 @@ message GitlabServerList {
 message GitlabServerPassword {
   string value = 1;
 }
-
-//response for paginated query to list gitlab-servers
-message GitlabServerPage {
-  int32 total_pages = 1;
-  repeated GitlabServer entries = 2;
-}

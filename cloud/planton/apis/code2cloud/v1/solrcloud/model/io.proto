@@ -13,17 +13,11 @@ message SolrCloudId {
 }
 
 //list of solr-clouds
-message SolrClouds {
+message SolrCloudList {
   repeated SolrCloud entries = 1;
 }
 
 //wrapper for solr-cloud password
 message SolrCloudPassword {
   string value = 1;
-}
-
-//response for paginated query to list solr-clouds
-message SolrCloudList {
-  int32 total_pages = 1;
-  repeated SolrCloud entries = 2;
 }

@@ -38,10 +38,10 @@ type ElasticsearchClusterQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchCluster, error)
 	// find elasticsearch-clusters by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error)
 	// find elasticsearch-clusters by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error)
 	// look up elasticsearch-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.ElasticsearchClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusterPassword, error)
@@ -64,8 +64,8 @@ func (c *elasticsearchClusterQueryControllerClient) GetById(ctx context.Context,
 	return out, nil
 }
 
-func (c *elasticsearchClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error) {
-	out := new(model.ElasticsearchClusters)
+func (c *elasticsearchClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error) {
+	out := new(model.ElasticsearchClusterList)
 	err := c.cc.Invoke(ctx, ElasticsearchClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -73,8 +73,8 @@ func (c *elasticsearchClusterQueryControllerClient) FindByProductId(ctx context.
 	return out, nil
 }
 
-func (c *elasticsearchClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error) {
-	out := new(model.ElasticsearchClusters)
+func (c *elasticsearchClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error) {
+	out := new(model.ElasticsearchClusterList)
 	err := c.cc.Invoke(ctx, ElasticsearchClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -82,8 +82,8 @@ func (c *elasticsearchClusterQueryControllerClient) FindByEnvironmentId(ctx cont
 	return out, nil
 }
 
-func (c *elasticsearchClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusters, error) {
-	out := new(model.ElasticsearchClusters)
+func (c *elasticsearchClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.ElasticsearchClusterList, error) {
+	out := new(model.ElasticsearchClusterList)
 	err := c.cc.Invoke(ctx, ElasticsearchClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -108,10 +108,10 @@ type ElasticsearchClusterQueryControllerServer interface {
 	GetById(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error)
 	// find elasticsearch-clusters by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.ElasticsearchClusters, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.ElasticsearchClusterList, error)
 	// find elasticsearch-clusters by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ElasticsearchClusters, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ElasticsearchClusters, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ElasticsearchClusterList, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ElasticsearchClusterList, error)
 	// look up elasticsearch-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchClusterPassword, error)
@@ -124,13 +124,13 @@ type UnimplementedElasticsearchClusterQueryControllerServer struct {
 func (UnimplementedElasticsearchClusterQueryControllerServer) GetById(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedElasticsearchClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.ElasticsearchClusters, error) {
+func (UnimplementedElasticsearchClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.ElasticsearchClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedElasticsearchClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ElasticsearchClusters, error) {
+func (UnimplementedElasticsearchClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.ElasticsearchClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedElasticsearchClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ElasticsearchClusters, error) {
+func (UnimplementedElasticsearchClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.ElasticsearchClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 func (UnimplementedElasticsearchClusterQueryControllerServer) GetPassword(context.Context, *model.ElasticsearchClusterId) (*model.ElasticsearchClusterPassword, error) {

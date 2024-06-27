@@ -13,14 +13,8 @@ message MicroserviceInstanceId {
 }
 
 //list of microservice-instances
-message MicroserviceInstances {
-  repeated MicroserviceInstance entries = 1;
-}
-
-//response for paginated query to list microservice-instances
 message MicroserviceInstanceList {
-  int32 total_pages = 1;
-  repeated MicroserviceInstance entries = 2;
+  repeated MicroserviceInstance entries = 1;
 }
 
 //input for query to get microservice-instance log stream

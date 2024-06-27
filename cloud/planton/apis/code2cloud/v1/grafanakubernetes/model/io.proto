@@ -16,9 +16,3 @@ message GrafanaKubernetesId {
 message GrafanaKubernetesList {
   repeated GrafanaKubernetes entries = 1;
 }
-
-//response for paginated query to list grafana-instances
-message GrafanaKubernetesPage {
-  int32 total_pages = 1;
-  repeated GrafanaKubernetes entries = 2;
-}

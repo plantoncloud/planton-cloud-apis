@@ -33,12 +33,6 @@ message CodeProjectList {
   repeated CodeProject entries = 1;
 }
 
-//response for paginated query to list code projects
-message CodeProjectPage {
-  int32 total_pages = 1;
-  repeated CodeProject entries = 2;
-}
-
 //input for command to attach a machine account to code-project on upstream code-server(github/gitlab)
 message AttachMachineAccountByCodeProjectIdCommandInput {
   //email of the machine account to be attached to the code-project

@@ -217,62 +217,6 @@ func (x *CodeProjectList) GetEntries() []*CodeProject {
 	return nil
 }
 
-// response for paginated query to list code projects
-type CodeProjectPage struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	TotalPages int32          `protobuf:"varint,1,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
-	Entries    []*CodeProject `protobuf:"bytes,2,rep,name=entries,proto3" json:"entries,omitempty"`
-}
-
-func (x *CodeProjectPage) Reset() {
-	*x = CodeProjectPage{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *CodeProjectPage) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CodeProjectPage) ProtoMessage() {}
-
-func (x *CodeProjectPage) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CodeProjectPage.ProtoReflect.Descriptor instead.
-func (*CodeProjectPage) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *CodeProjectPage) GetTotalPages() int32 {
-	if x != nil {
-		return x.TotalPages
-	}
-	return 0
-}
-
-func (x *CodeProjectPage) GetEntries() []*CodeProject {
-	if x != nil {
-		return x.Entries
-	}
-	return nil
-}
-
 // input for command to attach a machine account to code-project on upstream code-server(github/gitlab)
 type AttachMachineAccountByCodeProjectIdCommandInput struct {
 	state         protoimpl.MessageState
@@ -288,7 +232,7 @@ type AttachMachineAccountByCodeProjectIdCommandInput struct {
 func (x *AttachMachineAccountByCodeProjectIdCommandInput) Reset() {
 	*x = AttachMachineAccountByCodeProjectIdCommandInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -301,7 +245,7 @@ func (x *AttachMachineAccountByCodeProjectIdCommandInput) String() string {
 func (*AttachMachineAccountByCodeProjectIdCommandInput) ProtoMessage() {}
 
 func (x *AttachMachineAccountByCodeProjectIdCommandInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -314,7 +258,7 @@ func (x *AttachMachineAccountByCodeProjectIdCommandInput) ProtoReflect() protore
 
 // Deprecated: Use AttachMachineAccountByCodeProjectIdCommandInput.ProtoReflect.Descriptor instead.
 func (*AttachMachineAccountByCodeProjectIdCommandInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{5}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AttachMachineAccountByCodeProjectIdCommandInput) GetMachineAccountEmail() string {
@@ -348,7 +292,7 @@ type CodeProjectFile struct {
 func (x *CodeProjectFile) Reset() {
 	*x = CodeProjectFile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -361,7 +305,7 @@ func (x *CodeProjectFile) String() string {
 func (*CodeProjectFile) ProtoMessage() {}
 
 func (x *CodeProjectFile) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -374,7 +318,7 @@ func (x *CodeProjectFile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeProjectFile.ProtoReflect.Descriptor instead.
 func (*CodeProjectFile) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{6}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CodeProjectFile) GetFilePath() string {
@@ -410,7 +354,7 @@ type CodeProjectFiles struct {
 func (x *CodeProjectFiles) Reset() {
 	*x = CodeProjectFiles{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -423,7 +367,7 @@ func (x *CodeProjectFiles) String() string {
 func (*CodeProjectFiles) ProtoMessage() {}
 
 func (x *CodeProjectFiles) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -436,7 +380,7 @@ func (x *CodeProjectFiles) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeProjectFiles.ProtoReflect.Descriptor instead.
 func (*CodeProjectFiles) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{7}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CodeProjectFiles) GetEntries() []*CodeProjectFile {
@@ -480,7 +424,7 @@ type CodeProjectProfile struct {
 func (x *CodeProjectProfile) Reset() {
 	*x = CodeProjectProfile{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -493,7 +437,7 @@ func (x *CodeProjectProfile) String() string {
 func (*CodeProjectProfile) ProtoMessage() {}
 
 func (x *CodeProjectProfile) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -506,7 +450,7 @@ func (x *CodeProjectProfile) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodeProjectProfile.ProtoReflect.Descriptor instead.
 func (*CodeProjectProfile) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{8}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CodeProjectProfile) GetCodeProjectDir() string {
@@ -640,7 +584,7 @@ type BuildEngineProject struct {
 func (x *BuildEngineProject) Reset() {
 	*x = BuildEngineProject{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -653,7 +597,7 @@ func (x *BuildEngineProject) String() string {
 func (*BuildEngineProject) ProtoMessage() {}
 
 func (x *BuildEngineProject) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -666,7 +610,7 @@ func (x *BuildEngineProject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BuildEngineProject.ProtoReflect.Descriptor instead.
 func (*BuildEngineProject) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{9}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *BuildEngineProject) GetTiltConfigSnippet() string {
@@ -742,7 +686,7 @@ type GenerateCodePipelineTemplateQueryInput struct {
 func (x *GenerateCodePipelineTemplateQueryInput) Reset() {
 	*x = GenerateCodePipelineTemplateQueryInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -755,7 +699,7 @@ func (x *GenerateCodePipelineTemplateQueryInput) String() string {
 func (*GenerateCodePipelineTemplateQueryInput) ProtoMessage() {}
 
 func (x *GenerateCodePipelineTemplateQueryInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -768,7 +712,7 @@ func (x *GenerateCodePipelineTemplateQueryInput) ProtoReflect() protoreflect.Mes
 
 // Deprecated: Use GenerateCodePipelineTemplateQueryInput.ProtoReflect.Descriptor instead.
 func (*GenerateCodePipelineTemplateQueryInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{10}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GenerateCodePipelineTemplateQueryInput) GetCodeProjectProfile() *CodeProjectProfile {
@@ -806,7 +750,7 @@ type GenerateCodePipelineTemplateQueryResp struct {
 func (x *GenerateCodePipelineTemplateQueryResp) Reset() {
 	*x = GenerateCodePipelineTemplateQueryResp{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -819,7 +763,7 @@ func (x *GenerateCodePipelineTemplateQueryResp) String() string {
 func (*GenerateCodePipelineTemplateQueryResp) ProtoMessage() {}
 
 func (x *GenerateCodePipelineTemplateQueryResp) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -832,7 +776,7 @@ func (x *GenerateCodePipelineTemplateQueryResp) ProtoReflect() protoreflect.Mess
 
 // Deprecated: Use GenerateCodePipelineTemplateQueryResp.ProtoReflect.Descriptor instead.
 func (*GenerateCodePipelineTemplateQueryResp) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{11}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GenerateCodePipelineTemplateQueryResp) GetTemplateInput() *CodePipelineBuildTemplateInput {
@@ -866,7 +810,7 @@ type CodePipelineTemplateContainerImages struct {
 func (x *CodePipelineTemplateContainerImages) Reset() {
 	*x = CodePipelineTemplateContainerImages{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -879,7 +823,7 @@ func (x *CodePipelineTemplateContainerImages) String() string {
 func (*CodePipelineTemplateContainerImages) ProtoMessage() {}
 
 func (x *CodePipelineTemplateContainerImages) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -892,7 +836,7 @@ func (x *CodePipelineTemplateContainerImages) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use CodePipelineTemplateContainerImages.ProtoReflect.Descriptor instead.
 func (*CodePipelineTemplateContainerImages) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{12}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *CodePipelineTemplateContainerImages) GetDockerBuild() string {
@@ -959,7 +903,7 @@ type CodePipelineBuildTemplateInput struct {
 func (x *CodePipelineBuildTemplateInput) Reset() {
 	*x = CodePipelineBuildTemplateInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -972,7 +916,7 @@ func (x *CodePipelineBuildTemplateInput) String() string {
 func (*CodePipelineBuildTemplateInput) ProtoMessage() {}
 
 func (x *CodePipelineBuildTemplateInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -985,7 +929,7 @@ func (x *CodePipelineBuildTemplateInput) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CodePipelineBuildTemplateInput.ProtoReflect.Descriptor instead.
 func (*CodePipelineBuildTemplateInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{13}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *CodePipelineBuildTemplateInput) GetPlantonCloudCliEnvironment() string {
@@ -1041,7 +985,7 @@ type CodePipelineDeployTemplateJobInput struct {
 func (x *CodePipelineDeployTemplateJobInput) Reset() {
 	*x = CodePipelineDeployTemplateJobInput{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[14]
+		mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1054,7 +998,7 @@ func (x *CodePipelineDeployTemplateJobInput) String() string {
 func (*CodePipelineDeployTemplateJobInput) ProtoMessage() {}
 
 func (x *CodePipelineDeployTemplateJobInput) ProtoReflect() protoreflect.Message {
-	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[14]
+	mi := &file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1067,7 +1011,7 @@ func (x *CodePipelineDeployTemplateJobInput) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use CodePipelineDeployTemplateJobInput.ProtoReflect.Descriptor instead.
 func (*CodePipelineDeployTemplateJobInput) Descriptor() ([]byte, []int) {
-	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{14}
+	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CodePipelineDeployTemplateJobInput) GetTemplateContainerImages() *CodePipelineTemplateContainerImages {
@@ -1158,15 +1102,6 @@ var file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDesc = [
 	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x6c, 0x0a, 0x0f, 0x43, 0x6f, 0x64, 0x65, 0x50, 0x72,
 	0x6f, 0x6a, 0x65, 0x63, 0x74, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x59, 0x0a, 0x07, 0x65, 0x6e, 0x74,
 	0x72, 0x69, 0x65, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3f, 0x2e, 0x63, 0x6c, 0x6f,
-	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
-	0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f,
-	0x64, 0x65, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
-	0x43, 0x6f, 0x64, 0x65, 0x50, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x52, 0x07, 0x65, 0x6e, 0x74,
-	0x72, 0x69, 0x65, 0x73, 0x22, 0x8d, 0x01, 0x0a, 0x0f, 0x43, 0x6f, 0x64, 0x65, 0x50, 0x72, 0x6f,
-	0x6a, 0x65, 0x63, 0x74, 0x50, 0x61, 0x67, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x74, 0x6f, 0x74, 0x61,
-	0x6c, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x74,
-	0x6f, 0x74, 0x61, 0x6c, 0x50, 0x61, 0x67, 0x65, 0x73, 0x12, 0x59, 0x0a, 0x07, 0x65, 0x6e, 0x74,
-	0x72, 0x69, 0x65, 0x73, 0x18, 0x02, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3f, 0x2e, 0x63, 0x6c, 0x6f,
 	0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e,
 	0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x63, 0x6f,
 	0x64, 0x65, 0x70, 0x72, 0x6f, 0x6a, 0x65, 0x63, 0x74, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e,
@@ -1446,58 +1381,56 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescGZI
 	return file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_goTypes = []interface{}{
-	(*CodeProjectId)(nil),                                                   // 0: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
-	(*CodeProjectIds)(nil),                                                  // 1: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectIds
-	(*CodeProjectUrl)(nil),                                                  // 2: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
-	(*CodeProjectList)(nil),                                                 // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList
-	(*CodeProjectPage)(nil),                                                 // 4: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectPage
-	(*AttachMachineAccountByCodeProjectIdCommandInput)(nil),                 // 5: cloud.planton.apis.code2cloud.v1.codeproject.model.AttachMachineAccountByCodeProjectIdCommandInput
-	(*CodeProjectFile)(nil),                                                 // 6: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFile
-	(*CodeProjectFiles)(nil),                                                // 7: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFiles
-	(*CodeProjectProfile)(nil),                                              // 8: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile
-	(*BuildEngineProject)(nil),                                              // 9: cloud.planton.apis.code2cloud.v1.codeproject.model.BuildEngineProject
-	(*GenerateCodePipelineTemplateQueryInput)(nil),                          // 10: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput
-	(*GenerateCodePipelineTemplateQueryResp)(nil),                           // 11: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryResp
-	(*CodePipelineTemplateContainerImages)(nil),                             // 12: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
-	(*CodePipelineBuildTemplateInput)(nil),                                  // 13: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput
-	(*CodePipelineDeployTemplateJobInput)(nil),                              // 14: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput
-	(*CodeProject)(nil),                                                     // 15: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject
-	(codeprojectprofile.CodeProjectLang)(0),                                 // 16: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang
-	(codeprojectprofile.CodeProjectCat)(0),                                  // 17: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat
-	(codeprojectprofile.CodeProjectCatLibSubCat)(0),                         // 18: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat
-	(codeprojectprofile.CodeProjectCatMicroserviceSubCat)(0),                // 19: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat
-	(codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat)(0),    // 20: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat
-	(codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat)(0), // 21: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat
-	(*model.MicroserviceInstance)(nil),                                      // 22: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	(*model1.ArtifactStore)(nil),                                            // 23: cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore
-	(*model2.Environment)(nil),                                              // 24: cloud.planton.apis.code2cloud.v1.environment.model.Environment
+	(*CodeProjectId)(nil),   // 0: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId
+	(*CodeProjectIds)(nil),  // 1: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectIds
+	(*CodeProjectUrl)(nil),  // 2: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl
+	(*CodeProjectList)(nil), // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList
+	(*AttachMachineAccountByCodeProjectIdCommandInput)(nil),                 // 4: cloud.planton.apis.code2cloud.v1.codeproject.model.AttachMachineAccountByCodeProjectIdCommandInput
+	(*CodeProjectFile)(nil),                                                 // 5: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFile
+	(*CodeProjectFiles)(nil),                                                // 6: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFiles
+	(*CodeProjectProfile)(nil),                                              // 7: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile
+	(*BuildEngineProject)(nil),                                              // 8: cloud.planton.apis.code2cloud.v1.codeproject.model.BuildEngineProject
+	(*GenerateCodePipelineTemplateQueryInput)(nil),                          // 9: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput
+	(*GenerateCodePipelineTemplateQueryResp)(nil),                           // 10: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryResp
+	(*CodePipelineTemplateContainerImages)(nil),                             // 11: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
+	(*CodePipelineBuildTemplateInput)(nil),                                  // 12: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput
+	(*CodePipelineDeployTemplateJobInput)(nil),                              // 13: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput
+	(*CodeProject)(nil),                                                     // 14: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject
+	(codeprojectprofile.CodeProjectLang)(0),                                 // 15: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang
+	(codeprojectprofile.CodeProjectCat)(0),                                  // 16: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat
+	(codeprojectprofile.CodeProjectCatLibSubCat)(0),                         // 17: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat
+	(codeprojectprofile.CodeProjectCatMicroserviceSubCat)(0),                // 18: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat
+	(codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat)(0),    // 19: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat
+	(codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat)(0), // 20: cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat
+	(*model.MicroserviceInstance)(nil),                                      // 21: cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	(*model1.ArtifactStore)(nil),                                            // 22: cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore
+	(*model2.Environment)(nil),                                              // 23: cloud.planton.apis.code2cloud.v1.environment.model.Environment
 }
 var file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_depIdxs = []int32{
-	15, // 0: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList.entries:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject
-	15, // 1: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectPage.entries:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject
-	6,  // 2: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFiles.entries:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFile
-	16, // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.lang:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang
-	17, // 4: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat
-	18, // 5: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.lib_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat
-	19, // 6: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat
-	20, // 7: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_api_sub_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat
-	21, // 8: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_web_app_sub_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat
-	22, // 9: cloud.planton.apis.code2cloud.v1.codeproject.model.BuildEngineProject.microservice_instance:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	8,  // 10: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput.code_project_profile:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile
-	22, // 11: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput.microservice_instances:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	13, // 12: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryResp.template_input:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput
-	23, // 13: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput.artifact_store:type_name -> cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore
-	12, // 14: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput.template_container_images:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
-	12, // 15: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.template_container_images:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
-	24, // 16: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.environment:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.Environment
-	22, // 17: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.microservice_instance:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
-	18, // [18:18] is the sub-list for method output_type
-	18, // [18:18] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+	14, // 0: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList.entries:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject
+	5,  // 1: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFiles.entries:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectFile
+	15, // 2: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.lang:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectLang
+	16, // 3: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCat
+	17, // 4: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.lib_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatLibSubCat
+	18, // 5: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCat
+	19, // 6: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_api_sub_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatApiSubSubCat
+	20, // 7: cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile.microservice_web_app_sub_sub_cat:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.enums.codeprojectprofile.CodeProjectCatMicroserviceSubCatWebAppSubSubCat
+	21, // 8: cloud.planton.apis.code2cloud.v1.codeproject.model.BuildEngineProject.microservice_instance:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	7,  // 9: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput.code_project_profile:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectProfile
+	21, // 10: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryInput.microservice_instances:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	12, // 11: cloud.planton.apis.code2cloud.v1.codeproject.model.GenerateCodePipelineTemplateQueryResp.template_input:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput
+	22, // 12: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput.artifact_store:type_name -> cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore
+	11, // 13: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineBuildTemplateInput.template_container_images:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
+	11, // 14: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.template_container_images:type_name -> cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineTemplateContainerImages
+	23, // 15: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.environment:type_name -> cloud.planton.apis.code2cloud.v1.environment.model.Environment
+	21, // 16: cloud.planton.apis.code2cloud.v1.codeproject.model.CodePipelineDeployTemplateJobInput.microservice_instance:type_name -> cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstance
+	17, // [17:17] is the sub-list for method output_type
+	17, // [17:17] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() }
@@ -1556,18 +1489,6 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*CodeProjectPage); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AttachMachineAccountByCodeProjectIdCommandInput); i {
 			case 0:
 				return &v.state
@@ -1579,7 +1500,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeProjectFile); i {
 			case 0:
 				return &v.state
@@ -1591,7 +1512,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeProjectFiles); i {
 			case 0:
 				return &v.state
@@ -1603,7 +1524,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodeProjectProfile); i {
 			case 0:
 				return &v.state
@@ -1615,7 +1536,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*BuildEngineProject); i {
 			case 0:
 				return &v.state
@@ -1627,7 +1548,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateCodePipelineTemplateQueryInput); i {
 			case 0:
 				return &v.state
@@ -1639,7 +1560,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*GenerateCodePipelineTemplateQueryResp); i {
 			case 0:
 				return &v.state
@@ -1651,7 +1572,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodePipelineTemplateContainerImages); i {
 			case 0:
 				return &v.state
@@ -1663,7 +1584,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodePipelineBuildTemplateInput); i {
 			case 0:
 				return &v.state
@@ -1675,7 +1596,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 				return nil
 			}
 		}
-		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+		file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*CodePipelineDeployTemplateJobInput); i {
 			case 0:
 				return &v.state
@@ -1688,7 +1609,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 			}
 		}
 	}
-	file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[8].OneofWrappers = []interface{}{
+	file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_msgTypes[7].OneofWrappers = []interface{}{
 		(*CodeProjectProfile_LibSubCat)(nil),
 		(*CodeProjectProfile_MicroserviceSubCat)(nil),
 		(*CodeProjectProfile_MicroserviceApiSubSubCat)(nil),
@@ -1700,7 +1621,7 @@ func file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_code2cloud_v1_codeproject_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   15,
+			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

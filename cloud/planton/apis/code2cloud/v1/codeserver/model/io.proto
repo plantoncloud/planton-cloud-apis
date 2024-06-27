@@ -17,12 +17,6 @@ message CodeServerList {
   repeated CodeServer entries = 1;
 }
 
-//response for paginated query to list postgres-clusters
-message CodeServerPage {
-  int32 total_pages = 1;
-  repeated CodeServer entries = 2;
-}
-
 //input for command to attach a machine account on upstream code-server(github/gitlab)
 message AttachMachineAccountByCodeServerIdCommandInput {
   //email of the machine account to be attached to the code-project

@@ -13,17 +13,11 @@ message KeycloakKubernetesId {
 }
 
 //list of keycloak-kubernetess
-message KeycloakKubernetess {
+message KeycloakKubernetesList {
   repeated KeycloakKubernetes entries = 1;
 }
 
 //wrapper for keycloak-kubernetes password
 message KeycloakKubernetesPassword {
   string value = 1;
-}
-
-//response for paginated query to list keycloak-kubernetess
-message KeycloakKubernetesList {
-  int32 total_pages = 1;
-  repeated KeycloakKubernetes entries = 2;
 }

@@ -13,17 +13,11 @@ message KeycloakServerId {
 }
 
 //list of keycloak-servers
-message KeycloakServers {
+message KeycloakServerList {
   repeated KeycloakServer entries = 1;
 }
 
 //wrapper for keycloak-server password
 message KeycloakServerPassword {
   string value = 1;
-}
-
-//response for paginated query to list keycloak-servers
-message KeycloakServerList {
-  int32 total_pages = 1;
-  repeated KeycloakServer entries = 2;
 }

@@ -52,4 +52,6 @@ enum ApiResourceKind {
   argocd_kubernetes = 46;
   elasticsearch_kubernetes = 47;
   grafana_kubernetes = 48;
+  keycloak_kubernetes = 49;
+
 }

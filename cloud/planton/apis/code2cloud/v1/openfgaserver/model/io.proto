@@ -13,17 +13,11 @@ message OpenfgaServerId {
 }
 
 //list of openfga-servers
-message OpenfgaServers {
+message OpenfgaServerList {
   repeated OpenfgaServer entries = 1;
 }
 
 //wrapper for openfga-server password
 message OpenfgaServerPassword {
   string value = 1;
-}
-
-//response for paginated query to list openfga-servers
-message OpenfgaServerList {
-  int32 total_pages = 1;
-  repeated OpenfgaServer entries = 2;
 }

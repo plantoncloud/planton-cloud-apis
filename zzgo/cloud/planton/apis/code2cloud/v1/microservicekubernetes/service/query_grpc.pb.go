@@ -21,11 +21,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	MicroserviceKubernetesQueryController_GetById_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getById"
-	MicroserviceKubernetesQueryController_FindByEnvironmentIdByCodeProjectId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/findByEnvironmentIdByCodeProjectId"
-	MicroserviceKubernetesQueryController_GetByCodeProjectId_FullMethodName                 = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getByCodeProjectId"
-	MicroserviceKubernetesQueryController_FindByCodeProjectUrl_FullMethodName               = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/findByCodeProjectUrl"
-	MicroserviceKubernetesQueryController_GetEnvVarMap_FullMethodName                       = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getEnvVarMap"
+	MicroserviceKubernetesQueryController_GetById_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getById"
+	MicroserviceKubernetesQueryController_GetByCodeProjectId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getByCodeProjectId"
+	MicroserviceKubernetesQueryController_GetEnvVarMap_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.microservicekubernetes.service.MicroserviceKubernetesQueryController/getEnvVarMap"
 )
 
 // MicroserviceKubernetesQueryControllerClient is the client API for MicroserviceKubernetesQueryController service.
@@ -34,12 +32,8 @@ const (
 type MicroserviceKubernetesQueryControllerClient interface {
 	// look up microservice-kubernetes using microservice-kubernetes id
 	GetById(ctx context.Context, in *model.MicroserviceKubernetesId, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
-	// find microservice-kubernetess in a environment for a code-project
-	FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetesPage, error)
 	// lookup a microservice-kubernetes by code project id
 	GetByCodeProjectId(ctx context.Context, in *model1.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
-	// lookup all microservice-kubernetess by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceKubernetesPage, error)
 	GetEnvVarMap(ctx context.Context, in *model.GetMicroserviceKubernetesEnvVarMapInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetesEnvVarMap, error)
 }
 
@@ -60,27 +54,9 @@ func (c *microserviceKubernetesQueryControllerClient) GetById(ctx context.Contex
 	return out, nil
 }
 
-func (c *microserviceKubernetesQueryControllerClient) FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetesPage, error) {
-	out := new(model.MicroserviceKubernetesPage)
-	err := c.cc.Invoke(ctx, MicroserviceKubernetesQueryController_FindByEnvironmentIdByCodeProjectId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *microserviceKubernetesQueryControllerClient) GetByCodeProjectId(ctx context.Context, in *model1.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesQueryController_GetByCodeProjectId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *microserviceKubernetesQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceKubernetesPage, error) {
-	out := new(model.MicroserviceKubernetesPage)
-	err := c.cc.Invoke(ctx, MicroserviceKubernetesQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,12 +78,8 @@ func (c *microserviceKubernetesQueryControllerClient) GetEnvVarMap(ctx context.C
 type MicroserviceKubernetesQueryControllerServer interface {
 	// look up microservice-kubernetes using microservice-kubernetes id
 	GetById(context.Context, *model.MicroserviceKubernetesId) (*model.MicroserviceKubernetes, error)
-	// find microservice-kubernetess in a environment for a code-project
-	FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceKubernetesPage, error)
 	// lookup a microservice-kubernetes by code project id
 	GetByCodeProjectId(context.Context, *model1.CodeProjectId) (*model.MicroserviceKubernetes, error)
-	// lookup all microservice-kubernetess by code project url
-	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceKubernetesPage, error)
 	GetEnvVarMap(context.Context, *model.GetMicroserviceKubernetesEnvVarMapInput) (*model.MicroserviceKubernetesEnvVarMap, error)
 }
 
@@ -118,14 +90,8 @@ type UnimplementedMicroserviceKubernetesQueryControllerServer struct {
 func (UnimplementedMicroserviceKubernetesQueryControllerServer) GetById(context.Context, *model.MicroserviceKubernetesId) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedMicroserviceKubernetesQueryControllerServer) FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceKubernetesPage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentIdByCodeProjectId not implemented")
-}
 func (UnimplementedMicroserviceKubernetesQueryControllerServer) GetByCodeProjectId(context.Context, *model1.CodeProjectId) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByCodeProjectId not implemented")
-}
-func (UnimplementedMicroserviceKubernetesQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceKubernetesPage, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
 func (UnimplementedMicroserviceKubernetesQueryControllerServer) GetEnvVarMap(context.Context, *model.GetMicroserviceKubernetesEnvVarMapInput) (*model.MicroserviceKubernetesEnvVarMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEnvVarMap not implemented")
@@ -160,24 +126,6 @@ func _MicroserviceKubernetesQueryController_GetById_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MicroserviceKubernetesQueryController_FindByEnvironmentIdByCodeProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ByEnvironmentIdByCodeProjectIdInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceKubernetesQueryControllerServer).FindByEnvironmentIdByCodeProjectId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceKubernetesQueryController_FindByEnvironmentIdByCodeProjectId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesQueryControllerServer).FindByEnvironmentIdByCodeProjectId(ctx, req.(*model.ByEnvironmentIdByCodeProjectIdInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _MicroserviceKubernetesQueryController_GetByCodeProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.CodeProjectId)
 	if err := dec(in); err != nil {
@@ -192,24 +140,6 @@ func _MicroserviceKubernetesQueryController_GetByCodeProjectId_Handler(srv inter
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(MicroserviceKubernetesQueryControllerServer).GetByCodeProjectId(ctx, req.(*model1.CodeProjectId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _MicroserviceKubernetesQueryController_FindByCodeProjectUrl_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.CodeProjectUrl)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(MicroserviceKubernetesQueryControllerServer).FindByCodeProjectUrl(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: MicroserviceKubernetesQueryController_FindByCodeProjectUrl_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model1.CodeProjectUrl))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -244,16 +174,8 @@ var MicroserviceKubernetesQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MicroserviceKubernetesQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByEnvironmentIdByCodeProjectId",
-			Handler:    _MicroserviceKubernetesQueryController_FindByEnvironmentIdByCodeProjectId_Handler,
-		},
-		{
 			MethodName: "getByCodeProjectId",
 			Handler:    _MicroserviceKubernetesQueryController_GetByCodeProjectId_Handler,
-		},
-		{
-			MethodName: "findByCodeProjectUrl",
-			Handler:    _MicroserviceKubernetesQueryController_FindByCodeProjectUrl_Handler,
 		},
 		{
 			MethodName: "getEnvVarMap",

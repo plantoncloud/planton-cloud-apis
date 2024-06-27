@@ -11,12 +11,6 @@ message DnsZoneList {
   repeated DnsZone entries = 1;
 }
 
-// response for paginated query to list dns-zones
-message DnsZonePage {
-  int32 total_pages = 1;
-  repeated DnsZone entries = 2;
-}
-
 // wrapper for dns-zone name
 message DnsDomainName {
   string value = 1 [

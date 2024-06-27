@@ -21,9 +21,3 @@ message ElasticsearchKubernetesList {
 message ElasticsearchKubernetesPassword {
   string value = 1;
 }
-
-//response for paginated query to list elasticsearch-kubernetes
-message ElasticsearchKubernetesPage {
-  int32 total_pages = 1;
-  repeated ElasticsearchKubernetes entries = 2;
-}

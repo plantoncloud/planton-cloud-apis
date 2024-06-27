@@ -16,9 +16,3 @@ message HelmReleaseId {
 message HelmReleaseList {
   repeated HelmRelease entries = 1;
 }
-
-//response for paginated query to list helm-releases
-message HelmReleasePage {
-  int32 total_pages = 1;
-  repeated HelmRelease entries = 2;
-}

@@ -17,12 +17,6 @@ message JenkinsServerList {
   repeated JenkinsServer entries = 1;
 }
 
-//response for paginated query to list jenkins-servers
-message JenkinsServerPage {
-  int32 total_pages = 1;
-  repeated JenkinsServer entries = 2;
-}
-
 //wrapper for jenkins-server password
 message JenkinsServerPassword {
   string value = 1;

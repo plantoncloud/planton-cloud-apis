@@ -21,9 +21,3 @@ message OpenfgaKubernetesList {
 message OpenfgaKubernetesPassword {
   string value = 1;
 }
-
-//response for paginated query to list openfga-kubernetess
-message OpenfgaKubernetesPage {
-  int32 total_pages = 1;
-  repeated OpenfgaKubernetes entries = 2;
-}

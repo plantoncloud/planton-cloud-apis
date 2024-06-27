@@ -12,15 +12,9 @@ message PostgresKubernetesId {
   ];
 }
 
-//list of postgres-kubernetess
+//list of postgres-kubernetes
 message PostgresKubernetesList {
   repeated PostgresKubernetes entries = 1;
-}
-
-//response for paginated query to list postgres-kubernetess
-message PostgresKubernetesPage {
-  int32 total_pages = 1;
-  repeated PostgresKubernetes entries = 2;
 }
 
 //wrapper for postgres-kubernetes password

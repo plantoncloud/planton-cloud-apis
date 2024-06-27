@@ -37,11 +37,11 @@ type GrafanaInstanceQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 	// find grafana-instances by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error)
 	// find grafana-instances by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
+	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error)
 	// find grafana-instances by kube-cluster
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstances, error)
+	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error)
 }
 
 type grafanaInstanceQueryControllerClient struct {
@@ -61,8 +61,8 @@ func (c *grafanaInstanceQueryControllerClient) GetById(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *grafanaInstanceQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GrafanaInstances, error) {
-	out := new(model.GrafanaInstances)
+func (c *grafanaInstanceQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error) {
+	out := new(model.GrafanaInstanceList)
 	err := c.cc.Invoke(ctx, GrafanaInstanceQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -70,8 +70,8 @@ func (c *grafanaInstanceQueryControllerClient) FindByProductId(ctx context.Conte
 	return out, nil
 }
 
-func (c *grafanaInstanceQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstances, error) {
-	out := new(model.GrafanaInstances)
+func (c *grafanaInstanceQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error) {
+	out := new(model.GrafanaInstanceList)
 	err := c.cc.Invoke(ctx, GrafanaInstanceQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -79,8 +79,8 @@ func (c *grafanaInstanceQueryControllerClient) FindByEnvironmentId(ctx context.C
 	return out, nil
 }
 
-func (c *grafanaInstanceQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstances, error) {
-	out := new(model.GrafanaInstances)
+func (c *grafanaInstanceQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GrafanaInstanceList, error) {
+	out := new(model.GrafanaInstanceList)
 	err := c.cc.Invoke(ctx, GrafanaInstanceQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -96,11 +96,11 @@ type GrafanaInstanceQueryControllerServer interface {
 	GetById(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
 	// find grafana-instances by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.GrafanaInstances, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.GrafanaInstanceList, error)
 	// find grafana-instances by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstances, error)
+	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstanceList, error)
 	// find grafana-instances by kube-cluster
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstances, error)
+	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstanceList, error)
 }
 
 // UnimplementedGrafanaInstanceQueryControllerServer should be embedded to have forward compatible implementations.
@@ -110,13 +110,13 @@ type UnimplementedGrafanaInstanceQueryControllerServer struct {
 func (UnimplementedGrafanaInstanceQueryControllerServer) GetById(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedGrafanaInstanceQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GrafanaInstances, error) {
+func (UnimplementedGrafanaInstanceQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GrafanaInstanceList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedGrafanaInstanceQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstances, error) {
+func (UnimplementedGrafanaInstanceQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GrafanaInstanceList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedGrafanaInstanceQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstances, error) {
+func (UnimplementedGrafanaInstanceQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GrafanaInstanceList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 

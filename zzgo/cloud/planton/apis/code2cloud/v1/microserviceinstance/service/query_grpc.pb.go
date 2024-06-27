@@ -35,11 +35,11 @@ type MicroserviceInstanceQueryControllerClient interface {
 	// look up microservice-instance using microservice-instance id
 	GetById(ctx context.Context, in *model.MicroserviceInstanceId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// find microservice-instances in a environment for a code-project
-	FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
+	FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error)
 	// lookup a microservice-instance by code project id
 	GetByCodeProjectId(ctx context.Context, in *model1.CodeProjectId, opts ...grpc.CallOption) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error)
+	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error)
 	GetEnvVarMap(ctx context.Context, in *model.GetMicroserviceInstanceEnvVarMapInput, opts ...grpc.CallOption) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
@@ -60,8 +60,8 @@ func (c *microserviceInstanceQueryControllerClient) GetById(ctx context.Context,
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceInstances, error) {
-	out := new(model.MicroserviceInstances)
+func (c *microserviceInstanceQueryControllerClient) FindByEnvironmentIdByCodeProjectId(ctx context.Context, in *model.ByEnvironmentIdByCodeProjectIdInput, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error) {
+	out := new(model.MicroserviceInstanceList)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_FindByEnvironmentIdByCodeProjectId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,8 +78,8 @@ func (c *microserviceInstanceQueryControllerClient) GetByCodeProjectId(ctx conte
 	return out, nil
 }
 
-func (c *microserviceInstanceQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstances, error) {
-	out := new(model.MicroserviceInstances)
+func (c *microserviceInstanceQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.MicroserviceInstanceList, error) {
+	out := new(model.MicroserviceInstanceList)
 	err := c.cc.Invoke(ctx, MicroserviceInstanceQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -103,11 +103,11 @@ type MicroserviceInstanceQueryControllerServer interface {
 	// look up microservice-instance using microservice-instance id
 	GetById(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error)
 	// find microservice-instances in a environment for a code-project
-	FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstances, error)
+	FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstanceList, error)
 	// lookup a microservice-instance by code project id
 	GetByCodeProjectId(context.Context, *model1.CodeProjectId) (*model.MicroserviceInstance, error)
 	// lookup all microservice-instances by code project url
-	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceInstances, error)
+	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceInstanceList, error)
 	GetEnvVarMap(context.Context, *model.GetMicroserviceInstanceEnvVarMapInput) (*model.MicroserviceInstanceEnvVarMap, error)
 }
 
@@ -118,13 +118,13 @@ type UnimplementedMicroserviceInstanceQueryControllerServer struct {
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetById(context.Context, *model.MicroserviceInstanceId) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstances, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByEnvironmentIdByCodeProjectId(context.Context, *model.ByEnvironmentIdByCodeProjectIdInput) (*model.MicroserviceInstanceList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentIdByCodeProjectId not implemented")
 }
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetByCodeProjectId(context.Context, *model1.CodeProjectId) (*model.MicroserviceInstance, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByCodeProjectId not implemented")
 }
-func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceInstances, error) {
+func (UnimplementedMicroserviceInstanceQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.MicroserviceInstanceList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
 func (UnimplementedMicroserviceInstanceQueryControllerServer) GetEnvVarMap(context.Context, *model.GetMicroserviceInstanceEnvVarMapInput) (*model.MicroserviceInstanceEnvVarMap, error) {

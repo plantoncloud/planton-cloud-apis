@@ -10,12 +10,6 @@ message CloudAccountList {
   repeated CloudAccount entries = 1;
 }
 
-// response for paginated query to get list of cloud accounts
-message CloudAccountPage {
-  int32 total_pages = 1;
-  repeated CloudAccount entries = 2;
-}
-
 // wrapper for company cloud account id
 message CloudAccountId {
   string value = 1 [

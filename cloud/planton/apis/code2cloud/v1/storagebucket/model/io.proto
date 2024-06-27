@@ -6,7 +6,7 @@ import "cloud/planton/apis/code2cloud/v1/storagebucket/model/state.proto";
 import "buf/validate/validate.proto";
 
 //list of storage-buckets
-message StorageBuckets {
+message StorageBucketList {
   repeated StorageBucket entries = 1;
 }
 
@@ -15,10 +15,4 @@ message StorageBucketId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
-}
-
-//response for paginated query to list storage-buckets
-message StorageBucketList {
-  int32 total_pages = 1;
-  repeated StorageBucket entries = 2;
 }

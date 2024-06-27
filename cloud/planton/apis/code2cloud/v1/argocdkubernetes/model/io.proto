@@ -16,9 +16,3 @@ message ArgocdKubernetesId {
 message ArgocdKubernetesList {
   repeated ArgocdKubernetes entries = 1;
 }
-
-//response for paginated query to list argocd-kubernetes
-message ArgocdKubernetesPage {
-  int32 total_pages = 1;
-  repeated ArgocdKubernetes entries = 2;
-}

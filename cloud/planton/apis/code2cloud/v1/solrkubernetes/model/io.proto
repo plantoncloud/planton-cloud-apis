@@ -21,9 +21,3 @@ message SolrKubernetesList {
 message SolrKubernetesPassword {
   string value = 1;
 }
-
-//response for paginated query to list solr-kubernetes
-message SolrKubernetesPage {
-  int32 total_pages = 1;
-  repeated SolrKubernetes entries = 2;
-}

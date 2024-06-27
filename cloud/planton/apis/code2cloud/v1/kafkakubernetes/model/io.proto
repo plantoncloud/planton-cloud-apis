@@ -52,12 +52,6 @@ message AddKafkaTopicsCommandInput {
   ];
 }
 
-//response for paginated query to list kafka-kubernetes
-message KafkaKubernetesPage {
-  int32 total_pages = 1;
-  repeated KafkaKubernetes entries = 2;
-}
-
 //AddOrUpdateKafkaTopicCommandInput is used to encapsulate the details required
 //for adding a new kafka-topic to a specific kafka-kubernetes, or updating
 //an existing one. This message is typically used to transmit data between the client and

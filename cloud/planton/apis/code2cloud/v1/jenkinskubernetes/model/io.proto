@@ -17,12 +17,6 @@ message JenkinsKubernetesList {
   repeated JenkinsKubernetes entries = 1;
 }
 
-//response for paginated query to list jenkins-kubernetess
-message JenkinsKubernetesPage {
-  int32 total_pages = 1;
-  repeated JenkinsKubernetes entries = 2;
-}
-
 //wrapper for jenkins-kubernetes password
 message JenkinsKubernetesPassword {
   string value = 1;

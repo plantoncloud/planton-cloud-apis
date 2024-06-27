@@ -13,17 +13,11 @@ message MongodbClusterId {
 }
 
 //list of mongodb-clusters
-message MongodbClusters {
+message MongodbClusterList {
   repeated MongodbCluster entries = 1;
 }
 
 //wrapper for mongodb-cluster password
 message MongodbClusterPassword {
   string value = 1;
-}
-
-//response for paginated query to list mongodb-clusters
-message MongodbClusterList {
-  int32 total_pages = 1;
-  repeated MongodbCluster entries = 2;
 }

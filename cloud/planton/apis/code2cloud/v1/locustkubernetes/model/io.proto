@@ -16,9 +16,3 @@ message LocustKubernetesId {
 message LocustKubernetesList {
   repeated LocustKubernetes entries = 1;
 }
-
-//response for paginated query to list locust-kubernetes
-message LocustKubernetesPage {
-  int32 total_pages = 1;
-  repeated LocustKubernetes entries = 2;
-}

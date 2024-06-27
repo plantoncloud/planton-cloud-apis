@@ -17,12 +17,6 @@ message EnvironmentId {
   ];
 }
 
-//response for paginated query to list environments
-message EnvironmentPage {
-  int32 total_pages = 1;
-  repeated Environment entries = 2;
-}
-
 message GetByProductIdAndEnvironmentNameQueryInput {
   string product_id = 1 [
     (buf.validate.field).required = true
@@ -61,12 +55,6 @@ message EnvironmentVariableList {
   repeated EnvironmentVariable entries = 1;
 }
 
-//response for paginated query to list environment variables
-message EnvironmentVariablePage {
-  int32 total_pages = 1;
-  repeated EnvironmentVariable entries = 2;
-}
-
 //wrapper for product var id
 message EnvironmentVariableId {
   string value = 1 [
@@ -100,12 +88,6 @@ message AddEnvironmentVariablesCommandInput {
 //wrapper for list of secrets
 message EnvironmentSecretList {
   repeated EnvironmentSecret entries = 1;
-}
-
-//response for paginated query to list environment secrets
-message EnvironmentSecretPage {
-  int32 total_pages = 1;
-  repeated EnvironmentSecret entries = 2;
 }
 
 //wrapper for environment secret id

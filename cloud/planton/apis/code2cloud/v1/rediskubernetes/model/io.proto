@@ -21,9 +21,3 @@ message RedisKubernetesList {
 message RedisKubernetesPassword {
   string value = 1;
 }
-
-//response for paginated query to list redis-kubernetes
-message RedisKubernetesPage {
-  int32 total_pages = 1;
-  repeated RedisKubernetes entries = 2;
-}
