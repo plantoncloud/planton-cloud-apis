@@ -461,6 +461,7 @@ const (
 	KubeClusterKubernetesObjectQueryController_FindNamespaces_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectQueryController/findNamespaces"
 	KubeClusterKubernetesObjectQueryController_StreamKubernetesObjects_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectQueryController/streamKubernetesObjects"
 	KubeClusterKubernetesObjectQueryController_FindPods_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectQueryController/findPods"
+	KubeClusterKubernetesObjectQueryController_GetPod_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectQueryController/getPod"
 	KubeClusterKubernetesObjectQueryController_StreamPodLogs_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterKubernetesObjectQueryController/streamPodLogs"
 )
 
@@ -478,6 +479,8 @@ type KubeClusterKubernetesObjectQueryControllerClient interface {
 	StreamKubernetesObjects(ctx context.Context, in *model.StreamKubeClusterNamespaceKubernetesObjectsInput, opts ...grpc.CallOption) (KubeClusterKubernetesObjectQueryController_StreamKubernetesObjectsClient, error)
 	// find list of pods in a kube-cluster on the specified filters
 	FindPods(ctx context.Context, in *model.FindKubeClusterPodsInput, opts ...grpc.CallOption) (*model3.Pods, error)
+	// get details of a pod
+	GetPod(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model3.Pod, error)
 	// stream logs of all kubernetes pods running in a kube-cluster on the specified filters
 	StreamPodLogs(ctx context.Context, in *model.StreamKubeClusterPodLogsInput, opts ...grpc.CallOption) (KubeClusterKubernetesObjectQueryController_StreamPodLogsClient, error)
 }
@@ -549,6 +552,15 @@ func (c *kubeClusterKubernetesObjectQueryControllerClient) FindPods(ctx context.
 	return out, nil
 }
 
+func (c *kubeClusterKubernetesObjectQueryControllerClient) GetPod(ctx context.Context, in *model.KubeClusterKubernetesObject, opts ...grpc.CallOption) (*model3.Pod, error) {
+	out := new(model3.Pod)
+	err := c.cc.Invoke(ctx, KubeClusterKubernetesObjectQueryController_GetPod_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *kubeClusterKubernetesObjectQueryControllerClient) StreamPodLogs(ctx context.Context, in *model.StreamKubeClusterPodLogsInput, opts ...grpc.CallOption) (KubeClusterKubernetesObjectQueryController_StreamPodLogsClient, error) {
 	stream, err := c.cc.NewStream(ctx, &KubeClusterKubernetesObjectQueryController_ServiceDesc.Streams[1], KubeClusterKubernetesObjectQueryController_StreamPodLogs_FullMethodName, opts...)
 	if err != nil {
@@ -595,6 +607,8 @@ type KubeClusterKubernetesObjectQueryControllerServer interface {
 	StreamKubernetesObjects(*model.StreamKubeClusterNamespaceKubernetesObjectsInput, KubeClusterKubernetesObjectQueryController_StreamKubernetesObjectsServer) error
 	// find list of pods in a kube-cluster on the specified filters
 	FindPods(context.Context, *model.FindKubeClusterPodsInput) (*model3.Pods, error)
+	// get details of a pod
+	GetPod(context.Context, *model.KubeClusterKubernetesObject) (*model3.Pod, error)
 	// stream logs of all kubernetes pods running in a kube-cluster on the specified filters
 	StreamPodLogs(*model.StreamKubeClusterPodLogsInput, KubeClusterKubernetesObjectQueryController_StreamPodLogsServer) error
 }
@@ -614,6 +628,9 @@ func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) StreamKuber
 }
 func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) FindPods(context.Context, *model.FindKubeClusterPodsInput) (*model3.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
+}
+func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) GetPod(context.Context, *model.KubeClusterKubernetesObject) (*model3.Pod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPod not implemented")
 }
 func (UnimplementedKubeClusterKubernetesObjectQueryControllerServer) StreamPodLogs(*model.StreamKubeClusterPodLogsInput, KubeClusterKubernetesObjectQueryController_StreamPodLogsServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamPodLogs not implemented")
@@ -705,6 +722,24 @@ func _KubeClusterKubernetesObjectQueryController_FindPods_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _KubeClusterKubernetesObjectQueryController_GetPod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.KubeClusterKubernetesObject)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(KubeClusterKubernetesObjectQueryControllerServer).GetPod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: KubeClusterKubernetesObjectQueryController_GetPod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(KubeClusterKubernetesObjectQueryControllerServer).GetPod(ctx, req.(*model.KubeClusterKubernetesObject))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _KubeClusterKubernetesObjectQueryController_StreamPodLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.StreamKubeClusterPodLogsInput)
 	if err := stream.RecvMsg(m); err != nil {
@@ -745,6 +780,10 @@ var KubeClusterKubernetesObjectQueryController_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "findPods",
 			Handler:    _KubeClusterKubernetesObjectQueryController_FindPods_Handler,
 		},
+		{
+			MethodName: "getPod",
+			Handler:    _KubeClusterKubernetesObjectQueryController_GetPod_Handler,
+		},
 	},
 	Streams: []grpc.StreamDesc{
 		{
@@ -765,6 +804,7 @@ const (
 	ApiResourceKubernetesObjectQueryController_Get_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectQueryController/get"
 	ApiResourceKubernetesObjectQueryController_StreamKubernetesObjects_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectQueryController/streamKubernetesObjects"
 	ApiResourceKubernetesObjectQueryController_FindPods_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectQueryController/findPods"
+	ApiResourceKubernetesObjectQueryController_GetPod_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectQueryController/getPod"
 	ApiResourceKubernetesObjectQueryController_StreamPodLogs_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.ApiResourceKubernetesObjectQueryController/streamPodLogs"
 )
 
@@ -780,6 +820,8 @@ type ApiResourceKubernetesObjectQueryControllerClient interface {
 	StreamKubernetesObjects(ctx context.Context, in *model4.ApiResourceKindApiResourceId, opts ...grpc.CallOption) (ApiResourceKubernetesObjectQueryController_StreamKubernetesObjectsClient, error)
 	// find list of pods that belong to a planton-cloud api-resource with provided filters
 	FindPods(ctx context.Context, in *model.FindApiResourcePodsInput, opts ...grpc.CallOption) (*model3.Pods, error)
+	// get details of a pod
+	GetPod(ctx context.Context, in *model.ApiResourceKubernetesObject, opts ...grpc.CallOption) (*model3.Pod, error)
 	// stream logs of all kubernetes pods that correspond to a planton-cloud api-resource based
 	// on the specified filters
 	StreamPodLogs(ctx context.Context, in *model.StreamApiResourcePodLogsInput, opts ...grpc.CallOption) (ApiResourceKubernetesObjectQueryController_StreamPodLogsClient, error)
@@ -843,6 +885,15 @@ func (c *apiResourceKubernetesObjectQueryControllerClient) FindPods(ctx context.
 	return out, nil
 }
 
+func (c *apiResourceKubernetesObjectQueryControllerClient) GetPod(ctx context.Context, in *model.ApiResourceKubernetesObject, opts ...grpc.CallOption) (*model3.Pod, error) {
+	out := new(model3.Pod)
+	err := c.cc.Invoke(ctx, ApiResourceKubernetesObjectQueryController_GetPod_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *apiResourceKubernetesObjectQueryControllerClient) StreamPodLogs(ctx context.Context, in *model.StreamApiResourcePodLogsInput, opts ...grpc.CallOption) (ApiResourceKubernetesObjectQueryController_StreamPodLogsClient, error) {
 	stream, err := c.cc.NewStream(ctx, &ApiResourceKubernetesObjectQueryController_ServiceDesc.Streams[1], ApiResourceKubernetesObjectQueryController_StreamPodLogs_FullMethodName, opts...)
 	if err != nil {
@@ -887,6 +938,8 @@ type ApiResourceKubernetesObjectQueryControllerServer interface {
 	StreamKubernetesObjects(*model4.ApiResourceKindApiResourceId, ApiResourceKubernetesObjectQueryController_StreamKubernetesObjectsServer) error
 	// find list of pods that belong to a planton-cloud api-resource with provided filters
 	FindPods(context.Context, *model.FindApiResourcePodsInput) (*model3.Pods, error)
+	// get details of a pod
+	GetPod(context.Context, *model.ApiResourceKubernetesObject) (*model3.Pod, error)
 	// stream logs of all kubernetes pods that correspond to a planton-cloud api-resource based
 	// on the specified filters
 	StreamPodLogs(*model.StreamApiResourcePodLogsInput, ApiResourceKubernetesObjectQueryController_StreamPodLogsServer) error
@@ -904,6 +957,9 @@ func (UnimplementedApiResourceKubernetesObjectQueryControllerServer) StreamKuber
 }
 func (UnimplementedApiResourceKubernetesObjectQueryControllerServer) FindPods(context.Context, *model.FindApiResourcePodsInput) (*model3.Pods, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindPods not implemented")
+}
+func (UnimplementedApiResourceKubernetesObjectQueryControllerServer) GetPod(context.Context, *model.ApiResourceKubernetesObject) (*model3.Pod, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPod not implemented")
 }
 func (UnimplementedApiResourceKubernetesObjectQueryControllerServer) StreamPodLogs(*model.StreamApiResourcePodLogsInput, ApiResourceKubernetesObjectQueryController_StreamPodLogsServer) error {
 	return status.Errorf(codes.Unimplemented, "method StreamPodLogs not implemented")
@@ -977,6 +1033,24 @@ func _ApiResourceKubernetesObjectQueryController_FindPods_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ApiResourceKubernetesObjectQueryController_GetPod_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ApiResourceKubernetesObject)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ApiResourceKubernetesObjectQueryControllerServer).GetPod(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ApiResourceKubernetesObjectQueryController_GetPod_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ApiResourceKubernetesObjectQueryControllerServer).GetPod(ctx, req.(*model.ApiResourceKubernetesObject))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ApiResourceKubernetesObjectQueryController_StreamPodLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.StreamApiResourcePodLogsInput)
 	if err := stream.RecvMsg(m); err != nil {
@@ -1012,6 +1086,10 @@ var ApiResourceKubernetesObjectQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "findPods",
 			Handler:    _ApiResourceKubernetesObjectQueryController_FindPods_Handler,
+		},
+		{
+			MethodName: "getPod",
+			Handler:    _ApiResourceKubernetesObjectQueryController_GetPod_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
