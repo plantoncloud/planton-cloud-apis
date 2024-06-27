@@ -12,11 +12,6 @@ message KeycloakKubernetesId {
   ];
 }
 
-//list of keycloak-kubernetess
-message KeycloakKubernetesList {
-  repeated KeycloakKubernetes entries = 1;
-}
-
 //wrapper for keycloak-kubernetes password
 message KeycloakKubernetesPassword {
   string value = 1;

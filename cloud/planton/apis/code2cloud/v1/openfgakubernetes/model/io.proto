@@ -12,11 +12,6 @@ message OpenfgaKubernetesId {
   ];
 }
 
-//list of openfga-kubernetes
-message OpenfgaKubernetesList {
-  repeated OpenfgaKubernetes entries = 1;
-}
-
 //wrapper for openfga-kubernetes password
 message OpenfgaKubernetesPassword {
   string value = 1;

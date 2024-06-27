@@ -12,11 +12,6 @@ message RedisClusterId {
   ];
 }
 
-//list of redis-clusters
-message RedisClusterList {
-  repeated RedisCluster entries = 1;
-}
-
 //wrapper for redis-cluster password
 message RedisClusterPassword {
   string value = 1;

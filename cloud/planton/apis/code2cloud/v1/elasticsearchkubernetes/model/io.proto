@@ -12,11 +12,6 @@ message ElasticsearchKubernetesId {
   ];
 }
 
-//list of elasticsearch-kubernetes
-message ElasticsearchKubernetesList {
-  repeated ElasticsearchKubernetes entries = 1;
-}
-
 //wrapper for elasticsearch-kubernetes password
 message ElasticsearchKubernetesPassword {
   string value = 1;

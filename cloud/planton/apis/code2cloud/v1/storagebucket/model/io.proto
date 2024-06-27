@@ -5,11 +5,6 @@ package cloud.planton.apis.code2cloud.v1.storagebucket.model;
 import "cloud/planton/apis/code2cloud/v1/storagebucket/model/state.proto";
 import "buf/validate/validate.proto";
 
-//list of storage-buckets
-message StorageBucketList {
-  repeated StorageBucket entries = 1;
-}
-
 //wrapper for storage-bucket id
 message StorageBucketId {
   string value = 1 [

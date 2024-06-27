@@ -12,11 +12,6 @@ message SolrKubernetesId {
   ];
 }
 
-//list of solr-kubernetess
-message SolrKubernetesList {
-  repeated SolrKubernetes entries = 1;
-}
-
 //wrapper for solr-kubernetes password
 message SolrKubernetesPassword {
   string value = 1;

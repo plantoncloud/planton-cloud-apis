@@ -12,11 +12,6 @@ message PrometheusKubernetesId {
   ];
 }
 
-//list of prometheus-kubernetes
-message PrometheusKubernetesList {
-  repeated PrometheusKubernetes entries = 1;
-}
-
 //wrapper for prometheus-kubernetes password
 message PrometheusKubernetesPassword {
   string value = 1;

@@ -12,11 +12,6 @@ message ElasticsearchClusterId {
   ];
 }
 
-//list of elasticsearch-clusters
-message ElasticsearchClusterList {
-  repeated ElasticsearchCluster entries = 1;
-}
-
 //wrapper for elasticsearch-cluster password
 message ElasticsearchClusterPassword {
   string value = 1;

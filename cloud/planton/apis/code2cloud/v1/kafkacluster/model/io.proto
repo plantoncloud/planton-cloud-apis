@@ -13,11 +13,6 @@ message KafkaClusterId {
   ];
 }
 
-//list of kafka-clusters
-message KafkaClusterList {
-  repeated KafkaCluster entries = 1;
-}
-
 //list of kafka topics
 message KafkaTopicList {
   repeated KafkaTopic entries = 1;

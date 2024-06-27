@@ -11,8 +11,3 @@ message LocustClusterId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of locust-clusters
-message LocustClusterList {
-  repeated LocustCluster entries = 1;
-}

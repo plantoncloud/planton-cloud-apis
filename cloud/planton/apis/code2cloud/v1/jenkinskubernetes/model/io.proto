@@ -12,11 +12,6 @@ message JenkinsKubernetesId {
   ];
 }
 
-//list of jenkins-kubernetes
-message JenkinsKubernetesList {
-  repeated JenkinsKubernetes entries = 1;
-}
-
 //wrapper for jenkins-kubernetes password
 message JenkinsKubernetesPassword {
   string value = 1;

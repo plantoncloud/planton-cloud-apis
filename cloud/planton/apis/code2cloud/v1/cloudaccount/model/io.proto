@@ -16,8 +16,3 @@ message CloudAccountId {
     (buf.validate.field).required = true
   ];
 }
-
-// wrapper for company cloud account id
-message CloudAccountIds {
-  repeated string entries = 1;
-}

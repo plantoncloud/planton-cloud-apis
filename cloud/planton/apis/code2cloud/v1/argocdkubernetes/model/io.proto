@@ -11,8 +11,3 @@ message ArgocdKubernetesId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of argocd-kubernetess
-message ArgocdKubernetesList {
-  repeated ArgocdKubernetes entries = 1;
-}

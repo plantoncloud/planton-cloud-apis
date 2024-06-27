@@ -11,8 +11,3 @@ message ArgocdInstanceId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of argocd-instances
-message ArgocdInstanceList {
-  repeated ArgocdInstance entries = 1;
-}

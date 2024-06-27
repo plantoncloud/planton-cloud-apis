@@ -12,11 +12,6 @@ message PrometheusServerId {
   ];
 }
 
-//list of prometheus-servers
-message PrometheusServerList {
-  repeated PrometheusServer entries = 1;
-}
-
 //wrapper for prometheus-server password
 message PrometheusServerPassword {
   string value = 1;

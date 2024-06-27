@@ -12,11 +12,6 @@ message MongodbClusterId {
   ];
 }
 
-//list of mongodb-clusters
-message MongodbClusterList {
-  repeated MongodbCluster entries = 1;
-}
-
 //wrapper for mongodb-cluster password
 message MongodbClusterPassword {
   string value = 1;

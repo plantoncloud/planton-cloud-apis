@@ -11,8 +11,3 @@ message LocustKubernetesId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of locust-kubernetes
-message LocustKubernetesList {
-  repeated LocustKubernetes entries = 1;
-}

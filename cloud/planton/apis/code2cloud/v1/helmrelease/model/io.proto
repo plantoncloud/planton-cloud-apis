@@ -11,8 +11,3 @@ message HelmReleaseId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of helm-releases
-message HelmReleaseList {
-  repeated HelmRelease entries = 1;
-}

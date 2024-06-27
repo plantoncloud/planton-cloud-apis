@@ -12,11 +12,6 @@ message RedisKubernetesId {
   ];
 }
 
-//list of redis-kubernetes
-message RedisKubernetesList {
-  repeated RedisKubernetes entries = 1;
-}
-
 //wrapper for redis-kubernetes password
 message RedisKubernetesPassword {
   string value = 1;

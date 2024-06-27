@@ -12,11 +12,6 @@ message SolrCloudId {
   ];
 }
 
-//list of solr-clouds
-message SolrCloudList {
-  repeated SolrCloud entries = 1;
-}
-
 //wrapper for solr-cloud password
 message SolrCloudPassword {
   string value = 1;

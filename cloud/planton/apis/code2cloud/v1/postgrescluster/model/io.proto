@@ -12,11 +12,6 @@ message PostgresClusterId {
   ];
 }
 
-//list of postgres-clusters
-message PostgresClusterList {
-  repeated PostgresCluster entries = 1;
-}
-
 //wrapper for postgres-cluster password
 message PostgresClusterPassword {
   string value = 1;

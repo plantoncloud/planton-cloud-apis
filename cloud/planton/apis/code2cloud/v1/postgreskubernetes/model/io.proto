@@ -12,11 +12,6 @@ message PostgresKubernetesId {
   ];
 }
 
-//list of postgres-kubernetes
-message PostgresKubernetesList {
-  repeated PostgresKubernetes entries = 1;
-}
-
 //wrapper for postgres-kubernetes password
 message PostgresKubernetesPassword {
   string value = 1;

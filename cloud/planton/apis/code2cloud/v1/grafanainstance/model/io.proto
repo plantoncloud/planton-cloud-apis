@@ -11,8 +11,3 @@ message GrafanaInstanceId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of grafana-instance
-message GrafanaInstanceList {
-  repeated GrafanaInstance entries = 1;
-}
