@@ -302,6 +302,11 @@ message MicroserviceKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  MicroserviceKubernetesStatusStackOutputs outputs = 1;
+}
+
+//microservice-kubernetes-stack outputs
+message MicroserviceKubernetesStatusStackOutputs {
   //kubernetes namespace in which microservice-kubernetes is created.
   string namespace = 1;
 

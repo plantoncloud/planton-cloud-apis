@@ -95,6 +95,20 @@ message KeycloakKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  KeycloakKubernetesStatusStackOutputs outputs = 1;
+}
+
+// keycloak-kubernetes kubernetes keycloak-container spec
+message KeycloakKubernetesSpecContainerSpec {
+  //keycloak container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//keycloak-kubernetes stack outputs.
+message KeycloakKubernetesStatusStackOutputs {
   //kubernetes namespace in which keycloak-kubernetes is created.
   string namespace = 1;
 
@@ -121,13 +135,4 @@ message KeycloakKubernetesStatus {
   //internal endpoint to open keycloak-kubernetes from clients inside kubernetes.
   //ex: https://kck8s-planton-pcs-dev-main.data-internal.dev.planton.live
   string internal_hostname = 6;
-}
-
-// keycloak-kubernetes kubernetes keycloak-container spec
-message KeycloakKubernetesSpecContainerSpec {
-  //keycloak container cpu and memory resources.
-  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (buf.validate.field).required = true
-  ];
 }

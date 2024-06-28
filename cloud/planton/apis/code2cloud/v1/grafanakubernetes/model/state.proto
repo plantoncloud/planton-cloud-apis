@@ -97,6 +97,20 @@ message GrafanaKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  GrafanaKubernetesStatusStackOutputs outputs = 1;
+}
+
+// grafana-kubernetes kubernetes grafana-container spec
+message GrafanaKubernetesSpecContainerSpec {
+  //grafana container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//grafana-kubernetes stack outputs.
+message GrafanaKubernetesStatusStackOutputs {
   //kubernetes namespace in which grafana-kubernetes is created.
   string namespace = 1;
 
@@ -123,13 +137,4 @@ message GrafanaKubernetesStatus {
   //internal endpoint to open grafana-kubernetes from clients outside kubernetes.
   //ex: https://gfnk8s-planton-pcs-dev-main.data-internal.dev.planton.live
   string internal_hostname = 6;
-}
-
-// grafana-kubernetes kubernetes grafana-container spec
-message GrafanaKubernetesSpecContainerSpec {
-  //grafana container cpu and memory resources.
-  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (buf.validate.field).required = true
-  ];
 }

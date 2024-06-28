@@ -22,5 +22,5 @@ message JenkinsKubernetesStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  cloud.planton.apis.code2cloud.v1.jenkinskubernetes.model.JenkinsKubernetesStatus outputs = 3;
+  cloud.planton.apis.code2cloud.v1.jenkinskubernetes.model.JenkinsKubernetesStatusStackOutputs outputs = 2;
 }

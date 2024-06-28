@@ -19,7 +19,7 @@ message MongodbKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "mdbk8s";
-  //id format "mdb-<environment-id>-<mongodb-kubernetes-name>"
+  //id format "mdbk8s-<environment-id>-<mongodb-kubernetes-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -104,41 +104,7 @@ message MongodbKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  // namespace specifies the Kubernetes namespace in which the MongoDB cluster is created.
-  // Namespaces are a way to divide cluster resources between multiple users.
-  string namespace = 1;
-
-  // root_username is the username for the root account of the MongoDB cluster.
-  // The root account has full access to all databases and collections within the MongoDB cluster.
-  string root_username = 2;
-
-  // root_password_secret_name is the name of the Kubernetes secret that stores the root password for the MongoDB cluster.
-  // Kubernetes secrets are used to store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
-  string root_password_secret_name = 3;
-
-  //kubernetes service name for mongodb-kubernetes
-  //ex: main-mongodb-kubernetes
-  //in the above example, "main" is the name of the mongodb-kubernetes
-  string service = 4;
-
-  //command to setup port-forwarding to open mongodb-kubernetes from developers laptop.
-  //this might come handy when mongodb-kubernetes ingress is disabled for security reasons.
-  //this is rendered by combining mongodb-kubernetes kubernetes service and namespace
-  //ex: kubectl port-forward svc/mongodb-kubernetes -n kubernetes_namespace 27017:27017
-  //running the command from this attribute makes it possible to access mongodb-kubernetes using http://localhost:8080
-  string port_forward_command = 5;
-
-  //kubernetes endpoint to connect to mongodb-kubernetes locally
-  //ex: main-mongodb-kubernetes.namespace.svc.cluster.local:27017
-  string kube_endpoint = 6;
-
-  //public endpoint to open mongodb-kubernetes from clients outside kubernetes.
-  //ex: https://mdc-planton-pcs-dev-main.data.dev.planton.live:27017
-  string external_hostname = 7;
-
-  //endpoint to open mongodb-kubernetes from clients inside kubernetes.
-  //ex: https://mdc-planton-pcs-dev-main.data-internal.dev.planton.live:27017
-  string internal_hostname = 8;
+  MongodbKubernetesStatusStackOutputs outputs = 1;
 }
 
 // mongodb-kubernetes kubernetes mongodb-container spec
@@ -182,4 +148,43 @@ message MongodbKubernetesSpecContainerSpec {
       expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
     }
   ];
+}
+
+//mongodb-kubernetes stack outputs.
+message MongodbKubernetesStatusStackOutputs {
+  // namespace specifies the Kubernetes namespace in which the MongoDB cluster is created.
+  // Namespaces are a way to divide cluster resources between multiple users.
+  string namespace = 1;
+
+  // root_username is the username for the root account of the MongoDB cluster.
+  // The root account has full access to all databases and collections within the MongoDB cluster.
+  string root_username = 2;
+
+  // root_password_secret_name is the name of the Kubernetes secret that stores the root password for the MongoDB cluster.
+  // Kubernetes secrets are used to store and manage sensitive information, such as passwords, OAuth tokens, and ssh keys.
+  string root_password_secret_name = 3;
+
+  //kubernetes service name for mongodb-kubernetes
+  //ex: main-mongodb-kubernetes
+  //in the above example, "main" is the name of the mongodb-kubernetes
+  string service = 4;
+
+  //command to setup port-forwarding to open mongodb-kubernetes from developers laptop.
+  //this might come handy when mongodb-kubernetes ingress is disabled for security reasons.
+  //this is rendered by combining mongodb-kubernetes kubernetes service and namespace
+  //ex: kubectl port-forward svc/mongodb-kubernetes -n kubernetes_namespace 27017:27017
+  //running the command from this attribute makes it possible to access mongodb-kubernetes using http://localhost:8080
+  string port_forward_command = 5;
+
+  //kubernetes endpoint to connect to mongodb-kubernetes locally
+  //ex: main-mongodb-kubernetes.namespace.svc.cluster.local:27017
+  string kube_endpoint = 6;
+
+  //public endpoint to open mongodb-kubernetes from clients outside kubernetes.
+  //ex: https://mdc-planton-pcs-dev-main.data.dev.planton.live:27017
+  string external_hostname = 7;
+
+  //endpoint to open mongodb-kubernetes from clients inside kubernetes.
+  //ex: https://mdc-planton-pcs-dev-main.data-internal.dev.planton.live:27017
+  string internal_hostname = 8;
 }

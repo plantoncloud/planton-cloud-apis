@@ -104,6 +104,20 @@ message JenkinsKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  JenkinsKubernetesStatusStackOutputs outputs = 1;
+}
+
+// jenkins-kubernetes jenkins-container spec
+message JenkinsKubernetesSpecContainerSpec {
+  //jenkins container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//jenkins-kubernetes stack outputs.
+message JenkinsKubernetesStatusStackOutputs {
   //kubernetes namespace in which jenkins-kubernetes is created.
   string namespace = 1;
 
@@ -134,13 +148,4 @@ message JenkinsKubernetesStatus {
   //internal postgres-kubernetes hostname.
   //ex: https://jnk-planton-pcs-dev-main.data-internal.dev.planton.live:8080
   string internal_hostname = 8;
-}
-
-// jenkins-kubernetes jenkins-container spec
-message JenkinsKubernetesSpecContainerSpec {
-  //jenkins container cpu and memory resources.
-  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (buf.validate.field).required = true
-  ];
 }

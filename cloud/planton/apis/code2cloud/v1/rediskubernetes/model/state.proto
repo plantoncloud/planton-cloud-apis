@@ -78,7 +78,7 @@ message RedisKubernetesSpec {
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //redis-container spec
-  RedisKubernetesSpecContainerSpec redis_container = 2 [
+  RedisKubernetesSpecContainerSpec container = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -97,6 +97,11 @@ message RedisKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  RedisKubernetesStatusStackOutputs outputs = 1;
+}
+
+//redis-kubernetes status stack outputs.
+message RedisKubernetesStatusStackOutputs {
   //kubernetes namespace in which redis-kubernetes is created.
   string namespace = 1;
 

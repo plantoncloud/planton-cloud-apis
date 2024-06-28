@@ -77,8 +77,12 @@ message PrometheusKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //kubernetes spec
-  PrometheusKubernetesSpecKubernetesSpec kubernetes = 2;
+  PrometheusKubernetesSpecContainerSpec container = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //prometheus-kubernetes ingress-spec
+  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //prometheus-kubernetes status.
@@ -93,23 +97,11 @@ message PrometheusKubernetesStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  PrometheusKubernetesStatusKubernetesStatus kubernetes = 1;
-}
-
-// prometheus-kubernetes kubernetes spec
-message PrometheusKubernetesSpecKubernetesSpec {
-  //prometheus-container spec
-  PrometheusKubernetesSpecKubernetesSpecPrometheusContainerSpec prometheus_container = 1 [
-    (buf.validate.field).required = true
-  ];
-
-  //prometheus-kubernetes ingress-spec
-  PrometheusKubernetesSpecKubernetesSpecIngressSpec ingress = 2;
-
+  PrometheusKubernetesStatusStackOutputs outputs = 1;
 }
 
 // prometheus-kubernetes kubernetes prometheus-container spec
-message PrometheusKubernetesSpecKubernetesSpecPrometheusContainerSpec {
+message PrometheusKubernetesSpecContainerSpec {
   option (buf.validate.message).cel = {
     id: "spec.kubernetes.container.disk_size.mandatory",
     expression: "this.is_persistence_enabled && size(this.disk_size) == 0"
@@ -150,31 +142,8 @@ message PrometheusKubernetesSpecKubernetesSpecPrometheusContainerSpec {
   ];
 }
 
-// prometheus-kubernetes kubernetes ingress spec
-message PrometheusKubernetesSpecKubernetesSpecIngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating prometheus endpoints.
-  string endpoint_domain_name = 3;
-}
-
 //prometheus-kubernetes kubernetes status
-message PrometheusKubernetesStatusKubernetesStatus {
+message PrometheusKubernetesStatusStackOutputs {
   //kubernetes namespace in which prometheus-kubernetes is created.
   string namespace = 1;
 

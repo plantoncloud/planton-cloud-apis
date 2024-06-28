@@ -18,8 +18,8 @@ message OpenfgaKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "rdc";
-  //id format "rdc-<environment-id>-<openfga-kubernetes-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "ofgak8s";
+  //id format "ofgak8s-<environment-id>-<openfga-kubernetes-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -29,7 +29,7 @@ message OpenfgaKubernetes {
 
   //resource kind
   string kind = 2 [
-    (buf.validate.field).string.const = "OpenFGAServer"
+    (buf.validate.field).string.const = "OpenFGAKubernetes"
   ];
 
   //resource metadata
@@ -77,8 +77,13 @@ message OpenfgaKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //kubernetes spec
-  OpenfgaKubernetesSpecKubernetesSpec kubernetes = 2;
+  //openfga-container spec
+  OpenfgaKubernetesSpecContainerSpec container = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //openfga-kubernetes ingress-spec
+  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //openfga-kubernetes status.
@@ -93,22 +98,11 @@ message OpenfgaKubernetesStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  OpenfgaKubernetesStatusKubernetesStatus kubernetes = 1;
-}
-
-// openfga-kubernetes kubernetes spec
-message OpenfgaKubernetesSpecKubernetesSpec {
-  //openfga-container spec
-  OpenfgaKubernetesSpecKubernetesSpecOpenfgaContainerSpec openfga_container = 1 [
-    (buf.validate.field).required = true
-  ];
-
-  //openfga-kubernetes ingress-spec
-  OpenfgaKubernetesSpecKubernetesSpecIngressSpec ingress = 2;
+  OpenfgaKubernetesStatusStackOutputs outputs = 1;
 }
 
 // openfga-kubernetes kubernetes openfga-container spec
-message OpenfgaKubernetesSpecKubernetesSpecOpenfgaContainerSpec {
+message OpenfgaKubernetesSpecContainerSpec {
   //openfga container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
@@ -116,31 +110,8 @@ message OpenfgaKubernetesSpecKubernetesSpecOpenfgaContainerSpec {
   ];
 }
 
-// openfga-kubernetes kubernetes ingress spec
-message OpenfgaKubernetesSpecKubernetesSpecIngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating openfga endpoints.
-  string endpoint_domain_name = 3;
-}
-
 //openfga-kubernetes kubernetes status
-message OpenfgaKubernetesStatusKubernetesStatus {
+message OpenfgaKubernetesStatusStackOutputs {
   //kubernetes namespace in which openfga-kubernetes is created.
   string namespace = 1;
 

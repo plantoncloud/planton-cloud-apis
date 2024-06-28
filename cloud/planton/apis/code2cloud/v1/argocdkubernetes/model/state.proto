@@ -99,6 +99,19 @@ message ArgocdKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  ArgocdKubernetesStatusStackOutputs outputs = 1;
+}
+
+// argocd-kubernetes kubernetes argocd-container spec
+message ArgocdKubernetesSpecContainerSpec {
+  //argocd container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+message ArgocdKubernetesStatusStackOutputs {
   //kubernetes namespace in which argocd-kubernetes is created.
   string namespace = 1;
 
@@ -127,11 +140,3 @@ message ArgocdKubernetesStatus {
   string internal_hostname = 6;
 }
 
-// argocd-kubernetes kubernetes argocd-container spec
-message ArgocdKubernetesSpecContainerSpec {
-  //argocd container cpu and memory resources.
-  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
-    (buf.validate.field).required = true
-  ];
-}

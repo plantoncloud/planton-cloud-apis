@@ -83,7 +83,7 @@ message PostgresKubernetesSpec {
   ];
 
   //postgres-kubernetes ingress
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
+  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
 //postgres-kubernetes status
@@ -97,28 +97,7 @@ message PostgresKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //name of the kubernetes namespace in which the postgres-kubernetes has been created.
-  string namespace = 1;
-
-  //name of the kubernetes service created for postgres-kubernetes.
-  string service = 2;
-
-  //command to setup port-forwarding to open postgres-kubernetes from developers laptop.
-  //this might come handy when postgres-kubernetes ingress is disabled for security reasons.
-  //this is rendered by combining kubernetes_service and kubernetes_namespace
-  //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
-  //running the command from this attribute makes it possible to access postgres-kubernetes using localhost:5432
-  string port_forward_command = 3;
-
-  //kubernetes endpoint for clients running in the same kubernetes cluster.
-  //ex: main-microservice-instance.namespace.svc.instance.local:8080
-  string kube_endpoint = 4;
-
-  //external postgres-kubernetes hostname. port is always 5432.
-  string external_hostname = 5;
-
-  //internal postgres-kubernetes hostname. port is always 5432.
-  string internal_hostname = 6;
+  PostgresKubernetesStatusStackOutputs outputs = 1;
 }
 
 //postgres-kubernetes kubernetes ingress spec
@@ -146,4 +125,30 @@ message PostgresKubernetesSpecContainerSpec {
       expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
     }
   ];
+}
+
+//postgres-kubernetes stack outputs
+message PostgresKubernetesStatusStackOutputs {
+  //name of the kubernetes namespace in which the postgres-kubernetes has been created.
+  string namespace = 1;
+
+  //name of the kubernetes service created for postgres-kubernetes.
+  string service = 2;
+
+  //command to setup port-forwarding to open postgres-kubernetes from developers laptop.
+  //this might come handy when postgres-kubernetes ingress is disabled for security reasons.
+  //this is rendered by combining kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/kubernetes_service -n kubernetes_namespace 5432:5432
+  //running the command from this attribute makes it possible to access postgres-kubernetes using localhost:5432
+  string port_forward_command = 3;
+
+  //kubernetes endpoint for clients running in the same kubernetes cluster.
+  //ex: main-microservice-instance.namespace.svc.instance.local:8080
+  string kube_endpoint = 4;
+
+  //external postgres-kubernetes hostname. port is always 5432.
+  string external_hostname = 5;
+
+  //internal postgres-kubernetes hostname. port is always 5432.
+  string internal_hostname = 6;
 }

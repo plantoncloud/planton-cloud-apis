@@ -14,7 +14,7 @@ message OpenfgaKubernetesStackInput {
   //pulumi stack credentials
   cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential credentials_input = 2;
   //inputs used for creating stack resources
-  cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetes resource_input = 3;
+  code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetes resource_input = 3;
 }
 
 //stack response
@@ -22,5 +22,5 @@ message OpenfgaKubernetesStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesStatus outputs = 3;
+  code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesStatusStackOutputs outputs = 3;
 }

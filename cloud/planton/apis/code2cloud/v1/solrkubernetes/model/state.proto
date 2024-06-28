@@ -77,7 +77,7 @@ message SolrKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  SolrKubernetesSpecContainerSpec solr_container = 2 [
+  SolrKubernetesSpecSolrContainerSpec solr_container = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -101,36 +101,11 @@ message SolrKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //kubernetes namespace in which solr-kubernetes is created.
-  string namespace = 1;
-
-  //kubernetes service name for solr-kubernetes dashboard.
-  //ex: main-solrkubernetes-common
-  //in the above example, "main" is the name of the solr-kubernetes
-  string service = 2;
-
-  //command to setup port-forwarding to open solr-kubernetes from developers laptop.
-  //this might come handy when solr-kubernetes ingress is disabled for security reasons.
-  //this is rendered by combining solr_kubernetes_kubernetes_service and kubernetes_namespace
-  //ex: kubectl port-forward svc/solr_kubernetes_kubernetes_service -n kubernetes_namespace 8080:80
-  //running the command from this attribute makes it possible to access solr-kubernetes using http://localhost:8080/solr
-  string port_forward_command = 3;
-
-  //kubernetes endpoint that can be used by clients running in the same kubernetes cluster.
-  //ex: http://main-solrkubernetes-common.<namespace-name>:8983/solr
-  string kube_endpoint = 4;
-
-  //public endpoint to open solr-kubernetes from clients outside kubernetes.
-  //ex: https://slk8s-planton-pcs-dev-main.data.dev.planton.live:6379/redis
-  string external_hostname = 5;
-
-  //internal endpoint to open solr-kubernetes from clients inside kubernetes.
-  //ex: https://slk8s-planton-pcs-dev-main.data-internal.dev.planton.live:6379/redis
-  string internal_hostname = 6;
+  SolrKubernetesStatusStackOutputs outputs = 1;
 }
 
 //solr container spec
-message SolrKubernetesSpecContainerSpec {
+message SolrKubernetesSpecSolrContainerSpec {
   //number of solr pods in solr-kubernetes
   //recommended default 1.
   int32 replicas = 1 [
@@ -201,4 +176,34 @@ message SolrKubernetesSpecZookeeperContainerSpec {
       expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
     }
   ];
+}
+
+//solr-kubernetes stack outputs
+message SolrKubernetesStatusStackOutputs {
+  //kubernetes namespace in which solr-kubernetes is created.
+  string namespace = 1;
+
+  //kubernetes service name for solr-kubernetes dashboard.
+  //ex: main-solr-kubernetes-common
+  //in the above example, "main" is the name of the solr-kubernetes
+  string service = 2;
+
+  //command to setup port-forwarding to open solr-kubernetes from developers laptop.
+  //this might come handy when solr-kubernetes ingress is disabled for security reasons.
+  //this is rendered by combining solr_kubernetes_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/solr_kubernetes_kubernetes_service -n kubernetes_namespace 8080:80
+  //running the command from this attribute makes it possible to access solr-kubernetes using http://localhost:8080/solr
+  string port_forward_command = 3;
+
+  //kubernetes endpoint that can be used by clients running in the same kubernetes cluster.
+  //ex: http://main-solrkubernetes-common.<namespace-name>:8983/solr
+  string kube_endpoint = 4;
+
+  //public endpoint to open solr-kubernetes from clients outside kubernetes.
+  //ex: https://slk8s-planton-pcs-dev-main.data.dev.planton.live:6379/redis
+  string external_hostname = 5;
+
+  //internal endpoint to open solr-kubernetes from clients inside kubernetes.
+  //ex: https://slk8s-planton-pcs-dev-main.data-internal.dev.planton.live:6379/redis
+  string internal_hostname = 6;
 }

@@ -22,5 +22,5 @@ message KafkaKubernetesStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesStatus outputs = 3;
+  code2cloud.v1.kafkakubernetes.model.KafkaKubernetesStatusStackOutputs outputs = 3;
 }
