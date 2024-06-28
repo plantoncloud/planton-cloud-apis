@@ -20,30 +20,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KeycloakKubernetesKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.service.KeycloakKubernetesKubernetesStackController/execute"
+	KeycloakKubernetesStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.service.KeycloakKubernetesStackController/execute"
 )
 
-// KeycloakKubernetesKubernetesStackControllerClient is the client API for KeycloakKubernetesKubernetesStackController service.
+// KeycloakKubernetesStackControllerClient is the client API for KeycloakKubernetesStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type KeycloakKubernetesKubernetesStackControllerClient interface {
-	Execute(ctx context.Context, in *model.KeycloakKubernetesStackInput, opts ...grpc.CallOption) (KeycloakKubernetesKubernetesStackController_ExecuteClient, error)
+type KeycloakKubernetesStackControllerClient interface {
+	Execute(ctx context.Context, in *model.KeycloakKubernetesStackInput, opts ...grpc.CallOption) (KeycloakKubernetesStackController_ExecuteClient, error)
 }
 
-type keycloakKubernetesKubernetesStackControllerClient struct {
+type keycloakKubernetesStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewKeycloakKubernetesKubernetesStackControllerClient(cc grpc.ClientConnInterface) KeycloakKubernetesKubernetesStackControllerClient {
-	return &keycloakKubernetesKubernetesStackControllerClient{cc}
+func NewKeycloakKubernetesStackControllerClient(cc grpc.ClientConnInterface) KeycloakKubernetesStackControllerClient {
+	return &keycloakKubernetesStackControllerClient{cc}
 }
 
-func (c *keycloakKubernetesKubernetesStackControllerClient) Execute(ctx context.Context, in *model.KeycloakKubernetesStackInput, opts ...grpc.CallOption) (KeycloakKubernetesKubernetesStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &KeycloakKubernetesKubernetesStackController_ServiceDesc.Streams[0], KeycloakKubernetesKubernetesStackController_Execute_FullMethodName, opts...)
+func (c *keycloakKubernetesStackControllerClient) Execute(ctx context.Context, in *model.KeycloakKubernetesStackInput, opts ...grpc.CallOption) (KeycloakKubernetesStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &KeycloakKubernetesStackController_ServiceDesc.Streams[0], KeycloakKubernetesStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &keycloakKubernetesKubernetesStackControllerExecuteClient{stream}
+	x := &keycloakKubernetesStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -53,16 +53,16 @@ func (c *keycloakKubernetesKubernetesStackControllerClient) Execute(ctx context.
 	return x, nil
 }
 
-type KeycloakKubernetesKubernetesStackController_ExecuteClient interface {
+type KeycloakKubernetesStackController_ExecuteClient interface {
 	Recv() (*model.KeycloakKubernetesStackResponse, error)
 	grpc.ClientStream
 }
 
-type keycloakKubernetesKubernetesStackControllerExecuteClient struct {
+type keycloakKubernetesStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *keycloakKubernetesKubernetesStackControllerExecuteClient) Recv() (*model.KeycloakKubernetesStackResponse, error) {
+func (x *keycloakKubernetesStackControllerExecuteClient) Recv() (*model.KeycloakKubernetesStackResponse, error) {
 	m := new(model.KeycloakKubernetesStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -70,64 +70,64 @@ func (x *keycloakKubernetesKubernetesStackControllerExecuteClient) Recv() (*mode
 	return m, nil
 }
 
-// KeycloakKubernetesKubernetesStackControllerServer is the server API for KeycloakKubernetesKubernetesStackController service.
-// All implementations should embed UnimplementedKeycloakKubernetesKubernetesStackControllerServer
+// KeycloakKubernetesStackControllerServer is the server API for KeycloakKubernetesStackController service.
+// All implementations should embed UnimplementedKeycloakKubernetesStackControllerServer
 // for forward compatibility
-type KeycloakKubernetesKubernetesStackControllerServer interface {
-	Execute(*model.KeycloakKubernetesStackInput, KeycloakKubernetesKubernetesStackController_ExecuteServer) error
+type KeycloakKubernetesStackControllerServer interface {
+	Execute(*model.KeycloakKubernetesStackInput, KeycloakKubernetesStackController_ExecuteServer) error
 }
 
-// UnimplementedKeycloakKubernetesKubernetesStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedKeycloakKubernetesKubernetesStackControllerServer struct {
+// UnimplementedKeycloakKubernetesStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedKeycloakKubernetesStackControllerServer struct {
 }
 
-func (UnimplementedKeycloakKubernetesKubernetesStackControllerServer) Execute(*model.KeycloakKubernetesStackInput, KeycloakKubernetesKubernetesStackController_ExecuteServer) error {
+func (UnimplementedKeycloakKubernetesStackControllerServer) Execute(*model.KeycloakKubernetesStackInput, KeycloakKubernetesStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
-// UnsafeKeycloakKubernetesKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to KeycloakKubernetesKubernetesStackControllerServer will
+// UnsafeKeycloakKubernetesStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to KeycloakKubernetesStackControllerServer will
 // result in compilation errors.
-type UnsafeKeycloakKubernetesKubernetesStackControllerServer interface {
-	mustEmbedUnimplementedKeycloakKubernetesKubernetesStackControllerServer()
+type UnsafeKeycloakKubernetesStackControllerServer interface {
+	mustEmbedUnimplementedKeycloakKubernetesStackControllerServer()
 }
 
-func RegisterKeycloakKubernetesKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv KeycloakKubernetesKubernetesStackControllerServer) {
-	s.RegisterService(&KeycloakKubernetesKubernetesStackController_ServiceDesc, srv)
+func RegisterKeycloakKubernetesStackControllerServer(s grpc.ServiceRegistrar, srv KeycloakKubernetesStackControllerServer) {
+	s.RegisterService(&KeycloakKubernetesStackController_ServiceDesc, srv)
 }
 
-func _KeycloakKubernetesKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _KeycloakKubernetesStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.KeycloakKubernetesStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(KeycloakKubernetesKubernetesStackControllerServer).Execute(m, &keycloakKubernetesKubernetesStackControllerExecuteServer{stream})
+	return srv.(KeycloakKubernetesStackControllerServer).Execute(m, &keycloakKubernetesStackControllerExecuteServer{stream})
 }
 
-type KeycloakKubernetesKubernetesStackController_ExecuteServer interface {
+type KeycloakKubernetesStackController_ExecuteServer interface {
 	Send(*model.KeycloakKubernetesStackResponse) error
 	grpc.ServerStream
 }
 
-type keycloakKubernetesKubernetesStackControllerExecuteServer struct {
+type keycloakKubernetesStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *keycloakKubernetesKubernetesStackControllerExecuteServer) Send(m *model.KeycloakKubernetesStackResponse) error {
+func (x *keycloakKubernetesStackControllerExecuteServer) Send(m *model.KeycloakKubernetesStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// KeycloakKubernetesKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for KeycloakKubernetesKubernetesStackController service.
+// KeycloakKubernetesStackController_ServiceDesc is the grpc.ServiceDesc for KeycloakKubernetesStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var KeycloakKubernetesKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.service.KeycloakKubernetesKubernetesStackController",
-	HandlerType: (*KeycloakKubernetesKubernetesStackControllerServer)(nil),
+var KeycloakKubernetesStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.service.KeycloakKubernetesStackController",
+	HandlerType: (*KeycloakKubernetesStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _KeycloakKubernetesKubernetesStackController_Execute_Handler,
+			Handler:       _KeycloakKubernetesStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},

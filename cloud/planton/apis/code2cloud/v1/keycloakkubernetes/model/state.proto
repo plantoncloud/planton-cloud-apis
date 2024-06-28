@@ -78,7 +78,7 @@ message KeycloakKubernetesSpec {
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //keycloak-container spec
-  KeycloakKubernetesSpecContainerSpec keycloak_container = 2;
+  KeycloakKubernetesSpecContainerSpec container = 2;
 
   //keycloak-kubernetes ingress-spec
   code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
