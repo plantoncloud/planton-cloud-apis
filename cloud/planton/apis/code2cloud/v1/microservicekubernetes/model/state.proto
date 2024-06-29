@@ -127,7 +127,7 @@ message MicroserviceKubernetesSpec {
 //microservice-kubernetes-spec kubernetes container spec
 message MicroserviceKubernetesSpecContainerSpec {
   //microservice app container
-  MicroserviceKubernetesSpecAppContainerSpec app = 1 [
+  MicroserviceKubernetesSpecContainerSpecAppSpec app = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -136,7 +136,7 @@ message MicroserviceKubernetesSpecContainerSpec {
 }
 
 //microservice-kubernetes-spec kubernetes app container spec
-message MicroserviceKubernetesSpecAppContainerSpec {
+message MicroserviceKubernetesSpecContainerSpecAppSpec {
   //container image. this value is computed during creation but is allowed for updates.
   //value is computed by combining the docker-repo of the artifact-store configured for environment and code project path.
   //
@@ -149,17 +149,17 @@ message MicroserviceKubernetesSpecAppContainerSpec {
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2;
 
   //microservice-kubernetes environment variables and secrets.
-  MicroserviceKubernetesSpecAppContainerSpecEnv env = 3;
+  MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec env = 3;
 
   //list of ports to be configured for the app container
-  repeated MicroserviceKubernetesSpecAppContainerSpecPort ports = 4;
+  repeated MicroserviceKubernetesSpecContainerSpecAppSpecPortSpec ports = 4;
 
   //list of container volume mounts
-  repeated MicroserviceKubernetesSpecAppContainerSpecVolumeMount volume_mounts = 5;
+  repeated MicroserviceKubernetesSpecContainerSpecAppSpecVolumeMountSpec volume_mounts = 5;
 }
 
 //microservice-kubernetes-spec kubernetes app container environment variables spec
-message MicroserviceKubernetesSpecAppContainerSpecEnv {
+message MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec {
   //map of variable
   map<string, string> variables = 1;
   //map of secrets
@@ -167,7 +167,7 @@ message MicroserviceKubernetesSpecAppContainerSpecEnv {
 }
 
 //microservice-kubernetes-spec kubernetes container port spec
-message MicroserviceKubernetesSpecAppContainerSpecPort {
+message MicroserviceKubernetesSpecContainerSpecAppSpecPortSpec {
   //name for the port ex: http, grpc
   string name = 1 [
     (buf.validate.field).required = true,
@@ -207,7 +207,7 @@ message MicroserviceKubernetesSpecAppContainerSpecPort {
 }
 
 //microservice-kubernetes-spec kubernetes container volume mount spec
-message MicroserviceKubernetesSpecAppContainerSpecVolumeMount {
+message MicroserviceKubernetesSpecContainerSpecAppSpecVolumeMountSpec {
   // name for the volume mount ex: solr-collection
   string name = 1;
   // path to mount the volume inside the container
@@ -328,11 +328,11 @@ message MicroserviceKubernetesStatusStackOutputs {
 
   //public endpoint to open microservice-kubernetes from clients outside kubernetes.
   //ex: https://ms-planton-pcs-dev-account.dev.planton.live:8080
-  repeated string external_hostname = 5;
+  repeated string external_hostnames = 5;
 
-  //public endpoint to open microservice-kubernetes from clients inside kubernetes.
+  //internal endpoint to open microservice-kubernetes from clients inside kubernetes.
   //ex: https://ms-planton-pcs-dev-account-internal.dev.planton.live:8080
-  repeated string internal_hostname = 6;
+  repeated string internal_hostnames = 6;
 
   //id of the service account created for the workload identity
   string workload_identity_account_id = 7;
