@@ -328,11 +328,11 @@ message MicroserviceKubernetesStatusStackOutputs {
 
   //public endpoint to open microservice-kubernetes from clients outside kubernetes.
   //ex: https://ms-planton-pcs-dev-account.dev.planton.live:8080
-  repeated string external_hostnames = 5;
+  string external_hostname = 5;
 
   //internal endpoint to open microservice-kubernetes from clients inside kubernetes.
   //ex: https://ms-planton-pcs-dev-account-internal.dev.planton.live:8080
-  repeated string internal_hostnames = 6;
+  string internal_hostname = 6;
 
   //id of the service account created for the workload identity
   string workload_identity_account_id = 7;
