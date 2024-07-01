@@ -132,6 +132,10 @@ message OpenfgaKubernetesStatusStackOutputs {
   string kube_endpoint = 4;
 
   //public endpoint to open openfga-kubernetes from clients outside kubernetes.
-  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/openfga
-  string ingress_endpoint = 5;
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live
+  string external_hostname = 5;
+
+  //private endpoint to open openfga-kubernetes from clients inside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data-internal.dev.planton.live
+  string internal_hostname = 6;
 }

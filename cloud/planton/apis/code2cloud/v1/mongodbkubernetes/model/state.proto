@@ -78,7 +78,7 @@ message MongodbKubernetesSpec {
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //mongodb-container spec
-  MongodbKubernetesSpecContainerSpec mongodb_container = 2 [
+  MongodbKubernetesSpecContainerSpec container = 2 [
     (buf.validate.field).required = true
   ];
 
