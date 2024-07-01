@@ -24,7 +24,7 @@ service EnvironmentQueryController {
 
   //find environments by product id
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments) {
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -33,7 +33,7 @@ service EnvironmentQueryController {
 
   //find environments by kube-cluster id
   rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environments) {
+      returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

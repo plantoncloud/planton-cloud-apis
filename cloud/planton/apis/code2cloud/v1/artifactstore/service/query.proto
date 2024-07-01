@@ -21,7 +21,7 @@ service ArtifactStoreQueryController {
   }
   //look up artifact-stores by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores) {
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
     // authorization is handled internally
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
@@ -58,7 +58,7 @@ service ArtifactStoreQueryController {
 
   //look up artifact-stores by product id.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStores) {
+      returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

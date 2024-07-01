@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for argocd-instance stack
+// input for grafana-instance stack
 type GrafanaInstanceKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -97,7 +97,7 @@ type GrafanaInstanceKubernetesStackCredentialsInput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// kubernetes provider credential for creating argocd-instance resources on kubernetes cluster
+	// kubernetes provider credential for creating grafana-instance resources on kubernetes cluster
 	Kubernetes *credentials.KubernetesProviderCredential `protobuf:"bytes,1,opt,name=kubernetes,proto3" json:"kubernetes,omitempty"`
 }
 
@@ -146,7 +146,7 @@ type GrafanaInstanceKubernetesStackResourceInput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// argocd-instance
+	// grafana-instance
 	GrafanaInstance *model1.GrafanaInstance `protobuf:"bytes,1,opt,name=grafana_instance,json=grafanaInstance,proto3" json:"grafana_instance,omitempty"`
 }
 
@@ -189,13 +189,13 @@ func (x *GrafanaInstanceKubernetesStackResourceInput) GetGrafanaInstance() *mode
 	return nil
 }
 
-// argocd-instance stack outputs
+// grafana-instance stack outputs
 type GrafanaInstanceKubernetesStackOutputs struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// status of the argocd-instance upon stack-job
+	// status of the grafana-instance upon stack-job
 	GrafanaInstanceStatus *model1.GrafanaInstanceStatus `protobuf:"bytes,1,opt,name=grafana_instance_status,json=grafanaInstanceStatus,proto3" json:"grafana_instance_status,omitempty"`
 }
 

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.solrkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of solr-kubernetes
+message SolrKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for solr-kubernetes password
+message SolrKubernetesPassword {
+  string value = 1;
+}

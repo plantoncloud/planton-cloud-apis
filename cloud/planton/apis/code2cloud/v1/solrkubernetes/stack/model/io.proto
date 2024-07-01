@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.solrkubernetes.stack.model;
+
+import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for solr-kubernetes stack
+message SolrKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential credentials_input = 2;
+  //inputs used for creating stack resources
+  cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes resource_input = 3;
+}
+
+//stack response
+message SolrKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  code2cloud.v1.solrkubernetes.model.SolrKubernetesStatusStackOutputs outputs = 3;
+}

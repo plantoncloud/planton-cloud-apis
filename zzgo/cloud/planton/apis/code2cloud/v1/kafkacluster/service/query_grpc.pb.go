@@ -8,10 +8,7 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kafkacluster/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -23,11 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	KafkaClusterQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getById"
-	KafkaClusterQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByProductId"
-	KafkaClusterQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByEnvironmentId"
-	KafkaClusterQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/findByKubeClusterId"
-	KafkaClusterQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getPassword"
+	KafkaClusterQueryController_GetById_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getById"
+	KafkaClusterQueryController_GetPassword_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kafkacluster.service.KafkaClusterQueryController/getPassword"
 )
 
 // KafkaClusterQueryControllerClient is the client API for KafkaClusterQueryController service.
@@ -36,13 +30,6 @@ const (
 type KafkaClusterQueryControllerClient interface {
 	// look up kafka-cluster using kafka-cluster id
 	GetById(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaCluster, error)
-	// find kafka-clusters by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.KafkaClusters, error)
-	// find kafka-clusters by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.KafkaClusters, error)
-	// find kafka-clusters by kube-cluster
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.KafkaClusters, error)
 	// look up kafka-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaClusterPassword, error)
@@ -65,33 +52,6 @@ func (c *kafkaClusterQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *kafkaClusterQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.KafkaClusters, error) {
-	out := new(model.KafkaClusters)
-	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kafkaClusterQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.KafkaClusters, error) {
-	out := new(model.KafkaClusters)
-	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kafkaClusterQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.KafkaClusters, error) {
-	out := new(model.KafkaClusters)
-	err := c.cc.Invoke(ctx, KafkaClusterQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *kafkaClusterQueryControllerClient) GetPassword(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaClusterPassword, error) {
 	out := new(model.KafkaClusterPassword)
 	err := c.cc.Invoke(ctx, KafkaClusterQueryController_GetPassword_FullMethodName, in, out, opts...)
@@ -107,13 +67,6 @@ func (c *kafkaClusterQueryControllerClient) GetPassword(ctx context.Context, in 
 type KafkaClusterQueryControllerServer interface {
 	// look up kafka-cluster using kafka-cluster id
 	GetById(context.Context, *model.KafkaClusterId) (*model.KafkaCluster, error)
-	// find kafka-clusters by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.KafkaClusters, error)
-	// find kafka-clusters by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.KafkaClusters, error)
-	// find kafka-clusters by kube-cluster
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.KafkaClusters, error)
 	// look up kafka-cluster sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error)
@@ -125,15 +78,6 @@ type UnimplementedKafkaClusterQueryControllerServer struct {
 
 func (UnimplementedKafkaClusterQueryControllerServer) GetById(context.Context, *model.KafkaClusterId) (*model.KafkaCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
-}
-func (UnimplementedKafkaClusterQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.KafkaClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedKafkaClusterQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.KafkaClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
-}
-func (UnimplementedKafkaClusterQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.KafkaClusters, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 func (UnimplementedKafkaClusterQueryControllerServer) GetPassword(context.Context, *model.KafkaClusterId) (*model.KafkaClusterPassword, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPassword not implemented")
@@ -168,60 +112,6 @@ func _KafkaClusterQueryController_GetById_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KafkaClusterQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KafkaClusterQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterQueryControllerServer).FindByEnvironmentId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterQueryController_FindByEnvironmentId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KafkaClusterQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaClusterQueryControllerServer).FindByKubeClusterId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaClusterQueryController_FindByKubeClusterId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaClusterQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _KafkaClusterQueryController_GetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.KafkaClusterId)
 	if err := dec(in); err != nil {
@@ -252,18 +142,6 @@ var KafkaClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _KafkaClusterQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByProductId",
-			Handler:    _KafkaClusterQueryController_FindByProductId_Handler,
-		},
-		{
-			MethodName: "findByEnvironmentId",
-			Handler:    _KafkaClusterQueryController_FindByEnvironmentId_Handler,
-		},
-		{
-			MethodName: "findByKubeClusterId",
-			Handler:    _KafkaClusterQueryController_FindByKubeClusterId_Handler,
-		},
-		{
 			MethodName: "getPassword",
 			Handler:    _KafkaClusterQueryController_GetPassword_Handler,
 		},
@@ -282,7 +160,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KafkaTopicQueryControllerClient interface {
 	// find kafka topics by kafka-cluster id
-	FindByKafkaClusterId(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaTopics, error)
+	FindByKafkaClusterId(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaTopicList, error)
 	// look up kafka topic using kafka topic id
 	GetById(ctx context.Context, in *model.KafkaTopicQueryInput, opts ...grpc.CallOption) (*model.KafkaTopic, error)
 }
@@ -295,8 +173,8 @@ func NewKafkaTopicQueryControllerClient(cc grpc.ClientConnInterface) KafkaTopicQ
 	return &kafkaTopicQueryControllerClient{cc}
 }
 
-func (c *kafkaTopicQueryControllerClient) FindByKafkaClusterId(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaTopics, error) {
-	out := new(model.KafkaTopics)
+func (c *kafkaTopicQueryControllerClient) FindByKafkaClusterId(ctx context.Context, in *model.KafkaClusterId, opts ...grpc.CallOption) (*model.KafkaTopicList, error) {
+	out := new(model.KafkaTopicList)
 	err := c.cc.Invoke(ctx, KafkaTopicQueryController_FindByKafkaClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -318,7 +196,7 @@ func (c *kafkaTopicQueryControllerClient) GetById(ctx context.Context, in *model
 // for forward compatibility
 type KafkaTopicQueryControllerServer interface {
 	// find kafka topics by kafka-cluster id
-	FindByKafkaClusterId(context.Context, *model.KafkaClusterId) (*model.KafkaTopics, error)
+	FindByKafkaClusterId(context.Context, *model.KafkaClusterId) (*model.KafkaTopicList, error)
 	// look up kafka topic using kafka topic id
 	GetById(context.Context, *model.KafkaTopicQueryInput) (*model.KafkaTopic, error)
 }
@@ -327,7 +205,7 @@ type KafkaTopicQueryControllerServer interface {
 type UnimplementedKafkaTopicQueryControllerServer struct {
 }
 
-func (UnimplementedKafkaTopicQueryControllerServer) FindByKafkaClusterId(context.Context, *model.KafkaClusterId) (*model.KafkaTopics, error) {
+func (UnimplementedKafkaTopicQueryControllerServer) FindByKafkaClusterId(context.Context, *model.KafkaClusterId) (*model.KafkaTopicList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKafkaClusterId not implemented")
 }
 func (UnimplementedKafkaTopicQueryControllerServer) GetById(context.Context, *model.KafkaTopicQueryInput) (*model.KafkaTopic, error) {

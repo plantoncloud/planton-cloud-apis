@@ -29,7 +29,7 @@ service KubeClusterQueryController {
 
   // find kube-clusters by company id
   rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters) {
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -38,7 +38,7 @@ service KubeClusterQueryController {
 
   // find kube-clusters in a cloud account.
   rpc findByCloudAccountId(cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountId)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters) {
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = cloud_account;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = cloud_account_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -50,7 +50,7 @@ service KubeClusterQueryController {
   // the response should only include kube-clusters that a company is authorised to create environment.
   // the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
   rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusters){
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList){
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -74,13 +74,13 @@ service KubeClusterNodePoolGcpQueryController {
 service GcpQueryController {
   // list all gcp regions
   rpc findRegions(cloud.planton.apis.commons.protobuf.CustomEmpty)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpRegions) {
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpRegionList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_public) = true;
   }
 
   // list all zones in a gcp region
   rpc findZonesByRegionIdentifier(cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpRegionIdentifier)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpZones) {
+      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.GcpZoneList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_public) = true;
   }
 }

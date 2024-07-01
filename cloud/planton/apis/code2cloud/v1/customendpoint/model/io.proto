@@ -13,14 +13,8 @@ message CustomEndpointId {
 }
 
 //list of custom-endpoints
-message CustomEndpoints {
-  repeated CustomEndpoint entries = 1;
-}
-
-//response for paginated query to list custom-endpoints
 message CustomEndpointList {
-  int32 total_pages = 1;
-  repeated CustomEndpoint entries = 2;
+  repeated CustomEndpoint entries = 1;
 }
 
 //AddOrUpdateCustomEndpointRouteCommandInput is used to encapsulate the details required

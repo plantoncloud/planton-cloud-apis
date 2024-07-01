@@ -38,14 +38,14 @@ type KubeClusterQueryControllerClient interface {
 	// lookup kube-cluster using kube-cluster id
 	GetById(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// find kube-clusters by company id
-	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusters, error)
+	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// find kube-clusters in a cloud account.
-	FindByCloudAccountId(ctx context.Context, in *model2.CloudAccountId, opts ...grpc.CallOption) (*model.KubeClusters, error)
+	FindByCloudAccountId(ctx context.Context, in *model2.CloudAccountId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// find kube-clusters by company id to create environment.
 	// this will be used to populate drop down of kube-clusters in create environment form.
 	// the response should only include kube-clusters that a company is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
-	FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusters, error)
+	FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 }
 
 type kubeClusterQueryControllerClient struct {
@@ -65,8 +65,8 @@ func (c *kubeClusterQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusters, error) {
-	out := new(model.KubeClusters)
+func (c *kubeClusterQueryControllerClient) FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
+	out := new(model.KubeClusterList)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -74,8 +74,8 @@ func (c *kubeClusterQueryControllerClient) FindByCompanyId(ctx context.Context, 
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindByCloudAccountId(ctx context.Context, in *model2.CloudAccountId, opts ...grpc.CallOption) (*model.KubeClusters, error) {
-	out := new(model.KubeClusters)
+func (c *kubeClusterQueryControllerClient) FindByCloudAccountId(ctx context.Context, in *model2.CloudAccountId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
+	out := new(model.KubeClusterList)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindByCloudAccountId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -83,8 +83,8 @@ func (c *kubeClusterQueryControllerClient) FindByCloudAccountId(ctx context.Cont
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusters, error) {
-	out := new(model.KubeClusters)
+func (c *kubeClusterQueryControllerClient) FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
+	out := new(model.KubeClusterList)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -99,14 +99,14 @@ type KubeClusterQueryControllerServer interface {
 	// lookup kube-cluster using kube-cluster id
 	GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error)
 	// find kube-clusters by company id
-	FindByCompanyId(context.Context, *model1.CompanyId) (*model.KubeClusters, error)
+	FindByCompanyId(context.Context, *model1.CompanyId) (*model.KubeClusterList, error)
 	// find kube-clusters in a cloud account.
-	FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusters, error)
+	FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusterList, error)
 	// find kube-clusters by company id to create environment.
 	// this will be used to populate drop down of kube-clusters in create environment form.
 	// the response should only include kube-clusters that a company is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
-	FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusters, error)
+	FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusterList, error)
 }
 
 // UnimplementedKubeClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -116,13 +116,13 @@ type UnimplementedKubeClusterQueryControllerServer struct {
 func (UnimplementedKubeClusterQueryControllerServer) GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindByCompanyId(context.Context, *model1.CompanyId) (*model.KubeClusters, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindByCompanyId(context.Context, *model1.CompanyId) (*model.KubeClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusters, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCloudAccountId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusters, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeClusters(context.Context, *model1.CompanyId) (*model.KubeClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnvironmentCreateKubeClusters not implemented")
 }
 
@@ -337,9 +337,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GcpQueryControllerClient interface {
 	// list all gcp regions
-	FindRegions(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.GcpRegions, error)
+	FindRegions(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.GcpRegionList, error)
 	// list all zones in a gcp region
-	FindZonesByRegionIdentifier(ctx context.Context, in *model.GcpRegionIdentifier, opts ...grpc.CallOption) (*model.GcpZones, error)
+	FindZonesByRegionIdentifier(ctx context.Context, in *model.GcpRegionIdentifier, opts ...grpc.CallOption) (*model.GcpZoneList, error)
 }
 
 type gcpQueryControllerClient struct {
@@ -350,8 +350,8 @@ func NewGcpQueryControllerClient(cc grpc.ClientConnInterface) GcpQueryController
 	return &gcpQueryControllerClient{cc}
 }
 
-func (c *gcpQueryControllerClient) FindRegions(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.GcpRegions, error) {
-	out := new(model.GcpRegions)
+func (c *gcpQueryControllerClient) FindRegions(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.GcpRegionList, error) {
+	out := new(model.GcpRegionList)
 	err := c.cc.Invoke(ctx, GcpQueryController_FindRegions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -359,8 +359,8 @@ func (c *gcpQueryControllerClient) FindRegions(ctx context.Context, in *protobuf
 	return out, nil
 }
 
-func (c *gcpQueryControllerClient) FindZonesByRegionIdentifier(ctx context.Context, in *model.GcpRegionIdentifier, opts ...grpc.CallOption) (*model.GcpZones, error) {
-	out := new(model.GcpZones)
+func (c *gcpQueryControllerClient) FindZonesByRegionIdentifier(ctx context.Context, in *model.GcpRegionIdentifier, opts ...grpc.CallOption) (*model.GcpZoneList, error) {
+	out := new(model.GcpZoneList)
 	err := c.cc.Invoke(ctx, GcpQueryController_FindZonesByRegionIdentifier_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -373,19 +373,19 @@ func (c *gcpQueryControllerClient) FindZonesByRegionIdentifier(ctx context.Conte
 // for forward compatibility
 type GcpQueryControllerServer interface {
 	// list all gcp regions
-	FindRegions(context.Context, *protobuf.CustomEmpty) (*model.GcpRegions, error)
+	FindRegions(context.Context, *protobuf.CustomEmpty) (*model.GcpRegionList, error)
 	// list all zones in a gcp region
-	FindZonesByRegionIdentifier(context.Context, *model.GcpRegionIdentifier) (*model.GcpZones, error)
+	FindZonesByRegionIdentifier(context.Context, *model.GcpRegionIdentifier) (*model.GcpZoneList, error)
 }
 
 // UnimplementedGcpQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGcpQueryControllerServer struct {
 }
 
-func (UnimplementedGcpQueryControllerServer) FindRegions(context.Context, *protobuf.CustomEmpty) (*model.GcpRegions, error) {
+func (UnimplementedGcpQueryControllerServer) FindRegions(context.Context, *protobuf.CustomEmpty) (*model.GcpRegionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindRegions not implemented")
 }
-func (UnimplementedGcpQueryControllerServer) FindZonesByRegionIdentifier(context.Context, *model.GcpRegionIdentifier) (*model.GcpZones, error) {
+func (UnimplementedGcpQueryControllerServer) FindZonesByRegionIdentifier(context.Context, *model.GcpRegionIdentifier) (*model.GcpZoneList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindZonesByRegionIdentifier not implemented")
 }
 

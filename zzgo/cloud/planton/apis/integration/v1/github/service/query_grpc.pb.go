@@ -34,7 +34,7 @@ type GithubQueryControllerClient interface {
 	// list repositories for the requested organization or user on github
 	// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
 	// todo: we have to add pagination support for response.
-	ListRepositories(ctx context.Context, in *model.ListRepositoriesQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error)
+	ListRepositories(ctx context.Context, in *model.ListRepositoriesQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectList, error)
 	// get the details of a repository on github
 	GetRepository(ctx context.Context, in *model.GetRepositoryQueryInput, opts ...grpc.CallOption) (*model1.CodeProject, error)
 	// get details of a github app installation
@@ -51,8 +51,8 @@ func NewGithubQueryControllerClient(cc grpc.ClientConnInterface) GithubQueryCont
 	return &githubQueryControllerClient{cc}
 }
 
-func (c *githubQueryControllerClient) ListRepositories(ctx context.Context, in *model.ListRepositoriesQueryInput, opts ...grpc.CallOption) (*model1.CodeProjects, error) {
-	out := new(model1.CodeProjects)
+func (c *githubQueryControllerClient) ListRepositories(ctx context.Context, in *model.ListRepositoriesQueryInput, opts ...grpc.CallOption) (*model1.CodeProjectList, error) {
+	out := new(model1.CodeProjectList)
 	err := c.cc.Invoke(ctx, GithubQueryController_ListRepositories_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -94,7 +94,7 @@ type GithubQueryControllerServer interface {
 	// list repositories for the requested organization or user on github
 	// https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
 	// todo: we have to add pagination support for response.
-	ListRepositories(context.Context, *model.ListRepositoriesQueryInput) (*model1.CodeProjects, error)
+	ListRepositories(context.Context, *model.ListRepositoriesQueryInput) (*model1.CodeProjectList, error)
 	// get the details of a repository on github
 	GetRepository(context.Context, *model.GetRepositoryQueryInput) (*model1.CodeProject, error)
 	// get details of a github app installation
@@ -107,7 +107,7 @@ type GithubQueryControllerServer interface {
 type UnimplementedGithubQueryControllerServer struct {
 }
 
-func (UnimplementedGithubQueryControllerServer) ListRepositories(context.Context, *model.ListRepositoriesQueryInput) (*model1.CodeProjects, error) {
+func (UnimplementedGithubQueryControllerServer) ListRepositories(context.Context, *model.ListRepositoriesQueryInput) (*model1.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRepositories not implemented")
 }
 func (UnimplementedGithubQueryControllerServer) GetRepository(context.Context, *model.GetRepositoryQueryInput) (*model1.CodeProject, error) {

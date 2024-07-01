@@ -13,7 +13,7 @@ service GitlabQueryController {
   //https://docs.gitlab.com/ee/api/groups.html#list-a-groups-projects
   //todo: we have to add pagination support for response.
   rpc listProjects(cloud.planton.apis.integration.v1.gitlab.model.ListProjectsQueryInput)
-      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjects);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList);
   //get details of a project on gitlab
   rpc getProject(cloud.planton.apis.integration.v1.gitlab.model.GetProjectQueryInput)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);

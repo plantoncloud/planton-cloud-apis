@@ -28,7 +28,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// argocd-instance
+// grafana-instance
 type GrafanaInstance struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -113,7 +113,7 @@ func (x *GrafanaInstance) GetStatus() *GrafanaInstanceStatus {
 	return nil
 }
 
-// argocd-instance spec
+// grafana-instance spec
 type GrafanaInstanceSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -171,7 +171,7 @@ func (x *GrafanaInstanceSpec) GetKubernetes() *GrafanaInstanceSpecKubernetesSpec
 	return nil
 }
 
-// argocd-instance status.
+// grafana-instance status.
 type GrafanaInstanceStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -247,7 +247,7 @@ func (x *GrafanaInstanceStatus) GetKubernetes() *GrafanaInstanceStatusKubernetes
 	return nil
 }
 
-// argocd-instance kubernetes spec
+// grafana-instance kubernetes spec
 type GrafanaInstanceSpecKubernetesSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -255,7 +255,7 @@ type GrafanaInstanceSpecKubernetesSpec struct {
 
 	// grafana-container spec
 	GrafanaContainer *GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec `protobuf:"bytes,1,opt,name=grafana_container,json=grafanaContainer,proto3" json:"grafana_container,omitempty"`
-	// argocd-instance ingress-spec
+	// grafana-instance ingress-spec
 	Ingress *GrafanaInstanceSpecKubernetesSpecIngressSpec `protobuf:"bytes,2,opt,name=ingress,proto3" json:"ingress,omitempty"`
 }
 
@@ -305,7 +305,7 @@ func (x *GrafanaInstanceSpecKubernetesSpec) GetIngress() *GrafanaInstanceSpecKub
 	return nil
 }
 
-// argocd-instance kubernetes grafana-container spec
+// grafana-instance kubernetes grafana-container spec
 type GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -355,7 +355,7 @@ func (x *GrafanaInstanceSpecKubernetesSpecGrafanaContainerSpec) GetResources() *
 	return nil
 }
 
-// argocd-instance kubernetes ingress spec
+// grafana-instance kubernetes ingress spec
 type GrafanaInstanceSpecKubernetesSpecIngressSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -423,28 +423,28 @@ func (x *GrafanaInstanceSpecKubernetesSpecIngressSpec) GetEndpointDomainName() s
 	return ""
 }
 
-// argocd-instance kubernetes status
+// grafana-instance kubernetes status
 type GrafanaInstanceStatusKubernetesStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// kubernetes namespace in which argocd-instance is created.
+	// kubernetes namespace in which grafana-instance is created.
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	// kubernetes service name for argocd-instance.
-	// ex: main-argocd-instance
-	// in the above example, "main" is the name of the argocd-instance
+	// kubernetes service name for grafana-instance.
+	// ex: main-grafana-instance
+	// in the above example, "main" is the name of the grafana-instance
 	Service string `protobuf:"bytes,2,opt,name=service,proto3" json:"service,omitempty"`
-	// command to setup port-forwarding to open argocd-instance from developers laptop.
-	// this might come handy when argocd-instance ingress is disabled for security reasons.
+	// command to setup port-forwarding to open grafana-instance from developers laptop.
+	// this might come handy when grafana-instance ingress is disabled for security reasons.
 	// this is rendered by combining grafana_instance_kubernetes_service and kubernetes_namespace
 	// ex: kubectl port-forward svc/grafana_instance_kubernetes_service -n kubernetes_namespace 6379:6379
-	// running the command from this attribute makes it possible to access argocd-instance using http://localhost:8080/grafana
+	// running the command from this attribute makes it possible to access grafana-instance using http://localhost:8080/grafana
 	PortForwardCommand string `protobuf:"bytes,3,opt,name=port_forward_command,json=portForwardCommand,proto3" json:"port_forward_command,omitempty"`
-	// kubernetes endpoint to connect to argocd-instance from the web browser.
-	// ex: main-argocd-instance.namespace.svc.cluster.local:6379
+	// kubernetes endpoint to connect to grafana-instance from the web browser.
+	// ex: main-grafana-instance.namespace.svc.cluster.local:6379
 	KubeEndpoint string `protobuf:"bytes,4,opt,name=kube_endpoint,json=kubeEndpoint,proto3" json:"kube_endpoint,omitempty"`
-	// public endpoint to open argocd-instance from clients outside kubernetes.
+	// public endpoint to open grafana-instance from clients outside kubernetes.
 	// ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live:6379/grafana
 	IngressEndpoint string `protobuf:"bytes,5,opt,name=ingress_endpoint,json=ingressEndpoint,proto3" json:"ingress_endpoint,omitempty"`
 }

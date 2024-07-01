@@ -6,7 +6,7 @@ import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
 import "buf/validate/validate.proto";
 
 //list of environments
-message Environments {
+message EnvironmentList {
   repeated Environment entries = 1;
 }
 
@@ -15,12 +15,6 @@ message EnvironmentId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
-}
-
-//response for paginated query to list environments
-message EnvironmentList {
-  int32 total_pages = 1;
-  repeated Environment entries = 2;
 }
 
 message GetByProductIdAndEnvironmentNameQueryInput {
@@ -57,14 +51,8 @@ message CloneEnvironmentCommandInput {
 }
 
 //wrapper for list of environment variables
-message EnvironmentVariables {
-  repeated EnvironmentVariable entries = 1;
-}
-
-//response for paginated query to list environment variables
 message EnvironmentVariableList {
-  int32 total_pages = 1;
-  repeated EnvironmentVariable entries = 2;
+  repeated EnvironmentVariable entries = 1;
 }
 
 //wrapper for product var id
@@ -98,14 +86,8 @@ message AddEnvironmentVariablesCommandInput {
 }
 
 //wrapper for list of secrets
-message EnvironmentSecrets {
-  repeated EnvironmentSecret entries = 1;
-}
-
-//response for paginated query to list environment secrets
 message EnvironmentSecretList {
-  int32 total_pages = 1;
-  repeated EnvironmentSecret entries = 2;
+  repeated EnvironmentSecret entries = 1;
 }
 
 //wrapper for environment secret id

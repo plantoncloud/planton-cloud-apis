@@ -38,9 +38,9 @@ type EnvironmentQueryControllerClient interface {
 	// look up environment using environment id
 	GetById(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error)
 	// find environments by product id
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.Environments, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.EnvironmentList, error)
 	// find environments by kube-cluster id
-	FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.Environments, error)
+	FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.EnvironmentList, error)
 	// look up environment using environment id
 	GetByProductIdAndEnvironmentName(ctx context.Context, in *model.GetByProductIdAndEnvironmentNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// look up the build engine environment for the product required for launching the microservice in build engine
@@ -66,8 +66,8 @@ func (c *environmentQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.Environments, error) {
-	out := new(model.Environments)
+func (c *environmentQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.EnvironmentList, error) {
+	out := new(model.EnvironmentList)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -75,8 +75,8 @@ func (c *environmentQueryControllerClient) FindByProductId(ctx context.Context, 
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.Environments, error) {
-	out := new(model.Environments)
+func (c *environmentQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.EnvironmentList, error) {
+	out := new(model.EnvironmentList)
 	err := c.cc.Invoke(ctx, EnvironmentQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -118,9 +118,9 @@ type EnvironmentQueryControllerServer interface {
 	// look up environment using environment id
 	GetById(context.Context, *model.EnvironmentId) (*model.Environment, error)
 	// find environments by product id
-	FindByProductId(context.Context, *model1.ProductId) (*model.Environments, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.EnvironmentList, error)
 	// find environments by kube-cluster id
-	FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.Environments, error)
+	FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.EnvironmentList, error)
 	// look up environment using environment id
 	GetByProductIdAndEnvironmentName(context.Context, *model.GetByProductIdAndEnvironmentNameQueryInput) (*model.Environment, error)
 	// look up the build engine environment for the product required for launching the microservice in build engine
@@ -136,10 +136,10 @@ type UnimplementedEnvironmentQueryControllerServer struct {
 func (UnimplementedEnvironmentQueryControllerServer) GetById(context.Context, *model.EnvironmentId) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.Environments, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.EnvironmentList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.Environments, error) {
+func (UnimplementedEnvironmentQueryControllerServer) FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.EnvironmentList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 func (UnimplementedEnvironmentQueryControllerServer) GetByProductIdAndEnvironmentName(context.Context, *model.GetByProductIdAndEnvironmentNameQueryInput) (*model.Environment, error) {

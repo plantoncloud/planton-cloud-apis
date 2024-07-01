@@ -1,0 +1,196 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.locustkubernetes.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+//locust-kubernetes
+message LocustKubernetes {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = locust_kubernetes;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
+
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "lock8s";
+
+  //id format "rdc-<environment-id>-<locust-kubernetes-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (buf.validate.field).string.const = "LocustKubernetes"
+  ];
+
+  //resource metadata
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.version.message",
+      message: "Version message is mandatory and cannot be empty",
+      expression: "has(this.version.message)"
+    }
+  ];
+
+  //spec
+  LocustKubernetesSpec spec = 4;
+
+  //status
+  LocustKubernetesStatus status = 5;
+}
+
+// LocustKubernetesSpec defines the overall configuration for a Locust load testing cluster.
+// This message encapsulates the environmental context, Kubernetes deployment specifications,
+// load testing parameters, and Helm chart values for customizing the deployment.
+message LocustKubernetesSpec {
+
+  // provides all environment level info
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+
+  // kubernetes specifies the configuration settings specific to Kubernetes.
+  //master-locust-container spec
+  LocustKubernetesSpecContainerSpec master_container = 2 [
+    (buf.validate.field).required = true
+  ];
+  //worker-locust-container spec
+  LocustKubernetesSpecContainerSpec worker_container = 3 [
+    (buf.validate.field).required = true
+  ];
+  //locust-kubernetes ingress-spec
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 4;
+
+  // load_test defines the parameters of the load test itself, including the main test script,
+  // any additional library files, and extra Python pip packages needed for the test execution.
+  // This specification directs how the Locust nodes will simulate traffic and interact with the target application.
+  LocustKubernetesSpecLoadTestSpec load_test = 5;
+
+  // helm_values is a map of key-value pairs that provide additional customization options for the Helm chart used
+  // to deploy the Locust cluster. These values allow for further refinement of the deployment, such as customizing
+  // resource limits, setting environment variables, or specifying version tags. For detailed information on the available
+  // options, refer to the Helm chart documentation at:
+  // https://github.com/deliveryhero/helm-charts/tree/master/stable/locust#values
+  map<string, string> helm_values = 6;
+}
+
+
+//locust-kubernetes status.
+message LocustKubernetesStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  LocustKubernetesStatusStackOutputs outputs = 1;
+}
+
+// locust-kubernetes kubernetes locust-container spec
+message LocustKubernetesSpecContainerSpec {
+  //locust container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+  // number of replicas
+  int32 replicas = 2 [
+    (buf.validate.field).required = true
+  ];
+}
+
+// LocustKubernetesSpecLoadTestSpec defines the specification for a load test using a Locust cluster.
+// This message includes the primary Python script for Locust and any additional library files
+// necessary to execute the load test.
+message LocustKubernetesSpecLoadTestSpec {
+
+  // name specifies the unique identifier or name for this particular load test specification.
+  // It is used to reference or distinguish this test configuration among others within a testing suite or environment.
+  string name = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // main_py_content contains the Python code for the main Locust test script.
+  // This script defines the behavior of the simulated users and is crucial for executing the load test.
+  string main_py_content = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // lib_files_content is a map where each entry consists of a filename and its associated Python code content.
+  // These files typically contain additional classes or functions required by the main_py_content script.
+  // The key of the map is the filename, and the value is the file content.
+  map<string,string> lib_files_content = 3 [
+    (buf.validate.field).required = true
+  ];
+
+  // pip_packages lists extra python pip packages that are required for the load test.
+  // These packages will be installed in the environment where the load test is executed,
+  // allowing for extended functionality or custom dependencies to be included easily.
+  repeated string pip_packages = 4;
+}
+
+//locust-kubernetes stack outputs.
+message LocustKubernetesStatusStackOutputs {
+  //kubernetes namespace in which locust-kubernetes is created.
+  string namespace = 1;
+
+  //kubernetes service name for locust-kubernetes.
+  //ex: main-locust-kubernetes
+  //in the above example, "main" is the name of the locust-kubernetes
+  string service = 2;
+
+  //command to setup port-forwarding to open locust-kubernetes from developers laptop.
+  //this might come handy when locust-kubernetes ingress is disabled for security reasons.
+  //this is rendered by combining locust_kubernetes_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/locust_kubernetes_kubernetes_service -n kubernetes_namespace 6379:6379
+  //running the command from this attribute makes it possible to access locust-kubernetes using http://localhost:8080/locust
+  string port_forward_command = 3;
+
+  //kubernetes endpoint to connect to locust-kubernetes from the web browser.
+  //ex: main-locust-kubernetes.namespace.svc.cluster.local:6379
+  string kube_endpoint = 4;
+
+  //public endpoint to open locust-kubernetes from clients outside kubernetes.
+  //ex: https://lock8s-planton-pcs-dev-main.dev.planton.live
+  string external_hostname = 5;
+
+  //internal endpoint to open locust-kubernetes from clients inside kubernetes.
+  //ex: https://lock8s-planton-pcs-dev-main-internal.dev.planton.live
+  string internal_hostname = 6;
+}
+

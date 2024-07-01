@@ -13,13 +13,8 @@ message KafkaClusterId {
   ];
 }
 
-//list of kafka-clusters
-message KafkaClusters {
-  repeated KafkaCluster entries = 1;
-}
-
 //list of kafka topics
-message KafkaTopics {
+message KafkaTopicList {
   repeated KafkaTopic entries = 1;
 }
 
@@ -50,12 +45,6 @@ message AddKafkaTopicsCommandInput {
   string version_message = 3 [
     (buf.validate.field).required = true
   ];
-}
-
-//response for paginated query to list kafka-clusters
-message KafkaClusterList {
-  int32 total_pages = 1;
-  repeated KafkaCluster entries = 2;
 }
 
 //AddOrUpdateKafkaTopicCommandInput is used to encapsulate the details required

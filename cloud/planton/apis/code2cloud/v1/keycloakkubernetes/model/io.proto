@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.keycloakkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/keycloakkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of keycloak-kubernetes
+message KeycloakKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for keycloak-kubernetes password
+message KeycloakKubernetesPassword {
+  string value = 1;
+}

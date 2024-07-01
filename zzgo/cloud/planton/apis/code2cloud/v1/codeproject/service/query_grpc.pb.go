@@ -37,16 +37,16 @@ type CodeProjectQueryControllerClient interface {
 	// look up a code project by code project id
 	GetById(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// find code projects by product id
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjects, error)
+	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// find code projects by code-server id
-	FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjects, error)
+	FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// look up all code projects by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjects, error)
+	FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// find code project templates by company id to create new code project.
 	// this will be used to populate drop down of code project templates in create code project form.
 	// the response should only include code project templates that a company is authorised to use for creating new code projects.
 	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
-	FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjects, error)
+	FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProjectProfile, error)
 }
@@ -68,8 +68,8 @@ func (c *codeProjectQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *codeProjectQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjects, error) {
-	out := new(model.CodeProjects)
+func (c *codeProjectQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
+	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -77,8 +77,8 @@ func (c *codeProjectQueryControllerClient) FindByProductId(ctx context.Context, 
 	return out, nil
 }
 
-func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjects, error) {
-	out := new(model.CodeProjects)
+func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
+	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByCodeServerId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -86,8 +86,8 @@ func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Contex
 	return out, nil
 }
 
-func (c *codeProjectQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjects, error) {
-	out := new(model.CodeProjects)
+func (c *codeProjectQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
+	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -95,8 +95,8 @@ func (c *codeProjectQueryControllerClient) FindByCodeProjectUrl(ctx context.Cont
 	return out, nil
 }
 
-func (c *codeProjectQueryControllerClient) FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjects, error) {
-	out := new(model.CodeProjects)
+func (c *codeProjectQueryControllerClient) FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
+	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindTemplateCodeProjectsByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -120,16 +120,16 @@ type CodeProjectQueryControllerServer interface {
 	// look up a code project by code project id
 	GetById(context.Context, *model.CodeProjectId) (*model.CodeProject, error)
 	// find code projects by product id
-	FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjects, error)
+	FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error)
 	// find code projects by code-server id
-	FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjects, error)
+	FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjectList, error)
 	// look up all code projects by code project url
-	FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjects, error)
+	FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjectList, error)
 	// find code project templates by company id to create new code project.
 	// this will be used to populate drop down of code project templates in create code project form.
 	// the response should only include code project templates that a company is authorised to use for creating new code projects.
 	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
-	FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjects, error)
+	FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(context.Context, *model.CodeProjectId) (*model.CodeProjectProfile, error)
 }
@@ -141,16 +141,16 @@ type UnimplementedCodeProjectQueryControllerServer struct {
 func (UnimplementedCodeProjectQueryControllerServer) GetById(context.Context, *model.CodeProjectId) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCodeProjectQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjects, error) {
+func (UnimplementedCodeProjectQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
-func (UnimplementedCodeProjectQueryControllerServer) FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjects, error) {
+func (UnimplementedCodeProjectQueryControllerServer) FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeServerId not implemented")
 }
-func (UnimplementedCodeProjectQueryControllerServer) FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjects, error) {
+func (UnimplementedCodeProjectQueryControllerServer) FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
-func (UnimplementedCodeProjectQueryControllerServer) FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjects, error) {
+func (UnimplementedCodeProjectQueryControllerServer) FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindTemplateCodeProjectsByProductId not implemented")
 }
 func (UnimplementedCodeProjectQueryControllerServer) GetCodeProjectProfileById(context.Context, *model.CodeProjectId) (*model.CodeProjectProfile, error) {

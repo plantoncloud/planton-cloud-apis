@@ -37,7 +37,7 @@ type ArtifactStoreQueryControllerClient interface {
 	// get artifact-store by id
 	GetById(ctx context.Context, in *model.ArtifactStoreId, opts ...grpc.CallOption) (*model.ArtifactStore, error)
 	// look up artifact-stores by code project url
-	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error)
+	FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
 	// list docker images from the artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStoreDockerImages(ctx context.Context, in *model.ListByArtifactStoreIdRepoNameInput, opts ...grpc.CallOption) (*model.ArtifactStoreDockerImageList, error)
@@ -48,7 +48,7 @@ type ArtifactStoreQueryControllerClient interface {
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(ctx context.Context, in *model.ListByArtifactStoreIdPackageNameInput, opts ...grpc.CallOption) (*model.ArtifactStorePackageVersionList, error)
 	// look up artifact-stores by product id.
-	FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error)
+	FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
 }
 
 type artifactStoreQueryControllerClient struct {
@@ -68,8 +68,8 @@ func (c *artifactStoreQueryControllerClient) GetById(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *artifactStoreQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
-	out := new(model.ArtifactStores)
+func (c *artifactStoreQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model1.CodeProjectUrl, opts ...grpc.CallOption) (*model.ArtifactStoreList, error) {
+	out := new(model.ArtifactStoreList)
 	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -104,8 +104,8 @@ func (c *artifactStoreQueryControllerClient) ListArtifactStorePackageVersions(ct
 	return out, nil
 }
 
-func (c *artifactStoreQueryControllerClient) FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStores, error) {
-	out := new(model.ArtifactStores)
+func (c *artifactStoreQueryControllerClient) FindByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error) {
+	out := new(model.ArtifactStoreList)
 	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -120,7 +120,7 @@ type ArtifactStoreQueryControllerServer interface {
 	// get artifact-store by id
 	GetById(context.Context, *model.ArtifactStoreId) (*model.ArtifactStore, error)
 	// look up artifact-stores by code project url
-	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStores, error)
+	FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStoreList, error)
 	// list docker images from the artifact-store provided in the input
 	// (proxy google artifact-registry server)
 	ListArtifactStoreDockerImages(context.Context, *model.ListByArtifactStoreIdRepoNameInput) (*model.ArtifactStoreDockerImageList, error)
@@ -131,7 +131,7 @@ type ArtifactStoreQueryControllerServer interface {
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error)
 	// look up artifact-stores by product id.
-	FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStores, error)
+	FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStoreList, error)
 }
 
 // UnimplementedArtifactStoreQueryControllerServer should be embedded to have forward compatible implementations.
@@ -141,7 +141,7 @@ type UnimplementedArtifactStoreQueryControllerServer struct {
 func (UnimplementedArtifactStoreQueryControllerServer) GetById(context.Context, *model.ArtifactStoreId) (*model.ArtifactStore, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedArtifactStoreQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStores, error) {
+func (UnimplementedArtifactStoreQueryControllerServer) FindByCodeProjectUrl(context.Context, *model1.CodeProjectUrl) (*model.ArtifactStoreList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
 }
 func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStoreDockerImages(context.Context, *model.ListByArtifactStoreIdRepoNameInput) (*model.ArtifactStoreDockerImageList, error) {
@@ -153,7 +153,7 @@ func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackages
 func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListArtifactStorePackageVersions not implemented")
 }
-func (UnimplementedArtifactStoreQueryControllerServer) FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStores, error) {
+func (UnimplementedArtifactStoreQueryControllerServer) FindByProductId(context.Context, *model2.ProductId) (*model.ArtifactStoreList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
 }
 

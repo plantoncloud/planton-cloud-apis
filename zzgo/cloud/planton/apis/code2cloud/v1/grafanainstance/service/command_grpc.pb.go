@@ -40,36 +40,36 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GrafanaInstanceCommandControllerClient interface {
-	// preview creating argocd-instance
+	// preview creating grafana-instance
 	PreviewCreate(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// create argocd-instance
+	// create grafana-instance
 	Create(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// preview updating an existing argocd-instance
+	// preview updating an existing grafana-instance
 	PreviewUpdate(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// update an existing argocd-instance
+	// update an existing grafana-instance
 	Update(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// preview deleting an existing argocd-instance
+	// preview deleting an existing grafana-instance
 	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// delete an existing argocd-instance
+	// delete an existing grafana-instance
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// preview restoring a previously deleted argocd-instance
+	// preview restoring a previously deleted grafana-instance
 	PreviewRestore(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// restore a previously deleted argocd-instance
+	// restore a previously deleted grafana-instance
 	Restore(ctx context.Context, in *model.GrafanaInstance, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
+	// restart a grafana-instance running in a environment.
+	// grafana-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.GrafanaInstanceId, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// pause a argocd-instance running in a environment.
-	// argocd-instance is paused by scaling down number of replicas of
+	// pause a grafana-instance running in a environment.
+	// grafana-instance is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
 	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// unpause a previously paused argocd-instance running in a environment.
+	// unpause a previously paused grafana-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the argocd-instance.
+	// replicas configured for the grafana-instance.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// preview refresh a argocd-instance that was previously created
+	// preview refresh a grafana-instance that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
-	// refresh a argocd-instance that was previously created
+	// refresh a grafana-instance that was previously created
 	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaInstance, error)
 }
 
@@ -202,36 +202,36 @@ func (c *grafanaInstanceCommandControllerClient) Refresh(ctx context.Context, in
 // All implementations should embed UnimplementedGrafanaInstanceCommandControllerServer
 // for forward compatibility
 type GrafanaInstanceCommandControllerServer interface {
-	// preview creating argocd-instance
+	// preview creating grafana-instance
 	PreviewCreate(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// create argocd-instance
+	// create grafana-instance
 	Create(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// preview updating an existing argocd-instance
+	// preview updating an existing grafana-instance
 	PreviewUpdate(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// update an existing argocd-instance
+	// update an existing grafana-instance
 	Update(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// preview deleting an existing argocd-instance
+	// preview deleting an existing grafana-instance
 	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaInstance, error)
-	// delete an existing argocd-instance
+	// delete an existing grafana-instance
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaInstance, error)
-	// preview restoring a previously deleted argocd-instance
+	// preview restoring a previously deleted grafana-instance
 	PreviewRestore(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// restore a previously deleted argocd-instance
+	// restore a previously deleted grafana-instance
 	Restore(context.Context, *model.GrafanaInstance) (*model.GrafanaInstance, error)
-	// restart a argocd-instance running in a environment.
-	// argocd-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
+	// restart a grafana-instance running in a environment.
+	// grafana-instance is restarted by deleting running "grafana" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.GrafanaInstanceId) (*model.GrafanaInstance, error)
-	// pause a argocd-instance running in a environment.
-	// argocd-instance is paused by scaling down number of replicas of
+	// pause a grafana-instance running in a environment.
+	// grafana-instance is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
 	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GrafanaInstance, error)
-	// unpause a previously paused argocd-instance running in a environment.
+	// unpause a previously paused grafana-instance running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the argocd-instance.
+	// replicas configured for the grafana-instance.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GrafanaInstance, error)
-	// preview refresh a argocd-instance that was previously created
+	// preview refresh a grafana-instance that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaInstance, error)
-	// refresh a argocd-instance that was previously created
+	// refresh a grafana-instance that was previously created
 	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaInstance, error)
 }
 

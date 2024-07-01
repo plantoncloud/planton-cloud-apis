@@ -26,7 +26,7 @@ service MicroserviceInstanceQueryController {
 
   //find microservice-instances in a environment for a code-project
   rpc findByEnvironmentIdByCodeProjectId(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.ByEnvironmentIdByCodeProjectIdInput)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances) {
+      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
@@ -44,7 +44,7 @@ service MicroserviceInstanceQueryController {
 
   //lookup all microservice-instances by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)
-      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstances);
+      returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceList);
 
   rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microserviceinstance.model.GetMicroserviceInstanceEnvVarMapInput)
       returns (cloud.planton.apis.code2cloud.v1.microserviceinstance.model.MicroserviceInstanceEnvVarMap) {

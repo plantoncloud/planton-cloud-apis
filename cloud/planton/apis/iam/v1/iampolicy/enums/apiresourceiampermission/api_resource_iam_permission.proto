@@ -251,4 +251,95 @@ enum ApiResourceIamPermission {
   postgres_kubernetes_get = 172;
   postgres_kubernetes_restore = 173;
   postgres_kubernetes_update = 174;
+
+  // jenkins_kubernetes
+  jenkins_kubernetes_create = 175;
+  jenkins_kubernetes_delete = 176;
+  jenkins_kubernetes_get = 177;
+  jenkins_kubernetes_restore = 178;
+  jenkins_kubernetes_update = 179;
+
+  // kafka_kubernetes
+  kafka_kubernetes_create = 180;
+  kafka_kubernetes_delete = 181;
+  kafka_kubernetes_get = 182;
+  kafka_kubernetes_restore = 183;
+  kafka_kubernetes_update = 184;
+
+  // locust-kubernetes
+  locust_kubernetes_create = 185;
+  locust_kubernetes_delete = 186;
+  locust_kubernetes_get = 187;
+  locust_kubernetes_restore = 188;
+  locust_kubernetes_update = 189;
+
+  // microservice_kubernetes
+  microservice_kubernetes_create = 190;
+  microservice_kubernetes_delete = 191;
+  microservice_kubernetes_get = 192;
+  microservice_kubernetes_restore = 193;
+  microservice_kubernetes_update = 194;
+
+  // mongodb_kubernetes
+  mongodb_kubernetes_create = 195;
+  mongodb_kubernetes_delete = 196;
+  mongodb_kubernetes_get = 197;
+  mongodb_kubernetes_restore = 198;
+  mongodb_kubernetes_update = 199;
+
+  // openfga_kubernetes
+  openfga_kubernetes_create = 200;
+  openfga_kubernetes_delete = 201;
+  openfga_kubernetes_get = 202;
+  openfga_kubernetes_restore = 203;
+  openfga_kubernetes_update = 204;
+
+  // prometheus_kubernetes
+  prometheus_kubernetes_create = 205;
+  prometheus_kubernetes_delete = 206;
+  prometheus_kubernetes_get = 207;
+  prometheus_kubernetes_restore = 208;
+  prometheus_kubernetes_update = 209;
+
+  // redis_kubernetes
+  redis_kubernetes_create = 210;
+  redis_kubernetes_delete = 211;
+  redis_kubernetes_get = 212;
+  redis_kubernetes_restore = 213;
+  redis_kubernetes_update = 214;
+
+  // solr_kubernetes
+  solr_kubernetes_create = 215;
+  solr_kubernetes_delete = 216;
+  solr_kubernetes_get = 217;
+  solr_kubernetes_restore = 218;
+  solr_kubernetes_update = 219;
+
+  // argocd_kubernetes
+  argocd_kubernetes_create = 220;
+  argocd_kubernetes_delete = 221;
+  argocd_kubernetes_get = 222;
+  argocd_kubernetes_restore = 223;
+  argocd_kubernetes_update = 224;
+
+  // elasticsearch_kubernetes
+  elasticsearch_kubernetes_create = 225;
+  elasticsearch_kubernetes_delete = 226;
+  elasticsearch_kubernetes_get = 227;
+  elasticsearch_kubernetes_restore = 228;
+  elasticsearch_kubernetes_update = 229;
+
+  // grafana_kubernetes
+  grafana_kubernetes_create = 230;
+  grafana_kubernetes_delete = 231;
+  grafana_kubernetes_get = 232;
+  grafana_kubernetes_restore = 233;
+  grafana_kubernetes_update = 234;
+
+  // keycloak_kubernetes
+  keycloak_kubernetes_create = 235;
+  keycloak_kubernetes_delete = 236;
+  keycloak_kubernetes_get = 237;
+  keycloak_kubernetes_restore = 238;
+  keycloak_kubernetes_update = 239;
 }

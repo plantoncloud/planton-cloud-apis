@@ -37,25 +37,25 @@ type CloudAccountQueryControllerClient interface {
 	// find cloud-accounts by company id.
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
-	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
+	FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
+	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
+	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
 	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error)
+	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 }
 
 type cloudAccountQueryControllerClient struct {
@@ -75,8 +75,8 @@ func (c *cloudAccountQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error) {
-	out := new(model.CloudAccounts)
+func (c *cloudAccountQueryControllerClient) FindByCompanyId(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -84,8 +84,8 @@ func (c *cloudAccountQueryControllerClient) FindByCompanyId(ctx context.Context,
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error) {
-	out := new(model.CloudAccounts)
+func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -93,8 +93,8 @@ func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error) {
-	out := new(model.CloudAccounts)
+func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -102,8 +102,8 @@ func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(c
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccounts, error) {
-	out := new(model.CloudAccounts)
+func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.CompanyId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -120,25 +120,25 @@ type CloudAccountQueryControllerServer interface {
 	// find cloud-accounts by company id.
 	// the response should only include cloud-accounts in a company that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
-	FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
+	FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a company is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `company-artifact-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
+	FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a company is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `company-kube-cluster-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindKubeClusterCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
+	FindKubeClusterCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error)
 	// find cloud-accounts by company id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a company is authorised to create dns managed zone.
 	// the authorization is verified by looking up cloud-accounts with `company-dns-managed-zone-creator` relation for the company id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindDnsZoneCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error)
+	FindDnsZoneCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error)
 }
 
 // UnimplementedCloudAccountQueryControllerServer should be embedded to have forward compatible implementations.
@@ -148,16 +148,16 @@ type UnimplementedCloudAccountQueryControllerServer struct {
 func (UnimplementedCloudAccountQueryControllerServer) GetById(context.Context, *model.CloudAccountId) (*model.CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindByCompanyId(context.Context, *model1.CompanyId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindArtifactStoreCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindArtifactStoreCreateCloudAccounts not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindKubeClusterCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindKubeClusterCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindKubeClusterCreateCloudAccounts not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindDnsZoneCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccounts, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindDnsZoneCreateCloudAccounts(context.Context, *model1.CompanyId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindDnsZoneCreateCloudAccounts not implemented")
 }
 

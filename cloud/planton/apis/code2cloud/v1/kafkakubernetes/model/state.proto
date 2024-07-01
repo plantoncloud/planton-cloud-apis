@@ -1,0 +1,294 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kafkakubernetes.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+//kafka-kubernetes
+message KafkaKubernetes {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kafka_kubernetes;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
+
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "kfk8s";
+  //id format "kfc-<environment-id>-<kafka-kubernetes-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (buf.validate.field).string.const = "KafkaKubernetes"
+  ];
+
+  //resource metadata
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.version.message",
+      message: "Version message is mandatory and cannot be empty",
+      expression: "has(this.version.message)"
+    }
+  ];
+
+  //spec
+  KafkaKubernetesSpec spec = 4;
+
+  //status
+  KafkaKubernetesStatus status = 5;
+}
+
+//kafka-kubernetes spec
+message KafkaKubernetesSpec {
+  //resource parent
+  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+
+  //list of kafka topics.
+  repeated KafkaTopic kafka_topics = 2;
+
+
+  //kafka-broker container spec
+  KafkaKubernetesSpecBrokerContainerSpec broker_container = 3 [
+    (buf.validate.field).required = true
+  ];
+
+  //zookeeper container spec
+  KafkaKubernetesSpecZookeeperContainerSpec zookeeper_container = 4 [
+    (buf.validate.field).required = true
+  ];
+
+  //schema-registry container spec
+  KafkaKubernetesSpecSchemaRegistryContainerSpec schema_registry_container = 5;
+
+  //kafka-kubernetes ingress spec
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 6;
+
+  //flag to control if kowl dashboard is deployed for the kafka-kubernetes.
+  //defaults to "false".
+  bool is_kowl_dashboard_enabled = 7;
+}
+
+//kafka-kubernetes status
+message KafkaKubernetesStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  KafkaKubernetesStatusStackOutputs outputs = 1;
+}
+
+//kafka-kubernetes kubernetes kafka-broker spec
+message KafkaKubernetesSpecBrokerContainerSpec {
+  //(optional for create) number of brokers required to setup kafka-kubernetes.
+  //defaults value "1" is set if client sets the value to 0.
+  //recommended default value is "1".
+  int32 replicas = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //kafka broker container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //size of the disk to be attached to each broker instance. ex: 30Gi
+  //defaults value is set if not provided by the client.
+  string disk_size = 3 [
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
+  ];
+}
+
+//kafka-kubernetes kubernetes zookeeper spec
+message KafkaKubernetesSpecZookeeperContainerSpec {
+  //number or zookeeper container replicas
+  //zookeeper requires latest 3 replicas for high availability(ha) mode.
+  //zookeeper is built using raft consensus algorithm.
+  //refer to https://raft.github.io/ to learn more on how replica count affect availability.
+  int32 replicas = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //zookeeper container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //size of the disk to be attached to each zookeeper instance. ex: 30Gi
+  //defaults value is set if not provided by the client.
+  string disk_size = 3 [
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.string_default) = "1Gi",
+    (buf.validate.field).cel = {
+      id: "spec.kubernetes.container.disk_size.is_valid",
+      message: "disk size value is invalid",
+      // https://regex101.com/r/EqH2xa/1
+      expression: "this.matches('^\\\\d+(\\\\.\\\\d+)?\\\\s?(Ki|Mi|Gi|Ti|Pi|Ei|K|M|G|T|P|E)$') && size(this) > 0"
+    }
+  ];
+}
+
+//kafka-kubernetes kubernetes schema-registry spec
+message KafkaKubernetesSpecSchemaRegistryContainerSpec {
+  //flag to control if schema registry is created for the kafka-kubernetes.
+  //defaults to "false".
+  bool is_enabled = 1;
+
+  //number of schema registry replicas.
+  //recommended default value is "1".
+  //this value has no effect if the is_schema_registry_enabled is set to false.
+  int32 replicas = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //schema-registry container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//kafka-topic
+message KafkaTopic {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "kft";
+
+  //topic name
+  string name = 1 [
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
+    (buf.validate.field).string.min_len = 1,
+    (buf.validate.field).string.max_len = 249,
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Should start with an alphanumeric character",
+      // https://regex101.com/r/cXprYc/1
+      expression: "this.matches('^[a-zA-Z0-9].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Only alphanumeric and ('.', '_' and '-') characters are allowed",
+      // https://regex101.com/r/hheWzb/1
+      expression: "this.matches('^[a-zA-Z0-9._-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Must not contain '..'",
+      // https://regex101.com/r/ILMhoL/1
+      expression: "!this.contains('..')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Must not contain non-ASCII characters",
+      // https://regex101.com/r/FhCKeZ/1
+      expression: "this.matches('^[\x00-\x7F]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "topic.name",
+      message: "Should end with an alphanumeric character",
+      // https://regex101.com/r/DEA7Of/1
+      expression: "this.matches('[a-zA-Z0-9]$')"
+    }
+  ];
+
+  //topic id
+  string id = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //topic partitions.
+  //recommended default is 1.
+  int32 partitions = 4;
+
+  //topic replicas.
+  //recommended default is 1.
+  int32 replicas = 5;
+
+  //additional configuration of kafka topic
+  //if not provided then default values will be set
+  //for example default delete.policy is `delete` and can be set up as `compact`
+  map<string, string> config = 6;
+}
+
+//wrapper for kafka topic config
+message KafkaTopicConfig {
+  map<string, string> value = 1;
+}
+
+//kafka-kubernetes stack outputs
+message KafkaKubernetesStatusStackOutputs {
+  //name of the kubernetes namespace in which the kafka-kubernetes is created.
+  string namespace = 1;
+
+  //sasl user name of kafka-kubernetes.
+  //username will be automatically set as 'admin' while creating the kafka-kubernetes.
+  string kafka_sasl_username = 2;
+
+  //external hostname of kafka bootstrap server.
+  string external_bootstrap_server_hostname = 3;
+
+  //internal hostname of kafka bootstrap server.
+  string internal_bootstrap_server_hostname = 4;
+
+  //external url of schema registry.
+  //this is set to empty when schema registry is not enabled.
+  string external_schema_registry_url = 5;
+
+  //internal url of schema registry.
+  //this is set to empty when schema registry is not enabled.
+  string internal_schema_registry_url = 6;
+
+  //external url to access kowl dashboard.
+  //this is set to empty when kowl dashboard is not enabled.
+  string external_kowl_dashboard_url = 7;
+
+  //internal url to access kowl dashboard.
+  //this is set to empty when kowl dashboard is not enabled.
+  string internal_kowl_dashboard_url = 8;
+}

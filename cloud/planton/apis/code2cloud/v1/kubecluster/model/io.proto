@@ -18,19 +18,8 @@ message KubeClusterId {
 }
 
 //list of kube-clusters
-message KubeClusters {
-  repeated KubeCluster entries = 1;
-}
-
-//response for paginated query to list kube-clusters
 message KubeClusterList {
-  int32 total_pages = 1;
-  repeated KubeCluster entries = 2;
-}
-
-// list of kube-cluster ids
-message KubeClusterIds {
-  repeated string entries = 1;
+  repeated KubeCluster entries = 1;
 }
 
 // input for paginated rpc requests with kube-cluster-id filter
@@ -54,7 +43,7 @@ message GcpRegion {
 }
 
 // list of gcp regions
-message GcpRegions {
+message GcpRegionList {
   repeated GcpRegion entries = 1;
 }
 
@@ -74,7 +63,7 @@ message GcpZone {
 }
 
 // wrapper for gcp zones
-message GcpZones {
+message GcpZoneList {
   repeated GcpZone entries = 1;
 }
 

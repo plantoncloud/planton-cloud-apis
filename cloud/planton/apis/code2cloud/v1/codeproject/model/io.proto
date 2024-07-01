@@ -16,11 +16,6 @@ message CodeProjectId {
   ];
 }
 
-//list of code project ids
-message CodeProjectIds {
-  repeated string entries = 1;
-}
-
 //wrapper for code project url
 message CodeProjectUrl {
   string value = 1 [
@@ -29,14 +24,8 @@ message CodeProjectUrl {
 }
 
 //list of code projects
-message CodeProjects {
-  repeated CodeProject entries = 1;
-}
-
-//response for paginated query to list code projects
 message CodeProjectList {
-  int32 total_pages = 1;
-  repeated CodeProject entries = 2;
+  repeated CodeProject entries = 1;
 }
 
 //input for command to attach a machine account to code-project on upstream code-server(github/gitlab)

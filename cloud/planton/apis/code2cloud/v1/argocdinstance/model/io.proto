@@ -11,14 +11,3 @@ message ArgocdInstanceId {
     (buf.validate.field).required = true
   ];
 }
-
-//list of argocd-instances
-message ArgocdInstances {
-  repeated ArgocdInstance entries = 1;
-}
-
-//response for paginated query to list argocd-instances
-message ArgocdInstanceList {
-  int32 total_pages = 1;
-  repeated ArgocdInstance entries = 2;
-}

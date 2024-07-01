@@ -13,14 +13,8 @@ message JenkinsServerId {
 }
 
 //list of jenkins-servers
-message JenkinsServers {
-  repeated JenkinsServer entries = 1;
-}
-
-//response for paginated query to list jenkins-servers
 message JenkinsServerList {
-  int32 total_pages = 1;
-  repeated JenkinsServer entries = 2;
+  repeated JenkinsServer entries = 1;
 }
 
 //wrapper for jenkins-server password

@@ -13,17 +13,11 @@ message GitlabServerId {
 }
 
 //list of gitlab-servers
-message GitlabServers {
+message GitlabServerList {
   repeated GitlabServer entries = 1;
 }
 
 //wrapper for gitlab-server password
 message GitlabServerPassword {
   string value = 1;
-}
-
-//response for paginated query to list gitlab-servers
-message GitlabServerList {
-  int32 total_pages = 1;
-  repeated GitlabServer entries = 2;
 }

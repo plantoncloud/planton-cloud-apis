@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.rediskubernetes.stack.model;
+
+import "cloud/planton/apis/code2cloud/v1/rediskubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+
+//input for redis-kubernetes stack
+message RedisKubernetesStackInput {
+  //stack job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //pulumi stack credentials
+  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential credentials_input = 2;
+  //inputs used for creating stack resources
+  code2cloud.v1.rediskubernetes.model.RedisKubernetes resource_input = 3;
+}
+
+//stack response
+message RedisKubernetesStackResponse {
+  //stack-job progress event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  code2cloud.v1.rediskubernetes.model.RedisKubernetesStatusStackOutputs outputs = 3;
+}

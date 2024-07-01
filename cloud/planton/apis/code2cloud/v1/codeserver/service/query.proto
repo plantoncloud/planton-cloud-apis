@@ -22,7 +22,7 @@ service CodeServerQueryController {
   //find code servers by product id.
   //response contains only objects that the authenticated user account id has viewer access to.
   rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
-      returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServers) {
+      returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

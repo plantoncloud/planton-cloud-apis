@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.rediskubernetes.stack.service;
+
+import "cloud/planton/apis/code2cloud/v1/rediskubernetes/stack/model/io.proto";
+
+service RedisKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.rediskubernetes.stack.model.RedisKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.rediskubernetes.stack.model.RedisKubernetesStackResponse);
+}

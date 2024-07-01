@@ -13,7 +13,7 @@ service GithubQueryController {
   //https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#list-organization-repositories
   //todo: we have to add pagination support for response.
   rpc listRepositories(cloud.planton.apis.integration.v1.github.model.ListRepositoriesQueryInput)
-      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjects);
+      returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectList);
   //get the details of a repository on github
   rpc getRepository(cloud.planton.apis.integration.v1.github.model.GetRepositoryQueryInput)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject);
