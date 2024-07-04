@@ -30,7 +30,7 @@ message PulumiEngineEventPayload {
   DiagnosticEvent diagnostic_event = 6;
   PreludeEvent prelude_event = 7;
   SummaryEvent summary_event = 8;
-  ResourcePreEvent resource_preEvent = 9;
+  ResourcePreEvent resource_pre_event = 9;
   ResOutputsEvent res_outputs_event = 10;
   ResOpFailedEvent res_op_failed_event = 11;
   PolicyEvent policy_event = 12;
