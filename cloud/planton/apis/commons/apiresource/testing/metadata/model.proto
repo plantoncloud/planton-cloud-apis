@@ -3,8 +3,21 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.testing.metadata;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcechilditemmessageoptions/api_resource_child_item_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "buf/validate/validate.proto";
+
+message ApiResourceIdExtractionTestWithOutIdPrefix {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = company;
+  string company_name = 1;
+  string company_id = 2;
+}
+
+message ApiResourceIdExtractionTestWithIdPrefix {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = microservice_kubernetes;
+  string microservice_name = 1;
+  string microservice_id = 2;
+}
 
 message ApiResourceChildItemIdExtractionTestWithOutIdPrefix {
   string first_name = 1;
@@ -12,7 +25,7 @@ message ApiResourceChildItemIdExtractionTestWithOutIdPrefix {
 }
 
 message ApiResourceChildItemIdExtractionTestWithIdPrefix {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcechilditemmessageoptions.id_prefix) = "hc-";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcechilditemmessageoptions.id_prefix) = "env-";
   string first_name = 1;
   string last_name = 2;
 }
