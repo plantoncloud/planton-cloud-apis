@@ -23,118 +23,108 @@ const (
 var file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes = []protoimpl.ExtensionInfo{
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*string)(nil),
+		ExtensionType: (*bool)(nil),
 		Field:         50001,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix",
-		Tag:           "bytes,50001,opt,name=id_prefix",
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required",
+		Tag:           "varint,50001,opt,name=is_id_required",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*bool)(nil),
 		Field:         50002,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required",
-		Tag:           "varint,50002,opt,name=is_id_required",
-		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
-	},
-	{
-		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*bool)(nil),
-		Field:         50003,
 		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed",
-		Tag:           "varint,50003,opt,name=is_id_computed",
+		Tag:           "varint,50002,opt,name=is_id_computed",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
-		Field:         50004,
+		Field:         50003,
 		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_regex",
-		Tag:           "bytes,50004,opt,name=id_regex",
+		Tag:           "bytes,50003,opt,name=id_regex",
+		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
+	},
+	{
+		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
+		ExtensionType: (*int32)(nil),
+		Field:         50004,
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_min_length",
+		Tag:           "varint,50004,opt,name=id_min_length",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50005,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_min_length",
-		Tag:           "varint,50005,opt,name=id_min_length",
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_max_length",
+		Tag:           "varint,50005,opt,name=id_max_length",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*int32)(nil),
+		ExtensionType: (*string)(nil),
 		Field:         50006,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_max_length",
-		Tag:           "varint,50006,opt,name=id_max_length",
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description",
+		Tag:           "bytes,50006,opt,name=id_constraints_description",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
 		Field:         50007,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description",
-		Tag:           "bytes,50007,opt,name=id_constraints_description",
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_regex",
+		Tag:           "bytes,50007,opt,name=name_regex",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*string)(nil),
+		ExtensionType: (*int32)(nil),
 		Field:         50008,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_regex",
-		Tag:           "bytes,50008,opt,name=name_regex",
+		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_min_length",
+		Tag:           "varint,50008,opt,name=name_min_length",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*int32)(nil),
 		Field:         50009,
-		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_min_length",
-		Tag:           "varint,50009,opt,name=name_min_length",
-		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
-	},
-	{
-		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
-		ExtensionType: (*int32)(nil),
-		Field:         50010,
 		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_max_length",
-		Tag:           "varint,50010,opt,name=name_max_length",
+		Tag:           "varint,50009,opt,name=name_max_length",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 	{
 		ExtendedType:  (*descriptorpb.MessageOptions)(nil),
 		ExtensionType: (*string)(nil),
-		Field:         50011,
+		Field:         50010,
 		Name:          "cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_constraints_description",
-		Tag:           "bytes,50011,opt,name=name_constraints_description",
+		Tag:           "bytes,50010,opt,name=name_constraints_description",
 		Filename:      "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto",
 	},
 }
 
 // Extension fields to descriptorpb.MessageOptions.
 var (
-	// optional string id_prefix = 50001;
-	E_IdPrefix = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[0]
-	// optional bool is_id_required = 50002;
-	E_IsIdRequired = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[1]
-	// optional bool is_id_computed = 50003;
-	E_IsIdComputed = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[2]
-	// optional string id_regex = 50004;
-	E_IdRegex = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[3]
-	// optional int32 id_min_length = 50005;
-	E_IdMinLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[4]
-	// optional int32 id_max_length = 50006;
-	E_IdMaxLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[5]
-	// optional string id_constraints_description = 50007;
-	E_IdConstraintsDescription = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[6]
-	// optional string name_regex = 50008;
-	E_NameRegex = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[7]
-	// optional int32 name_min_length = 50009;
-	E_NameMinLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[8]
-	// optional int32 name_max_length = 50010;
-	E_NameMaxLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[9]
-	// optional string name_constraints_description = 50011;
-	E_NameConstraintsDescription = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[10]
+	// optional bool is_id_required = 50001;
+	E_IsIdRequired = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[0]
+	// optional bool is_id_computed = 50002;
+	E_IsIdComputed = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[1]
+	// optional string id_regex = 50003;
+	E_IdRegex = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[2]
+	// optional int32 id_min_length = 50004;
+	E_IdMinLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[3]
+	// optional int32 id_max_length = 50005;
+	E_IdMaxLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[4]
+	// optional string id_constraints_description = 50006;
+	E_IdConstraintsDescription = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[5]
+	// optional string name_regex = 50007;
+	E_NameRegex = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[6]
+	// optional int32 name_min_length = 50008;
+	E_NameMinLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[7]
+	// optional int32 name_max_length = 50009;
+	E_NameMaxLength = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[8]
+	// optional string name_constraints_description = 50010;
+	E_NameConstraintsDescription = &file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_extTypes[9]
 )
 
 var File_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto protoreflect.FileDescriptor
@@ -155,56 +145,52 @@ var file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessa
 	0x74, 0x61, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x6f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
 	0x1a, 0x20, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x6f, 0x72, 0x2e, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x3a, 0x3e, 0x0a, 0x09, 0x69, 0x64, 0x5f, 0x70, 0x72, 0x65, 0x66, 0x69, 0x78, 0x12,
-	0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
-	0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x18, 0xd1, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x69, 0x64, 0x50, 0x72, 0x65, 0x66,
-	0x69, 0x78, 0x3a, 0x47, 0x0a, 0x0e, 0x69, 0x73, 0x5f, 0x69, 0x64, 0x5f, 0x72, 0x65, 0x71, 0x75,
+	0x74, 0x6f, 0x3a, 0x47, 0x0a, 0x0e, 0x69, 0x73, 0x5f, 0x69, 0x64, 0x5f, 0x72, 0x65, 0x71, 0x75,
 	0x69, 0x72, 0x65, 0x64, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70,
-	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd2, 0x86, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x69,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd1, 0x86, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x69,
 	0x73, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x69, 0x72, 0x65, 0x64, 0x3a, 0x47, 0x0a, 0x0e, 0x69,
 	0x73, 0x5f, 0x69, 0x64, 0x5f, 0x63, 0x6f, 0x6d, 0x70, 0x75, 0x74, 0x65, 0x64, 0x12, 0x1f, 0x2e,
 	0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e,
-	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd3,
+	0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd2,
 	0x86, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x0c, 0x69, 0x73, 0x49, 0x64, 0x43, 0x6f, 0x6d, 0x70,
 	0x75, 0x74, 0x65, 0x64, 0x3a, 0x3c, 0x0a, 0x08, 0x69, 0x64, 0x5f, 0x72, 0x65, 0x67, 0x65, 0x78,
 	0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62,
 	0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e,
-	0x73, 0x18, 0xd4, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x69, 0x64, 0x52, 0x65, 0x67,
+	0x73, 0x18, 0xd3, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x69, 0x64, 0x52, 0x65, 0x67,
 	0x65, 0x78, 0x3a, 0x45, 0x0a, 0x0d, 0x69, 0x64, 0x5f, 0x6d, 0x69, 0x6e, 0x5f, 0x6c, 0x65, 0x6e,
 	0x67, 0x74, 0x68, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd5, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b, 0x69, 0x64,
+	0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd4, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0b, 0x69, 0x64,
 	0x4d, 0x69, 0x6e, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a, 0x45, 0x0a, 0x0d, 0x69, 0x64, 0x5f,
 	0x6d, 0x61, 0x78, 0x5f, 0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f,
 	0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73,
-	0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd6, 0x86, 0x03, 0x20,
+	0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd5, 0x86, 0x03, 0x20,
 	0x01, 0x28, 0x05, 0x52, 0x0b, 0x69, 0x64, 0x4d, 0x61, 0x78, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68,
 	0x3a, 0x5f, 0x0a, 0x1a, 0x69, 0x64, 0x5f, 0x63, 0x6f, 0x6e, 0x73, 0x74, 0x72, 0x61, 0x69, 0x6e,
 	0x74, 0x73, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f,
 	0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66,
 	0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18,
-	0xd7, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x18, 0x69, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x74,
+	0xd6, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x18, 0x69, 0x64, 0x43, 0x6f, 0x6e, 0x73, 0x74,
 	0x72, 0x61, 0x69, 0x6e, 0x74, 0x73, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f,
 	0x6e, 0x3a, 0x40, 0x0a, 0x0a, 0x6e, 0x61, 0x6d, 0x65, 0x5f, 0x72, 0x65, 0x67, 0x65, 0x78, 0x12,
 	0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
 	0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x18, 0xd8, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65,
+	0x18, 0xd7, 0x86, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x09, 0x6e, 0x61, 0x6d, 0x65, 0x52, 0x65,
 	0x67, 0x65, 0x78, 0x3a, 0x49, 0x0a, 0x0f, 0x6e, 0x61, 0x6d, 0x65, 0x5f, 0x6d, 0x69, 0x6e, 0x5f,
 	0x6c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e,
 	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
-	0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd9, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52,
+	0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xd8, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52,
 	0x0d, 0x6e, 0x61, 0x6d, 0x65, 0x4d, 0x69, 0x6e, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a, 0x49,
 	0x0a, 0x0f, 0x6e, 0x61, 0x6d, 0x65, 0x5f, 0x6d, 0x61, 0x78, 0x5f, 0x6c, 0x65, 0x6e, 0x67, 0x74,
 	0x68, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x18, 0xda, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x6e, 0x61, 0x6d, 0x65,
+	0x6e, 0x73, 0x18, 0xd9, 0x86, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x6e, 0x61, 0x6d, 0x65,
 	0x4d, 0x61, 0x78, 0x4c, 0x65, 0x6e, 0x67, 0x74, 0x68, 0x3a, 0x63, 0x0a, 0x1c, 0x6e, 0x61, 0x6d,
 	0x65, 0x5f, 0x63, 0x6f, 0x6e, 0x73, 0x74, 0x72, 0x61, 0x69, 0x6e, 0x74, 0x73, 0x5f, 0x64, 0x65,
 	0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x1f, 0x2e, 0x67, 0x6f, 0x6f, 0x67,
 	0x6c, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x4d, 0x65, 0x73, 0x73,
-	0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xdb, 0x86, 0x03, 0x20, 0x01,
+	0x61, 0x67, 0x65, 0x4f, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0xda, 0x86, 0x03, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x1a, 0x6e, 0x61, 0x6d, 0x65, 0x43, 0x6f, 0x6e, 0x73, 0x74, 0x72, 0x61, 0x69,
 	0x6e, 0x74, 0x73, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69, 0x6f, 0x6e, 0x42, 0xf5,
 	0x04, 0x0a, 0x5e, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e,
@@ -253,21 +239,20 @@ var file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessa
 	(*descriptorpb.MessageOptions)(nil), // 0: google.protobuf.MessageOptions
 }
 var file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_depIdxs = []int32{
-	0,  // 0: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix:extendee -> google.protobuf.MessageOptions
-	0,  // 1: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required:extendee -> google.protobuf.MessageOptions
-	0,  // 2: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed:extendee -> google.protobuf.MessageOptions
-	0,  // 3: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_regex:extendee -> google.protobuf.MessageOptions
-	0,  // 4: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_min_length:extendee -> google.protobuf.MessageOptions
-	0,  // 5: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_max_length:extendee -> google.protobuf.MessageOptions
-	0,  // 6: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description:extendee -> google.protobuf.MessageOptions
-	0,  // 7: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_regex:extendee -> google.protobuf.MessageOptions
-	0,  // 8: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_min_length:extendee -> google.protobuf.MessageOptions
-	0,  // 9: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_max_length:extendee -> google.protobuf.MessageOptions
-	0,  // 10: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_constraints_description:extendee -> google.protobuf.MessageOptions
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	0,  // [0:11] is the sub-list for extension extendee
+	0,  // 0: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_required:extendee -> google.protobuf.MessageOptions
+	0,  // 1: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed:extendee -> google.protobuf.MessageOptions
+	0,  // 2: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_regex:extendee -> google.protobuf.MessageOptions
+	0,  // 3: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_min_length:extendee -> google.protobuf.MessageOptions
+	0,  // 4: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_max_length:extendee -> google.protobuf.MessageOptions
+	0,  // 5: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_constraints_description:extendee -> google.protobuf.MessageOptions
+	0,  // 6: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_regex:extendee -> google.protobuf.MessageOptions
+	0,  // 7: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_min_length:extendee -> google.protobuf.MessageOptions
+	0,  // 8: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_max_length:extendee -> google.protobuf.MessageOptions
+	0,  // 9: cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.name_constraints_description:extendee -> google.protobuf.MessageOptions
+	10, // [10:10] is the sub-list for method output_type
+	10, // [10:10] is the sub-list for method input_type
+	10, // [10:10] is the sub-list for extension type_name
+	0,  // [0:10] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
 }
 
@@ -285,7 +270,7 @@ func file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamess
 			RawDescriptor: file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   0,
-			NumExtensions: 11,
+			NumExtensions: 10,
 			NumServices:   0,
 		},
 		GoTypes:           file_cloud_planton_apis_commons_apiresource_options_apiresourcemetadatamessageoptions_api_resource_metadata_message_options_proto_goTypes,
