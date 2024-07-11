@@ -17,8 +17,6 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 message ApiResourceVersion {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = api_resource_version;
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "ver";
-
   //resource api-version
   string api_version = 1 [
     (buf.validate.field).string.const = "auditing.planton.cloud/v1"

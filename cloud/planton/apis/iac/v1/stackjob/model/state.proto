@@ -16,7 +16,6 @@ import "google/protobuf/timestamp.proto";
 // stack-job
 message StackJob {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "sj";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = stack;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";

@@ -14,7 +14,6 @@ message CodeProject {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.id_prefix) = "cp";
   //id format "cp-<product-id>-<normalized-git-repo-url>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 

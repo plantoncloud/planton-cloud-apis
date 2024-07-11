@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.EnumValueOptions {
+  string id_prefix = 90100;
+}

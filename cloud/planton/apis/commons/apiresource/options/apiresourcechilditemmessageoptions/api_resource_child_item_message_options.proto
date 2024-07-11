@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.options.apiresourcechilditemmessageoptions;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MessageOptions {
+  string id_prefix = 50101;
+}
