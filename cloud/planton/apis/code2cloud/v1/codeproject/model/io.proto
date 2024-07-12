@@ -111,7 +111,7 @@ message GenerateCodePipelineTemplateQueryInput {
     (buf.validate.field).required = true
   ];
   //list of microservice-instances declared in _kustomize directory
-  cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes microservice_instances = 3 [
+  repeated cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes microservice_instances = 3 [
     (buf.validate.field).required = true
   ];
 }
