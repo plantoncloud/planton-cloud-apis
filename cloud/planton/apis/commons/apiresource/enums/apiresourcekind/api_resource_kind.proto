@@ -99,13 +99,13 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pgk8s"
   ];
   jenkins_kubernetes = 37 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "jnk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "jenk8s"
   ];
   kafka_kubernetes = 38 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "kfk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "kafk8s"
   ];
   locust_kubernetes = 39 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "lok8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "lock8s"
   ];
   microservice_kubernetes = 40 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "msk8s"
@@ -114,27 +114,27 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "mdbk8s"
   ];
   openfga_kubernetes = 42 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "ofgak8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "fgak8s"
   ];
   prometheus_kubernetes = 43 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pmsk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "prok8s"
   ];
   redis_kubernetes = 44 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "rdck8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "redk8s"
   ];
   solr_kubernetes = 45 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "slk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "solk8s"
   ];
   argocd_kubernetes = 46 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "acdk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "argk8s"
   ];
   elasticsearch_kubernetes = 47 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "elsk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "elak8s"
   ];
   grafana_kubernetes = 48 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gfnk8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "grak8s"
   ];
   keycloak_kubernetes = 49 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "kck8s"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "keyk8s"
   ];
 }
