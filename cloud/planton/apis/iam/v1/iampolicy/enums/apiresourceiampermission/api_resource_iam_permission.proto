@@ -109,32 +109,11 @@ enum ApiResourceIamPermission {
   identity_connection_restore = 73;
   identity_connection_update = 74;
 
-  // kafka_cluster
-  kafka_cluster_create = 75;
-  kafka_cluster_delete = 76;
-  kafka_cluster_get = 77;
-  kafka_cluster_restore = 78;
-  kafka_cluster_update = 79;
-
   // list_associates
   list_associates = 80;
 
   // login_to_back_office
   login_to_back_office = 81;
-
-  // microservice_instance
-  microservice_instance_create = 82;
-  microservice_instance_delete = 83;
-  microservice_instance_get = 84;
-  microservice_instance_restore = 85;
-  microservice_instance_update = 86;
-
-  // postgres_cluster
-  postgres_cluster_create = 87;
-  postgres_cluster_delete = 88;
-  postgres_cluster_get = 89;
-  postgres_cluster_restore = 90;
-  postgres_cluster_update = 91;
 
   // product
   product_create = 92;
@@ -142,20 +121,6 @@ enum ApiResourceIamPermission {
   product_update = 94;
   product_delete = 95;
   product_restore = 96;
-
-  // redis_cluster
-  redis_cluster_create = 97;
-  redis_cluster_delete = 98;
-  redis_cluster_get = 99;
-  redis_cluster_restore = 100;
-  redis_cluster_update = 101;
-
-  // solr_cloud
-  solr_cloud_create = 102;
-  solr_cloud_delete = 103;
-  solr_cloud_get = 104;
-  solr_cloud_restore = 105;
-  solr_cloud_update = 106;
 
   // storage_bucket
   storage_bucket_create = 107;
@@ -171,55 +136,6 @@ enum ApiResourceIamPermission {
   helm_release_restore = 115;
   helm_release_update = 116;
 
-  // jenkins_server
-  jenkins_server_create = 117;
-  jenkins_server_delete = 118;
-  jenkins_server_get = 119;
-  jenkins_server_restore = 120;
-  jenkins_server_update = 121;
-
-  // mongodb_cluster
-  mongodb_cluster_create = 122;
-  mongodb_cluster_delete = 123;
-  mongodb_cluster_get = 124;
-  mongodb_cluster_restore = 125;
-  mongodb_cluster_update = 126;
-
-  // keycloak_server
-  keycloak_server_create = 127;
-  keycloak_server_delete = 128;
-  keycloak_server_get = 129;
-  keycloak_server_restore = 130;
-  keycloak_server_update = 131;
-
-  // elasticsearch_cluster
-  elasticsearch_cluster_create = 132;
-  elasticsearch_cluster_delete = 133;
-  elasticsearch_cluster_get = 134;
-  elasticsearch_cluster_restore = 135;
-  elasticsearch_cluster_update = 136;
-
-  // openfga_server
-  openfga_server_create = 137;
-  openfga_server_delete = 138;
-  openfga_server_get = 139;
-  openfga_server_restore = 140;
-  openfga_server_update = 141;
-
-  // argocd_instance
-  argocd_instance_create = 142;
-  argocd_instance_delete = 143;
-  argocd_instance_get = 144;
-  argocd_instance_restore = 145;
-  argocd_instance_update = 146;
-
-  // prometheus_server
-  prometheus_server_create = 147;
-  prometheus_server_delete = 148;
-  prometheus_server_get = 149;
-  prometheus_server_restore = 150;
-  prometheus_server_update = 151;
-
   // gitlab_server
   gitlab_server_create = 152;
   gitlab_server_delete = 153;
@@ -227,23 +143,9 @@ enum ApiResourceIamPermission {
   gitlab_server_restore = 155;
   gitlab_server_update = 156;
 
-  // grafana_instance
-  grafana_instance_create = 157;
-  grafana_instance_delete = 158;
-  grafana_instance_get = 159;
-  grafana_instance_restore = 160;
-  grafana_instance_update = 161;
-
   platform_microservice_account = 162;
   back_office_admin = 163;
   platform = 164;
-
-  // locust-cluster
-  locust_cluster_create = 165;
-  locust_cluster_delete = 166;
-  locust_cluster_get = 167;
-  locust_cluster_restore = 168;
-  locust_cluster_update = 169;
 
   // postgres_kubernetes
   postgres_kubernetes_create = 170;
