@@ -48,7 +48,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "bkt"
   ];
   helm_release = 20 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "hlr"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "hlmk8s"
   ];
   gitlab_server = 21 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gls"
