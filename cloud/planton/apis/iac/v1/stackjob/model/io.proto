@@ -22,18 +22,16 @@ message ListStackJobsByFiltersQueryInput {
   cloud.planton.apis.commons.rpc.PageInfo page_info = 1;
   // id of the company to filter the stack-jobs
   string company_id = 2;
-  // id of the product to filter the stack-jobs
-  string product_id = 3;
-  // id of the product env to filter the stack-jobs
-  string environment_id = 4;
+  // id of the environment to filter the stack-jobs
+  string environment_id = 3;
   // type of resource
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 5;
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 4;
   // id of the resource
-  string resource_id = 6;
+  string resource_id = 5;
   // stack operation type
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 7;
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 6;
   // progress status of the stack-job
-  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType progress_status = 8;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType progress_status = 7;
 }
 
 // paginated list of stack-jobs
@@ -81,19 +79,19 @@ message TotalPulumiResourceCount {
 }
 
 // GetPulumiResourceCountByContextInput is used to request the count of Pulumi resources
-// associated with a specific company and product within the system. The system uniquely identifies
-// companies and products by their respective IDs, and this message is utilized to retrieve resource
-// counts for targeted company-product combinations.
+// associated with a specific company and environments within the system. The system uniquely identifies
+// companies and environments by their respective IDs, and this message is utilized to retrieve resource
+// counts for targeted company-environment combinations.
 message GetPulumiResourceCountByContextInput {
   // company_id uniquely identifies a company within the system.
   string company_id = 1;
 
-  // product_id uniquely identifies a product associated with a company within the system.
-  string product_id = 2;
+  // environment_id uniquely identifies a environment associated with a company within the system.
+  string environment_id = 2;
 }
 
 // PulumiResourceCountDetailed provides a detailed accounting of Pulumi resources within a specific
-// context defined by a combination of company, product, and environment identifiers. This message
+// context defined by a combination of company and environment identifiers. This message
 // is designed to offer granular insights into the types and counts of resources deployed, aiding in
 // infrastructure management and analysis.
 message PulumiResourceCountDetailed {
@@ -101,26 +99,22 @@ message PulumiResourceCountDetailed {
   // ensures that resources are accurately associated with the correct corporate entity.
   string company_id = 1;
 
-  // product_id uniquely identifies a product offered by the company within the system.
-  // This aids in segmenting resources by product line or offering for more detailed analysis.
-  string product_id = 2;
-
   // environment_id specifies the deployment environment of the Pulumi resources, such as
   // development, testing, or production. This differentiation allows for environment-specific
   // resource tracking and management.
-  string environment_id = 3;
+  string environment_id = 2;
 
   // resource_id provides a unique identifier for each Pulumi resource within the given context.
   // This ID facilitates precise tracking and operations on individual resources.
-  string resource_id = 4;
+  string resource_id = 3;
 
   // resource_kind describes the type of the Pulumi resource (e.g., vm, network, database), offering
   // insights into the infrastructure composition and enabling type-specific management practices.
-  string resource_kind = 5;
+  string resource_kind = 4;
 
   // resource_count represents the number of instances of the resource kind present within the
   // specified context. Note: Despite being a string, this field should contain a numeric value.
-  int32 resource_count = 6;
+  int32 resource_count = 5;
 }
 
 // PulumiResourceCountDetailedList encapsulates a list of PulumiResourceCountDetailed messages,
@@ -128,19 +122,19 @@ message PulumiResourceCountDetailed {
 message PulumiResourceCountDetailedList {
   // entries is a repeated field containing PulumiResourceCountDetailed messages. Each entry
   // in this list represents detailed information about a specific planton-cloud resource, including
-  // its company, product, environment identifiers, resource kind, and count.
+  // its company, environment identifiers, resource kind, and count.
   repeated PulumiResourceCountDetailed entries = 1;
 }
 
 // GetStackJobMinutesByContextInput is intended for requests to retrieve the total minutes of stack job
-// processing or usage associated with a given company or product. It focuses on identifying the company or product
-// in question, facilitating the aggregation or reporting of stack job minutes at the company/ product level.
+// processing or usage associated with a given company or environment. It focuses on identifying the company or environment
+// in question, facilitating the aggregation or reporting of stack job minutes at the company/ environment level.
 message GetStackJobMinutesByContextInput {
   // company_id uniquely identifies a company within the system.
   string company_id = 1;
 
-  // product_id uniquely identifies a product associated with a company within the system.
-  string product_id = 2;
+  // environment_id uniquely identifies a environment associated with a company within the system.
+  string environment_id = 2;
 }
 
 // PulumiResourceCountTimeSeries represents a single data point in a time series for tracking the count
@@ -171,7 +165,7 @@ message PulumiResourceCountTimeSeriesList {
 
 // GetPulumiResourceCountTimeSeriesByContextInput defines the input parameters for a query
 // to retrieve time-series data of Pulumi resource counts within a specific context, identified
-// by company and product. This message enables clients to request temporal patterns of resource
+// by company and environment. This message enables clients to request temporal patterns of resource
 // usage, facilitating trend analysis and resource planning based on historical data. The inclusion
 // of start and end timestamps allows for the querying of data within a specific time range, offering
 // targeted insights into resource utilization over defined periods.
@@ -180,10 +174,10 @@ message GetPulumiResourceCountTimeSeriesByContextInput {
   // to filter the query to only include resources associated with the specified company, ensuring
   // that the time series data returned is relevant to the querying entity's scope of interest.
   string company_id = 1;
-  // product_id uniquely identifies a product associated with a company within the system. Specifying
+  // environment_id uniquely identifies a environment associated with a company within the system. Specifying
   // this identifier allows the query to further narrow down the set of resources considered, focusing
-  // the resulting time series on a particular product.
-  string product_id = 2;
+  // the resulting time series on a particular environment.
+  string environment_id = 2;
 
   // start_timestamp specifies the beginning of the time range for which resource count time series data
   // is requested. This field allows clients to define a specific time window, enhancing the precision of

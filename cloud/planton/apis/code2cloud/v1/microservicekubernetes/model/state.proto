@@ -266,12 +266,12 @@ message MicroserviceKubernetesSpecPipelineSpec {
   bool is_enabled = 1;
 
   //id of the code project.
-  //allowed values are the list of code projects in the same product.
+  //allowed values are the list of code projects in the same company.
   string code_project_id = 2 [
     (buf.validate.field).required = true
   ];
 
-  //git branch configured to deploy new versions of microservice-kubernetess
+  //git branch configured to deploy new versions of microservice-kubernetes
   string git_branch = 3 [
     (buf.validate.field).required = true
   ];

@@ -8,10 +8,9 @@ package service
 
 import (
 	context "context"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/environment/model"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gitlabkubernetes/model"
-	model3 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/kubecluster/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -24,7 +23,6 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	GitlabKubernetesQueryController_GetById_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service.GitlabKubernetesQueryController/getById"
-	GitlabKubernetesQueryController_FindByProductId_FullMethodName     = "/cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service.GitlabKubernetesQueryController/findByProductId"
 	GitlabKubernetesQueryController_FindByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service.GitlabKubernetesQueryController/findByEnvironmentId"
 	GitlabKubernetesQueryController_FindByKubeClusterId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service.GitlabKubernetesQueryController/findByKubeClusterId"
 	GitlabKubernetesQueryController_GetPassword_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service.GitlabKubernetesQueryController/getPassword"
@@ -36,12 +34,9 @@ const (
 type GitlabKubernetesQueryControllerClient interface {
 	// look up gitlab-kubernetes using gitlab-kubernetes id
 	GetById(ctx context.Context, in *model.GitlabKubernetesId, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// find gitlab-kubernetess by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
-	// find gitlab-kubernetess by environment
-	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
-	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
+	// find gitlab-kubernetes by environment
+	FindByEnvironmentId(ctx context.Context, in *model1.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
+	FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
 	// look up gitlab-kubernetes sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.GitlabKubernetesId, opts ...grpc.CallOption) (*model.GitlabKubernetesPassword, error)
@@ -64,16 +59,7 @@ func (c *gitlabKubernetesQueryControllerClient) GetById(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gitlabKubernetesQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error) {
-	out := new(model.GitlabKubernetesList)
-	err := c.cc.Invoke(ctx, GitlabKubernetesQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gitlabKubernetesQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error) {
+func (c *gitlabKubernetesQueryControllerClient) FindByEnvironmentId(ctx context.Context, in *model1.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error) {
 	out := new(model.GitlabKubernetesList)
 	err := c.cc.Invoke(ctx, GitlabKubernetesQueryController_FindByEnvironmentId_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -82,7 +68,7 @@ func (c *gitlabKubernetesQueryControllerClient) FindByEnvironmentId(ctx context.
 	return out, nil
 }
 
-func (c *gitlabKubernetesQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error) {
+func (c *gitlabKubernetesQueryControllerClient) FindByKubeClusterId(ctx context.Context, in *model2.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error) {
 	out := new(model.GitlabKubernetesList)
 	err := c.cc.Invoke(ctx, GitlabKubernetesQueryController_FindByKubeClusterId_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -106,12 +92,9 @@ func (c *gitlabKubernetesQueryControllerClient) GetPassword(ctx context.Context,
 type GitlabKubernetesQueryControllerServer interface {
 	// look up gitlab-kubernetes using gitlab-kubernetes id
 	GetById(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetes, error)
-	// find gitlab-kubernetess by product id.
-	// response contains only the resources that the authenticated user account has viewer access to.
-	FindByProductId(context.Context, *model1.ProductId) (*model.GitlabKubernetesList, error)
-	// find gitlab-kubernetess by environment
-	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabKubernetesList, error)
-	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabKubernetesList, error)
+	// find gitlab-kubernetes by environment
+	FindByEnvironmentId(context.Context, *model1.EnvironmentId) (*model.GitlabKubernetesList, error)
+	FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.GitlabKubernetesList, error)
 	// look up gitlab-kubernetes sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetesPassword, error)
@@ -124,13 +107,10 @@ type UnimplementedGitlabKubernetesQueryControllerServer struct {
 func (UnimplementedGitlabKubernetesQueryControllerServer) GetById(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedGitlabKubernetesQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.GitlabKubernetesList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedGitlabKubernetesQueryControllerServer) FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabKubernetesList, error) {
+func (UnimplementedGitlabKubernetesQueryControllerServer) FindByEnvironmentId(context.Context, *model1.EnvironmentId) (*model.GitlabKubernetesList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByEnvironmentId not implemented")
 }
-func (UnimplementedGitlabKubernetesQueryControllerServer) FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabKubernetesList, error) {
+func (UnimplementedGitlabKubernetesQueryControllerServer) FindByKubeClusterId(context.Context, *model2.KubeClusterId) (*model.GitlabKubernetesList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
 func (UnimplementedGitlabKubernetesQueryControllerServer) GetPassword(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetesPassword, error) {
@@ -166,26 +146,8 @@ func _GitlabKubernetesQueryController_GetById_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabKubernetesQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GitlabKubernetesQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GitlabKubernetesQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GitlabKubernetesQueryController_FindByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.EnvironmentId)
+	in := new(model1.EnvironmentId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -197,13 +159,13 @@ func _GitlabKubernetesQueryController_FindByEnvironmentId_Handler(srv interface{
 		FullMethod: GitlabKubernetesQueryController_FindByEnvironmentId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesQueryControllerServer).FindByEnvironmentId(ctx, req.(*model2.EnvironmentId))
+		return srv.(GitlabKubernetesQueryControllerServer).FindByEnvironmentId(ctx, req.(*model1.EnvironmentId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabKubernetesQueryController_FindByKubeClusterId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model3.KubeClusterId)
+	in := new(model2.KubeClusterId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -215,7 +177,7 @@ func _GitlabKubernetesQueryController_FindByKubeClusterId_Handler(srv interface{
 		FullMethod: GitlabKubernetesQueryController_FindByKubeClusterId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesQueryControllerServer).FindByKubeClusterId(ctx, req.(*model3.KubeClusterId))
+		return srv.(GitlabKubernetesQueryControllerServer).FindByKubeClusterId(ctx, req.(*model2.KubeClusterId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -248,10 +210,6 @@ var GitlabKubernetesQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "getById",
 			Handler:    _GitlabKubernetesQueryController_GetById_Handler,
-		},
-		{
-			MethodName: "findByProductId",
-			Handler:    _GitlabKubernetesQueryController_FindByProductId_Handler,
 		},
 		{
 			MethodName: "findByEnvironmentId",

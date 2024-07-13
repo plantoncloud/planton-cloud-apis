@@ -30,7 +30,7 @@ const (
 type ApiResourceListViewQueryControllerClient interface {
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
-	// and be associated with the specified company and product.
+	// and be associated with the specified company and environment.
 	ListByResourceKind(ctx context.Context, in *model.GetByApiResourceKindInput, opts ...grpc.CallOption) (*model.ApiResourceRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
@@ -69,7 +69,7 @@ func (c *apiResourceListViewQueryControllerClient) ListByResourceKindWithoutCont
 type ApiResourceListViewQueryControllerServer interface {
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
-	// and be associated with the specified company and product.
+	// and be associated with the specified company and environment.
 	ListByResourceKind(context.Context, *model.GetByApiResourceKindInput) (*model.ApiResourceRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,

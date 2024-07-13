@@ -12,10 +12,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //artifact-store
 message ArtifactStore {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = artifact_store;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  //id format "afs-<product-id>-<artifact-store-name>"
+  //id format "afs-<company-id>-<artifact-store-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -72,23 +72,18 @@ message ArtifactStore {
 message ArtifactStoreSpec {
   //company to which the artifact-store belongs to.
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //product to which the artifact-store belongs to.
-  string product_id = 2 [
     (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Buf Schema Registry repo
-  ArtifactStoreSpecBsrRepoSpec bsr_repo = 3;
+  ArtifactStoreSpecBsrRepoSpec bsr_repo = 2;
 
   //Golang Repo with Git Provider
-  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo = 4;
+  ArtifactStoreSpecGolangRepoGitProviderSpec golang_repo = 3;
 
   //provider for the artifact-store repositories
-  cloud.planton.apis.code2cloud.v1.artifactstore.enums.artifactstorerepoprovider.ArtifactStoreRepoProvider repo_provider = 5 [
+  cloud.planton.apis.code2cloud.v1.artifactstore.enums.artifactstorerepoprovider.ArtifactStoreRepoProvider repo_provider = 4 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).enum.defined_only = true
@@ -96,7 +91,7 @@ message ArtifactStoreSpec {
 
   //specification for google cloud artifact registry.
   //this attribute is only populated when the artifact-store repo provider is artifact-registry on google cloud.
-  ArtifactStoreGcpArtifactRegistrySpec gcp_artifact_registry = 6;
+  ArtifactStoreGcpArtifactRegistrySpec gcp_artifact_registry = 5;
 }
 
 // artifact-store Buf Schema Registry(buf.build) repo spec
@@ -142,7 +137,7 @@ message ArtifactStoreStatus {
 //spec for gcp artifact-registry repo provider for artifact-store
 message ArtifactStoreGcpArtifactRegistrySpec {
   //id of the gcp cloud account in which the artifact-store repositories are to be created.
-  //the allowed values for this attribute are all the gcp cloud accounts that the parent company of the product
+  //the allowed values for this attribute are all the gcp cloud accounts that the parent company
   //has required permissions to create artifact-store in.
   string gcp_cloud_account_id = 1 [
     (buf.validate.field).required = true,
@@ -157,7 +152,7 @@ message ArtifactStoreGcpArtifactRegistrySpec {
   ];
 
   //gcp region in which the artifact-store is to be created ex: us-west2.
-  //choosing the closest region for the kube-clusters in which the environments of the product are
+  //choosing the closest region for the kube-clusters in which the environments are
   //hosted reduces the service startup time as the container images are downloaded faster.
   string region = 3 [
     (buf.validate.field).required = true

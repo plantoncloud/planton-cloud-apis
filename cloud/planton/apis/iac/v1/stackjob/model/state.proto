@@ -52,68 +52,61 @@ message StackJobSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
-  //id of the product to which the stack-job belongs to.
-  //value is empty for non-product specific resources
-  string product_id = 2 [
-    (buf.validate.field).ignore_empty = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
-
   // id of the environment to which the stack-job belongs to.
   //value is empty for non-environment specific resources
-  string environment_id = 3 [
+  string environment_id = 2 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // resource type for which the stack-job is created
   //value is computed from stack.
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 4 [
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the resource for which the stack-job is created.
-  string resource_id = 5 [
+  string resource_id = 4 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the resource version for which the stack-job is created.
-  string resource_version_id = 6 [
+  string resource_version_id = 5 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the stack to which the stack-job belongs to.
   // value is computed based on resource-id.
-  string stack_id = 7 [
+  string stack_id = 6 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   // stack-job operation type
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 8 [
+  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 7 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // name of the pulumi-stack.
   // this value is computed by stack service.
-  string pulumi_stack_name = 9 [
+  string pulumi_stack_name = 8 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // event type of the resource that triggered the stack job
-  string api_resource_event_type = 10 [
+  string api_resource_event_type = 9 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the identity-account that created the event
   // this is used to configure the audit-actor before persisting the state of stack-job resource.
-  string api_resource_event_created_by = 11 [
+  string api_resource_event_created_by = 10 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

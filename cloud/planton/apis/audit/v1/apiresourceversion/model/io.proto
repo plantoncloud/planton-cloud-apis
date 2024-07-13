@@ -120,12 +120,12 @@ message GetResourceCountByCompanyIdInput {
 }
 
 // GetResourceCountByContextInput is used for requests aimed at obtaining the number of resources
-// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company/ product.
+// (such as postgres databases, redis databases, kubernetes clusters, etc.) associated with a given company/environment.
 message GetResourceCountByContextInput {
   // company_id uniquely identifies a company within the system.
   string company_id = 1;
 
-  // product_id uniquely identifies a product associated with a company within the system.
-  string product_id = 2;
+  // environment_id uniquely identifies a environment associated with a company within the system.
+  string environment_id = 2;
 }
 

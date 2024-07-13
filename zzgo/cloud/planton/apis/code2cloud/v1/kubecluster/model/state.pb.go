@@ -733,7 +733,7 @@ type KubeClusterGcpStatus struct {
 	ExternalIngressIp string `protobuf:"bytes,8,opt,name=external_ingress_ip,json=externalIngressIp,proto3" json:"external_ingress_ip,omitempty"`
 	// google service account email created for cert-manager addon workload identity.
 	// this is the service account that is used by cert-manager component to update dns records
-	// to issue ssl certificates from letsencrypt provided for product endpoints.
+	// to issue ssl certificates from letsencrypt provided for environment endpoint-domains.
 	// this service account is configured with permissions required to manage dns entries for issuing certs.
 	CertManagerGsaEmail string `protobuf:"bytes,9,opt,name=cert_manager_gsa_email,json=certManagerGsaEmail,proto3" json:"cert_manager_gsa_email,omitempty"`
 	// google service account email created for external-secrets addon workload identity.

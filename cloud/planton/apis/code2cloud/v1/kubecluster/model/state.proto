@@ -281,7 +281,7 @@ message KubeClusterGcpStatus {
 
   // google service account email created for cert-manager addon workload identity.
   // this is the service account that is used by cert-manager component to update dns records
-  // to issue ssl certificates from letsencrypt provided for product endpoints.
+  // to issue ssl certificates from letsencrypt provided for environment endpoint-domains.
   // this service account is configured with permissions required to manage dns entries for issuing certs.
   string cert_manager_gsa_email = 9;
 

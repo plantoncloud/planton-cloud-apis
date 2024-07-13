@@ -298,8 +298,8 @@ type AddOrUpdateKafkaTopicCommandInput struct {
 	// The server uses this ID to identify the correct kafka-kubernetes where the
 	// kafka-topic needs to be added or updated.
 	KafkaKubernetesId string `protobuf:"bytes,1,opt,name=kafka_kubernetes_id,json=kafkaKubernetesId,proto3" json:"kafka_kubernetes_id,omitempty"`
-	// The kafka-topic that needs to be added or updated within the product
-	// environment. This field should be populated with a valid KafkaTopic object,
+	// The kafka-topic that needs to be added or updated.
+	// This field should be populated with a valid KafkaTopic object,
 	// which encapsulates the details of the kafka-topic. If an kafka-topic
 	// with the kafka-topic-id already exists in the kafka-kubernetes, the value will be updated.
 	// Otherwise, a new kafka-topic will be created with the provided details.

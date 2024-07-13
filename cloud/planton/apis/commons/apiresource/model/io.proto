@@ -53,8 +53,8 @@ message ApiResourceRefreshCommandInput {
 // Record is a message type that represents a single record object in list view.
 // Record object has all fields that are required to show in list view
 // It contains identifying and contextual information about the resource,
-// such as its id, name, type, and the associated company, product, and
-// product environment identifiers.
+// such as its id, name, type, and the associated company and
+// environment identifiers.
 message ApiResourceRecord {
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo spec_audit = 98;
@@ -67,15 +67,12 @@ message ApiResourceRecord {
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind kind = 3;
   // Unique identifier for the company associated with this resource.
   string company_id = 4;
-  // Unique identifier for the product associated with this resource.
-  string product_id = 5;
-  // Unique identifier for the product environment
-  // (e.g. 'rbitex-rbx-prod','rbitex-rbx-dev', etc.) associated with this resource.
-  string environment_id = 6;
+  // Unique identifier for the environment
+  string environment_id = 5;
   // flag to indicate if the resource is deleted.
-  bool is_active = 7;
+  bool is_active = 6;
   // flag to indicate if the resource is paused
-  bool is_paused = 8;
+  bool is_paused = 7;
 }
 
 // ResourceList is a message type that represents a paginated list of Record objects.
@@ -89,16 +86,16 @@ message ApiResourceRecordList {
 
 // The GetByApiResourceKindInput message represents the input parameters required for
 // executing a search operation based on a specified resource type within a given
-// company's product.
+// company's environment.
 message GetByApiResourceKindInput {
   // This is the unique identifier for the company
   // associated with the get query. The get operation will only consider resources
   // associated with this company.
   string company_id = 1;
-  // This is the unique identifier for the product
+  // This is the unique identifier for the environment
   // associated with the get query. The get operation will only consider resources
-  // that are linked with this product.
-  string product_id = 2;
+  // that are linked with this environment.
+  string environment_id = 2;
   // This field indicates the type of resource that the search operation will be focusing on.
   // The possible resource types are defined by the ApiResourceKind enum.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;

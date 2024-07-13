@@ -29,7 +29,6 @@ const (
 	EnvironmentCommandController_Delete_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/delete"
 	EnvironmentCommandController_PreviewRestore_FullMethodName            = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/previewRestore"
 	EnvironmentCommandController_Restore_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/restore"
-	EnvironmentCommandController_Clone_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/clone"
 	EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/setBuildEngineEnvironment"
 	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/pause"
 	EnvironmentCommandController_Unpause_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentCommandController/unpause"
@@ -52,7 +51,7 @@ type EnvironmentCommandControllerClient interface {
 	// preview deleting an environment
 	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete an existing environment
-	// deleting a environment involves cleaning of all product components deployed for that environment.
+	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// preview restoring a deleted environment
@@ -60,13 +59,6 @@ type EnvironmentCommandControllerClient interface {
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
-	// clone an existing environment for a product
-	// a environment is cloned by creating the following resources with same spec as the source environment.
-	// 1. microservice deployment environments
-	// 2. secrets
-	// 3. postgres-clusters
-	// 4. kafka-clusters & kafka topics
-	Clone(ctx context.Context, in *model.CloneEnvironmentCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// set the provided environment as the build engine environment.
 	// setting a environment as build engine env requires that existing build engine env is
 	// unset followed by setting a new env as build engine env.
@@ -169,15 +161,6 @@ func (c *environmentCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Clone(ctx context.Context, in *model.CloneEnvironmentCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_Clone_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *environmentCommandControllerClient) SetBuildEngineEnvironment(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName, in, out, opts...)
@@ -238,7 +221,7 @@ type EnvironmentCommandControllerServer interface {
 	// preview deleting an environment
 	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
 	// delete an existing environment
-	// deleting a environment involves cleaning of all product components deployed for that environment.
+	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
 	// preview restoring a deleted environment
@@ -246,13 +229,6 @@ type EnvironmentCommandControllerServer interface {
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(context.Context, *model.Environment) (*model.Environment, error)
-	// clone an existing environment for a product
-	// a environment is cloned by creating the following resources with same spec as the source environment.
-	// 1. microservice deployment environments
-	// 2. secrets
-	// 3. postgres-clusters
-	// 4. kafka-clusters & kafka topics
-	Clone(context.Context, *model.CloneEnvironmentCommandInput) (*model.Environment, error)
 	// set the provided environment as the build engine environment.
 	// setting a environment as build engine env requires that existing build engine env is
 	// unset followed by setting a new env as build engine env.
@@ -302,9 +278,6 @@ func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Co
 }
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) Clone(context.Context, *model.CloneEnvironmentCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Clone not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) SetBuildEngineEnvironment(context.Context, *model.EnvironmentId) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBuildEngineEnvironment not implemented")
@@ -477,24 +450,6 @@ func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentCommandController_Clone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.CloneEnvironmentCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).Clone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_Clone_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Clone(ctx, req.(*model.CloneEnvironmentCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _EnvironmentCommandController_SetBuildEngineEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.EnvironmentId)
 	if err := dec(in); err != nil {
@@ -625,10 +580,6 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EnvironmentCommandController_Restore_Handler,
 		},
 		{
-			MethodName: "clone",
-			Handler:    _EnvironmentCommandController_Clone_Handler,
-		},
-		{
 			MethodName: "setBuildEngineEnvironment",
 			Handler:    _EnvironmentCommandController_SetBuildEngineEnvironment_Handler,
 		},
@@ -666,11 +617,11 @@ const (
 type EnvironmentSecretCommandControllerClient interface {
 	// add a env secret to a environment
 	Add(ctx context.Context, in *model.AddEnvironmentSecretCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// add multiple product secrets to existing list of product secrets of a environment
+	// add multiple environment secrets to existing list of environment secrets
 	AddMultiple(ctx context.Context, in *model.AddEnvironmentSecretsCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete a environment secret.
 	Delete(ctx context.Context, in *model.DeleteOrRestoreEnvironmentSecretCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// update value of a product secret
+	// update value of a environment secret
 	UpdateValue(ctx context.Context, in *model.UpdateEnvironmentSecretValueCommandInput, opts ...grpc.CallOption) (*model.EnvironmentSecret, error)
 }
 
@@ -724,11 +675,11 @@ func (c *environmentSecretCommandControllerClient) UpdateValue(ctx context.Conte
 type EnvironmentSecretCommandControllerServer interface {
 	// add a env secret to a environment
 	Add(context.Context, *model.AddEnvironmentSecretCommandInput) (*model.Environment, error)
-	// add multiple product secrets to existing list of product secrets of a environment
+	// add multiple environment secrets to existing list of environment secrets
 	AddMultiple(context.Context, *model.AddEnvironmentSecretsCommandInput) (*model.Environment, error)
 	// delete a environment secret.
 	Delete(context.Context, *model.DeleteOrRestoreEnvironmentSecretCommandInput) (*model.Environment, error)
-	// update value of a product secret
+	// update value of a environment secret
 	UpdateValue(context.Context, *model.UpdateEnvironmentSecretValueCommandInput) (*model.EnvironmentSecret, error)
 }
 
@@ -871,7 +822,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnvironmentVariableCommandControllerClient interface {
-	// add a environment variable to a product
+	// add a environment variable to a environment
 	Add(ctx context.Context, in *model.AddEnvironmentVariableCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// add multiple environment variables to existing list of environment variables of a environment
 	AddMultiple(ctx context.Context, in *model.AddEnvironmentVariablesCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
@@ -929,7 +880,7 @@ func (c *environmentVariableCommandControllerClient) UpdateValue(ctx context.Con
 // All implementations should embed UnimplementedEnvironmentVariableCommandControllerServer
 // for forward compatibility
 type EnvironmentVariableCommandControllerServer interface {
-	// add a environment variable to a product
+	// add a environment variable to a environment
 	Add(context.Context, *model.AddEnvironmentVariableCommandInput) (*model.Environment, error)
 	// add multiple environment variables to existing list of environment variables of a environment
 	AddMultiple(context.Context, *model.AddEnvironmentVariablesCommandInput) (*model.Environment, error)

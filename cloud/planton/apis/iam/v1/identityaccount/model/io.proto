@@ -74,11 +74,11 @@ message MembersCountByCompanyIdInput {
 }
 
 // MembersCountByProductIdInput is designed for requests that need to determine the number of members
-// associated exclusively with a given product. This simplified input focuses solely on product identification,
-// making it suitable to aggregate members count at the product level.
-message MembersCountByProductIdInput {
-  // product_id uniquely identifies a product within the system. The field accepts a string format.
-  string product_id = 1;
+// associated exclusively with a given environment. This simplified input focuses solely on environment identification,
+// making it suitable to aggregate members count at the environment level.
+message MembersCountByEnvironmentIdInput {
+  // environment_id uniquely identifies a environment within the system. The field accepts a string format.
+  string environment_id = 1;
 }
 
 // input for rpc to create access token for machine identity account

@@ -9,8 +9,7 @@ package service
 import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeserver/model"
-	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
+	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeserver/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -22,12 +21,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	CodeProjectQueryController_GetById_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/getById"
-	CodeProjectQueryController_FindByProductId_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findByProductId"
-	CodeProjectQueryController_FindByCodeServerId_FullMethodName                  = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findByCodeServerId"
-	CodeProjectQueryController_FindByCodeProjectUrl_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findByCodeProjectUrl"
-	CodeProjectQueryController_FindTemplateCodeProjectsByProductId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findTemplateCodeProjectsByProductId"
-	CodeProjectQueryController_GetCodeProjectProfileById_FullMethodName           = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/getCodeProjectProfileById"
+	CodeProjectQueryController_GetById_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/getById"
+	CodeProjectQueryController_FindByCodeServerId_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findByCodeServerId"
+	CodeProjectQueryController_FindByCodeProjectUrl_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/findByCodeProjectUrl"
+	CodeProjectQueryController_GetCodeProjectProfileById_FullMethodName = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectQueryController/getCodeProjectProfileById"
 )
 
 // CodeProjectQueryControllerClient is the client API for CodeProjectQueryController service.
@@ -36,17 +33,10 @@ const (
 type CodeProjectQueryControllerClient interface {
 	// look up a code project by code project id
 	GetById(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProject, error)
-	// find code projects by product id
-	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// find code projects by code-server id
-	FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
+	FindByCodeServerId(ctx context.Context, in *model1.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// look up all code projects by code project url
 	FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjectList, error)
-	// find code project templates by company id to create new code project.
-	// this will be used to populate drop down of code project templates in create code project form.
-	// the response should only include code project templates that a company is authorised to use for creating new code projects.
-	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
-	FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProjectProfile, error)
 }
@@ -68,16 +58,7 @@ func (c *codeProjectQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *codeProjectQueryControllerClient) FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
-	out := new(model.CodeProjectList)
-	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Context, in *model2.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
+func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Context, in *model1.CodeServerId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
 	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByCodeServerId_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -89,15 +70,6 @@ func (c *codeProjectQueryControllerClient) FindByCodeServerId(ctx context.Contex
 func (c *codeProjectQueryControllerClient) FindByCodeProjectUrl(ctx context.Context, in *model.CodeProjectUrl, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
 	out := new(model.CodeProjectList)
 	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindByCodeProjectUrl_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *codeProjectQueryControllerClient) FindTemplateCodeProjectsByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.CodeProjectList, error) {
-	out := new(model.CodeProjectList)
-	err := c.cc.Invoke(ctx, CodeProjectQueryController_FindTemplateCodeProjectsByProductId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -119,17 +91,10 @@ func (c *codeProjectQueryControllerClient) GetCodeProjectProfileById(ctx context
 type CodeProjectQueryControllerServer interface {
 	// look up a code project by code project id
 	GetById(context.Context, *model.CodeProjectId) (*model.CodeProject, error)
-	// find code projects by product id
-	FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error)
 	// find code projects by code-server id
-	FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjectList, error)
+	FindByCodeServerId(context.Context, *model1.CodeServerId) (*model.CodeProjectList, error)
 	// look up all code projects by code project url
 	FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjectList, error)
-	// find code project templates by company id to create new code project.
-	// this will be used to populate drop down of code project templates in create code project form.
-	// the response should only include code project templates that a company is authorised to use for creating new code projects.
-	// the authorization is verified by looking up code project template with `code-project-template-user` relation for the company id provided in input.
-	FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error)
 	// get code project profile by code project id
 	GetCodeProjectProfileById(context.Context, *model.CodeProjectId) (*model.CodeProjectProfile, error)
 }
@@ -141,17 +106,11 @@ type UnimplementedCodeProjectQueryControllerServer struct {
 func (UnimplementedCodeProjectQueryControllerServer) GetById(context.Context, *model.CodeProjectId) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCodeProjectQueryControllerServer) FindByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByProductId not implemented")
-}
-func (UnimplementedCodeProjectQueryControllerServer) FindByCodeServerId(context.Context, *model2.CodeServerId) (*model.CodeProjectList, error) {
+func (UnimplementedCodeProjectQueryControllerServer) FindByCodeServerId(context.Context, *model1.CodeServerId) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeServerId not implemented")
 }
 func (UnimplementedCodeProjectQueryControllerServer) FindByCodeProjectUrl(context.Context, *model.CodeProjectUrl) (*model.CodeProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCodeProjectUrl not implemented")
-}
-func (UnimplementedCodeProjectQueryControllerServer) FindTemplateCodeProjectsByProductId(context.Context, *model1.ProductId) (*model.CodeProjectList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindTemplateCodeProjectsByProductId not implemented")
 }
 func (UnimplementedCodeProjectQueryControllerServer) GetCodeProjectProfileById(context.Context, *model.CodeProjectId) (*model.CodeProjectProfile, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCodeProjectProfileById not implemented")
@@ -186,26 +145,8 @@ func _CodeProjectQueryController_GetById_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CodeProjectQueryController_FindByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CodeProjectQueryControllerServer).FindByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CodeProjectQueryController_FindByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeProjectQueryControllerServer).FindByProductId(ctx, req.(*model1.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CodeProjectQueryController_FindByCodeServerId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.CodeServerId)
+	in := new(model1.CodeServerId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -217,7 +158,7 @@ func _CodeProjectQueryController_FindByCodeServerId_Handler(srv interface{}, ctx
 		FullMethod: CodeProjectQueryController_FindByCodeServerId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeProjectQueryControllerServer).FindByCodeServerId(ctx, req.(*model2.CodeServerId))
+		return srv.(CodeProjectQueryControllerServer).FindByCodeServerId(ctx, req.(*model1.CodeServerId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -236,24 +177,6 @@ func _CodeProjectQueryController_FindByCodeProjectUrl_Handler(srv interface{}, c
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(CodeProjectQueryControllerServer).FindByCodeProjectUrl(ctx, req.(*model.CodeProjectUrl))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CodeProjectQueryController_FindTemplateCodeProjectsByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CodeProjectQueryControllerServer).FindTemplateCodeProjectsByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CodeProjectQueryController_FindTemplateCodeProjectsByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeProjectQueryControllerServer).FindTemplateCodeProjectsByProductId(ctx, req.(*model1.ProductId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -288,20 +211,12 @@ var CodeProjectQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CodeProjectQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByProductId",
-			Handler:    _CodeProjectQueryController_FindByProductId_Handler,
-		},
-		{
 			MethodName: "findByCodeServerId",
 			Handler:    _CodeProjectQueryController_FindByCodeServerId_Handler,
 		},
 		{
 			MethodName: "findByCodeProjectUrl",
 			Handler:    _CodeProjectQueryController_FindByCodeProjectUrl_Handler,
-		},
-		{
-			MethodName: "findTemplateCodeProjectsByProductId",
-			Handler:    _CodeProjectQueryController_FindTemplateCodeProjectsByProductId_Handler,
 		},
 		{
 			MethodName: "getCodeProjectProfileById",

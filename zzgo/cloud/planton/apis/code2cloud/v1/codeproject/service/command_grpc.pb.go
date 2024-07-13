@@ -10,7 +10,6 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/codeproject/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
-	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/resourcemanager/v1/product/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -27,7 +26,6 @@ const (
 	CodeProjectCommandController_Update_FullMethodName                              = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/update"
 	CodeProjectCommandController_Delete_FullMethodName                              = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/delete"
 	CodeProjectCommandController_Restore_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/restore"
-	CodeProjectCommandController_SynchronizeByProductId_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/synchronizeByProductId"
 	CodeProjectCommandController_SynchronizeByCodeProjectId_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/synchronizeByCodeProjectId"
 	CodeProjectCommandController_AttachMachineAccountByCodeProjectId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.codeproject.service.CodeProjectCommandController/attachMachineAccountByCodeProjectId"
 )
@@ -45,11 +43,8 @@ type CodeProjectCommandControllerClient interface {
 	Update(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// delete an existing code project.
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.CodeProject, error)
-	// restore a deleted code project of a product.
+	// restore a deleted code project.
 	Restore(ctx context.Context, in *model.CodeProject, opts ...grpc.CallOption) (*model.CodeProject, error)
-	// synchronize code projects of a product.
-	// this operation will run synchronization process on all code-servers of the product.
-	SynchronizeByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model2.Product, error)
 	// synchronize code project with its counterpart on the code-server
 	SynchronizeByCodeProjectId(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProject, error)
 	// attach a machine account to a code project on the code-server by adding client-id and client-secret as
@@ -110,15 +105,6 @@ func (c *codeProjectCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *codeProjectCommandControllerClient) SynchronizeByProductId(ctx context.Context, in *model2.ProductId, opts ...grpc.CallOption) (*model2.Product, error) {
-	out := new(model2.Product)
-	err := c.cc.Invoke(ctx, CodeProjectCommandController_SynchronizeByProductId_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *codeProjectCommandControllerClient) SynchronizeByCodeProjectId(ctx context.Context, in *model.CodeProjectId, opts ...grpc.CallOption) (*model.CodeProject, error) {
 	out := new(model.CodeProject)
 	err := c.cc.Invoke(ctx, CodeProjectCommandController_SynchronizeByCodeProjectId_FullMethodName, in, out, opts...)
@@ -150,11 +136,8 @@ type CodeProjectCommandControllerServer interface {
 	Update(context.Context, *model.CodeProject) (*model.CodeProject, error)
 	// delete an existing code project.
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.CodeProject, error)
-	// restore a deleted code project of a product.
+	// restore a deleted code project.
 	Restore(context.Context, *model.CodeProject) (*model.CodeProject, error)
-	// synchronize code projects of a product.
-	// this operation will run synchronization process on all code-servers of the product.
-	SynchronizeByProductId(context.Context, *model2.ProductId) (*model2.Product, error)
 	// synchronize code project with its counterpart on the code-server
 	SynchronizeByCodeProjectId(context.Context, *model.CodeProjectId) (*model.CodeProject, error)
 	// attach a machine account to a code project on the code-server by adding client-id and client-secret as
@@ -180,9 +163,6 @@ func (UnimplementedCodeProjectCommandControllerServer) Delete(context.Context, *
 }
 func (UnimplementedCodeProjectCommandControllerServer) Restore(context.Context, *model.CodeProject) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedCodeProjectCommandControllerServer) SynchronizeByProductId(context.Context, *model2.ProductId) (*model2.Product, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeByProductId not implemented")
 }
 func (UnimplementedCodeProjectCommandControllerServer) SynchronizeByCodeProjectId(context.Context, *model.CodeProjectId) (*model.CodeProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SynchronizeByCodeProjectId not implemented")
@@ -292,24 +272,6 @@ func _CodeProjectCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CodeProjectCommandController_SynchronizeByProductId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.ProductId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CodeProjectCommandControllerServer).SynchronizeByProductId(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CodeProjectCommandController_SynchronizeByProductId_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CodeProjectCommandControllerServer).SynchronizeByProductId(ctx, req.(*model2.ProductId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _CodeProjectCommandController_SynchronizeByCodeProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.CodeProjectId)
 	if err := dec(in); err != nil {
@@ -372,10 +334,6 @@ var CodeProjectCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _CodeProjectCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "synchronizeByProductId",
-			Handler:    _CodeProjectCommandController_SynchronizeByProductId_Handler,
 		},
 		{
 			MethodName: "synchronizeByCodeProjectId",

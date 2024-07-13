@@ -13,10 +13,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //code-server
 message CodeServer {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_server;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = product;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.product_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
 
-  //id format "cs-<product-id>-<code-server-name>"
+  //id format "cs-<company-id>-<code-server-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -84,36 +84,30 @@ message CodeServerSpec {
         ": ''"
   };
   //Specifies the company to which the code server belongs.
-  //This value is computed from the product.
   string company_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //Specifies the product to which the code server belongs.
-  string product_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the host of the code server, such as "https://github.com".
-  string code_server_host = 3 [
+  string code_server_host = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.hostname = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //Specifies the provider for the code server.
-  cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 4 [
+  cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   //github spec
-  CodeServerGithubSpec github = 5;
+  CodeServerGithubSpec github = 4;
 
   //gitlab spec
-  CodeServerGitlabSpec gitlab = 6;
+  CodeServerGitlabSpec gitlab = 5;
 }
 
 //github code-server spec

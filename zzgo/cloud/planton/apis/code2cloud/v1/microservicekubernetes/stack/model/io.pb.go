@@ -160,9 +160,8 @@ type MicroserviceKubernetesStackResourceInput struct {
 	MicroserviceKubernetes *model1.MicroserviceKubernetes `protobuf:"bytes,1,opt,name=microservice_kubernetes,json=microserviceKubernetes,proto3" json:"microservice_kubernetes,omitempty"`
 	// input required for creating kubernetes secret resources to be used by deployment resources to pull private
 	// container images.
-	// a product can have many artifact-stores. each artifact-store has a separate service account credential.
-	// for each microservice that belongs to a product, one microservice environment is created per environment.
-	// the microservice environment will be configured with secrets required to pull private images from any of the product's
+	// a company can have many artifact-stores. each artifact-store has a separate service account credential.
+	// the microservice environment will be configured with secrets required to pull private images from any of the company's
 	// artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
 	// artifact-stores.
 	KubernetesImagePullSecrets []*KubernetesImagePullSecretInput `protobuf:"bytes,2,rep,name=kubernetes_image_pull_secrets,json=kubernetesImagePullSecrets,proto3" json:"kubernetes_image_pull_secrets,omitempty"`

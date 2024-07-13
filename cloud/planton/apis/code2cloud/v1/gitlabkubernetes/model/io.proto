@@ -12,7 +12,7 @@ message GitlabKubernetesId {
   ];
 }
 
-//list of gitlab-kubernetess
+//list of gitlab-kubernetes
 message GitlabKubernetesList {
   repeated GitlabKubernetes entries = 1;
 }

@@ -7,14 +7,14 @@ import "cloud/planton/apis/search/v1/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 // SearchQueryController is a service that provides search functionality
-// related to specific companies and products.
+// related to specific companies and environments.
 // It defines an RPC method, SearchByText, which accepts a text-based search
 // input and returns a response.
 service SearchQueryController {
   // SearchByText is an RPC method that takes a SearchByTextInput message
-  // containing the company identifier, product identifier, and search text.
+  // containing the company identifier, environment identifier, and search text.
   // This method is responsible for performing a text-based search query
-  // related to the specified company and product, and it returns a response
+  // related to the specified company and environment, and it returns a response
   // containing the search results.
   rpc searchByText(cloud.planton.apis.search.v1.model.SearchByTextInput)
       returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
@@ -22,15 +22,15 @@ service SearchQueryController {
   }
 
   // The `searchByApiResourceKindInput` RPC service method enables clients to execute a search operation
-  // based on a specific resource type within a specified company's product.
+  // based on a specific resource type within a specified company's environment.
 
   // The input parameters for this operation are packaged into a `SearchByApiResourceKindInput` message,
-  // which includes the unique identifiers for the company and the product, the resource type, and
+  // which includes the unique identifiers for the company and the environment, the resource type, and
   // pagination information for retrieving specific paginated data.
 
   // This method returns a `ResourceList` message, which encapsulates a list of resources that match
   // the input search parameters. Each resource in the list should match the specified resource type,
-  // and be associated with the specified company and product.
+  // and be associated with the specified company and environment.
   rpc searchByApiResourceKind(cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput)
       returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;

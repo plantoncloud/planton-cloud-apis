@@ -117,17 +117,17 @@ func (x *EnvironmentId) GetValue() string {
 	return ""
 }
 
-type GetByProductIdAndEnvironmentNameQueryInput struct {
+type GetByCompanyIdAndEnvironmentNameQueryInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	ProductId       string `protobuf:"bytes,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	CompanyId       string `protobuf:"bytes,1,opt,name=company_id,json=companyId,proto3" json:"company_id,omitempty"`
 	EnvironmentName string `protobuf:"bytes,2,opt,name=environment_name,json=environmentName,proto3" json:"environment_name,omitempty"`
 }
 
-func (x *GetByProductIdAndEnvironmentNameQueryInput) Reset() {
-	*x = GetByProductIdAndEnvironmentNameQueryInput{}
+func (x *GetByCompanyIdAndEnvironmentNameQueryInput) Reset() {
+	*x = GetByCompanyIdAndEnvironmentNameQueryInput{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -135,13 +135,13 @@ func (x *GetByProductIdAndEnvironmentNameQueryInput) Reset() {
 	}
 }
 
-func (x *GetByProductIdAndEnvironmentNameQueryInput) String() string {
+func (x *GetByCompanyIdAndEnvironmentNameQueryInput) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetByProductIdAndEnvironmentNameQueryInput) ProtoMessage() {}
+func (*GetByCompanyIdAndEnvironmentNameQueryInput) ProtoMessage() {}
 
-func (x *GetByProductIdAndEnvironmentNameQueryInput) ProtoReflect() protoreflect.Message {
+func (x *GetByCompanyIdAndEnvironmentNameQueryInput) ProtoReflect() protoreflect.Message {
 	mi := &file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -153,19 +153,19 @@ func (x *GetByProductIdAndEnvironmentNameQueryInput) ProtoReflect() protoreflect
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetByProductIdAndEnvironmentNameQueryInput.ProtoReflect.Descriptor instead.
-func (*GetByProductIdAndEnvironmentNameQueryInput) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetByCompanyIdAndEnvironmentNameQueryInput.ProtoReflect.Descriptor instead.
+func (*GetByCompanyIdAndEnvironmentNameQueryInput) Descriptor() ([]byte, []int) {
 	return file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetByProductIdAndEnvironmentNameQueryInput) GetProductId() string {
+func (x *GetByCompanyIdAndEnvironmentNameQueryInput) GetCompanyId() string {
 	if x != nil {
-		return x.ProductId
+		return x.CompanyId
 	}
 	return ""
 }
 
-func (x *GetByProductIdAndEnvironmentNameQueryInput) GetEnvironmentName() string {
+func (x *GetByCompanyIdAndEnvironmentNameQueryInput) GetEnvironmentName() string {
 	if x != nil {
 		return x.EnvironmentName
 	}
@@ -336,7 +336,7 @@ func (x *EnvironmentVariableList) GetEntries() []*EnvironmentVariable {
 	return nil
 }
 
-// wrapper for product var id
+// wrapper for environment variable id
 type EnvironmentVariableId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -655,12 +655,12 @@ type AddEnvironmentSecretsCommandInput struct {
 	unknownFields protoimpl.UnknownFields
 
 	// The unique identifier for the environment to which the environment
-	// secrets are being added. This field must be populated with a valid product
-	// environment ID, which can be obtained from the environment entity
+	// secrets are being added. This field must be populated with a valid
+	// environment-id, which can be obtained from the environment entity
 	// itself. The server uses this ID to identify the correct environment
 	// to which the secrets should be added.
 	EnvironmentId string `protobuf:"bytes,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	// The list of environment secrets that need to be added to the specified product
+	// The list of environment secrets that need to be added to the specified
 	// environment. Each entry in this list represents a single environment secret.
 	// This is a list of instances of the `EnvironmentSecret` message, each encapsulating
 	// the details of a single environment secret, such as its name and value. The server
@@ -1049,7 +1049,7 @@ type AddEnvironmentVariableCommandInput struct {
 	// The server uses this ID to identify the correct environment where the
 	// environment variable needs to be added.
 	EnvironmentId string `protobuf:"bytes,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	// The environment variable that needs to be added within the product
+	// The environment variable that needs to be added within the
 	// environment. This field should be populated with a valid EnvironmentVariable object,
 	// which encapsulates the details of the environment variable.
 	Variable *EnvironmentVariable `protobuf:"bytes,2,opt,name=variable,proto3" json:"variable,omitempty"`
@@ -1284,7 +1284,7 @@ type GetByEnvironmentVariableIdInput struct {
 	// environment_id is a string that uniquely identifies the environment where the target
 	// environment variable is located. This ID is essential for the server to locate the specific environment.
 	EnvironmentId string `protobuf:"bytes,1,opt,name=environment_id,json=environmentId,proto3" json:"environment_id,omitempty"`
-	// var_id is a string that uniquely identifies the environment variable within the identified product
+	// var_id is a string that uniquely identifies the environment variable within the identified
 	// environment that needs to be retrieved. This ID is used by the server to find the specific environment variable.
 	VariableId string `protobuf:"bytes,2,opt,name=variable_id,json=variableId,proto3" json:"variable_id,omitempty"`
 }
@@ -1499,11 +1499,11 @@ var file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_rawDesc = [
 	0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x1c, 0x0a,
 	0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xba, 0x48,
 	0x03, 0xc8, 0x01, 0x01, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x86, 0x01, 0x0a, 0x2a,
-	0x47, 0x65, 0x74, 0x42, 0x79, 0x50, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49, 0x64, 0x41, 0x6e,
+	0x47, 0x65, 0x74, 0x42, 0x79, 0x43, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49, 0x64, 0x41, 0x6e,
 	0x64, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65,
-	0x51, 0x75, 0x65, 0x72, 0x79, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x25, 0x0a, 0x0a, 0x70, 0x72,
-	0x6f, 0x64, 0x75, 0x63, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06,
-	0xba, 0x48, 0x03, 0xc8, 0x01, 0x01, 0x52, 0x09, 0x70, 0x72, 0x6f, 0x64, 0x75, 0x63, 0x74, 0x49,
+	0x51, 0x75, 0x65, 0x72, 0x79, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x12, 0x25, 0x0a, 0x0a, 0x63, 0x6f,
+	0x6d, 0x70, 0x61, 0x6e, 0x79, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06,
+	0xba, 0x48, 0x03, 0xc8, 0x01, 0x01, 0x52, 0x09, 0x63, 0x6f, 0x6d, 0x70, 0x61, 0x6e, 0x79, 0x49,
 	0x64, 0x12, 0x31, 0x0a, 0x10, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74,
 	0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x06, 0xba, 0x48, 0x03,
 	0xc8, 0x01, 0x01, 0x52, 0x0f, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74,
@@ -1767,7 +1767,7 @@ var file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_msgTypes = 
 var file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_goTypes = []interface{}{
 	(*EnvironmentList)(nil),                                // 0: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList
 	(*EnvironmentId)(nil),                                  // 1: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId
-	(*GetByProductIdAndEnvironmentNameQueryInput)(nil),     // 2: cloud.planton.apis.code2cloud.v1.environment.model.GetByProductIdAndEnvironmentNameQueryInput
+	(*GetByCompanyIdAndEnvironmentNameQueryInput)(nil),     // 2: cloud.planton.apis.code2cloud.v1.environment.model.GetByCompanyIdAndEnvironmentNameQueryInput
 	(*ByEnvironmentByNamespaceInput)(nil),                  // 3: cloud.planton.apis.code2cloud.v1.environment.model.ByEnvironmentByNamespaceInput
 	(*CloneEnvironmentCommandInput)(nil),                   // 4: cloud.planton.apis.code2cloud.v1.environment.model.CloneEnvironmentCommandInput
 	(*EnvironmentVariableList)(nil),                        // 5: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariableList
@@ -1843,7 +1843,7 @@ func file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_init() {
 			}
 		}
 		file_cloud_planton_apis_code2cloud_v1_environment_model_io_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetByProductIdAndEnvironmentNameQueryInput); i {
+			switch v := v.(*GetByCompanyIdAndEnvironmentNameQueryInput); i {
 			case 0:
 				return &v.state
 			case 1:

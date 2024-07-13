@@ -7,7 +7,7 @@ import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
 
 //artifact-store query controller
 service ArtifactStoreQueryController {
@@ -56,12 +56,12 @@ service ArtifactStoreQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
   }
 
-  //look up artifact-stores by product id.
-  rpc findByProductId(cloud.planton.apis.resourcemanager.v1.product.model.ProductId)
+  //look up artifact-stores by company id.
+  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
       returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = product_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store list by product id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup company artifact-stores";
   }
 }

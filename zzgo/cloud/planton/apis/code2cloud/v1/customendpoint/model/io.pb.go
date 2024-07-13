@@ -133,7 +133,7 @@ type AddOrUpdateCustomEndpointRouteCommandInput struct {
 	// The server uses this ID to identify the correct custom-endpoint where the
 	// route needs to be added or updated.
 	CustomEndpointId string `protobuf:"bytes,1,opt,name=custom_endpoint_id,json=customEndpointId,proto3" json:"custom_endpoint_id,omitempty"`
-	// The route that needs to be added or updated within the product
+	// The route that needs to be added or updated within the
 	// environment. This field should be populated with a valid CustomEndpointRoute object,
 	// which encapsulates the details of the route. If an route
 	// with the same url path prefix already exists in the custom-endpoint, the value will be updated.

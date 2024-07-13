@@ -18,9 +18,9 @@ service EnvironmentCommandController {
   //preview creating environment
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_create;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create environment";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
@@ -30,9 +30,9 @@ service EnvironmentCommandController {
   //create environment
   rpc create(cloud.planton.apis.code2cloud.v1.environment.model.Environment)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_create;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.product_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.company_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
@@ -77,7 +77,7 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete an existing environment
-  //deleting a environment involves cleaning of all product components deployed for that environment.
+  //deleting a environment involves cleaning of stack-modules deployed to that environment.
   //microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
@@ -115,22 +115,6 @@ service EnvironmentCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
-  }
-  //clone an existing environment for a product
-  //a environment is cloned by creating the following resources with same spec as the source environment.
-  //1. microservice deployment environments
-  //2. secrets
-  //3. postgres-clusters
-  //4. kafka-clusters & kafka topics
-  rpc clone(cloud.planton.apis.code2cloud.v1.environment.model.CloneEnvironmentCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
-    //the permission checked against the id of the source environment
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = product;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_create;
-    //note: this rpc also requires that the principal should have environment_get permission on source_environment_id
-    //the additional permissions should be handled by the authorizer.
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "new_environment.spec.product_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to clone environment";
   }
   //set the provided environment as the build engine environment.
   //setting a environment as build engine env requires that existing build engine env is
@@ -224,7 +208,7 @@ service EnvironmentSecretCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
   }
-  //add multiple product secrets to existing list of product secrets of a environment
+  //add multiple environment secrets to existing list of environment secrets
   rpc addMultiple(cloud.planton.apis.code2cloud.v1.environment.model.AddEnvironmentSecretsCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
@@ -252,7 +236,7 @@ service EnvironmentSecretCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
   }
-  //update value of a product secret
+  //update value of a environment secret
   rpc updateValue(cloud.planton.apis.code2cloud.v1.environment.model.UpdateEnvironmentSecretValueCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
@@ -271,7 +255,7 @@ service EnvironmentSecretCommandController {
 //environment variables command controller
 service EnvironmentVariableCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = environment;
-  //add a environment variable to a product
+  //add a environment variable to a environment
   rpc add(cloud.planton.apis.code2cloud.v1.environment.model.AddEnvironmentVariableCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;

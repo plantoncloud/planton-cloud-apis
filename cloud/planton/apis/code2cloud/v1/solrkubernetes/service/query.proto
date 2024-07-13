@@ -10,7 +10,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptio
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 //solr-kubernetes query controller
 service SolrKubernetesQueryController {

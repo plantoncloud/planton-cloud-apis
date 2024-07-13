@@ -69,7 +69,7 @@ func (x *GitlabKubernetesId) GetValue() string {
 	return ""
 }
 
-// list of gitlab-kubernetess
+// list of gitlab-kubernetes
 type GitlabKubernetesList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

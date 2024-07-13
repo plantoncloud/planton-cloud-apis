@@ -17,8 +17,8 @@ message EnvironmentId {
   ];
 }
 
-message GetByProductIdAndEnvironmentNameQueryInput {
-  string product_id = 1 [
+message GetByCompanyIdAndEnvironmentNameQueryInput {
+  string company_id = 1 [
     (buf.validate.field).required = true
   ];
   string environment_name = 2 [
@@ -55,7 +55,7 @@ message EnvironmentVariableList {
   repeated EnvironmentVariable entries = 1;
 }
 
-//wrapper for product var id
+//wrapper for environment variable id
 message EnvironmentVariableId {
   string value = 1 [
     (buf.validate.field).required = true
@@ -109,14 +109,14 @@ message EnvironmentSecretValue {
 //with a specific environment.
 message AddEnvironmentSecretsCommandInput {
   //The unique identifier for the environment to which the environment
-  //secrets are being added. This field must be populated with a valid product
-  //environment ID, which can be obtained from the environment entity
+  //secrets are being added. This field must be populated with a valid
+  //environment-id, which can be obtained from the environment entity
   //itself. The server uses this ID to identify the correct environment
   //to which the secrets should be added.
   string environment_id = 1 [
     (buf.validate.field).required = true
   ];
-  //The list of environment secrets that need to be added to the specified product
+  //The list of environment secrets that need to be added to the specified
   //environment. Each entry in this list represents a single environment secret.
   //This is a list of instances of the `EnvironmentSecret` message, each encapsulating
   //the details of a single environment secret, such as its name and value. The server
@@ -257,7 +257,7 @@ message AddEnvironmentVariableCommandInput {
     (buf.validate.field).required = true
   ];
 
-  //The environment variable that needs to be added within the product
+  //The environment variable that needs to be added within the
   //environment. This field should be populated with a valid EnvironmentVariable object,
   //which encapsulates the details of the environment variable.
   EnvironmentVariable variable = 2 [
@@ -343,7 +343,7 @@ message GetByEnvironmentVariableIdInput {
     (buf.validate.field).required = true
   ];
 
-  //var_id is a string that uniquely identifies the environment variable within the identified product
+  //var_id is a string that uniquely identifies the environment variable within the identified
   //environment that needs to be retrieved. This ID is used by the server to find the specific environment variable.
   string variable_id = 2 [
     (buf.validate.field).required = true
