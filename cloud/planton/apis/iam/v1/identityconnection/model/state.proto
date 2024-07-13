@@ -9,11 +9,11 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/identityconnection/enums/identityconnectionprovider/identity_connection_provider.proto";
 
-//identity-connection used for linking a company's identity provider with planton-cloud
+//identity-connection used for linking a organization's identity provider with planton-cloud
 message IdentityConnection {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = identity_connection;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
   //resource api-version
   string api_version = 1 [
@@ -28,7 +28,7 @@ message IdentityConnection {
   // metadata for the resource
   // id:
   //
-  // naming convention "<idc>-<company_id>-<connection_name>".
+  // naming convention "<idc>-<org_id>-<connection_name>".
   // backend ignores the value provided by the client.
   //
   // name:
@@ -46,8 +46,8 @@ message IdentityConnection {
 
 //specification for identity-connection
 message IdentityConnectionSpec {
-  // id of the company owning the identity connection.
-  string company_id = 1;
+  // id of the organization owning the identity connection.
+  string org_id = 1;
 
   // type of the identity connection.
   cloud.planton.apis.iam.v1.identityconnection.enums.identityconnectionprovider.IdentityConnectionType connection_type = 2;

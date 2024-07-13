@@ -45,9 +45,9 @@ message StackJob {
 
 // stack-job spec
 message StackJobSpec {
-  // id of the company to which the stack-job belongs to.
+  // id of the organization to which the stack-job belongs to.
   //value is computed from stack
-  string company_id = 1 [
+  string org_id = 1 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

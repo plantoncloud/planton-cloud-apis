@@ -47,7 +47,7 @@ message StackSpec {
   // the value of this attributes is rendered by replacing the placeholders in
   // "https://app.pulumi.com/${pulumiOrgName}/${pulumiProject}/${pulumiStackName}"
   // value of pulumiOrgName is same for every single stack for each planton-cloud environment.
-  // value of pulumiProject is the company-id on planton-cloud.
+  // value of pulumiProject is the organization-id on planton-cloud.
   // value of pulumiStack is stack_name attribute in this object.
   // ex: https://app.pulumi.com/plantonstack-prod/cookie/afs-cookie-shop-main.ca-planton-hosting-gcp-main.artifact-store
   string pulumi_cloud_url = 3 [
@@ -55,9 +55,9 @@ message StackSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  // id of the company to which the resource belongs to.
+  // id of the organization to which the resource belongs to.
   // this is used as project name when creating stacks on pulumi cloud.
-  string company_id = 4;
+  string org_id = 4;
 
   // id of the identity-account that created the resource.
   // this is used to configure the audit-actor before persisting the state of stack resource.

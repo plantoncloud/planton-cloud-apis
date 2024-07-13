@@ -1032,7 +1032,7 @@ type EnvironmentEndpointDomainCommandControllerClient interface {
 	Add(ctx context.Context, in *model.AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// update an existing endpoint-domain to a environment
 	Update(ctx context.Context, in *model.AddOrUpdateEndpointDomainCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// delete an endpoint-domain of a company
+	// delete an endpoint-domain of a organization
 	Delete(ctx context.Context, in *model.DeleteEndpointDomainCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 }
 
@@ -1079,7 +1079,7 @@ type EnvironmentEndpointDomainCommandControllerServer interface {
 	Add(context.Context, *model.AddOrUpdateEndpointDomainCommandInput) (*model.Environment, error)
 	// update an existing endpoint-domain to a environment
 	Update(context.Context, *model.AddOrUpdateEndpointDomainCommandInput) (*model.Environment, error)
-	// delete an endpoint-domain of a company
+	// delete an endpoint-domain of a organization
 	Delete(context.Context, *model.DeleteEndpointDomainCommandInput) (*model.Environment, error)
 }
 

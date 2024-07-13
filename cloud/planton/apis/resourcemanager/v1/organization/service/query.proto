@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.organization.service;
+
+import "cloud/planton/apis/commons/protobuf/custom.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/organization/model/state.proto";
+
+//organization query controller
+service OrganizationQueryController {
+  // get a organization using organization id
+  rpc getById(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organization) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view organization details";
+  }
+
+  rpc findCompanies(cloud.planton.apis.commons.protobuf.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Companies) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
+}

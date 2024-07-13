@@ -11,10 +11,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //custom-endpoint
 message CustomEndpoint {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = custom_endpoint;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "cep-<company-id>-<normalized-endpoint-name>"
+  //id format "cep-<organization-id>-<normalized-endpoint-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -57,8 +57,8 @@ message CustomEndpoint {
 
 //custom-endpoint spec
 message CustomEndpointSpec {
-  //the company to which the custom-endpoint to be added.
-  string company_id = 1 [
+  //the organization to which the custom-endpoint to be added.
+  string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -87,7 +87,7 @@ message CustomEndpointSpec {
   bool is_grpc_web_compatible = 5;
 
   //id of the project on google cloud containing the dns zone for the endpoint-domain.
-  //this value is looked up from the dns-domains in the company dns data.
+  //this value is looked up from the dns-domains in the organization dns data.
   //this value is required for configuring the cert-issuer to perform dns validations.
   string dns_zone_gcp_project_id = 6 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
@@ -147,7 +147,7 @@ message CustomEndpointRoute {
   ];
 
   //id of the backend microservice-instance to configure the forwarding rule.
-  //ex: msi-planton-pcs-prod-company-main
+  //ex: msi-planton-pcs-prod-organization-main
   string backend_microservice_instance_id = 3 [
     (buf.validate.field).required = true
   ];

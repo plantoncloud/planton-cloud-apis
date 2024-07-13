@@ -41,19 +41,19 @@ message MachineAccountClientSecret {
   string value = 1;
 }
 
-// wrapper for machine account company id.
-message MachineAccountCompanyId {
+// wrapper for machine account organization id.
+message MachineAccountOrganizationId {
   string value = 1;
 }
 
-// wrapper for identity account company id.
-message ListWithIdentityCompanyId {
-  string company_id = 1;
+// wrapper for identity account organization id.
+message ListWithIdentityOrganizationId {
+  string org_id = 1;
   cloud.planton.apis.commons.rpc.PageInfo page = 2;
 }
 
-message GetByCompanyByNameQueryInput {
-  string company_id = 1 [
+message GetByOrganizationByNameQueryInput {
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1
   ];
   string name = 2 [
@@ -65,12 +65,12 @@ message MembersCount {
   int32 count = 1;
 }
 
-// MembersCountByCompanyIdInput is designed for requests that need to determine the number of members
-// associated exclusively with a given company. This simplified input focuses solely on company identification,
-// making it suitable to aggregate members count at the company level.
-message MembersCountByCompanyIdInput {
-  // company_id uniquely identifies a company within the system. The field accepts a string format.
-  string company_id = 1;
+// MembersCountByOrganizationIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given organization. This simplified input focuses solely on organization identification,
+// making it suitable to aggregate members count at the organization level.
+message MembersCountByOrganizationIdInput {
+  // org_id uniquely identifies a organization within the system. The field accepts a string format.
+  string org_id = 1;
 }
 
 // MembersCountByProductIdInput is designed for requests that need to determine the number of members

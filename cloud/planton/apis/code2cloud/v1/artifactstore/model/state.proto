@@ -12,10 +12,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //artifact-store
 message ArtifactStore {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = artifact_store;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "afs-<company-id>-<artifact-store-name>"
+  //id format "afs-<organization-id>-<artifact-store-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -70,8 +70,8 @@ message ArtifactStore {
 
 //artifact-store spec
 message ArtifactStoreSpec {
-  //company to which the artifact-store belongs to.
-  string company_id = 1 [
+  //organization to which the artifact-store belongs to.
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -137,7 +137,7 @@ message ArtifactStoreStatus {
 //spec for gcp artifact-registry repo provider for artifact-store
 message ArtifactStoreGcpArtifactRegistrySpec {
   //id of the gcp cloud account in which the artifact-store repositories are to be created.
-  //the allowed values for this attribute are all the gcp cloud accounts that the parent company
+  //the allowed values for this attribute are all the gcp cloud accounts that the parent organization
   //has required permissions to create artifact-store in.
   string gcp_cloud_account_id = 1 [
     (buf.validate.field).required = true,

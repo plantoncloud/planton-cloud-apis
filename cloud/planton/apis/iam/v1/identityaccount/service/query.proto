@@ -27,7 +27,7 @@ service MachineAccountQueryController {
   }
 
   // retrieve paginated list of all machine accounts on planton-cloud.
-  rpc findByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountCompanyId)
+  rpc findByOrganizationId(cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountOrganizationId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccounts) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
@@ -41,8 +41,8 @@ service MachineAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
   }
 
-  // lookup machine-account by company and name.
-  rpc getByCompanyByName(cloud.planton.apis.iam.v1.identityaccount.model.GetByCompanyByNameQueryInput)
+  // lookup machine-account by organization and name.
+  rpc getByOrganizationByName(cloud.planton.apis.iam.v1.identityaccount.model.GetByOrganizationByNameQueryInput)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
@@ -104,21 +104,21 @@ service UserAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to login to back office";
   }
 
-  // retrieve paginated list of all associate accounts of a company.
-  rpc listAssociatesByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.ListWithIdentityCompanyId)
+  // retrieve paginated list of all associate accounts of a organization.
+  rpc listAssociatesByOrganizationId(cloud.planton.apis.iam.v1.identityaccount.model.ListWithIdentityOrganizationId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountsList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = list_associates;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "org_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get associates";
   }
 
-  rpc getMembersCountByCompanyId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByCompanyIdInput)
+  rpc getMembersCountByOrganizationId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByOrganizationIdInput)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.MembersCount) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "company_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get company members count";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "org_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get organization members count";
   }
 
   rpc getMembersCountByEnvironmentId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByEnvironmentIdInput)

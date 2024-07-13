@@ -22,6 +22,6 @@ message ListWithIdentityConnectionIdReq {
   cloud.planton.apis.commons.rpc.PageInfo page = 2;
 }
 
-message IdentityConnectionCompanyId {
+message IdentityConnectionOrganizationId {
   string value = 1;
 }

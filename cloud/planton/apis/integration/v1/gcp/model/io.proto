@@ -5,7 +5,7 @@ package cloud.planton.apis.integration.v1.gcp.model;
 // input for command to authorize gcp cloud-account
 message AuthorizeGcpCloudAccountCommandInput {
   // id of the organization on google cloud.
-  string organization_id = 1;
+  string org_id = 1;
   // email of the google service account to be used as principal for granting required roles.
   string service_account_email = 2;
   // authorization code to be used for exchange for an access token that will

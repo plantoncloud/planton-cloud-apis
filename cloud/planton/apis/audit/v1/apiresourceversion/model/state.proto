@@ -37,10 +37,10 @@ message ApiResourceVersion {
 }
 
 message ApiResourceVersionSpec {
-  // The ID of the company to which the api-resource-version belongs.
-  string company_id = 1;
+  // The ID of the organization to which the api-resource-version belongs.
+  string org_id = 1;
   // The ID of the environment to which the api-resource-version belongs.
-  // This attribute is always empty for company level state.
+  // This attribute is always empty for organization level state.
   string environment_id = 2;
   // The type of the resource for which the version was created.
   // Resource types are defined in the ApiResourceKind enum.

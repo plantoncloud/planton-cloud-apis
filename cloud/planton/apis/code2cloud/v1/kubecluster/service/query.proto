@@ -10,7 +10,7 @@ import "cloud/planton/apis/commons/protobuf/custom.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
 import "google/protobuf/wrappers.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -27,13 +27,13 @@ service KubeClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-cluster";
   }
 
-  // find kube-clusters by company id
-  rpc findByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
+  // find kube-clusters by organization id
+  rpc findByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters of company";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters of organization";
   }
 
   // find kube-clusters in a cloud account.
@@ -45,16 +45,16 @@ service KubeClusterQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters of cloud-account";
   }
 
-  // find kube-clusters by company id to create environment.
+  // find kube-clusters by organization id to create environment.
   // this will be used to populate drop down of kube-clusters in create environment form.
-  // the response should only include kube-clusters that a company is authorised to create environment.
-  // the authorization is verified by looking up kube-clusters with `company-environment-creator` relation with the company id provided in input.
-  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
+  // the response should only include kube-clusters that a organization is authorised to create environment.
+  // the authorization is verified by looking up kube-clusters with `organization-environment-creator` relation with the organization id provided in input.
+  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList){
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters of company to create environment";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kube-clusters of organization to create environment";
   }
 }
 

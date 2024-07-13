@@ -811,7 +811,7 @@ type MicroserviceKubernetesSpecPipelineSpec struct {
 	// default is "false".
 	IsEnabled bool `protobuf:"varint,1,opt,name=is_enabled,json=isEnabled,proto3" json:"is_enabled,omitempty"`
 	// id of the code project.
-	// allowed values are the list of code projects in the same company.
+	// allowed values are the list of code projects in the same organization.
 	CodeProjectId string `protobuf:"bytes,2,opt,name=code_project_id,json=codeProjectId,proto3" json:"code_project_id,omitempty"`
 	// git branch configured to deploy new versions of microservice-kubernetes
 	GitBranch string `protobuf:"bytes,3,opt,name=git_branch,json=gitBranch,proto3" json:"git_branch,omitempty"`

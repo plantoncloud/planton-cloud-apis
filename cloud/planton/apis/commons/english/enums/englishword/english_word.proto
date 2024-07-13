@@ -13,7 +13,7 @@ message EnglishWord {
     aws = 3;
     azure = 4;
     bill = 5;
-    company = 6;
+    organization = 6;
     config = 7;
     cpu = 8;
     debug = 9;

@@ -30,7 +30,7 @@ const (
 type CostAllocationQueryControllerClient interface {
 	// Get Cost allocation data by search filters
 	// This returns a paginated list of cost allocation data
-	// Filters include start and end date so company identifier, environment identifier and posting environment identifier
+	// Filters include start and end date so organization identifier, environment identifier and posting environment identifier
 	ListByCostAllocationFilters(ctx context.Context, in *model.ListByCostAllocationFiltersInput, opts ...grpc.CallOption) (*model.CostAllocationList, error)
 	// get cost aggregate by timestamp for a given resource.
 	// example: Get month to date cost of a postgres cluster
@@ -70,7 +70,7 @@ func (c *costAllocationQueryControllerClient) GetCostAggregateByResourceId(ctx c
 type CostAllocationQueryControllerServer interface {
 	// Get Cost allocation data by search filters
 	// This returns a paginated list of cost allocation data
-	// Filters include start and end date so company identifier, environment identifier and posting environment identifier
+	// Filters include start and end date so organization identifier, environment identifier and posting environment identifier
 	ListByCostAllocationFilters(context.Context, *model.ListByCostAllocationFiltersInput) (*model.CostAllocationList, error)
 	// get cost aggregate by timestamp for a given resource.
 	// example: Get month to date cost of a postgres cluster

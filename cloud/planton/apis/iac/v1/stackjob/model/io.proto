@@ -20,8 +20,8 @@ message StackJobId {
 message ListStackJobsByFiltersQueryInput {
   // page info
   cloud.planton.apis.commons.rpc.PageInfo page_info = 1;
-  // id of the company to filter the stack-jobs
-  string company_id = 2;
+  // id of the organization to filter the stack-jobs
+  string org_id = 2;
   // id of the environment to filter the stack-jobs
   string environment_id = 3;
   // type of resource
@@ -42,12 +42,12 @@ message StackJobList {
   repeated StackJob entries = 2;
 }
 
-// GetStackJobMinutesByCompanyIdInput is intended for requests to retrieve the total minutes of stack job
-// processing or usage associated with a given company. It focuses on identifying the company in question,
-// facilitating the aggregation or reporting of stack job minutes at the company level.
-message GetStackJobMinutesByCompanyIdInput {
-  // company_id uniquely identifies a company within the system. The field is formatted as a string.
-  string company_id = 1;
+// GetStackJobMinutesByOrganizationIdInput is intended for requests to retrieve the total minutes of stack job
+// processing or usage associated with a given organization. It focuses on identifying the organization in question,
+// facilitating the aggregation or reporting of stack job minutes at the organization level.
+message GetStackJobMinutesByOrganizationIdInput {
+  // org_id uniquely identifies a organization within the system. The field is formatted as a string.
+  string org_id = 1;
 }
 
 // StackJobMinutesCurrentAndPreviousMonth represents the total minutes of stack job execution. it has both current and
@@ -59,18 +59,18 @@ message StackJobMinutesCurrentAndPreviousMonth {
   double previous_month_minutes = 2;
 }
 
-// GetPulumiResourceCountByCompanyIdInput is used for making requests to obtain the count of Pulumi
-// resources associated with a specified company. The inclusion of the company_id field allows for
-// targeted queries to assess the scope of Pulumi resource utilization within a particular company,
+// GetPulumiResourceCountByOrganizationIdInput is used for making requests to obtain the count of Pulumi
+// resources associated with a specified organization. The inclusion of the org_id field allows for
+// targeted queries to assess the scope of Pulumi resource utilization within a particular organization,
 // supporting resource management, auditing, and planning activities in cloud infrastructure and development operations.
-message GetPulumiResourceCountByCompanyIdInput {
-  // company_id uniquely identifies a company within the system. The field is formatted as a string.
-  string company_id = 1;
+message GetPulumiResourceCountByOrganizationIdInput {
+  // org_id uniquely identifies a organization within the system. The field is formatted as a string.
+  string org_id = 1;
 }
 
 // TotalPulumiResourceCount represents the aggregate count of Pulumi resources, typically returned
 // in response to queries assessing the volume of Pulumi-managed resources within a specific context,
-// such as a company. This message is crucial for understanding the extent of Pulumi infrastructure
+// such as a organization. This message is crucial for understanding the extent of Pulumi infrastructure
 // deployment and utilization, aiding in resource management, planning, and optimization efforts
 // for cloud infrastructure managed through Pulumi.
 message TotalPulumiResourceCount {
@@ -79,25 +79,25 @@ message TotalPulumiResourceCount {
 }
 
 // GetPulumiResourceCountByContextInput is used to request the count of Pulumi resources
-// associated with a specific company and environments within the system. The system uniquely identifies
+// associated with a specific organization and environments within the system. The system uniquely identifies
 // companies and environments by their respective IDs, and this message is utilized to retrieve resource
-// counts for targeted company-environment combinations.
+// counts for targeted organization-environment combinations.
 message GetPulumiResourceCountByContextInput {
-  // company_id uniquely identifies a company within the system.
-  string company_id = 1;
+  // org_id uniquely identifies a organization within the system.
+  string org_id = 1;
 
-  // environment_id uniquely identifies a environment associated with a company within the system.
+  // environment_id uniquely identifies a environment associated with a organization within the system.
   string environment_id = 2;
 }
 
 // PulumiResourceCountDetailed provides a detailed accounting of Pulumi resources within a specific
-// context defined by a combination of company and environment identifiers. This message
+// context defined by a combination of organization and environment identifiers. This message
 // is designed to offer granular insights into the types and counts of resources deployed, aiding in
 // infrastructure management and analysis.
 message PulumiResourceCountDetailed {
-  // company_id uniquely identifies a company within the system. This string identifier
+  // org_id uniquely identifies a organization within the system. This string identifier
   // ensures that resources are accurately associated with the correct corporate entity.
-  string company_id = 1;
+  string org_id = 1;
 
   // environment_id specifies the deployment environment of the Pulumi resources, such as
   // development, testing, or production. This differentiation allows for environment-specific
@@ -122,18 +122,18 @@ message PulumiResourceCountDetailed {
 message PulumiResourceCountDetailedList {
   // entries is a repeated field containing PulumiResourceCountDetailed messages. Each entry
   // in this list represents detailed information about a specific planton-cloud resource, including
-  // its company, environment identifiers, resource kind, and count.
+  // its organization, environment identifiers, resource kind, and count.
   repeated PulumiResourceCountDetailed entries = 1;
 }
 
 // GetStackJobMinutesByContextInput is intended for requests to retrieve the total minutes of stack job
-// processing or usage associated with a given company or environment. It focuses on identifying the company or environment
-// in question, facilitating the aggregation or reporting of stack job minutes at the company/ environment level.
+// processing or usage associated with a given organization or environment. It focuses on identifying the organization or environment
+// in question, facilitating the aggregation or reporting of stack job minutes at the organization/ environment level.
 message GetStackJobMinutesByContextInput {
-  // company_id uniquely identifies a company within the system.
-  string company_id = 1;
+  // org_id uniquely identifies a organization within the system.
+  string org_id = 1;
 
-  // environment_id uniquely identifies a environment associated with a company within the system.
+  // environment_id uniquely identifies a environment associated with a organization within the system.
   string environment_id = 2;
 }
 
@@ -165,16 +165,16 @@ message PulumiResourceCountTimeSeriesList {
 
 // GetPulumiResourceCountTimeSeriesByContextInput defines the input parameters for a query
 // to retrieve time-series data of Pulumi resource counts within a specific context, identified
-// by company and environment. This message enables clients to request temporal patterns of resource
+// by organization and environment. This message enables clients to request temporal patterns of resource
 // usage, facilitating trend analysis and resource planning based on historical data. The inclusion
 // of start and end timestamps allows for the querying of data within a specific time range, offering
 // targeted insights into resource utilization over defined periods.
 message GetPulumiResourceCountTimeSeriesByContextInput {
-  // company_id uniquely identifies a company within the system. This string identifier is used
-  // to filter the query to only include resources associated with the specified company, ensuring
+  // org_id uniquely identifies a organization within the system. This string identifier is used
+  // to filter the query to only include resources associated with the specified organization, ensuring
   // that the time series data returned is relevant to the querying entity's scope of interest.
-  string company_id = 1;
-  // environment_id uniquely identifies a environment associated with a company within the system. Specifying
+  string org_id = 1;
+  // environment_id uniquely identifies a environment associated with a organization within the system. Specifying
   // this identifier allows the query to further narrow down the set of resources considered, focusing
   // the resulting time series on a particular environment.
   string environment_id = 2;

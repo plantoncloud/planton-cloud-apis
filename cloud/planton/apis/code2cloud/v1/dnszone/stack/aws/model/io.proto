@@ -25,7 +25,7 @@ message DnsZoneAwsStackCredentialsInput {
 
 // stack resource input
 message DnsZoneAwsStackResourceInput {
-  // dns-zone to be added to the company
+  // dns-zone to be added to the organization
   cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone dns_zone = 1;
 }
 

@@ -200,8 +200,8 @@ message AddonsOpenCost {
 message AddonsPlantonCloudKubeAgent {
   // toggle to deploy planton-cloud-kube-agent
   bool enabled = 1;
-  //id of the company on planton-cloud
-  string company_id = 2;
+  //id of the organization on planton-cloud
+  string org_id = 2;
   //id of the kube-cluster on planton-cloud
   string kube_cluster_id = 3;
   //client-id of the machine-account with permissions to post data to planton-cloud

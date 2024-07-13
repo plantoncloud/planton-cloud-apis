@@ -12,7 +12,7 @@ message CostAllocation {
   // Resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo audit = 99;
 
-  string company_id = 1;
+  string org_id = 1;
   string kube_cluster_id = 3;
   string environment_id = 4;
   string resource_kind = 5;

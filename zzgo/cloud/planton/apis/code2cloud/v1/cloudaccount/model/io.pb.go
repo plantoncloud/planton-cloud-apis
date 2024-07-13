@@ -69,7 +69,7 @@ func (x *CloudAccountList) GetEntries() []*CloudAccount {
 	return nil
 }
 
-// wrapper for company cloud account id
+// wrapper for organization cloud account id
 type CloudAccountId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -17,10 +17,10 @@ import "cloud/planton/apis/commons/rpc/pagination.proto";
 message KubeCluster {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kube_cluster;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "k8c-<company-id>-<kube-cluster-name>"
+  //id format "k8c-<organization-id>-<kube-cluster-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -75,13 +75,13 @@ message KubeCluster {
 
 // KubeClusterSpec is a message type that defines the specifications for a kube-cluster on Planton Cloud.
 message KubeClusterSpec {
-  // company_id is a required, immutable field that uniquely identifies the company associated with the kube-cluster.
-  string company_id = 1  [
+  // org_id is a required, immutable field that uniquely identifies the organization associated with the kube-cluster.
+  string org_id = 1  [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   // endpoint_domains is a list of valid DNS domain names for the endpoints hosted in the environment.
-  // Each endpoint domain name must already exist and be associated with the company on Planton Cloud.
+  // Each endpoint domain name must already exist and be associated with the organization on Planton Cloud.
   repeated string endpoint_domains = 2;
 
   // kube-cluster kubernetes addons spec

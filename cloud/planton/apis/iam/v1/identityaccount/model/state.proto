@@ -49,7 +49,7 @@ message IdentityAccount {
 message IdentityAccountSpec {
   // this is only relevant in case of machine identity accounts.
   // machine accounts are associated to companies on creation.
-  string company_id = 1 [
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

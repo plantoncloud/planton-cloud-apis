@@ -32,8 +32,8 @@ message MicroserviceKubernetesStackResourceInput {
   cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes microservice_kubernetes = 1;
   //input required for creating kubernetes secret resources to be used by deployment resources to pull private
   //container images.
-  //a company can have many artifact-stores. each artifact-store has a separate service account credential.
-  //the microservice environment will be configured with secrets required to pull private images from any of the company's
+  //a organization can have many artifact-stores. each artifact-store has a separate service account credential.
+  //the microservice environment will be configured with secrets required to pull private images from any of the organization's
   //artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
   //artifact-stores.
   repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;

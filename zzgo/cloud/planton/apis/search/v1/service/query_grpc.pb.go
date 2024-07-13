@@ -30,17 +30,17 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SearchQueryControllerClient interface {
 	// SearchByText is an RPC method that takes a SearchByTextInput message
-	// containing the company identifier, environment identifier, and search text.
+	// containing the organization identifier, environment identifier, and search text.
 	// This method is responsible for performing a text-based search query
-	// related to the specified company and environment, and it returns a response
+	// related to the specified organization and environment, and it returns a response
 	// containing the search results.
 	SearchByText(ctx context.Context, in *model.SearchByTextInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
-	// and be associated with the specified company and environment.
+	// and be associated with the specified organization and environment.
 	SearchByApiResourceKind(ctx context.Context, in *model.SearchApiResourcesByKindInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of identities that match
-	// the input search parameters. Each identity in the list should be associated with the specified company
+	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
 }
@@ -85,17 +85,17 @@ func (c *searchQueryControllerClient) SearchIdentityAccountByEmail(ctx context.C
 // for forward compatibility
 type SearchQueryControllerServer interface {
 	// SearchByText is an RPC method that takes a SearchByTextInput message
-	// containing the company identifier, environment identifier, and search text.
+	// containing the organization identifier, environment identifier, and search text.
 	// This method is responsible for performing a text-based search query
-	// related to the specified company and environment, and it returns a response
+	// related to the specified organization and environment, and it returns a response
 	// containing the search results.
 	SearchByText(context.Context, *model.SearchByTextInput) (*model.ApiResourceSearchResultRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
-	// and be associated with the specified company and environment.
+	// and be associated with the specified organization and environment.
 	SearchByApiResourceKind(context.Context, *model.SearchApiResourcesByKindInput) (*model.ApiResourceSearchResultRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of identities that match
-	// the input search parameters. Each identity in the list should be associated with the specified company
+	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error)
 }

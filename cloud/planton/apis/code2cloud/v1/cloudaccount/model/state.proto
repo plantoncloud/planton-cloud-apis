@@ -13,10 +13,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 // cloud-account
 message CloudAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = cloud_account;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "ca-<company-id>-<cloud-account-name>"
+  //id format "ca-<organization-id>-<cloud-account-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -31,9 +31,9 @@ message CloudAccount {
 
   // metadata for the resource
   // cloud-account id value adheres to the following constraints:
-  // 1. The ID must be prefixed with 'ca-<company_id>-', where <company_id> can vary in length.
+  // 1. The ID must be prefixed with 'ca-<org_id>-', where <org_id> can vary in length.
   // 2. The ID must not exceed 27 characters in length.
-  // 3. Once a cloud account is added to a company, the ID cannot be changed.
+  // 3. Once a cloud account is added to a organization, the ID cannot be changed.
   // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
   // The constraints are enforced by the regular expression "^ca-.{1,22}$".
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
@@ -75,7 +75,7 @@ message CloudAccount {
   CloudAccountStatus status = 5;
 }
 
-// company cloud account
+// organization cloud account
 message CloudAccountSpec {
   option (buf.validate.message).cel = {
     id: "spec.cloud_provider",
@@ -113,8 +113,8 @@ message CloudAccountSpec {
         "? 'aws secret access key is mandatory'"
         ": ''"
   };
-  // company to which company cloud account belongs to.
-  string company_id = 1 [
+  // organization to which organization cloud account belongs to.
+  string org_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -195,7 +195,7 @@ message CloudAccountGcpSpec {
   // Name of the secret containing the value of the service-account key in the secrets manager.
   // name of the secret is in the format `projects/<project-id>/secrets/<secret-name>`
   // This is computed automatically by the Platon Cloud system.
-  // The value is derived from the company-status object
+  // The value is derived from the organization-status object
   string service_account_key_secret_name = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];

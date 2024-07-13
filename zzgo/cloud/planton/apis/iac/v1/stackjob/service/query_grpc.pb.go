@@ -57,20 +57,20 @@ type StackJobQueryControllerClient interface {
 	FindPulumiResourcesByStackJobId(ctx context.Context, in *model.StackJobId, opts ...grpc.CallOption) (*pulumiengine.PulumiResources, error)
 	// The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
 	// for a given context. This context is defined by the combination of parameters specified in the
-	// GetPulumiResourceCountByContextInput message, such as company and environment identifiers. This operation
-	// is crucial for understanding the scale of Pulumi infrastructure managed by a company for a specific environment.
+	// GetPulumiResourceCountByContextInput message, such as organization and environment identifiers. This operation
+	// is crucial for understanding the scale of Pulumi infrastructure managed by a organization for a specific environment.
 	GetPulumiResourceCountByContextSummary(ctx context.Context, in *model.GetPulumiResourceCountByContextInput, opts ...grpc.CallOption) (*model.TotalPulumiResourceCount, error)
 	// getPulumiResourceCountByContextDetailed retrieves detailed information about Pulumi resources
 	// within a given context. This context is specified by the GetPulumiResourceCountByContextInput message,
-	// which includes identifiers for the company, environment, and potentially other criteria to narrow down the query.
+	// which includes identifiers for the organization, environment, and potentially other criteria to narrow down the query.
 	GetPulumiResourceCountByContextDetailed(ctx context.Context, in *model.GetPulumiResourceCountByContextInput, opts ...grpc.CallOption) (*model.PulumiResourceCountDetailedList, error)
-	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific company/environment.
+	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a company/ environment. It requires a GetStackJobMinutesByContextInput message containing the company_id/environment_id
+	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/environment_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
-	// within a specified context, defined by the combination of company and environment identifiers.
+	// within a specified context, defined by the combination of organization and environment identifiers.
 	// This RPC is designed to provide clients with detailed insights into how resource usage has
 	// evolved over time, enabling trend analysis, forecasting, and resource optimization strategies.
 	GetPulumiResourceCountTimeSeriesByContext(ctx context.Context, in *model.GetPulumiResourceCountTimeSeriesByContextInput, opts ...grpc.CallOption) (*model.PulumiResourceCountTimeSeriesList, error)
@@ -256,20 +256,20 @@ type StackJobQueryControllerServer interface {
 	FindPulumiResourcesByStackJobId(context.Context, *model.StackJobId) (*pulumiengine.PulumiResources, error)
 	// The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
 	// for a given context. This context is defined by the combination of parameters specified in the
-	// GetPulumiResourceCountByContextInput message, such as company and environment identifiers. This operation
-	// is crucial for understanding the scale of Pulumi infrastructure managed by a company for a specific environment.
+	// GetPulumiResourceCountByContextInput message, such as organization and environment identifiers. This operation
+	// is crucial for understanding the scale of Pulumi infrastructure managed by a organization for a specific environment.
 	GetPulumiResourceCountByContextSummary(context.Context, *model.GetPulumiResourceCountByContextInput) (*model.TotalPulumiResourceCount, error)
 	// getPulumiResourceCountByContextDetailed retrieves detailed information about Pulumi resources
 	// within a given context. This context is specified by the GetPulumiResourceCountByContextInput message,
-	// which includes identifiers for the company, environment, and potentially other criteria to narrow down the query.
+	// which includes identifiers for the organization, environment, and potentially other criteria to narrow down the query.
 	GetPulumiResourceCountByContextDetailed(context.Context, *model.GetPulumiResourceCountByContextInput) (*model.PulumiResourceCountDetailedList, error)
-	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific company/environment.
+	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a company/ environment. It requires a GetStackJobMinutesByContextInput message containing the company_id/environment_id
+	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/environment_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesCurrentAndPreviousMonthByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
-	// within a specified context, defined by the combination of company and environment identifiers.
+	// within a specified context, defined by the combination of organization and environment identifiers.
 	// This RPC is designed to provide clients with detailed insights into how resource usage has
 	// evolved over time, enabling trend analysis, forecasting, and resource optimization strategies.
 	GetPulumiResourceCountTimeSeriesByContext(context.Context, *model.GetPulumiResourceCountTimeSeriesByContextInput) (*model.PulumiResourceCountTimeSeriesList, error)

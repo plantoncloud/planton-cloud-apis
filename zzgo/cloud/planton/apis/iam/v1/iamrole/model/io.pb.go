@@ -230,10 +230,10 @@ type ApiResourceKindAndPrincipalTypeInput struct {
 	unknownFields protoimpl.UnknownFields
 
 	// type of the resource the role belongs to
-	// examples: company/ cloud_account etc
+	// examples: organization/ cloud_account etc
 	ResourceKind string `protobuf:"bytes,1,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
 	// type of the principal that is allowed to link with the resource
-	// examples: user/ company etc
+	// examples: user/ organization etc
 	PrincipalType string `protobuf:"bytes,2,opt,name=principal_type,json=principalType,proto3" json:"principal_type,omitempty"`
 	// flag to get only roles that can be publicly granted
 	IsPublic bool `protobuf:"varint,3,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`

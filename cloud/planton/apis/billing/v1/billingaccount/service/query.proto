@@ -6,7 +6,7 @@ import "cloud/planton/apis/billing/v1/billingaccount/model/io.proto";
 import "cloud/planton/apis/billing/v1/billingaccount/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/resourcemanager/v1/company/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
 
 // billing-account query controller
 service BillingAccountQueryController {
@@ -19,12 +19,12 @@ service BillingAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = billing_account_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view billing account details";
   }
-  //lookup billing account using company id.
-  rpc getBillingAccountByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
+  //lookup billing account using organization id.
+  rpc getBillingAccountByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
       returns (cloud.planton.apis.billing.v1.billingaccount.model.BillingAccount);
 
   //get customer portal session.
   //https://stripe.com/docs/api/customer_portal/sessions/create
-  rpc getCustomerPortalSessionByCompanyId(cloud.planton.apis.resourcemanager.v1.company.model.CompanyId)
+  rpc getCustomerPortalSessionByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
       returns (cloud.planton.apis.billing.v1.billingaccount.model.GetCustomerPortalSessionQueryResp);
 }

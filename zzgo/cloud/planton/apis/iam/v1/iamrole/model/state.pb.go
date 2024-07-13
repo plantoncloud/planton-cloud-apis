@@ -124,7 +124,7 @@ type IamRoleSpec struct {
 	// code of role that is used in FGA model
 	RoleCode string `protobuf:"bytes,1,opt,name=role_code,json=roleCode,proto3" json:"role_code,omitempty"`
 	// identifies the principal type that would be used to create relation with the resource
-	// example values are user/company etc.
+	// example values are user/organization etc.
 	PrincipalType string `protobuf:"bytes,2,opt,name=principal_type,json=principalType,proto3" json:"principal_type,omitempty"`
 	// type of the resource the role belongs to
 	ResourceKind apiresourcekind.ApiResourceKind `protobuf:"varint,3,opt,name=resource_kind,json=resourceKind,proto3,enum=cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind" json:"resource_kind,omitempty"`

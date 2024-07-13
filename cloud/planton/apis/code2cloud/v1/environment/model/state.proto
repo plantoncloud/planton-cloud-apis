@@ -17,10 +17,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcechilditemmessa
 message Environment {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "<company-id>-<environment-name>"
+  //id format "<organization-id>-<environment-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -75,8 +75,8 @@ message Environment {
 
 //environment spec
 message EnvironmentSpec {
-  //company to which the environment belongs to
-  string company_id = 1 [
+  //organization to which the environment belongs to
+  string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -208,7 +208,7 @@ message EnvironmentSpecMicroserviceInstanceSpecPipelineSpec {
   repeated string lower_environment_ids = 2;
 
   //id of the artifact-store required to construct the container image name.
-  //a company can have multiple artifact-stores. The container images are published to all artifact-stores.
+  //a organization can have multiple artifact-stores. The container images are published to all artifact-stores.
   //when creating a Deployment resource on kubernetes, only one container image name is allowed.
   //this attribute will provide the ability to determine the artifact-store to be used for constructing the container
   //image name to be used in the kubernetes Deployment resource.
@@ -314,7 +314,7 @@ message EnvironmentEndpointDomain {
   bool is_tls_enabled = 3;
 
   //id of the project on google cloud containing the dns zone for the endpoint-domain.
-  //this value is looked up from the dns-domains in the company dns data.
+  //this value is looked up from the dns-domains in the organization dns data.
   //this value is required for configuring the cert-issuer to perform dns validations.
   string dns_zone_gcp_project_id = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
@@ -335,9 +335,9 @@ message EnvironmentEndpointDomain {
 
 // owner details common for all environment level resources
 message ApiResourceEnvironmentInfo {
-  //company to which the environment resource belongs to.
+  //organization to which the environment resource belongs to.
   //value is computed from the environment.
-  string company_id = 1 [
+  string org_id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 

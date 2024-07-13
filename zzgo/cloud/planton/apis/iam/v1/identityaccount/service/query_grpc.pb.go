@@ -24,9 +24,9 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	MachineAccountQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getById"
-	MachineAccountQueryController_FindByCompanyId_FullMethodName                      = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/findByCompanyId"
+	MachineAccountQueryController_FindByOrganizationId_FullMethodName                 = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/findByOrganizationId"
 	MachineAccountQueryController_GetByEmail_FullMethodName                           = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getByEmail"
-	MachineAccountQueryController_GetByCompanyByName_FullMethodName                   = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getByCompanyByName"
+	MachineAccountQueryController_GetByOrganizationByName_FullMethodName              = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getByOrganizationByName"
 	MachineAccountQueryController_GetClientSecretByMachineAccountEmail_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.MachineAccountQueryController/getClientSecretByMachineAccountEmail"
 )
 
@@ -37,11 +37,11 @@ type MachineAccountQueryControllerClient interface {
 	// lookup machine account by identity account id.
 	GetById(ctx context.Context, in *model.IdentityAccountId, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// retrieve paginated list of all machine accounts on planton-cloud.
-	FindByCompanyId(ctx context.Context, in *model.MachineAccountCompanyId, opts ...grpc.CallOption) (*model.IdentityAccounts, error)
+	FindByOrganizationId(ctx context.Context, in *model.MachineAccountOrganizationId, opts ...grpc.CallOption) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(ctx context.Context, in *model.IdentityAccountEmail, opts ...grpc.CallOption) (*model.IdentityAccount, error)
-	// lookup machine-account by company and name.
-	GetByCompanyByName(ctx context.Context, in *model.GetByCompanyByNameQueryInput, opts ...grpc.CallOption) (*model.IdentityAccount, error)
+	// lookup machine-account by organization and name.
+	GetByOrganizationByName(ctx context.Context, in *model.GetByOrganizationByNameQueryInput, opts ...grpc.CallOption) (*model.IdentityAccount, error)
 	// lookup the client secret for the machine account.
 	// since client_secret for machine account is not stored in planton database, the client secret is
 	// retrieved from the idp account and is passed on to the client as response.
@@ -65,9 +65,9 @@ func (c *machineAccountQueryControllerClient) GetById(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *machineAccountQueryControllerClient) FindByCompanyId(ctx context.Context, in *model.MachineAccountCompanyId, opts ...grpc.CallOption) (*model.IdentityAccounts, error) {
+func (c *machineAccountQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model.MachineAccountOrganizationId, opts ...grpc.CallOption) (*model.IdentityAccounts, error) {
 	out := new(model.IdentityAccounts)
-	err := c.cc.Invoke(ctx, MachineAccountQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, MachineAccountQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,9 +83,9 @@ func (c *machineAccountQueryControllerClient) GetByEmail(ctx context.Context, in
 	return out, nil
 }
 
-func (c *machineAccountQueryControllerClient) GetByCompanyByName(ctx context.Context, in *model.GetByCompanyByNameQueryInput, opts ...grpc.CallOption) (*model.IdentityAccount, error) {
+func (c *machineAccountQueryControllerClient) GetByOrganizationByName(ctx context.Context, in *model.GetByOrganizationByNameQueryInput, opts ...grpc.CallOption) (*model.IdentityAccount, error) {
 	out := new(model.IdentityAccount)
-	err := c.cc.Invoke(ctx, MachineAccountQueryController_GetByCompanyByName_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, MachineAccountQueryController_GetByOrganizationByName_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,11 +108,11 @@ type MachineAccountQueryControllerServer interface {
 	// lookup machine account by identity account id.
 	GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error)
 	// retrieve paginated list of all machine accounts on planton-cloud.
-	FindByCompanyId(context.Context, *model.MachineAccountCompanyId) (*model.IdentityAccounts, error)
+	FindByOrganizationId(context.Context, *model.MachineAccountOrganizationId) (*model.IdentityAccounts, error)
 	// lookup machine account by identity account email.
 	GetByEmail(context.Context, *model.IdentityAccountEmail) (*model.IdentityAccount, error)
-	// lookup machine-account by company and name.
-	GetByCompanyByName(context.Context, *model.GetByCompanyByNameQueryInput) (*model.IdentityAccount, error)
+	// lookup machine-account by organization and name.
+	GetByOrganizationByName(context.Context, *model.GetByOrganizationByNameQueryInput) (*model.IdentityAccount, error)
 	// lookup the client secret for the machine account.
 	// since client_secret for machine account is not stored in planton database, the client secret is
 	// retrieved from the idp account and is passed on to the client as response.
@@ -126,14 +126,14 @@ type UnimplementedMachineAccountQueryControllerServer struct {
 func (UnimplementedMachineAccountQueryControllerServer) GetById(context.Context, *model.IdentityAccountId) (*model.IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedMachineAccountQueryControllerServer) FindByCompanyId(context.Context, *model.MachineAccountCompanyId) (*model.IdentityAccounts, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
+func (UnimplementedMachineAccountQueryControllerServer) FindByOrganizationId(context.Context, *model.MachineAccountOrganizationId) (*model.IdentityAccounts, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
 }
 func (UnimplementedMachineAccountQueryControllerServer) GetByEmail(context.Context, *model.IdentityAccountEmail) (*model.IdentityAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByEmail not implemented")
 }
-func (UnimplementedMachineAccountQueryControllerServer) GetByCompanyByName(context.Context, *model.GetByCompanyByNameQueryInput) (*model.IdentityAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByCompanyByName not implemented")
+func (UnimplementedMachineAccountQueryControllerServer) GetByOrganizationByName(context.Context, *model.GetByOrganizationByNameQueryInput) (*model.IdentityAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByOrganizationByName not implemented")
 }
 func (UnimplementedMachineAccountQueryControllerServer) GetClientSecretByMachineAccountEmail(context.Context, *model.IdentityAccountEmail) (*model.MachineAccountClientSecret, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetClientSecretByMachineAccountEmail not implemented")
@@ -168,20 +168,20 @@ func _MachineAccountQueryController_GetById_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MachineAccountQueryController_FindByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MachineAccountCompanyId)
+func _MachineAccountQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MachineAccountOrganizationId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MachineAccountQueryControllerServer).FindByCompanyId(ctx, in)
+		return srv.(MachineAccountQueryControllerServer).FindByOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MachineAccountQueryController_FindByCompanyId_FullMethodName,
+		FullMethod: MachineAccountQueryController_FindByOrganizationId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountQueryControllerServer).FindByCompanyId(ctx, req.(*model.MachineAccountCompanyId))
+		return srv.(MachineAccountQueryControllerServer).FindByOrganizationId(ctx, req.(*model.MachineAccountOrganizationId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -204,20 +204,20 @@ func _MachineAccountQueryController_GetByEmail_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _MachineAccountQueryController_GetByCompanyByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetByCompanyByNameQueryInput)
+func _MachineAccountQueryController_GetByOrganizationByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetByOrganizationByNameQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(MachineAccountQueryControllerServer).GetByCompanyByName(ctx, in)
+		return srv.(MachineAccountQueryControllerServer).GetByOrganizationByName(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: MachineAccountQueryController_GetByCompanyByName_FullMethodName,
+		FullMethod: MachineAccountQueryController_GetByOrganizationByName_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MachineAccountQueryControllerServer).GetByCompanyByName(ctx, req.(*model.GetByCompanyByNameQueryInput))
+		return srv.(MachineAccountQueryControllerServer).GetByOrganizationByName(ctx, req.(*model.GetByOrganizationByNameQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -252,16 +252,16 @@ var MachineAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _MachineAccountQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByCompanyId",
-			Handler:    _MachineAccountQueryController_FindByCompanyId_Handler,
+			MethodName: "findByOrganizationId",
+			Handler:    _MachineAccountQueryController_FindByOrganizationId_Handler,
 		},
 		{
 			MethodName: "getByEmail",
 			Handler:    _MachineAccountQueryController_GetByEmail_Handler,
 		},
 		{
-			MethodName: "getByCompanyByName",
-			Handler:    _MachineAccountQueryController_GetByCompanyByName_Handler,
+			MethodName: "getByOrganizationByName",
+			Handler:    _MachineAccountQueryController_GetByOrganizationByName_Handler,
 		},
 		{
 			MethodName: "getClientSecretByMachineAccountEmail",
@@ -273,13 +273,13 @@ var MachineAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserAccountQueryController_List_FullMethodName                           = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/list"
-	UserAccountQueryController_GetById_FullMethodName                        = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getById"
-	UserAccountQueryController_GetByEmail_FullMethodName                     = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getByEmail"
-	UserAccountQueryController_IsBackofficeUser_FullMethodName               = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/isBackofficeUser"
-	UserAccountQueryController_ListAssociatesByCompanyId_FullMethodName      = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/listAssociatesByCompanyId"
-	UserAccountQueryController_GetMembersCountByCompanyId_FullMethodName     = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByCompanyId"
-	UserAccountQueryController_GetMembersCountByEnvironmentId_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByEnvironmentId"
+	UserAccountQueryController_List_FullMethodName                            = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/list"
+	UserAccountQueryController_GetById_FullMethodName                         = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getById"
+	UserAccountQueryController_GetByEmail_FullMethodName                      = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getByEmail"
+	UserAccountQueryController_IsBackofficeUser_FullMethodName                = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/isBackofficeUser"
+	UserAccountQueryController_ListAssociatesByOrganizationId_FullMethodName  = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/listAssociatesByOrganizationId"
+	UserAccountQueryController_GetMembersCountByOrganizationId_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByOrganizationId"
+	UserAccountQueryController_GetMembersCountByEnvironmentId_FullMethodName  = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByEnvironmentId"
 )
 
 // UserAccountQueryControllerClient is the client API for UserAccountQueryController service.
@@ -298,9 +298,9 @@ type UserAccountQueryControllerClient interface {
 	// if rpc returns authorization error then the user is not supposed to login to backoffice
 	// otherwise if rpc returns boolean response then the user is allowed to login to backoffice.
 	IsBackofficeUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*wrapperspb.BoolValue, error)
-	// retrieve paginated list of all associate accounts of a company.
-	ListAssociatesByCompanyId(ctx context.Context, in *model.ListWithIdentityCompanyId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
-	GetMembersCountByCompanyId(ctx context.Context, in *model.MembersCountByCompanyIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
+	// retrieve paginated list of all associate accounts of a organization.
+	ListAssociatesByOrganizationId(ctx context.Context, in *model.ListWithIdentityOrganizationId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
+	GetMembersCountByOrganizationId(ctx context.Context, in *model.MembersCountByOrganizationIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
 	GetMembersCountByEnvironmentId(ctx context.Context, in *model.MembersCountByEnvironmentIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
 }
 
@@ -348,18 +348,18 @@ func (c *userAccountQueryControllerClient) IsBackofficeUser(ctx context.Context,
 	return out, nil
 }
 
-func (c *userAccountQueryControllerClient) ListAssociatesByCompanyId(ctx context.Context, in *model.ListWithIdentityCompanyId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error) {
+func (c *userAccountQueryControllerClient) ListAssociatesByOrganizationId(ctx context.Context, in *model.ListWithIdentityOrganizationId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error) {
 	out := new(model.IdentityAccountsList)
-	err := c.cc.Invoke(ctx, UserAccountQueryController_ListAssociatesByCompanyId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, UserAccountQueryController_ListAssociatesByOrganizationId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAccountQueryControllerClient) GetMembersCountByCompanyId(ctx context.Context, in *model.MembersCountByCompanyIdInput, opts ...grpc.CallOption) (*model.MembersCount, error) {
+func (c *userAccountQueryControllerClient) GetMembersCountByOrganizationId(ctx context.Context, in *model.MembersCountByOrganizationIdInput, opts ...grpc.CallOption) (*model.MembersCount, error) {
 	out := new(model.MembersCount)
-	err := c.cc.Invoke(ctx, UserAccountQueryController_GetMembersCountByCompanyId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, UserAccountQueryController_GetMembersCountByOrganizationId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -391,9 +391,9 @@ type UserAccountQueryControllerServer interface {
 	// if rpc returns authorization error then the user is not supposed to login to backoffice
 	// otherwise if rpc returns boolean response then the user is allowed to login to backoffice.
 	IsBackofficeUser(context.Context, *emptypb.Empty) (*wrapperspb.BoolValue, error)
-	// retrieve paginated list of all associate accounts of a company.
-	ListAssociatesByCompanyId(context.Context, *model.ListWithIdentityCompanyId) (*model.IdentityAccountsList, error)
-	GetMembersCountByCompanyId(context.Context, *model.MembersCountByCompanyIdInput) (*model.MembersCount, error)
+	// retrieve paginated list of all associate accounts of a organization.
+	ListAssociatesByOrganizationId(context.Context, *model.ListWithIdentityOrganizationId) (*model.IdentityAccountsList, error)
+	GetMembersCountByOrganizationId(context.Context, *model.MembersCountByOrganizationIdInput) (*model.MembersCount, error)
 	GetMembersCountByEnvironmentId(context.Context, *model.MembersCountByEnvironmentIdInput) (*model.MembersCount, error)
 }
 
@@ -413,11 +413,11 @@ func (UnimplementedUserAccountQueryControllerServer) GetByEmail(context.Context,
 func (UnimplementedUserAccountQueryControllerServer) IsBackofficeUser(context.Context, *emptypb.Empty) (*wrapperspb.BoolValue, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsBackofficeUser not implemented")
 }
-func (UnimplementedUserAccountQueryControllerServer) ListAssociatesByCompanyId(context.Context, *model.ListWithIdentityCompanyId) (*model.IdentityAccountsList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListAssociatesByCompanyId not implemented")
+func (UnimplementedUserAccountQueryControllerServer) ListAssociatesByOrganizationId(context.Context, *model.ListWithIdentityOrganizationId) (*model.IdentityAccountsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAssociatesByOrganizationId not implemented")
 }
-func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByCompanyId(context.Context, *model.MembersCountByCompanyIdInput) (*model.MembersCount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByCompanyId not implemented")
+func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByOrganizationId(context.Context, *model.MembersCountByOrganizationIdInput) (*model.MembersCount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByOrganizationId not implemented")
 }
 func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByEnvironmentId(context.Context, *model.MembersCountByEnvironmentIdInput) (*model.MembersCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByEnvironmentId not implemented")
@@ -506,38 +506,38 @@ func _UserAccountQueryController_IsBackofficeUser_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAccountQueryController_ListAssociatesByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.ListWithIdentityCompanyId)
+func _UserAccountQueryController_ListAssociatesByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.ListWithIdentityOrganizationId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAccountQueryControllerServer).ListAssociatesByCompanyId(ctx, in)
+		return srv.(UserAccountQueryControllerServer).ListAssociatesByOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserAccountQueryController_ListAssociatesByCompanyId_FullMethodName,
+		FullMethod: UserAccountQueryController_ListAssociatesByOrganizationId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountQueryControllerServer).ListAssociatesByCompanyId(ctx, req.(*model.ListWithIdentityCompanyId))
+		return srv.(UserAccountQueryControllerServer).ListAssociatesByOrganizationId(ctx, req.(*model.ListWithIdentityOrganizationId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAccountQueryController_GetMembersCountByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MembersCountByCompanyIdInput)
+func _UserAccountQueryController_GetMembersCountByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MembersCountByOrganizationIdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAccountQueryControllerServer).GetMembersCountByCompanyId(ctx, in)
+		return srv.(UserAccountQueryControllerServer).GetMembersCountByOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserAccountQueryController_GetMembersCountByCompanyId_FullMethodName,
+		FullMethod: UserAccountQueryController_GetMembersCountByOrganizationId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountQueryControllerServer).GetMembersCountByCompanyId(ctx, req.(*model.MembersCountByCompanyIdInput))
+		return srv.(UserAccountQueryControllerServer).GetMembersCountByOrganizationId(ctx, req.(*model.MembersCountByOrganizationIdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -584,12 +584,12 @@ var UserAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserAccountQueryController_IsBackofficeUser_Handler,
 		},
 		{
-			MethodName: "listAssociatesByCompanyId",
-			Handler:    _UserAccountQueryController_ListAssociatesByCompanyId_Handler,
+			MethodName: "listAssociatesByOrganizationId",
+			Handler:    _UserAccountQueryController_ListAssociatesByOrganizationId_Handler,
 		},
 		{
-			MethodName: "getMembersCountByCompanyId",
-			Handler:    _UserAccountQueryController_GetMembersCountByCompanyId_Handler,
+			MethodName: "getMembersCountByOrganizationId",
+			Handler:    _UserAccountQueryController_GetMembersCountByOrganizationId_Handler,
 		},
 		{
 			MethodName: "getMembersCountByEnvironmentId",

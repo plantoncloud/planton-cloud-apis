@@ -20,11 +20,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IamPolicyQueryController_GetByApiResourceKindAndResourceId_FullMethodName                   = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getByApiResourceKindAndResourceId"
-	IamPolicyQueryController_GetByApiResourceKindAndResourceIdGroupByRole_FullMethodName        = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getByApiResourceKindAndResourceIdGroupByRole"
-	IamPolicyQueryController_GetCompanyByApiResourceKindAndResourceIdGroupByRole_FullMethodName = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getCompanyByApiResourceKindAndResourceIdGroupByRole"
-	IamPolicyQueryController_CheckAuthorization_FullMethodName                                  = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/checkAuthorization"
-	IamPolicyQueryController_ListAuthorizedResourceIds_FullMethodName                           = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/listAuthorizedResourceIds"
+	IamPolicyQueryController_GetByApiResourceKindAndResourceId_FullMethodName                        = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getByApiResourceKindAndResourceId"
+	IamPolicyQueryController_GetByApiResourceKindAndResourceIdGroupByRole_FullMethodName             = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getByApiResourceKindAndResourceIdGroupByRole"
+	IamPolicyQueryController_GetOrganizationByApiResourceKindAndResourceIdGroupByRole_FullMethodName = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/getOrganizationByApiResourceKindAndResourceIdGroupByRole"
+	IamPolicyQueryController_CheckAuthorization_FullMethodName                                       = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/checkAuthorization"
+	IamPolicyQueryController_ListAuthorizedResourceIds_FullMethodName                                = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyQueryController/listAuthorizedResourceIds"
 )
 
 // IamPolicyQueryControllerClient is the client API for IamPolicyQueryController service.
@@ -36,7 +36,7 @@ type IamPolicyQueryControllerClient interface {
 	// retrieve iam policies by type and id grouped by role
 	GetByApiResourceKindAndResourceIdGroupByRole(ctx context.Context, in *model.GetIamPolicyByApiResourceKindAndResourceIdInput, opts ...grpc.CallOption) (*model.IamPoliciesByRole, error)
 	// retrieve iam policies by type and id grouped by role
-	GetCompanyByApiResourceKindAndResourceIdGroupByRole(ctx context.Context, in *model.GetIamPolicyByApiResourceKindAndResourceIdInput, opts ...grpc.CallOption) (*model.IamPoliciesByRole, error)
+	GetOrganizationByApiResourceKindAndResourceIdGroupByRole(ctx context.Context, in *model.GetIamPolicyByApiResourceKindAndResourceIdInput, opts ...grpc.CallOption) (*model.IamPoliciesByRole, error)
 	// checkAuthorization evaluates whether a specific action or access described by the AuthorizationInput
 	// is authorized based on the configured IAM policies. This RPC is crucial for enforcing access controls
 	// and ensuring that operations are performed by appropriately authorized users or services.
@@ -82,9 +82,9 @@ func (c *iamPolicyQueryControllerClient) GetByApiResourceKindAndResourceIdGroupB
 	return out, nil
 }
 
-func (c *iamPolicyQueryControllerClient) GetCompanyByApiResourceKindAndResourceIdGroupByRole(ctx context.Context, in *model.GetIamPolicyByApiResourceKindAndResourceIdInput, opts ...grpc.CallOption) (*model.IamPoliciesByRole, error) {
+func (c *iamPolicyQueryControllerClient) GetOrganizationByApiResourceKindAndResourceIdGroupByRole(ctx context.Context, in *model.GetIamPolicyByApiResourceKindAndResourceIdInput, opts ...grpc.CallOption) (*model.IamPoliciesByRole, error) {
 	out := new(model.IamPoliciesByRole)
-	err := c.cc.Invoke(ctx, IamPolicyQueryController_GetCompanyByApiResourceKindAndResourceIdGroupByRole_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, IamPolicyQueryController_GetOrganizationByApiResourceKindAndResourceIdGroupByRole_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,7 +118,7 @@ type IamPolicyQueryControllerServer interface {
 	// retrieve iam policies by type and id grouped by role
 	GetByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error)
 	// retrieve iam policies by type and id grouped by role
-	GetCompanyByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error)
+	GetOrganizationByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error)
 	// checkAuthorization evaluates whether a specific action or access described by the AuthorizationInput
 	// is authorized based on the configured IAM policies. This RPC is crucial for enforcing access controls
 	// and ensuring that operations are performed by appropriately authorized users or services.
@@ -148,8 +148,8 @@ func (UnimplementedIamPolicyQueryControllerServer) GetByApiResourceKindAndResour
 func (UnimplementedIamPolicyQueryControllerServer) GetByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetByApiResourceKindAndResourceIdGroupByRole not implemented")
 }
-func (UnimplementedIamPolicyQueryControllerServer) GetCompanyByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCompanyByApiResourceKindAndResourceIdGroupByRole not implemented")
+func (UnimplementedIamPolicyQueryControllerServer) GetOrganizationByApiResourceKindAndResourceIdGroupByRole(context.Context, *model.GetIamPolicyByApiResourceKindAndResourceIdInput) (*model.IamPoliciesByRole, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrganizationByApiResourceKindAndResourceIdGroupByRole not implemented")
 }
 func (UnimplementedIamPolicyQueryControllerServer) CheckAuthorization(context.Context, *model.AuthorizationInput) (*model.IsAuthorized, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckAuthorization not implemented")
@@ -205,20 +205,20 @@ func _IamPolicyQueryController_GetByApiResourceKindAndResourceIdGroupByRole_Hand
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IamPolicyQueryController_GetCompanyByApiResourceKindAndResourceIdGroupByRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _IamPolicyQueryController_GetOrganizationByApiResourceKindAndResourceIdGroupByRole_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetIamPolicyByApiResourceKindAndResourceIdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IamPolicyQueryControllerServer).GetCompanyByApiResourceKindAndResourceIdGroupByRole(ctx, in)
+		return srv.(IamPolicyQueryControllerServer).GetOrganizationByApiResourceKindAndResourceIdGroupByRole(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IamPolicyQueryController_GetCompanyByApiResourceKindAndResourceIdGroupByRole_FullMethodName,
+		FullMethod: IamPolicyQueryController_GetOrganizationByApiResourceKindAndResourceIdGroupByRole_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamPolicyQueryControllerServer).GetCompanyByApiResourceKindAndResourceIdGroupByRole(ctx, req.(*model.GetIamPolicyByApiResourceKindAndResourceIdInput))
+		return srv.(IamPolicyQueryControllerServer).GetOrganizationByApiResourceKindAndResourceIdGroupByRole(ctx, req.(*model.GetIamPolicyByApiResourceKindAndResourceIdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -275,8 +275,8 @@ var IamPolicyQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IamPolicyQueryController_GetByApiResourceKindAndResourceIdGroupByRole_Handler,
 		},
 		{
-			MethodName: "getCompanyByApiResourceKindAndResourceIdGroupByRole",
-			Handler:    _IamPolicyQueryController_GetCompanyByApiResourceKindAndResourceIdGroupByRole_Handler,
+			MethodName: "getOrganizationByApiResourceKindAndResourceIdGroupByRole",
+			Handler:    _IamPolicyQueryController_GetOrganizationByApiResourceKindAndResourceIdGroupByRole_Handler,
 		},
 		{
 			MethodName: "checkAuthorization",

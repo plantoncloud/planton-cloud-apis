@@ -48,11 +48,11 @@ enum ApiResourceIamPermission {
   code_server_synchronize = 30;
   code_server_update = 31;
 
-  // company
-  company_delete = 32;
-  company_get = 33;
-  company_restore = 34;
-  company_update = 35;
+  // organization
+  organization_delete = 32;
+  organization_get = 33;
+  organization_restore = 34;
+  organization_update = 35;
 
   // custom_endpoint
   custom_endpoint_create = 36;

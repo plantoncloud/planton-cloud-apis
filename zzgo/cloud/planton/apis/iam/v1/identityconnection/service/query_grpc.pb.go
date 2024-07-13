@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IdentityConnectionQueryController_GetById_FullMethodName         = "/cloud.planton.apis.iam.v1.identityconnection.service.IdentityConnectionQueryController/getById"
-	IdentityConnectionQueryController_FindByCompanyId_FullMethodName = "/cloud.planton.apis.iam.v1.identityconnection.service.IdentityConnectionQueryController/findByCompanyId"
+	IdentityConnectionQueryController_GetById_FullMethodName              = "/cloud.planton.apis.iam.v1.identityconnection.service.IdentityConnectionQueryController/getById"
+	IdentityConnectionQueryController_FindByOrganizationId_FullMethodName = "/cloud.planton.apis.iam.v1.identityconnection.service.IdentityConnectionQueryController/findByOrganizationId"
 )
 
 // IdentityConnectionQueryControllerClient is the client API for IdentityConnectionQueryController service.
@@ -31,7 +31,7 @@ type IdentityConnectionQueryControllerClient interface {
 	// lookup identity account by id.
 	GetById(ctx context.Context, in *model.IdentityConnectionId, opts ...grpc.CallOption) (*model.IdentityConnection, error)
 	// retrieve paginated list of all identity connections on planton-cloud.
-	FindByCompanyId(ctx context.Context, in *model.IdentityConnectionCompanyId, opts ...grpc.CallOption) (*model.IdentityConnections, error)
+	FindByOrganizationId(ctx context.Context, in *model.IdentityConnectionOrganizationId, opts ...grpc.CallOption) (*model.IdentityConnections, error)
 }
 
 type identityConnectionQueryControllerClient struct {
@@ -51,9 +51,9 @@ func (c *identityConnectionQueryControllerClient) GetById(ctx context.Context, i
 	return out, nil
 }
 
-func (c *identityConnectionQueryControllerClient) FindByCompanyId(ctx context.Context, in *model.IdentityConnectionCompanyId, opts ...grpc.CallOption) (*model.IdentityConnections, error) {
+func (c *identityConnectionQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model.IdentityConnectionOrganizationId, opts ...grpc.CallOption) (*model.IdentityConnections, error) {
 	out := new(model.IdentityConnections)
-	err := c.cc.Invoke(ctx, IdentityConnectionQueryController_FindByCompanyId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, IdentityConnectionQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -67,7 +67,7 @@ type IdentityConnectionQueryControllerServer interface {
 	// lookup identity account by id.
 	GetById(context.Context, *model.IdentityConnectionId) (*model.IdentityConnection, error)
 	// retrieve paginated list of all identity connections on planton-cloud.
-	FindByCompanyId(context.Context, *model.IdentityConnectionCompanyId) (*model.IdentityConnections, error)
+	FindByOrganizationId(context.Context, *model.IdentityConnectionOrganizationId) (*model.IdentityConnections, error)
 }
 
 // UnimplementedIdentityConnectionQueryControllerServer should be embedded to have forward compatible implementations.
@@ -77,8 +77,8 @@ type UnimplementedIdentityConnectionQueryControllerServer struct {
 func (UnimplementedIdentityConnectionQueryControllerServer) GetById(context.Context, *model.IdentityConnectionId) (*model.IdentityConnection, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedIdentityConnectionQueryControllerServer) FindByCompanyId(context.Context, *model.IdentityConnectionCompanyId) (*model.IdentityConnections, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByCompanyId not implemented")
+func (UnimplementedIdentityConnectionQueryControllerServer) FindByOrganizationId(context.Context, *model.IdentityConnectionOrganizationId) (*model.IdentityConnections, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
 }
 
 // UnsafeIdentityConnectionQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -110,20 +110,20 @@ func _IdentityConnectionQueryController_GetById_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IdentityConnectionQueryController_FindByCompanyId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.IdentityConnectionCompanyId)
+func _IdentityConnectionQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.IdentityConnectionOrganizationId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IdentityConnectionQueryControllerServer).FindByCompanyId(ctx, in)
+		return srv.(IdentityConnectionQueryControllerServer).FindByOrganizationId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IdentityConnectionQueryController_FindByCompanyId_FullMethodName,
+		FullMethod: IdentityConnectionQueryController_FindByOrganizationId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IdentityConnectionQueryControllerServer).FindByCompanyId(ctx, req.(*model.IdentityConnectionCompanyId))
+		return srv.(IdentityConnectionQueryControllerServer).FindByOrganizationId(ctx, req.(*model.IdentityConnectionOrganizationId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -140,8 +140,8 @@ var IdentityConnectionQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IdentityConnectionQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByCompanyId",
-			Handler:    _IdentityConnectionQueryController_FindByCompanyId_Handler,
+			MethodName: "findByOrganizationId",
+			Handler:    _IdentityConnectionQueryController_FindByOrganizationId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -13,8 +13,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //dns-zone
 message DnsZone {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = dns_zone;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
@@ -30,7 +30,7 @@ message DnsZone {
 
   // metadata for the resource
   // Name is a valid, unique DNS domain name within the Platon Cloud.
-  // Id value is automatically computed in the format 'dns-<company_id>-<normalized-domain-name>',
+  // Id value is automatically computed in the format 'dns-<org_id>-<normalized-domain-name>',
   // and its uniqueness is guaranteed by the backend.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
@@ -73,8 +73,8 @@ message DnsZoneSpec {
         "? 'aws dns zone specification details are required'"
         ": ''"
   };
-  // The ID of the company that owns the DNS Zone. This is required and immutable.
-  string company_id = 1 [
+  // The ID of the organization that owns the DNS Zone. This is required and immutable.
+  string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

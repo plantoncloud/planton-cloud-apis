@@ -13,10 +13,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //code-server
 message CodeServer {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_server;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "cs-<company-id>-<code-server-name>"
+  //id format "cs-<organization-id>-<code-server-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -83,8 +83,8 @@ message CodeServerSpec {
         "? 'gitlab specification details are required'"
         ": ''"
   };
-  //Specifies the company to which the code server belongs.
-  string company_id = 1 [
+  //Specifies the organization to which the code server belongs.
+  string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

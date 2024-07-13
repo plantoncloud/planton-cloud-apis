@@ -19,10 +19,10 @@ service IdentityConnectionQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get identity connection";
   }
   // retrieve paginated list of all identity connections on planton-cloud.
-  rpc findByCompanyId(cloud.planton.apis.iam.v1.identityconnection.model.IdentityConnectionCompanyId)
+  rpc findByOrganizationId(cloud.planton.apis.iam.v1.identityconnection.model.IdentityConnectionOrganizationId)
       returns (cloud.planton.apis.iam.v1.identityconnection.model.IdentityConnections) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = company;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = company_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get identity connection";
   }

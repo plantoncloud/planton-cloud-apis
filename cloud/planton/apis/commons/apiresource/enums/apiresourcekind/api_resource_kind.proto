@@ -22,7 +22,7 @@ enum ApiResourceKind {
   code_server = 6 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "cs"
   ];
-  company = 7;
+  organization = 7;
   custom_endpoint = 8 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "cep"
   ];

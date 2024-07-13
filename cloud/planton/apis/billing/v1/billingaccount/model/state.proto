@@ -11,8 +11,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 //billing-account
 message BillingAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = billing_account;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = company;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.company_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
   // resource api version
   string api_version = 1 [
@@ -35,10 +35,10 @@ message BillingAccount {
 }
 
 //specification for billing-account.
-//a billing account is created upon company creation.
+//a billing account is created upon organization creation.
 message BillingAccountSpec {
-  //id of the company for which the billing account is created
-  string company_id = 1 [
+  //id of the organization for which the billing account is created
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1
   ];
 
@@ -74,14 +74,14 @@ message BillingSubscription {
 }
 
 message StripeCustomer {
-  //id of the customer created for the company on stripe
+  //id of the customer created for the organization on stripe
   string customer_id = 1 [
     (buf.validate.field).string.min_len = 1
   ];
 }
 
 message StripeSubscription {
-  //id of the subscription created for the company on stripe
+  //id of the subscription created for the organization on stripe
   string subscription_id = 1 [
     (buf.validate.field).string.min_len = 1
   ];

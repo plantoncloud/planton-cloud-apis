@@ -146,7 +146,7 @@ type DnsZoneAwsStackResourceInput struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// dns-zone to be added to the company
+	// dns-zone to be added to the organization
 	DnsZone *model1.DnsZone `protobuf:"bytes,1,opt,name=dns_zone,json=dnsZone,proto3" json:"dns_zone,omitempty"`
 }
 

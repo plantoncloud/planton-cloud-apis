@@ -40,7 +40,7 @@ message IamRoleSpec {
   // code of role that is used in FGA model
   string role_code = 1;
   // identifies the principal type that would be used to create relation with the resource
-  // example values are user/company etc.
+  // example values are user/organization etc.
   string principal_type = 2;
   // type of the resource the role belongs to
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;

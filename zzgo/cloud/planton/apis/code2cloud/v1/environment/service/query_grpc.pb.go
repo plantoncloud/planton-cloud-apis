@@ -22,10 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	EnvironmentQueryController_GetById_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getById"
-	EnvironmentQueryController_FindByKubeClusterId_FullMethodName                 = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/findByKubeClusterId"
-	EnvironmentQueryController_GetByCompanyIdAndEnvironmentName_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getByCompanyIdAndEnvironmentName"
-	EnvironmentQueryController_GetSecretsGcpProjectByEnvironmentId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getSecretsGcpProjectByEnvironmentId"
+	EnvironmentQueryController_GetById_FullMethodName                               = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getById"
+	EnvironmentQueryController_FindByKubeClusterId_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/findByKubeClusterId"
+	EnvironmentQueryController_GetByOrganizationIdAndEnvironmentName_FullMethodName = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getByOrganizationIdAndEnvironmentName"
+	EnvironmentQueryController_GetSecretsGcpProjectByEnvironmentId_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController/getSecretsGcpProjectByEnvironmentId"
 )
 
 // EnvironmentQueryControllerClient is the client API for EnvironmentQueryController service.
@@ -36,8 +36,8 @@ type EnvironmentQueryControllerClient interface {
 	GetById(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error)
 	// find environments by kube-cluster id
 	FindByKubeClusterId(ctx context.Context, in *model1.KubeClusterId, opts ...grpc.CallOption) (*model.EnvironmentList, error)
-	// look up environment using by company-id and environment name
-	GetByCompanyIdAndEnvironmentName(ctx context.Context, in *model.GetByCompanyIdAndEnvironmentNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error)
+	// look up environment using by organization-id and environment name
+	GetByOrganizationIdAndEnvironmentName(ctx context.Context, in *model.GetByOrganizationIdAndEnvironmentNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*gcp.GcpProject, error)
 }
@@ -68,9 +68,9 @@ func (c *environmentQueryControllerClient) FindByKubeClusterId(ctx context.Conte
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) GetByCompanyIdAndEnvironmentName(ctx context.Context, in *model.GetByCompanyIdAndEnvironmentNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error) {
+func (c *environmentQueryControllerClient) GetByOrganizationIdAndEnvironmentName(ctx context.Context, in *model.GetByOrganizationIdAndEnvironmentNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentQueryController_GetByCompanyIdAndEnvironmentName_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, EnvironmentQueryController_GetByOrganizationIdAndEnvironmentName_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,8 +94,8 @@ type EnvironmentQueryControllerServer interface {
 	GetById(context.Context, *model.EnvironmentId) (*model.Environment, error)
 	// find environments by kube-cluster id
 	FindByKubeClusterId(context.Context, *model1.KubeClusterId) (*model.EnvironmentList, error)
-	// look up environment using by company-id and environment name
-	GetByCompanyIdAndEnvironmentName(context.Context, *model.GetByCompanyIdAndEnvironmentNameQueryInput) (*model.Environment, error)
+	// look up environment using by organization-id and environment name
+	GetByOrganizationIdAndEnvironmentName(context.Context, *model.GetByOrganizationIdAndEnvironmentNameQueryInput) (*model.Environment, error)
 	// look up the gcp project details by environment id required for fetching secrets for launching project in build engine.
 	GetSecretsGcpProjectByEnvironmentId(context.Context, *model.EnvironmentId) (*gcp.GcpProject, error)
 }
@@ -110,8 +110,8 @@ func (UnimplementedEnvironmentQueryControllerServer) GetById(context.Context, *m
 func (UnimplementedEnvironmentQueryControllerServer) FindByKubeClusterId(context.Context, *model1.KubeClusterId) (*model.EnvironmentList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByKubeClusterId not implemented")
 }
-func (UnimplementedEnvironmentQueryControllerServer) GetByCompanyIdAndEnvironmentName(context.Context, *model.GetByCompanyIdAndEnvironmentNameQueryInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByCompanyIdAndEnvironmentName not implemented")
+func (UnimplementedEnvironmentQueryControllerServer) GetByOrganizationIdAndEnvironmentName(context.Context, *model.GetByOrganizationIdAndEnvironmentNameQueryInput) (*model.Environment, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByOrganizationIdAndEnvironmentName not implemented")
 }
 func (UnimplementedEnvironmentQueryControllerServer) GetSecretsGcpProjectByEnvironmentId(context.Context, *model.EnvironmentId) (*gcp.GcpProject, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSecretsGcpProjectByEnvironmentId not implemented")
@@ -164,20 +164,20 @@ func _EnvironmentQueryController_FindByKubeClusterId_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentQueryController_GetByCompanyIdAndEnvironmentName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetByCompanyIdAndEnvironmentNameQueryInput)
+func _EnvironmentQueryController_GetByOrganizationIdAndEnvironmentName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GetByOrganizationIdAndEnvironmentNameQueryInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnvironmentQueryControllerServer).GetByCompanyIdAndEnvironmentName(ctx, in)
+		return srv.(EnvironmentQueryControllerServer).GetByOrganizationIdAndEnvironmentName(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EnvironmentQueryController_GetByCompanyIdAndEnvironmentName_FullMethodName,
+		FullMethod: EnvironmentQueryController_GetByOrganizationIdAndEnvironmentName_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentQueryControllerServer).GetByCompanyIdAndEnvironmentName(ctx, req.(*model.GetByCompanyIdAndEnvironmentNameQueryInput))
+		return srv.(EnvironmentQueryControllerServer).GetByOrganizationIdAndEnvironmentName(ctx, req.(*model.GetByOrganizationIdAndEnvironmentNameQueryInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -216,8 +216,8 @@ var EnvironmentQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EnvironmentQueryController_FindByKubeClusterId_Handler,
 		},
 		{
-			MethodName: "getByCompanyIdAndEnvironmentName",
-			Handler:    _EnvironmentQueryController_GetByCompanyIdAndEnvironmentName_Handler,
+			MethodName: "getByOrganizationIdAndEnvironmentName",
+			Handler:    _EnvironmentQueryController_GetByOrganizationIdAndEnvironmentName_Handler,
 		},
 		{
 			MethodName: "getSecretsGcpProjectByEnvironmentId",
