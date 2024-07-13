@@ -136,12 +136,12 @@ enum ApiResourceIamPermission {
   helm_release_restore = 90;
   helm_release_update = 91;
 
-  // gitlab_server
-  gitlab_server_create = 92;
-  gitlab_server_delete = 93;
-  gitlab_server_get = 94;
-  gitlab_server_restore = 95;
-  gitlab_server_update = 96;
+  // gitlab_kubernetes
+  gitlab_kubernetes_create = 92;
+  gitlab_kubernetes_delete = 93;
+  gitlab_kubernetes_get = 94;
+  gitlab_kubernetes_restore = 95;
+  gitlab_kubernetes_update = 96;
 
   platform_microservice_account = 97;
   back_office_admin = 98;

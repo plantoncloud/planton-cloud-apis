@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/gitlabkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of gitlab-server
+message GitlabKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//list of gitlab-servers
+message GitlabKubernetesList {
+  repeated GitlabKubernetes entries = 1;
+}
+
+//wrapper for gitlab-server password
+message GitlabKubernetesPassword {
+  string value = 1;
+}
