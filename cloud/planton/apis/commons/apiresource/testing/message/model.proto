@@ -61,7 +61,6 @@ message AwsSpecTest {
 //test message of api resource specific to be deployed to kubernetes
 message ApiResourceKubernetesTest {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = unspecified;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 

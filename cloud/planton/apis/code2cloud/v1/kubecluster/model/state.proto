@@ -16,7 +16,6 @@ import "cloud/planton/apis/commons/rpc/pagination.proto";
 // kube-cluster
 message KubeCluster {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kube_cluster;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 

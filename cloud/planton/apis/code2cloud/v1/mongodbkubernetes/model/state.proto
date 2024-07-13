@@ -14,7 +14,6 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 //mongodb-kubernetes
 message MongodbKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = mongodb_kubernetes;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
