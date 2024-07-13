@@ -11,14 +11,14 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-//gitlab-server
+//gitlab-kubernetes
 message GitlabKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gitlab_kubernetes;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
 
-  //id format "gls-<environment-id>-<gitlab-server-name>"
+  //id format "gls-<environment-id>-<gitlab-kubernetes-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
@@ -71,16 +71,21 @@ message GitlabKubernetes {
   GitlabKubernetesStatus status = 5;
 }
 
-//gitlab-server spec
+//gitlab-kubernetes spec
 message GitlabKubernetesSpec {
   //resource parent
   cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
-  //kubernetes spec
-  GitlabKubernetesSpecKubernetesSpec kubernetes = 2;
+  //gitlab-container spec
+  GitlabKubernetesSpecContainerSpec container = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //gitlab-kubernetes ingress-spec
+  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
 }
 
-//gitlab-server status.
+//gitlab-kubernetes status.
 message GitlabKubernetesStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
@@ -92,23 +97,11 @@ message GitlabKubernetesStatus {
   string stack_job_id = 97;
 
   //kubernetes status
-  GitlabKubernetesStatusKubernetesStatus kubernetes = 1;
+  GitlabKubernetesStatusStackOutputs outputs = 1;
 }
 
-// gitlab-server kubernetes spec
-message GitlabKubernetesSpecKubernetesSpec {
-  //gitlab-container spec
-  GitlabKubernetesSpecKubernetesSpecGitlabContainerSpec gitlab_container = 1 [
-    (buf.validate.field).required = true
-  ];
-
-  //gitlab-server ingress-spec
-  GitlabKubernetesSpecKubernetesSpecIngressSpec ingress = 2;
-
-}
-
-// gitlab-server kubernetes gitlab-container spec
-message GitlabKubernetesSpecKubernetesSpecGitlabContainerSpec {
+// gitlab-kubernetes container spec
+message GitlabKubernetesSpecContainerSpec {
   //gitlab container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
@@ -116,51 +109,28 @@ message GitlabKubernetesSpecKubernetesSpecGitlabContainerSpec {
   ];
 }
 
-// gitlab-server kubernetes ingress spec
-message GitlabKubernetesSpecKubernetesSpecIngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //endpoint domain to be used for creating internal and external endpoints for kafka-cluster.
-  //if the chosen ingress-type is `ingress-controller`, only tls enabled endpoint domains are allowed for creating gitlab endpoints.
-  string endpoint_domain_name = 3;
-}
-
-//gitlab-server kubernetes status
-message GitlabKubernetesStatusKubernetesStatus {
-  //kubernetes namespace in which gitlab-server is created.
+//gitlab-kubernetes stack outputs
+message GitlabKubernetesStatusStackOutputs {
+  //kubernetes namespace in which gitlab-kubernetes is created.
   string namespace = 1;
 
-  //kubernetes service name for gitlab-server.
-  //ex: main-gitlab-server
-  //in the above example, "main" is the name of the gitlab-server
+  //kubernetes service name for gitlab-kubernetes.
+  //ex: main-gitlab-kubernetes
+  //in the above example, "main" is the name of the gitlab-kubernetes
   string service = 2;
 
-  //command to setup port-forwarding to open gitlab-server from developers laptop.
-  //this might come handy when gitlab-server ingress is disabled for security reasons.
+  //command to setup port-forwarding to open gitlab-kubernetes from developers laptop.
+  //this might come handy when gitlab-kubernetes ingress is disabled for security reasons.
   //this is rendered by combining gitlab_kubernetes_kubernetes_service and kubernetes_namespace
   //ex: kubectl port-forward svc/gitlab_kubernetes_kubernetes_service -n kubernetes_namespace 6379:6379
-  //running the command from this attribute makes it possible to access gitlab-server using http://localhost:8080/gitlab
+  //running the command from this attribute makes it possible to access gitlab-kubernetes using http://localhost:8080/gitlab
   string port_forward_command = 3;
 
-  //kubernetes endpoint to connect to gitlab-server from the web browser.
-  //ex: main-gitlab-server.namespace.svc.cluster.local:6379
+  //kubernetes endpoint to connect to gitlab-kubernetes from the web browser.
+  //ex: main-gitlab-kubernetes.namespace.svc.cluster.local:6379
   string kube_endpoint = 4;
 
-  //public endpoint to open gitlab-server from clients outside kubernetes.
+  //public endpoint to open gitlab-kubernetes from clients outside kubernetes.
   //ex: https://gls-planton-pcs-dev-main.data.dev.planton.live:6379/gitlab
   string ingress_endpoint = 5;
 }

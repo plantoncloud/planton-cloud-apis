@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for id field of gitlab-server
+// wrapper for id field of gitlab-kubernetes
 type GitlabKubernetesId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -69,7 +69,7 @@ func (x *GitlabKubernetesId) GetValue() string {
 	return ""
 }
 
-// list of gitlab-servers
+// list of gitlab-kubernetess
 type GitlabKubernetesList struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -117,7 +117,7 @@ func (x *GitlabKubernetesList) GetEntries() []*GitlabKubernetes {
 	return nil
 }
 
-// wrapper for gitlab-server password
+// wrapper for gitlab-kubernetes password
 type GitlabKubernetesPassword struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

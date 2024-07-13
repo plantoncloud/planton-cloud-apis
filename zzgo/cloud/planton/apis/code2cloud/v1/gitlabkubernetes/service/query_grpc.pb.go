@@ -34,15 +34,15 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GitlabKubernetesQueryControllerClient interface {
-	// look up gitlab-server using gitlab-server id
+	// look up gitlab-kubernetes using gitlab-kubernetes id
 	GetById(ctx context.Context, in *model.GitlabKubernetesId, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// find gitlab-servers by product id.
+	// find gitlab-kubernetess by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
 	FindByProductId(ctx context.Context, in *model1.ProductId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
-	// find gitlab-servers by environment
+	// find gitlab-kubernetess by environment
 	FindByEnvironmentId(ctx context.Context, in *model2.EnvironmentId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
 	FindByKubeClusterId(ctx context.Context, in *model3.KubeClusterId, opts ...grpc.CallOption) (*model.GitlabKubernetesList, error)
-	// look up gitlab-server sasl password
+	// look up gitlab-kubernetes sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(ctx context.Context, in *model.GitlabKubernetesId, opts ...grpc.CallOption) (*model.GitlabKubernetesPassword, error)
 }
@@ -104,15 +104,15 @@ func (c *gitlabKubernetesQueryControllerClient) GetPassword(ctx context.Context,
 // All implementations should embed UnimplementedGitlabKubernetesQueryControllerServer
 // for forward compatibility
 type GitlabKubernetesQueryControllerServer interface {
-	// look up gitlab-server using gitlab-server id
+	// look up gitlab-kubernetes using gitlab-kubernetes id
 	GetById(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetes, error)
-	// find gitlab-servers by product id.
+	// find gitlab-kubernetess by product id.
 	// response contains only the resources that the authenticated user account has viewer access to.
 	FindByProductId(context.Context, *model1.ProductId) (*model.GitlabKubernetesList, error)
-	// find gitlab-servers by environment
+	// find gitlab-kubernetess by environment
 	FindByEnvironmentId(context.Context, *model2.EnvironmentId) (*model.GitlabKubernetesList, error)
 	FindByKubeClusterId(context.Context, *model3.KubeClusterId) (*model.GitlabKubernetesList, error)
-	// look up gitlab-server sasl password
+	// look up gitlab-kubernetes sasl password
 	// password is retrieved from the kubernetes cluster.
 	GetPassword(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetesPassword, error)
 }

@@ -40,36 +40,36 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GitlabKubernetesCommandControllerClient interface {
-	// preview creating gitlab-server
+	// preview creating gitlab-kubernetes
 	PreviewCreate(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// create gitlab-server
+	// create gitlab-kubernetes
 	Create(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// preview updating an existing gitlab-server
+	// preview updating an existing gitlab-kubernetes
 	PreviewUpdate(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// update an existing gitlab-server
+	// update an existing gitlab-kubernetes
 	Update(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// preview deleting an existing gitlab-server
+	// preview deleting an existing gitlab-kubernetes
 	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// delete an existing gitlab-server
+	// delete an existing gitlab-kubernetes
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// preview restoring a previously deleted gitlab-server
+	// preview restoring a previously deleted gitlab-kubernetes
 	PreviewRestore(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// restore a previously deleted gitlab-server
+	// restore a previously deleted gitlab-kubernetes
 	Restore(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// restart a gitlab-server running in a environment.
-	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
+	// restart a gitlab-kubernetes running in a environment.
+	// gitlab-kubernetes is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
 	Restart(ctx context.Context, in *model.GitlabKubernetesId, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// pause a gitlab-server running in a environment.
-	// gitlab-server is paused by scaling down number of replicas of
+	// pause a gitlab-kubernetes running in a environment.
+	// gitlab-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
 	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// unpause a previously paused gitlab-server running in a environment.
+	// unpause a previously paused gitlab-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the gitlab-server.
+	// replicas configured for the gitlab-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// preview refresh a gitlab-server that was previously created
+	// preview refresh a gitlab-kubernetes that was previously created
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// refresh a gitlab-server that was previously created
+	// refresh a gitlab-kubernetes that was previously created
 	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 }
 
@@ -202,36 +202,36 @@ func (c *gitlabKubernetesCommandControllerClient) Refresh(ctx context.Context, i
 // All implementations should embed UnimplementedGitlabKubernetesCommandControllerServer
 // for forward compatibility
 type GitlabKubernetesCommandControllerServer interface {
-	// preview creating gitlab-server
+	// preview creating gitlab-kubernetes
 	PreviewCreate(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// create gitlab-server
+	// create gitlab-kubernetes
 	Create(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// preview updating an existing gitlab-server
+	// preview updating an existing gitlab-kubernetes
 	PreviewUpdate(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// update an existing gitlab-server
+	// update an existing gitlab-kubernetes
 	Update(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// preview deleting an existing gitlab-server
+	// preview deleting an existing gitlab-kubernetes
 	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error)
-	// delete an existing gitlab-server
+	// delete an existing gitlab-kubernetes
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error)
-	// preview restoring a previously deleted gitlab-server
+	// preview restoring a previously deleted gitlab-kubernetes
 	PreviewRestore(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// restore a previously deleted gitlab-server
+	// restore a previously deleted gitlab-kubernetes
 	Restore(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
-	// restart a gitlab-server running in a environment.
-	// gitlab-server is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
+	// restart a gitlab-kubernetes running in a environment.
+	// gitlab-kubernetes is restarted by deleting running "gitlab" pods which will be automatically recreated by kubernetes
 	Restart(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetes, error)
-	// pause a gitlab-server running in a environment.
-	// gitlab-server is paused by scaling down number of replicas of
+	// pause a gitlab-kubernetes running in a environment.
+	// gitlab-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
 	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitlabKubernetes, error)
-	// unpause a previously paused gitlab-server running in a environment.
+	// unpause a previously paused gitlab-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
-	// replicas configured for the gitlab-server.
+	// replicas configured for the gitlab-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitlabKubernetes, error)
-	// preview refresh a gitlab-server that was previously created
+	// preview refresh a gitlab-kubernetes that was previously created
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error)
-	// refresh a gitlab-server that was previously created
+	// refresh a gitlab-kubernetes that was previously created
 	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error)
 }
 
