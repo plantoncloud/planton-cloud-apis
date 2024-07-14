@@ -94,7 +94,7 @@ message MongodbKubernetesSpec {
 //mongodb-kubernetes status.
 message MongodbKubernetesStatus {
   // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
