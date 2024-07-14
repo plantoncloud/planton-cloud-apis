@@ -41,7 +41,7 @@ message ApiResourceVersionSpec {
   string org_id = 1;
   // The ID of the environment to which the api-resource-version belongs.
   // This attribute is always empty for organization level state.
-  string environment_id = 2;
+  string env_id = 2;
   // The type of the resource for which the version was created.
   // Resource types are defined in the ApiResourceKind enum.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;

@@ -27,7 +27,7 @@ message ListByCostAllocationFiltersInput {
   // end timestamp
   google.protobuf.Timestamp end_ts = 3;
   // id of the environment for which the cost allocations are filtered for the resource requested.
-  string environment_id = 4;
+  string env_id = 4;
   // type of the resource on planton-cloud.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 5;
   // id of the resource on planton-cloud.

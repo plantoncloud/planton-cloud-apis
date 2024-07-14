@@ -54,7 +54,7 @@ message StackJobSpec {
 
   // id of the environment to which the stack-job belongs to.
   //value is empty for non-environment specific resources
-  string environment_id = 2 [
+  string env_id = 2 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

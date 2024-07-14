@@ -11,7 +11,7 @@ message EnvironmentList {
 }
 
 //wrapper for environment id field
-message EnvironmentId {
+message EnvId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
@@ -29,7 +29,7 @@ message GetByOrgIdAndEnvironmentNameQueryInput {
 //input for rpc requests that require environment id, namespace
 message ByEnvironmentByNamespaceInput {
   //id of the environment
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
   //name of the kubernetes namespace
@@ -41,7 +41,7 @@ message ByEnvironmentByNamespaceInput {
 //input for command to clone environment
 message CloneEnvironmentCommandInput {
   //id of the environment to clone
-  string source_environment_id = 1 [
+  string source_env_id = 1 [
     (buf.validate.field).required = true
   ];
   //spec for new environment
@@ -70,7 +70,7 @@ message EnvironmentVariableValue {
 //input for command to add multiple environment variables to a environment
 message AddEnvironmentVariablesCommandInput {
   //id of the environment to which the env variables are to be added
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
   //key, value pairs of the variables to be added to the environment
@@ -113,7 +113,7 @@ message AddEnvironmentSecretsCommandInput {
   //environment-id, which can be obtained from the environment entity
   //itself. The server uses this ID to identify the correct environment
   //to which the secrets should be added.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
   //The list of environment secrets that need to be added to the specified
@@ -141,7 +141,7 @@ message AddEnvironmentSecretCommandInput {
   //being added. This field must be populated with a valid environment id,
   //which can be obtained from the environment entity itself. The server
   //uses this ID to identify the correct environment to which the secrets should be added.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
   //secret that need to be added to the specified environment.
@@ -168,7 +168,7 @@ message UpdateEnvironmentSecretValueCommandInput {
   //This field must be populated with a valid environment ID, which can be
   //obtained from the environment entity itself. The server uses this ID to
   //identify the correct environment where the secret value needs to be updated.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -201,7 +201,7 @@ message DeleteOrRestoreEnvironmentSecretCommandInput {
   //This field must be populated with a valid environment id, which can be
   //obtained from the environment entity itself. The server uses this id to
   //identify the correct environment where the secret needs to be deleted.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -229,7 +229,7 @@ message GetByEnvironmentSecretIdInput {
   //This field must be populated with a valid environment ID, which can be
   //obtained from the environment entity itself. The server uses this ID to
   //identify the correct environment where the secret is located.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -253,7 +253,7 @@ message AddEnvironmentVariableCommandInput {
   //environment ID, which can be obtained from the environment entity itself.
   //The server uses this ID to identify the correct environment where the
   //environment variable needs to be added.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -282,7 +282,7 @@ message DeleteOrRestoreEnvironmentVariableCommandInput {
   //environment ID, which can be obtained from the environment entity itself.
   //The server uses this ID to identify the correct environment from which
   //the environment variable needs to be deleted.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -307,9 +307,9 @@ message DeleteOrRestoreEnvironmentVariableCommandInput {
 //to successfully execute this operation.
 message UpdateEnvironmentVariableValueCommandInput {
 
-  //environment_id is a string that uniquely identifies the environment in which the environment
+  //env_id is a string that uniquely identifies the environment in which the environment
   //variable is to be updated. This ID is used by the server to locate the specific environment.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -337,9 +337,9 @@ message UpdateEnvironmentVariableValueCommandInput {
 //It encapsulates the identifying details required to locate and retrieve the required environment variable.
 message GetByEnvironmentVariableIdInput {
 
-  //environment_id is a string that uniquely identifies the environment where the target
+  //env_id is a string that uniquely identifies the environment where the target
   //environment variable is located. This ID is essential for the server to locate the specific environment.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -354,7 +354,7 @@ message GetByEnvironmentVariableIdInput {
 // It contains the environment ID and details about the endpoint domain to be managed.
 message AddOrUpdateEndpointDomainCommandInput {
   // The unique identifier for the environment in which the endpoint domain will be added or updated.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -374,7 +374,7 @@ message AddOrUpdateEndpointDomainCommandInput {
 // It contains the environment ID and the unique identifier for the endpoint domain to be deleted.
 message DeleteEndpointDomainCommandInput {
   // The unique identifier for the environment in which the endpoint domain is to be deleted.
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
 

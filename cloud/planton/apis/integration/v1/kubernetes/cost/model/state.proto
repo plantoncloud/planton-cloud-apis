@@ -14,7 +14,7 @@ message CostAllocation {
 
   string org_id = 1;
   string kube_cluster_id = 3;
-  string environment_id = 4;
+  string env_id = 4;
   string resource_kind = 5;
   string resource_id = 6;
   string name = 7;

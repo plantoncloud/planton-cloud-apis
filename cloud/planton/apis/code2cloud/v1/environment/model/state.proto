@@ -204,7 +204,7 @@ message EnvironmentSpecMicroserviceInstanceSpecPipelineSpec {
   //in deployment pipelines for microservice-instances a successful deployment of all lower environments
   //is required before deploying to this environment.
   //this is used for creating dependency requirements on github/gitlab pipelines between deployment pipeline jobs.
-  repeated string lower_environment_ids = 2;
+  repeated string lower_env_ids = 2;
 
   //id of the artifact-store required to construct the container image name.
   //a organization can have multiple artifact-stores. The container images are published to all artifact-stores.
@@ -342,7 +342,7 @@ message ApiResourceEnvironmentInfo {
 
   //environment id
   //this value should be provided by the client.
-  string environment_id = 2 [
+  string env_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

@@ -68,7 +68,7 @@ message ApiResourceRecord {
   // Unique identifier for the organization associated with this resource.
   string org_id = 4;
   // Unique identifier for the environment
-  string environment_id = 5;
+  string env_id = 5;
   // flag to indicate if the resource is deleted.
   bool is_active = 6;
   // flag to indicate if the resource is paused
@@ -95,7 +95,7 @@ message GetByApiResourceKindInput {
   // This is the unique identifier for the environment
   // associated with the get query. The get operation will only consider resources
   // that are linked with this environment.
-  string environment_id = 2;
+  string env_id = 2;
   // This field indicates the type of resource that the search operation will be focusing on.
   // The possible resource types are defined by the ApiResourceKind enum.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;

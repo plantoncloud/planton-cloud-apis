@@ -20,7 +20,7 @@ service LocustKubernetesCommandController {
     // api resource authorization config
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = locust_kubernetes_create;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create locust-kubernetes";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
@@ -32,7 +32,7 @@ service LocustKubernetesCommandController {
       returns (cloud.planton.apis.code2cloud.v1.locustkubernetes.model.LocustKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = locust_kubernetes_create;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create locust-kubernetes";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;

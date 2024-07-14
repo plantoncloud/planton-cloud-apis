@@ -66,7 +66,7 @@ type StackJobQueryControllerClient interface {
 	GetPulumiResourceCountByContextDetailed(ctx context.Context, in *model.GetPulumiResourceCountByContextInput, opts ...grpc.CallOption) (*model.PulumiResourceCountDetailedList, error)
 	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/environment_id
+	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/env_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesCurrentAndPreviousMonthByContext(ctx context.Context, in *model.GetStackJobMinutesByContextInput, opts ...grpc.CallOption) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
@@ -265,7 +265,7 @@ type StackJobQueryControllerServer interface {
 	GetPulumiResourceCountByContextDetailed(context.Context, *model.GetPulumiResourceCountByContextInput) (*model.PulumiResourceCountDetailedList, error)
 	// getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
 	// This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/environment_id
+	// within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/env_id
 	// for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
 	GetStackJobMinutesCurrentAndPreviousMonthByContext(context.Context, *model.GetStackJobMinutesByContextInput) (*model.StackJobMinutesCurrentAndPreviousMonth, error)
 	// getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts

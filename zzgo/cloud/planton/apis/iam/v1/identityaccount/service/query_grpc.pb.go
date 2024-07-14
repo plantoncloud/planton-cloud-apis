@@ -273,13 +273,13 @@ var MachineAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	UserAccountQueryController_List_FullMethodName                           = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/list"
-	UserAccountQueryController_GetById_FullMethodName                        = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getById"
-	UserAccountQueryController_GetByEmail_FullMethodName                     = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getByEmail"
-	UserAccountQueryController_IsBackofficeUser_FullMethodName               = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/isBackofficeUser"
-	UserAccountQueryController_ListAssociatesByOrgId_FullMethodName          = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/listAssociatesByOrgId"
-	UserAccountQueryController_GetMembersCountByOrgId_FullMethodName         = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByOrgId"
-	UserAccountQueryController_GetMembersCountByEnvironmentId_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByEnvironmentId"
+	UserAccountQueryController_List_FullMethodName                   = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/list"
+	UserAccountQueryController_GetById_FullMethodName                = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getById"
+	UserAccountQueryController_GetByEmail_FullMethodName             = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getByEmail"
+	UserAccountQueryController_IsBackofficeUser_FullMethodName       = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/isBackofficeUser"
+	UserAccountQueryController_ListAssociatesByOrgId_FullMethodName  = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/listAssociatesByOrgId"
+	UserAccountQueryController_GetMembersCountByOrgId_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByOrgId"
+	UserAccountQueryController_GetMembersCountByEnvId_FullMethodName = "/cloud.planton.apis.iam.v1.identityaccount.service.UserAccountQueryController/getMembersCountByEnvId"
 )
 
 // UserAccountQueryControllerClient is the client API for UserAccountQueryController service.
@@ -301,7 +301,7 @@ type UserAccountQueryControllerClient interface {
 	// retrieve paginated list of all associate accounts of a organization.
 	ListAssociatesByOrgId(ctx context.Context, in *model.ListWithIdentityOrgId, opts ...grpc.CallOption) (*model.IdentityAccountsList, error)
 	GetMembersCountByOrgId(ctx context.Context, in *model.MembersCountByOrgIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
-	GetMembersCountByEnvironmentId(ctx context.Context, in *model.MembersCountByEnvironmentIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
+	GetMembersCountByEnvId(ctx context.Context, in *model.MembersCountByEnvIdInput, opts ...grpc.CallOption) (*model.MembersCount, error)
 }
 
 type userAccountQueryControllerClient struct {
@@ -366,9 +366,9 @@ func (c *userAccountQueryControllerClient) GetMembersCountByOrgId(ctx context.Co
 	return out, nil
 }
 
-func (c *userAccountQueryControllerClient) GetMembersCountByEnvironmentId(ctx context.Context, in *model.MembersCountByEnvironmentIdInput, opts ...grpc.CallOption) (*model.MembersCount, error) {
+func (c *userAccountQueryControllerClient) GetMembersCountByEnvId(ctx context.Context, in *model.MembersCountByEnvIdInput, opts ...grpc.CallOption) (*model.MembersCount, error) {
 	out := new(model.MembersCount)
-	err := c.cc.Invoke(ctx, UserAccountQueryController_GetMembersCountByEnvironmentId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, UserAccountQueryController_GetMembersCountByEnvId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -394,7 +394,7 @@ type UserAccountQueryControllerServer interface {
 	// retrieve paginated list of all associate accounts of a organization.
 	ListAssociatesByOrgId(context.Context, *model.ListWithIdentityOrgId) (*model.IdentityAccountsList, error)
 	GetMembersCountByOrgId(context.Context, *model.MembersCountByOrgIdInput) (*model.MembersCount, error)
-	GetMembersCountByEnvironmentId(context.Context, *model.MembersCountByEnvironmentIdInput) (*model.MembersCount, error)
+	GetMembersCountByEnvId(context.Context, *model.MembersCountByEnvIdInput) (*model.MembersCount, error)
 }
 
 // UnimplementedUserAccountQueryControllerServer should be embedded to have forward compatible implementations.
@@ -419,8 +419,8 @@ func (UnimplementedUserAccountQueryControllerServer) ListAssociatesByOrgId(conte
 func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByOrgId(context.Context, *model.MembersCountByOrgIdInput) (*model.MembersCount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByOrgId not implemented")
 }
-func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByEnvironmentId(context.Context, *model.MembersCountByEnvironmentIdInput) (*model.MembersCount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByEnvironmentId not implemented")
+func (UnimplementedUserAccountQueryControllerServer) GetMembersCountByEnvId(context.Context, *model.MembersCountByEnvIdInput) (*model.MembersCount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMembersCountByEnvId not implemented")
 }
 
 // UnsafeUserAccountQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -542,20 +542,20 @@ func _UserAccountQueryController_GetMembersCountByOrgId_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAccountQueryController_GetMembersCountByEnvironmentId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.MembersCountByEnvironmentIdInput)
+func _UserAccountQueryController_GetMembersCountByEnvId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.MembersCountByEnvIdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAccountQueryControllerServer).GetMembersCountByEnvironmentId(ctx, in)
+		return srv.(UserAccountQueryControllerServer).GetMembersCountByEnvId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserAccountQueryController_GetMembersCountByEnvironmentId_FullMethodName,
+		FullMethod: UserAccountQueryController_GetMembersCountByEnvId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAccountQueryControllerServer).GetMembersCountByEnvironmentId(ctx, req.(*model.MembersCountByEnvironmentIdInput))
+		return srv.(UserAccountQueryControllerServer).GetMembersCountByEnvId(ctx, req.(*model.MembersCountByEnvIdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -592,8 +592,8 @@ var UserAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserAccountQueryController_GetMembersCountByOrgId_Handler,
 		},
 		{
-			MethodName: "getMembersCountByEnvironmentId",
-			Handler:    _UserAccountQueryController_GetMembersCountByEnvironmentId_Handler,
+			MethodName: "getMembersCountByEnvId",
+			Handler:    _UserAccountQueryController_GetMembersCountByEnvId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

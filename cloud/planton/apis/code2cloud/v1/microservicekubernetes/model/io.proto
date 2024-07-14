@@ -40,9 +40,9 @@ message GetMicroserviceKubernetesLogStreamQueryInput {
 }
 
 //input for rpc queries that take environment-id and code-project-id as input
-message ByEnvironmentIdByCodeProjectIdInput {
+message ByEnvIdByCodeProjectIdInput {
   //id of the environment
-  string environment_id = 1 [
+  string env_id = 1 [
     (buf.validate.field).required = true
   ];
   //id of the code project

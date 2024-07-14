@@ -47,7 +47,7 @@ service StackJobQueryController {
       returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList);
   // getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-  // within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/environment_id
+  // within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/env_id
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
   rpc getStackJobMinutesCurrentAndPreviousMonthByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesCurrentAndPreviousMonth);

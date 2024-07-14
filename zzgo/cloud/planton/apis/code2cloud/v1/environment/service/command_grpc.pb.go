@@ -65,7 +65,7 @@ type EnvironmentCommandControllerClient interface {
 	// this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
 	// the current build engine env and then to set a new env as build engine env.
 	// the implementation takes care of both the actions.
-	SetBuildEngineEnvironment(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error)
+	SetBuildEngineEnvironment(ctx context.Context, in *model.EnvId, opts ...grpc.CallOption) (*model.Environment, error)
 	// pause a environment.
 	// a environment is paused by scaling down all the workloads to zero replicas.
 	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
@@ -161,7 +161,7 @@ func (c *environmentCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) SetBuildEngineEnvironment(ctx context.Context, in *model.EnvironmentId, opts ...grpc.CallOption) (*model.Environment, error) {
+func (c *environmentCommandControllerClient) SetBuildEngineEnvironment(ctx context.Context, in *model.EnvId, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -235,7 +235,7 @@ type EnvironmentCommandControllerServer interface {
 	// this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
 	// the current build engine env and then to set a new env as build engine env.
 	// the implementation takes care of both the actions.
-	SetBuildEngineEnvironment(context.Context, *model.EnvironmentId) (*model.Environment, error)
+	SetBuildEngineEnvironment(context.Context, *model.EnvId) (*model.Environment, error)
 	// pause a environment.
 	// a environment is paused by scaling down all the workloads to zero replicas.
 	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
@@ -279,7 +279,7 @@ func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Co
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) SetBuildEngineEnvironment(context.Context, *model.EnvironmentId) (*model.Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) SetBuildEngineEnvironment(context.Context, *model.EnvId) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetBuildEngineEnvironment not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.Environment, error) {
@@ -451,7 +451,7 @@ func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.
 }
 
 func _EnvironmentCommandController_SetBuildEngineEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.EnvironmentId)
+	in := new(model.EnvId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -463,7 +463,7 @@ func _EnvironmentCommandController_SetBuildEngineEnvironment_Handler(srv interfa
 		FullMethod: EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).SetBuildEngineEnvironment(ctx, req.(*model.EnvironmentId))
+		return srv.(EnvironmentCommandControllerServer).SetBuildEngineEnvironment(ctx, req.(*model.EnvId))
 	}
 	return interceptor(ctx, in, info, handler)
 }

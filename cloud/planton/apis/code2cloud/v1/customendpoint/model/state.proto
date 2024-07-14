@@ -70,7 +70,7 @@ message CustomEndpointSpec {
   ];
 
   //custom-endpoint to which the requests to the endpoint domain are to be routed to.
-  string backend_environment_id = 3 [
+  string backend_env_id = 3 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

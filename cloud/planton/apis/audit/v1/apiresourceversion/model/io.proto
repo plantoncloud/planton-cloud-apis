@@ -125,7 +125,7 @@ message GetResourceCountByContextInput {
   // org_id uniquely identifies a organization within the system.
   string org_id = 1;
 
-  // environment_id uniquely identifies a environment associated with a organization within the system.
-  string environment_id = 2;
+  // env_id uniquely identifies a environment associated with a organization within the system.
+  string env_id = 2;
 }
 

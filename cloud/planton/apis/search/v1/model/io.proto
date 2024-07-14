@@ -25,7 +25,7 @@ message ApiResourceSearchResultRecord {
   // Unique identifier for the organization associated with this resource.
   string org_id = 4;
   // Unique identifier for the environment
-  string environment_id = 5;
+  string env_id = 5;
   // This field records the identifier (typically a username or a system process name)
   // of the entity that created the resource associated with this message.
   // It provides an audit trail for tracking who created a particular record. Depending on the
@@ -60,7 +60,7 @@ message SearchByTextInput {
   // Unique identifier for the organization associated with the search query.
   string org_id = 1;
   // Unique identifier for the environment associated with the search query.
-  string environment_id = 2;
+  string env_id = 2;
   // The text input to be used as the basis for the search query.
   string search_text = 3;
   // pagination info to get specific paginated data
@@ -78,7 +78,7 @@ message SearchApiResourcesByKindInput {
   // This is the unique identifier for the environment
   // associated with the search query. The search operation will only consider resources
   // that are linked with this environment.
-  string environment_id = 2;
+  string env_id = 2;
   // This field indicates the type of resource that the search operation will be focusing on.
   // The possible resource types are defined by the ApiResourceKind enum.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;

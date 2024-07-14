@@ -122,7 +122,7 @@ service EnvironmentCommandController {
   //this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
   //the current build engine env and then to set a new env as build engine env.
   //the implementation takes care of both the actions.
-  rpc setBuildEngineEnvironment(cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentId)
+  rpc setBuildEngineEnvironment(cloud.planton.apis.code2cloud.v1.environment.model.EnvId)
       returns(cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
@@ -199,56 +199,56 @@ service EnvironmentSecretCommandController {
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment secrets in environment";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //add multiple environment secrets to existing list of environment secrets
   rpc addMultiple(cloud.planton.apis.code2cloud.v1.environment.model.AddEnvironmentSecretsCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment secrets in environment";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //delete a environment secret.
   rpc delete(cloud.planton.apis.code2cloud.v1.environment.model.DeleteOrRestoreEnvironmentSecretCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete environment secret";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //update value of a environment secret
   rpc updateValue(cloud.planton.apis.code2cloud.v1.environment.model.UpdateEnvironmentSecretValueCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update environment secret value";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
 }
 
@@ -260,56 +260,56 @@ service EnvironmentVariableCommandController {
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment variable";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //add multiple environment variables to existing list of environment variables of a environment
   rpc addMultiple(cloud.planton.apis.code2cloud.v1.environment.model.AddEnvironmentVariablesCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create environment variable";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //delete a environment variable.
   rpc delete(cloud.planton.apis.code2cloud.v1.environment.model.DeleteOrRestoreEnvironmentVariableCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete environment variable";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   //update value of a environment variable
   rpc updateValue(cloud.planton.apis.code2cloud.v1.environment.model.UpdateEnvironmentVariableValueCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariable) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update environment variable value";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
 }
 
@@ -321,41 +321,41 @@ service EnvironmentEndpointDomainCommandController {
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add environment endpoint-domain";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   // update an existing endpoint-domain to a environment
   rpc update(cloud.planton.apis.code2cloud.v1.environment.model.AddOrUpdateEndpointDomainCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update environment endpoint-domain";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
   // delete an endpoint-domain of a organization
   rpc delete(cloud.planton.apis.code2cloud.v1.environment.model.DeleteEndpointDomainCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_update;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "environment_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete environment endpoint-domain";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "environment_id";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "env_id";
   }
 }
