@@ -27,7 +27,7 @@ const (
 	ArtifactStoreQueryController_ListArtifactStoreDockerImages_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStoreDockerImages"
 	ArtifactStoreQueryController_ListArtifactStorePackages_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackages"
 	ArtifactStoreQueryController_ListArtifactStorePackageVersions_FullMethodName = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/listArtifactStorePackageVersions"
-	ArtifactStoreQueryController_FindByOrganizationId_FullMethodName             = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/findByOrganizationId"
+	ArtifactStoreQueryController_FindByOrgId_FullMethodName                      = "/cloud.planton.apis.code2cloud.v1.artifactstore.service.ArtifactStoreQueryController/findByOrgId"
 )
 
 // ArtifactStoreQueryControllerClient is the client API for ArtifactStoreQueryController service.
@@ -48,7 +48,7 @@ type ArtifactStoreQueryControllerClient interface {
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(ctx context.Context, in *model.ListByArtifactStoreIdPackageNameInput, opts ...grpc.CallOption) (*model.ArtifactStorePackageVersionList, error)
 	// look up artifact-stores by organization id.
-	FindByOrganizationId(ctx context.Context, in *model2.OrganizationId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
+	FindByOrgId(ctx context.Context, in *model2.OrgId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error)
 }
 
 type artifactStoreQueryControllerClient struct {
@@ -104,9 +104,9 @@ func (c *artifactStoreQueryControllerClient) ListArtifactStorePackageVersions(ct
 	return out, nil
 }
 
-func (c *artifactStoreQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model2.OrganizationId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error) {
+func (c *artifactStoreQueryControllerClient) FindByOrgId(ctx context.Context, in *model2.OrgId, opts ...grpc.CallOption) (*model.ArtifactStoreList, error) {
 	out := new(model.ArtifactStoreList)
-	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ArtifactStoreQueryController_FindByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +131,7 @@ type ArtifactStoreQueryControllerServer interface {
 	// (proxy google artifact-registry server)
 	ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error)
 	// look up artifact-stores by organization id.
-	FindByOrganizationId(context.Context, *model2.OrganizationId) (*model.ArtifactStoreList, error)
+	FindByOrgId(context.Context, *model2.OrgId) (*model.ArtifactStoreList, error)
 }
 
 // UnimplementedArtifactStoreQueryControllerServer should be embedded to have forward compatible implementations.
@@ -153,8 +153,8 @@ func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackages
 func (UnimplementedArtifactStoreQueryControllerServer) ListArtifactStorePackageVersions(context.Context, *model.ListByArtifactStoreIdPackageNameInput) (*model.ArtifactStorePackageVersionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListArtifactStorePackageVersions not implemented")
 }
-func (UnimplementedArtifactStoreQueryControllerServer) FindByOrganizationId(context.Context, *model2.OrganizationId) (*model.ArtifactStoreList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
+func (UnimplementedArtifactStoreQueryControllerServer) FindByOrgId(context.Context, *model2.OrgId) (*model.ArtifactStoreList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrgId not implemented")
 }
 
 // UnsafeArtifactStoreQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -258,20 +258,20 @@ func _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler(srv 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArtifactStoreQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model2.OrganizationId)
+func _ArtifactStoreQueryController_FindByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model2.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ArtifactStoreQueryControllerServer).FindByOrganizationId(ctx, in)
+		return srv.(ArtifactStoreQueryControllerServer).FindByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ArtifactStoreQueryController_FindByOrganizationId_FullMethodName,
+		FullMethod: ArtifactStoreQueryController_FindByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArtifactStoreQueryControllerServer).FindByOrganizationId(ctx, req.(*model2.OrganizationId))
+		return srv.(ArtifactStoreQueryControllerServer).FindByOrgId(ctx, req.(*model2.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -304,8 +304,8 @@ var ArtifactStoreQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ArtifactStoreQueryController_ListArtifactStorePackageVersions_Handler,
 		},
 		{
-			MethodName: "findByOrganizationId",
-			Handler:    _ArtifactStoreQueryController_FindByOrganizationId_Handler,
+			MethodName: "findByOrgId",
+			Handler:    _ArtifactStoreQueryController_FindByOrgId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

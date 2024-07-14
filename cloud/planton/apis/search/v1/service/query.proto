@@ -7,7 +7,7 @@ import "cloud/planton/apis/search/v1/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 // SearchQueryController is a service that provides search functionality
-// related to specific companies and environments.
+// related to specific organizations and environments.
 // It defines an RPC method, SearchByText, which accepts a text-based search
 // input and returns a response.
 service SearchQueryController {

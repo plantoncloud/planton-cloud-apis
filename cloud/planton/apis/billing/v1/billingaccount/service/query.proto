@@ -20,11 +20,11 @@ service BillingAccountQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view billing account details";
   }
   //lookup billing account using organization id.
-  rpc getBillingAccountByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc getBillingAccountByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.billing.v1.billingaccount.model.BillingAccount);
 
   //get customer portal session.
   //https://stripe.com/docs/api/customer_portal/sessions/create
-  rpc getCustomerPortalSessionByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc getCustomerPortalSessionByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.billing.v1.billingaccount.model.GetCustomerPortalSessionQueryResp);
 }

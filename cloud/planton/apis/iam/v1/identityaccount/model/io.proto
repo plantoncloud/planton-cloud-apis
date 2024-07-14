@@ -42,12 +42,12 @@ message MachineAccountClientSecret {
 }
 
 // wrapper for machine account organization id.
-message MachineAccountOrganizationId {
+message MachineAccountOrgId {
   string value = 1;
 }
 
 // wrapper for identity account organization id.
-message ListWithIdentityOrganizationId {
+message ListWithIdentityOrgId {
   string org_id = 1;
   cloud.planton.apis.commons.rpc.PageInfo page = 2;
 }
@@ -65,10 +65,10 @@ message MembersCount {
   int32 count = 1;
 }
 
-// MembersCountByOrganizationIdInput is designed for requests that need to determine the number of members
+// MembersCountByOrgIdInput is designed for requests that need to determine the number of members
 // associated exclusively with a given organization. This simplified input focuses solely on organization identification,
 // making it suitable to aggregate members count at the organization level.
-message MembersCountByOrganizationIdInput {
+message MembersCountByOrgIdInput {
   // org_id uniquely identifies a organization within the system. The field accepts a string format.
   string org_id = 1;
 }

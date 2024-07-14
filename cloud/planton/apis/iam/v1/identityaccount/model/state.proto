@@ -48,7 +48,7 @@ message IdentityAccount {
 // resource spec for identity-account
 message IdentityAccountSpec {
   // this is only relevant in case of machine identity accounts.
-  // machine accounts are associated to companies on creation.
+  // machine accounts are associated to organizations on creation.
   string org_id = 1 [
     (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true

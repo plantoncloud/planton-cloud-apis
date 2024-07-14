@@ -22,10 +22,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	BillingAccountQueryController_ListBillingAccounts_FullMethodName                      = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/listBillingAccounts"
-	BillingAccountQueryController_GetBillingAccountByBillingAccountId_FullMethodName      = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByBillingAccountId"
-	BillingAccountQueryController_GetBillingAccountByOrganizationId_FullMethodName        = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByOrganizationId"
-	BillingAccountQueryController_GetCustomerPortalSessionByOrganizationId_FullMethodName = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getCustomerPortalSessionByOrganizationId"
+	BillingAccountQueryController_ListBillingAccounts_FullMethodName                 = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/listBillingAccounts"
+	BillingAccountQueryController_GetBillingAccountByBillingAccountId_FullMethodName = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByBillingAccountId"
+	BillingAccountQueryController_GetBillingAccountByOrgId_FullMethodName            = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getBillingAccountByOrgId"
+	BillingAccountQueryController_GetCustomerPortalSessionByOrgId_FullMethodName     = "/cloud.planton.apis.billing.v1.billingaccount.service.BillingAccountQueryController/getCustomerPortalSessionByOrgId"
 )
 
 // BillingAccountQueryControllerClient is the client API for BillingAccountQueryController service.
@@ -37,10 +37,10 @@ type BillingAccountQueryControllerClient interface {
 	// lookup billing account using billing account id.
 	GetBillingAccountByBillingAccountId(ctx context.Context, in *model.BillingAccountId, opts ...grpc.CallOption) (*model.BillingAccount, error)
 	// lookup billing account using organization id.
-	GetBillingAccountByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.BillingAccount, error)
+	GetBillingAccountByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.BillingAccount, error)
 	// get customer portal session.
 	// https://stripe.com/docs/api/customer_portal/sessions/create
-	GetCustomerPortalSessionByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.GetCustomerPortalSessionQueryResp, error)
+	GetCustomerPortalSessionByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.GetCustomerPortalSessionQueryResp, error)
 }
 
 type billingAccountQueryControllerClient struct {
@@ -69,18 +69,18 @@ func (c *billingAccountQueryControllerClient) GetBillingAccountByBillingAccountI
 	return out, nil
 }
 
-func (c *billingAccountQueryControllerClient) GetBillingAccountByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.BillingAccount, error) {
+func (c *billingAccountQueryControllerClient) GetBillingAccountByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.BillingAccount, error) {
 	out := new(model.BillingAccount)
-	err := c.cc.Invoke(ctx, BillingAccountQueryController_GetBillingAccountByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, BillingAccountQueryController_GetBillingAccountByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *billingAccountQueryControllerClient) GetCustomerPortalSessionByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.GetCustomerPortalSessionQueryResp, error) {
+func (c *billingAccountQueryControllerClient) GetCustomerPortalSessionByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.GetCustomerPortalSessionQueryResp, error) {
 	out := new(model.GetCustomerPortalSessionQueryResp)
-	err := c.cc.Invoke(ctx, BillingAccountQueryController_GetCustomerPortalSessionByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, BillingAccountQueryController_GetCustomerPortalSessionByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,10 +96,10 @@ type BillingAccountQueryControllerServer interface {
 	// lookup billing account using billing account id.
 	GetBillingAccountByBillingAccountId(context.Context, *model.BillingAccountId) (*model.BillingAccount, error)
 	// lookup billing account using organization id.
-	GetBillingAccountByOrganizationId(context.Context, *model1.OrganizationId) (*model.BillingAccount, error)
+	GetBillingAccountByOrgId(context.Context, *model1.OrgId) (*model.BillingAccount, error)
 	// get customer portal session.
 	// https://stripe.com/docs/api/customer_portal/sessions/create
-	GetCustomerPortalSessionByOrganizationId(context.Context, *model1.OrganizationId) (*model.GetCustomerPortalSessionQueryResp, error)
+	GetCustomerPortalSessionByOrgId(context.Context, *model1.OrgId) (*model.GetCustomerPortalSessionQueryResp, error)
 }
 
 // UnimplementedBillingAccountQueryControllerServer should be embedded to have forward compatible implementations.
@@ -112,11 +112,11 @@ func (UnimplementedBillingAccountQueryControllerServer) ListBillingAccounts(cont
 func (UnimplementedBillingAccountQueryControllerServer) GetBillingAccountByBillingAccountId(context.Context, *model.BillingAccountId) (*model.BillingAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBillingAccountByBillingAccountId not implemented")
 }
-func (UnimplementedBillingAccountQueryControllerServer) GetBillingAccountByOrganizationId(context.Context, *model1.OrganizationId) (*model.BillingAccount, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBillingAccountByOrganizationId not implemented")
+func (UnimplementedBillingAccountQueryControllerServer) GetBillingAccountByOrgId(context.Context, *model1.OrgId) (*model.BillingAccount, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBillingAccountByOrgId not implemented")
 }
-func (UnimplementedBillingAccountQueryControllerServer) GetCustomerPortalSessionByOrganizationId(context.Context, *model1.OrganizationId) (*model.GetCustomerPortalSessionQueryResp, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerPortalSessionByOrganizationId not implemented")
+func (UnimplementedBillingAccountQueryControllerServer) GetCustomerPortalSessionByOrgId(context.Context, *model1.OrgId) (*model.GetCustomerPortalSessionQueryResp, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerPortalSessionByOrgId not implemented")
 }
 
 // UnsafeBillingAccountQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -166,38 +166,38 @@ func _BillingAccountQueryController_GetBillingAccountByBillingAccountId_Handler(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingAccountQueryController_GetBillingAccountByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+func _BillingAccountQueryController_GetBillingAccountByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingAccountQueryControllerServer).GetBillingAccountByOrganizationId(ctx, in)
+		return srv.(BillingAccountQueryControllerServer).GetBillingAccountByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingAccountQueryController_GetBillingAccountByOrganizationId_FullMethodName,
+		FullMethod: BillingAccountQueryController_GetBillingAccountByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingAccountQueryControllerServer).GetBillingAccountByOrganizationId(ctx, req.(*model1.OrganizationId))
+		return srv.(BillingAccountQueryControllerServer).GetBillingAccountByOrgId(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _BillingAccountQueryController_GetCustomerPortalSessionByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+func _BillingAccountQueryController_GetCustomerPortalSessionByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BillingAccountQueryControllerServer).GetCustomerPortalSessionByOrganizationId(ctx, in)
+		return srv.(BillingAccountQueryControllerServer).GetCustomerPortalSessionByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: BillingAccountQueryController_GetCustomerPortalSessionByOrganizationId_FullMethodName,
+		FullMethod: BillingAccountQueryController_GetCustomerPortalSessionByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BillingAccountQueryControllerServer).GetCustomerPortalSessionByOrganizationId(ctx, req.(*model1.OrganizationId))
+		return srv.(BillingAccountQueryControllerServer).GetCustomerPortalSessionByOrgId(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -218,12 +218,12 @@ var BillingAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _BillingAccountQueryController_GetBillingAccountByBillingAccountId_Handler,
 		},
 		{
-			MethodName: "getBillingAccountByOrganizationId",
-			Handler:    _BillingAccountQueryController_GetBillingAccountByOrganizationId_Handler,
+			MethodName: "getBillingAccountByOrgId",
+			Handler:    _BillingAccountQueryController_GetBillingAccountByOrgId_Handler,
 		},
 		{
-			MethodName: "getCustomerPortalSessionByOrganizationId",
-			Handler:    _BillingAccountQueryController_GetCustomerPortalSessionByOrganizationId_Handler,
+			MethodName: "getCustomerPortalSessionByOrgId",
+			Handler:    _BillingAccountQueryController_GetCustomerPortalSessionByOrgId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

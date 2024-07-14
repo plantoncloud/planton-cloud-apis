@@ -21,8 +21,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	OrganizationQueryController_GetById_FullMethodName       = "/cloud.planton.apis.resourcemanager.v1.organization.service.OrganizationQueryController/getById"
-	OrganizationQueryController_FindCompanies_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.organization.service.OrganizationQueryController/findCompanies"
+	OrganizationQueryController_GetById_FullMethodName           = "/cloud.planton.apis.resourcemanager.v1.organization.service.OrganizationQueryController/getById"
+	OrganizationQueryController_FindOrganizations_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.organization.service.OrganizationQueryController/findOrganizations"
 )
 
 // OrganizationQueryControllerClient is the client API for OrganizationQueryController service.
@@ -30,8 +30,8 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OrganizationQueryControllerClient interface {
 	// get a organization using organization id
-	GetById(ctx context.Context, in *model.OrganizationId, opts ...grpc.CallOption) (*model.Organization, error)
-	FindCompanies(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.Companies, error)
+	GetById(ctx context.Context, in *model.OrgId, opts ...grpc.CallOption) (*model.Organization, error)
+	FindOrganizations(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.Organizations, error)
 }
 
 type organizationQueryControllerClient struct {
@@ -42,7 +42,7 @@ func NewOrganizationQueryControllerClient(cc grpc.ClientConnInterface) Organizat
 	return &organizationQueryControllerClient{cc}
 }
 
-func (c *organizationQueryControllerClient) GetById(ctx context.Context, in *model.OrganizationId, opts ...grpc.CallOption) (*model.Organization, error) {
+func (c *organizationQueryControllerClient) GetById(ctx context.Context, in *model.OrgId, opts ...grpc.CallOption) (*model.Organization, error) {
 	out := new(model.Organization)
 	err := c.cc.Invoke(ctx, OrganizationQueryController_GetById_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -51,9 +51,9 @@ func (c *organizationQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *organizationQueryControllerClient) FindCompanies(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.Companies, error) {
-	out := new(model.Companies)
-	err := c.cc.Invoke(ctx, OrganizationQueryController_FindCompanies_FullMethodName, in, out, opts...)
+func (c *organizationQueryControllerClient) FindOrganizations(ctx context.Context, in *protobuf.CustomEmpty, opts ...grpc.CallOption) (*model.Organizations, error) {
+	out := new(model.Organizations)
+	err := c.cc.Invoke(ctx, OrganizationQueryController_FindOrganizations_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,19 +65,19 @@ func (c *organizationQueryControllerClient) FindCompanies(ctx context.Context, i
 // for forward compatibility
 type OrganizationQueryControllerServer interface {
 	// get a organization using organization id
-	GetById(context.Context, *model.OrganizationId) (*model.Organization, error)
-	FindCompanies(context.Context, *protobuf.CustomEmpty) (*model.Companies, error)
+	GetById(context.Context, *model.OrgId) (*model.Organization, error)
+	FindOrganizations(context.Context, *protobuf.CustomEmpty) (*model.Organizations, error)
 }
 
 // UnimplementedOrganizationQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedOrganizationQueryControllerServer struct {
 }
 
-func (UnimplementedOrganizationQueryControllerServer) GetById(context.Context, *model.OrganizationId) (*model.Organization, error) {
+func (UnimplementedOrganizationQueryControllerServer) GetById(context.Context, *model.OrgId) (*model.Organization, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedOrganizationQueryControllerServer) FindCompanies(context.Context, *protobuf.CustomEmpty) (*model.Companies, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindCompanies not implemented")
+func (UnimplementedOrganizationQueryControllerServer) FindOrganizations(context.Context, *protobuf.CustomEmpty) (*model.Organizations, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindOrganizations not implemented")
 }
 
 // UnsafeOrganizationQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -92,7 +92,7 @@ func RegisterOrganizationQueryControllerServer(s grpc.ServiceRegistrar, srv Orga
 }
 
 func _OrganizationQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OrganizationId)
+	in := new(model.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -104,25 +104,25 @@ func _OrganizationQueryController_GetById_Handler(srv interface{}, ctx context.C
 		FullMethod: OrganizationQueryController_GetById_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationQueryControllerServer).GetById(ctx, req.(*model.OrganizationId))
+		return srv.(OrganizationQueryControllerServer).GetById(ctx, req.(*model.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OrganizationQueryController_FindCompanies_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _OrganizationQueryController_FindOrganizations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(protobuf.CustomEmpty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OrganizationQueryControllerServer).FindCompanies(ctx, in)
+		return srv.(OrganizationQueryControllerServer).FindOrganizations(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: OrganizationQueryController_FindCompanies_FullMethodName,
+		FullMethod: OrganizationQueryController_FindOrganizations_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationQueryControllerServer).FindCompanies(ctx, req.(*protobuf.CustomEmpty))
+		return srv.(OrganizationQueryControllerServer).FindOrganizations(ctx, req.(*protobuf.CustomEmpty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -139,8 +139,8 @@ var OrganizationQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrganizationQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findCompanies",
-			Handler:    _OrganizationQueryController_FindCompanies_Handler,
+			MethodName: "findOrganizations",
+			Handler:    _OrganizationQueryController_FindOrganizations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

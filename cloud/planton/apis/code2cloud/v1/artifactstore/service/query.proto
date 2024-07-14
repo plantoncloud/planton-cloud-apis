@@ -57,7 +57,7 @@ service ArtifactStoreQueryController {
   }
 
   //look up artifact-stores by organization id.
-  rpc findByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;

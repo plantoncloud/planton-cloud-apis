@@ -28,7 +28,7 @@ service KubeClusterQueryController {
   }
 
   // find kube-clusters by organization id
-  rpc findByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
@@ -49,7 +49,7 @@ service KubeClusterQueryController {
   // this will be used to populate drop down of kube-clusters in create environment form.
   // the response should only include kube-clusters that a organization is authorised to create environment.
   // the authorization is verified by looking up kube-clusters with `organization-environment-creator` relation with the organization id provided in input.
-  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc findEnvironmentCreateKubeClusters(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterList){
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;

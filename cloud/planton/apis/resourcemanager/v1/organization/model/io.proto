@@ -4,8 +4,8 @@ package cloud.planton.apis.resourcemanager.v1.organization.model;
 
 import "cloud/planton/apis/resourcemanager/v1/organization/model/state.proto";
 
-// list of companies
-message Companies {
+// list of organizations
+message Organizations {
   repeated Organization entries = 2;
 }
 
@@ -16,6 +16,6 @@ message OrganizationList {
 }
 
 // wrapper for organization id
-message OrganizationId {
+message OrgId {
   string value = 1;
 }

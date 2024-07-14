@@ -20,7 +20,7 @@ service CloudAccountQueryController {
   //find cloud-accounts by organization id.
   //the response should only include cloud-accounts in a organization that the authenticated user account has viewer access to.
   //authorization is handled internally by running get authorized cloud account ids
-  rpc findByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
+  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -31,7 +31,7 @@ service CloudAccountQueryController {
   // the response should only include cloud-accounts that a organization is authorised to create artifact stores.
   // the authorization is verified by looking up cloud-accounts with `organization-artifact-creator` relation for the organization id provided in input.
   // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-  rpc findArtifactStoreCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
+  rpc findArtifactStoreCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -42,7 +42,7 @@ service CloudAccountQueryController {
   // the response should only include cloud-accounts that a organization is authorised to create kube-cluster.
   // the authorization is verified by looking up cloud-accounts with `organization-kube-cluster-creator` relation for the organization id provided in input.
   // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-  rpc findKubeClusterCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
+  rpc findKubeClusterCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -53,7 +53,7 @@ service CloudAccountQueryController {
   // the response should only include cloud-accounts that a organization is authorised to create dns managed zone.
   // the authorization is verified by looking up cloud-accounts with `organization-dns-managed-zone-creator` relation for the organization id provided in input.
   // the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-  rpc findDnsZoneCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
+  rpc findDnsZoneCreateCloudAccounts(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.cloudaccount.model.CloudAccountList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

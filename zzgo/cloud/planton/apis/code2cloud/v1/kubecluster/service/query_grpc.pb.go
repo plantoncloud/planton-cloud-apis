@@ -26,7 +26,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	KubeClusterQueryController_GetById_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/getById"
-	KubeClusterQueryController_FindByOrganizationId_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByOrganizationId"
+	KubeClusterQueryController_FindByOrgId_FullMethodName                       = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByOrgId"
 	KubeClusterQueryController_FindByCloudAccountId_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findByCloudAccountId"
 	KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubecluster.service.KubeClusterQueryController/findEnvironmentCreateKubeClusters"
 )
@@ -38,14 +38,14 @@ type KubeClusterQueryControllerClient interface {
 	// lookup kube-cluster using kube-cluster id
 	GetById(ctx context.Context, in *model.KubeClusterId, opts ...grpc.CallOption) (*model.KubeCluster, error)
 	// find kube-clusters by organization id
-	FindByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
+	FindByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// find kube-clusters in a cloud account.
 	FindByCloudAccountId(ctx context.Context, in *model2.CloudAccountId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 	// find kube-clusters by organization id to create environment.
 	// this will be used to populate drop down of kube-clusters in create environment form.
 	// the response should only include kube-clusters that a organization is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `organization-environment-creator` relation with the organization id provided in input.
-	FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
+	FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.KubeClusterList, error)
 }
 
 type kubeClusterQueryControllerClient struct {
@@ -65,9 +65,9 @@ func (c *kubeClusterQueryControllerClient) GetById(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
+func (c *kubeClusterQueryControllerClient) FindByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
 	out := new(model.KubeClusterList)
-	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func (c *kubeClusterQueryControllerClient) FindByCloudAccountId(ctx context.Cont
 	return out, nil
 }
 
-func (c *kubeClusterQueryControllerClient) FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
+func (c *kubeClusterQueryControllerClient) FindEnvironmentCreateKubeClusters(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.KubeClusterList, error) {
 	out := new(model.KubeClusterList)
 	err := c.cc.Invoke(ctx, KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -99,14 +99,14 @@ type KubeClusterQueryControllerServer interface {
 	// lookup kube-cluster using kube-cluster id
 	GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error)
 	// find kube-clusters by organization id
-	FindByOrganizationId(context.Context, *model1.OrganizationId) (*model.KubeClusterList, error)
+	FindByOrgId(context.Context, *model1.OrgId) (*model.KubeClusterList, error)
 	// find kube-clusters in a cloud account.
 	FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusterList, error)
 	// find kube-clusters by organization id to create environment.
 	// this will be used to populate drop down of kube-clusters in create environment form.
 	// the response should only include kube-clusters that a organization is authorised to create environment.
 	// the authorization is verified by looking up kube-clusters with `organization-environment-creator` relation with the organization id provided in input.
-	FindEnvironmentCreateKubeClusters(context.Context, *model1.OrganizationId) (*model.KubeClusterList, error)
+	FindEnvironmentCreateKubeClusters(context.Context, *model1.OrgId) (*model.KubeClusterList, error)
 }
 
 // UnimplementedKubeClusterQueryControllerServer should be embedded to have forward compatible implementations.
@@ -116,13 +116,13 @@ type UnimplementedKubeClusterQueryControllerServer struct {
 func (UnimplementedKubeClusterQueryControllerServer) GetById(context.Context, *model.KubeClusterId) (*model.KubeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindByOrganizationId(context.Context, *model1.OrganizationId) (*model.KubeClusterList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
+func (UnimplementedKubeClusterQueryControllerServer) FindByOrgId(context.Context, *model1.OrgId) (*model.KubeClusterList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrgId not implemented")
 }
 func (UnimplementedKubeClusterQueryControllerServer) FindByCloudAccountId(context.Context, *model2.CloudAccountId) (*model.KubeClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByCloudAccountId not implemented")
 }
-func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeClusters(context.Context, *model1.OrganizationId) (*model.KubeClusterList, error) {
+func (UnimplementedKubeClusterQueryControllerServer) FindEnvironmentCreateKubeClusters(context.Context, *model1.OrgId) (*model.KubeClusterList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindEnvironmentCreateKubeClusters not implemented")
 }
 
@@ -155,20 +155,20 @@ func _KubeClusterQueryController_GetById_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KubeClusterQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+func _KubeClusterQueryController_FindByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(KubeClusterQueryControllerServer).FindByOrganizationId(ctx, in)
+		return srv.(KubeClusterQueryControllerServer).FindByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: KubeClusterQueryController_FindByOrganizationId_FullMethodName,
+		FullMethod: KubeClusterQueryController_FindByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).FindByOrganizationId(ctx, req.(*model1.OrganizationId))
+		return srv.(KubeClusterQueryControllerServer).FindByOrgId(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -192,7 +192,7 @@ func _KubeClusterQueryController_FindByCloudAccountId_Handler(srv interface{}, c
 }
 
 func _KubeClusterQueryController_FindEnvironmentCreateKubeClusters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -204,7 +204,7 @@ func _KubeClusterQueryController_FindEnvironmentCreateKubeClusters_Handler(srv i
 		FullMethod: KubeClusterQueryController_FindEnvironmentCreateKubeClusters_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubeClusterQueryControllerServer).FindEnvironmentCreateKubeClusters(ctx, req.(*model1.OrganizationId))
+		return srv.(KubeClusterQueryControllerServer).FindEnvironmentCreateKubeClusters(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -221,8 +221,8 @@ var KubeClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _KubeClusterQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByOrganizationId",
-			Handler:    _KubeClusterQueryController_FindByOrganizationId_Handler,
+			MethodName: "findByOrgId",
+			Handler:    _KubeClusterQueryController_FindByOrgId_Handler,
 		},
 		{
 			MethodName: "findByCloudAccountId",

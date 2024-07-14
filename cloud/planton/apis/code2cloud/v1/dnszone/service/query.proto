@@ -16,7 +16,7 @@ service DnsZoneQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = dns_zone;
   // find dns-zones by organization id
   //the response should only include dns-zones in a organization that the authenticated user account has viewer access to.
-  rpc findByOrganizationId(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId)
+  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
       returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;

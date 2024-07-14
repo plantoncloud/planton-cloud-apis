@@ -47,7 +47,7 @@ message IamRoleSpec {
   // description of iam role
   string description = 4;
   // flag to identify if the role can be used to grant public access
-  // by public it is to grant access to all companies in the platform
+  // by public it is to grant access to all organizations in the platform
   bool is_public = 5;
 }
 

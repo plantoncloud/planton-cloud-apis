@@ -131,7 +131,7 @@ type IamRoleSpec struct {
 	// description of iam role
 	Description string `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
 	// flag to identify if the role can be used to grant public access
-	// by public it is to grant access to all companies in the platform
+	// by public it is to grant access to all organizations in the platform
 	IsPublic bool `protobuf:"varint,5,opt,name=is_public,json=isPublic,proto3" json:"is_public,omitempty"`
 }
 

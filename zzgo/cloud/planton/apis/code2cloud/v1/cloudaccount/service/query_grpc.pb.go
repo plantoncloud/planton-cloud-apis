@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	CloudAccountQueryController_GetById_FullMethodName                              = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/getById"
-	CloudAccountQueryController_FindByOrganizationId_FullMethodName                 = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findByOrganizationId"
+	CloudAccountQueryController_FindByOrgId_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findByOrgId"
 	CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_FullMethodName = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findArtifactStoreCreateCloudAccounts"
 	CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_FullMethodName   = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findKubeClusterCreateCloudAccounts"
 	CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_FullMethodName       = "/cloud.planton.apis.code2cloud.v1.cloudaccount.service.CloudAccountQueryController/findDnsZoneCreateCloudAccounts"
@@ -37,25 +37,25 @@ type CloudAccountQueryControllerClient interface {
 	// find cloud-accounts by organization id.
 	// the response should only include cloud-accounts in a organization that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
-	FindByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
+	FindByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a organization is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `organization-artifact-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
+	FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a organization is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `organization-kube-cluster-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
+	FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a organization is authorised to create dns managed zone.
 	// the authorization is verified by looking up cloud-accounts with `organization-dns-managed-zone-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
+	FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error)
 }
 
 type cloudAccountQueryControllerClient struct {
@@ -75,16 +75,16 @@ func (c *cloudAccountQueryControllerClient) GetById(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+func (c *cloudAccountQueryControllerClient) FindByOrgId(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
 	out := new(model.CloudAccountList)
-	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
 	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -93,7 +93,7 @@ func (c *cloudAccountQueryControllerClient) FindArtifactStoreCreateCloudAccounts
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
 	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -102,7 +102,7 @@ func (c *cloudAccountQueryControllerClient) FindKubeClusterCreateCloudAccounts(c
 	return out, nil
 }
 
-func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.OrganizationId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
+func (c *cloudAccountQueryControllerClient) FindDnsZoneCreateCloudAccounts(ctx context.Context, in *model1.OrgId, opts ...grpc.CallOption) (*model.CloudAccountList, error) {
 	out := new(model.CloudAccountList)
 	err := c.cc.Invoke(ctx, CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -120,25 +120,25 @@ type CloudAccountQueryControllerServer interface {
 	// find cloud-accounts by organization id.
 	// the response should only include cloud-accounts in a organization that the authenticated user account has viewer access to.
 	// authorization is handled internally by running get authorized cloud account ids
-	FindByOrganizationId(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error)
+	FindByOrgId(context.Context, *model1.OrgId) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create artifact store.
 	// this will be used to populate drop down of cloud-accounts in create artifact store form.
 	// the response should only include cloud-accounts that a organization is authorised to create artifact stores.
 	// the authorization is verified by looking up cloud-accounts with `organization-artifact-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindArtifactStoreCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error)
+	FindArtifactStoreCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create kube-cluster.
 	// this will be used to populate drop down of cloud-accounts in create kube-cluster form.
 	// the response should only include cloud-accounts that a organization is authorised to create kube-cluster.
 	// the authorization is verified by looking up cloud-accounts with `organization-kube-cluster-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindKubeClusterCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error)
+	FindKubeClusterCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error)
 	// find cloud-accounts by organization id to create dns managed zone.
 	// this will be used to populate drop down of cloud-accounts in create dns managed zone form.
 	// the response should only include cloud-accounts that a organization is authorised to create dns managed zone.
 	// the authorization is verified by looking up cloud-accounts with `organization-dns-managed-zone-creator` relation for the organization id provided in input.
 	// the response should only include public attributes of a cloud-account. all non-public attributes should be excluded from the response.
-	FindDnsZoneCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error)
+	FindDnsZoneCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error)
 }
 
 // UnimplementedCloudAccountQueryControllerServer should be embedded to have forward compatible implementations.
@@ -148,16 +148,16 @@ type UnimplementedCloudAccountQueryControllerServer struct {
 func (UnimplementedCloudAccountQueryControllerServer) GetById(context.Context, *model.CloudAccountId) (*model.CloudAccount, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindByOrganizationId(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
+func (UnimplementedCloudAccountQueryControllerServer) FindByOrgId(context.Context, *model1.OrgId) (*model.CloudAccountList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrgId not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindArtifactStoreCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindArtifactStoreCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindArtifactStoreCreateCloudAccounts not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindKubeClusterCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindKubeClusterCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindKubeClusterCreateCloudAccounts not implemented")
 }
-func (UnimplementedCloudAccountQueryControllerServer) FindDnsZoneCreateCloudAccounts(context.Context, *model1.OrganizationId) (*model.CloudAccountList, error) {
+func (UnimplementedCloudAccountQueryControllerServer) FindDnsZoneCreateCloudAccounts(context.Context, *model1.OrgId) (*model.CloudAccountList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindDnsZoneCreateCloudAccounts not implemented")
 }
 
@@ -190,26 +190,26 @@ func _CloudAccountQueryController_GetById_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CloudAccountQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+func _CloudAccountQueryController_FindByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CloudAccountQueryControllerServer).FindByOrganizationId(ctx, in)
+		return srv.(CloudAccountQueryControllerServer).FindByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CloudAccountQueryController_FindByOrganizationId_FullMethodName,
+		FullMethod: CloudAccountQueryController_FindByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountQueryControllerServer).FindByOrganizationId(ctx, req.(*model1.OrganizationId))
+		return srv.(CloudAccountQueryControllerServer).FindByOrgId(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -221,13 +221,13 @@ func _CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_Handler(s
 		FullMethod: CloudAccountQueryController_FindArtifactStoreCreateCloudAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountQueryControllerServer).FindArtifactStoreCreateCloudAccounts(ctx, req.(*model1.OrganizationId))
+		return srv.(CloudAccountQueryControllerServer).FindArtifactStoreCreateCloudAccounts(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -239,13 +239,13 @@ func _CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_Handler(srv
 		FullMethod: CloudAccountQueryController_FindKubeClusterCreateCloudAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountQueryControllerServer).FindKubeClusterCreateCloudAccounts(ctx, req.(*model1.OrganizationId))
+		return srv.(CloudAccountQueryControllerServer).FindKubeClusterCreateCloudAccounts(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.OrganizationId)
+	in := new(model1.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -257,7 +257,7 @@ func _CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_Handler(srv int
 		FullMethod: CloudAccountQueryController_FindDnsZoneCreateCloudAccounts_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CloudAccountQueryControllerServer).FindDnsZoneCreateCloudAccounts(ctx, req.(*model1.OrganizationId))
+		return srv.(CloudAccountQueryControllerServer).FindDnsZoneCreateCloudAccounts(ctx, req.(*model1.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -274,8 +274,8 @@ var CloudAccountQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CloudAccountQueryController_GetById_Handler,
 		},
 		{
-			MethodName: "findByOrganizationId",
-			Handler:    _CloudAccountQueryController_FindByOrganizationId_Handler,
+			MethodName: "findByOrgId",
+			Handler:    _CloudAccountQueryController_FindByOrgId_Handler,
 		},
 		{
 			MethodName: "findArtifactStoreCreateCloudAccounts",

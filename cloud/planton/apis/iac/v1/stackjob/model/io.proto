@@ -42,10 +42,10 @@ message StackJobList {
   repeated StackJob entries = 2;
 }
 
-// GetStackJobMinutesByOrganizationIdInput is intended for requests to retrieve the total minutes of stack job
+// GetStackJobMinutesByOrgIdInput is intended for requests to retrieve the total minutes of stack job
 // processing or usage associated with a given organization. It focuses on identifying the organization in question,
 // facilitating the aggregation or reporting of stack job minutes at the organization level.
-message GetStackJobMinutesByOrganizationIdInput {
+message GetStackJobMinutesByOrgIdInput {
   // org_id uniquely identifies a organization within the system. The field is formatted as a string.
   string org_id = 1;
 }
@@ -59,11 +59,11 @@ message StackJobMinutesCurrentAndPreviousMonth {
   double previous_month_minutes = 2;
 }
 
-// GetPulumiResourceCountByOrganizationIdInput is used for making requests to obtain the count of Pulumi
+// GetPulumiResourceCountByOrgIdInput is used for making requests to obtain the count of Pulumi
 // resources associated with a specified organization. The inclusion of the org_id field allows for
 // targeted queries to assess the scope of Pulumi resource utilization within a particular organization,
 // supporting resource management, auditing, and planning activities in cloud infrastructure and development operations.
-message GetPulumiResourceCountByOrganizationIdInput {
+message GetPulumiResourceCountByOrgIdInput {
   // org_id uniquely identifies a organization within the system. The field is formatted as a string.
   string org_id = 1;
 }
@@ -80,7 +80,7 @@ message TotalPulumiResourceCount {
 
 // GetPulumiResourceCountByContextInput is used to request the count of Pulumi resources
 // associated with a specific organization and environments within the system. The system uniquely identifies
-// companies and environments by their respective IDs, and this message is utilized to retrieve resource
+// organizations and environments by their respective IDs, and this message is utilized to retrieve resource
 // counts for targeted organization-environment combinations.
 message GetPulumiResourceCountByContextInput {
   // org_id uniquely identifies a organization within the system.

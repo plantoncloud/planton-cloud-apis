@@ -130,7 +130,7 @@ type IdentityAccountSpec struct {
 	unknownFields protoimpl.UnknownFields
 
 	// this is only relevant in case of machine identity accounts.
-	// machine accounts are associated to companies on creation.
+	// machine accounts are associated to organizations on creation.
 	OrgId string `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
 	// identity account type to identify with the account is for a machine or user
 	IdentityAccountType identityaccounttype.IdentityAccountType `protobuf:"varint,2,opt,name=identity_account_type,json=identityAccountType,proto3,enum=cloud.planton.apis.iam.v1.identityaccount.enums.identityaccounttype.IdentityAccountType" json:"identity_account_type,omitempty"`

@@ -12,14 +12,14 @@ import "cloud/planton/apis/resourcemanager/v1/organization/model/state.proto";
 //organization query controller
 service OrganizationQueryController {
   // get a organization using organization id
-  rpc getById(cloud.planton.apis.resourcemanager.v1.organization.model.OrganizationId) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organization) {
+  rpc getById(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organization) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view organization details";
   }
 
-  rpc findCompanies(cloud.planton.apis.commons.protobuf.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Companies) {
+  rpc findOrganizations(cloud.planton.apis.commons.protobuf.CustomEmpty) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organizations) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
 }

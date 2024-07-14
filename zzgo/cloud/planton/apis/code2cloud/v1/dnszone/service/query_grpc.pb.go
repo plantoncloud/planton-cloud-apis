@@ -22,7 +22,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	DnsZoneQueryController_FindByOrganizationId_FullMethodName                = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/findByOrganizationId"
+	DnsZoneQueryController_FindByOrgId_FullMethodName                         = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/findByOrgId"
 	DnsZoneQueryController_GetById_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/getById"
 	DnsZoneQueryController_GetExactOrParentDnsZoneByDomainName_FullMethodName = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/getExactOrParentDnsZoneByDomainName"
 	DnsZoneQueryController_IsNameserversDelegated_FullMethodName              = "/cloud.planton.apis.code2cloud.v1.dnszone.service.DnsZoneQueryController/isNameserversDelegated"
@@ -34,7 +34,7 @@ const (
 type DnsZoneQueryControllerClient interface {
 	// find dns-zones by organization id
 	// the response should only include dns-zones in a organization that the authenticated user account has viewer access to.
-	FindByOrganizationId(ctx context.Context, in *model.OrganizationId, opts ...grpc.CallOption) (*model1.DnsZoneList, error)
+	FindByOrgId(ctx context.Context, in *model.OrgId, opts ...grpc.CallOption) (*model1.DnsZoneList, error)
 	// get details of a dns-zone id
 	GetById(ctx context.Context, in *model1.DnsZoneId, opts ...grpc.CallOption) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
@@ -51,9 +51,9 @@ func NewDnsZoneQueryControllerClient(cc grpc.ClientConnInterface) DnsZoneQueryCo
 	return &dnsZoneQueryControllerClient{cc}
 }
 
-func (c *dnsZoneQueryControllerClient) FindByOrganizationId(ctx context.Context, in *model.OrganizationId, opts ...grpc.CallOption) (*model1.DnsZoneList, error) {
+func (c *dnsZoneQueryControllerClient) FindByOrgId(ctx context.Context, in *model.OrgId, opts ...grpc.CallOption) (*model1.DnsZoneList, error) {
 	out := new(model1.DnsZoneList)
-	err := c.cc.Invoke(ctx, DnsZoneQueryController_FindByOrganizationId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, DnsZoneQueryController_FindByOrgId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,7 +93,7 @@ func (c *dnsZoneQueryControllerClient) IsNameserversDelegated(ctx context.Contex
 type DnsZoneQueryControllerServer interface {
 	// find dns-zones by organization id
 	// the response should only include dns-zones in a organization that the authenticated user account has viewer access to.
-	FindByOrganizationId(context.Context, *model.OrganizationId) (*model1.DnsZoneList, error)
+	FindByOrgId(context.Context, *model.OrgId) (*model1.DnsZoneList, error)
 	// get details of a dns-zone id
 	GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error)
 	// get details of the exact or a parent of the provided dns-zone name
@@ -106,8 +106,8 @@ type DnsZoneQueryControllerServer interface {
 type UnimplementedDnsZoneQueryControllerServer struct {
 }
 
-func (UnimplementedDnsZoneQueryControllerServer) FindByOrganizationId(context.Context, *model.OrganizationId) (*model1.DnsZoneList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method FindByOrganizationId not implemented")
+func (UnimplementedDnsZoneQueryControllerServer) FindByOrgId(context.Context, *model.OrgId) (*model1.DnsZoneList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindByOrgId not implemented")
 }
 func (UnimplementedDnsZoneQueryControllerServer) GetById(context.Context, *model1.DnsZoneId) (*model1.DnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
@@ -130,20 +130,20 @@ func RegisterDnsZoneQueryControllerServer(s grpc.ServiceRegistrar, srv DnsZoneQu
 	s.RegisterService(&DnsZoneQueryController_ServiceDesc, srv)
 }
 
-func _DnsZoneQueryController_FindByOrganizationId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.OrganizationId)
+func _DnsZoneQueryController_FindByOrgId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.OrgId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(DnsZoneQueryControllerServer).FindByOrganizationId(ctx, in)
+		return srv.(DnsZoneQueryControllerServer).FindByOrgId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: DnsZoneQueryController_FindByOrganizationId_FullMethodName,
+		FullMethod: DnsZoneQueryController_FindByOrgId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DnsZoneQueryControllerServer).FindByOrganizationId(ctx, req.(*model.OrganizationId))
+		return srv.(DnsZoneQueryControllerServer).FindByOrgId(ctx, req.(*model.OrgId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -210,8 +210,8 @@ var DnsZoneQueryController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DnsZoneQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "findByOrganizationId",
-			Handler:    _DnsZoneQueryController_FindByOrganizationId_Handler,
+			MethodName: "findByOrgId",
+			Handler:    _DnsZoneQueryController_FindByOrgId_Handler,
 		},
 		{
 			MethodName: "getById",

@@ -17,7 +17,7 @@ message EnvironmentId {
   ];
 }
 
-message GetByOrganizationIdAndEnvironmentNameQueryInput {
+message GetByOrgIdAndEnvironmentNameQueryInput {
   string org_id = 1 [
     (buf.validate.field).required = true
   ];
