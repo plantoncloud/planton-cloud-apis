@@ -349,7 +349,7 @@ message ApiResourceEnvironmentInfo {
 
   //environment name
   //value is computed from the environment.
-  string environment_name = 3 [
+  string env_name = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 

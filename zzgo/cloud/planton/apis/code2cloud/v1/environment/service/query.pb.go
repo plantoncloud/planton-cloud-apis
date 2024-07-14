@@ -66,7 +66,7 @@ var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_rawDes
 	0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x69, 0x6e, 0x74, 0x65, 0x67, 0x72, 0x61, 0x74,
 	0x69, 0x6f, 0x6e, 0x2f, 0x76, 0x31, 0x2f, 0x6b, 0x75, 0x62, 0x65, 0x72, 0x6e, 0x65, 0x74, 0x65,
 	0x73, 0x2f, 0x61, 0x70, 0x69, 0x72, 0x65, 0x73, 0x6f, 0x75, 0x72, 0x63, 0x65, 0x73, 0x2f, 0x6d,
-	0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x9c, 0x07,
+	0x6f, 0x64, 0x65, 0x6c, 0x2f, 0x69, 0x6f, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x32, 0x8c, 0x07,
 	0x0a, 0x1a, 0x45, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x51, 0x75, 0x65,
 	0x72, 0x79, 0x43, 0x6f, 0x6e, 0x74, 0x72, 0x6f, 0x6c, 0x6c, 0x65, 0x72, 0x12, 0xb8, 0x01, 0x0a,
 	0x07, 0x67, 0x65, 0x74, 0x42, 0x79, 0x49, 0x64, 0x12, 0x39, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
@@ -94,14 +94,13 @@ var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_rawDes
 	0x0e, 0x1a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x31, 0x75, 0x6e, 0x61, 0x75, 0x74, 0x68,
 	0x6f, 0x72, 0x69, 0x7a, 0x65, 0x64, 0x20, 0x74, 0x6f, 0x20, 0x6c, 0x69, 0x73, 0x74, 0x20, 0x65,
 	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x20, 0x6f, 0x66, 0x20, 0x6b,
-	0x75, 0x62, 0x65, 0x20, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0xe7, 0x01, 0x0a, 0x1c,
+	0x75, 0x62, 0x65, 0x20, 0x63, 0x6c, 0x75, 0x73, 0x74, 0x65, 0x72, 0x12, 0xd7, 0x01, 0x0a, 0x14,
 	0x67, 0x65, 0x74, 0x42, 0x79, 0x4f, 0x72, 0x67, 0x49, 0x64, 0x41, 0x6e, 0x64, 0x45, 0x6e, 0x76,
-	0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x5a, 0x2e, 0x63,
-	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69,
-	0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e,
-	0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x2e, 0x6d, 0x6f, 0x64, 0x65,
-	0x6c, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x79, 0x4f, 0x72, 0x67, 0x49, 0x64, 0x41, 0x6e, 0x64, 0x45,
-	0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d, 0x65, 0x6e, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x51, 0x75,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x52, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x64, 0x65, 0x32, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6e, 0x76, 0x69, 0x72, 0x6f, 0x6e, 0x6d,
+	0x65, 0x6e, 0x74, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x47, 0x65, 0x74, 0x42, 0x79, 0x4f,
+	0x72, 0x67, 0x49, 0x64, 0x41, 0x6e, 0x64, 0x45, 0x6e, 0x76, 0x4e, 0x61, 0x6d, 0x65, 0x51, 0x75,
 	0x65, 0x72, 0x79, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x1a, 0x3f, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64,
 	0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f,
 	0x64, 0x65, 0x32, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x76, 0x31, 0x2e, 0x65, 0x6e, 0x76, 0x69,
@@ -219,23 +218,23 @@ var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_rawDes
 }
 
 var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_goTypes = []interface{}{
-	(*model.EnvId)(nil),                                  // 0: cloud.planton.apis.code2cloud.v1.environment.model.EnvId
-	(*model1.KubeClusterId)(nil),                         // 1: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId
-	(*model.GetByOrgIdAndEnvironmentNameQueryInput)(nil), // 2: cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvironmentNameQueryInput
-	(*model.GetByEnvironmentSecretIdInput)(nil),          // 3: cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentSecretIdInput
-	(*model.GetByEnvironmentVariableIdInput)(nil),        // 4: cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentVariableIdInput
-	(*model.Environment)(nil),                            // 5: cloud.planton.apis.code2cloud.v1.environment.model.Environment
-	(*model.EnvironmentList)(nil),                        // 6: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList
-	(*gcp.GcpProject)(nil),                               // 7: cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject
-	(*model.EnvironmentSecret)(nil),                      // 8: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret
-	(*model.EnvironmentSecretValue)(nil),                 // 9: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecretValue
-	(*model.EnvironmentVariable)(nil),                    // 10: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariable
-	(*model.EnvironmentVariableValue)(nil),               // 11: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariableValue
+	(*model.EnvId)(nil),                           // 0: cloud.planton.apis.code2cloud.v1.environment.model.EnvId
+	(*model1.KubeClusterId)(nil),                  // 1: cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId
+	(*model.GetByOrgIdAndEnvNameQueryInput)(nil),  // 2: cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvNameQueryInput
+	(*model.GetByEnvironmentSecretIdInput)(nil),   // 3: cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentSecretIdInput
+	(*model.GetByEnvironmentVariableIdInput)(nil), // 4: cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentVariableIdInput
+	(*model.Environment)(nil),                     // 5: cloud.planton.apis.code2cloud.v1.environment.model.Environment
+	(*model.EnvironmentList)(nil),                 // 6: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList
+	(*gcp.GcpProject)(nil),                        // 7: cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject
+	(*model.EnvironmentSecret)(nil),               // 8: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret
+	(*model.EnvironmentSecretValue)(nil),          // 9: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecretValue
+	(*model.EnvironmentVariable)(nil),             // 10: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariable
+	(*model.EnvironmentVariableValue)(nil),        // 11: cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentVariableValue
 }
 var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_depIdxs = []int32{
 	0,  // 0: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getById:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.EnvId
 	1,  // 1: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.findByKubeClusterId:input_type -> cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId
-	2,  // 2: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getByOrgIdAndEnvironmentName:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvironmentNameQueryInput
+	2,  // 2: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getByOrgIdAndEnvName:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvNameQueryInput
 	0,  // 3: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getSecretsGcpProjectByEnvId:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.EnvId
 	3,  // 4: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentSecretQueryController.getById:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentSecretIdInput
 	3,  // 5: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentSecretQueryController.getValue:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentSecretIdInput
@@ -243,7 +242,7 @@ var file_cloud_planton_apis_code2cloud_v1_environment_service_query_proto_depIdx
 	4,  // 7: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentVariableQueryController.getValue:input_type -> cloud.planton.apis.code2cloud.v1.environment.model.GetByEnvironmentVariableIdInput
 	5,  // 8: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getById:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.Environment
 	6,  // 9: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.findByKubeClusterId:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentList
-	5,  // 10: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getByOrgIdAndEnvironmentName:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.Environment
+	5,  // 10: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getByOrgIdAndEnvName:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.Environment
 	7,  // 11: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentQueryController.getSecretsGcpProjectByEnvId:output_type -> cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject
 	8,  // 12: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentSecretQueryController.getById:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecret
 	9,  // 13: cloud.planton.apis.code2cloud.v1.environment.service.EnvironmentSecretQueryController.getValue:output_type -> cloud.planton.apis.code2cloud.v1.environment.model.EnvironmentSecretValue

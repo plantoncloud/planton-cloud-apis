@@ -32,7 +32,7 @@ service EnvironmentQueryController {
 
 
   //look up environment using by organization-id and environment name
-  rpc getByOrgIdAndEnvironmentName(cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvironmentNameQueryInput)
+  rpc getByOrgIdAndEnvName(cloud.planton.apis.code2cloud.v1.environment.model.GetByOrgIdAndEnvNameQueryInput)
       returns (cloud.planton.apis.code2cloud.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
