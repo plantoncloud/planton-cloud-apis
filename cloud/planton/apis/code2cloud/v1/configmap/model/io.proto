@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.configmap.model;
+
+import "buf/validate/validate.proto";
+
+//wrapper for config-map id field
+message ConfigMapId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

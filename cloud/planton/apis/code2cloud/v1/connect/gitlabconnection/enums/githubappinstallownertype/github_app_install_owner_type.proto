@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.codeserver.enums.githubappinstallownertype;
+
+enum GithubAppInstallOwnerType {
+  unspecified = 0;
+  user = 1;
+  org = 2;
+}

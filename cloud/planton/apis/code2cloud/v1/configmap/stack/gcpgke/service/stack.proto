@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.configmap.stack.gcpgke.service;
+
+import "cloud/planton/apis/resourcemanager/v1/environment/stack/gcpgke/model/io.proto";
+
+//build environment secrets stack controller
+service EnvironmentGcpGkeStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.configmap.stack.gcpgke.model.EnvironmentGcpGkeStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.configmap.stack.gcpgke.model.EnvironmentGcpGkeStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.configmap.stack.gcpgke.model.EnvironmentGcpGkeStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.configmap.stack.gcpgke.model.EnvironmentGcpGkeStackOutputs);
+}

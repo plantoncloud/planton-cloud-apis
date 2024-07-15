@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp;
+
+// gcp project
+// https://cloud.google.com/resource-manager/reference/rest/v2/folders
+message GcpFolder {
+  // id of the gcp project.
+  // ex: 498520640386.
+  string id = 1;
+  // display name for the folder.
+  // (important) a two character suffix starting with a hyphen is added at the end of the
+  // display name to allow recreating folders with same resource identifier on planton-cloud.
+  string display_name = 2;
+  // parent of the folder.
+  // parent can be either a gcp organization or another gcp folder.
+  string parent = 3;
+}
+
+// gcp project
+message GcpProject {
+  // name of the gcp project
+  string name = 1;
+  // id of the gcp project
+  string id = 2;
+  // number of the gcp project
+  string number = 3;
+  // id of the billing account
+  string billing_account_id = 4;
+}

@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.storagebucket.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/storagebucketprovider/storage_bucket_provider.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+//storage-bucket
+message StorageBucket {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = storage_bucket;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
+
+  //id format "bkt-<environment-id>-<normalized-storage-bucket-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
+  ];
+
+  //resource kind
+  string kind = 2 [
+    (buf.validate.field).string.const = "StorageBucket"
+  ];
+
+  //resource metadata
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+        id: "metadata.name",
+        message: "Name must be a Valid Bucket Name on AWS/GCP/AZURE/Others",
+        //https://regex101.com/r/d1Viju/1
+        expression: "this.name.matches('^[a-z0-9](?:[a-z0-9_-]*[a-z0-9])?$')"
+      },
+      (buf.validate.field).cel = {
+       id: "metadata.name",
+        message: "Name must be between 3 and 63 characters long",
+        expression: "size(this.name) > 2 && size(this.name) <= 63"
+      },
+      (buf.validate.field).cel = {
+        id: "metadata.version.message",
+        message: "Version message is mandatory and cannot be empty",
+        expression: "has(this.version.message)"
+      }
+  ];
+
+  //spec
+  StorageBucketSpec spec = 4;
+
+  //status
+  StorageBucketStatus status = 5;
+}
+
+//storage-bucket spec
+message StorageBucketSpec {
+  //resource parent
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+
+  //(optional for create) flag to indicate if storage-bucket should have external(public) access.
+  //defaults to "false"
+  bool is_external = 2;
+
+  //storage-bucket spec on gcp
+  StorageBucketGcpSpec gcp = 4;
+}
+
+//storage-bucket status
+message StorageBucketStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+}
+
+//storage-bucket on gcp
+message StorageBucketGcpSpec {
+  //id of the gcp cloud account in which the storage-bucket is created.
+  //this field is computed from the kube-cluster configured for the environment.
+  string gcp_cloud_account_id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //gcp project in which the storage-bucket is created.
+  //this field is computed from the kube-cluster configured for the environment.
+  //storage-bucket is created in the same gcp-project in which the container-cluster is created.
+  string project_id = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //gcp region in which the bucket is to be created.
+  string region = 3 [
+    (buf.validate.field).required = true
+  ];
+}

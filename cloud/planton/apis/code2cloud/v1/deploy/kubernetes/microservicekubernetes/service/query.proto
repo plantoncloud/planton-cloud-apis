@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.microservicekubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/microservicekubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/microservicekubernetes/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "google/protobuf/wrappers.proto";
+
+//microservice-kubernetes query controller
+service MicroserviceKubernetesQueryController {
+  //look up microservice-kubernetes using microservice-kubernetes id
+  rpc getById(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice-kubernetes";
+  }
+
+  //lookup a microservice-kubernetes by code project id
+  rpc getByCodeProjectId(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
+      returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = code_project;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = code_project_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view microservice kubernetes of code project";
+  }
+
+  rpc getEnvVarMap(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.GetMicroserviceKubernetesEnvVarMapInput)
+      returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesEnvVarMap) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
+    //note: this rpc may also require that the requester to have update access to the environment
+    // if the provided microservice-kubernetes contains references to environment secrets.
+    // this is not enforced here, but is enforced in the request processing.
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "microservice_kubernetes_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get environment variables of microservice-kubernetes";
+  }
+}

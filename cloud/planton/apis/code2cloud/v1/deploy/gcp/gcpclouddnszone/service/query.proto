@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.dnszone.service;
+
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
+import "google/protobuf/wrappers.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+
+//dns-zone query controller
+service DnsZoneQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = dns_zone;
+  // find dns-zones by organization id
+  //the response should only include dns-zones in a organization that the authenticated user account has viewer access to.
+  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = organization_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get dns-zones of organization";
+  }
+  // get details of a dns-zone id
+  rpc getById(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneId)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get dns-zone";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+  // get details of the exact or a parent of the provided dns-zone name
+  rpc getExactOrParentDnsZoneByDomainName(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsDomainName)
+      returns (cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZone) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get dns-zone";
+  }
+  // checks if the nameservers for the dns-zone are resolving to the nameservers of the managed zone.
+  rpc isNameserversDelegated(cloud.planton.apis.code2cloud.v1.dnszone.model.DnsZoneId)
+      returns (google.protobuf.BoolValue) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = dns_zone;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = dns_zone_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check if dns-zones name server is delegated";
+  }
+}

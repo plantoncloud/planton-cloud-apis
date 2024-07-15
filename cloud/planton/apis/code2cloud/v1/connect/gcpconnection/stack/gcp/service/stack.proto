@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.cloudaccount.stack.gcp.service;
+
+import "cloud/planton/apis/code2cloud/v1/cloudaccount/stack/gcp/model/io.proto";
+
+service CloudAccountGcpStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.cloudaccount.stack.gcp.model.CloudAccountGcpStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.cloudaccount.stack.gcp.model.CloudAccountGcpStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.cloudaccount.stack.gcp.model.CloudAccountGcpStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.cloudaccount.stack.gcp.model.CloudAccountGcpStackOutputs);
+}

@@ -7,4 +7,5 @@ import "google/protobuf/descriptor.proto";
 extend google.protobuf.EnumValueOptions {
   string id_prefix = 90100;
   string kind_name = 90101;
+  string display_name = 90102;
 }

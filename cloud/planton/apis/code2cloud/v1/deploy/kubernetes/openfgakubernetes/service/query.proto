@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.openfgakubernetes.service;
+
+import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/openfgakubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/openfgakubernetes/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+
+//openfga-kubernetes query controller
+service OpenfgaKubernetesQueryController {
+  //look up openfga-kubernetes using openfga-kubernetes id
+  rpc getById(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view openfga-kubernetes";
+  }
+
+  //look up openfga-kubernetes sasl password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesPassword) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view openfga-kubernetes password";
+  }
+}

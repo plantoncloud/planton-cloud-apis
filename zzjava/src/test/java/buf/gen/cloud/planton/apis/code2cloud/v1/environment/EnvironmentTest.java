@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.code2cloud.v1.environment;
+package buf.gen.cloud.planton.apis.resourcemanager.v1.environment;
 
-import build.buf.gen.cloud.planton.apis.code2cloud.v1.environment.model.Environment;
+import build.buf.gen.cloud.planton.apis.resourcemanager.v1.environment.model.Environment;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadataVersion;
 import build.buf.protovalidate.Validator;

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp;
+
+import "cloud/planton/apis/code2cloud/v1/storagebucket/stack/gcp/model/io.proto";
+
+//storage-bucket stack controller
+service StorageBucketGcpStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp.model.StorageBucketGcpStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp.model.StorageBucketGcpStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp.model.StorageBucketGcpStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp.model.StorageBucketGcpStackOutputs);
+}

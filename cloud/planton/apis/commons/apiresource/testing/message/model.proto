@@ -6,7 +6,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
@@ -120,7 +120,7 @@ message ApiResourceKubernetesTest {
 //api-resource-kubernetes spec
 message ApiResourceKubernetesTestSpec {
   //resource parent
-  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   // api-resource-container spec
   ApiResourceKubernetesSpecContainerSpec container = 2 [
