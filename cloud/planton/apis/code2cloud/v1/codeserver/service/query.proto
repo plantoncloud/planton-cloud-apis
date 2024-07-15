@@ -8,9 +8,11 @@ import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 //code server query controller
 service CodeServerQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = code_server;
   //look up a code server using code server id
   rpc getById(cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServerId)
       returns (cloud.planton.apis.code2cloud.v1.codeserver.model.CodeServer) {

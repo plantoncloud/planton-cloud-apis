@@ -13,10 +13,12 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "google/protobuf/wrappers.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 
 //microservice-kubernetes query controller
 service MicroserviceKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = microservice_kubernetes;
   //look up microservice-kubernetes using microservice-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes) {

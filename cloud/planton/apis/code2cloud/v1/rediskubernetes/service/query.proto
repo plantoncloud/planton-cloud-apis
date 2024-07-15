@@ -12,10 +12,11 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
-
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 //redis-kubernetes query controller
 service RedisKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = redis_kubernetes;
   //look up redis-kubernetes using redis-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.rediskubernetes.model.RedisKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.rediskubernetes.model.RedisKubernetes) {

@@ -12,10 +12,12 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 
 //mongodb-kubernetes query controller
 service MongodbKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = mongodb_kubernetes;
   //look up mongodb-kubernetes using mongodb-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {

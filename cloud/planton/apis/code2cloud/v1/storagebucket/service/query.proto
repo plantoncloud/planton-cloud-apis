@@ -9,9 +9,11 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptio
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 //storage-bucket query controller
 service StorageBucketQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = storage_bucket;
   //look up a storage-bucket using storage-bucket id
   rpc getById(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketId)
       returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucket) {

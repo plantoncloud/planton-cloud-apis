@@ -10,9 +10,11 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 //code project query controller
 service CodeProjectQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = code_project;
   //look up a code project by code project id
   rpc getById(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectId)
       returns (cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProject) {
