@@ -12,10 +12,12 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 
 //elasticsearch-kubernetes query controller
 service ElasticsearchKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = elasticsearch_kubernetes;
   //look up elasticsearch-kubernetes using elasticsearch-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {

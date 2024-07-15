@@ -13,10 +13,12 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 
 //grafana-kubernetes query controller
 service GrafanaKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = grafana_kubernetes;
   //look up grafana-kubernetes using grafana-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.grafanakubernetes.model.GrafanaKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.grafanakubernetes.model.GrafanaKubernetes) {

@@ -12,9 +12,11 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 //argocd-kubernetes query controller
 service ArgocdKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = argocd_kubernetes;
   //look up argocd-kubernetes using argocd-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.argocdkubernetes.model.ArgocdKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.argocdkubernetes.model.ArgocdKubernetes) {

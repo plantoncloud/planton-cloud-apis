@@ -11,10 +11,12 @@ import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoption
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 
 //kafka-kubernetes query controller
 service KafkaKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //look up kafka-kubernetes using kafka-kubernetes id
   rpc getById(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
