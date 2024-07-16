@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.dnszone.enums.apiresourceeventtype;
+package cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.enums.apiresourceeventtype;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
 
-// dns-zone event types
-enum DnsZoneApiResourceEventType {
+// route53-zone event types
+enum Route53ZoneApiResourceEventType {
   unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,

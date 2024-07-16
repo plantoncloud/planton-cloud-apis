@@ -91,7 +91,7 @@ message EnvironmentSpec {
   repeated EnvironmentEndpointDomain endpoint_domains = 5;
 
   //cloud-account spec for the environment
-  EnvironmentSpecCloudAccountSpec cloud_account = 6;
+  EnvironmentSpecCloudAccountSpec connection = 6;
 
   //kube-cluster spec for then environment
   EnvironmentSpecKubeClusterSpec kube_cluster = 7;
@@ -117,7 +117,7 @@ message EnvironmentSpecCloudAccountSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
   //id of the cloud-account
-  string cloud_account_id = 2 [
+  string connection_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -355,7 +355,7 @@ message ApiResourceEnvironmentInfo {
   ];
 
   //id of the cloud-account configured for the environment.
-  string cloud_account_id = 5 [
+  string connection_id = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 

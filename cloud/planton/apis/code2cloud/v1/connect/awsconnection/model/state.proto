@@ -28,7 +28,7 @@ message AwsConnection {
   // 1. The ID must be prefixed with 'ca-<org_id>-', where <org_id> can vary in length.
   // 2. The ID must not exceed 27 characters in length.
   // 3. Once a aws-connection is added to a organization, the ID cannot be changed.
-  // By convention, the cloud_account_name is used as the suffix, but a different suffix may be used if desired.
+  // By convention, the connection_name is used as the suffix, but a different suffix may be used if desired.
   // The constraints are enforced by the regular expression "^ca-.{1,22}$".
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,

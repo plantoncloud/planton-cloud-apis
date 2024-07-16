@@ -153,7 +153,7 @@ message KubeClusterStatus {
 //specification for kube-cluster in google cloud
 message KubeClusterGcpSpec {
   //id of the gcp cloud account to be used for creating kube-cluster resources.
-  string gcp_cloud_account_id = 1 [
+  string gcp_connection_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -355,7 +355,7 @@ message KubeClusterNodePoolGcp  {
 //specification for kube-cluster in aws
 message KubeClusterAwsSpec {
   //id of the aws cloud account to be used for creating kube-cluster resources.
-  string aws_cloud_account_id = 1 [
+  string aws_connection_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

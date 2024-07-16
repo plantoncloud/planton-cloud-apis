@@ -1,34 +1,21 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.dnszone.model;
+package cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.model;
 
-import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/dnszone/enums/dnsrecordtype/dns_record_type.proto";
 import "buf/validate/validate.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/aws/route53zone/model/state.proto";
+import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
 
-// list of dns-zones
-message DnsZoneList {
-  repeated DnsZone entries = 1;
-}
-
-// wrapper for dns-zone name
-message DnsDomainName {
-  string value = 1 [
-    (buf.validate.field).required = true
-  ];
-
-}
-
-// wrapper for dns-zone id
-message DnsZoneId {
+// wrapper for route53-zone id
+message Route53ZoneId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
 }
 
-// list of dns-records
-message DnsRecordList {
-  repeated DnsRecord entries = 1;
+// list of route53-zones
+message Route53ZoneList {
+  repeated Route53Zone entries = 1;
 }
 
 // AddOrUpdateDnsRecordCommandInput is used to encapsulate the details needed to either add
@@ -40,14 +27,14 @@ message AddOrUpdateDnsRecordCommandInput {
   // is to be added or updated. The ID should be a valid DNS zone ID, typically obtained
   // from the DNS zone entity itself. This field is used by the server to determine
   // the correct DNS zone where the DNS record is to be added or updated.
-  string dns_zone_id = 1 [
+  string route53_zone_id = 1 [
     (buf.validate.field).required = true
   ];
 
   // This field contains the actual DNS record that is to be added or updated. The DNS record
   // object should be populated with all necessary fields (like name, type, TTL, data etc.),
   // which the server uses to create a new DNS record or update an existing one.
-  DnsRecord dns_record = 2 [
+  Route53ZoneDnsRecord record = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -66,7 +53,7 @@ message DeleteDnsRecordCommandInput {
   // This field carries the unique identifier of the DNS zone from which the DNS record
   // is to be either soft deleted or restored. The server uses this ID to find the appropriate DNS zone.
   // This is a required field.
-  string dns_zone_id = 1 [
+  string route53_zone_id = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -74,7 +61,7 @@ message DeleteDnsRecordCommandInput {
   // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
   // The server uses this information to find the DNS record of the correct type within the
   // specified DNS zone. This is a required field.
-  cloud.planton.apis.code2cloud.v1.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 2 [
+  cloud.planton.apis.commons.v1.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
