@@ -1,0 +1,130 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.connect.awscredential.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+// aws-credential
+message AwsCredential {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = aws_credential;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
+
+  //id format "<id-prefix>-<org-id>-<normalized-resource-name>"
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
+
+  //resource api-version
+  string api_version = 1;
+
+  //resource kind
+  string kind = 2;
+
+  // metadata for the resource
+  // aws-credential id value adheres to the following constraints:
+  // 1. The ID must be prefixed with 'ca-<org_id>-', where <org_id> can vary in length.
+  // 2. The ID must not exceed 27 characters in length.
+  // 3. Once a aws-credential is added to a organization, the ID cannot be changed.
+  // By convention, the connection_name is used as the suffix, but a different suffix may be used if desired.
+  // The constraints are enforced by the regular expression "^ca-.{1,22}$".
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.version.message",
+      message: "Version message is mandatory and cannot be empty",
+      expression: "has(this.version.message)"
+    }
+  ];
+
+  // aws-credential spec
+  AwsCredentialSpec spec = 4;
+
+  // aws-credential status
+  AwsCredentialStatus status = 5;
+}
+
+// organization aws-credential
+message AwsCredentialSpec {
+  // organization to which organization aws-credential belongs to.
+  string org_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // The ID of the AWS Account, required and immutable. For more information,
+  string account_id = 2 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "spec.aws.account_id",
+      message: "Only numbers (0-9) are allowed",
+      expression: "this.matches('^[0-9]+$')"
+    }
+  ];
+
+  //AWS Access Key Id
+  string access_key_id = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).string.len = 20,
+    (buf.validate.field).cel = {
+      id: "spec.aws.access_key_id",
+      message: "Must start with 'AKIA'",
+      // https://regex101.com/r/QgVmCf/1
+      expression: "this.matches('^AKIA.*')"
+    },
+    (buf.validate.field).cel = {
+      id: "spec.aws.access_key_id",
+      message: "Must start with 'AKIA' followed by 16 alphanumeric characters'",
+      // https://regex101.com/r/LybhZA/1
+      expression: "this.matches('^.{4}[a-zA-Z0-9]{16}.*$')"
+    }
+  ];
+
+  //AWS Secret Access Key
+  string secret_access_key = 4 [
+    (buf.validate.field).ignore_empty = true,
+    (buf.validate.field).required = true,
+    (buf.validate.field).string.len = 40,
+    (buf.validate.field).cel = {
+      id: "spec.aws.secret_access_key",
+      message: "The provided AWS Secret Access Key is invalid. It must contain exactly 40 characters consisting of numbers, lowercase and uppercase letters, slashes (/), and plus signs (+). Please double-check your input and try again.",
+      //https://regex101.com/r/YlvVRM/1
+      expression: "this.matches('^[0-9a-zA-Z/+]{40}$')"
+    }
+  ];
+}
+
+// aws-credential status
+message AwsCredentialStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+}

@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.service;
+
+import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+
+// kubernetes-cluster-credential command controller
+service KubernetesClusterCredentialCommandController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kubernetes_cluster_credential;
+  //create a kubernetes-cluster-credential resource
+  rpc create(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential)
+      returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create kubernetes-cluster-credential";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  //update an existing kubernetes-cluster-credential
+  rpc update(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential)
+      returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kubernetes_cluster_credential;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update kubernetes-cluster-credential";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  //delete a kubernetes-cluster-credential that was previously created
+  //warning: deleting a kubernetes-cluster-credential from planton-cloud destroys the resources created by planton-cloud in the account
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kubernetes_cluster_credential;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete kubernetes-cluster-credential";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  //restore a deleted kubernetes-cluster-credential.
+  rpc restore(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential)
+      returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kubernetes_cluster_credential;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore kubernetes-cluster-credential";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+}

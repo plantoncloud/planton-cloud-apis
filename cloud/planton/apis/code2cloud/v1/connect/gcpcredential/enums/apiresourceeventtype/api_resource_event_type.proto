@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.connect.gcpcredential.enums.apiresourceeventtype;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
+
+enum GcpCredentialApiResourceEventType {
+  unspecified = 0;
+  created = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_fga_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+  ];
+  updated = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true
+  ];
+  deleted = 3 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+  ];
+  restored = 4 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
+  ];
+}

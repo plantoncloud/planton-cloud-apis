@@ -346,3 +346,14 @@ message BrowserExecuteNextCommandInPodContainerInput {
   // command to execute inside an existing shell session of a pod container
   string command = 3;
 }
+
+
+// list of gcp folder
+message GcpFolders {
+  repeated GcpFolder entries = 1;
+}
+
+// list of gcp projects
+message GcpProjects {
+  repeated GcpProject list = 1;
+}

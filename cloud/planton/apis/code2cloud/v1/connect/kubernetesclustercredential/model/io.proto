@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model;
+
+import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
+import "buf/validate/validate.proto";
+
+// list of kubernetes-cluster-credentials
+message KubernetesClusterCredentialList {
+  repeated KubernetesClusterCredential entries = 1;
+}
+
+// wrapper for organization cloud account id
+message KubernetesClusterCredentialId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

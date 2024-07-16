@@ -26,9 +26,9 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "ArgoCD on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  aws_connection = 4 [
+  aws_credential = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "awscon",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "AwsConnection",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "AwsCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Connection",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
@@ -66,9 +66,9 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GCP Artifact Registry",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  gcp_connection = 11 [
+  gcp_credential = 11 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpcon",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpConnection",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Google Cloud Connection",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
@@ -88,18 +88,6 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcsbkt",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcsBucket",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GCP GCS Bucket",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
-  ];
-  github_connection = 15 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "ghcon",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GithubConnection",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GitHub Connection",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
-  ];
-  gitlab_connection = 16 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "glcon",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GitlabConnection",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GitLab Connection",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
   gitlab_kubernetes = 17 [
@@ -236,6 +224,18 @@ enum ApiResourceKind {
   ];
   stack_job = 41 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "sj",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "StackJob",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Stack Job",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+  ];
+  kubernetes_docker_credential = 41 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8sdkrcred",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "StackJob",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Stack Job",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+  ];
+  kubernetes_cluster_credential = 41 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8scred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "StackJob",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Stack Job",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"

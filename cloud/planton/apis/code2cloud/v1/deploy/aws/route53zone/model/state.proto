@@ -63,7 +63,7 @@ message Route53ZoneSpec {
   ];
 
   // The ID of the AWS Cloud Connection where the Managed Zone should be created.
-  string aws_connection_id = 2 [
+  string aws_credential_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

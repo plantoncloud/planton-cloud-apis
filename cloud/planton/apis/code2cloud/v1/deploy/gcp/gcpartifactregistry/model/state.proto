@@ -73,7 +73,7 @@ message GcpArtifactRegistrySpec {
   //id of the gcp cloud account in which the gcp-artifact-registry repositories are to be created.
   //the allowed values for this attribute are all the gcp cloud accounts that the parent organization
   //has required permissions to create gcp-artifact-registry in.
-  string gcp_connection_id = 1 [
+  string gcp_credential_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];

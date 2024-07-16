@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.connect.kubernetesdockercredential.model;
+
+import "cloud/planton/apis/code2cloud/v1/connect/kubernetesdockercredential/model/state.proto";
+import "buf/validate/validate.proto";
+
+// list of kubernetes-docker-credentials
+message KubernetesDockerCredentialList {
+  repeated KubernetesDockerCredential entries = 1;
+}
+
+// wrapper for organization cloud account id
+message KubernetesDockerCredentialId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

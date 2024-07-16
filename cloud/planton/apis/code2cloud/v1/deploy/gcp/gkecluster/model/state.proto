@@ -153,7 +153,7 @@ message KubeClusterStatus {
 //specification for kube-cluster in google cloud
 message KubeClusterGcpSpec {
   //id of the gcp cloud account to be used for creating kube-cluster resources.
-  string gcp_connection_id = 1 [
+  string gcp_credential_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -355,7 +355,7 @@ message KubeClusterNodePoolGcp  {
 //specification for kube-cluster in aws
 message KubeClusterAwsSpec {
   //id of the aws cloud account to be used for creating kube-cluster resources.
-  string aws_connection_id = 1 [
+  string aws_credential_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -474,4 +474,32 @@ message IngressSpec {
   cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for planton cloud api resource.
   string endpoint_domain_name = 3;
+}
+
+
+// gcp project
+// https://cloud.google.com/resource-manager/reference/rest/v2/folders
+message GcpFolder {
+  // id of the gcp project.
+  // ex: 498520640386.
+  string id = 1;
+  // display name for the folder.
+  // (important) a two character suffix starting with a hyphen is added at the end of the
+  // display name to allow recreating folders with same resource identifier on planton-cloud.
+  string display_name = 2;
+  // parent of the folder.
+  // parent can be either a gcp organization or another gcp folder.
+  string parent = 3;
+}
+
+// gcp project
+message GcpProject {
+  // name of the gcp project
+  string name = 1;
+  // id of the gcp project
+  string id = 2;
+  // number of the gcp project
+  string number = 3;
+  // id of the billing account
+  string billing_account_id = 4;
 }

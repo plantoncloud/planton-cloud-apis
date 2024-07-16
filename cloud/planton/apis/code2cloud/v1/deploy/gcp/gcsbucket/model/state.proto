@@ -82,7 +82,7 @@ message StorageBucketStatus {
 message StorageBucketGcpSpec {
   //id of the gcp cloud account in which the storage-bucket is created.
   //this field is computed from the kube-cluster configured for the environment.
-  string gcp_connection_id = 1 [
+  string gcp_credential_id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
