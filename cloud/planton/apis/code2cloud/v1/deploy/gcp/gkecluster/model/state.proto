@@ -211,9 +211,9 @@ message GkeClusterClusterAutoscalingConfigSpec {
 
 // status of the gke-cluster in gcp
 message GkeClusterStatusStackOutputs {
-  // a folder is created with the cloud account folder as parent for the gke-cluster.
+  // a folder is created with the credential folder as parent for the gke-cluster.
   // resources created for gke-cluster are linked to this folder as the parent.
-  // children for a cloud account are the gcp projects in the gke-cluster.
+  // children for a credential are the gcp projects in the gke-cluster.
   GcpFolder folder = 1;
 
   // projects created on google cloud for this gke-cluster

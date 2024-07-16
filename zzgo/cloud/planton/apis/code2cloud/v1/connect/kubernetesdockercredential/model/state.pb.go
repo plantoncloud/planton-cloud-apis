@@ -39,13 +39,13 @@ type KubernetesDockerCredential struct {
 	// kubernetes-docker-credential id value adheres to the following constraints:
 	// 1. The ID must be prefixed with 'ca-<org_id>-', where <org_id> can vary in length.
 	// 2. The ID must not exceed 27 characters in length.
-	// 3. Once a cloud account is added to a organization, the ID cannot be changed.
+	// 3. Once a credential is added to a organization, the ID cannot be changed.
 	// By convention, the kubernetes_docker_credential_name is used as the suffix, but a different suffix may be used if desired.
 	// The constraints are enforced by the regular expression "^ca-.{1,22}$".
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// cloud account spec
+	// credential spec
 	Spec *KubernetesDockerCredentialSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
-	// cloud account status
+	// credential status
 	Status *KubernetesDockerCredentialStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 }
 

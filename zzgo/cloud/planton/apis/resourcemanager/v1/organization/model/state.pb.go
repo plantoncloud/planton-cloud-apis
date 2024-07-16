@@ -186,7 +186,7 @@ type OrganizationStatus struct {
 	//	id of the service-account created on google-cloud for this organization.
 	//
 	// this service-account should be granted the required roles for planton-cloud to
-	// be able to create resource in the customer's google-cloud account.
+	// be able to create resource in the customer's google-credential.
 	GcpServiceAccountId string `protobuf:"bytes,1,opt,name=gcp_service_account_id,json=gcpServiceAccountId,proto3" json:"gcp_service_account_id,omitempty"`
 	// id of the secret on secrets-manager containing the service-account key credential.
 	GcpServiceAccountKeySecretName string `protobuf:"bytes,2,opt,name=gcp_service_account_key_secret_name,json=gcpServiceAccountKeySecretName,proto3" json:"gcp_service_account_key_secret_name,omitempty"`

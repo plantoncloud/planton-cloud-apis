@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.connect.gcpcredential.model;
 
 import "buf/validate/validate.proto";
 
-// wrapper for organization cloud account id
+// wrapper for organization credential id
 message GcpCredentialId {
   string value = 1 [
     (buf.validate.field).required = true

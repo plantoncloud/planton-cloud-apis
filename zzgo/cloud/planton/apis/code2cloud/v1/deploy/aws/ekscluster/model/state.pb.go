@@ -119,7 +119,7 @@ type EksClusterSpec struct {
 
 	// org_id is a required, immutable field that uniquely identifies the organization associated with the eks-cluster.
 	OrgId string `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	// id of the aws cloud account to be used for creating eks-cluster resources.
+	// id of the aws credential to be used for creating eks-cluster resources.
 	AwsCredentialId string `protobuf:"bytes,2,opt,name=aws_credential_id,json=awsCredentialId,proto3" json:"aws_credential_id,omitempty"`
 	// valid aws region in which to create the eks-cluster.
 	// warning: eks-cluster will recreated if this value is updated.

@@ -6,7 +6,7 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 
-// wrapper for organization cloud account id
+// wrapper for organization credential id
 message KubernetesClusterCredentialId {
   string value = 1 [
     (buf.validate.field).required = true

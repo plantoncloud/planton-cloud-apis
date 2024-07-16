@@ -70,7 +70,7 @@ message AksClusterSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  //id of the azure cloud account to be used for creating aks-cluster resources.
+  //id of the azure credential to be used for creating aks-cluster resources.
   string azure_credential_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true

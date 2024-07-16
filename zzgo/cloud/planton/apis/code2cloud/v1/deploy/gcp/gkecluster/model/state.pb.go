@@ -612,9 +612,9 @@ type GkeClusterStatusStackOutputs struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// a folder is created with the cloud account folder as parent for the gke-cluster.
+	// a folder is created with the credential folder as parent for the gke-cluster.
 	// resources created for gke-cluster are linked to this folder as the parent.
-	// children for a cloud account are the gcp projects in the gke-cluster.
+	// children for a credential are the gcp projects in the gke-cluster.
 	Folder *GcpFolder `protobuf:"bytes,1,opt,name=folder,proto3" json:"folder,omitempty"`
 	// projects created on google cloud for this gke-cluster
 	// this value is updated upon successful gke-cluster creation stack-job.

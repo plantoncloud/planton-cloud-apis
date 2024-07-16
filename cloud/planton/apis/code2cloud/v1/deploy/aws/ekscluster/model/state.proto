@@ -71,7 +71,7 @@ message EksClusterSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  //id of the aws cloud account to be used for creating eks-cluster resources.
+  //id of the aws credential to be used for creating eks-cluster resources.
   string aws_credential_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true

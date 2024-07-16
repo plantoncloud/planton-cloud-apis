@@ -118,7 +118,7 @@ type AksClusterSpec struct {
 
 	// org_id is a required, immutable field that uniquely identifies the organization associated with the aks-cluster.
 	OrgId string `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
-	// id of the azure cloud account to be used for creating aks-cluster resources.
+	// id of the azure credential to be used for creating aks-cluster resources.
 	AzureCredentialId string `protobuf:"bytes,2,opt,name=azure_credential_id,json=azureCredentialId,proto3" json:"azure_credential_id,omitempty"`
 }
 

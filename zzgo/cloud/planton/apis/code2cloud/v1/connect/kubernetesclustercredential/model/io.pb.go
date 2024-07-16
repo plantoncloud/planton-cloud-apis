@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for organization cloud account id
+// wrapper for organization credential id
 type KubernetesClusterCredentialId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

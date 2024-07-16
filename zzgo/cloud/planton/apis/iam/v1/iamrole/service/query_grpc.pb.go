@@ -39,8 +39,8 @@ type IamRoleQueryControllerClient interface {
 	FindByApiResourceKindAndPrincipalType(ctx context.Context, in *model.ApiResourceKindAndPrincipalTypeInput, opts ...grpc.CallOption) (*model.IamRoles, error)
 	// lookup iam principal type by resource type
 	// returns the list of principal types that can be used to create relations with the resource
-	// for example cloud account is allowed to share at organization and user level
-	// by this cloud account have two principal types to create relations with
+	// for example credential is allowed to share at organization and user level
+	// by this credential have two principal types to create relations with
 	GetIamPrincipalTypesByApiResourceKind(ctx context.Context, in *model.IamApiResourceKindInput, opts ...grpc.CallOption) (*model.PrincipalTypes, error)
 }
 
@@ -100,8 +100,8 @@ type IamRoleQueryControllerServer interface {
 	FindByApiResourceKindAndPrincipalType(context.Context, *model.ApiResourceKindAndPrincipalTypeInput) (*model.IamRoles, error)
 	// lookup iam principal type by resource type
 	// returns the list of principal types that can be used to create relations with the resource
-	// for example cloud account is allowed to share at organization and user level
-	// by this cloud account have two principal types to create relations with
+	// for example credential is allowed to share at organization and user level
+	// by this credential have two principal types to create relations with
 	GetIamPrincipalTypesByApiResourceKind(context.Context, *model.IamApiResourceKindInput) (*model.PrincipalTypes, error)
 }
 
