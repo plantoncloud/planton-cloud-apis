@@ -11,7 +11,7 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 //istio-http-endpoint query controller
 service IstioHttpEndpointQueryController {
   //look up istio-http-endpoint using istio-http-endpoint id
-  rpc getById(cloud.planton.apis.code2cloud.v1.customendpoint.model.IstioHttpEndpointId)
+  rpc get(cloud.planton.apis.code2cloud.v1.customendpoint.model.IstioHttpEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.customendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = istio_http_endpoint_get;

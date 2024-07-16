@@ -17,7 +17,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service KafkaKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //look up kafka-kubernetes using kafka-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_get;
@@ -50,7 +50,7 @@ service KafkaTopicQueryController {
   }
 
   //look up kafka topic using kafka topic id
-  rpc getById(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopicQueryInput)
+  rpc get(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopicQueryInput)
       returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopic) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_get;

@@ -12,7 +12,7 @@ import "cloud/planton/apis/resourcemanager/v1/organization/model/state.proto";
 //organization query controller
 service OrganizationQueryController {
   // get a organization using organization id
-  rpc getById(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organization) {
+  rpc get(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.resourcemanager.v1.organization.model.Organization) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

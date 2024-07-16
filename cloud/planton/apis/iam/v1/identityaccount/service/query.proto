@@ -16,7 +16,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptio
 service MachineAccountQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = identity_account;
   // lookup machine account by identity account id.
-  rpc getById(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
+  rpc get(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
@@ -75,7 +75,7 @@ service UserAccountQueryController {
   }
 
   // lookup user-account by identity account id.
-  rpc getById(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
+  rpc get(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;

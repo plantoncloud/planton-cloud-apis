@@ -15,7 +15,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptio
 service Route53ZoneQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = route53_zone;
   // get details of a route53-zone id
-  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.model.Route53ZoneId)
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.model.Route53ZoneId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.model.Route53Zone) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = route53_zone;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;

@@ -24,7 +24,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service ElasticsearchKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = elasticsearch_kubernetes;
   //look up elasticsearch-kubernetes using elasticsearch-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_get;

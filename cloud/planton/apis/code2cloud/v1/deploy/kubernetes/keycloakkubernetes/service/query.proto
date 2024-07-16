@@ -23,7 +23,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service KeycloakKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = keycloak_kubernetes;
   //look up keycloak-kubernetes using keycloak-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.keycloakkubernetes.model.KeycloakKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.keycloakkubernetes.model.KeycloakKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.keycloakkubernetes.model.KeycloakKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = keycloak_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = keycloak_kubernetes_get;

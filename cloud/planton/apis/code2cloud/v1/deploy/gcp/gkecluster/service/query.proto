@@ -18,7 +18,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptio
 service GkeClusterQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gke_cluster;
   // lookup gke-cluster using gke-cluster id
-  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model.GkeClusterId)
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model.GkeClusterId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model.GkeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gke_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;

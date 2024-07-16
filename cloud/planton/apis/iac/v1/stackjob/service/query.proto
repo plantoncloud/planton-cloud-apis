@@ -19,7 +19,7 @@ service StackJobQueryController {
       returns(cloud.planton.apis.iac.v1.stackjob.model.StackJobList);
   //look up stack-job by stack-job-id
   //todo: need to add authorization
-  rpc getById(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
+  rpc get(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns(cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }

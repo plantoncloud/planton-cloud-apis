@@ -23,7 +23,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service RedisKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = redis_kubernetes;
   //look up redis-kubernetes using redis-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.rediskubernetes.model.RedisKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.rediskubernetes.model.RedisKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.rediskubernetes.model.RedisKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = redis_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = redis_kubernetes_get;

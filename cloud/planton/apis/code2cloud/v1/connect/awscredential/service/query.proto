@@ -13,7 +13,7 @@ import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
 service AwsCredentialQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = aws_credential;
   //look up a aws-credential by id
-  rpc getById(cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredentialId) returns (cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredential) {
+  rpc get(cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredentialId) returns (cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredential) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = aws_credential;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

@@ -18,7 +18,7 @@ service IamRoleQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list iam role";
   }
   // lookup iam role by role id
-  rpc getById(cloud.planton.apis.iam.v1.iamrole.model.IamRoleId)
+  rpc get(cloud.planton.apis.iam.v1.iamrole.model.IamRoleId)
       returns (cloud.planton.apis.iam.v1.iamrole.model.IamRole) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }

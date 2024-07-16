@@ -13,7 +13,7 @@ import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto
 //environment query controller
 service EnvironmentQueryController {
   //look up environment using environment id
-  rpc getById(cloud.planton.apis.resourcemanager.v1.environment.model.EnvId)
+  rpc get(cloud.planton.apis.resourcemanager.v1.environment.model.EnvId)
       returns (cloud.planton.apis.resourcemanager.v1.environment.model.Environment) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
@@ -53,7 +53,7 @@ service EnvironmentQueryController {
 //environment secrets query controller
 service EnvironmentSecretQueryController {
   //lookup environment secret using environment secret id
-  rpc getById(cloud.planton.apis.resourcemanager.v1.environment.model.GetByEnvironmentSecretIdInput)
+  rpc get(cloud.planton.apis.resourcemanager.v1.environment.model.GetByEnvironmentSecretIdInput)
       returns (cloud.planton.apis.resourcemanager.v1.environment.model.EnvironmentSecret) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
@@ -73,7 +73,7 @@ service EnvironmentSecretQueryController {
 //environment variables query controller
 service EnvironmentVariableQueryController {
   //lookup environment variables using environment variable id
-  rpc getById(cloud.planton.apis.resourcemanager.v1.environment.model.GetByEnvironmentVariableIdInput)
+  rpc get(cloud.planton.apis.resourcemanager.v1.environment.model.GetByEnvironmentVariableIdInput)
       returns (cloud.planton.apis.resourcemanager.v1.environment.model.EnvironmentVariable) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;

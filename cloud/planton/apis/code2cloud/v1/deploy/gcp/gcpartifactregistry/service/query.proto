@@ -15,7 +15,7 @@ service GcpArtifactRegistryQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gcp_artifact_registry;
 
   //get gcp-artifact-registry by id
-  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpartifactregistry.model.GcpArtifactRegistryId)
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpartifactregistry.model.GcpArtifactRegistryId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpartifactregistry.model.GcpArtifactRegistry) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gcp_artifact_registry;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;

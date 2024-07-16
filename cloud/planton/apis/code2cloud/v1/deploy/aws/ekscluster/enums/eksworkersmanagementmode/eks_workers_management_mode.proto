@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.eksworkersmanagementmode;
+package cloud.planton.apis.code2cloud.v1.deploy.aws.ekscluster.enums.eksworkersmanagementmode;
 
 enum EksWorkersManagementMode {
   unspecified = 0;

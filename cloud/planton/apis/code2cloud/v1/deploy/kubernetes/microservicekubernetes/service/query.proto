@@ -19,7 +19,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service MicroserviceKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = microservice_kubernetes;
   //look up microservice-kubernetes using microservice-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_get;

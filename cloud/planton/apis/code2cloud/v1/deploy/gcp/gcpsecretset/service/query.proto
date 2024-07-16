@@ -14,7 +14,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service GcpSecretSetQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gcp_secret_set;
   //look up a gcp-secret-set using gcp-secret-set id
-  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpsecretset.model.GcpSecretSetId)
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpsecretset.model.GcpSecretSetId)
       returns(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpsecretset.model.GcpSecretSet) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gcp_secret_set;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;

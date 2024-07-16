@@ -23,7 +23,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service OpenfgaKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = openfga_kubernetes;
   //look up openfga-kubernetes using openfga-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_kubernetes_get;

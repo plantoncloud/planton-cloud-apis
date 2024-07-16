@@ -22,7 +22,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service PostgresKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = postgres_kubernetes;
   //look up a postgres-kubernetes using postgres-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.postgreskubernetes.model.PostgresKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.postgreskubernetes.model.PostgresKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.postgreskubernetes.model.PostgresKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = postgres_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = postgres_kubernetes_get;

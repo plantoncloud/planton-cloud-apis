@@ -24,7 +24,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service MongodbKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = mongodb_kubernetes;
   //look up mongodb-kubernetes using mongodb-kubernetes id
-  rpc getById(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetesId)
+  rpc get(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_get;

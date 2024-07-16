@@ -14,7 +14,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service S3BucketQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = s3_bucket;
   //look up a s3-bucket using s3-bucket id
-  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3BucketId)
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3BucketId)
       returns(cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3Bucket) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = s3_bucket;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
