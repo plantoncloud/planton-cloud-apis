@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.dnszone.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.dnszone.model;
 
-import "cloud/planton/apis/code2cloud/v1/dnszone/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/dnszone/enums/dnsrecordtype/dns_record_type.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/dnszone/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/dnszone/enums/dnsrecordtype/dns_record_type.proto";
 import "buf/validate/validate.proto";
 
 // list of dns-zones
@@ -74,7 +74,7 @@ message DeleteDnsRecordCommandInput {
   // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
   // The server uses this information to find the DNS record of the correct type within the
   // specified DNS zone. This is a required field.
-  cloud.planton.apis.code2cloud.v1.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 2 [
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.dnszone.enums.dnsrecordtype.DnsRecordType record_type = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];

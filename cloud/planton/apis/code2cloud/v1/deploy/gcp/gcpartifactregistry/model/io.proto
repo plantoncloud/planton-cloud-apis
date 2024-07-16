@@ -1,26 +1,26 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.artifactstore.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpartifactregistry.model;
 
-import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/gcpartifactregistry/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "google/protobuf/timestamp.proto";
 import "buf/validate/validate.proto";
 
-//wrapper for artifact-store id
-message ArtifactStoreId {
+//wrapper for gcp-artifact-registry id
+message GcpArtifactRegistryId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
 }
 
-//list of artifact-stores
-message ArtifactStoreList {
-  repeated ArtifactStore entries = 1;
+//list of gcp-artifact-registry resources
+message GcpArtifactRegistryList {
+  repeated GcpArtifactRegistry entries = 1;
 }
 
 //input to get a paginated list of resources with (proxy google artifact-registry server)
-message ListByArtifactStoreIdRepoNameInput {
+message ListByGcpArtifactRegistryIdRepoNameInput {
   //The token to retrieve the next page of packages, or empty if there are no
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
@@ -28,8 +28,8 @@ message ListByArtifactStoreIdRepoNameInput {
   cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1 [
     (buf.validate.field).required = true
   ];
-  //id of the artifact-store
-  string artifact_store_id = 2 [
+  //id of the gcp-artifact-registry
+  string gcp_artifact_registry_id = 2 [
     (buf.validate.field).required = true
   ];
   //name of the repository
@@ -83,8 +83,8 @@ message DockerImage {
   google.protobuf.Timestamp build_time = 7;
 }
 
-//response for paginated query to list docker images from artifact-store docker repo (proxy google artifact-registry server)
-message ArtifactStoreDockerImageList {
+//response for paginated query to list docker images from gcp-artifact-registry docker repo (proxy google artifact-registry server)
+message GcpArtifactRegistryDockerImageList {
   //docker images list
   repeated DockerImage entries = 1;
   //The token to retrieve the next page of packages, or empty if there are no
@@ -96,8 +96,8 @@ message ArtifactStoreDockerImageList {
 
 //https://github.com/googleapis/googleapis/blob/1a54b1fa9b194bfef22de18592a6512e51c9afe2/google/devtools/artifactregistry/v1/package.proto
 //artifact package definition from googleapis protobuf definitions. copied here to generate stubs using planton pipelines.
-//Packages are named collections of versions in google artifact-store
-message ArtifactStorePackage {
+//Packages are named collections of versions in google gcp-artifact-registry
+message GcpArtifactRegistryPackage {
 
   //The name of the package, for example:
   //"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1".
@@ -115,10 +115,10 @@ message ArtifactStorePackage {
   google.protobuf.Timestamp update_time = 6;
 }
 
-//response for paginated query to list packages from artifact-store repository (proxy google artifact-registry server)
-message ArtifactStorePackageList {
-  // list of artifact-store packages
-  repeated ArtifactStorePackage entries = 1;
+//response for paginated query to list packages from gcp-artifact-registry repository (proxy google artifact-registry server)
+message GcpArtifactRegistryPackageList {
+  // list of gcp-artifact-registry packages
+  repeated GcpArtifactRegistryPackage entries = 1;
   //The token to retrieve the next page of packages, or empty if there are no
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
@@ -131,7 +131,7 @@ message ArtifactStorePackageList {
 //collection of components, such as files and other data. This may correspond
 //to a version in many package management schemes.
 //artifact package version definition from googleapis protobuf definitions. copied here to generate stubs using planton pipelines.
-message ArtifactStorePackageVersion {
+message GcpArtifactRegistryPackageVersion {
   //The name of the version, for example:
   //"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
   //If the package or version ID parts contain slashes, the slashes are
@@ -146,7 +146,7 @@ message ArtifactStorePackageVersion {
 }
 
 //input to get a paginated list of package versions with (proxy google artifact-registry server)
-message ListByArtifactStoreIdPackageNameInput {
+message ListByGcpArtifactRegistryIdPackageNameInput {
   //The token to retrieve the next page of packages, or empty if there are no
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
@@ -154,8 +154,8 @@ message ListByArtifactStoreIdPackageNameInput {
   cloud.planton.apis.commons.rpc.GooglePageInfo page_info = 1 [
     (buf.validate.field).required = true
   ];
-  //id of the artifact-store
-  string artifact_store_id = 2 [
+  //id of the gcp-artifact-registry
+  string gcp_artifact_registry_id = 2 [
     (buf.validate.field).required = true
   ];
   //name of the package required to retrieve versions
@@ -164,10 +164,10 @@ message ListByArtifactStoreIdPackageNameInput {
   ];
 }
 
-//response for paginated query to list packages from artifact-store repository (proxy google artifact-registry server)
-message ArtifactStorePackageVersionList {
-  // list of artifact-store packages
-  repeated ArtifactStorePackageVersion entries = 1;
+//response for paginated query to list packages from gcp-artifact-registry repository (proxy google artifact-registry server)
+message GcpArtifactRegistryPackageVersionList {
+  // list of gcp-artifact-registry packages
+  repeated GcpArtifactRegistryPackageVersion entries = 1;
   //The token to retrieve the next page of packages, or empty if there are no
   //more packages to return.
   //note: this style of pagination is different from the rest of the system. the reason for different style is because
@@ -175,10 +175,10 @@ message ArtifactStorePackageVersionList {
   string next_page_token = 2;
 }
 
-//input for command to delete a package version from artifact-store
-message DelArtifactStorePackageVersionCommandInput {
-  //id of the artifact-store
-  string artifact_store_id = 1 [
+//input for command to delete a package version from gcp-artifact-registry
+message DelGcpArtifactRegistryPackageVersionCommandInput {
+  //id of the gcp-artifact-registry
+  string gcp_artifact_registry_id = 1 [
     (buf.validate.field).required = true
   ];
   //name of the package required to retrieve versions

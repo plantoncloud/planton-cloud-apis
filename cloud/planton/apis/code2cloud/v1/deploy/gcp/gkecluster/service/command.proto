@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kubecluster.service;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.service;
 
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -17,8 +17,8 @@ import "google/protobuf/empty.proto";
 service KubeClusterCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   // preview create a kube-cluster.
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
@@ -29,8 +29,8 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // create a kube-cluster.
-  rpc create(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
@@ -41,8 +41,8 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // preview updating an existing kube-cluster.
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -53,8 +53,8 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // update an existing kube-cluster.
-  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -66,7 +66,7 @@ service KubeClusterCommandController {
   }
   // preview deleting a kube-cluster.
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -79,7 +79,7 @@ service KubeClusterCommandController {
   }
   // delete a kube-cluster.
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -91,8 +91,8 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   // preview restoring a deleted kube-cluster.
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -103,8 +103,8 @@ service KubeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // restore a deleted kube-cluster.
-  rpc restore(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -121,7 +121,7 @@ service KubeClusterCommandController {
   //when a kube-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
   // may continue to charge a modest operational fee for the cluster.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -137,7 +137,7 @@ service KubeClusterCommandController {
   // values configured for the kube-cluster.
   //when the kube-cluster is resumed, the pods come back up online automatically when nodes become available.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -150,7 +150,7 @@ service KubeClusterCommandController {
   }
   //preview refresh a kube-cluster that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -163,7 +163,7 @@ service KubeClusterCommandController {
   }
   //refresh a kube-cluster that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -180,8 +180,8 @@ service KubeClusterCommandController {
 service KubeClusterNodePoolGcpCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   // add a node pool to a kube-cluster in a kube-cluster
-  rpc add(cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc add(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
@@ -194,8 +194,8 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
   // update a node pool of a kube-cluster in a kube-cluster
-  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.AddOrUpdateKubeClusterNodePoolGcpCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
@@ -208,8 +208,8 @@ service KubeClusterNodePoolGcpCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kube_cluster_id";
   }
   // delete a node pool from a kube-cluster in a kube-cluster
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.DeleteKubeClusterNodePoolGcpCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeCluster) {
+  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.DeleteKubeClusterNodePoolGcpCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
@@ -227,7 +227,7 @@ service KubeClusterNodePoolGcpCommandController {
 service KubeClusterKubernetesObjectCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kube_cluster;
   //update kubernetes object in a kube-cluster
-  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateKubeClusterKubernetesObjectInput)
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.UpdateKubeClusterKubernetesObjectInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
@@ -239,7 +239,7 @@ service KubeClusterKubernetesObjectCommandController {
   }
 
   //delete kubernetes object in a kube-cluster
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterKubernetesObject)
+  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.KubeClusterKubernetesObject)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
@@ -251,7 +251,7 @@ service KubeClusterKubernetesObjectCommandController {
   }
 
   //mimic kubectl exec for a container on kube-cluster
-  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
@@ -263,8 +263,8 @@ service KubeClusterKubernetesObjectCommandController {
 * Mimic kubectl exec for a container on a kube-cluster from browsers.
 * This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
 */
-  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerResponse) {
+  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.ExecIntoKubeClusterPodContainerInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.BrowserExecIntoPodContainerResponse) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kube_cluster_id";
@@ -280,35 +280,35 @@ service KubeClusterKubernetesObjectCommandController {
    * NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
     all other api-resources and kube-cluster resources.
    */
-  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
       returns (google.protobuf.Empty);
 }
 
 // api-resource kubernetes objects command controller
 service ApiResourceKubernetesObjectCommandController {
   //update api-resource kubernetes object
-  rpc update(cloud.planton.apis.code2cloud.v1.kubecluster.model.UpdateApiResourceKubernetesObjectInput)
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.UpdateApiResourceKubernetesObjectInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
   //delete api-resource kubernetes object
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubecluster.model.ApiResourceKubernetesObject)
+  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.ApiResourceKubernetesObject)
       returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
 
   //mimic kubectl exec for an api-resource container on kube-cluster
-  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.ExecIntoApiResourcePodContainerInput)
       returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
 
   /**
  * Mimic kubectl exec for a container on a kube-cluster from browsers.
  * This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
  */
-  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.ExecIntoApiResourcePodContainerInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecIntoPodContainerResponse);
+  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.ExecIntoApiResourcePodContainerInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.BrowserExecIntoPodContainerResponse);
 
   /**
    * Send the next command to execute for kube-ctl exec.
    * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
    */
-  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model.BrowserExecuteNextCommandInPodContainerInput)
       returns (google.protobuf.Empty);
 }

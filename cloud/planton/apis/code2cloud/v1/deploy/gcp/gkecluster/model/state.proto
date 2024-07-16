@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kubecluster.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/provider/gcp/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/eksworkersmanagementmode/eks_workers_management_mode.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/cloudaccount/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/cloudaccount/model/provider/gcp/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/enums/eksworkersmanagementmode/eks_workers_management_mode.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -83,7 +83,7 @@ message KubeClusterSpec {
   KubeClusterAddonsSpec kubernetes_addons = 3;
 
   // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -242,18 +242,18 @@ message KubeClusterGcpStatus {
   // a folder is created with the cloud account folder as parent for the kube-cluster.
   // resources created for kube-cluster are linked to this folder as the parent.
   // children for a cloud account are the gcp projects in the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpFolder folder = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpFolder folder = 1;
 
   // projects created on google cloud for this kube-cluster
   // this value is updated upon successful kube-cluster creation stack-job.
   // gcp project info for the kube-cluster project
-  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 2;
 
   // gcp project info for vpc-network project
   // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
   // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
   // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.model.provider.gcp.GcpProject vpc_network_project = 3;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpProject vpc_network_project = 3;
 
   // kube-cluster endpoint.
   string cluster_endpoint = 4;
@@ -373,7 +373,7 @@ message KubeClusterAwsSpec {
   string vpc_id = 3;
 
   // aws eks worker node-groups management mode
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.eksworkersmanagementmode.EksWorkersManagementMode workers_management_mode = 4 [
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.eksworkersmanagementmode.EksWorkersManagementMode workers_management_mode = 4 [
     (buf.validate.field).required = true
   ];
 }
@@ -471,7 +471,7 @@ message IngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for planton cloud api resource.
   string endpoint_domain_name = 3;
 }

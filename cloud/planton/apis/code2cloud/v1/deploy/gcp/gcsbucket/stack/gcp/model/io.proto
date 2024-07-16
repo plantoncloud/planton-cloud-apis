@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.storagebucket.stack.gcp.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.storagebucket.stack.gcp.model;
 
-import "cloud/planton/apis/code2cloud/v1/storagebucket/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/storagebucket/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
@@ -26,7 +26,7 @@ message StorageBucketGcpStackCredentialsInput {
 //stack resource input
 message StorageBucketGcpStackResourceInput {
   //storage-bucket
-  cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucket storage_bucket = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.storagebucket.model.StorageBucket storage_bucket = 1;
 }
 
 //storage-bucket stack outputs
