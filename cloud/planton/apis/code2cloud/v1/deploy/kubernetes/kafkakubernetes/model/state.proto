@@ -90,7 +90,7 @@ message KafkaKubernetesSpec {
   KafkaKubernetesSpecSchemaRegistryContainerSpec schema_registry_container = 5;
 
   //kafka-kubernetes ingress spec
-  cloud.planton.apis.cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 6;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 6;
 
   //flag to control if kowl dashboard is deployed for the kafka-kubernetes.
   //defaults to "false".

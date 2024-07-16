@@ -85,7 +85,7 @@ message LocustKubernetesSpec {
     (buf.validate.field).required = true
   ];
   //locust-kubernetes ingress-spec
-  cloud.planton.apis.cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
 
   // load_test defines the parameters of the load test itself, including the main test script,
   // any additional library files, and extra Python pip packages needed for the test execution.

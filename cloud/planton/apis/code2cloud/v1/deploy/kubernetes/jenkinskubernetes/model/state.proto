@@ -84,7 +84,7 @@ message JenkinsKubernetesSpec {
   map<string, string> helm_values = 3;
 
   //jenkins-kubernetes ingress-spec
-  cloud.planton.apis.cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
 }
 
 //jenkins-kubernetes status.
@@ -98,6 +98,7 @@ message JenkinsKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  //stack-outputs
   JenkinsKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
