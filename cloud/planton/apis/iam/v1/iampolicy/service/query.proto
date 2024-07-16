@@ -11,21 +11,21 @@ service IamPolicyQueryController {
   // retrieve iam policies by type and id
   rpc getByApiResourceKindAndResourceId(cloud.planton.apis.iam.v1.iampolicy.model.GetIamPolicyByApiResourceKindAndResourceIdInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view iam policy";
   }
 
   // retrieve iam policies by type and id grouped by role
   rpc getByApiResourceKindAndResourceIdGroupByRole(cloud.planton.apis.iam.v1.iampolicy.model.GetIamPolicyByApiResourceKindAndResourceIdInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByRole) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view iam policy";
   }
 
   // retrieve iam policies by type and id grouped by role
   rpc getOrganizationByApiResourceKindAndResourceIdGroupByRole(cloud.planton.apis.iam.v1.iampolicy.model.GetIamPolicyByApiResourceKindAndResourceIdInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByRole) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view iam policy";
   }
 
@@ -39,7 +39,7 @@ service IamPolicyQueryController {
   // due to insufficient permissions.
   rpc checkAuthorization(cloud.planton.apis.iam.v1.iampolicy.model.AuthorizationInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IsAuthorized) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check iam policy";
   }
 
@@ -52,7 +52,7 @@ service IamPolicyQueryController {
   // required permission (iam_policy_get) and the error message for insufficient permissions scenarios.
   rpc listAuthorizedResourceIds(cloud.planton.apis.iam.v1.iampolicy.model.AuthorizationInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.AuthorizedResourceIds) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list authorized resources";
   }
 }

@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.integration.v1.github.enums.githubapiauthorizationtype;
-
-enum GithubApiAuthorizationType {
-  unspecified = 0;
-  GITHUB_API_AUTHORIZATION_TYPE_GITHUB_APP = 1;
-  GITHUB_API_AUTHORIZATION_TYPE_API_TOKEN = 2;
-}

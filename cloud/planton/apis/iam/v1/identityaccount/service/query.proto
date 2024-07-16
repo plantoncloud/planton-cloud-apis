@@ -19,7 +19,7 @@ service MachineAccountQueryController {
   rpc get(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountId)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
 
@@ -36,7 +36,7 @@ service MachineAccountQueryController {
   rpc getByEmail(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountEmail)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     //field-path can not be added as authorization is performed on id
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account";
   }
@@ -45,7 +45,7 @@ service MachineAccountQueryController {
   rpc getByOrganizationByName(cloud.planton.apis.iam.v1.identityaccount.model.GetByOrganizationByNameQueryInput)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     //note: can not add field-path as the permission is based on the email of the identity_account in database matching provided input.
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup machine account";
   }
@@ -56,7 +56,7 @@ service MachineAccountQueryController {
   rpc getClientSecretByMachineAccountEmail(cloud.planton.apis.iam.v1.identityaccount.model.IdentityAccountEmail)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.MachineAccountClientSecret) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = identity_account;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = identity_account_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     //field-path can-not be added as the permission should be evaluated on the id of the machine-account which
     // needs to be looked up using the provided machine-account email.
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get machine account client secret";
@@ -124,7 +124,7 @@ service UserAccountQueryController {
   rpc getMembersCountByEnvId(cloud.planton.apis.iam.v1.identityaccount.model.MembersCountByEnvIdInput)
       returns (cloud.planton.apis.iam.v1.identityaccount.model.MembersCount) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to get environment members count";
   }

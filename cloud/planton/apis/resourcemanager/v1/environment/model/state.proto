@@ -3,9 +3,6 @@ syntax = "proto3";
 package cloud.planton.apis.resourcemanager.v1.environment.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/cloudprovider/cloud_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/enums/storagebucketprovider/storage_bucket_provider.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/enums/secretsbackendprovider/secrets_backend_provider.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
@@ -99,25 +96,14 @@ message EnvironmentSpec {
   //secrets-backend spec for the environment secrets
   EnvironmentSpecSecretsBackendSpec secrets_backend = 8;
 
-  //provider for storage-buckets created in this environment.
-  //this value is computed based on the cloud-provider.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 9 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
   //microservice-instance pipeline spec for the environment
   EnvironmentSpecMicroserviceInstanceSpecPipelineSpec microservice_instance_pipeline_spec = 10;
 }
 
 // information about the cloud-account configured for the environment
 message EnvironmentSpecCloudAccountSpec {
-  //cloud-provider
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider provider = 1 [
-    (buf.validate.field).enum.defined_only = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
   //id of the cloud-account
-  string connection_id = 2 [
+  string connection_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -125,17 +111,10 @@ message EnvironmentSpecCloudAccountSpec {
 
 // information about the kube-cluster configured for the environment
 message EnvironmentSpecKubeClusterSpec {
-  //kubernetes-provider for the configured kube-cluster
-  //the value is computed from kube-cluster.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider provider = 1 [
-    (buf.validate.field).enum.defined_only = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
   //kube-cluster deployed to the cloud-account configured for the environment.
   //target kube-cluster to which the workloads like microservice-instances, postgres databases,
   //kafka-clusters etc are deployed to.
-  string kube_cluster_id = 2 [
+  string kube_cluster_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -143,14 +122,14 @@ message EnvironmentSpecKubeClusterSpec {
   //external ingress ip.
   //this is the ip address to reach workloads like microservices from clients outside the kubernetes cluster.
   //this value is computed from kube-cluster.
-  string external_ingress_ip = 3 [
+  string external_ingress_ip = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   //internal ingress ip.
   //this is the ip address to reach workloads like microservices from internal network like private vpc.
   //this value is computed from kube-cluster.
-  string internal_ingress_ip = 4 [
+  string internal_ingress_ip = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -159,7 +138,7 @@ message EnvironmentSpecKubeClusterSpec {
   //the dns zone to be able to complete dns01 challenges.
   //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
   //this value is computed from kube-cluster.
-  string cert_manager_gsa_email = 5 [
+  string cert_manager_gsa_email = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
@@ -168,7 +147,7 @@ message EnvironmentSpecKubeClusterSpec {
   //the dns zone by external-dns component running on the kubernetes cluster.
   //this attribute is only populated if the environment is hosted in a gcp kube-cluster.
   //this value is computed from kube-cluster.
-  string external_dns_gsa_email = 6 [
+  string external_dns_gsa_email = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }

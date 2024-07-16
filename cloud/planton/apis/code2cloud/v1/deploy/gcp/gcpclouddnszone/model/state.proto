@@ -67,17 +67,17 @@ message GcpCloudDnsZoneSpec {
   ];
 
   // The ID of the GCP Project where the Managed Zone is created.
-  string project_id = 2 [
+  string project_id = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   // An optional list of GCP service accounts to be granted permissions to manage DNS records in the Managed Zone.
   // These accounts are primarily created as workload identities like cert-manager,
   // and are added when new environments are created or updated.
-  repeated string iam_service_accounts = 3;
+  repeated string iam_service_accounts = 4;
 
   // The DNS records that are added to the Zone.
-  repeated GcpCloudDnsZoneDnsRecord records = 4;
+  repeated GcpCloudDnsZoneDnsRecord records = 5;
 }
 
 // Status for the Route53 Zone

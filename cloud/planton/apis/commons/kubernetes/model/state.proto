@@ -2,6 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.kubernetes.model;
 
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+
 //sidecar object in microservice deployment configuration
 //this spec should always match the specification of a kubernetes container spec https://pkg.go.dev/k8s.io/api/core/v1#Container
 //warning: sidecar feature does not currently support all features of a kubernetes container spec.
@@ -82,7 +85,7 @@ message IngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.commons.kubernetes.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for planton cloud api resource.
   string endpoint_domain_name = 3;
 }
