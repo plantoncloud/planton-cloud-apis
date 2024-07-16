@@ -23,9 +23,7 @@ message ApiResourceVersion {
   ];
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "ApiResourceVersion"
-  ];
+  string kind = 2;
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 

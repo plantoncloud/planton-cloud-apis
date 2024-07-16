@@ -19,14 +19,10 @@ message DnsZone {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "DnsZone"
-  ];
+  string kind = 2;
 
   // metadata for the resource
   // Name is a valid, unique DNS domain name within the Platon Cloud.

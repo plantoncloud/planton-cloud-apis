@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.connect.codeserver.enums.apiresourceeventtype;
+package cloud.planton.apis.code2cloud.v1.connect.gitlabconnection.enums.apiresourceeventtype;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
 
-enum CodeServerApiResourceEventType {
+enum GitlabConnectionApiResourceEventType {
   unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,

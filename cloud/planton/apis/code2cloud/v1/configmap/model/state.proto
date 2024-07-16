@@ -15,13 +15,11 @@ message ConfigMap {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.env_id";
 
-  //id format "cmap-<env-id>-<config-map-name>"
+  //id format "<id-prefix>-<env-id>-<normalized-resource-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
   string kind = 2;

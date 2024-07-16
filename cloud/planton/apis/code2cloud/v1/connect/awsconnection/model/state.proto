@@ -14,18 +14,14 @@ message AwsConnection {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "ca-<organization-id>-<aws-connection-name>"
+  //id format "<id-prefix>-<ord-id>-<normalized-resource-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "AwsConnection"
-  ];
+  string kind = 2;
 
   // metadata for the resource
   // aws-connection id value adheres to the following constraints:

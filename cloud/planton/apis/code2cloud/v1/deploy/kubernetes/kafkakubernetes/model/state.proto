@@ -18,18 +18,14 @@ message KafkaKubernetes {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
-  //id format "kfc-<environment-id>-<kafka-kubernetes-name>"
+  //id format "<id-prefix>-<env-id>-<normalized-resource-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "KafkaKubernetes"
-  ];
+  string kind = 2;
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [

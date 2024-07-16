@@ -29,9 +29,7 @@ message StackJob {
   ];
 
   // resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "StackJob"
-  ];
+  string kind = 2;
 
   // resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;

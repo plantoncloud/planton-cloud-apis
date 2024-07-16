@@ -4,17 +4,23 @@ package cloud.planton.apis.code2cloud.v1.connect.gcpconnection.service;
 
 import "cloud/planton/apis/code2cloud/v1/connect/gcpconnection/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/gcpconnection/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
 
 // gcp-connection query controller
-service GcpConnectionQueryController {
+service GcpConnectionQueryController {option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gcp_connection;
+
   //look up a gcp-connection by id
   rpc getById(cloud.planton.apis.code2cloud.v1.connect.gcpconnection.model.GcpConnectionId) returns (cloud.planton.apis.code2cloud.v1.connect.gcpconnection.model.GcpConnection) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gcp_connection;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gcp-connection";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
   //find gcp-connections by organization id.
   //the response should only include gcp-connections in a organization that the authenticated user account has viewer access to.

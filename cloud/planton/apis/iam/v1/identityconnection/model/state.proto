@@ -16,14 +16,10 @@ message IdentityConnection {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "IdentityConnection"
-  ];
+  string kind = 2;
 
   // metadata for the resource
   // id:

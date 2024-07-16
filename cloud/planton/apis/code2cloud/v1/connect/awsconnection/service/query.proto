@@ -4,17 +4,22 @@ package cloud.planton.apis.code2cloud.v1.connect.awsconnection.service;
 
 import "cloud/planton/apis/code2cloud/v1/connect/awsconnection/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/awsconnection/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
 
 // aws-connection query controller
 service AwsConnectionQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = aws_connection;
   //look up a aws-connection by id
   rpc getById(cloud.planton.apis.code2cloud.v1.connect.awsconnection.model.AwsConnectionId) returns (cloud.planton.apis.code2cloud.v1.connect.awsconnection.model.AwsConnection) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = aws_connection;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view aws-connection";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
   //find aws-connections by organization id.
   //the response should only include aws-connections in a organization that the authenticated user account has viewer access to.

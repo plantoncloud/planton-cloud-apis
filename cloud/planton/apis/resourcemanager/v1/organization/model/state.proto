@@ -20,9 +20,7 @@ message Organization {
   ];
 
   // resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "Organization"
-  ];
+  string kind = 2;
 
   // metadata for the resource
   // id for this resource should not exceed 9 characters.

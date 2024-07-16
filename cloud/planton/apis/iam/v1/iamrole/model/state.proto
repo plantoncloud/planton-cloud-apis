@@ -15,9 +15,7 @@ message IamRole {
   ];
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "IamRole"
-  ];
+  string kind = 2;
 
   // metadata for the resource
   // id:

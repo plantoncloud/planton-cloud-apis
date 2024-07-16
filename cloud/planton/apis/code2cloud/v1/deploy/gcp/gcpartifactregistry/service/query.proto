@@ -7,10 +7,19 @@ import "cloud/planton/apis/code2cloud/v1/artifactstore/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/codeproject/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/gcp/gcpartifactregistry/service/query.proto
 import "cloud/planton/apis/resourcemanager/v1/organization/model/io.proto";
+||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/artifactstore/service/query.proto
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+=======
+import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+>>>>>>> main:cloud/planton/apis/code2cloud/v1/artifactstore/service/query.proto
 
 //artifact-store query controller
 service ArtifactStoreQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = artifact_store;
   //get artifact-store by id
   rpc getById(cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStoreId)
       returns (cloud.planton.apis.code2cloud.v1.artifactstore.model.ArtifactStore) {
@@ -18,6 +27,8 @@ service ArtifactStoreQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = artifact_store_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view artifact-store";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
   //look up artifact-stores by code project url
   rpc findByCodeProjectUrl(cloud.planton.apis.code2cloud.v1.codeproject.model.CodeProjectUrl)

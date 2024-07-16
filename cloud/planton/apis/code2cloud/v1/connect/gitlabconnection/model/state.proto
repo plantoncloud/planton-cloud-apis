@@ -1,33 +1,26 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.connect.codeserver.model;
+package cloud.planton.apis.code2cloud.v1.connect.gitlabconnection.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/connect/codeserver/enums/codeserverprovider/code_server_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/connect/codeserver/enums/githubappinstallownertype/github_app_install_owner_type.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-//code-server
-message CodeServer {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = code_server;
+//gitlab-connection
+message GitlabConnection {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gitlab_connection;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "cs-<organization-id>-<code-server-name>"
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "CodeServer"
-  ];
+  string kind = 2;
 
   //resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
@@ -63,99 +56,50 @@ message CodeServer {
   ];
 
   //spec
-  CodeServerSpec spec = 4;
+  GitlabConnectionSpec spec = 4;
 
   //status
-  CodeServerStatus status = 5;
+  GitlabConnectionStatus status = 5;
 }
 
-//code-server spec
-message CodeServerSpec {
-  option (buf.validate.message).cel = {
-    id: "spec.github",
-    expression: "this.code_server_provider == 1 && !has(this.github)"
-        "? 'github specification details are required'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "spec.gitlab",
-    expression: "this.code_server_provider == 2 && !has(this.gitlab)"
-        "? 'gitlab specification details are required'"
-        ": ''"
-  };
-  //Specifies the organization to which the code server belongs.
+//gitlab-connection spec
+message GitlabConnectionSpec {
+  //Specifies the organization to which the gitlab-connection belongs.
   string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
-  //Specifies the host of the code server, such as "https://github.com".
-  string code_server_host = 2 [
+  //Specifies the host of the gitlab-connection, such as "https://github.com".
+  string gitlab_connection_host = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).string.hostname = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
-  //Specifies the provider for the code server.
-  cloud.planton.apis.code2cloud.v1.connect.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 3 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
-
-  //github spec
-  CodeServerGithubSpec github = 4;
-
-  //gitlab spec
-  CodeServerGitlabSpec gitlab = 5;
-}
-
-//github code-server spec
-message CodeServerGithubSpec {
-  //id of the github organization
-  string org_id = 1 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //ID of the Github App installation provided by Github after successful app installation via OAuth flow.
-  int64 app_install_id = 2 [
-    (buf.validate.field).required = true
-  ];
-
-  //Specifies the owner type for Github App installation: User or Org.
-  cloud.planton.apis.code2cloud.v1.connect.codeserver.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-}
-
-//gitlab code-server spec
-message CodeServerGitlabSpec {
   //name or numerical identifier for gitlab group
   //This value is primarily used in the code project synchronization process.
-  string group_id = 1 [
+  string group_id = 3 [
     (buf.validate.field).required = true
   ];
 
   //Access token to integrate with Gitlab Server.
-  //This value is acquired by browser authorization flow when code server is added via Planton Cloud Console App.
-  string access_token = 2 [
+  //This value is acquired by browser authorization flow when gitlab-connection is added via Planton Cloud Console App.
+  string access_token = 4 [
     (buf.validate.field).required = true
   ];
 
   //Refresh token used to fetch a new access token when the current one expires.
-  string refresh_token = 3 [
+  string refresh_token = 5 [
     (buf.validate.field).required = true
   ];
 }
 
-//code-server status
-message CodeServerStatus {
+//gitlab-connection status
+message GitlabConnectionStatus {
   // resource lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
-
-  // id of the stack-job
-  string stack_job_id = 97;
 }
