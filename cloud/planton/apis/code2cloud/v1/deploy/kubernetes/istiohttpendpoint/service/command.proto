@@ -1,24 +1,20 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.service;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
-import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //istio-http-endpoint command controller
 service IstioHttpEndpointCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = istio_http_endpoint;
   //preview create istio-http-endpoint
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
@@ -29,8 +25,8 @@ service IstioHttpEndpointCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //create istio-http-endpoint
-  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
@@ -41,8 +37,8 @@ service IstioHttpEndpointCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview update an existing istio-http-endpoint
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -53,8 +49,8 @@ service IstioHttpEndpointCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //update an existing istio-http-endpoint
-  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -66,7 +62,7 @@ service IstioHttpEndpointCommandController {
   }
   //preview delete istio-http-endpoint
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -79,7 +75,7 @@ service IstioHttpEndpointCommandController {
   }
   //delete istio-http-endpoint
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -91,8 +87,8 @@ service IstioHttpEndpointCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview restoring a deleted istio-http-endpoint
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -103,8 +99,8 @@ service IstioHttpEndpointCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //restore a deleted istio-http-endpoint
-  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -116,7 +112,7 @@ service IstioHttpEndpointCommandController {
   }
   //preview refresh a istio-http-endpoint that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -129,7 +125,7 @@ service IstioHttpEndpointCommandController {
   }
   //refresh a istio-http-endpoint that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -146,8 +142,8 @@ service IstioHttpEndpointCommandController {
 service  IstioHttpEndpointRouteCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = istio_http_endpoint;
   //add a route to a istio-http-endpoint
-  rpc add(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc add(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "istio_http_endpoint_id";
@@ -160,8 +156,8 @@ service  IstioHttpEndpointRouteCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "istio_http_endpoint_id";
   }
   //update an existing route of a istio-http-endpoint
-  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "istio_http_endpoint_id";
@@ -174,8 +170,8 @@ service  IstioHttpEndpointRouteCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "istio_http_endpoint_id";
   }
   //delete a route for a istio-http-endpoint.
-  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "istio_http_endpoint_id";

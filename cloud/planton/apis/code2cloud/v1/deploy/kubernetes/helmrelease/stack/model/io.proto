@@ -1,26 +1,26 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.grafanakubernetes.stack.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.model;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/grafanakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/helmrelease/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 
-//input for grafana-kubernetes stack
-message GrafanaKubernetesStackInput {
+//input for helm-release stack
+message HelmReleaseStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
   //api-resource
-  code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetes api_resource = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmRelease helm_release = 2;
   //kubernetes-cluster-credential
   cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
 }
 
 //stack response
-message GrafanaKubernetesStackResponse {
+message HelmReleaseStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack-outputs
-  code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetesStatusStackOutputs stack_outputs = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmReleaseStatusStackOutputs stack_outputs = 2;
 }

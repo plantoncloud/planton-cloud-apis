@@ -1,40 +1,25 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.service;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/state.proto";
-import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
 
 //istio-http-endpoint query controller
 service IstioHttpEndpointQueryController {
-  //look up istio-http-endpoint using istio-http-endpoint id
-  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = helm_release;
+
+  //look up istio-http-endpoint using id
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpointId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view istio-http-endpoint";
-  }
 
-  //check cert status for istio-http-endpoint
-  rpc getIstioHttpEndpointCertStatus(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointCertStatus) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check istio-http-endpoint certificate status";
-  }
-
-  //check status of dns resolution for istio-http-endpoint.
-  //confirms if the dns of the istio-http-endpoint domain is resolving to the correct address.
-  rpc getIstioHttpEndpointDsnResolutionStatus(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointDnsResolutionStatus) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check istio-http-endpoint dnszone status";
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
 }

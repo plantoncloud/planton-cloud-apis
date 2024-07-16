@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
@@ -125,7 +125,16 @@ message IstioHttpEndpointStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //may be add the name of the certificate that can be used for checking the status?
+  //stack-outputs
+  IstioHttpEndpointStatusStackOutputs stack_outputs = 1;
+}
+
+//istio-http-endpoint stack-outputs
+message IstioHttpEndpointStatusStackOutputs {
+  //name of the VirtualService resource created on kubernetes
+  string virtual_service_name = 1;
+  //name of the Secret resource created on kubernetes that contain cert secret
+  string cert_secret_name = 2;
 }
 
 //istio-http-endpoint route

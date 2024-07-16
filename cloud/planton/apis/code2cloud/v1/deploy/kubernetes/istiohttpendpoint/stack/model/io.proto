@@ -1,26 +1,26 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.grafanakubernetes.stack.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.stack.model;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/grafanakubernetes/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
-//input for grafana-kubernetes stack
-message GrafanaKubernetesStackInput {
+//istio-http-endpoint container stack input
+message IstioHttpEndpointStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
   //api-resource
-  code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetes api_resource = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpoint api_resource = 2;
   //kubernetes-cluster-credential
   cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
 }
 
 //stack response
-message GrafanaKubernetesStackResponse {
+message IstioHttpEndpointStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack-outputs
-  code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetesStatusStackOutputs stack_outputs = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model.IstioHttpEndpointStatusStackOutputs stack_outputs = 2;
 }

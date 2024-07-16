@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.stack.kubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.stack.service;
 
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/stack/model/io.proto";
 

@@ -85,8 +85,8 @@ message HelmReleaseStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //status attributes of helm-release on kubernetes
-  HelmReleaseStatusKubernetesStatus kubernetes = 1;
+  //helm-release stack-outputs
+  HelmReleaseStatusStackOutputs stack_outputs = 1;
 }
 
 //helm-chart spec
@@ -105,7 +105,7 @@ message HelmReleaseSpecChartSpec {
 }
 
 //helm-release status on kubernetes cluster.
-message HelmReleaseStatusKubernetesStatus {
+message HelmReleaseStatusStackOutputs {
   //namespace in which the helm release has been created.
   string namespace = 1;
 }

@@ -1,20 +1,15 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.istiohttpendpoint.model;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/istiohttpendpoint/model/state.proto";
 import "buf/validate/validate.proto";
 
-//wrapper for istio-http-endpoint Domain id
+//wrapper for istio-http-endpoint id
 message IstioHttpEndpointId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
-}
-
-//list of istio-http-endpoints
-message IstioHttpEndpointList {
-  repeated IstioHttpEndpoint entries = 1;
 }
 
 //AddOrUpdateIstioHttpEndpointRouteCommandInput is used to encapsulate the details required
@@ -75,16 +70,4 @@ message DeleteOrRestoreIstioHttpEndpointRouteCommandInput {
   string version_message = 3 [
     (buf.validate.field).required = true
   ];
-}
-
-//ssl certificate status of istio-http-endpoint
-message IstioHttpEndpointCertStatus {
-  //flag to indicate if the certificate has been issued.
-  bool is_cert_issued = 1;
-}
-
-//dns resolution status of endpoint
-message IstioHttpEndpointDnsResolutionStatus {
-  //flag to indicate if the dns is resolving to the correct ingress address(ip or cname).
-  bool is_resolving_to_ingress_address = 1;
 }
