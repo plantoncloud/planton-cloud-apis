@@ -1,31 +1,25 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.storagebucket.service;
+package cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.service;
 
-import "cloud/planton/apis/code2cloud/v1/storagebucket/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/storagebucket/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/aws/s3bucket/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/aws/s3bucket/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/aws/s3bucket/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/storagebucket/service/query.proto
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
-=======
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/storagebucket/service/query.proto
 
-//storage-bucket query controller
-service StorageBucketQueryController {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = storage_bucket;
-  //look up a storage-bucket using storage-bucket id
-  rpc getById(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucketId)
-      returns(cloud.planton.apis.code2cloud.v1.storagebucket.model.StorageBucket) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = storage_bucket;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = storage_bucket_get;
+//s3-bucket query controller
+service S3BucketQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = s3_bucket;
+  //look up a s3-bucket using s3-bucket id
+  rpc getById(cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3BucketId)
+      returns(cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3Bucket) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = s3_bucket;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view storage-bucket";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view s3-bucket";
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
