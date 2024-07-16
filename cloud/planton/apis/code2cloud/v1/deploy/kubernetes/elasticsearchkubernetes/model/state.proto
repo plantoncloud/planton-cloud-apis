@@ -68,7 +68,7 @@ message ElasticsearchKubernetes {
 
 //elasticsearch-kubernetes spec
 message ElasticsearchKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //elasticsearch-container spec

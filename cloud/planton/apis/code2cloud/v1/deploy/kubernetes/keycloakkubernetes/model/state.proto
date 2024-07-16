@@ -68,7 +68,7 @@ message KeycloakKubernetes {
 
 //keycloak-kubernetes spec
 message KeycloakKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //keycloak-container spec

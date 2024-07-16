@@ -69,7 +69,7 @@ message MicroserviceKubernetes {
 
 //microservice-kubernetes spec
 message MicroserviceKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or

@@ -21,14 +21,4 @@ service AwsCredentialQueryController {
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
-
-  //find aws-credentials by organization id.
-  //the response should only include aws-credentials in a organization that the authenticated user account has viewer access to.
-  //authorization is handled internally by running get authorized aws-credential ids
-  rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredentialList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list aws-credentials by organization id";
-  }
 }

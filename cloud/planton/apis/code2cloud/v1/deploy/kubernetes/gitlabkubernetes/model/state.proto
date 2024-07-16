@@ -68,7 +68,7 @@ message GitlabKubernetes {
 
 //gitlab-kubernetes spec
 message GitlabKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //gitlab-container spec

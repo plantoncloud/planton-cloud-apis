@@ -68,7 +68,7 @@ message SolrKubernetes {
 
 //solr-kubernetes spec
 message SolrKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   SolrKubernetesSpecSolrContainerSpec solr_container = 2 [

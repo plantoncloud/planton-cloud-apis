@@ -68,7 +68,7 @@ message GrafanaKubernetes {
 
 //grafana-kubernetes spec
 message GrafanaKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //grafana-container spec

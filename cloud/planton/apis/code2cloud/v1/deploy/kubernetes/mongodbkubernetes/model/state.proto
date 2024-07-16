@@ -68,7 +68,7 @@ message MongodbKubernetes {
 
 //mongodb-kubernetes spec
 message MongodbKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //mongodb-container spec

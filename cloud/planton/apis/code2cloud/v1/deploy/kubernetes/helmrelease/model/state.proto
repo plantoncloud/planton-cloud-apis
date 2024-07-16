@@ -65,7 +65,7 @@ message HelmRelease {
 
 //helm-release spec
 message HelmReleaseSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //helm-chart spec

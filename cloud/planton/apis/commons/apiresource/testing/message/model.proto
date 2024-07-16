@@ -115,7 +115,7 @@ message ApiResourceKubernetesTest {
 
 //api-resource-kubernetes spec
 message ApiResourceKubernetesTestSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   // api-resource-container spec

@@ -7,13 +7,14 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
 
 //route53-zone
 message Route53Zone {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = route53_zone;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
@@ -56,11 +57,8 @@ message Route53Zone {
 
 // Specification for the Route53 Zone
 message Route53ZoneSpec {
-  // The ID of the organization that owns the Route53 Zone. This is required and immutable.
-  string org_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   // The ID of the AWS Cloud Connection where the Managed Zone should be created.
   string aws_credential_id = 2 [

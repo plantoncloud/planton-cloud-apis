@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpclouddnszone.stack.gcp.service;
+
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/gcpclouddnszone/stack/model/io.proto";
+
+// gcp-cloud-dns-zone stack controller
+service GcpCloudDnsZoneStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpclouddnszone.stack.gcp.model.GcpCloudDnsZoneStackInput) returns
+      (stream cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpclouddnszone.stack.gcp.model.GcpCloudDnsZoneStackResponse);
+}

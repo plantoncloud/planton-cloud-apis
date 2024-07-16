@@ -69,7 +69,7 @@ message KafkaKubernetes {
 
 //kafka-kubernetes spec
 message KafkaKubernetesSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //list of kafka topics.

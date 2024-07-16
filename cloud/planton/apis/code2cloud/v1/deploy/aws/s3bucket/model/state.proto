@@ -54,7 +54,7 @@ message S3Bucket {
 
 //s3-bucket spec
 message S3BucketSpec {
-  //resource parent
+  //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //flag to indicate if s3-bucket should have external(public) access.
