@@ -27,7 +27,7 @@ service MongodbKubernetesQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view mongodb-kubernetes";
 
@@ -39,7 +39,7 @@ service MongodbKubernetesQueryController {
   rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view mongodb-kubernetes password";
   }

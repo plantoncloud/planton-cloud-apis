@@ -14,7 +14,7 @@ service IstioHttpEndpointQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = istio_http_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view istio-http-endpoint";
   }
@@ -23,7 +23,7 @@ service IstioHttpEndpointQueryController {
   rpc getIstioHttpEndpointCertStatus(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointCertStatus) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = istio_http_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check istio-http-endpoint certificate status";
   }
@@ -33,7 +33,7 @@ service IstioHttpEndpointQueryController {
   rpc getIstioHttpEndpointDsnResolutionStatus(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointDnsResolutionStatus) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = istio_http_endpoint;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = istio_http_endpoint_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to check istio-http-endpoint dnszone status";
   }

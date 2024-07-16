@@ -25,7 +25,7 @@ service SolrKubernetesQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view solr-kubernetes";
 
@@ -37,7 +37,7 @@ service SolrKubernetesQueryController {
   rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view solr-kubernetes password";
   }

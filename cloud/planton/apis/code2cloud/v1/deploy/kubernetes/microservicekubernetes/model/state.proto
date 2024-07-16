@@ -4,8 +4,8 @@ package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernete
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -140,7 +140,7 @@ message MicroserviceKubernetesSpecContainerSpecAppSpec {
   cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.ContainerImage image = 1;
 
   //container resources
-  commons.kubernetes.model.ContainerResources resources = 2;
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 2;
 
   //microservice-kubernetes environment variables and secrets.
   MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec env = 3;

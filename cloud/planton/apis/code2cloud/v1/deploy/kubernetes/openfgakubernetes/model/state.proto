@@ -4,8 +4,8 @@ package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.mod
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -77,7 +77,7 @@ message OpenfgaKubernetesSpec {
   ];
 
   //openfga-kubernetes ingress-spec
-  commons.kubernetes.model.IngressSpec ingress = 3;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 3;
 }
 
 //openfga-kubernetes status.
@@ -99,7 +99,7 @@ message OpenfgaKubernetesStatus {
 message OpenfgaKubernetesSpecContainerSpec {
   //openfga container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  commons.kubernetes.model.ContainerResources resources = 1 [
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 1 [
     (buf.validate.field).required = true
   ];
 }

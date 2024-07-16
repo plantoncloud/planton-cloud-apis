@@ -27,7 +27,7 @@ service JenkinsKubernetesQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.jenkinskubernetes.model.JenkinsKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.jenkinskubernetes.model.JenkinsKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = jenkins_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = jenkins_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-kubernetes";
 
@@ -39,7 +39,7 @@ service JenkinsKubernetesQueryController {
   rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.jenkinskubernetes.model.JenkinsKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.jenkinskubernetes.model.JenkinsKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = jenkins_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = jenkins_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view jenkins-kubernetes password";
   }

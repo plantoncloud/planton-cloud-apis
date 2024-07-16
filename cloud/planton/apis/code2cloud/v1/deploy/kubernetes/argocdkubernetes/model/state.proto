@@ -76,7 +76,7 @@ message ArgocdKubernetesSpec {
   ];
 
   //argocd-kubernetes ingress-spec
-  commons.kubernetes.model.IngressSpec ingress = 3;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 3;
 }
 
 //argocd-kubernetes status.
@@ -98,7 +98,7 @@ message ArgocdKubernetesStatus {
 message ArgocdKubernetesSpecContainerSpec {
   //argocd container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  commons.kubernetes.model.ContainerResources resources = 1 [
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 1 [
     (buf.validate.field).required = true
   ];
 }

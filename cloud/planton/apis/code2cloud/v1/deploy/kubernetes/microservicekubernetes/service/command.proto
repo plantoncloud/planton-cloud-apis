@@ -18,7 +18,7 @@ service MicroserviceKubernetesCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create microservice-kubernetes";
     // api resource rpc method options
@@ -30,7 +30,7 @@ service MicroserviceKubernetesCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create microservice-kubernetes";
     // api resource rpc method options
@@ -42,7 +42,7 @@ service MicroserviceKubernetesCommandController {
   rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update microservice-kubernetes";
     // api resource rpc method options
@@ -54,7 +54,7 @@ service MicroserviceKubernetesCommandController {
   rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update microservice-kubernetes";
     // api resource rpc method options
@@ -66,7 +66,7 @@ service MicroserviceKubernetesCommandController {
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete microservice-kubernetes";
     // api resource rpc method options
@@ -79,7 +79,7 @@ service MicroserviceKubernetesCommandController {
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete microservice-kubernetes";
     // api resource rpc method options
@@ -92,7 +92,7 @@ service MicroserviceKubernetesCommandController {
   rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore microservice-kubernetes";
     // api resource rpc method options
@@ -104,7 +104,7 @@ service MicroserviceKubernetesCommandController {
   rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore microservice-kubernetes";
     // api resource rpc method options
@@ -117,7 +117,7 @@ service MicroserviceKubernetesCommandController {
   rpc restart(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restart microservice-kubernetes";
     // api resource rpc method options
@@ -129,7 +129,7 @@ service MicroserviceKubernetesCommandController {
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause microservice-kubernetes";
     // api resource rpc method options
@@ -144,7 +144,7 @@ service MicroserviceKubernetesCommandController {
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause microservice-kubernetes";
     // api resource rpc method options
@@ -157,7 +157,7 @@ service MicroserviceKubernetesCommandController {
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh microservice-kubernetes";
     // api resource rpc method options
@@ -170,7 +170,7 @@ service MicroserviceKubernetesCommandController {
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = microservice_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = microservice_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh microservice-kubernetes";
     // api resource rpc method options

@@ -22,7 +22,7 @@ service GitlabKubernetesQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gitlab-kubernetes";
 
@@ -52,7 +52,7 @@ service GitlabKubernetesQueryController {
   rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gitlab-kubernetes password";
   }

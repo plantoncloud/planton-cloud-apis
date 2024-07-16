@@ -18,7 +18,7 @@ service HelmReleaseQueryController {
   rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmReleaseId)
       returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmRelease) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = helm_release_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view helm-release";
 

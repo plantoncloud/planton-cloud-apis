@@ -4,8 +4,8 @@ package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.locustkubernetes.mode
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -85,7 +85,7 @@ message LocustKubernetesSpec {
     (buf.validate.field).required = true
   ];
   //locust-kubernetes ingress-spec
-  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
+  cloud.planton.apis.cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
 
   // load_test defines the parameters of the load test itself, including the main test script,
   // any additional library files, and extra Python pip packages needed for the test execution.
@@ -119,7 +119,7 @@ message LocustKubernetesStatus {
 message LocustKubernetesSpecContainerSpec {
   //locust container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  commons.kubernetes.model.ContainerResources resources = 1 [
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 1 [
     (buf.validate.field).required = true
   ];
   // number of replicas
