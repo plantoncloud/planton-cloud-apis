@@ -2,53 +2,27 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.stack.model;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/cloudaccount/model/provider/gcp/state.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/microservicekubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/connect/gcpcredential/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/microservicekubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/gkecluster/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
+//todo: should there be seperate api-resource for MicroserviceGkeKubernetes & MicroserviceEksKubernetes etc
 //input for microservice-kubernetes stack
 message MicroserviceKubernetesStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
-  //kubernetes-cluster-credential
-  MicroserviceKubernetesStackCredentialsInput kubernetes_cluster_credential = 3;
   //api-resource
-  MicroserviceKubernetesStackResourceInput api_resource = 2;
-}
-
-//stack credentials input
-message MicroserviceKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating microservice-kubernetes resources on container instance
-  cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes api_resource = 2;
+  //kubernetes-cluster-credential
+  cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
   //google provider credential for ensuring workload identity resources on google cloud
-  cloud.planton.apis.iac.v1.stackjob.model.credentials.GoogleProviderCredential google = 2;
-}
-
-//stack resource input
-message MicroserviceKubernetesStackResourceInput {
-  //microservice-kubernetes
-  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model.MicroserviceKubernetes microservice_kubernetes = 1;
-  //input required for creating kubernetes secret resources to be used by deployment resources to pull private
-  //container images.
-  //a organization can have many artifact-stores. each artifact-store has a separate service account credential.
-  //the microservice environment will be configured with secrets required to pull private images from any of the organization's
-  //artifact-stores. This model is particularly helpful during migrations during which images may be pushed to multiple
-  //artifact-stores.
-  repeated KubernetesImagePullSecretInput kubernetes_image_pull_secrets = 2;
+  cloud.planton.apis.code2cloud.v1.connect.gcpcredential.model.GcpCredential gcp_credential = 4;
   //kubernetes cluster project required to configure workload identity
   //service account is created in kubernetes cluster project and a binding created to workload identity pool.
-  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 3;
-}
-
-message KubernetesImagePullSecretInput {
-  //name of the image pull secret to be used for naming the kubernetes secret.
-  string image_pull_secret_name = 1;
-  //base64 encoded key for the artifact reader google service account
-  string artifact_reader_gsa_key_base64 = 2;
-  //hostname of the docker repo ex: us-central1-docker.pkg.dev
-  string docker_repo_hostname = 3;
+  cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model.GcpProject gke_cluster_project = 5;
 }
 
 //stack response

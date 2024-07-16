@@ -5,11 +5,9 @@ package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernete
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/microservicekubernetes/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/microservicekubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //microservice-kubernetes command controller
 service MicroserviceKubernetesCommandController {
