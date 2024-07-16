@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/elasticsearchkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/elasticsearchkubernetes/model/state.proto";
 import "buf/validate/validate.proto";
 
 //wrapper for id field of elasticsearch-kubernetes

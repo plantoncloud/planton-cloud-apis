@@ -1,12 +1,12 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.helmrelease.stack.kubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.kubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/helmrelease/stack/kubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/helmrelease/stack/kubernetes/model/io.proto";
 
 service HelmReleaseKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackInput)
-      returns (cloud.planton.apis.code2cloud.v1.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackOutputs);
+  rpc execute(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.stack.kubernetes.model.HelmReleaseKubernetesStackOutputs);
 }

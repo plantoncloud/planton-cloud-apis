@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.solrkubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -81,7 +81,7 @@ message SolrKubernetesSpec {
   ];
 
   //ingress spec
-  code2cloud.v1.kubecluster.model.IngressSpec ingress = 4;
+  commons.kubernetes.model.IngressSpec ingress = 4;
 }
 
 //solr-kubernetes status
@@ -95,7 +95,7 @@ message SolrKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  SolrKubernetesStatusStackOutputs outputs = 1;
+  SolrKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
 //solr container spec
@@ -108,11 +108,11 @@ message SolrKubernetesSpecSolrContainerSpec {
 
   //solr container image
   //example repo: solr example tag: 8.7.0
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerImage image = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.ContainerImage image = 2;
 
   //solr container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 3 [
+  commons.kubernetes.model.ContainerResources resources = 3 [
     (buf.validate.field).required = true
   ];
 
@@ -156,7 +156,7 @@ message SolrKubernetesSpecZookeeperContainerSpec {
 
   //zookeeper container cpu and memory resources.
   //recommended default "cpu-request: 50m, memory-request: 256Mi, cpu-limit: 1, memory-limit: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  commons.kubernetes.model.ContainerResources resources = 2 [
     (buf.validate.field).required = true
   ];
 

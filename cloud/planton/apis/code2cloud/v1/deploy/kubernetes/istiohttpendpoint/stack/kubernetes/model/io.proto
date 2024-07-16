@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.customendpoint.stack.kubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.stack.kubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/customendpoint/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/credentials/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/customendpoint/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
@@ -11,34 +11,34 @@ import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 message IstioHttpEndpointKubernetesStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
-  //pulumi stack credentials
-  IstioHttpEndpointKubernetesStackCredentialsInput credentials_input = 2;
-  //inputs used for creating stack resources
-  IstioHttpEndpointKubernetesStackResourceInput resource_input = 3;
+  //kubernetes-cluster-credential
+  IstioHttpEndpointKubernetesStackCredentialsInput kubernetes_cluster_credential = 3;
+  //api-resource
+  IstioHttpEndpointKubernetesStackResourceInput api_resource = 2;
 }
 
 //istio-http-endpoint container stack credentials input
 message IstioHttpEndpointKubernetesStackCredentialsInput {
   //kubernetes provider credential for creating endpoint domain resources on kubernetes cluster
-  cloud.planton.apis.iac.v1.stackjob.model.credentials.KubernetesProviderCredential kubernetes = 1;
+  cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes = 1;
 }
 
 //istio-http-endpoint container stack resource input
 message IstioHttpEndpointKubernetesStackResourceInput {
   //istio-http-endpoint
-  cloud.planton.apis.code2cloud.v1.customendpoint.model.IstioHttpEndpoint istio_http_endpoint = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpoint istio_http_endpoint = 1;
 }
 
 //istio-http-endpoint container stack outputs
 message IstioHttpEndpointKubernetesStackOutputs {
   //istio-http-endpoint
-  cloud.planton.apis.code2cloud.v1.customendpoint.model.IstioHttpEndpointStatus istio_http_endpoint_status = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.customendpoint.model.IstioHttpEndpointStatus istio_http_endpoint_status = 1;
 }
 
 //stack response
 message IstioHttpEndpointKubernetesStackResponse {
-  //stack-job progress event
+  //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
-  //stack outputs
-  IstioHttpEndpointKubernetesStackOutputs outputs = 3;
+  //stack-outputs
+  IstioHttpEndpointKubernetesStackOutputs stack_outputs = 2;
 }

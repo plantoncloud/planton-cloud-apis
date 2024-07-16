@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.keycloakkubernetes.stack.service;
 
-import "cloud/planton/apis/code2cloud/v1/keycloakkubernetes/stack/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/keycloakkubernetes/stack/model/io.proto";
 
 service KeycloakKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.model.KeycloakKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.keycloakkubernetes.stack.model.KeycloakKubernetesStackResponse);
+  rpc execute(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.keycloakkubernetes.stack.model.KeycloakKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.kubernetes.keycloakkubernetes.stack.model.KeycloakKubernetesStackResponse);
 }

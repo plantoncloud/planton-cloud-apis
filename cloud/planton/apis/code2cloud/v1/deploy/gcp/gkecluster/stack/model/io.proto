@@ -19,7 +19,7 @@ message GkeClusterStackInput {
 
 //gke-cluster stack-response
 message GkeClusterStackResponse {
-  //stack-job progress event
+  //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model.GkeClusterStatusStackOutputs stack_outputs = 2;

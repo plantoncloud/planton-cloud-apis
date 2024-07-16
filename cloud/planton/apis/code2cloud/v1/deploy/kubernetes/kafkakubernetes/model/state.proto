@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kafkakubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcechilditemmessageoptions/api_resource_child_item_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
@@ -90,7 +90,7 @@ message KafkaKubernetesSpec {
   KafkaKubernetesSpecSchemaRegistryContainerSpec schema_registry_container = 5;
 
   //kafka-kubernetes ingress spec
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 6;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 6;
 
   //flag to control if kowl dashboard is deployed for the kafka-kubernetes.
   //defaults to "false".
@@ -108,7 +108,7 @@ message KafkaKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  KafkaKubernetesStatusStackOutputs outputs = 1;
+  KafkaKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
 //kafka-kubernetes kubernetes kafka-broker spec
@@ -122,7 +122,7 @@ message KafkaKubernetesSpecBrokerContainerSpec {
 
   //kafka broker container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  commons.kubernetes.model.ContainerResources resources = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -152,7 +152,7 @@ message KafkaKubernetesSpecZookeeperContainerSpec {
 
   //zookeeper container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  commons.kubernetes.model.ContainerResources resources = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -185,7 +185,7 @@ message KafkaKubernetesSpecSchemaRegistryContainerSpec {
 
   //schema-registry container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 3 [
+  commons.kubernetes.model.ContainerResources resources = 3 [
     (buf.validate.field).required = true
   ];
 }

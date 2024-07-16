@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.postgreskubernetes.stack.service;
 
-import "cloud/planton/apis/code2cloud/v1/postgreskubernetes/stack/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/postgreskubernetes/stack/model/io.proto";
 
 //postgres-kubernetes stack controller
 service PostgresKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.model.PostgresKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.postgreskubernetes.stack.model.PostgresKubernetesStackResponse);
+  rpc execute(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.postgreskubernetes.stack.model.PostgresKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.kubernetes.postgreskubernetes.stack.model.PostgresKubernetesStackResponse);
 }

@@ -19,7 +19,7 @@ message Route53ZoneStackInput {
 
 //stack response
 message Route53ZoneStackResponse {
-  //stack-job progress event
+  //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   cloud.planton.apis.code2cloud.v1.deploy.aws.route53zone.model.Route53ZoneStatusStackOutputs stack_outputs = 2;

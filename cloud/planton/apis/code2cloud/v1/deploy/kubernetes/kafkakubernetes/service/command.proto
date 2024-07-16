@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kafkakubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/kafkakubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kafkakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kafkakubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kafkakubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -16,8 +16,8 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 service KafkaKubernetesCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //preview create kafka-kubernetes
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -28,8 +28,8 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //create kafka-kubernetes
-  rpc create(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -40,8 +40,8 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview update an existing kafka-kubernetes
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -52,8 +52,8 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //update an existing kafka-kubernetes
-  rpc update(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -65,7 +65,7 @@ service KafkaKubernetesCommandController {
   }
   //preview deleting an existing kafka-kubernetes
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -78,7 +78,7 @@ service KafkaKubernetesCommandController {
   }
   //delete an existing kafka-kubernetes
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -90,8 +90,8 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview restoring a deleted kafka-kubernetes
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -102,8 +102,8 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //restore a deleted kafka-kubernetes
-  rpc restore(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -116,8 +116,8 @@ service KafkaKubernetesCommandController {
   //restart a kafka-kubernetes running in a environment.
   //kafka-kubernetes is restarted by deleting running "broker" pods which will be automatically recreated by kubernetes
   //note: zookeeper pods are not deleted.
-  rpc restart(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc restart(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -129,7 +129,7 @@ service KafkaKubernetesCommandController {
   //kafka-kubernetes is paused by scaling down number of replicas of
   //the kubernetes deployment/stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -144,7 +144,7 @@ service KafkaKubernetesCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the kafka-kubernetes.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -157,7 +157,7 @@ service KafkaKubernetesCommandController {
   }
   //preview refresh a kafka-kubernetes that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -170,7 +170,7 @@ service KafkaKubernetesCommandController {
   }
   //refresh a kafka-kubernetes that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -187,8 +187,8 @@ service KafkaKubernetesCommandController {
 service KafkaTopicCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
-  rpc add(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc add(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kafka_kubernetes_id";
@@ -201,8 +201,8 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-  rpc addMultiple(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.AddKafkaTopicsCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc addMultiple(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.AddKafkaTopicsCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kafka_kubernetes_id";
@@ -215,8 +215,8 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //update a kafka topic.
-  rpc update(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kafka_kubernetes_id";
@@ -229,8 +229,8 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //delete a kafka topic.
-  rpc delete(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.DeleteOrRestoreKafkaTopicCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc delete(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.DeleteOrRestoreKafkaTopicCommandInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "kafka_kubernetes_id";

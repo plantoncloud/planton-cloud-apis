@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.grafanakubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.grafanakubernetes.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/grafanakubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/grafanakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/grafanakubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/grafanakubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
@@ -19,8 +19,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service GrafanaKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = grafana_kubernetes;
   //look up grafana-kubernetes using grafana-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.grafanakubernetes.model.GrafanaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.grafanakubernetes.model.GrafanaKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.grafanakubernetes.model.GrafanaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = grafana_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = grafana_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

@@ -1,8 +1,7 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.argocdkubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.argocdkubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/argocdkubernetes/model/state.proto";
 import "buf/validate/validate.proto";
 
 //wrapper for id field of argocd-kubernetes

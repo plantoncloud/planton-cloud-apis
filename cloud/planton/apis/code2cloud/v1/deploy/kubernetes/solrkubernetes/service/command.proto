@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.solrkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -16,8 +16,8 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 service SolrKubernetesCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = solr_kubernetes;
   //preview create solr-kubernetes
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -28,8 +28,8 @@ service SolrKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //create solr-kubernetes
-  rpc create(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -40,8 +40,8 @@ service SolrKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview update an existing solr-kubernetes
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -52,8 +52,8 @@ service SolrKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //update an existing solr-kubernetes
-  rpc update(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -65,7 +65,7 @@ service SolrKubernetesCommandController {
   }
   //preview deleting an existing solr-kubernetes
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -78,7 +78,7 @@ service SolrKubernetesCommandController {
   }
   //delete an existing solr-kubernetes
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -90,8 +90,8 @@ service SolrKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview restoring a deleted solr-kubernetes
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -102,8 +102,8 @@ service SolrKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //restore a deleted solr-kubernetes
-  rpc restore(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -115,8 +115,8 @@ service SolrKubernetesCommandController {
   }
   //restart a solr-kubernetes running in a environment.
   //solr-kubernetes is restarted by deleting running "solr" pods which will be automatically recreated by kubernetes
-  rpc restart(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc restart(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -128,7 +128,7 @@ service SolrKubernetesCommandController {
   //solr-kubernetes is paused by scaling down number of replicas of
   //the kubernetes deployment/stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -143,7 +143,7 @@ service SolrKubernetesCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the solr-kubernetes.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -156,7 +156,7 @@ service SolrKubernetesCommandController {
   }
   //preview refresh a solr-kubernetes that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -169,7 +169,7 @@ service SolrKubernetesCommandController {
   }
   //refresh a solr-kubernetes that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";

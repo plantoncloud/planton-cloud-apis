@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.openfgakubernetes.stack.kubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.stack.kubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/openfgakubernetes/stack/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/stack/model/io.proto";
 
 service OpenfgaKubernetesStackController {
-  rpc execute(cloud.planton.apis.code2cloud.v1.openfgakubernetes.stack.model.OpenfgaKubernetesStackInput)
-      returns (stream cloud.planton.apis.code2cloud.v1.openfgakubernetes.stack.model.OpenfgaKubernetesStackResponse);
+  rpc execute(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.stack.model.OpenfgaKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.stack.model.OpenfgaKubernetesStackResponse);
 }

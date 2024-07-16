@@ -1,29 +1,29 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.solrkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/solrkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/solrkubernetes/service/query.proto
+<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/deploy/kubernetes/solrkubernetes/service/query.proto
+||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/service/query.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 =======
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/solrkubernetes/service/query.proto
+>>>>>>> main:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/service/query.proto
 
 //solr-kubernetes query controller
 service SolrKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = solr_kubernetes;
   //look up solr-kubernetes using solr-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -34,8 +34,8 @@ service SolrKubernetesQueryController {
 
   //look up solr-kubernetes sasl password
   //password is retrieved from the kubernetes cloud.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.solrkubernetes.model.SolrKubernetesPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model.SolrKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = solr_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.gitlabkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/gitlabkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/gitlabkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
@@ -19,8 +19,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service GitlabKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gitlab_kubernetes;
   //look up gitlab-kubernetes using gitlab-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -31,7 +31,7 @@ service GitlabKubernetesQueryController {
 
   //find gitlab-kubernetes by environment
   rpc findByEnvId(cloud.planton.apis.resourcemanager.v1.environment.model.EnvId)
-      returns (cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetesList) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -39,8 +39,8 @@ service GitlabKubernetesQueryController {
   }
   //find gitlab-kubernetes by kube-cluster
 
-  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetesList) {
+  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.KubeClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -49,8 +49,8 @@ service GitlabKubernetesQueryController {
 
   //look up gitlab-kubernetes sasl password
   //password is retrieved from the kubernetes cluster.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.gitlabkubernetes.model.GitlabKubernetesPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

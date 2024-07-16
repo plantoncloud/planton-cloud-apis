@@ -19,7 +19,7 @@ message S3BucketStackInput {
 
 //stack response
 message S3BucketStackResponse {
-  //stack-job progress event
+  //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model.S3BucketStatusStackOutputs stack_outputs = 2;

@@ -1,15 +1,13 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.argocdkubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.argocdkubernetes.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //argocd-kubernetes
 message ArgocdKubernetes {
@@ -78,7 +76,7 @@ message ArgocdKubernetesSpec {
   ];
 
   //argocd-kubernetes ingress-spec
-  code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
+  commons.kubernetes.model.IngressSpec ingress = 3;
 }
 
 //argocd-kubernetes status.
@@ -92,14 +90,15 @@ message ArgocdKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  ArgocdKubernetesStatusStackOutputs outputs = 1;
+  //argocd-kubernetes stack-outputs
+  ArgocdKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
 // argocd-kubernetes kubernetes argocd-container spec
 message ArgocdKubernetesSpecContainerSpec {
   //argocd container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 1 [
+  commons.kubernetes.model.ContainerResources resources = 1 [
     (buf.validate.field).required = true
   ];
 }

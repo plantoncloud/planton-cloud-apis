@@ -1,32 +1,21 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.argocdkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.argocdkubernetes.service;
 
-import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/argocdkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/argocdkubernetes/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/argocdkubernetes/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/argocdkubernetes/service/query.proto
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
-=======
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/argocdkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/argocdkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/argocdkubernetes/service/query.proto
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //argocd-kubernetes query controller
 service ArgocdKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = argocd_kubernetes;
   //look up argocd-kubernetes using argocd-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.argocdkubernetes.model.ArgocdKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.argocdkubernetes.model.ArgocdKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.argocdkubernetes.model.ArgocdKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = argocd_kubernetes_get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view argocd-kubernetes";
 

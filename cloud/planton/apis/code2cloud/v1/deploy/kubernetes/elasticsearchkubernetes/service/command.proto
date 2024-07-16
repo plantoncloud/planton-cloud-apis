@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/elasticsearchkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/elasticsearchkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/elasticsearchkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/elasticsearchkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -15,8 +15,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service ElasticsearchKubernetesCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = elasticsearch_kubernetes;
   //preview creating elasticsearch-kubernetes
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -27,8 +27,8 @@ service ElasticsearchKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //create elasticsearch-kubernetes
-  rpc create(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -39,8 +39,8 @@ service ElasticsearchKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview updating an existing elasticsearch-kubernetes
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -51,8 +51,8 @@ service ElasticsearchKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //update an existing elasticsearch-kubernetes
-  rpc update(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -64,7 +64,7 @@ service ElasticsearchKubernetesCommandController {
   }
   //preview deleting an existing elasticsearch-kubernetes
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -77,7 +77,7 @@ service ElasticsearchKubernetesCommandController {
   }
   //delete an existing elasticsearch-kubernetes
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -88,8 +88,8 @@ service ElasticsearchKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;  }
   //preview restoring a previously deleted elasticsearch-kubernetes
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -100,8 +100,8 @@ service ElasticsearchKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //restore a previously deleted elasticsearch-kubernetes
-  rpc restore(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -113,8 +113,8 @@ service ElasticsearchKubernetesCommandController {
   }
   //restart a elasticsearch-kubernetes running in a environment.
   //elasticsearch-kubernetes is restarted by deleting running "elasticsearch" pods which will be automatically recreated by kubernetes
-  rpc restart(cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+  rpc restart(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -126,7 +126,7 @@ service ElasticsearchKubernetesCommandController {
   //elasticsearch-kubernetes is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -141,7 +141,7 @@ service ElasticsearchKubernetesCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the elasticsearch-kubernetes.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -154,7 +154,7 @@ service ElasticsearchKubernetesCommandController {
   }
   //preview refresh a elasticsearch-kubernetes that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -167,7 +167,7 @@ service ElasticsearchKubernetesCommandController {
   }
   //refresh a elasticsearch-kubernetes that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.elasticsearchkubernetes.model.ElasticsearchKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = elasticsearch_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = elasticsearch_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";

@@ -19,7 +19,7 @@ message EksClusterStackInput {
 
 //eks-cluster stack-response
 message EksClusterStackResponse {
-  //stack-job progress event
+  //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
   cloud.planton.apis.code2cloud.v1.deploy.aws.ekscluster.model.EksClusterStatusStackOutputs stack_outputs = 2;

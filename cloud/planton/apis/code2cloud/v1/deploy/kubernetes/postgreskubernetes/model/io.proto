@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.postgreskubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.postgreskubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/postgreskubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/postgreskubernetes/model/state.proto";
 import "buf/validate/validate.proto";
 
 //wrapper for id field of postgres-kubernetes

@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kafkakubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/kafkakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kafkakubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "buf/validate/validate.proto";
 

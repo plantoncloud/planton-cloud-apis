@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.microservicekubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.microservicekubernetes.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -126,7 +126,7 @@ message MicroserviceKubernetesSpecContainerSpec {
   ];
 
   //sidecar containers
-  repeated cloud.planton.apis.code2cloud.v1.kubecluster.model.Container sidecars = 2;
+  repeated cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.Container sidecars = 2;
 }
 
 //microservice-kubernetes-spec kubernetes app container spec
@@ -137,10 +137,10 @@ message MicroserviceKubernetesSpecContainerSpecAppSpec {
   //pull-secret-name: name of the image pull secret to be configured in kubernetes Deployment resource.
   //computed by looking up the container_image_artifact_store_id from the environment to which the
   //microservice deployment is created.
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerImage image = 1;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.ContainerImage image = 1;
 
   //container resources
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2;
+  commons.kubernetes.model.ContainerResources resources = 2;
 
   //microservice-kubernetes environment variables and secrets.
   MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec env = 3;
@@ -227,7 +227,7 @@ message MicroserviceKubernetesSpecIngressSpec {
   //toggle to control ingress
   bool is_enabled = 1;
   //ingress type
-  cloud.planton.apis.code2cloud.v1.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //selected endpoint-domain from the environment endpoint-domains to configure dns
   string endpoint_domain_name = 3;
   //port on which the ingress requests are sent by the clients
@@ -296,7 +296,7 @@ message MicroserviceKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  MicroserviceKubernetesStatusStackOutputs outputs = 1;
+  MicroserviceKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
 //microservice-kubernetes-stack outputs

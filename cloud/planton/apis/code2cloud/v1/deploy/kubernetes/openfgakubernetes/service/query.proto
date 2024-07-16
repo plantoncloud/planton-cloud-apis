@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.openfgakubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/openfgakubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/openfgakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/openfgakubernetes/service/query.proto
+<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/deploy/kubernetes/openfgakubernetes/service/query.proto
+||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/service/query.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 =======
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/openfgakubernetes/service/query.proto
+>>>>>>> main:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/openfgakubernetes/service/query.proto
 
 //openfga-kubernetes query controller
 service OpenfgaKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = openfga_kubernetes;
   //look up openfga-kubernetes using openfga-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.model.OpenfgaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.model.OpenfgaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -35,8 +35,8 @@ service OpenfgaKubernetesQueryController {
 
   //look up openfga-kubernetes sasl password
   //password is retrieved from the kubernetes cluster.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.openfgakubernetes.model.OpenfgaKubernetesPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.model.OpenfgaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.openfgakubernetes.model.OpenfgaKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = openfga_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = openfga_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

@@ -1,30 +1,30 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.prometheuskubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.prometheuskubernetes.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/prometheuskubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/prometheuskubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/prometheuskubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/prometheuskubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/prometheuskubernetes/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/prometheuskubernetes/service/query.proto
+<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/deploy/kubernetes/prometheuskubernetes/service/query.proto
+||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/prometheuskubernetes/service/query.proto
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 =======
 import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/prometheuskubernetes/service/query.proto
+>>>>>>> main:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/prometheuskubernetes/service/query.proto
 
 //prometheus-kubernetes query controller
 service PrometheusKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = prometheus_kubernetes;
   //look up prometheus-kubernetes using prometheus-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.prometheuskubernetes.model.PrometheusKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.prometheuskubernetes.model.PrometheusKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.prometheuskubernetes.model.PrometheusKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.prometheuskubernetes.model.PrometheusKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = prometheus_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = prometheus_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -35,8 +35,8 @@ service PrometheusKubernetesQueryController {
 
   //look up prometheus-kubernetes sasl password
   //password is retrieved from the kubernetes cluster.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.prometheuskubernetes.model.PrometheusKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.prometheuskubernetes.model.PrometheusKubernetesPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.prometheuskubernetes.model.PrometheusKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.prometheuskubernetes.model.PrometheusKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = prometheus_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = prometheus_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";

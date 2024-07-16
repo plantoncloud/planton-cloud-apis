@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.jenkinskubernetes.model;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.jenkinskubernetes.model;
 
-import "cloud/planton/apis/code2cloud/v1/jenkinskubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/jenkinskubernetes/model/state.proto";
 import "buf/validate/validate.proto";
 
 //wrapper for id field of jenkins-kubernetes

@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.mongodbkubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/mongodbkubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/mongodbkubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/mongodbkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/mongodbkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
@@ -15,8 +15,8 @@ import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 service MongodbKubernetesCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = mongodb_kubernetes;
   //preview creating mongodb-kubernetes
-  rpc previewCreate(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc previewCreate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -27,8 +27,8 @@ service MongodbKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //create mongodb-kubernetes
-  rpc create(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc create(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
@@ -39,8 +39,8 @@ service MongodbKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview updating an existing mongodb-kubernetes
-  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc previewUpdate(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -51,8 +51,8 @@ service MongodbKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //update an existing mongodb-kubernetes
-  rpc update(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc update(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -64,7 +64,7 @@ service MongodbKubernetesCommandController {
   }
   //preview deleting an existing mongodb-kubernetes
   rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -77,7 +77,7 @@ service MongodbKubernetesCommandController {
   }
   //delete an existing mongodb-kubernetes
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -89,8 +89,8 @@ service MongodbKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview restoring a previously deleted mongodb-kubernetes
-  rpc previewRestore(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc previewRestore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -101,8 +101,8 @@ service MongodbKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //restore a previously deleted mongodb-kubernetes
-  rpc restore(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc restore(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
@@ -114,8 +114,8 @@ service MongodbKubernetesCommandController {
   }
   //restart a mongodb-kubernetes running in a environment.
   //mongodb-kubernetes is restarted by deleting running "mongodb" pods which will be automatically recreated by kubernetes
-  rpc restart(cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+  rpc restart(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -127,7 +127,7 @@ service MongodbKubernetesCommandController {
   //mongodb-kubernetes is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
   rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -142,7 +142,7 @@ service MongodbKubernetesCommandController {
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the mongodb-kubernetes.
   rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -155,7 +155,7 @@ service MongodbKubernetesCommandController {
   }
   //preview refresh a mongodb-kubernetes that was previously created
   rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
@@ -168,7 +168,7 @@ service MongodbKubernetesCommandController {
   }
   //refresh a mongodb-kubernetes that was previously created
   rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
-      returns (cloud.planton.apis.code2cloud.v1.mongodbkubernetes.model.MongodbKubernetes) {
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.mongodbkubernetes.model.MongodbKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = mongodb_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = mongodb_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";

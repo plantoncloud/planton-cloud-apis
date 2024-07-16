@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.kafkakubernetes.service;
+package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.service;
 
-import "cloud/planton/apis/code2cloud/v1/kafkakubernetes/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/kafkakubernetes/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kafkakubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kafkakubernetes/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
@@ -17,8 +17,8 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceopti
 service KafkaKubernetesQueryController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //look up kafka-kubernetes using kafka-kubernetes id
-  rpc get(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetes) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -29,8 +29,8 @@ service KafkaKubernetesQueryController {
 
   //look up kafka-kubernetes sasl password
   //password is retrieved from the kubernetes cluster.
-  rpc getPassword(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesPassword) {
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetesPassword) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -41,8 +41,8 @@ service KafkaKubernetesQueryController {
 //kafka-topic query controller
 service KafkaTopicQueryController {
   //find kafka topics by kafka-kubernetes id
-  rpc findByKafkaKubernetesId(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaKubernetesId)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopicList) {
+  rpc findByKafkaKubernetesId(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaTopicList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
@@ -50,8 +50,8 @@ service KafkaTopicQueryController {
   }
 
   //look up kafka topic using kafka topic id
-  rpc get(cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopicQueryInput)
-      returns (cloud.planton.apis.code2cloud.v1.kafkakubernetes.model.KafkaTopic) {
+  rpc get(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaTopicQueryInput)
+      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model.KafkaTopic) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kafka_kubernetes_get;
     //note: field-path can not be added as the kafka-kubernetes-id is not present in the input.
