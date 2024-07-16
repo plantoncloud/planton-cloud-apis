@@ -2,21 +2,11 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.service;
 
-import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
-import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-<<<<<<< HEAD:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/deploy/kubernetes/solrkubernetes/service/query.proto
-||||||| b5f83a07:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/service/query.proto
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
-=======
-import "cloud/planton/apis/resourcemanager/v1/product/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
->>>>>>> main:cloud/planton/apis/code2cloud/v1/deploy/kubernetes/solrkubernetes/service/query.proto
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //solr-kubernetes query controller
 service SolrKubernetesQueryController {

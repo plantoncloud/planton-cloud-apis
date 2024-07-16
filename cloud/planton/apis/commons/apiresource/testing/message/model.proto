@@ -138,7 +138,8 @@ message ApiResourceKubernetesTestStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //name of the kubernetes namespace in which the api-resource-kubernetes has been created.
+  //stack-outputs
+  // name of the kubernetes namespace in which the api-resource-kubernetes has been created.
   string namespace = 1;
 
   //name of the kubernetes service created for api-resource-kubernetes.

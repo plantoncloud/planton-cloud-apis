@@ -91,7 +91,7 @@ message OpenfgaKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //kubernetes status
+  //stack-outputs
   OpenfgaKubernetesStatusStackOutputs stack_outputs = 1;
 }
 

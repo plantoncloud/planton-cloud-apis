@@ -3,13 +3,12 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.solrkubernetes.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //solr-kubernetes
 message SolrKubernetes {
@@ -95,6 +94,7 @@ message SolrKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  //stack-outputs
   SolrKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
@@ -108,7 +108,7 @@ message SolrKubernetesSpecSolrContainerSpec {
 
   //solr container image
   //example repo: solr example tag: 8.7.0
-  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.ContainerImage image = 2;
+  cloud.planton.apis.commons.kubernetes.model.ContainerImage image = 2;
 
   //solr container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"

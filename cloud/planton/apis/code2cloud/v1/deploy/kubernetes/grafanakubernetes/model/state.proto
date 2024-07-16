@@ -89,6 +89,7 @@ message GrafanaKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  //stack-outputs
   GrafanaKubernetesStatusStackOutputs stack_outputs = 1;
 }
 

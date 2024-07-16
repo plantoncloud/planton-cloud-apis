@@ -5,11 +5,9 @@ package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.keycloakkubernetes.se
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/keycloakkubernetes/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/keycloakkubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //keycloak-kubernetes command controller
 service KeycloakKubernetesCommandController {

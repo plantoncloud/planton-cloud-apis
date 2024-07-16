@@ -106,7 +106,8 @@ message EksClusterStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  // eks-cluster stack-outputs
+  //stack-outputs
+  //  eks-cluster stack-outputs
   EksClusterStatusStackOutputs stack_outputs = 1;
 }
 

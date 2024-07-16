@@ -73,7 +73,7 @@ message S3BucketStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  // stack-outputs
+  //stack-outputs
   S3BucketStatusStackOutputs stack_outputs = 1;
 }
 

@@ -112,6 +112,7 @@ message LocustKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
+  //stack-outputs
   LocustKubernetesStatusStackOutputs stack_outputs = 1;
 }
 

@@ -85,7 +85,8 @@ message HelmReleaseStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  //helm-release stack-outputs
+  //stack-outputs
+  // helm-release stack-outputs
   HelmReleaseStatusStackOutputs stack_outputs = 1;
 }
 

@@ -91,7 +91,8 @@ message GcpCloudDnsZoneStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  // stack outputs
+  //stack-outputs
+  //  stack outputs
   GcpCloudDnsZoneStatusStackOutputs stack_outputs = 1;
 }
 

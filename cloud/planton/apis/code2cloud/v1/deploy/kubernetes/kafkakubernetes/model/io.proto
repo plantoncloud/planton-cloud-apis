@@ -13,11 +13,6 @@ message KafkaKubernetesId {
   ];
 }
 
-//list of kafka topics
-message KafkaTopicList {
-  repeated KafkaTopic entries = 1;
-}
-
 //wrapper for kafka topic id
 message KafkaTopicId {
   string value = 1;

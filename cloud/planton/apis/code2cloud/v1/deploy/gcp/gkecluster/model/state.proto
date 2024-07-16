@@ -181,7 +181,7 @@ message GkeClusterStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  // stack-outputs
+  //stack-outputs
   GkeClusterStatusStackOutputs stack_outputs = 1;
 }
 

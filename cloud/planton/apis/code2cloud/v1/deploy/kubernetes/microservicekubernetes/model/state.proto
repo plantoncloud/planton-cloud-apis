@@ -126,7 +126,7 @@ message MicroserviceKubernetesSpecContainerSpec {
   ];
 
   //sidecar containers
-  repeated cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.Container sidecars = 2;
+  repeated cloud.planton.apis.commons.kubernetes.model.Container sidecars = 2;
 }
 
 //microservice-kubernetes-spec kubernetes app container spec
@@ -137,7 +137,7 @@ message MicroserviceKubernetesSpecContainerSpecAppSpec {
   //pull-secret-name: name of the image pull secret to be configured in kubernetes Deployment resource.
   //computed by looking up the container_image_artifact_store_id from the environment to which the
   //microservice deployment is created.
-  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.ContainerImage image = 1;
+  cloud.planton.apis.commons.kubernetes.model.ContainerImage image = 1;
 
   //container resources
   cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 2;
@@ -296,7 +296,7 @@ message MicroserviceKubernetesStatus {
   // id of the stack-job
   string stack_job_id = 97;
 
-  MicroserviceKubernetesStatusStackOutputs stack_outputs = 1;
+  //stack-outputsMicroserviceKubernetesStatusStackOutputs stack_outputs = 1;
 }
 
 //microservice-kubernetes-stack outputs
