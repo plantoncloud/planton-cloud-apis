@@ -12,11 +12,6 @@ message GitlabKubernetesId {
   ];
 }
 
-//list of gitlab-kubernetes
-message GitlabKubernetesList {
-  repeated GitlabKubernetes entries = 1;
-}
-
 //wrapper for gitlab-kubernetes password
 message GitlabKubernetesPassword {
   string value = 1;

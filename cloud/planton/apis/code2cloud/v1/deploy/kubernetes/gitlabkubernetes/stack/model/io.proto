@@ -2,25 +2,19 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.stack.model;
 
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 //input for gitlab-kubernetes stack
 message GitlabKubernetesStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
-  //kubernetes-cluster-credential
-  GitlabKubernetesStackCredentialsInput kubernetes_cluster_credential = 3;
   //api-resource
   cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetes api_resource = 2;
-}
-
-//stack credentials input
-message GitlabKubernetesStackCredentialsInput {
-  //kubernetes provider credential for creating gitlab-kubernetes resources on kubernetes cluster
-  cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes = 1;
+  //kubernetes-cluster-credential
+  cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
 }
 
 //stack response
@@ -28,5 +22,5 @@ message GitlabKubernetesStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack-outputs
-  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesStatusStackOutputs outputs = 2;
+  cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesStatusStackOutputs stack_outputs = 2;
 }

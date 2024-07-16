@@ -22,5 +22,5 @@ message PostgresKubernetesStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //postgres-kubernetes status
-  code2cloud.v1.deploy.kubernetes.postgreskubernetes.model.PostgresKubernetesStatusStackOutputs outputs = 2;
+  code2cloud.v1.deploy.kubernetes.postgreskubernetes.model.PostgresKubernetesStatusStackOutputs stack_outputs = 2;
 }

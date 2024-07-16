@@ -2,18 +2,12 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.service;
 
-import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/kubecluster/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/kubernetes/gitlabkubernetes/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
-
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
 
 //gitlab-kubernetes query controller
 service GitlabKubernetesQueryController {
@@ -27,24 +21,6 @@ service GitlabKubernetesQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gitlab-kubernetes";
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
-  }
-
-  //find gitlab-kubernetes by environment
-  rpc findByEnvId(cloud.planton.apis.resourcemanager.v1.environment.model.EnvId)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = environment_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gitlab-kubernetes of environment";
-  }
-  //find gitlab-kubernetes by kube-cluster
-
-  rpc findByKubeClusterId(cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kubecluster.model.KubeClusterId)
-      returns (cloud.planton.apis.code2cloud.v1.deploy.kubernetes.gitlabkubernetes.model.GitlabKubernetesList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kube_cluster;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = kube_cluster_get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view gitlab-kubernetes of kube cluster";
   }
 
   //look up gitlab-kubernetes sasl password
