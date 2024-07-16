@@ -3,14 +3,8 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
-
-// list of kubernetes-cluster-credentials
-message KubernetesClusterCredentialList {
-  repeated KubernetesClusterCredential entries = 1;
-}
 
 // wrapper for organization cloud account id
 message KubernetesClusterCredentialId {

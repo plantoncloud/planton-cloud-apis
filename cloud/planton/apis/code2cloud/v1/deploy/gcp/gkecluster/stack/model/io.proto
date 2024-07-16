@@ -17,7 +17,7 @@ message GkeClusterStackInput {
   cloud.planton.apis.code2cloud.v1.connect.gcpcredential.model.GcpCredential gcp_credential = 3;
 }
 
-//gke-cluster stack stack response
+//gke-cluster stack-response
 message GkeClusterStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;

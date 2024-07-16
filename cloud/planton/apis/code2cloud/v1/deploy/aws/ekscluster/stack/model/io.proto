@@ -17,7 +17,7 @@ message EksClusterStackInput {
   cloud.planton.apis.code2cloud.v1.connect.awscredential.model.AwsCredential aws_credential = 3;
 }
 
-//eks-cluster stack stack response
+//eks-cluster stack-response
 message EksClusterStackResponse {
   //stack-job progress event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;

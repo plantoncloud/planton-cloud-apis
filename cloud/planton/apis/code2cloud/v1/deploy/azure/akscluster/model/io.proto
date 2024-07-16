@@ -1,11 +1,11 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.connect.awscredential.model;
+package cloud.planton.apis.code2cloud.v1.deploy.azure.akscluster.model;
 
 import "buf/validate/validate.proto";
 
-// wrapper for aws-credential id
-message AwsCredentialId {
+// wrapper for aks-cluster id
+message AksClusterId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
