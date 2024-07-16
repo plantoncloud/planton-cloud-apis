@@ -22,43 +22,11 @@ service KubernetesClusterCredentialQueryController {
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
+
   //find kubernetes-cluster-credentials by organization id.
   //the response should only include kubernetes-cluster-credentials in a organization that the authenticated user account has viewer access to.
   //authorization is handled internally by running get authorized cloud account ids
   rpc findByOrgId(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredentialList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list kubernetes-cluster-credentials by organization id";
-  }
-  // find kubernetes-cluster-credentials by organization id to create artifact store.
-  // this will be used to populate drop down of kubernetes-cluster-credentials in create artifact store form.
-  // the response should only include kubernetes-cluster-credentials that a organization is authorised to create artifact stores.
-  // the authorization is verified by looking up kubernetes-cluster-credentials with `organization-artifact-creator` relation for the organization id provided in input.
-  // the response should only include public attributes of a kubernetes-cluster-credential. all non-public attributes should be excluded from the response.
-  rpc findKubernetesClusterCredentialsToCreateArtifactRegistry(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredentialList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list kubernetes-cluster-credentials by organization id";
-  }
-  // find kubernetes-cluster-credentials by organization id to create kube-cluster.
-  // this will be used to populate drop down of kubernetes-cluster-credentials in create kube-cluster form.
-  // the response should only include kubernetes-cluster-credentials that a organization is authorised to create kube-cluster.
-  // the authorization is verified by looking up kubernetes-cluster-credentials with `organization-kube-cluster-creator` relation for the organization id provided in input.
-  // the response should only include public attributes of a kubernetes-cluster-credential. all non-public attributes should be excluded from the response.
-  rpc findKubernetesClusterCredentialsToCreateGkeCluster(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredentialList) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to list kubernetes-cluster-credentials by organization id";
-  }
-  // find kubernetes-cluster-credentials by organization id to create dns managed zone.
-  // this will be used to populate drop down of kubernetes-cluster-credentials in create dns managed zone form.
-  // the response should only include kubernetes-cluster-credentials that a organization is authorised to create dns managed zone.
-  // the authorization is verified by looking up kubernetes-cluster-credentials with `organization-dns-managed-zone-creator` relation for the organization id provided in input.
-  // the response should only include public attributes of a kubernetes-cluster-credential. all non-public attributes should be excluded from the response.
-  rpc findKubernetesClusterCredentialsToCreateCloudDnsZones(cloud.planton.apis.resourcemanager.v1.organization.model.OrgId) returns (cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterCredentialList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
