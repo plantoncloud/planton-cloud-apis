@@ -8,7 +8,7 @@ import "cloud/planton/apis/code2cloud/v1/configmap/model/io.proto";
 
 //config-map query controller
 service ConfigMapQueryController {
-  // lookup a config-map using config-map
+  // lookup a config-map using id
   rpc getById(cloud.planton.apis.code2cloud.v1.configmap.model.ConfigMapId) returns (cloud.planton.apis.code2cloud.v1.configmap.model.ConfigMap) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = config_map;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;

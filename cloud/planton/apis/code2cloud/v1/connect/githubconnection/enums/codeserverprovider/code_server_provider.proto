@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider;
-
-enum CodeServerProvider {
-  unspecified = 0;
-  github = 1;
-  gitlab = 2;
-}

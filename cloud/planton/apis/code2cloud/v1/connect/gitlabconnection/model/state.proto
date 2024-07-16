@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.codeserver.model;
+package cloud.planton.apis.code2cloud.v1.connect.codeserver.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/codeserver/enums/codeserverprovider/code_server_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/codeserver/enums/githubappinstallownertype/github_app_install_owner_type.proto";
+import "cloud/planton/apis/code2cloud/v1/connect/codeserver/enums/codeserverprovider/code_server_provider.proto";
+import "cloud/planton/apis/code2cloud/v1/connect/codeserver/enums/githubappinstallownertype/github_app_install_owner_type.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
@@ -97,7 +97,7 @@ message CodeServerSpec {
   ];
 
   //Specifies the provider for the code server.
-  cloud.planton.apis.code2cloud.v1.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 3 [
+  cloud.planton.apis.code2cloud.v1.connect.codeserver.enums.codeserverprovider.CodeServerProvider code_server_provider = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
@@ -123,7 +123,7 @@ message CodeServerGithubSpec {
   ];
 
   //Specifies the owner type for Github App installation: User or Org.
-  cloud.planton.apis.code2cloud.v1.codeserver.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
+  cloud.planton.apis.code2cloud.v1.connect.codeserver.enums.githubappinstallownertype.GithubAppInstallOwnerType app_install_owner_type = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }

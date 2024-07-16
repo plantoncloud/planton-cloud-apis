@@ -1,18 +1,28 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.cloudaccount.model;
+package cloud.planton.apis.code2cloud.v1.connect.gcpconnection.model;
 
-import "cloud/planton/apis/code2cloud/v1/cloudaccount/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/connect/gcpconnection/model/state.proto";
 import "buf/validate/validate.proto";
 
 // list of cloud accounts
-message CloudAccountList {
-  repeated CloudAccount entries = 1;
+message GcpConnectionList {
+  repeated GcpConnection entries = 1;
 }
 
 // wrapper for organization cloud account id
-message CloudAccountId {
+message GcpConnectionId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
+}
+
+// list of gcp folder
+message GcpFolders {
+  repeated GcpFolder entries = 1;
+}
+
+// list of gcp projects
+message GcpProjects {
+  repeated GcpProject list = 1;
 }
