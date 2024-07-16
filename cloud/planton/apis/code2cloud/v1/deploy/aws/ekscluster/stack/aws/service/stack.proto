@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.stack.service;
+
+
+import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/stack/aws/model/io.proto";
+
+service KubeClusterAwsStackController {
+    rpc execute(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.stack.model.KubeClusterAwsStackInput)
+        returns (stream cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.stack.model.KubeClusterAwsStackResponse);
+    rpc getStackOutputs(cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.stack.model.KubeClusterAwsStackInput)
+        returns (cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.stack.model.KubeClusterAwsStackOutputs);
+}

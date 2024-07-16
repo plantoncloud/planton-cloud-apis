@@ -349,29 +349,6 @@ message ApiResourceEnvironmentInfo {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  //provider for the cloud-account configured for the environment.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.cloudprovider.CloudProvider cloud_provider = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //id of the cloud-account configured for the environment.
-  string connection_id = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  // provider for the kube-cluster configured for the environment.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 6 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //id of the kube-cluster configured for the environment.
-  string kube_cluster_id = 7 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //storage provider on which the storage-bucket is to be created.
-  //the value is computed from environment.
-  cloud.planton.apis.code2cloud.v1.cloudaccount.enums.storagebucketprovider.StorageBucketProvider storage_bucket_provider = 8 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+  //id of the kubernetes-cluster-credential to be used for deploying api-resources to kubernetes cluster.
+  string kubernetes_cluster_credential_id = 7;
 }

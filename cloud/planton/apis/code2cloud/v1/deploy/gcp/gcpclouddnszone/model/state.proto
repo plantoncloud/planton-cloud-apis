@@ -107,7 +107,7 @@ message GcpCloudDnsZoneDnsRecord {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
   // dns record type.
-  cloud.planton.apis.commons.v1.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
+  cloud.planton.apis.commons.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
     (buf.validate.field).required = true
   ];
 

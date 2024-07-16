@@ -2,13 +2,16 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.service;
 
+import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/connect/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "google/protobuf/empty.proto";
 
 // kubernetes-cluster-credential command controller
 service KubernetesClusterCredentialCommandController {
@@ -63,4 +66,36 @@ service KubernetesClusterCredentialCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
+}
+
+// kubernetes-cluster kubernetes objects command controller
+// todo: add authorization config
+service KubernetesClusterKubernetesObjectCommandController {
+  //update kubernetes object in a kube-cluster
+  rpc update(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.UpdateKubernetesClusterKubernetesObjectInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+
+  //delete kubernetes object in a kube-cluster
+  rpc delete(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.KubernetesClusterKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.apiresources.model.KubernetesObject);
+
+  //mimic kubectl exec for a container on kube-cluster
+  rpc execIntoPodContainer(stream cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.ExecIntoKubernetesClusterPodContainerInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.apiresources.model.ExecIntoPodContainerResponse);
+
+  /**
+* Mimic kubectl exec for a container on a kube-cluster from browsers.
+* This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+*/
+  rpc browserExecIntoPodContainer(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.ExecIntoKubernetesClusterPodContainerInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.BrowserExecIntoPodContainerResponse);
+
+  /**
+   * Send the next command to execute for kube-ctl exec.
+   * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+   * NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
+    all other api-resources and kube-cluster resources.
+   */
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.code2cloud.v1.connect.kubernetesclustercredential.model.BrowserExecuteNextCommandInPodContainerInput)
+      returns (google.protobuf.Empty);
 }

@@ -61,7 +61,7 @@ message DeleteDnsRecordCommandInput {
   // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
   // The server uses this information to find the DNS record of the correct type within the
   // specified DNS zone. This is a required field.
-  cloud.planton.apis.commons.v1.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
+  cloud.planton.apis.commons.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];

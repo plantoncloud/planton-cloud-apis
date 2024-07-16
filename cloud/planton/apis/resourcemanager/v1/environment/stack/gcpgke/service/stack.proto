@@ -1,13 +1,13 @@
 syntax = "proto3";
 
-package cloud.planton.apis.resourcemanager.v1.environment.stack.gcpgke.service;
+package cloud.planton.apis.resourcemanager.v1.environment.stackgke.service;
 
 import "cloud/planton/apis/resourcemanager/v1/environment/stack/gcpgke/model/io.proto";
 
 //build environment secrets stack controller
 service EnvironmentGcpGkeStackController {
-  rpc execute(cloud.planton.apis.resourcemanager.v1.environment.stack.gcpgke.model.EnvironmentGcpGkeStackInput)
-      returns (stream cloud.planton.apis.resourcemanager.v1.environment.stack.gcpgke.model.EnvironmentGcpGkeStackResponse);
-  rpc getStackOutputs(cloud.planton.apis.resourcemanager.v1.environment.stack.gcpgke.model.EnvironmentGcpGkeStackInput)
-      returns (cloud.planton.apis.resourcemanager.v1.environment.stack.gcpgke.model.EnvironmentGcpGkeStackOutputs);
+  rpc execute(cloud.planton.apis.resourcemanager.v1.environment.stackgke.model.EnvironmentGcpGkeStackInput)
+      returns (stream cloud.planton.apis.resourcemanager.v1.environment.stackgke.model.EnvironmentGcpGkeStackResponse);
+  rpc getStackOutputs(cloud.planton.apis.resourcemanager.v1.environment.stackgke.model.EnvironmentGcpGkeStackInput)
+      returns (cloud.planton.apis.resourcemanager.v1.environment.stackgke.model.EnvironmentGcpGkeStackOutputs);
 }

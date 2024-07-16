@@ -1,21 +1,17 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/gcp/cloudaccount/enums/kubernetesprovider/kubernetes_provider.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/gcp/cloudaccount/model/provider/gcp/state.proto";
-import "cloud/planton/apis/code2cloud/v1/deploy/gcp/kubecluster/enums/eksworkersmanagementmode/eks_workers_management_mode.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 
-// kube-cluster
-message KubeCluster {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kube_cluster;
+// gke-cluster
+message GkeCluster {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gke_cluster;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
@@ -62,106 +58,29 @@ message KubeCluster {
   ];
 
   // resource spec
-  KubeClusterSpec spec = 4;
+  GkeClusterSpec spec = 4;
 
   // resource status
-  KubeClusterStatus status = 5;
+  GkeClusterStatus status = 5;
 }
 
-// KubeClusterSpec is a message type that defines the specifications for a kube-cluster on Planton Cloud.
-message KubeClusterSpec {
-  // org_id is a required, immutable field that uniquely identifies the organization associated with the kube-cluster.
+// GkeClusterSpec is a message type that defines the specifications for a gke-cluster on Planton Cloud.
+message GkeClusterSpec {
+  // org_id is a required, immutable field that uniquely identifies the organization associated with the gke-cluster.
   string org_id = 1  [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  // endpoint_domains is a list of valid DNS domain names for the endpoints hosted in the environment.
-  // Each endpoint domain name must already exist and be associated with the organization on Planton Cloud.
-  repeated string endpoint_domains = 2;
-
-  // kube-cluster kubernetes addons spec
-  KubeClusterAddonsSpec kubernetes_addons = 3;
-
-  // kubernetes_provider is an enumeration field that represents the kubernetes provider for the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 4 [
+  //id of the gcp-credentials to be used for creating gke cluster resources.
+  string gcp_credential_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
-  // gcp is a field for GCP-specific kube-cluster specifications.
-  // This field is only set if the kubernetes-provider is GCP GKE.
-  KubeClusterGcpSpec gcp = 5;
-
-  // aws is a field for AWS-specific kube-cluster specifications.
-  // This field is only set if the kubernetes-provider is AWS EKS.
-  KubeClusterAwsSpec aws = 6;
-}
-
-//kube-cluster kubernetes addons
-message KubeClusterAddonsSpec {
-  //flag to control postgres-operator installation
-  bool is_install_postgres_operator = 1;
-  //flag to control kafka-operator installation
-  bool is_install_kafka_operator = 2;
-  //flag to control solr-operator installation
-  bool is_install_solr_operator = 3;
-  //flag to control kubecost
-  bool is_install_kubecost = 4;
-  //planton-cloud-kube-agent addon spec
-  KubeClusterAddonsPlantonCloudKubeAgentSpec planton_cloud_kube_agent = 5;
-  //flag to control ingress-nginx
-  bool is_install_ingress_nginx = 6;
-  //flag to control istio
-  bool is_install_istio = 7;
-  //flag to control cert-manager
-  bool is_install_cert_manager = 8;
-  //flag to control external-dns
-  bool is_install_external_dns = 9;
-  //flag to control external-secrets
-  bool is_install_external_secrets = 10;
-}
-
-//planton-cloud-kube-agent addon spec
-message KubeClusterAddonsPlantonCloudKubeAgentSpec {
-  // flag to control planton-cloud-kube-agent installation
-  bool is_install = 1;
-  // machine_account_email is the email of the machine-account to be used by planton-cloud-kube-agent.
-  // this is only created if the is_install is true.
-  string machine_account_email = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-}
-
-// kube-cluster status
-message KubeClusterStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
-
-  // id of the stack-job
-  string stack_job_id = 97;
-
-  // status of the kube-cluster in gcp
-  KubeClusterGcpStatus gcp = 1;
-
-  // status of the kube-cluster in aws
-  KubeClusterAwsStatus aws = 2;
-}
-
-//specification for kube-cluster in google cloud
-message KubeClusterGcpSpec {
-  //id of the gcp cloud account to be used for creating kube-cluster resources.
-  string gcp_credential_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
-
-  // gcp billing account id required to link kube-cluster projects.
-  // planton-cloud creates one/two gcp projects per kube-cluster.
+  // gcp billing account id required to link gke-cluster projects.
+  // planton-cloud creates one/two gcp projects per gke-cluster.
   // these projects will be linked to this billing account.
-  string billing_account_id = 2 [
+  string billing_account_id = 3 [
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).cel = {
       id: "spec.gcp.billing_account_id",
@@ -183,39 +102,92 @@ message KubeClusterGcpSpec {
     }
   ];
 
-  // valid gcp region in which to create the kube-cluster.
-  // warning: kube-cluster will recreated if this value is updated.
+  // valid gcp region in which to create the gke-cluster.
+  // warning: gke-cluster will recreated if this value is updated.
   // https://cloud.google.com/compute/docs/regions-zones
-  string region = 3 [
+  string region = 4 [
     (buf.validate.field).required = true
   ];
 
-  // valid gcp zone in which to create the kube-cluster.
+  // valid gcp zone in which to create the gke-cluster.
   // https://cloud.google.com/compute/docs/regions-zones
-  string zone = 4 [
+  string zone = 5 [
     (buf.validate.field).required = true
   ];
 
   // flag to indicate that the cluster should be created in a shared vpc network.
-  // warning: kube-cluster will be recreated if this is updated.
+  // warning: gke-cluster will be recreated if this is updated.
   // note: vpc network is created in a separate project when this is enabled.
-  bool is_create_shared_vpc = 5;
+  bool is_create_shared_vpc = 6;
 
-  // flag to toggle workload logs for kube-cluster environment.
+  // flag to toggle workload logs for gke-cluster environment.
   // when workload logs is enabled, the logs from kubernetes pods would be sent to google cloud logging.
   // warning: enabling log forwarding increases cloud bills depending on the log volume.
-  bool is_workload_logs_enabled = 6;
+  bool is_workload_logs_enabled = 7;
 
   // cluster autoscaling configuration
-  KubeClusterGcpClusterAutoscalingConfigSpec cluster_autoscaling_config = 7;
+  GkeClusterClusterAutoscalingConfigSpec cluster_autoscaling_config = 8;
 
-  // kube-cluster node pools
-  repeated KubeClusterNodePoolGcp node_pools = 8;
+  // gke-cluster node pools
+  repeated GkeClusterNodePool node_pools = 9;
+
+  // gke-cluster kubernetes addons spec
+  GkeClusterAddonsSpec kubernetes_addons = 10;
+}
+
+//gke-cluster kubernetes addons
+message GkeClusterAddonsSpec {
+  //flag to control postgres-operator installation
+  bool is_install_postgres_operator = 1;
+  //flag to control kafka-operator installation
+  bool is_install_kafka_operator = 2;
+  //flag to control solr-operator installation
+  bool is_install_solr_operator = 3;
+  //flag to control kubecost
+  bool is_install_kubecost = 4;
+  //planton-cloud-kube-agent addon spec
+  GkeClusterAddonsPlantonCloudKubeAgentSpec planton_cloud_kube_agent = 5;
+  //flag to control ingress-nginx
+  bool is_install_ingress_nginx = 6;
+  //flag to control istio
+  bool is_install_istio = 7;
+  //flag to control cert-manager
+  bool is_install_cert_manager = 8;
+  //flag to control external-dns
+  bool is_install_external_dns = 9;
+  //flag to control external-secrets
+  bool is_install_external_secrets = 10;
+}
+
+//planton-cloud-kube-agent addon spec
+message GkeClusterAddonsPlantonCloudKubeAgentSpec {
+  // flag to control planton-cloud-kube-agent installation
+  bool is_install = 1;
+  // machine_account_email is the email of the machine-account to be used by planton-cloud-kube-agent.
+  // this is only created if the is_install is true.
+  string machine_account_email = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+}
+
+// gke-cluster status
+message GkeClusterStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  // id of the stack-job
+  string stack_job_id = 97;
+
+  // stack-outputs
+  GkeClusterStatusStackOutputs stack_outputs = 1;
 }
 
 //cluster autoscaling configuration for gke clusters.
 // https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
-message KubeClusterGcpClusterAutoscalingConfigSpec {
+message GkeClusterClusterAutoscalingConfigSpec {
   // Flag to control autoscaling of kubernetes worker nodes.
   // When set to true, the cluster will automatically scale up or down based on the resource requirements.
   bool is_enabled = 1;
@@ -237,35 +209,35 @@ message KubeClusterGcpClusterAutoscalingConfigSpec {
   int64 memory_max_gb = 5;
 }
 
-// status of the kube-cluster in gcp
-message KubeClusterGcpStatus {
-  // a folder is created with the cloud account folder as parent for the kube-cluster.
-  // resources created for kube-cluster are linked to this folder as the parent.
-  // children for a cloud account are the gcp projects in the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpFolder folder = 1;
+// status of the gke-cluster in gcp
+message GkeClusterStatusStackOutputs {
+  // a folder is created with the cloud account folder as parent for the gke-cluster.
+  // resources created for gke-cluster are linked to this folder as the parent.
+  // children for a cloud account are the gcp projects in the gke-cluster.
+  GcpFolder folder = 1;
 
-  // projects created on google cloud for this kube-cluster
-  // this value is updated upon successful kube-cluster creation stack-job.
-  // gcp project info for the kube-cluster project
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpProject container_cluster_project = 2;
+  // projects created on google cloud for this gke-cluster
+  // this value is updated upon successful gke-cluster creation stack-job.
+  // gcp project info for the gke-cluster project
+  GcpProject container_cluster_project = 2;
 
   // gcp project info for vpc-network project
-  // note: a separate project is only created when the kube-cluster is configured to use shared-vpc.
-  // if the kube-cluster is not configured to use a shared-vpc, this project info will be same as
-  // kube-cluster project details as the vpc-network is created in the same project as the kube-cluster.
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.cloudaccount.model.provider.gcp.GcpProject vpc_network_project = 3;
+  // note: a separate project is only created when the gke-cluster is configured to use shared-vpc.
+  // if the gke-cluster is not configured to use a shared-vpc, this project info will be same as
+  // gke-cluster project details as the vpc-network is created in the same project as the gke-cluster.
+  GcpProject vpc_network_project = 3;
 
-  // kube-cluster endpoint.
+  // gke-cluster endpoint.
   string cluster_endpoint = 4;
 
-  // kube-cluster certificate-authority-data.
-  // this value is updated upon successful kube-cluster creation stack-job.
+  // gke-cluster certificate-authority-data.
+  // this value is updated upon successful gke-cluster creation stack-job.
   string cluster_ca_data = 5;
 
   // ip address of the NAT for egress traffic.
-  // this is the ip addresses attached to all network requests originating from the kube-cluster.
+  // this is the ip addresses attached to all network requests originating from the gke-cluster.
   // if server receiving requires the exact ip of the microservice to add it the firewall rules, this is the one.
-  // this value is updated upon successful kube-cluster creation stack-job.
+  // this value is updated upon successful gke-cluster creation stack-job.
   string external_nat_ip = 6;
 
   // internal ingress ip.
@@ -287,12 +259,12 @@ message KubeClusterGcpStatus {
 
   // google service account email created for external-secrets addon workload identity.
   // this key for this service account is used for deploying workloads like microservices,
-  // postgres clusters, kafka clusters onto the kube-cluster kube-cluster/s.
+  // postgres clusters, kafka clusters onto the gke-cluster gke-cluster/s.
   string workload_deployer_gsa_email = 11;
 
   // base64 encoded workload deployer google service account key.
   // this service account key is used as a credential for deploying workloads like microservices,
-  // postgres clusters, kafka clusters onto the kube-cluster kube-cluster/s.
+  // postgres clusters, kafka clusters onto the gke-cluster gke-cluster/s.
   string workload_deployer_gsa_key_base64 = 12;
 
   // google service account email created for external-dns addon workload identity.
@@ -301,8 +273,8 @@ message KubeClusterGcpStatus {
   string external_dns_gsa_email = 13;
 }
 
-// gcp kube-cluster node pool
-message KubeClusterNodePoolGcp  {
+// gcp gke-cluster node pool
+message GkeClusterNodePool  {
   // Name of the node pool. The name is added as a label to the node pool that can be used to schedule workloads.
   string name = 1[
     (buf.validate.field).string.min_len = 1,
@@ -327,7 +299,7 @@ message KubeClusterNodePoolGcp  {
     }
   ];
 
-  // Unique ID of the node pool. Convention for the node-pool-id is 'np-<kube-cluster-id>-<node-pool-name>'.
+  // Unique ID of the node pool. Convention for the node-pool-id is 'np-<gke-cluster-id>-<node-pool-name>'.
   // Planton Cloud ignores the input value and assigns the ID as per the convention.
   string id = 2[
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
@@ -351,131 +323,6 @@ message KubeClusterNodePoolGcp  {
   // Flag to enable spot instances on the node pool. Defaults to false.
   bool is_spot_enabled = 6;
 }
-
-//specification for kube-cluster in aws
-message KubeClusterAwsSpec {
-  //id of the aws cloud account to be used for creating kube-cluster resources.
-  string aws_credential_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
-
-  // valid aws region in which to create the kube-cluster.
-  // warning: kube-cluster will recreated if this value is updated.
-  // https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
-  string region = 2 [
-    (buf.validate.field).required = true
-  ];
-
-  // (optional) id of the vpc to be used for creating kube-cluster.
-  // if an id is not provided, a new vpc will be created.
-  // warning: kube-cluster will be recreated if this is updated.
-  string vpc_id = 3;
-
-  // aws eks worker node-groups management mode
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.eksworkersmanagementmode.EksWorkersManagementMode workers_management_mode = 4 [
-    (buf.validate.field).required = true
-  ];
-}
-
-// status of the kube-cluster in aws
-message KubeClusterAwsStatus {
-  // id of the vpc in which the kube-cluster is created
-  string cluster_vpc_id = 1;
-
-  // kube-cluster endpoint.
-  string cluster_endpoint = 2;
-
-  // kube-cluster certificate-authority-data.
-  // this value is updated upon successful kube-cluster creation stack-job.
-  string cluster_ca_data = 3;
-}
-
-//sidecar object in microservice deployment configuration
-//this spec should always match the specification of a kubernetes container spec https://pkg.go.dev/k8s.io/api/core/v1#Container
-//warning: sidecar feature does not currently support all features of a kubernetes container spec.
-message Container {
-  // name of the container
-  string name = 1;
-  // container image
-  string image = 2;
-  // container ports
-  repeated  ContainerPort ports = 3;
-  // container resources
-  ContainerResources resources = 4;
-  // container environment variables
-  repeated ContainerEnvVar env = 5;
-}
-
-// container cpu and memory resources
-message ContainerResources {
-  // container resource limits
-  // key is either cpu or memory and value is the limits value for the resource
-  CpuMemory limits = 1;
-  // container resource limits
-  // key is either cpu or memory and value is the requests value for the resource
-  CpuMemory requests = 2;
-}
-
-// container env var
-message ContainerEnvVar {
-  // name of the environment variable
-  string name = 1;
-  // value of the environment variable
-  string value = 2;
-}
-
-// container port
-message ContainerPort {
-  // port name
-  string name = 1;
-  // container port
-  //the attribute names must use camel case to marshal into https://pkg.go.dev/k8s.io/api/core/v1#Container
-  int32 containerPort = 2;
-  // container port protocol
-  string protocol = 3;
-}
-
-// container cpu and memory
-message CpuMemory {
-  // container cpu
-  string cpu = 1;
-  // container memory
-  string memory = 2;
-}
-
-// container image
-message ContainerImage {
-  // image repository
-  string repo = 1;
-  // image tag
-  string tag = 2;
-  //image pull secret name
-  string pull_secret_name = 3;
-}
-
-//ingress spec of planton cloud api resource to be deployed in kubernetes
-message IngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.code2cloud.v1.deploy.gcp.kubecluster.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //endpoint domain to be used for creating internal and external endpoints for planton cloud api resource.
-  string endpoint_domain_name = 3;
-}
-
 
 // gcp project
 // https://cloud.google.com/resource-manager/reference/rest/v2/folders

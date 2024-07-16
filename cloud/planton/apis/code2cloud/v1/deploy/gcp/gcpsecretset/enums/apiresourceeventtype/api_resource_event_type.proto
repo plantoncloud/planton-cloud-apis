@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-package cloud.planton.apis.resourcemanager.v1.environment.enums.apiresourceeventtype;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpsecretset.enums.apiresourceeventtype;
 
 import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
 
-enum EnvironmentApiResourceEventType {
+enum GcpSecretSetApiResourceEventType {
   unspecified = 0;
   created = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
@@ -68,20 +68,5 @@ enum EnvironmentApiResourceEventType {
   ];
   stack_job_destroy_completed = 14 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
-  ];
-  paused = 15 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
-  ];
-  unpaused = 16 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
-  ];
-  cloned = 17 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
   ];
 }

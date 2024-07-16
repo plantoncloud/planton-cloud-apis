@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpclouddnszone.stack.gcp.model;
+package cloud.planton.apis.code2cloud.v1.deploy.gcp.gcpclouddnszone.stack.model;
 
 import "cloud/planton/apis/code2cloud/v1/connect/gcpcredential/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/deploy/gcp/gcpclouddnszone/model/state.proto";
