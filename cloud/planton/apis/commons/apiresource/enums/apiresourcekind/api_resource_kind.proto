@@ -124,129 +124,127 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "IdentityAccount",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iam.planton.cloud"
   ];
-  identity_connection = 21 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "IdentityCredential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iam.planton.cloud"
-  ];
-  identity_group = 22 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "IdentityGroup",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iam.planton.cloud"
-  ];
-  istio_http_endpoint = 23 [
+  istio_http_endpoint = 21 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "isthttp",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "IstioHttpEndpoint",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Istio HTTP Endpoint",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  jenkins_kubernetes = 24 [
+  jenkins_kubernetes = 22 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "jenk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "JenkinsKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Jenkins on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  kafka_kubernetes = 25 [
+  kafka_kubernetes = 23 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "kafk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KafkaKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kafka on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  keycloak_kubernetes = 26 [
+  keycloak_kubernetes = 24 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "keyk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KeycloakKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Keycloak on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  kubernetes_docker_credential = 27 [
+  kubernetes_docker_credential = 25 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8sdkrcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesDockerCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Docker Credential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
   ];
-  kubernetes_cluster_credential = 28 [
+  kubernetes_cluster_credential = 26 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8scred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesClusterCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Cluster Credential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
   ];
-  locust_kubernetes = 29 [
+  locust_kubernetes = 27 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "lock8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "LocustKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Locust on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  microservice_kubernetes = 30 [
+  microservice_kubernetes = 28 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "msk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "MicroserviceKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Microservice on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  mongodb_kubernetes = 31 [
+  mongodb_kubernetes = 29 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "mdbk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "MongodbKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "MongoDB on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  openfga_kubernetes = 32 [
+  openfga_kubernetes = 30 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "fgak8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "OpenfgaKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "OpenFGA on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  organization = 33 [
+  organization = 31 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Organization",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "resource-manager.planton.cloud"
   ];
-  platform = 34 [
+  platform = 32 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Platform"
   ];
-  postgres_kubernetes = 35 [
+  postgres_kubernetes = 33 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pgk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "PostgresKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Postgres on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  prometheus_kubernetes = 36 [
+  prometheus_kubernetes = 34 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pmtk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "PrometheusKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Prometheus on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  redis_kubernetes = 37 [
+  pulumi_state_backend = 35 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "psb",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "PulumiStateBackend",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Pulumi State Backend",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+  ];
+  redis_kubernetes = 36 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "redk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "RedisKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Redis on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  route53_zone = 38 [
+  route53_zone = 37 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "r53z",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Route53Zone",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Route53 Zone",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  s3_bucket = 39 [
+  s3_bucket = 38 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "s3bkt",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "S3Bucket",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS S3 Bucket",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  solr_kubernetes = 40 [
+  solr_kubernetes = 39 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "solk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "SolrKubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Solr on Kubernetes",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  stack = 41 [
+  stack = 40 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "st",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Stack",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
   ];
-  stack_job = 42 [
+  stack_job = 41 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "sj",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "StackJob",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Stack Job",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
   ];
-  stack_job_runner = 43 [
+  stack_job_runner = 42 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "sjr",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "StackJobRunner",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Stack Job Runner",
