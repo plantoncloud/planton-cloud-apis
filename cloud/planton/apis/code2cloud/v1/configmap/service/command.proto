@@ -13,7 +13,10 @@ service ConfigMapCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = config_map;
   //create a new config-map on planton-cloud
   rpc create(cloud.planton.apis.code2cloud.v1.configmap.model.ConfigMap) returns (cloud.planton.apis.code2cloud.v1.configmap.model.ConfigMap) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = config_map_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create config-map";
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;

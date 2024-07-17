@@ -5,19 +5,21 @@ package cloud.planton.apis.iam.v1.iampolicy.enums.apiresourceiampermission;
 enum ApiResourceIamPermission {
   unspecified = 0;
 
-  create = 1;
-  delete = 2;
-  get = 3;
-  restore = 4;
-  update = 5;
+  create = 2000;
+  delete = 1;
+  get = 2;
+  restore = 3;
+  update = 4;
 
   // list_associates
-  list_associates = 6;
+  list_associates = 5;
 
   // login_to_back_office
-  login_to_back_office = 7;
+  login_to_back_office = 6;
 
-  platform_microservice_account = 8;
-  back_office_admin = 9;
-  platform = 10;
+  platform_microservice_account = 7;
+  back_office_admin = 8;
+  platform = 9;
+
+  config_map_create = 10;
 }
