@@ -160,13 +160,13 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8sdkrcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesDockerCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Docker Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
   kubernetes_cluster_credential = 28 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8scred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesClusterCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Cluster Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
   locust_kubernetes = 29 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "lock8s",
