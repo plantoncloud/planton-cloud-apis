@@ -40,4 +40,22 @@ enum ApiResourceIamPermission {
   gcp_secrets_manager_secret_set_create = 22;
   gcs_bucket_create = 23;
   gke_cluster_create = 24;
+
+  argocd_kubernetes_create = 25;
+  elasticsearch_kubernetes_create = 26;
+  gitlab_kubernetes_create = 27;
+  grafana_kubernetes_create = 28;
+  helm_release_create = 29;
+  istio_http_endpoint_create = 30;
+  jenkins_kubernetes_create = 31;
+  kafka_kubernetes_create = 32;
+  keycloak_kubernetes_create = 33;
+  locust_kubernetes_create = 34;
+  microservice_kubernetes_create = 35;
+  mongodb_kubernetes_create = 36;
+  openfga_kubernetes_create = 37;
+  postgres_kubernetes_create = 38;
+  prometheus_kubernetes_create = 39;
+  redis_kubernetes_create = 40;
+  solr_kubernetes_create = 41;
 }
