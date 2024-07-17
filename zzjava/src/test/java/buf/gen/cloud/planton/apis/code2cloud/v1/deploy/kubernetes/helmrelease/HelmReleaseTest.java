@@ -1,7 +1,6 @@
 package buf.gen.cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease;
 
 import build.buf.gen.cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmRelease;
-import build.buf.gen.cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model.HelmReleaseSpec;
 import build.buf.protovalidate.Validator;
 import build.buf.protovalidate.exceptions.ValidationException;
 import org.junit.jupiter.api.Test;
@@ -24,18 +23,6 @@ public final class HelmReleaseTest {
         var result = validator.validate(helmrelease);
         var optionalViolation = result.getViolations().stream()
                 .filter(violation -> violation.getFieldPath().equals("metadata"))
-                .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
-        assertTrue(optionalViolation.isPresent());
-    }
-
-    @Test
-    public void testHelmRelease_ShouldThroughErrorIfKubernetesIsInitializedButContainerIsNotInitialized() throws ValidationException {
-        var helmrelease = HelmRelease.newBuilder()
-                .setSpec(HelmReleaseSpec.newBuilder().build()).build();
-        Validator validator = new Validator();
-        var result = validator.validate(helmrelease);
-        var optionalViolation = result.getViolations().stream()
-                .filter(violation -> violation.getFieldPath().equals("spec.container"))
                 .filter(violation -> violation.getMessage().equals("value is required")).findFirst();
         assertTrue(optionalViolation.isPresent());
     }

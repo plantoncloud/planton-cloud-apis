@@ -66,15 +66,16 @@ public final class GcsBucketTest {
         var result = validator.validate(cloudAccount);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 3 and 63 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 
     @Test
-    public void testGcsBucket_ShouldReturnValidationErrorIfNameLengthIsGreaterThan12() throws ValidationException {
+    public void testGcsBucket_ShouldReturnValidationErrorIfNameLengthIsGreaterThan63() throws ValidationException {
         var cloudAccount = GcsBucket.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
-                        .setName("this is test name to check length validation, this is test name to check length validation, this is test name to check length validation")
+                        .setName("this is test name to check length validation, this is test name to check length validation, " +
+                                "this is test name to check length validation")
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test gcs-bucket").build())
                         .build())
                 .build();
@@ -82,7 +83,7 @@ public final class GcsBucketTest {
         var result = validator.validate(cloudAccount);
         var versionMessageViolation = result.getViolations().stream()
                 .filter(violation -> violation.getConstraintId().equals("metadata.name"))
-                .filter(violation -> violation.getMessage().equals("Name must be between 1 and 30 characters long")).findFirst();
+                .filter(violation -> violation.getMessage().equals("Name must be between 3 and 63 characters long")).findFirst();
         assertTrue(versionMessageViolation.isPresent());
     }
 

@@ -72,7 +72,7 @@ message KeycloakKubernetesSpec {
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
 
   //keycloak-container spec
-  KeycloakKubernetesSpecContainerSpec container = 2;
+  KeycloakKubernetesContainerSpec container = 2;
 
   //keycloak-kubernetes ingress-spec
   cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 3;
@@ -94,7 +94,7 @@ message KeycloakKubernetesStatus {
 }
 
 // keycloak-kubernetes kubernetes keycloak-container spec
-message KeycloakKubernetesSpecContainerSpec {
+message KeycloakKubernetesContainerSpec {
   //keycloak container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
   cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 1 [
