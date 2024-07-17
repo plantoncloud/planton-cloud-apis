@@ -84,10 +84,10 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Google Cloud DNS Zone",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  gcp_secret_set = 14 [
+  gcp_secrets_manager_secret_set = 14 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpsec",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpSecretSet",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GCP Secrets",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpSecretsManagerSecretSet",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GCP Secrets Manager Secrets",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
   gcs_bucket = 15 [
