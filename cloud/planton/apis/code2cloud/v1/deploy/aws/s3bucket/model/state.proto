@@ -3,11 +3,12 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.deploy.aws.s3bucket.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //s3-bucket
 message S3Bucket {
@@ -55,11 +56,17 @@ message S3Bucket {
 //s3-bucket spec
 message S3BucketSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
+
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //aws-credential-id to be used for setting up aws-provider in stack-job
+  string aws_credential_id = 97;
 
   //flag to indicate if s3-bucket should have external(public) access.
   //defaults to "false"
-  bool is_public = 2;
+  bool is_public = 1;
 }
 
 //s3-bucket status

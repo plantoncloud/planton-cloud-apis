@@ -177,3 +177,14 @@ message StackJobStatusPulumiOperationStatus {
   //this list is only populated when the operation fails or pulumi-engine emits diagnostic events of severity "error".
   repeated string errors = 6;
 }
+
+
+//stack-job settings for each api-resource
+message StackJobSettings {
+  // id of the stack-job-runner to be used to run stack-jobs
+  string stack_job_runner_id = 1;
+  //flag to toggle stack-jobs
+  bool is_enabled = 2;
+  //list of configured pulumi-operations
+  repeated cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType pulumi_operations = 3;
+}

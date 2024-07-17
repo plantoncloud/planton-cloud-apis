@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //gcp-cloud-dns-zone
@@ -58,26 +59,26 @@ message GcpCloudDnsZone {
 // Specification for the Route53 Zone
 message GcpCloudDnsZoneSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
-  // The ID of the GCP Cloud Connection where the Managed Zone should be created.
-  string gcp_credential_id = 2 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //gcp-credential-id to be used for setting up gcp-provider in stack-job
+  string gcp_credential_id = 97;
 
   // The ID of the GCP Project where the Managed Zone is created.
-  string project_id = 3 [
+  string project_id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   // An optional list of GCP service accounts to be granted permissions to manage DNS records in the Managed Zone.
   // These accounts are primarily created as workload identities like cert-manager,
   // and are added when new environments are created or updated.
-  repeated string iam_service_accounts = 4;
+  repeated string iam_service_accounts = 2;
 
   // The DNS records that are added to the Zone.
-  repeated GcpCloudDnsZoneDnsRecord records = 5;
+  repeated GcpCloudDnsZoneDnsRecord records = 3;
 }
 
 // Status for the Route53 Zone

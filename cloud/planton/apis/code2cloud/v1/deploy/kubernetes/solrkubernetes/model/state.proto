@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //solr-kubernetes
@@ -68,19 +69,25 @@ message SolrKubernetes {
 //solr-kubernetes spec
 message SolrKubernetesSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
-  SolrKubernetesSpecSolrContainerSpec solr_container = 2 [
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
+  string kubernetes_cluster_credential_id = 97;
+
+  SolrKubernetesSpecSolrContainerSpec solr_container = 1 [
     (buf.validate.field).required = true
   ];
 
   //zookeeper container spec
-  SolrKubernetesSpecZookeeperContainerSpec zookeeper_container = 3 [
+  SolrKubernetesSpecZookeeperContainerSpec zookeeper_container = 2 [
     (buf.validate.field).required = true
   ];
 
   //ingress spec
-  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 3;
 }
 
 //solr-kubernetes status

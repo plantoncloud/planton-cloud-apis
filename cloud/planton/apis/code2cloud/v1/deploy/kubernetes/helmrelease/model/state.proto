@@ -3,10 +3,11 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.helmrelease.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //helm-release
 message HelmRelease {
@@ -66,10 +67,16 @@ message HelmRelease {
 //helm-release spec
 message HelmReleaseSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
+
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
+  string kubernetes_cluster_credential_id = 97;
 
   //helm-chart spec
-  HelmReleaseSpecChartSpec helm_chart = 2 [
+  HelmReleaseSpecChartSpec helm_chart = 1 [
     (buf.validate.field).required = true
   ];
 }
