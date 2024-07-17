@@ -20,7 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// https://www.pulumi.com/docs/concepts/state/#pulumi-cloud-backend
+// https://www.pulumi.com/docs/concepts/state
 type PulumiStateBackendProviderType int32
 
 const (

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.iac.v1.pulumistatebackend.enums.pulumistatebackendprovidertype;
 
-//https://www.pulumi.com/docs/concepts/state/#pulumi-cloud-backend
+//https://www.pulumi.com/docs/concepts/state
 enum PulumiStateBackendProviderType {
   unspecified = 0;
   pulumi_cloud = 1;
