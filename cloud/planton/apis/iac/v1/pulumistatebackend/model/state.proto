@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/pulumistatebackend/enums/pulumistatebackendprovidertype/pulumi_state_backend_provider_type.proto";
 
 // pulumi-state-backend
 message PulumiStateBackend {
@@ -43,15 +44,55 @@ message PulumiStateBackendSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
-  // grpc endpoint to be used for creating grpc client
-  string grpc_endpoint = 2 [
-    (buf.validate.field).required = true
-  ];
+  // provider for pulumi-state-backend
+  // https://www.pulumi.com/docs/concepts/state
+  cloud.planton.apis.iac.v1.pulumistatebackend.enums.pulumistatebackendprovidertype.PulumiStateBackendProviderType provider = 2;
 
-  // grpc metadata to be attached to execute rpc call.
-  // maintainer of pulumi-state-backend is responsible for
-  // matching the grpc-metadata provided by client.
-  map<string, string> grpc_metadata = 3;
+  // pulumi-cloud backend provider spec
+  PulumiStateBackendPulumiCloudSpec pulumi_cloud = 3;
+
+  // aws s3 backend provider spec
+  PulumiStateBackendAwsS3Spec aws_s3 = 4;
+
+  // google cloud storage backend provider spec
+  PulumiStateBackendGoogleCloudStorageSpec google_cloud_storage = 5;
+
+  // azure blob storage backend provider spec
+  PulumiStateBackendAzureBlobStorageSpec azure_blob_storage = 6;
+}
+
+//pulumi-cloud pulumi-state-backend spec
+message PulumiStateBackendPulumiCloudSpec {
+  //name of the pulumi organization
+  string pulumi_organization = 1;
+  //access token to be used for authorization
+  string access_token = 2;
+}
+
+//aws s3 pulumi-state-backend spec
+message PulumiStateBackendAwsS3Spec {
+  //aws-credential-id to be used for authorization
+  string aws_credential_id = 1;
+  //name of s3-bucket
+  string s3_bucket = 2;
+  //aws region
+  string region = 3;
+}
+
+//google-cloud-storage pulumi-state-backend spec
+message PulumiStateBackendGoogleCloudStorageSpec {
+  //gcp-credential-id to be used for authorization
+  string gcp_credential_id = 1;
+  //name of gcs-bucket
+  string gcs_bucket = 2;
+}
+
+//azure-blob-storage pulumi-state-backend spec
+message PulumiStateBackendAzureBlobStorageSpec {
+  //azure-credential-id to be used for authorization
+  string azure_credential_id = 1;
+  //azure blob storage container name
+  string blob_storage_container = 2;
 }
 
 // pulumi-state-backend status
