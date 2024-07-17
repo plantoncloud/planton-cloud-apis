@@ -23,7 +23,7 @@ service IamPolicyQueryController {
   }
 
   // retrieve iam policies by type and id grouped by role
-  rpc getOrganizationByApiResourceKindAndResourceIdGroupByRole(cloud.planton.apis.iam.v1.iampolicy.model.GetIamPolicyByApiResourceKindAndResourceIdInput)
+  rpc getEnvironmentByApiResourceKindAndResourceIdGroupByRole(cloud.planton.apis.iam.v1.iampolicy.model.GetIamPolicyByApiResourceKindAndResourceIdInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByRole) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup iam policy";

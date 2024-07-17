@@ -20,12 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	IamPolicyCommandController_Add_FullMethodName                        = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/add"
-	IamPolicyCommandController_RemoveMultiple_FullMethodName             = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/removeMultiple"
-	IamPolicyCommandController_Update_FullMethodName                     = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/update"
-	IamPolicyCommandController_AddOrganization_FullMethodName            = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/addOrganization"
-	IamPolicyCommandController_RemoveOrganizationMultiple_FullMethodName = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/removeOrganizationMultiple"
-	IamPolicyCommandController_AddApiResourceOwner_FullMethodName        = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/addApiResourceOwner"
+	IamPolicyCommandController_Add_FullMethodName                       = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/add"
+	IamPolicyCommandController_RemoveMultiple_FullMethodName            = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/removeMultiple"
+	IamPolicyCommandController_Update_FullMethodName                    = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/update"
+	IamPolicyCommandController_AddEnvironment_FullMethodName            = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/addEnvironment"
+	IamPolicyCommandController_RemoveEnvironmentMultiple_FullMethodName = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/removeEnvironmentMultiple"
+	IamPolicyCommandController_AddApiResourceOwner_FullMethodName       = "/cloud.planton.apis.iam.v1.iampolicy.service.IamPolicyCommandController/addApiResourceOwner"
 )
 
 // IamPolicyCommandControllerClient is the client API for IamPolicyCommandController service.
@@ -38,9 +38,9 @@ type IamPolicyCommandControllerClient interface {
 	RemoveMultiple(ctx context.Context, in *model.RemoveIamPoliciesInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error)
 	Update(ctx context.Context, in *model.UpdateIamPolicyInput, opts ...grpc.CallOption) (*model.IamPolicyByPrincipal, error)
 	// add iam policies to a resource
-	AddOrganization(ctx context.Context, in *model.AddIamPolicyInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error)
+	AddEnvironment(ctx context.Context, in *model.AddIamPolicyInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
-	RemoveOrganizationMultiple(ctx context.Context, in *model.RemoveIamPoliciesInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error)
+	RemoveEnvironmentMultiple(ctx context.Context, in *model.RemoveIamPoliciesInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error)
 	// add an owner for a resource.
 	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
 	// a tuple is created on fga and the same tuple along with any contextual
@@ -83,18 +83,18 @@ func (c *iamPolicyCommandControllerClient) Update(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *iamPolicyCommandControllerClient) AddOrganization(ctx context.Context, in *model.AddIamPolicyInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error) {
+func (c *iamPolicyCommandControllerClient) AddEnvironment(ctx context.Context, in *model.AddIamPolicyInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error) {
 	out := new(model.IamPoliciesByPrincipal)
-	err := c.cc.Invoke(ctx, IamPolicyCommandController_AddOrganization_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_AddEnvironment_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *iamPolicyCommandControllerClient) RemoveOrganizationMultiple(ctx context.Context, in *model.RemoveIamPoliciesInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error) {
+func (c *iamPolicyCommandControllerClient) RemoveEnvironmentMultiple(ctx context.Context, in *model.RemoveIamPoliciesInput, opts ...grpc.CallOption) (*model.IamPoliciesByPrincipal, error) {
 	out := new(model.IamPoliciesByPrincipal)
-	err := c.cc.Invoke(ctx, IamPolicyCommandController_RemoveOrganizationMultiple_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, IamPolicyCommandController_RemoveEnvironmentMultiple_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -120,9 +120,9 @@ type IamPolicyCommandControllerServer interface {
 	RemoveMultiple(context.Context, *model.RemoveIamPoliciesInput) (*model.IamPoliciesByPrincipal, error)
 	Update(context.Context, *model.UpdateIamPolicyInput) (*model.IamPolicyByPrincipal, error)
 	// add iam policies to a resource
-	AddOrganization(context.Context, *model.AddIamPolicyInput) (*model.IamPoliciesByPrincipal, error)
+	AddEnvironment(context.Context, *model.AddIamPolicyInput) (*model.IamPoliciesByPrincipal, error)
 	// remove list of iam policies of a principal and resource
-	RemoveOrganizationMultiple(context.Context, *model.RemoveIamPoliciesInput) (*model.IamPoliciesByPrincipal, error)
+	RemoveEnvironmentMultiple(context.Context, *model.RemoveIamPoliciesInput) (*model.IamPoliciesByPrincipal, error)
 	// add an owner for a resource.
 	// this rpc is used by planton-cloud platform services when ever a new api resource is newly created.
 	// a tuple is created on fga and the same tuple along with any contextual
@@ -143,11 +143,11 @@ func (UnimplementedIamPolicyCommandControllerServer) RemoveMultiple(context.Cont
 func (UnimplementedIamPolicyCommandControllerServer) Update(context.Context, *model.UpdateIamPolicyInput) (*model.IamPolicyByPrincipal, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIamPolicyCommandControllerServer) AddOrganization(context.Context, *model.AddIamPolicyInput) (*model.IamPoliciesByPrincipal, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddOrganization not implemented")
+func (UnimplementedIamPolicyCommandControllerServer) AddEnvironment(context.Context, *model.AddIamPolicyInput) (*model.IamPoliciesByPrincipal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddEnvironment not implemented")
 }
-func (UnimplementedIamPolicyCommandControllerServer) RemoveOrganizationMultiple(context.Context, *model.RemoveIamPoliciesInput) (*model.IamPoliciesByPrincipal, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveOrganizationMultiple not implemented")
+func (UnimplementedIamPolicyCommandControllerServer) RemoveEnvironmentMultiple(context.Context, *model.RemoveIamPoliciesInput) (*model.IamPoliciesByPrincipal, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveEnvironmentMultiple not implemented")
 }
 func (UnimplementedIamPolicyCommandControllerServer) AddApiResourceOwner(context.Context, *model.FgaTuple) (*model.FgaTuple, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddApiResourceOwner not implemented")
@@ -218,38 +218,38 @@ func _IamPolicyCommandController_Update_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IamPolicyCommandController_AddOrganization_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _IamPolicyCommandController_AddEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddIamPolicyInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IamPolicyCommandControllerServer).AddOrganization(ctx, in)
+		return srv.(IamPolicyCommandControllerServer).AddEnvironment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IamPolicyCommandController_AddOrganization_FullMethodName,
+		FullMethod: IamPolicyCommandController_AddEnvironment_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamPolicyCommandControllerServer).AddOrganization(ctx, req.(*model.AddIamPolicyInput))
+		return srv.(IamPolicyCommandControllerServer).AddEnvironment(ctx, req.(*model.AddIamPolicyInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IamPolicyCommandController_RemoveOrganizationMultiple_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _IamPolicyCommandController_RemoveEnvironmentMultiple_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.RemoveIamPoliciesInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IamPolicyCommandControllerServer).RemoveOrganizationMultiple(ctx, in)
+		return srv.(IamPolicyCommandControllerServer).RemoveEnvironmentMultiple(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IamPolicyCommandController_RemoveOrganizationMultiple_FullMethodName,
+		FullMethod: IamPolicyCommandController_RemoveEnvironmentMultiple_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamPolicyCommandControllerServer).RemoveOrganizationMultiple(ctx, req.(*model.RemoveIamPoliciesInput))
+		return srv.(IamPolicyCommandControllerServer).RemoveEnvironmentMultiple(ctx, req.(*model.RemoveIamPoliciesInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -292,12 +292,12 @@ var IamPolicyCommandController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IamPolicyCommandController_Update_Handler,
 		},
 		{
-			MethodName: "addOrganization",
-			Handler:    _IamPolicyCommandController_AddOrganization_Handler,
+			MethodName: "addEnvironment",
+			Handler:    _IamPolicyCommandController_AddEnvironment_Handler,
 		},
 		{
-			MethodName: "removeOrganizationMultiple",
-			Handler:    _IamPolicyCommandController_RemoveOrganizationMultiple_Handler,
+			MethodName: "removeEnvironmentMultiple",
+			Handler:    _IamPolicyCommandController_RemoveEnvironmentMultiple_Handler,
 		},
 		{
 			MethodName: "addApiResourceOwner",

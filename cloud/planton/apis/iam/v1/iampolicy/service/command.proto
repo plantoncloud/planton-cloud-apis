@@ -28,14 +28,14 @@ service IamPolicyCommandController {
   }
 
   // add iam policies to a resource
-  rpc addOrganization(cloud.planton.apis.iam.v1.iampolicy.model.AddIamPolicyInput)
+  rpc addEnvironment(cloud.planton.apis.iam.v1.iampolicy.model.AddIamPolicyInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add iam policy";
   }
 
   // remove list of iam policies of a principal and resource
-  rpc removeOrganizationMultiple(cloud.planton.apis.iam.v1.iampolicy.model.RemoveIamPoliciesInput)
+  rpc removeEnvironmentMultiple(cloud.planton.apis.iam.v1.iampolicy.model.RemoveIamPoliciesInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to remove iam policy";
