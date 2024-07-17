@@ -32,4 +32,6 @@ enum ApiResourceIamPermission {
   eks_cluster_create = 16;
   route53_zone_create = 17;
   s3_bucket_create = 18;
+
+  aks_cluster_create = 19;
 }
