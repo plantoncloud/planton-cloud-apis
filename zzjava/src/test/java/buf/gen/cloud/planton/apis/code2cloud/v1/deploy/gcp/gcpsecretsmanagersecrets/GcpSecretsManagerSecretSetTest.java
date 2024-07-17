@@ -13,9 +13,9 @@ public final class GcpSecretsManagerSecretSetTest {
 
     @Test
     public void testGcpSecretsManagerSecretSet_ShouldNotThroughProtoValidationException() {
-        var input1 = GcpSecretsManagerSecretSet.newBuilder().build();
+        var input = GcpSecretsManagerSecretSet.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

@@ -13,9 +13,9 @@ public final class AksClusterTest {
 
     @Test
     public void testAksCluster_ShouldNotThroughProtoValidationException() {
-        var input1 = AksCluster.newBuilder().build();
+        var input = AksCluster.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

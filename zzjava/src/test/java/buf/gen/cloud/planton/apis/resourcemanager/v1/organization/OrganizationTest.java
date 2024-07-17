@@ -10,9 +10,9 @@ public final class OrganizationTest {
 
     @Test
     public void testOrganization_ShouldNotThroughProtoValidationException() {
-        var input1 = Organization.newBuilder().build();
+        var input = Organization.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
 }

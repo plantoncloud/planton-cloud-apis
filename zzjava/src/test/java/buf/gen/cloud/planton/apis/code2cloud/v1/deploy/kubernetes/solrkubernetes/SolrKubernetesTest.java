@@ -13,9 +13,9 @@ public final class SolrKubernetesTest {
 
     @Test
     public void testSolrKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = SolrKubernetes.newBuilder().build();
+        var input = SolrKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

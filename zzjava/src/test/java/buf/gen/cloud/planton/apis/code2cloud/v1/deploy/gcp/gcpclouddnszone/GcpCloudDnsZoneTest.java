@@ -13,9 +13,9 @@ public final class GcpCloudDnsZoneTest {
 
     @Test
     public void testGcpCloudDnsZone_ShouldNotThroughProtoValidationException() {
-        var input1 = GcpCloudDnsZone.newBuilder().build();
+        var input = GcpCloudDnsZone.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test
