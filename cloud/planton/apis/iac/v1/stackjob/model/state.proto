@@ -181,8 +181,8 @@ message StackJobStatusPulumiOperationStatus {
 
 //stack-job settings for each api-resource
 message StackJobSettings {
-  // id of pulumi-state-backend to be used to store state for api-resource's pulumi-stack state
-  string pulumi_state_backend_id = 1;
+  // id of pulumi-backend-credential to be used to store state for api-resource's pulumi-stack state
+  string pulumi_backend_credential_id = 1;
   // id of the stack-job-runner to be used to run stack-jobs
   string stack_job_runner_id = 2;
   //flag to toggle stack-jobs

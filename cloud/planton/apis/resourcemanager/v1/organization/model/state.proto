@@ -61,6 +61,8 @@ message OrganizationSpec {
   string description = 1;
   // public url for the organization logo
   string logo_url = 2;
+  //stack-job settings for organization
+  OrganizationStackJobSettings stack_job_settings = 3;
 }
 
 // organization status
@@ -82,4 +84,12 @@ message OrganizationStatus {
 
   // id of the secret on secrets-manager containing the service-account key credential.
   string gcp_service_account_key_secret_name = 2;
+}
+
+//stack-job settings for organization
+message OrganizationStackJobSettings {
+  // flag to disable use of planton-cloud provided default stack-job-runner to run stack-jobs
+  bool is_default_stack_job_runner_disabled = 1;
+  // flag to disable use of planton-cloud provided default pulumi-backend-credential to store pulumi state
+  bool is_default_pulumi_backend_credential_disabled = 2;
 }
