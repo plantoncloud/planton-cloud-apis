@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackjob.enums.operationtype;
+package cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype;
 
 import "cloud/planton/apis/iac/v1/stackjob/options/stackjoboperationtypeoptions/stack_job_operation_type_options.proto";
 

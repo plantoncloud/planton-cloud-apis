@@ -13,7 +13,7 @@ message PulumiEngineEventPayload {
   //The time when the progress event payload was created.
   google.protobuf.Timestamp payload_timestamp = 99;
   // stack-job operation for which the event is generated
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 98;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype.StackJobOperationType operation_type = 98;
   // stack-job progress pulumi-engine event-type
   cloud.planton.apis.iac.v1.stackjob.enums.pulumiengineeventtype.PulumiEngineEventType event_type = 97;
 
@@ -202,7 +202,7 @@ message PulumiResources {
 // also outputs if only sent if "apply" operation is executed by the runner.
 message PulumiStackOutputsPayload {
   // stack-job operation for which the payload is generated
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 1;
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype.StackJobOperationType operation_type = 1;
 
   //raw map of pulumi stack outputs
   map<string, string> outputs = 2;
