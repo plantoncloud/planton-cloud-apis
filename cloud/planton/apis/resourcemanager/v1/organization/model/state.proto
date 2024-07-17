@@ -72,18 +72,6 @@ message OrganizationStatus {
 
   // resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
-
-  // id of the stack-job
-  string stack_job_id = 97;
-
-  //stack-outputs
-  //  id of the service-account created on google-cloud for this organization.
-  // this service-account should be granted the required roles for planton-cloud to
-  // be able to create resource in the customer's google-credential.
-  string gcp_service_account_id = 1;
-
-  // id of the secret on secrets-manager containing the service-account key credential.
-  string gcp_service_account_key_secret_name = 2;
 }
 
 //stack-job settings for organization

@@ -170,7 +170,7 @@ message CreateStackJobCommandInput {
     (buf.validate.field).required = true
   ];
   //operation-type to be used for creating the stack-job.
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType stack_job_operation_type = 3 [
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype.StackJobOperationType stack_job_operation_type = 3 [
     (buf.validate.field).required = true
   ];
   // reason for creating the stack job

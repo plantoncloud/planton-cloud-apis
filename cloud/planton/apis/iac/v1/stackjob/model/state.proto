@@ -82,7 +82,7 @@ message StackJobSpec {
   ];
 
   // stack-job operation type
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 7 [
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype.StackJobOperationType operation_type = 7 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -178,15 +178,25 @@ message StackJobStatusPulumiOperationStatus {
   repeated string errors = 6;
 }
 
-
 //stack-job settings for each api-resource
 message StackJobSettings {
-  // id of pulumi-backend-credential to be used to store state for api-resource's pulumi-stack state
-  string pulumi_backend_credential_id = 1;
-  // id of the stack-job-runner to be used to run stack-jobs
-  string stack_job_runner_id = 2;
   //flag to toggle stack-jobs
-  bool is_enabled = 3;
-  //list of configured pulumi-operations
-  repeated cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType pulumi_operations = 4;
+  bool is_enabled = 1;
+  // id of pulumi-backend-credential to be used to store state for api-resource's pulumi-stack state
+  string pulumi_backend_credential_id = 2;
+  // id of the stack-job-runner to be used to run stack-jobs
+  string stack_job_runner_id = 3;
+  //key value pairs to configure custom-inputs for the stack-job which are not included in the api-resource spec
+  map<string, string> custom_inputs = 4;
+  //skip refresh for preview, apply and destroy steps.
+  //defaults to false.
+  //refresh is always executed for all stack-jobs unless disabled.
+  bool skip_refresh = 5;
+  //always run preview step for apply or destroy.
+  //defaults to true.
+  bool preview_before_apply_or_destroy = 6;
+  //if the stack-job includes apply or destroy and if preview-before-apply-or-destroy is enabled,
+  // pause after preview is execute but before apply/destroy is executed.
+  //defaults to false.
+  bool pause_between_preview_and_apply_or_destroy = 7;
 }
