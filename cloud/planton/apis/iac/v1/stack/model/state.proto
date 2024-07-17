@@ -16,9 +16,7 @@ message Stack {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
 
   // resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "iac.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   // resource kind
   string kind = 2;

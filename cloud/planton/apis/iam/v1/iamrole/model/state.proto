@@ -10,9 +10,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 // iam-role
 message IamRole {
   //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "iam.planton.cloud/v1"
-  ];
+  string api_version = 1;
 
   //resource kind
   string kind = 2;

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjobrunner.model;
+
+import "buf/validate/validate.proto";
+
+// wrapper for stack-job-runner id
+message StackJobRunnerId {
+  string value= 1;
+}
