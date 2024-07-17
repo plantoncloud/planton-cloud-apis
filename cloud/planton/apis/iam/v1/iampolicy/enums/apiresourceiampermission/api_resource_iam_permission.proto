@@ -22,4 +22,14 @@ enum ApiResourceIamPermission {
   platform = 9;
 
   config_map_create = 10;
+
+  aws_credential_create = 11;
+  azure_credential_create = 12;
+  gcp_credential_create = 13;
+  kubernetes_cluster_credential_create = 14;
+  kubernetes_docker_credential_create = 15;
+
+  eks_cluster_create = 16;
+  route53_zone_create = 17;
+  s3_bucket_create = 18;
 }
