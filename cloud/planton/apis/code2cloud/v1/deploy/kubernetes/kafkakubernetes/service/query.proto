@@ -21,7 +21,7 @@ service KafkaKubernetesQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kafka-kubernetes";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup kafka-kubernetes";
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
@@ -33,7 +33,7 @@ service KafkaKubernetesQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kafka-kubernetes password";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup kafka-kubernetes password";
   }
 }
 
@@ -45,6 +45,6 @@ service KafkaTopicQueryController {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
     //note: field-path can not be added as the kafka-kubernetes-id is not present in the input.
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to view kafka topics";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup kafka topics";
   }
 }

@@ -3,14 +3,15 @@ syntax = "proto3";
 package cloud.planton.apis.code2cloud.v1.deploy.kubernetes.kafkakubernetes.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
-import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcechilditemmessageoptions/api_resource_child_item_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //kafka-kubernetes
 message KafkaKubernetes {
@@ -70,31 +71,37 @@ message KafkaKubernetes {
 //kafka-kubernetes spec
 message KafkaKubernetesSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
+
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
+  string kubernetes_cluster_credential_id = 97;
 
   //list of kafka topics.
-  repeated KafkaTopic kafka_topics = 2;
+  repeated KafkaTopic kafka_topics = 1;
 
 
   //kafka-broker container spec
-  KafkaKubernetesSpecBrokerContainerSpec broker_container = 3 [
+  KafkaKubernetesSpecBrokerContainerSpec broker_container = 2 [
     (buf.validate.field).required = true
   ];
 
   //zookeeper container spec
-  KafkaKubernetesSpecZookeeperContainerSpec zookeeper_container = 4 [
+  KafkaKubernetesSpecZookeeperContainerSpec zookeeper_container = 3 [
     (buf.validate.field).required = true
   ];
 
   //schema-registry container spec
-  KafkaKubernetesSpecSchemaRegistryContainerSpec schema_registry_container = 5;
+  KafkaKubernetesSpecSchemaRegistryContainerSpec schema_registry_container = 4;
 
   //kafka-kubernetes ingress spec
-  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 6;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 5;
 
   //flag to control if kowl dashboard is deployed for the kafka-kubernetes.
   //defaults to "false".
-  bool is_kowl_dashboard_enabled = 7;
+  bool is_kowl_dashboard_enabled = 6;
 }
 
 //kafka-kubernetes status

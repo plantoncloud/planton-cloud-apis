@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //gcp-secrets-manager-secret-set
@@ -67,19 +68,20 @@ message GcpSecretsManagerSecretSet {
 //gcp-secrets-manager-secret-set spec
 message GcpSecretsManagerSecretSetSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
-  //id of the gcp-credential to be used for creating storage-bucket.
-  string gcp_credential_id = 2 [
-    (buf.validate.field).required = true
-  ];
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //gcp-credential-id to be used for setting up gcp-provider in stack-job
+  string gcp_credential_id = 97;
 
   //gcp project in which the storage-bucket is to be created.
-  string project_id = 3 [
+  string project_id = 1 [
     (buf.validate.field).required = true
   ];
 
-  repeated string secret_names = 4;
+  repeated string secret_names = 2;
 }
 
 //gcp-secrets-manager-secret-set status

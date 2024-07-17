@@ -68,10 +68,10 @@ message ConfigMap {
 //config-map spec
 message ConfigMapSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   //map of config variables and their values
-  map<string, string> entries = 2;
+  map<string, string> entries = 1;
 }
 
 //config-map status

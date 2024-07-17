@@ -9,6 +9,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/apiresources/enums/podmanagertype/pod_manager_type.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
@@ -70,11 +71,17 @@ message MicroserviceKubernetes {
 //microservice-kubernetes spec
 message MicroserviceKubernetesSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
+
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
+  string kubernetes_cluster_credential_id = 97;
 
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
   //review-<id> where id is the merge request number
-  string version = 2 [
+  string version = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).string.min_len = 1,
     (buf.validate.field).string.max_len = 20,
@@ -94,28 +101,28 @@ message MicroserviceKubernetesSpec {
 
   //(required) type of the pod manager to use for the microservice deployment.
   //default is set to "deployment".
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanagertype.PodManagerType pod_manager_type = 3 [
+  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanagertype.PodManagerType pod_manager_type = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];
 
   //container spec
-  MicroserviceKubernetesSpecContainerSpec container = 4 [
+  MicroserviceKubernetesSpecContainerSpec container = 3 [
     (buf.validate.field).required = true
   ];
 
   //microservice kubernetes ingress configuration on kubernetes
-  MicroserviceKubernetesSpecIngressSpec ingress = 5;
+  MicroserviceKubernetesSpecIngressSpec ingress = 4;
 
   //microservice kubernetes availability configuration on kubernetes
-  MicroserviceKubernetesSpecAvailabilitySpec availability = 6;
+  MicroserviceKubernetesSpecAvailabilitySpec availability = 5;
 
   //flag to toggle workload identity for the microservice
   //default is set to "false".
-  bool is_workload_identity_enabled = 7;
+  bool is_workload_identity_enabled = 6;
 
   //pipeline configuration required to update the microservice kubernetes from ci/cd pipelines
-  MicroserviceKubernetesSpecPipelineSpec pipeline = 8;
+  MicroserviceKubernetesSpecPipelineSpec pipeline = 7;
 }
 
 //microservice-kubernetes-spec kubernetes container spec

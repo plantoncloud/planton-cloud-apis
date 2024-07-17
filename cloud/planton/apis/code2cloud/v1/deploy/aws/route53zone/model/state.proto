@@ -7,8 +7,9 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //route53-zone
 message Route53Zone {
@@ -58,16 +59,16 @@ message Route53Zone {
 // Specification for the Route53 Zone
 message Route53ZoneSpec {
   //environment-info
-  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
-  // The ID of the AWS Cloud Connection where the Managed Zone should be created.
-  string aws_credential_id = 2 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //aws-credential-id to be used for setting up aws-provider in stack-job
+  string aws_credential_id = 97;
 
   // The DNS records that are added to the Zone.
-  repeated Route53ZoneDnsRecord records = 4;
+  repeated Route53ZoneDnsRecord records = 1;
 }
 
 // Status for the Route53 Zone
