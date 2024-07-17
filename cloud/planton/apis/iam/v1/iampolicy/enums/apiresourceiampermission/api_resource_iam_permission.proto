@@ -34,4 +34,6 @@ enum ApiResourceIamPermission {
   s3_bucket_create = 18;
 
   aks_cluster_create = 19;
+
+  gcp_artifact_registry_create = 20;
 }
