@@ -15,9 +15,9 @@ public final class MongodbKubernetesTest {
 
     @Test
     public void testMongodbKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = MongodbKubernetes.newBuilder().build();
+        var input = MongodbKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

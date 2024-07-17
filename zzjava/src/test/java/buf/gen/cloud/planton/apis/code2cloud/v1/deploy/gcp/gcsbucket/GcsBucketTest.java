@@ -13,9 +13,9 @@ public final class GcsBucketTest {
 
     @Test
     public void testGcsBucket_ShouldNotThroughProtoValidationException() {
-        var input1 = GcsBucket.newBuilder().build();
+        var input = GcsBucket.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

@@ -13,9 +13,9 @@ public final class MicroserviceKubernetesTest {
 
     @Test
     public void testMicroserviceKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = MicroserviceKubernetes.newBuilder().build();
+        var input = MicroserviceKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

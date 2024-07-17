@@ -17,9 +17,9 @@ public final class KafkaKubernetesTest {
 
     @Test
     public void testKafkaKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = KafkaKubernetes.newBuilder().build();
+        var input = KafkaKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

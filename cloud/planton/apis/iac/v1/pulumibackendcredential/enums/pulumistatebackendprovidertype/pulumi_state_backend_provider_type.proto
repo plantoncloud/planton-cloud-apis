@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.pulumistatebackend.enums.pulumistatebackendprovidertype;
+package cloud.planton.apis.iac.v1.pulumibackendcredential.enums.pulumistatebackendprovidertype;
 
 //https://www.pulumi.com/docs/concepts/state
-enum PulumiStateBackendProviderType {
+enum PulumiBackendCredentialProviderType {
   unspecified = 0;
   pulumi_cloud = 1;
   aws_s3 = 2;

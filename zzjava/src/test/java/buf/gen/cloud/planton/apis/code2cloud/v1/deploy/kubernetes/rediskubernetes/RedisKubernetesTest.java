@@ -14,37 +14,37 @@ public final class RedisKubernetesTest {
 
     @Test
     public void testRedisKubernetes_ShouldNotThroughProtoValidationException() throws ValidationException {
-        var input1 = RedisKubernetes.newBuilder().build();
+        var input = RedisKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        validator.validate(input1);
-        assertDoesNotThrow(() -> validator.validate(input1));
+        validator.validate(input);
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test
     public void testRedisKubernetesSpecKubernetesSpecIngressSpec_ShouldReturnTwoViolations() throws ValidationException {
-        var input1 = IngressSpec.newBuilder()
+        var input = IngressSpec.newBuilder()
                 .setIsEnabled(true)
                 .build();
         Validator validator = new Validator();
-        var validationResult = validator.validate(input1);
+        var validationResult = validator.validate(input);
         assertEquals(2, validationResult.getViolations().size());
     }
 
     @Test
     public void testRedisKubernetesSpecKubernetesSpecIngressSpec_ShouldReturnNoViolations() throws ValidationException {
-        var input1 = IngressSpec.newBuilder()
+        var input = IngressSpec.newBuilder()
                 .setIsEnabled(false)
                 .build();
         Validator validator = new Validator();
-        var validationResult = validator.validate(input1);
+        var validationResult = validator.validate(input);
         assertEquals(0, validationResult.getViolations().size());
     }
 
     @Test
     public void testRedisKubernetesSpecKubernetesSpecIngressSpec_ShouldReturnNoViolationsIfIsEnabledIsNotSet() throws ValidationException {
-        var input1 = IngressSpec.newBuilder().build();
+        var input = IngressSpec.newBuilder().build();
         Validator validator = new Validator();
-        var validationResult = validator.validate(input1);
+        var validationResult = validator.validate(input);
         assertEquals(0, validationResult.getViolations().size());
     }
 

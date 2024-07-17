@@ -13,9 +13,9 @@ public final class PostgresKubernetesTest {
 
     @Test
     public void testPostgresKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = PostgresKubernetes.newBuilder().build();
+        var input = PostgresKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

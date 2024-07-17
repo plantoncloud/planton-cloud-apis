@@ -13,9 +13,9 @@ public final class S3BucketTest {
 
     @Test
     public void testS3Bucket_ShouldNotThroughProtoValidationException() {
-        var input1 = S3Bucket.newBuilder().build();
+        var input = S3Bucket.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

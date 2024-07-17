@@ -13,9 +13,9 @@ public final class EksClusterTest {
 
     @Test
     public void testEksCluster_ShouldNotThroughProtoValidationException() {
-        var input1 = EksCluster.newBuilder().build();
+        var input = EksCluster.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

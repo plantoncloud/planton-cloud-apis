@@ -13,9 +13,9 @@ public final class JenkinsKubernetesTest {
 
     @Test
     public void testJenkinsKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = JenkinsKubernetes.newBuilder().build();
+        var input = JenkinsKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test

@@ -13,9 +13,9 @@ public final class LocustKubernetesTest {
 
     @Test
     public void testLocustKubernetes_ShouldNotThroughProtoValidationException() {
-        var input1 = LocustKubernetes.newBuilder().build();
+        var input = LocustKubernetes.newBuilder().build();
         Validator validator = new Validator();
-        assertDoesNotThrow(() -> validator.validate(input1));
+        assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test
