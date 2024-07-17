@@ -58,4 +58,6 @@ enum ApiResourceIamPermission {
   prometheus_kubernetes_create = 39;
   redis_kubernetes_create = 40;
   solr_kubernetes_create = 41;
+
+  pulumi_backend_credential_create = 42;
 }
