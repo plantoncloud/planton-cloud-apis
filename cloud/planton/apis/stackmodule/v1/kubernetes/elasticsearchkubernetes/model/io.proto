@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.elasticsearchkubernetes.model;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/elasticsearchkubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of elasticsearch-kubernetes
+message ElasticsearchKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for elasticsearch-kubernetes password
+message ElasticsearchKubernetesPassword {
+  string value = 1;
+}

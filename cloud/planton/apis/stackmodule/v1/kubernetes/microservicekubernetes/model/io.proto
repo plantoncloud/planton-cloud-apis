@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.microservicekubernetes.model;
+
+import "buf/validate/validate.proto";
+
+//wrapper for id field of microservice-kubernetes
+message MicroserviceKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for microservice-kubernetes env var map
+message MicroserviceKubernetesEnvVarMap {
+  map<string, string> value = 1;
+}
+
+//input for rpc to get env-var map which is typically required to build .env files
+message GetMicroserviceKubernetesEnvVarMapInput {
+  //id of the microservice kubernetes
+  string microservice_kubernetes_id = 1 [
+    (buf.validate.field).required = true
+  ];
+  //map of environment variables
+  map<string,string> variables = 2;
+  //map of environment secrets
+  map<string,string> secrets = 3;
+}

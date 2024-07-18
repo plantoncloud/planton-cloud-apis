@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.aws.route53zone.enums.apiresourceeventtype;
+
+import "cloud/planton/apis/commons/apiresource/options/apiresourceeventtypeenumoptions/api_resource_event_type_enum_options.proto";
+
+// route53-zone event types
+enum Route53ZoneApiResourceEventType {
+  unspecified = 0;
+  created = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_fga_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_create_stack_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
+  ];
+  updated = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
+  ];
+  deleted = 3 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy
+  ];
+  restored = 4 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
+  ];
+  refreshed = 5 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
+  ];
+  stack_job_progress_updated = 6;
+  stack_job_refresh_requested = 7 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = refresh
+  ];
+  stack_job_refresh_completed = 8 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
+  ];
+  stack_job_apply_preview_requested = 9 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply_preview
+  ];
+  stack_job_apply_requested = 10 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
+  ];
+  stack_job_apply_completed = 11 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
+  ];
+  stack_job_destroy_preview_requested = 12 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy_preview
+  ];
+  stack_job_destroy_requested = 13 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy
+  ];
+  stack_job_destroy_completed = 14 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
+  ];
+}

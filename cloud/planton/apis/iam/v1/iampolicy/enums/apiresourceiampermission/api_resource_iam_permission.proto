@@ -60,4 +60,5 @@ enum ApiResourceIamPermission {
   solr_kubernetes_create = 41;
 
   pulumi_backend_credential_create = 42;
+  stack_module_descriptor_create = 43;
 }

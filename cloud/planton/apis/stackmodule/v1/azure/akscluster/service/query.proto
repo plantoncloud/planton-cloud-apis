@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.azure.akscluster.service;
+
+import "cloud/planton/apis/stackmodule/v1/azure/akscluster/model/io.proto";
+import "cloud/planton/apis/stackmodule/v1/azure/akscluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+
+// aks-cluster query controller
+service AksClusterQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = aks_cluster;
+  // lookup aks-cluster using aks-cluster id
+  rpc get(cloud.planton.apis.stackmodule.v1.azure.akscluster.model.AksClusterId)
+      returns (cloud.planton.apis.stackmodule.v1.azure.akscluster.model.AksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = aks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup aks-cluster";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+}

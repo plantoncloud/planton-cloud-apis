@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.azure.akscluster.stack.model;
+
+import "cloud/planton/apis/credential/v1/azurecredential/model/state.proto";
+import "cloud/planton/apis/stackmodule/v1/azure/akscluster/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+
+//aks-cluster stack-insput
+message AksClusterStackInput {
+  //stack-job
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  //api-resource
+  cloud.planton.apis.stackmodule.v1.azure.akscluster.model.AksCluster api_resource = 2;
+  //azure-credential
+  cloud.planton.apis.credential.v1.azurecredential.model.AzureCredential azure_credential = 3;
+}
+
+//aks-cluster stack-response
+message AksClusterStackResponse {
+  //stack-job progress-event
+  cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
+  //stack outputs
+  cloud.planton.apis.stackmodule.v1.azure.akscluster.model.AksClusterStatusStackOutputs stack_outputs = 2;
+}

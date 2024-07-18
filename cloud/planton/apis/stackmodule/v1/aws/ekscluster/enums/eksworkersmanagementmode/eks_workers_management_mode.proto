@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.aws.ekscluster.enums.eksworkersmanagementmode;
+
+enum EksWorkersManagementMode {
+  unspecified = 0;
+  ec2 = 1;
+  fargate = 2;
+  managed_node_groups = 3;
+}

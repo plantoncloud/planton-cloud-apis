@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.helmrelease.stack.service;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/helmrelease/stack/model/io.proto";
+
+service HelmReleaseStackController {
+  rpc execute(cloud.planton.apis.stackmodule.v1.kubernetes.helmrelease.stack.model.HelmReleaseStackInput)
+      returns (stream cloud.planton.apis.stackmodule.v1.kubernetes.helmrelease.stack.model.HelmReleaseStackResponse);
+}

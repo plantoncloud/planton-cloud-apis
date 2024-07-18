@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.microservicekubernetes.stack.service;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/microservicekubernetes/stack/model/io.proto";
+
+service MicroserviceKubernetesStackController {
+  rpc execute(cloud.planton.apis.stackmodule.v1.kubernetes.microservicekubernetes.stack.model.MicroserviceKubernetesStackInput)
+      returns (stream cloud.planton.apis.stackmodule.v1.kubernetes.microservicekubernetes.stack.model.MicroserviceKubernetesStackResponse);
+}

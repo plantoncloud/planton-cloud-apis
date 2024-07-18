@@ -1,0 +1,125 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.kafkakubernetes.model;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/kafkakubernetes/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of kafka-kubernetes
+message KafkaKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for kafka topic id
+message KafkaTopicId {
+  string value = 1;
+}
+
+//wrapper for kafka-kubernetes password
+message KafkaKubernetesPassword {
+  string value = 1;
+}
+
+//input for command to add multiple kafka topics to a kafka-kubernetes
+message AddKafkaTopicsCommandInput {
+  //id of the kafka-kubernetes to which the kafka topics are added
+  string kafka_kubernetes_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //list of kafka topics to be added to existing list of kafka topics
+  repeated KafkaTopic kafka_topics = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//AddOrUpdateKafkaTopicCommandInput is used to encapsulate the details required
+//for adding a new kafka-topic to a specific kafka-kubernetes, or updating
+//an existing one. This message is typically used to transmit data between the client and
+//server during an add or update operation concerning a specific kafka-topic
+//associated with a particular kafka-kubernetes.
+message AddOrUpdateKafkaTopicCommandInput {
+  //The unique identifier for the kafka-kubernetes to which the kafka-topic
+  // needs to be added or updated. This field must be populated with a valid
+  //kafka-kubernetes ID, which can be obtained from the kafka-kubernetes entity itself.
+  //The server uses this ID to identify the correct kafka-kubernetes where the
+  //kafka-topic needs to be added or updated.
+  string kafka_kubernetes_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //The kafka-topic that needs to be added or updated.
+  // This field should be populated with a valid KafkaTopic object,
+  //which encapsulates the details of the kafka-topic. If an kafka-topic
+  //with the kafka-topic-id already exists in the kafka-kubernetes, the value will be updated.
+  //Otherwise, a new kafka-topic will be created with the provided details.
+  KafkaTopic kafka_topic = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//DeleteOrRestoreKafkaTopicCommandInput is used to encapsulate the details required for
+//deleting or restoring a kafka-topic of a specific kafka-kubernetes.
+//This message is typically used to transmit data between the client and the server
+//during a delete or restore operation concerning a specific kafka-topic associated
+//with a particular kafka-kubernetes.
+message DeleteOrRestoreKafkaTopicCommandInput {
+  //The unique identifier for the kafka-kubernetes from which the kafka-topic
+  // needs to be deleted or restored. This field must be populated with a valid
+  //kafka-kubernetes ID, which can be obtained from the kafka-kubernetes entity itself.
+  //The server uses this ID to identify the correct kafka-kubernetes from which
+  //the kafka-topic needs to be deleted or restored.
+  string kafka_kubernetes_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //The kafka-topic-id of the kafka-topic that needs to be deleted or restored.
+  //This field should be populated with a valid
+  //kafka-topic-id, which can be obtained from the kafka-topic entity itself.
+  //The server uses this kafka-topic-id to identify the correct kafka-topic that
+  //needs to be deleted or restored.
+  string kafka_topic_id = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//KafkaTopicQueryInput is a message type that serves as input for queries
+//related to Kafka topics within a specific Kafka cluster.
+//It contains information about the specific Kafka cluster and the Kafka
+//topic to be queried.
+message KafkaTopicQueryInput {
+  //Unique identifier of the Kafka cluster from which the Kafka topic
+  //information is to be retrieved.
+  //This field is required, as specified by the is_required field option.
+  string kafka_kubernetes_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //KafkaTopic object that represents the Kafka topic to be queried
+  //in the Kafka cluster.
+  //This encapsulates all the necessary information about the Kafka topic.
+  KafkaTopic kafka_topic = 2 [
+    (buf.validate.field).required = true
+  ];
+}

@@ -1,0 +1,177 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.aws.ekscluster.service;
+
+import "cloud/planton/apis/stackmodule/v1/aws/ekscluster/model/io.proto";
+import "cloud/planton/apis/stackmodule/v1/aws/ekscluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "google/protobuf/empty.proto";
+
+// eks-cluster command controller
+service EksClusterCommandController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = eks_cluster;
+  // preview create a eks-cluster.
+  rpc previewCreate(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = eks_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  // create a eks-cluster.
+  rpc create(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = eks_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  // preview updating an existing eks-cluster.
+  rpc previewUpdate(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview update eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  // update an existing eks-cluster.
+  rpc update(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  // preview deleting a eks-cluster.
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview delete eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_destroy_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  // delete a eks-cluster.
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  // preview restoring a deleted eks-cluster.
+  rpc previewRestore(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview restore eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  // restore a deleted eks-cluster.
+  rpc restore(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+  }
+  //pause a eks-cluster.
+  //a eks-cluster is paused by setting the number of nodes in each node pool of the eks-cluster to zero.
+  //microservice, database and kafka cluster workload pods will be deleted as there wont be any nodes to run on.
+  //when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
+  //when a eks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
+  // may continue to charge a modest operational fee for the cluster.
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+      returns(cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to pause eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = paused;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  //unpause a eks-cluster.
+  //a eks-cluster is resumed by setting the number of nodes in each node pool of the eks-cluster to the
+  // values configured for the eks-cluster.
+  //when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to unpause eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = unpaused;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  //preview refresh a eks-cluster that was previously created
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview refresh eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = stack_job_apply_preview_requested;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  //refresh a eks-cluster that was previously created
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+      returns (cloud.planton.apis.stackmodule.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to refresh eks-cluster";
+    // api resource rpc method options
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+}

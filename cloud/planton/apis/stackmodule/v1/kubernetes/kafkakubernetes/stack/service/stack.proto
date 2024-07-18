@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.kafkakubernetes.stack.service;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/kafkakubernetes/stack/model/io.proto";
+
+service KafkaKubernetesStackController {
+  rpc execute(cloud.planton.apis.stackmodule.v1.kubernetes.kafkakubernetes.stack.model.KafkaKubernetesStackInput)
+      returns (stream cloud.planton.apis.stackmodule.v1.kubernetes.kafkakubernetes.stack.model.KafkaKubernetesStackResponse);
+}

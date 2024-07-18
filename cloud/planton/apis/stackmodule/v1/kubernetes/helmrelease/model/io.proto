@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.stackmodule.v1.kubernetes.helmrelease.model;
+
+import "cloud/planton/apis/stackmodule/v1/kubernetes/helmrelease/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of helm-release
+message HelmReleaseId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
