@@ -113,3 +113,43 @@ message GetByGkeClusterNodePoolIdInput {
     (buf.validate.field).required = true
   ];
 }
+
+// Command input for adding or updating an ingress-dns-domain in a specific environment.
+// It contains the environment ID and details about the ingress-dns-domain to be managed.
+message AddOrUpdateGkeClusterIngressDnsDomainInput {
+  // The unique identifier for the gke-cluster in which the ingress-dns-domain will be added or updated.
+  string gke_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // Details about the ingress-dns-domain that is to be added or updated.
+  IngressDnsDomain ingress_dns_domain = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+// Command input for deleting an ingress-dns-domain in a specific environment.
+// It contains the environment ID and the unique identifier for the ingress-dns-domain to be deleted.
+message DeleteGkeClusterIngressDnsDomainInput {
+  // The unique identifier for the environment in which the ingress-dns-domain is to be deleted.
+  string gke_cluster_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // Unique identifier for the ingress-dns-domain that is to be deleted.
+  string ingress_dns_domain_id = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}

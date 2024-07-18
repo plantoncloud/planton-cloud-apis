@@ -133,6 +133,9 @@ message GkeClusterSpec {
 
   // gke-cluster kubernetes addons spec
   GkeClusterAddonsSpec kubernetes_addons = 8;
+
+  // ingress dns-domains to be configured in gke cluster.
+  repeated IngressDnsDomain ingress_dns_domains = 9;
 }
 
 //gke-cluster kubernetes addons
@@ -183,6 +186,45 @@ message GkeClusterStatus {
 
   //stack-outputs
   GkeClusterStatusStackOutputs stack_outputs = 1;
+}
+
+//ingress dns domain
+message IngressDnsDomain {
+  // unique identifier of ingress-dns-domain
+  string id = 1 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  // dns domain name ex: mytodoapp.com
+  string name = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //flag to toggle tls for endpoint-domain.
+  //defaults to "false".
+  //(important note) certificates are not created for endpoints that do not need tls.
+  //(important note) ingress-dns-domains with out tls enabled are not eligible to be used for
+  //creating endpoints for microservice-instances, postgres-clusters, kafka-clusters, redis-clusters or solr-clouds
+  bool is_tls_enabled = 3;
+
+  //external dns domain ex: dev.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string external_endpoint_domain_name = 4 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //internal dns domain ex: dev-internal.example.com.
+  //this value is computed by combining the environment-name with the endpoint-domain-name.
+  string internal_endpoint_domain_name = 5 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
+
+  //id of the project on google cloud containing the dns zone for the endpoint-domain.
+  //this value is looked up from the dns-domains in the organization dns data.
+  //this value is required for configuring the cert-issuer to perform dns validations.
+  string dns_zone_gcp_project_id = 6 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
 }
 
 //cluster autoscaling configuration for gke clusters.
@@ -248,7 +290,7 @@ message GkeClusterStatusStackOutputs {
 
   // google service account email created for cert-manager addon workload identity.
   // this is the service account that is used by cert-manager component to update dns records
-  // to issue ssl certificates from letsencrypt provided for environment endpoint-domains.
+  // to issue ssl certificates from letsencrypt provided for gke-cluster ingress-dns-domains.
   // this service account is configured with permissions required to manage dns entries for issuing certs.
   string cert_manager_gsa_email = 9;
 

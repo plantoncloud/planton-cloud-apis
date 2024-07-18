@@ -722,3 +722,171 @@ var GkeClusterNodePoolCommandController_ServiceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "cloud/planton/apis/code2cloud/v1/deploy/gcp/gkecluster/service/command.proto",
 }
+
+const (
+	GkeClusterIngressDnsDomainCommandController_Add_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.service.GkeClusterIngressDnsDomainCommandController/add"
+	GkeClusterIngressDnsDomainCommandController_Update_FullMethodName = "/cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.service.GkeClusterIngressDnsDomainCommandController/update"
+	GkeClusterIngressDnsDomainCommandController_Delete_FullMethodName = "/cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.service.GkeClusterIngressDnsDomainCommandController/delete"
+)
+
+// GkeClusterIngressDnsDomainCommandControllerClient is the client API for GkeClusterIngressDnsDomainCommandController service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type GkeClusterIngressDnsDomainCommandControllerClient interface {
+	// add a new ingress-dns-domain to a gke-cluster
+	Add(ctx context.Context, in *model.AddOrUpdateGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	// update an existing ingress-dns-domain to a gke-cluster
+	Update(ctx context.Context, in *model.AddOrUpdateGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	// delete an ingress-dns-domain of a gke-cluster
+	Delete(ctx context.Context, in *model.DeleteGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+}
+
+type gkeClusterIngressDnsDomainCommandControllerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewGkeClusterIngressDnsDomainCommandControllerClient(cc grpc.ClientConnInterface) GkeClusterIngressDnsDomainCommandControllerClient {
+	return &gkeClusterIngressDnsDomainCommandControllerClient{cc}
+}
+
+func (c *gkeClusterIngressDnsDomainCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+	out := new(model.GkeCluster)
+	err := c.cc.Invoke(ctx, GkeClusterIngressDnsDomainCommandController_Add_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gkeClusterIngressDnsDomainCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+	out := new(model.GkeCluster)
+	err := c.cc.Invoke(ctx, GkeClusterIngressDnsDomainCommandController_Update_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *gkeClusterIngressDnsDomainCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGkeClusterIngressDnsDomainInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+	out := new(model.GkeCluster)
+	err := c.cc.Invoke(ctx, GkeClusterIngressDnsDomainCommandController_Delete_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// GkeClusterIngressDnsDomainCommandControllerServer is the server API for GkeClusterIngressDnsDomainCommandController service.
+// All implementations should embed UnimplementedGkeClusterIngressDnsDomainCommandControllerServer
+// for forward compatibility
+type GkeClusterIngressDnsDomainCommandControllerServer interface {
+	// add a new ingress-dns-domain to a gke-cluster
+	Add(context.Context, *model.AddOrUpdateGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error)
+	// update an existing ingress-dns-domain to a gke-cluster
+	Update(context.Context, *model.AddOrUpdateGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error)
+	// delete an ingress-dns-domain of a gke-cluster
+	Delete(context.Context, *model.DeleteGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error)
+}
+
+// UnimplementedGkeClusterIngressDnsDomainCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGkeClusterIngressDnsDomainCommandControllerServer struct {
+}
+
+func (UnimplementedGkeClusterIngressDnsDomainCommandControllerServer) Add(context.Context, *model.AddOrUpdateGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (UnimplementedGkeClusterIngressDnsDomainCommandControllerServer) Update(context.Context, *model.AddOrUpdateGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (UnimplementedGkeClusterIngressDnsDomainCommandControllerServer) Delete(context.Context, *model.DeleteGkeClusterIngressDnsDomainInput) (*model.GkeCluster, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+
+// UnsafeGkeClusterIngressDnsDomainCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GkeClusterIngressDnsDomainCommandControllerServer will
+// result in compilation errors.
+type UnsafeGkeClusterIngressDnsDomainCommandControllerServer interface {
+	mustEmbedUnimplementedGkeClusterIngressDnsDomainCommandControllerServer()
+}
+
+func RegisterGkeClusterIngressDnsDomainCommandControllerServer(s grpc.ServiceRegistrar, srv GkeClusterIngressDnsDomainCommandControllerServer) {
+	s.RegisterService(&GkeClusterIngressDnsDomainCommandController_ServiceDesc, srv)
+}
+
+func _GkeClusterIngressDnsDomainCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.AddOrUpdateGkeClusterIngressDnsDomainInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Add(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GkeClusterIngressDnsDomainCommandController_Add_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGkeClusterIngressDnsDomainInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GkeClusterIngressDnsDomainCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.AddOrUpdateGkeClusterIngressDnsDomainInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GkeClusterIngressDnsDomainCommandController_Update_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGkeClusterIngressDnsDomainInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _GkeClusterIngressDnsDomainCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.DeleteGkeClusterIngressDnsDomainInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GkeClusterIngressDnsDomainCommandController_Delete_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GkeClusterIngressDnsDomainCommandControllerServer).Delete(ctx, req.(*model.DeleteGkeClusterIngressDnsDomainInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// GkeClusterIngressDnsDomainCommandController_ServiceDesc is the grpc.ServiceDesc for GkeClusterIngressDnsDomainCommandController service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var GkeClusterIngressDnsDomainCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.deploy.gcp.gkecluster.service.GkeClusterIngressDnsDomainCommandController",
+	HandlerType: (*GkeClusterIngressDnsDomainCommandControllerServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "add",
+			Handler:    _GkeClusterIngressDnsDomainCommandController_Add_Handler,
+		},
+		{
+			MethodName: "update",
+			Handler:    _GkeClusterIngressDnsDomainCommandController_Update_Handler,
+		},
+		{
+			MethodName: "delete",
+			Handler:    _GkeClusterIngressDnsDomainCommandController_Delete_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "cloud/planton/apis/code2cloud/v1/deploy/gcp/gkecluster/service/command.proto",
+}
