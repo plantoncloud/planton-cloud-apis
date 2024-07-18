@@ -106,7 +106,7 @@ message MongodbKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  MongodbKubernetesStatusStackOutputs stack_outputs = 1;
+  MongodbKubernetesStackOutputs stack_outputs = 1;
 }
 
 // mongodb-kubernetes kubernetes mongodb-container spec
@@ -153,7 +153,7 @@ message MongodbKubernetesSpecContainerSpec {
 }
 
 //mongodb-kubernetes stack outputs.
-message MongodbKubernetesStatusStackOutputs {
+message MongodbKubernetesStackOutputs {
   // namespace specifies the Kubernetes namespace in which the MongoDB cluster is created.
   // Namespaces are a way to divide cluster resources between multiple users.
   string namespace = 1;

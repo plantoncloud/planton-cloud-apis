@@ -105,11 +105,11 @@ message GcpArtifactRegistryStatus {
   string stack_job_id = 97;
 
   //stack-outputs for gcp-artifact-registry
-  GcpArtifactRegistryStatusStackOutputs stack_outputs = 1;
+  GcpArtifactRegistryStackOutputs stack_outputs = 1;
 }
 
 //gcp-artifact-registry stack outputs
-message GcpArtifactRegistryStatusStackOutputs {
+message GcpArtifactRegistryStackOutputs {
   //email of the reader service account.
   string reader_service_account_email = 1;
 

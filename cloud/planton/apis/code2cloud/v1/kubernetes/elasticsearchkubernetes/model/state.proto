@@ -97,7 +97,7 @@ message ElasticsearchKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  ElasticsearchKubernetesStatusStackOutputs stack_outputs = 1;
+  ElasticsearchKubernetesStackOutputs stack_outputs = 1;
 }
 
 // elasticsearch-kubernetes kubernetes elasticsearch-container spec
@@ -142,7 +142,7 @@ message ElasticsearchKubernetesSpecContainerSpec {
   ];
 }
 
-message ElasticsearchKubernetesStatusStackOutputs {
+message ElasticsearchKubernetesStackOutputs {
   //kubernetes namespace in which elasticsearch-kubernetes is created.
   string namespace = 1;
 

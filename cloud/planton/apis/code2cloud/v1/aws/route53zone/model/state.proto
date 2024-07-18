@@ -84,11 +84,11 @@ message Route53ZoneStatus {
 
   //stack-outputs
   //  stack outputs
-  Route53ZoneStatusStackOutputs stack_outputs = 1;
+  Route53ZoneStackOutputs stack_outputs = 1;
 }
 
 // Status for the Route53 Zone
-message Route53ZoneStatusStackOutputs {
+message Route53ZoneStackOutputs {
   // The list of nameservers for the Managed Zone created for the DNS Domain.
   repeated string nameservers = 1;
 }

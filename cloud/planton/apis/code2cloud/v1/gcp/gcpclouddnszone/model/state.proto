@@ -94,11 +94,11 @@ message GcpCloudDnsZoneStatus {
 
   //stack-outputs
   //  stack outputs
-  GcpCloudDnsZoneStatusStackOutputs stack_outputs = 1;
+  GcpCloudDnsZoneStackOutputs stack_outputs = 1;
 }
 
 // Status for the Route53 Zone
-message GcpCloudDnsZoneStatusStackOutputs {
+message GcpCloudDnsZoneStackOutputs {
   // The list of nameservers for the Managed Zone created for the DNS Domain.
   repeated string nameservers = 1;
 }

@@ -97,7 +97,7 @@ message GitlabKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GitlabKubernetesStatusStackOutputs stack_outputs = 1;
+  GitlabKubernetesStackOutputs stack_outputs = 1;
 }
 
 // gitlab-kubernetes container spec
@@ -110,7 +110,7 @@ message GitlabKubernetesSpecContainerSpec {
 }
 
 //gitlab-kubernetes stack outputs
-message GitlabKubernetesStatusStackOutputs {
+message GitlabKubernetesStackOutputs {
   //kubernetes namespace in which gitlab-kubernetes is created.
   string namespace = 1;
 

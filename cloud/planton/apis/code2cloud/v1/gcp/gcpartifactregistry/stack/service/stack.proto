@@ -4,7 +4,7 @@ package cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.service;
 
 import "cloud/planton/apis/code2cloud/v1/gcp/gcpartifactregistry/stack/model/io.proto";
 
-service GcpArtifactRegistryGcpStackController {
+service GcpArtifactRegistryStackController {
   rpc execute(cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.model.GcpArtifactRegistryStackInput)
       returns (stream cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.model.GcpArtifactRegistryStackResponse);
 }

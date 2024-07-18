@@ -106,7 +106,7 @@ message JenkinsKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  JenkinsKubernetesStatusStackOutputs stack_outputs = 1;
+  JenkinsKubernetesStackOutputs stack_outputs = 1;
 }
 
 // jenkins-kubernetes jenkins-container spec
@@ -119,7 +119,7 @@ message JenkinsKubernetesSpecContainerSpec {
 }
 
 //jenkins-kubernetes stack outputs.
-message JenkinsKubernetesStatusStackOutputs {
+message JenkinsKubernetesStackOutputs {
   //kubernetes namespace in which jenkins-kubernetes is created.
   string namespace = 1;
 

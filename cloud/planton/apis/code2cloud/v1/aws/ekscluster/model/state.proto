@@ -108,11 +108,11 @@ message EksClusterStatus {
 
   //stack-outputs
   //  eks-cluster stack-outputs
-  EksClusterStatusStackOutputs stack_outputs = 1;
+  EksClusterStackOutputs stack_outputs = 1;
 }
 
 // eks-cluster stack-outputs
-message EksClusterStatusStackOutputs {
+message EksClusterStackOutputs {
   // id of the vpc in which the eks-cluster is created
   string cluster_vpc_id = 1;
 

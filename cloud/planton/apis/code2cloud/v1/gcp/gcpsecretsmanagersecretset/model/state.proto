@@ -96,11 +96,11 @@ message GcpSecretsManagerSecretSetStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GcpSecretsManagerSecretSetStatusStackOutputs stack_outputs = 1;
+  GcpSecretsManagerSecretSetStackOutputs stack_outputs = 1;
 }
 
 //gcp-secrets-manager-secret-set stack outputs
-message GcpSecretsManagerSecretSetStatusStackOutputs {
+message GcpSecretsManagerSecretSetStackOutputs {
   //map containing secret-name and its corresponding secret-id on secrets-manager
   map<string, string> secret_id_map = 1;
 }

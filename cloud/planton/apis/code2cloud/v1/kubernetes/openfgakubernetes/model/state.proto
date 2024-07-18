@@ -99,7 +99,7 @@ message OpenfgaKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  OpenfgaKubernetesStatusStackOutputs stack_outputs = 1;
+  OpenfgaKubernetesStackOutputs stack_outputs = 1;
 }
 
 // openfga-kubernetes kubernetes openfga-container spec
@@ -112,7 +112,7 @@ message OpenfgaKubernetesSpecContainerSpec {
 }
 
 //openfga-kubernetes kubernetes status
-message OpenfgaKubernetesStatusStackOutputs {
+message OpenfgaKubernetesStackOutputs {
   //kubernetes namespace in which openfga-kubernetes is created.
   string namespace = 1;
 

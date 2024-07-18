@@ -22,5 +22,5 @@ message GcsBucketStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.model.GcsBucketStatusStackOutputs stack_outputs = 2;
+  cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.model.GcsBucketStackOutputs stack_outputs = 2;
 }

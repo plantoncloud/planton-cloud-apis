@@ -99,11 +99,11 @@ message RedisKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  RedisKubernetesStatusStackOutputs stack_outputs = 1;
+  RedisKubernetesStackOutputs stack_outputs = 1;
 }
 
 //redis-kubernetes status stack outputs.
-message RedisKubernetesStatusStackOutputs {
+message RedisKubernetesStackOutputs {
   //kubernetes namespace in which redis-kubernetes is created.
   string namespace = 1;
 

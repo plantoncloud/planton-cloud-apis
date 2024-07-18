@@ -22,5 +22,5 @@ message GcpCloudDnsZoneStackResponse {
   //stack-job progress-event
   cloud.planton.apis.iac.v1.stackjob.model.progress.StackJobProgressEvent progress_event = 1;
   //stack outputs
-  cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model.GcpCloudDnsZoneStatusStackOutputs stack_outputs = 2;
+  cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model.GcpCloudDnsZoneStackOutputs stack_outputs = 2;
 }

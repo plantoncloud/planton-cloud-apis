@@ -97,7 +97,7 @@ message ArgocdKubernetesStatus {
 
   //stack-outputs
   // argocd-kubernetes stack-outputs
-  ArgocdKubernetesStatusStackOutputs stack_outputs = 1;
+  ArgocdKubernetesStackOutputs stack_outputs = 1;
 }
 
 // argocd-kubernetes kubernetes argocd-container spec
@@ -109,7 +109,7 @@ message ArgocdKubernetesSpecContainerSpec {
   ];
 }
 
-message ArgocdKubernetesStatusStackOutputs {
+message ArgocdKubernetesStackOutputs {
   //kubernetes namespace in which argocd-kubernetes is created.
   string namespace = 1;
 

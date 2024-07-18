@@ -89,9 +89,9 @@ message AksClusterStatus {
 
   //stack-outputs
   //  aks-cluster stack-outputs
-  AksClusterStatusStackOutputs stack_outputs = 1;
+  AksClusterStackOutputs stack_outputs = 1;
 }
 
 // aks-cluster stack-outputs
-message AksClusterStatusStackOutputs {
+message AksClusterStackOutputs {
 }

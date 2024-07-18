@@ -86,11 +86,11 @@ message GcsBucketStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GcsBucketStatusStackOutputs stack_outputs = 1;
+  GcsBucketStackOutputs stack_outputs = 1;
 }
 
 //gcs-bucket stack outputs
-message GcsBucketStatusStackOutputs {
+message GcsBucketStackOutputs {
   //id of the storage-bucket created on aws
   string bucket_id = 1;
 }

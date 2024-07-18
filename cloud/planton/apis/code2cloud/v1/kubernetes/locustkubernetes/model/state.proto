@@ -113,7 +113,7 @@ message LocustKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  LocustKubernetesStatusStackOutputs stack_outputs = 1;
+  LocustKubernetesStackOutputs stack_outputs = 1;
 }
 
 // locust-kubernetes kubernetes locust-container spec
@@ -160,7 +160,7 @@ message LocustKubernetesSpecLoadTestSpec {
 }
 
 //locust-kubernetes stack outputs.
-message LocustKubernetesStatusStackOutputs {
+message LocustKubernetesStackOutputs {
   //kubernetes namespace in which locust-kubernetes is created.
   string namespace = 1;
 
