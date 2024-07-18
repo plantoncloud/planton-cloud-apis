@@ -21,64 +21,27 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	EnvironmentCommandController_PreviewCreate_FullMethodName             = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/previewCreate"
-	EnvironmentCommandController_Create_FullMethodName                    = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/create"
-	EnvironmentCommandController_PreviewUpdate_FullMethodName             = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/previewUpdate"
-	EnvironmentCommandController_Update_FullMethodName                    = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/update"
-	EnvironmentCommandController_PreviewDelete_FullMethodName             = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/previewDelete"
-	EnvironmentCommandController_Delete_FullMethodName                    = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/delete"
-	EnvironmentCommandController_PreviewRestore_FullMethodName            = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/previewRestore"
-	EnvironmentCommandController_Restore_FullMethodName                   = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/restore"
-	EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/setBuildEngineEnvironment"
-	EnvironmentCommandController_Pause_FullMethodName                     = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/pause"
-	EnvironmentCommandController_Unpause_FullMethodName                   = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/unpause"
-	EnvironmentCommandController_PreviewRefresh_FullMethodName            = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/previewRefresh"
-	EnvironmentCommandController_Refresh_FullMethodName                   = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/refresh"
+	EnvironmentCommandController_Create_FullMethodName  = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/create"
+	EnvironmentCommandController_Update_FullMethodName  = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/update"
+	EnvironmentCommandController_Delete_FullMethodName  = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/delete"
+	EnvironmentCommandController_Restore_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentCommandController/restore"
 )
 
 // EnvironmentCommandControllerClient is the client API for EnvironmentCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnvironmentCommandControllerClient interface {
-	// preview creating environment
-	PreviewCreate(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
 	// create environment
 	Create(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
-	// preview updating an existing environment
-	PreviewUpdate(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
 	// update an existing environment
 	Update(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
-	// preview deleting an environment
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// preview restoring a deleted environment
-	PreviewRestore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
-	// set the provided environment as the build engine environment.
-	// setting a environment as build engine env requires that existing build engine env is
-	// unset followed by setting a new env as build engine env.
-	// this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
-	// the current build engine env and then to set a new env as build engine env.
-	// the implementation takes care of both the actions.
-	SetBuildEngineEnvironment(ctx context.Context, in *model.EnvId, opts ...grpc.CallOption) (*model.Environment, error)
-	// pause a environment.
-	// a environment is paused by scaling down all the workloads to zero replicas.
-	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// unpause a environment.
-	// a environment is unpause by scaling back all the workloads.
-	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
-	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// preview refresh a environment that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
-	// refresh a environment that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
 }
 
 type environmentCommandControllerClient struct {
@@ -89,27 +52,9 @@ func NewEnvironmentCommandControllerClient(cc grpc.ClientConnInterface) Environm
 	return &environmentCommandControllerClient{cc}
 }
 
-func (c *environmentCommandControllerClient) PreviewCreate(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewCreate_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *environmentCommandControllerClient) Create(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Create_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) PreviewUpdate(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewUpdate_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,27 +70,9 @@ func (c *environmentCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewDelete_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Delete_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) PreviewRestore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewRestore_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -161,138 +88,38 @@ func (c *environmentCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) SetBuildEngineEnvironment(ctx context.Context, in *model.EnvId, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_Pause_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_Unpause_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *environmentCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // EnvironmentCommandControllerServer is the server API for EnvironmentCommandController service.
 // All implementations should embed UnimplementedEnvironmentCommandControllerServer
 // for forward compatibility
 type EnvironmentCommandControllerServer interface {
-	// preview creating environment
-	PreviewCreate(context.Context, *model.Environment) (*model.Environment, error)
 	// create environment
 	Create(context.Context, *model.Environment) (*model.Environment, error)
-	// preview updating an existing environment
-	PreviewUpdate(context.Context, *model.Environment) (*model.Environment, error)
 	// update an existing environment
 	Update(context.Context, *model.Environment) (*model.Environment, error)
-	// preview deleting an environment
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
 	// delete an existing environment
 	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
 	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
-	// preview restoring a deleted environment
-	PreviewRestore(context.Context, *model.Environment) (*model.Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(context.Context, *model.Environment) (*model.Environment, error)
-	// set the provided environment as the build engine environment.
-	// setting a environment as build engine env requires that existing build engine env is
-	// unset followed by setting a new env as build engine env.
-	// this rpc offers an alternate method to replace two sequential rpc calls required, one to unset
-	// the current build engine env and then to set a new env as build engine env.
-	// the implementation takes care of both the actions.
-	SetBuildEngineEnvironment(context.Context, *model.EnvId) (*model.Environment, error)
-	// pause a environment.
-	// a environment is paused by scaling down all the workloads to zero replicas.
-	// the workload include microservice deployments, postgres-clusters, kafka-clusters etc.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.Environment, error)
-	// unpause a environment.
-	// a environment is unpause by scaling back all the workloads.
-	// all microservice deployments are scaled back to the same number of replicas configured in the most recent successful deployment.
-	// postgres-clusters and kafka-clusters are configured to the same number of replicas configured.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error)
-	// preview refresh a environment that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
-	// refresh a environment that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error)
 }
 
 // UnimplementedEnvironmentCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedEnvironmentCommandControllerServer struct {
 }
 
-func (UnimplementedEnvironmentCommandControllerServer) PreviewCreate(context.Context, *model.Environment) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewCreate not implemented")
-}
 func (UnimplementedEnvironmentCommandControllerServer) Create(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) PreviewUpdate(context.Context, *model.Environment) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewUpdate not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) Update(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
-}
 func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) PreviewRestore(context.Context, *model.Environment) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRestore not implemented")
-}
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) SetBuildEngineEnvironment(context.Context, *model.EnvId) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetBuildEngineEnvironment not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedEnvironmentCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeEnvironmentCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -304,24 +131,6 @@ type UnsafeEnvironmentCommandControllerServer interface {
 
 func RegisterEnvironmentCommandControllerServer(s grpc.ServiceRegistrar, srv EnvironmentCommandControllerServer) {
 	s.RegisterService(&EnvironmentCommandController_ServiceDesc, srv)
-}
-
-func _EnvironmentCommandController_PreviewCreate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.Environment)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).PreviewCreate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_PreviewCreate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewCreate(ctx, req.(*model.Environment))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _EnvironmentCommandController_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -338,24 +147,6 @@ func _EnvironmentCommandController_Create_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentCommandControllerServer).Create(ctx, req.(*model.Environment))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_PreviewUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.Environment)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).PreviewUpdate(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_PreviewUpdate_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewUpdate(ctx, req.(*model.Environment))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -378,24 +169,6 @@ func _EnvironmentCommandController_Update_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_PreviewDelete_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model1.ApiResourceDeleteCommandInput)
 	if err := dec(in); err != nil {
@@ -410,24 +183,6 @@ func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.C
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_PreviewRestore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.Environment)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).PreviewRestore(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_PreviewRestore_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewRestore(ctx, req.(*model.Environment))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -450,96 +205,6 @@ func _EnvironmentCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentCommandController_SetBuildEngineEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.EnvId)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).SetBuildEngineEnvironment(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_SetBuildEngineEnvironment_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).SetBuildEngineEnvironment(ctx, req.(*model.EnvId))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).Pause(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_Pause_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).Unpause(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_Unpause_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EnvironmentCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // EnvironmentCommandController_ServiceDesc is the grpc.ServiceDesc for EnvironmentCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -548,56 +213,20 @@ var EnvironmentCommandController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*EnvironmentCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "previewCreate",
-			Handler:    _EnvironmentCommandController_PreviewCreate_Handler,
-		},
-		{
 			MethodName: "create",
 			Handler:    _EnvironmentCommandController_Create_Handler,
-		},
-		{
-			MethodName: "previewUpdate",
-			Handler:    _EnvironmentCommandController_PreviewUpdate_Handler,
 		},
 		{
 			MethodName: "update",
 			Handler:    _EnvironmentCommandController_Update_Handler,
 		},
 		{
-			MethodName: "previewDelete",
-			Handler:    _EnvironmentCommandController_PreviewDelete_Handler,
-		},
-		{
 			MethodName: "delete",
 			Handler:    _EnvironmentCommandController_Delete_Handler,
 		},
 		{
-			MethodName: "previewRestore",
-			Handler:    _EnvironmentCommandController_PreviewRestore_Handler,
-		},
-		{
 			MethodName: "restore",
 			Handler:    _EnvironmentCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "setBuildEngineEnvironment",
-			Handler:    _EnvironmentCommandController_SetBuildEngineEnvironment_Handler,
-		},
-		{
-			MethodName: "pause",
-			Handler:    _EnvironmentCommandController_Pause_Handler,
-		},
-		{
-			MethodName: "unpause",
-			Handler:    _EnvironmentCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _EnvironmentCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _EnvironmentCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
