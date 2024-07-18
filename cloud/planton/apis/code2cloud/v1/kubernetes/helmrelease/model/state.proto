@@ -94,7 +94,7 @@ message HelmReleaseStatus {
 
   //stack-outputs
   // helm-release stack-outputs
-  HelmReleaseStatusStackOutputs stack_outputs = 1;
+  HelmReleaseStackOutputs stack_outputs = 1;
 }
 
 //helm-chart spec
@@ -113,7 +113,7 @@ message HelmReleaseSpecChartSpec {
 }
 
 //helm-release status on kubernetes cluster.
-message HelmReleaseStatusStackOutputs {
+message HelmReleaseStackOutputs {
   //namespace in which the helm release has been created.
   string namespace = 1;
 }

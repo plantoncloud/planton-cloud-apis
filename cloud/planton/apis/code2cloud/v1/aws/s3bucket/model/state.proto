@@ -81,11 +81,11 @@ message S3BucketStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  S3BucketStatusStackOutputs stack_outputs = 1;
+  S3BucketStackOutputs stack_outputs = 1;
 }
 
 //s3-bucket stack outputs
-message S3BucketStatusStackOutputs {
+message S3BucketStackOutputs {
   //id of the storage-bucket created on aws
   string bucket_id = 1;
 }

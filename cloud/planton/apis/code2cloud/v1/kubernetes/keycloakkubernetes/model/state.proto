@@ -97,7 +97,7 @@ message KeycloakKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  KeycloakKubernetesStatusStackOutputs stack_outputs = 1;
+  KeycloakKubernetesStackOutputs stack_outputs = 1;
 }
 
 // keycloak-kubernetes kubernetes keycloak-container spec
@@ -110,7 +110,7 @@ message KeycloakKubernetesContainerSpec {
 }
 
 //keycloak-kubernetes stack outputs.
-message KeycloakKubernetesStatusStackOutputs {
+message KeycloakKubernetesStackOutputs {
   //kubernetes namespace in which keycloak-kubernetes is created.
   string namespace = 1;
 

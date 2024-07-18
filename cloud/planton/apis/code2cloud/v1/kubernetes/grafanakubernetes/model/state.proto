@@ -97,7 +97,7 @@ message GrafanaKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GrafanaKubernetesStatusStackOutputs stack_outputs = 1;
+  GrafanaKubernetesStackOutputs stack_outputs = 1;
 }
 
 // grafana-kubernetes kubernetes grafana-container spec
@@ -110,7 +110,7 @@ message GrafanaKubernetesSpecContainerSpec {
 }
 
 //grafana-kubernetes stack outputs.
-message GrafanaKubernetesStatusStackOutputs {
+message GrafanaKubernetesStackOutputs {
   //kubernetes namespace in which grafana-kubernetes is created.
   string namespace = 1;
 

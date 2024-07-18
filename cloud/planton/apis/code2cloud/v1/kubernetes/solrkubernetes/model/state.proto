@@ -102,7 +102,7 @@ message SolrKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  SolrKubernetesStatusStackOutputs stack_outputs = 1;
+  SolrKubernetesStackOutputs stack_outputs = 1;
 }
 
 //solr container spec
@@ -180,7 +180,7 @@ message SolrKubernetesSpecZookeeperContainerSpec {
 }
 
 //solr-kubernetes stack outputs
-message SolrKubernetesStatusStackOutputs {
+message SolrKubernetesStackOutputs {
   //kubernetes namespace in which solr-kubernetes is created.
   string namespace = 1;
 

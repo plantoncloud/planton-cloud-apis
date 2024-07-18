@@ -98,7 +98,7 @@ message PrometheusKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  PrometheusKubernetesStatusStackOutputs stack_outputs = 1;
+  PrometheusKubernetesStackOutputs stack_outputs = 1;
 }
 
 // prometheus-kubernetes kubernetes prometheus-container spec
@@ -144,7 +144,7 @@ message PrometheusKubernetesSpecContainerSpec {
 }
 
 //prometheus-kubernetes kubernetes status
-message PrometheusKubernetesStatusStackOutputs {
+message PrometheusKubernetesStackOutputs {
   //kubernetes namespace in which prometheus-kubernetes is created.
   string namespace = 1;
 

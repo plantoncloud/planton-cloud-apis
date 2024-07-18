@@ -185,7 +185,7 @@ message GkeClusterStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GkeClusterStatusStackOutputs stack_outputs = 1;
+  GkeClusterStackOutputs stack_outputs = 1;
 }
 
 //ingress dns domain
@@ -252,7 +252,7 @@ message GkeClusterClusterAutoscalingConfigSpec {
 }
 
 // status of the gke-cluster in gcp
-message GkeClusterStatusStackOutputs {
+message GkeClusterStackOutputs {
   // a folder is created with the credential folder as parent for the gke-cluster.
   // resources created for gke-cluster are linked to this folder as the parent.
   // children for a credential are the gcp projects in the gke-cluster.

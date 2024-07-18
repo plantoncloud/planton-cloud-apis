@@ -99,7 +99,7 @@ message PostgresKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  PostgresKubernetesStatusStackOutputs stack_outputs = 1;
+  PostgresKubernetesStackOutputs stack_outputs = 1;
 }
 
 //postgres-kubernetes kubernetes ingress spec
@@ -130,7 +130,7 @@ message PostgresKubernetesSpecContainerSpec {
 }
 
 //postgres-kubernetes stack outputs
-message PostgresKubernetesStatusStackOutputs {
+message PostgresKubernetesStackOutputs {
   //name of the kubernetes namespace in which the postgres-kubernetes has been created.
   string namespace = 1;
 

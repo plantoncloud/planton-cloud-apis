@@ -116,7 +116,7 @@ message KafkaKubernetesStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  KafkaKubernetesStatusStackOutputs stack_outputs = 1;
+  KafkaKubernetesStackOutputs stack_outputs = 1;
 }
 
 //kafka-kubernetes kubernetes kafka-broker spec
@@ -265,7 +265,7 @@ message KafkaTopicConfig {
 }
 
 //kafka-kubernetes stack outputs
-message KafkaKubernetesStatusStackOutputs {
+message KafkaKubernetesStackOutputs {
   //name of the kubernetes namespace in which the kafka-kubernetes is created.
   string namespace = 1;
 
