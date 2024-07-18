@@ -14,8 +14,10 @@ message ApiResourceMetadata {
   string id = 2;
   // labels for the resource
   map<string, string> labels = 3;
+  // tags for the resource
+  repeated string tags = 4;
   //metadata for resource version
-  ApiResourceMetadataVersion version = 4;
+  ApiResourceMetadataVersion version = 5;
 }
 
 // version information for api-resource to be used in api-resource metadata
