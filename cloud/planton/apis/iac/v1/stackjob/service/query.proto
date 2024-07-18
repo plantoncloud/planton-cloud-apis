@@ -10,9 +10,12 @@ import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/state.pro
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "google/protobuf/wrappers.proto";
 
 service StackJobQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = stack_job;
   //list of stack-jobs
   //todo: need to add authorization
   rpc listByFilters(cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput)
@@ -22,6 +25,8 @@ service StackJobQueryController {
   rpc get(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns(cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
