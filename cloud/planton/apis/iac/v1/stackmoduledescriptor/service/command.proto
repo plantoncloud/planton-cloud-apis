@@ -37,7 +37,7 @@ service StackModuleDescriptorCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // delete a stack-module-descriptor.
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = stack_module_descriptor;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;

@@ -48,9 +48,9 @@ type AksClusterCommandControllerClient interface {
 	// update an existing aks-cluster.
 	Update(ctx context.Context, in *model.AksCluster, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// preview deleting a aks-cluster.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// delete a aks-cluster.
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// preview restoring a deleted aks-cluster.
 	PreviewRestore(ctx context.Context, in *model.AksCluster, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// restore a deleted aks-cluster.
@@ -61,16 +61,16 @@ type AksClusterCommandControllerClient interface {
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a aks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// unpause a aks-cluster.
 	// a aks-cluster is resumed by setting the number of nodes in each node pool of the aks-cluster to the
 	// values configured for the aks-cluster.
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// preview refresh a aks-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 	// refresh a aks-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 }
 
 type aksClusterCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *aksClusterCommandControllerClient) Update(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *aksClusterCommandControllerClient) PreviewDelete(ctx context.Context, i
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -153,7 +153,7 @@ func (c *aksClusterCommandControllerClient) Restore(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *aksClusterCommandControllerClient) Pause(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *aksClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *aksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, 
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
+func (c *aksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
 	out := new(model.AksCluster)
 	err := c.cc.Invoke(ctx, AksClusterCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -202,9 +202,9 @@ type AksClusterCommandControllerServer interface {
 	// update an existing aks-cluster.
 	Update(context.Context, *model.AksCluster) (*model.AksCluster, error)
 	// preview deleting a aks-cluster.
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AksCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.AksCluster, error)
 	// delete a aks-cluster.
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AksCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AksCluster, error)
 	// preview restoring a deleted aks-cluster.
 	PreviewRestore(context.Context, *model.AksCluster) (*model.AksCluster, error)
 	// restore a deleted aks-cluster.
@@ -215,16 +215,16 @@ type AksClusterCommandControllerServer interface {
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a aks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.AksCluster, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.AksCluster, error)
 	// unpause a aks-cluster.
 	// a aks-cluster is resumed by setting the number of nodes in each node pool of the aks-cluster to the
 	// values configured for the aks-cluster.
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.AksCluster, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.AksCluster, error)
 	// preview refresh a aks-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.AksCluster, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error)
 	// refresh a aks-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.AksCluster, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error)
 }
 
 // UnimplementedAksClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -243,10 +243,10 @@ func (UnimplementedAksClusterCommandControllerServer) PreviewUpdate(context.Cont
 func (UnimplementedAksClusterCommandControllerServer) Update(context.Context, *model.AksCluster) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedAksClusterCommandControllerServer) PreviewRestore(context.Context, *model.AksCluster) (*model.AksCluster, error) {
@@ -255,16 +255,16 @@ func (UnimplementedAksClusterCommandControllerServer) PreviewRestore(context.Con
 func (UnimplementedAksClusterCommandControllerServer) Restore(context.Context, *model.AksCluster) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedAksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.AksCluster, error) {
+func (UnimplementedAksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -352,7 +352,7 @@ func _AksClusterCommandController_Update_Handler(srv interface{}, ctx context.Co
 }
 
 func _AksClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -364,13 +364,13 @@ func _AksClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx con
 		FullMethod: AksClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(AksClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AksClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -382,7 +382,7 @@ func _AksClusterCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: AksClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(AksClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -424,7 +424,7 @@ func _AksClusterCommandController_Restore_Handler(srv interface{}, ctx context.C
 }
 
 func _AksClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -436,13 +436,13 @@ func _AksClusterCommandController_Pause_Handler(srv interface{}, ctx context.Con
 		FullMethod: AksClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(AksClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -454,13 +454,13 @@ func _AksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 		FullMethod: AksClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(AksClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,13 +472,13 @@ func _AksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx co
 		FullMethod: AksClusterCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(AksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _AksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -490,7 +490,7 @@ func _AksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.C
 		FullMethod: AksClusterCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(AksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

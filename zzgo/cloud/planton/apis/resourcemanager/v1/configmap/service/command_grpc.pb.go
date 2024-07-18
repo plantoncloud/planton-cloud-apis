@@ -36,7 +36,7 @@ type ConfigMapCommandControllerClient interface {
 	// update an existing config-map on planton-cloud
 	Update(ctx context.Context, in *model.ConfigMap, opts ...grpc.CallOption) (*model.ConfigMap, error)
 	// delete an existing config-map on planton-cloud using config-map id
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ConfigMap, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ConfigMap, error)
 	// restore a previously deleted config-map.
 	Restore(ctx context.Context, in *model.ConfigMap, opts ...grpc.CallOption) (*model.ConfigMap, error)
 }
@@ -67,7 +67,7 @@ func (c *configMapCommandControllerClient) Update(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *configMapCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ConfigMap, error) {
+func (c *configMapCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ConfigMap, error) {
 	out := new(model.ConfigMap)
 	err := c.cc.Invoke(ctx, ConfigMapCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type ConfigMapCommandControllerServer interface {
 	// update an existing config-map on planton-cloud
 	Update(context.Context, *model.ConfigMap) (*model.ConfigMap, error)
 	// delete an existing config-map on planton-cloud using config-map id
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ConfigMap, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ConfigMap, error)
 	// restore a previously deleted config-map.
 	Restore(context.Context, *model.ConfigMap) (*model.ConfigMap, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedConfigMapCommandControllerServer) Create(context.Context, *mo
 func (UnimplementedConfigMapCommandControllerServer) Update(context.Context, *model.ConfigMap) (*model.ConfigMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedConfigMapCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ConfigMap, error) {
+func (UnimplementedConfigMapCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ConfigMap, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedConfigMapCommandControllerServer) Restore(context.Context, *model.ConfigMap) (*model.ConfigMap, error) {
@@ -164,7 +164,7 @@ func _ConfigMapCommandController_Update_Handler(srv interface{}, ctx context.Con
 }
 
 func _ConfigMapCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _ConfigMapCommandController_Delete_Handler(srv interface{}, ctx context.Con
 		FullMethod: ConfigMapCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ConfigMapCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ConfigMapCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

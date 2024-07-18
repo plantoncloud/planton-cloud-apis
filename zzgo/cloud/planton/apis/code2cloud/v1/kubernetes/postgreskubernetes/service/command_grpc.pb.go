@@ -49,9 +49,9 @@ type PostgresKubernetesCommandControllerClient interface {
 	// update an existing postgres-kubernetes
 	Update(ctx context.Context, in *model.PostgresKubernetes, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// preview deleting an existing postgres-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// delete an existing postgres-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// preview restoring a deleted postgres-kubernetes in a environment
 	PreviewRestore(ctx context.Context, in *model.PostgresKubernetes, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// restore a deleted postgres-kubernetes in a environment
@@ -62,15 +62,15 @@ type PostgresKubernetesCommandControllerClient interface {
 	// pause a postgres-kubernetes running in a environment.
 	// postgres-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// unpause a previously paused postgres-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// preview refresh a postgres-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 	// refresh a postgres-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error)
 }
 
 type postgresKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *postgresKubernetesCommandControllerClient) Update(ctx context.Context, 
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *postgresKubernetesCommandControllerClient) PreviewDelete(ctx context.Co
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *postgresKubernetesCommandControllerClient) Restart(ctx context.Context,
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *postgresKubernetesCommandControllerClient) Pause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *postgresKubernetesCommandControllerClient) Unpause(ctx context.Context,
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *postgresKubernetesCommandControllerClient) PreviewRefresh(ctx context.C
 	return out, nil
 }
 
-func (c *postgresKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
+func (c *postgresKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PostgresKubernetes, error) {
 	out := new(model.PostgresKubernetes)
 	err := c.cc.Invoke(ctx, PostgresKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type PostgresKubernetesCommandControllerServer interface {
 	// update an existing postgres-kubernetes
 	Update(context.Context, *model.PostgresKubernetes) (*model.PostgresKubernetes, error)
 	// preview deleting an existing postgres-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.PostgresKubernetes, error)
 	// delete an existing postgres-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.PostgresKubernetes, error)
 	// preview restoring a deleted postgres-kubernetes in a environment
 	PreviewRestore(context.Context, *model.PostgresKubernetes) (*model.PostgresKubernetes, error)
 	// restore a deleted postgres-kubernetes in a environment
@@ -224,15 +224,15 @@ type PostgresKubernetesCommandControllerServer interface {
 	// pause a postgres-kubernetes running in a environment.
 	// postgres-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.PostgresKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.PostgresKubernetes, error)
 	// unpause a previously paused postgres-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the postgres-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.PostgresKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PostgresKubernetes, error)
 	// preview refresh a postgres-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PostgresKubernetes, error)
 	// refresh a postgres-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PostgresKubernetes, error)
 }
 
 // UnimplementedPostgresKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewUpdate(cont
 func (UnimplementedPostgresKubernetesCommandControllerServer) Update(context.Context, *model.PostgresKubernetes) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.PostgresKubernetes) (*model.PostgresKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedPostgresKubernetesCommandControllerServer) Restore(context.Co
 func (UnimplementedPostgresKubernetesCommandControllerServer) Restart(context.Context, *model.PostgresKubernetesId) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedPostgresKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PostgresKubernetes, error) {
+func (UnimplementedPostgresKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PostgresKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _PostgresKubernetesCommandController_Update_Handler(srv interface{}, ctx co
 }
 
 func _PostgresKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _PostgresKubernetesCommandController_PreviewDelete_Handler(srv interface{},
 		FullMethod: PostgresKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _PostgresKubernetesCommandController_Delete_Handler(srv interface{}, ctx co
 		FullMethod: PostgresKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _PostgresKubernetesCommandController_Restart_Handler(srv interface{}, ctx c
 }
 
 func _PostgresKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _PostgresKubernetesCommandController_Pause_Handler(srv interface{}, ctx con
 		FullMethod: PostgresKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _PostgresKubernetesCommandController_Unpause_Handler(srv interface{}, ctx c
 		FullMethod: PostgresKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _PostgresKubernetesCommandController_PreviewRefresh_Handler(srv interface{}
 		FullMethod: PostgresKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PostgresKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _PostgresKubernetesCommandController_Refresh_Handler(srv interface{}, ctx c
 		FullMethod: PostgresKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PostgresKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PostgresKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

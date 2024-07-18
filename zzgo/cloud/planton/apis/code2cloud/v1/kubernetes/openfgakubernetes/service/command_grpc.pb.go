@@ -49,9 +49,9 @@ type OpenfgaKubernetesCommandControllerClient interface {
 	// update an existing openfga-kubernetes
 	Update(ctx context.Context, in *model.OpenfgaKubernetes, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// preview deleting an existing openfga-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// delete an existing openfga-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// preview restoring a previously deleted openfga-kubernetes
 	PreviewRestore(ctx context.Context, in *model.OpenfgaKubernetes, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// restore a previously deleted openfga-kubernetes
@@ -62,15 +62,15 @@ type OpenfgaKubernetesCommandControllerClient interface {
 	// pause a openfga-kubernetes running in a environment.
 	// openfga-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// unpause a previously paused openfga-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the openfga-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// preview refresh a openfga-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 	// refresh a openfga-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error)
 }
 
 type openfgaKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *openfgaKubernetesCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *openfgaKubernetesCommandControllerClient) PreviewDelete(ctx context.Con
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *openfgaKubernetesCommandControllerClient) Restart(ctx context.Context, 
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *openfgaKubernetesCommandControllerClient) Pause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *openfgaKubernetesCommandControllerClient) Unpause(ctx context.Context, 
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *openfgaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Co
 	return out, nil
 }
 
-func (c *openfgaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
+func (c *openfgaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.OpenfgaKubernetes, error) {
 	out := new(model.OpenfgaKubernetes)
 	err := c.cc.Invoke(ctx, OpenfgaKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type OpenfgaKubernetesCommandControllerServer interface {
 	// update an existing openfga-kubernetes
 	Update(context.Context, *model.OpenfgaKubernetes) (*model.OpenfgaKubernetes, error)
 	// preview deleting an existing openfga-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.OpenfgaKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.OpenfgaKubernetes, error)
 	// delete an existing openfga-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.OpenfgaKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.OpenfgaKubernetes, error)
 	// preview restoring a previously deleted openfga-kubernetes
 	PreviewRestore(context.Context, *model.OpenfgaKubernetes) (*model.OpenfgaKubernetes, error)
 	// restore a previously deleted openfga-kubernetes
@@ -224,15 +224,15 @@ type OpenfgaKubernetesCommandControllerServer interface {
 	// pause a openfga-kubernetes running in a environment.
 	// openfga-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.OpenfgaKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.OpenfgaKubernetes, error)
 	// unpause a previously paused openfga-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the openfga-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.OpenfgaKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.OpenfgaKubernetes, error)
 	// preview refresh a openfga-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.OpenfgaKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.OpenfgaKubernetes, error)
 	// refresh a openfga-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.OpenfgaKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.OpenfgaKubernetes, error)
 }
 
 // UnimplementedOpenfgaKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewUpdate(conte
 func (UnimplementedOpenfgaKubernetesCommandControllerServer) Update(context.Context, *model.OpenfgaKubernetes) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.OpenfgaKubernetes) (*model.OpenfgaKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedOpenfgaKubernetesCommandControllerServer) Restore(context.Con
 func (UnimplementedOpenfgaKubernetesCommandControllerServer) Restart(context.Context, *model.OpenfgaKubernetesId) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedOpenfgaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.OpenfgaKubernetes, error) {
+func (UnimplementedOpenfgaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.OpenfgaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _OpenfgaKubernetesCommandController_Update_Handler(srv interface{}, ctx con
 }
 
 func _OpenfgaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _OpenfgaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, 
 		FullMethod: OpenfgaKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OpenfgaKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _OpenfgaKubernetesCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: OpenfgaKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _OpenfgaKubernetesCommandController_Restart_Handler(srv interface{}, ctx co
 }
 
 func _OpenfgaKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _OpenfgaKubernetesCommandController_Pause_Handler(srv interface{}, ctx cont
 		FullMethod: OpenfgaKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OpenfgaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _OpenfgaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx co
 		FullMethod: OpenfgaKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OpenfgaKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _OpenfgaKubernetesCommandController_PreviewRefresh_Handler(srv interface{},
 		FullMethod: OpenfgaKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _OpenfgaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _OpenfgaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx co
 		FullMethod: OpenfgaKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OpenfgaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(OpenfgaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

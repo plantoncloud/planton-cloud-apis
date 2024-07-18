@@ -49,9 +49,9 @@ type ElasticsearchKubernetesCommandControllerClient interface {
 	// update an existing elasticsearch-kubernetes
 	Update(ctx context.Context, in *model.ElasticsearchKubernetes, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// preview deleting an existing elasticsearch-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// delete an existing elasticsearch-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// preview restoring a previously deleted elasticsearch-kubernetes
 	PreviewRestore(ctx context.Context, in *model.ElasticsearchKubernetes, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// restore a previously deleted elasticsearch-kubernetes
@@ -62,15 +62,15 @@ type ElasticsearchKubernetesCommandControllerClient interface {
 	// pause a elasticsearch-kubernetes running in a environment.
 	// elasticsearch-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// unpause a previously paused elasticsearch-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the elasticsearch-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// preview refresh a elasticsearch-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 	// refresh a elasticsearch-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 }
 
 type elasticsearchKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) Update(ctx context.Cont
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) PreviewDelete(ctx conte
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) Restart(ctx context.Con
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) Pause(ctx context.Conte
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) Unpause(ctx context.Con
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *elasticsearchKubernetesCommandControllerClient) PreviewRefresh(ctx cont
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
+func (c *elasticsearchKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
 	out := new(model.ElasticsearchKubernetes)
 	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type ElasticsearchKubernetesCommandControllerServer interface {
 	// update an existing elasticsearch-kubernetes
 	Update(context.Context, *model.ElasticsearchKubernetes) (*model.ElasticsearchKubernetes, error)
 	// preview deleting an existing elasticsearch-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ElasticsearchKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.ElasticsearchKubernetes, error)
 	// delete an existing elasticsearch-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ElasticsearchKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ElasticsearchKubernetes, error)
 	// preview restoring a previously deleted elasticsearch-kubernetes
 	PreviewRestore(context.Context, *model.ElasticsearchKubernetes) (*model.ElasticsearchKubernetes, error)
 	// restore a previously deleted elasticsearch-kubernetes
@@ -224,15 +224,15 @@ type ElasticsearchKubernetesCommandControllerServer interface {
 	// pause a elasticsearch-kubernetes running in a environment.
 	// elasticsearch-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ElasticsearchKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.ElasticsearchKubernetes, error)
 	// unpause a previously paused elasticsearch-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the elasticsearch-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ElasticsearchKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ElasticsearchKubernetes, error)
 	// preview refresh a elasticsearch-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ElasticsearchKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error)
 	// refresh a elasticsearch-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ElasticsearchKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error)
 }
 
 // UnimplementedElasticsearchKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewUpdate
 func (UnimplementedElasticsearchKubernetesCommandControllerServer) Update(context.Context, *model.ElasticsearchKubernetes) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.ElasticsearchKubernetes) (*model.ElasticsearchKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedElasticsearchKubernetesCommandControllerServer) Restore(conte
 func (UnimplementedElasticsearchKubernetesCommandControllerServer) Restart(context.Context, *model.ElasticsearchKubernetesId) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ElasticsearchKubernetes, error) {
+func (UnimplementedElasticsearchKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _ElasticsearchKubernetesCommandController_Update_Handler(srv interface{}, c
 }
 
 func _ElasticsearchKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _ElasticsearchKubernetesCommandController_PreviewDelete_Handler(srv interfa
 		FullMethod: ElasticsearchKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ElasticsearchKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _ElasticsearchKubernetesCommandController_Delete_Handler(srv interface{}, c
 		FullMethod: ElasticsearchKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _ElasticsearchKubernetesCommandController_Restart_Handler(srv interface{}, 
 }
 
 func _ElasticsearchKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _ElasticsearchKubernetesCommandController_Pause_Handler(srv interface{}, ct
 		FullMethod: ElasticsearchKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ElasticsearchKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _ElasticsearchKubernetesCommandController_Unpause_Handler(srv interface{}, 
 		FullMethod: ElasticsearchKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ElasticsearchKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _ElasticsearchKubernetesCommandController_PreviewRefresh_Handler(srv interf
 		FullMethod: ElasticsearchKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ElasticsearchKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _ElasticsearchKubernetesCommandController_Refresh_Handler(srv interface{}, 
 		FullMethod: ElasticsearchKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ElasticsearchKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

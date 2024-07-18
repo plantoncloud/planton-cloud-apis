@@ -48,9 +48,9 @@ type EksClusterCommandControllerClient interface {
 	// update an existing eks-cluster.
 	Update(ctx context.Context, in *model.EksCluster, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// preview deleting a eks-cluster.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// delete a eks-cluster.
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// preview restoring a deleted eks-cluster.
 	PreviewRestore(ctx context.Context, in *model.EksCluster, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// restore a deleted eks-cluster.
@@ -61,16 +61,16 @@ type EksClusterCommandControllerClient interface {
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a eks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// unpause a eks-cluster.
 	// a eks-cluster is resumed by setting the number of nodes in each node pool of the eks-cluster to the
 	// values configured for the eks-cluster.
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// preview refresh a eks-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 	// refresh a eks-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 }
 
 type eksClusterCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *eksClusterCommandControllerClient) Update(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *eksClusterCommandControllerClient) PreviewDelete(ctx context.Context, i
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -153,7 +153,7 @@ func (c *eksClusterCommandControllerClient) Restore(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *eksClusterCommandControllerClient) Pause(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *eksClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *eksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, 
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
+func (c *eksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
 	out := new(model.EksCluster)
 	err := c.cc.Invoke(ctx, EksClusterCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -202,9 +202,9 @@ type EksClusterCommandControllerServer interface {
 	// update an existing eks-cluster.
 	Update(context.Context, *model.EksCluster) (*model.EksCluster, error)
 	// preview deleting a eks-cluster.
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.EksCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.EksCluster, error)
 	// delete a eks-cluster.
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.EksCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.EksCluster, error)
 	// preview restoring a deleted eks-cluster.
 	PreviewRestore(context.Context, *model.EksCluster) (*model.EksCluster, error)
 	// restore a deleted eks-cluster.
@@ -215,16 +215,16 @@ type EksClusterCommandControllerServer interface {
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a eks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.EksCluster, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.EksCluster, error)
 	// unpause a eks-cluster.
 	// a eks-cluster is resumed by setting the number of nodes in each node pool of the eks-cluster to the
 	// values configured for the eks-cluster.
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.EksCluster, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.EksCluster, error)
 	// preview refresh a eks-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.EksCluster, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error)
 	// refresh a eks-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.EksCluster, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error)
 }
 
 // UnimplementedEksClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -243,10 +243,10 @@ func (UnimplementedEksClusterCommandControllerServer) PreviewUpdate(context.Cont
 func (UnimplementedEksClusterCommandControllerServer) Update(context.Context, *model.EksCluster) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedEksClusterCommandControllerServer) PreviewRestore(context.Context, *model.EksCluster) (*model.EksCluster, error) {
@@ -255,16 +255,16 @@ func (UnimplementedEksClusterCommandControllerServer) PreviewRestore(context.Con
 func (UnimplementedEksClusterCommandControllerServer) Restore(context.Context, *model.EksCluster) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedEksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.EksCluster, error) {
+func (UnimplementedEksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -352,7 +352,7 @@ func _EksClusterCommandController_Update_Handler(srv interface{}, ctx context.Co
 }
 
 func _EksClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -364,13 +364,13 @@ func _EksClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx con
 		FullMethod: EksClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(EksClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EksClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -382,7 +382,7 @@ func _EksClusterCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: EksClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(EksClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -424,7 +424,7 @@ func _EksClusterCommandController_Restore_Handler(srv interface{}, ctx context.C
 }
 
 func _EksClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -436,13 +436,13 @@ func _EksClusterCommandController_Pause_Handler(srv interface{}, ctx context.Con
 		FullMethod: EksClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(EksClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -454,13 +454,13 @@ func _EksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 		FullMethod: EksClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(EksClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,13 +472,13 @@ func _EksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx co
 		FullMethod: EksClusterCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(EksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _EksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -490,7 +490,7 @@ func _EksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.C
 		FullMethod: EksClusterCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(EksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

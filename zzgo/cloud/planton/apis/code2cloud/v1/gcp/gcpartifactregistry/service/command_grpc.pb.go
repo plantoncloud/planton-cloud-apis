@@ -46,17 +46,17 @@ type GcpArtifactRegistryCommandControllerClient interface {
 	// update gcp-artifact-registry
 	Update(ctx context.Context, in *model.GcpArtifactRegistry, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// preview delete an gcp-artifact-registry.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// delete an gcp-artifact-registry.
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// preview restoring a deleted gcp-artifact-registry.
 	PreviewRestore(ctx context.Context, in *model.GcpArtifactRegistry, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// restore a deleted gcp-artifact-registry.
 	Restore(ctx context.Context, in *model.GcpArtifactRegistry, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// preview refresh a gcp-artifact-registry that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// refresh a gcp-artifact-registry that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 }
 
 type gcpArtifactRegistryCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *gcpArtifactRegistryCommandControllerClient) Update(ctx context.Context,
 	return out, nil
 }
 
-func (c *gcpArtifactRegistryCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
+func (c *gcpArtifactRegistryCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
 	out := new(model.GcpArtifactRegistry)
 	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *gcpArtifactRegistryCommandControllerClient) PreviewDelete(ctx context.C
 	return out, nil
 }
 
-func (c *gcpArtifactRegistryCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
+func (c *gcpArtifactRegistryCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
 	out := new(model.GcpArtifactRegistry)
 	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *gcpArtifactRegistryCommandControllerClient) Restore(ctx context.Context
 	return out, nil
 }
 
-func (c *gcpArtifactRegistryCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
+func (c *gcpArtifactRegistryCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
 	out := new(model.GcpArtifactRegistry)
 	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *gcpArtifactRegistryCommandControllerClient) PreviewRefresh(ctx context.
 	return out, nil
 }
 
-func (c *gcpArtifactRegistryCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
+func (c *gcpArtifactRegistryCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
 	out := new(model.GcpArtifactRegistry)
 	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type GcpArtifactRegistryCommandControllerServer interface {
 	// update gcp-artifact-registry
 	Update(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error)
 	// preview delete an gcp-artifact-registry.
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpArtifactRegistry, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpArtifactRegistry, error)
 	// delete an gcp-artifact-registry.
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpArtifactRegistry, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpArtifactRegistry, error)
 	// preview restoring a deleted gcp-artifact-registry.
 	PreviewRestore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error)
 	// restore a deleted gcp-artifact-registry.
 	Restore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error)
 	// preview refresh a gcp-artifact-registry that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpArtifactRegistry, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
 	// refresh a gcp-artifact-registry that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpArtifactRegistry, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
 }
 
 // UnimplementedGcpArtifactRegistryCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewUpdate(con
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) Update(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpArtifactRegistry, error) {
+func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpArtifactRegistry, error) {
+func (UnimplementedGcpArtifactRegistryCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRestore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error) {
@@ -211,10 +211,10 @@ func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRestore(co
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) Restore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpArtifactRegistry, error) {
+func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpArtifactRegistry, error) {
+func (UnimplementedGcpArtifactRegistryCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _GcpArtifactRegistryCommandController_Update_Handler(srv interface{}, ctx c
 }
 
 func _GcpArtifactRegistryCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _GcpArtifactRegistryCommandController_PreviewDelete_Handler(srv interface{}
 		FullMethod: GcpArtifactRegistryCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpArtifactRegistryCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _GcpArtifactRegistryCommandController_Delete_Handler(srv interface{}, ctx c
 		FullMethod: GcpArtifactRegistryCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpArtifactRegistryCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _GcpArtifactRegistryCommandController_Restore_Handler(srv interface{}, ctx 
 }
 
 func _GcpArtifactRegistryCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _GcpArtifactRegistryCommandController_PreviewRefresh_Handler(srv interface{
 		FullMethod: GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpArtifactRegistryCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _GcpArtifactRegistryCommandController_Refresh_Handler(srv interface{}, ctx 
 		FullMethod: GcpArtifactRegistryCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpArtifactRegistryCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -49,9 +49,9 @@ type KafkaKubernetesCommandControllerClient interface {
 	// update an existing kafka-kubernetes
 	Update(ctx context.Context, in *model.KafkaKubernetes, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// preview deleting an existing kafka-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// delete an existing kafka-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// preview restoring a deleted kafka-kubernetes
 	PreviewRestore(ctx context.Context, in *model.KafkaKubernetes, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// restore a deleted kafka-kubernetes
@@ -63,15 +63,15 @@ type KafkaKubernetesCommandControllerClient interface {
 	// pause a kafka-kubernetes running in a environment.
 	// kafka-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// unpause a previously paused kafka-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// preview refresh a kafka-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// refresh a kafka-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 }
 
 type kafkaKubernetesCommandControllerClient struct {
@@ -118,7 +118,7 @@ func (c *kafkaKubernetesCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -127,7 +127,7 @@ func (c *kafkaKubernetesCommandControllerClient) PreviewDelete(ctx context.Conte
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -163,7 +163,7 @@ func (c *kafkaKubernetesCommandControllerClient) Restart(ctx context.Context, in
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -172,7 +172,7 @@ func (c *kafkaKubernetesCommandControllerClient) Pause(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -181,7 +181,7 @@ func (c *kafkaKubernetesCommandControllerClient) Unpause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -190,7 +190,7 @@ func (c *kafkaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Cont
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -212,9 +212,9 @@ type KafkaKubernetesCommandControllerServer interface {
 	// update an existing kafka-kubernetes
 	Update(context.Context, *model.KafkaKubernetes) (*model.KafkaKubernetes, error)
 	// preview deleting an existing kafka-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.KafkaKubernetes, error)
 	// delete an existing kafka-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KafkaKubernetes, error)
 	// preview restoring a deleted kafka-kubernetes
 	PreviewRestore(context.Context, *model.KafkaKubernetes) (*model.KafkaKubernetes, error)
 	// restore a deleted kafka-kubernetes
@@ -226,15 +226,15 @@ type KafkaKubernetesCommandControllerServer interface {
 	// pause a kafka-kubernetes running in a environment.
 	// kafka-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.KafkaKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.KafkaKubernetes, error)
 	// unpause a previously paused kafka-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KafkaKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KafkaKubernetes, error)
 	// preview refresh a kafka-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error)
 	// refresh a kafka-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error)
 }
 
 // UnimplementedKafkaKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -253,10 +253,10 @@ func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewUpdate(context
 func (UnimplementedKafkaKubernetesCommandControllerServer) Update(context.Context, *model.KafkaKubernetes) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.KafkaKubernetes) (*model.KafkaKubernetes, error) {
@@ -268,16 +268,16 @@ func (UnimplementedKafkaKubernetesCommandControllerServer) Restore(context.Conte
 func (UnimplementedKafkaKubernetesCommandControllerServer) Restart(context.Context, *model.KafkaKubernetesId) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedKafkaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -365,7 +365,7 @@ func _KafkaKubernetesCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _KafkaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -377,13 +377,13 @@ func _KafkaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ct
 		FullMethod: KafkaKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -395,7 +395,7 @@ func _KafkaKubernetesCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: KafkaKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -455,7 +455,7 @@ func _KafkaKubernetesCommandController_Restart_Handler(srv interface{}, ctx cont
 }
 
 func _KafkaKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -467,13 +467,13 @@ func _KafkaKubernetesCommandController_Pause_Handler(srv interface{}, ctx contex
 		FullMethod: KafkaKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -485,13 +485,13 @@ func _KafkaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx cont
 		FullMethod: KafkaKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -503,13 +503,13 @@ func _KafkaKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, c
 		FullMethod: KafkaKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -521,7 +521,7 @@ func _KafkaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx cont
 		FullMethod: KafkaKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KafkaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -602,13 +602,13 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type KafkaTopicCommandControllerClient interface {
 	// add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
-	Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-	AddMultiple(ctx context.Context, in *model.AddKafkaTopicsCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	AddMultiple(ctx context.Context, in *model.AddKafkaTopicsInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// update a kafka topic.
-	Update(ctx context.Context, in *model.AddOrUpdateKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Update(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// delete a kafka topic.
-	Delete(ctx context.Context, in *model.DeleteOrRestoreKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
+	Delete(ctx context.Context, in *model.DeleteOrRestoreKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 }
 
 type kafkaTopicCommandControllerClient struct {
@@ -619,7 +619,7 @@ func NewKafkaTopicCommandControllerClient(cc grpc.ClientConnInterface) KafkaTopi
 	return &kafkaTopicCommandControllerClient{cc}
 }
 
-func (c *kafkaTopicCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaTopicCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaTopicCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -628,7 +628,7 @@ func (c *kafkaTopicCommandControllerClient) Add(ctx context.Context, in *model.A
 	return out, nil
 }
 
-func (c *kafkaTopicCommandControllerClient) AddMultiple(ctx context.Context, in *model.AddKafkaTopicsCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaTopicCommandControllerClient) AddMultiple(ctx context.Context, in *model.AddKafkaTopicsInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaTopicCommandController_AddMultiple_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -637,7 +637,7 @@ func (c *kafkaTopicCommandControllerClient) AddMultiple(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *kafkaTopicCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaTopicCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaTopicCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -646,7 +646,7 @@ func (c *kafkaTopicCommandControllerClient) Update(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *kafkaTopicCommandControllerClient) Delete(ctx context.Context, in *model.DeleteOrRestoreKafkaTopicCommandInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
+func (c *kafkaTopicCommandControllerClient) Delete(ctx context.Context, in *model.DeleteOrRestoreKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaTopicCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -660,29 +660,29 @@ func (c *kafkaTopicCommandControllerClient) Delete(ctx context.Context, in *mode
 // for forward compatibility
 type KafkaTopicCommandControllerServer interface {
 	// add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
-	Add(context.Context, *model.AddOrUpdateKafkaTopicCommandInput) (*model.KafkaKubernetes, error)
+	Add(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error)
 	// add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-	AddMultiple(context.Context, *model.AddKafkaTopicsCommandInput) (*model.KafkaKubernetes, error)
+	AddMultiple(context.Context, *model.AddKafkaTopicsInput) (*model.KafkaKubernetes, error)
 	// update a kafka topic.
-	Update(context.Context, *model.AddOrUpdateKafkaTopicCommandInput) (*model.KafkaKubernetes, error)
+	Update(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error)
 	// delete a kafka topic.
-	Delete(context.Context, *model.DeleteOrRestoreKafkaTopicCommandInput) (*model.KafkaKubernetes, error)
+	Delete(context.Context, *model.DeleteOrRestoreKafkaTopicInput) (*model.KafkaKubernetes, error)
 }
 
 // UnimplementedKafkaTopicCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedKafkaTopicCommandControllerServer struct {
 }
 
-func (UnimplementedKafkaTopicCommandControllerServer) Add(context.Context, *model.AddOrUpdateKafkaTopicCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaTopicCommandControllerServer) Add(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedKafkaTopicCommandControllerServer) AddMultiple(context.Context, *model.AddKafkaTopicsCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaTopicCommandControllerServer) AddMultiple(context.Context, *model.AddKafkaTopicsInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddMultiple not implemented")
 }
-func (UnimplementedKafkaTopicCommandControllerServer) Update(context.Context, *model.AddOrUpdateKafkaTopicCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaTopicCommandControllerServer) Update(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKafkaTopicCommandControllerServer) Delete(context.Context, *model.DeleteOrRestoreKafkaTopicCommandInput) (*model.KafkaKubernetes, error) {
+func (UnimplementedKafkaTopicCommandControllerServer) Delete(context.Context, *model.DeleteOrRestoreKafkaTopicInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -698,7 +698,7 @@ func RegisterKafkaTopicCommandControllerServer(s grpc.ServiceRegistrar, srv Kafk
 }
 
 func _KafkaTopicCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateKafkaTopicCommandInput)
+	in := new(model.AddOrUpdateKafkaTopicInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -710,13 +710,13 @@ func _KafkaTopicCommandController_Add_Handler(srv interface{}, ctx context.Conte
 		FullMethod: KafkaTopicCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaTopicCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateKafkaTopicCommandInput))
+		return srv.(KafkaTopicCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateKafkaTopicInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaTopicCommandController_AddMultiple_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddKafkaTopicsCommandInput)
+	in := new(model.AddKafkaTopicsInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -728,13 +728,13 @@ func _KafkaTopicCommandController_AddMultiple_Handler(srv interface{}, ctx conte
 		FullMethod: KafkaTopicCommandController_AddMultiple_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaTopicCommandControllerServer).AddMultiple(ctx, req.(*model.AddKafkaTopicsCommandInput))
+		return srv.(KafkaTopicCommandControllerServer).AddMultiple(ctx, req.(*model.AddKafkaTopicsInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaTopicCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateKafkaTopicCommandInput)
+	in := new(model.AddOrUpdateKafkaTopicInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -746,13 +746,13 @@ func _KafkaTopicCommandController_Update_Handler(srv interface{}, ctx context.Co
 		FullMethod: KafkaTopicCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaTopicCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateKafkaTopicCommandInput))
+		return srv.(KafkaTopicCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateKafkaTopicInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KafkaTopicCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.DeleteOrRestoreKafkaTopicCommandInput)
+	in := new(model.DeleteOrRestoreKafkaTopicInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -764,7 +764,7 @@ func _KafkaTopicCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: KafkaTopicCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaTopicCommandControllerServer).Delete(ctx, req.(*model.DeleteOrRestoreKafkaTopicCommandInput))
+		return srv.(KafkaTopicCommandControllerServer).Delete(ctx, req.(*model.DeleteOrRestoreKafkaTopicInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

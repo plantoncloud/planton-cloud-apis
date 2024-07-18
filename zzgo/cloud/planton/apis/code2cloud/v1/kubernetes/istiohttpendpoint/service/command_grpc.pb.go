@@ -46,17 +46,17 @@ type IstioHttpEndpointCommandControllerClient interface {
 	// update an existing istio-http-endpoint
 	Update(ctx context.Context, in *model.IstioHttpEndpoint, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// preview delete istio-http-endpoint
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// delete istio-http-endpoint
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// preview restoring a deleted istio-http-endpoint
 	PreviewRestore(ctx context.Context, in *model.IstioHttpEndpoint, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// restore a deleted istio-http-endpoint
 	Restore(ctx context.Context, in *model.IstioHttpEndpoint, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// preview refresh a istio-http-endpoint that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// refresh a istio-http-endpoint that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 }
 
 type istioHttpEndpointCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *istioHttpEndpointCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *istioHttpEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *istioHttpEndpointCommandControllerClient) PreviewDelete(ctx context.Con
 	return out, nil
 }
 
-func (c *istioHttpEndpointCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *istioHttpEndpointCommandControllerClient) Restore(ctx context.Context, 
 	return out, nil
 }
 
-func (c *istioHttpEndpointCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *istioHttpEndpointCommandControllerClient) PreviewRefresh(ctx context.Co
 	return out, nil
 }
 
-func (c *istioHttpEndpointCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type IstioHttpEndpointCommandControllerServer interface {
 	// update an existing istio-http-endpoint
 	Update(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error)
 	// preview delete istio-http-endpoint
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IstioHttpEndpoint, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.IstioHttpEndpoint, error)
 	// delete istio-http-endpoint
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IstioHttpEndpoint, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.IstioHttpEndpoint, error)
 	// preview restoring a deleted istio-http-endpoint
 	PreviewRestore(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error)
 	// restore a deleted istio-http-endpoint
 	Restore(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error)
 	// preview refresh a istio-http-endpoint that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IstioHttpEndpoint, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.IstioHttpEndpoint, error)
 	// refresh a istio-http-endpoint that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IstioHttpEndpoint, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.IstioHttpEndpoint, error)
 }
 
 // UnimplementedIstioHttpEndpointCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewUpdate(conte
 func (UnimplementedIstioHttpEndpointCommandControllerServer) Update(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedIstioHttpEndpointCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewRestore(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error) {
@@ -211,10 +211,10 @@ func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewRestore(cont
 func (UnimplementedIstioHttpEndpointCommandControllerServer) Restore(context.Context, *model.IstioHttpEndpoint) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedIstioHttpEndpointCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _IstioHttpEndpointCommandController_Update_Handler(srv interface{}, ctx con
 }
 
 func _IstioHttpEndpointCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _IstioHttpEndpointCommandController_PreviewDelete_Handler(srv interface{}, 
 		FullMethod: IstioHttpEndpointCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(IstioHttpEndpointCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _IstioHttpEndpointCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _IstioHttpEndpointCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: IstioHttpEndpointCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(IstioHttpEndpointCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _IstioHttpEndpointCommandController_Restore_Handler(srv interface{}, ctx co
 }
 
 func _IstioHttpEndpointCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _IstioHttpEndpointCommandController_PreviewRefresh_Handler(srv interface{},
 		FullMethod: IstioHttpEndpointCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(IstioHttpEndpointCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _IstioHttpEndpointCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _IstioHttpEndpointCommandController_Refresh_Handler(srv interface{}, ctx co
 		FullMethod: IstioHttpEndpointCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(IstioHttpEndpointCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -472,11 +472,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type IstioHttpEndpointRouteCommandControllerClient interface {
 	// add a route to a istio-http-endpoint
-	Add(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	Add(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// update an existing route of a istio-http-endpoint
-	Update(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	Update(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 	// delete a route for a istio-http-endpoint.
-	Delete(ctx context.Context, in *model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
+	Delete(ctx context.Context, in *model.DeleteOrRestoreIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error)
 }
 
 type istioHttpEndpointRouteCommandControllerClient struct {
@@ -487,7 +487,7 @@ func NewIstioHttpEndpointRouteCommandControllerClient(cc grpc.ClientConnInterfac
 	return &istioHttpEndpointRouteCommandControllerClient{cc}
 }
 
-func (c *istioHttpEndpointRouteCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointRouteCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointRouteCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -496,7 +496,7 @@ func (c *istioHttpEndpointRouteCommandControllerClient) Add(ctx context.Context,
 	return out, nil
 }
 
-func (c *istioHttpEndpointRouteCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointRouteCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointRouteCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -505,7 +505,7 @@ func (c *istioHttpEndpointRouteCommandControllerClient) Update(ctx context.Conte
 	return out, nil
 }
 
-func (c *istioHttpEndpointRouteCommandControllerClient) Delete(ctx context.Context, in *model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
+func (c *istioHttpEndpointRouteCommandControllerClient) Delete(ctx context.Context, in *model.DeleteOrRestoreIstioHttpEndpointRouteInput, opts ...grpc.CallOption) (*model.IstioHttpEndpoint, error) {
 	out := new(model.IstioHttpEndpoint)
 	err := c.cc.Invoke(ctx, IstioHttpEndpointRouteCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -519,24 +519,24 @@ func (c *istioHttpEndpointRouteCommandControllerClient) Delete(ctx context.Conte
 // for forward compatibility
 type IstioHttpEndpointRouteCommandControllerServer interface {
 	// add a route to a istio-http-endpoint
-	Add(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error)
+	Add(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error)
 	// update an existing route of a istio-http-endpoint
-	Update(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error)
+	Update(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error)
 	// delete a route for a istio-http-endpoint.
-	Delete(context.Context, *model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error)
+	Delete(context.Context, *model.DeleteOrRestoreIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error)
 }
 
 // UnimplementedIstioHttpEndpointRouteCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedIstioHttpEndpointRouteCommandControllerServer struct {
 }
 
-func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Add(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Add(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Update(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Update(context.Context, *model.AddOrUpdateIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Delete(context.Context, *model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput) (*model.IstioHttpEndpoint, error) {
+func (UnimplementedIstioHttpEndpointRouteCommandControllerServer) Delete(context.Context, *model.DeleteOrRestoreIstioHttpEndpointRouteInput) (*model.IstioHttpEndpoint, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -552,7 +552,7 @@ func RegisterIstioHttpEndpointRouteCommandControllerServer(s grpc.ServiceRegistr
 }
 
 func _IstioHttpEndpointRouteCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
+	in := new(model.AddOrUpdateIstioHttpEndpointRouteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -564,13 +564,13 @@ func _IstioHttpEndpointRouteCommandController_Add_Handler(srv interface{}, ctx c
 		FullMethod: IstioHttpEndpointRouteCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointRouteCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateIstioHttpEndpointRouteCommandInput))
+		return srv.(IstioHttpEndpointRouteCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateIstioHttpEndpointRouteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _IstioHttpEndpointRouteCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateIstioHttpEndpointRouteCommandInput)
+	in := new(model.AddOrUpdateIstioHttpEndpointRouteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -582,13 +582,13 @@ func _IstioHttpEndpointRouteCommandController_Update_Handler(srv interface{}, ct
 		FullMethod: IstioHttpEndpointRouteCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointRouteCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateIstioHttpEndpointRouteCommandInput))
+		return srv.(IstioHttpEndpointRouteCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateIstioHttpEndpointRouteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _IstioHttpEndpointRouteCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput)
+	in := new(model.DeleteOrRestoreIstioHttpEndpointRouteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -600,7 +600,7 @@ func _IstioHttpEndpointRouteCommandController_Delete_Handler(srv interface{}, ct
 		FullMethod: IstioHttpEndpointRouteCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IstioHttpEndpointRouteCommandControllerServer).Delete(ctx, req.(*model.DeleteOrRestoreIstioHttpEndpointRouteCommandInput))
+		return srv.(IstioHttpEndpointRouteCommandControllerServer).Delete(ctx, req.(*model.DeleteOrRestoreIstioHttpEndpointRouteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

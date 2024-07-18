@@ -49,9 +49,9 @@ type JenkinsKubernetesCommandControllerClient interface {
 	// update an existing jenkins-kubernetes
 	Update(ctx context.Context, in *model.JenkinsKubernetes, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// preview deleting an existing jenkins-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// delete an existing jenkins-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// preview restoring a previously deleted jenkins-kubernetes
 	PreviewRestore(ctx context.Context, in *model.JenkinsKubernetes, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// restore a previously deleted jenkins-kubernetes
@@ -62,15 +62,15 @@ type JenkinsKubernetesCommandControllerClient interface {
 	// pause a jenkins-kubernetes running in a environment.
 	// jenkins-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// unpause a previously paused jenkins-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the jenkins-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// preview refresh a jenkins-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 	// refresh a jenkins-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 }
 
 type jenkinsKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *jenkinsKubernetesCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *jenkinsKubernetesCommandControllerClient) PreviewDelete(ctx context.Con
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *jenkinsKubernetesCommandControllerClient) Restart(ctx context.Context, 
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *jenkinsKubernetesCommandControllerClient) Pause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *jenkinsKubernetesCommandControllerClient) Unpause(ctx context.Context, 
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *jenkinsKubernetesCommandControllerClient) PreviewRefresh(ctx context.Co
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
+func (c *jenkinsKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
 	out := new(model.JenkinsKubernetes)
 	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type JenkinsKubernetesCommandControllerServer interface {
 	// update an existing jenkins-kubernetes
 	Update(context.Context, *model.JenkinsKubernetes) (*model.JenkinsKubernetes, error)
 	// preview deleting an existing jenkins-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.JenkinsKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.JenkinsKubernetes, error)
 	// delete an existing jenkins-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.JenkinsKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.JenkinsKubernetes, error)
 	// preview restoring a previously deleted jenkins-kubernetes
 	PreviewRestore(context.Context, *model.JenkinsKubernetes) (*model.JenkinsKubernetes, error)
 	// restore a previously deleted jenkins-kubernetes
@@ -224,15 +224,15 @@ type JenkinsKubernetesCommandControllerServer interface {
 	// pause a jenkins-kubernetes running in a environment.
 	// jenkins-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.JenkinsKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.JenkinsKubernetes, error)
 	// unpause a previously paused jenkins-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the jenkins-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.JenkinsKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.JenkinsKubernetes, error)
 	// preview refresh a jenkins-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.JenkinsKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error)
 	// refresh a jenkins-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.JenkinsKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error)
 }
 
 // UnimplementedJenkinsKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewUpdate(conte
 func (UnimplementedJenkinsKubernetesCommandControllerServer) Update(context.Context, *model.JenkinsKubernetes) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.JenkinsKubernetes) (*model.JenkinsKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedJenkinsKubernetesCommandControllerServer) Restore(context.Con
 func (UnimplementedJenkinsKubernetesCommandControllerServer) Restart(context.Context, *model.JenkinsKubernetesId) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedJenkinsKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.JenkinsKubernetes, error) {
+func (UnimplementedJenkinsKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _JenkinsKubernetesCommandController_Update_Handler(srv interface{}, ctx con
 }
 
 func _JenkinsKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _JenkinsKubernetesCommandController_PreviewDelete_Handler(srv interface{}, 
 		FullMethod: JenkinsKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _JenkinsKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _JenkinsKubernetesCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: JenkinsKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _JenkinsKubernetesCommandController_Restart_Handler(srv interface{}, ctx co
 }
 
 func _JenkinsKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _JenkinsKubernetesCommandController_Pause_Handler(srv interface{}, ctx cont
 		FullMethod: JenkinsKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _JenkinsKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _JenkinsKubernetesCommandController_Unpause_Handler(srv interface{}, ctx co
 		FullMethod: JenkinsKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _JenkinsKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _JenkinsKubernetesCommandController_PreviewRefresh_Handler(srv interface{},
 		FullMethod: JenkinsKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _JenkinsKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _JenkinsKubernetesCommandController_Refresh_Handler(srv interface{}, ctx co
 		FullMethod: JenkinsKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(JenkinsKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

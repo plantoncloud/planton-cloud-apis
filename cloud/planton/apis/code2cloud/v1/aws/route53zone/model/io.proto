@@ -18,11 +18,11 @@ message Route53ZoneList {
   repeated Route53Zone entries = 1;
 }
 
-// AddOrUpdateDnsRecordCommandInput is used to encapsulate the details needed to either add
+// AddOrUpdateDnsRecordInput is used to encapsulate the details needed to either add
 // a new DNS record or update an existing one within a specific DNS zone.
 // This message is typically used to transmit data from the client to the server
 // during an add or update or restore operation on a DNS record within a specified DNS zone.
-message AddOrUpdateDnsRecordCommandInput {
+message AddOrUpdateDnsRecordInput {
   // This field contains the unique identifier of the DNS zone within which the DNS record
   // is to be added or updated. The ID should be a valid DNS zone ID, typically obtained
   // from the DNS zone entity itself. This field is used by the server to determine
@@ -45,10 +45,10 @@ message AddOrUpdateDnsRecordCommandInput {
   ];
 }
 
-// DeleteOrRestoreDnsRecordCommandInput is a protobuf message that encapsulates the data
+// DeleteOrRestoreDnsRecordInput is a protobuf message that encapsulates the data
 // necessary for either soft deleting or restoring a specific DNS record within a DNS zone.
 // This message is typically used to send the relevant details from the client to the server.
-message DeleteDnsRecordCommandInput {
+message DeleteDnsRecordInput {
 
   // This field carries the unique identifier of the DNS zone from which the DNS record
   // is to be either soft deleted or restored. The server uses this ID to find the appropriate DNS zone.

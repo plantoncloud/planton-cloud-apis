@@ -46,17 +46,17 @@ type S3BucketCommandControllerClient interface {
 	// update an existing s3-bucket
 	Update(ctx context.Context, in *model.S3Bucket, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// preview delete an existing s3-bucket
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// delete an existing s3-bucket
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// preview restore a deleted s3-bucket
 	PreviewRestore(ctx context.Context, in *model.S3Bucket, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// restore a deleted s3-bucket
 	Restore(ctx context.Context, in *model.S3Bucket, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// preview refresh a s3-bucket that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// refresh a s3-bucket that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
 }
 
 type s3BucketCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *s3BucketCommandControllerClient) Update(ctx context.Context, in *model.
 	return out, nil
 }
 
-func (c *s3BucketCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
+func (c *s3BucketCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
 	out := new(model.S3Bucket)
 	err := c.cc.Invoke(ctx, S3BucketCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *s3BucketCommandControllerClient) PreviewDelete(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *s3BucketCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
+func (c *s3BucketCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
 	out := new(model.S3Bucket)
 	err := c.cc.Invoke(ctx, S3BucketCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *s3BucketCommandControllerClient) Restore(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *s3BucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
+func (c *s3BucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
 	out := new(model.S3Bucket)
 	err := c.cc.Invoke(ctx, S3BucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *s3BucketCommandControllerClient) PreviewRefresh(ctx context.Context, in
 	return out, nil
 }
 
-func (c *s3BucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
+func (c *s3BucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
 	out := new(model.S3Bucket)
 	err := c.cc.Invoke(ctx, S3BucketCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type S3BucketCommandControllerServer interface {
 	// update an existing s3-bucket
 	Update(context.Context, *model.S3Bucket) (*model.S3Bucket, error)
 	// preview delete an existing s3-bucket
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.S3Bucket, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.S3Bucket, error)
 	// delete an existing s3-bucket
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.S3Bucket, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.S3Bucket, error)
 	// preview restore a deleted s3-bucket
 	PreviewRestore(context.Context, *model.S3Bucket) (*model.S3Bucket, error)
 	// restore a deleted s3-bucket
 	Restore(context.Context, *model.S3Bucket) (*model.S3Bucket, error)
 	// preview refresh a s3-bucket that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.S3Bucket, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error)
 	// refresh a s3-bucket that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.S3Bucket, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error)
 }
 
 // UnimplementedS3BucketCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedS3BucketCommandControllerServer) PreviewUpdate(context.Contex
 func (UnimplementedS3BucketCommandControllerServer) Update(context.Context, *model.S3Bucket) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedS3BucketCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.S3Bucket, error) {
+func (UnimplementedS3BucketCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedS3BucketCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.S3Bucket, error) {
+func (UnimplementedS3BucketCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedS3BucketCommandControllerServer) PreviewRestore(context.Context, *model.S3Bucket) (*model.S3Bucket, error) {
@@ -211,10 +211,10 @@ func (UnimplementedS3BucketCommandControllerServer) PreviewRestore(context.Conte
 func (UnimplementedS3BucketCommandControllerServer) Restore(context.Context, *model.S3Bucket) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedS3BucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.S3Bucket, error) {
+func (UnimplementedS3BucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedS3BucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.S3Bucket, error) {
+func (UnimplementedS3BucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _S3BucketCommandController_Update_Handler(srv interface{}, ctx context.Cont
 }
 
 func _S3BucketCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _S3BucketCommandController_PreviewDelete_Handler(srv interface{}, ctx conte
 		FullMethod: S3BucketCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(S3BucketCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _S3BucketCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _S3BucketCommandController_Delete_Handler(srv interface{}, ctx context.Cont
 		FullMethod: S3BucketCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(S3BucketCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _S3BucketCommandController_Restore_Handler(srv interface{}, ctx context.Con
 }
 
 func _S3BucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _S3BucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx cont
 		FullMethod: S3BucketCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(S3BucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _S3BucketCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _S3BucketCommandController_Refresh_Handler(srv interface{}, ctx context.Con
 		FullMethod: S3BucketCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(S3BucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

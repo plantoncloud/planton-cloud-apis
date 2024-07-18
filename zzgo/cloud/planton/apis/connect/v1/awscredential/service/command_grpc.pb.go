@@ -36,7 +36,7 @@ type AwsCredentialCommandControllerClient interface {
 	// update an existing aws-credential
 	Update(ctx context.Context, in *model.AwsCredential, opts ...grpc.CallOption) (*model.AwsCredential, error)
 	// delete a aws-credential that was previously created
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AwsCredential, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AwsCredential, error)
 	// restore a deleted aws-credential.
 	Restore(ctx context.Context, in *model.AwsCredential, opts ...grpc.CallOption) (*model.AwsCredential, error)
 }
@@ -67,7 +67,7 @@ func (c *awsCredentialCommandControllerClient) Update(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *awsCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AwsCredential, error) {
+func (c *awsCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AwsCredential, error) {
 	out := new(model.AwsCredential)
 	err := c.cc.Invoke(ctx, AwsCredentialCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type AwsCredentialCommandControllerServer interface {
 	// update an existing aws-credential
 	Update(context.Context, *model.AwsCredential) (*model.AwsCredential, error)
 	// delete a aws-credential that was previously created
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AwsCredential, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AwsCredential, error)
 	// restore a deleted aws-credential.
 	Restore(context.Context, *model.AwsCredential) (*model.AwsCredential, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedAwsCredentialCommandControllerServer) Create(context.Context,
 func (UnimplementedAwsCredentialCommandControllerServer) Update(context.Context, *model.AwsCredential) (*model.AwsCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAwsCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AwsCredential, error) {
+func (UnimplementedAwsCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AwsCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedAwsCredentialCommandControllerServer) Restore(context.Context, *model.AwsCredential) (*model.AwsCredential, error) {
@@ -164,7 +164,7 @@ func _AwsCredentialCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _AwsCredentialCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _AwsCredentialCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: AwsCredentialCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(AwsCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

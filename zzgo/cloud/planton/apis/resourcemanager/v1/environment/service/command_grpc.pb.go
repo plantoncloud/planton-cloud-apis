@@ -38,7 +38,7 @@ type EnvironmentCommandControllerClient interface {
 	// delete an existing environment
 	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(ctx context.Context, in *model.Environment, opts ...grpc.CallOption) (*model.Environment, error)
@@ -70,7 +70,7 @@ func (c *environmentCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Environment, error) {
+func (c *environmentCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Environment, error) {
 	out := new(model.Environment)
 	err := c.cc.Invoke(ctx, EnvironmentCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -99,7 +99,7 @@ type EnvironmentCommandControllerServer interface {
 	// delete an existing environment
 	// deleting a environment involves cleaning of stack-modules deployed to that environment.
 	// microservices, secrets, postgres-clusters, kafka-cluster should be cleaned up in the corresponding environment
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Environment, error)
 	// restore a deleted environment
 	// restoring a environment tries to restore all the individual resources that were destroyed as part of the delete operation.
 	Restore(context.Context, *model.Environment) (*model.Environment, error)
@@ -115,7 +115,7 @@ func (UnimplementedEnvironmentCommandControllerServer) Create(context.Context, *
 func (UnimplementedEnvironmentCommandControllerServer) Update(context.Context, *model.Environment) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Environment, error) {
+func (UnimplementedEnvironmentCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedEnvironmentCommandControllerServer) Restore(context.Context, *model.Environment) (*model.Environment, error) {
@@ -170,7 +170,7 @@ func _EnvironmentCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -182,7 +182,7 @@ func _EnvironmentCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: EnvironmentCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(EnvironmentCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

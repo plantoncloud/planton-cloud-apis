@@ -29,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiResourceStackJobCommandControllerClient interface {
 	// create-stack-job for any api resource
-	CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model1.StackJobId, error)
+	CreateStackJob(ctx context.Context, in *model.CreateStackJobInput, opts ...grpc.CallOption) (*model1.StackJobId, error)
 }
 
 type apiResourceStackJobCommandControllerClient struct {
@@ -40,7 +40,7 @@ func NewApiResourceStackJobCommandControllerClient(cc grpc.ClientConnInterface) 
 	return &apiResourceStackJobCommandControllerClient{cc}
 }
 
-func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.Context, in *model.CreateStackJobCommandInput, opts ...grpc.CallOption) (*model1.StackJobId, error) {
+func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.Context, in *model.CreateStackJobInput, opts ...grpc.CallOption) (*model1.StackJobId, error) {
 	out := new(model1.StackJobId)
 	err := c.cc.Invoke(ctx, ApiResourceStackJobCommandController_CreateStackJob_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -54,14 +54,14 @@ func (c *apiResourceStackJobCommandControllerClient) CreateStackJob(ctx context.
 // for forward compatibility
 type ApiResourceStackJobCommandControllerServer interface {
 	// create-stack-job for any api resource
-	CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model1.StackJobId, error)
+	CreateStackJob(context.Context, *model.CreateStackJobInput) (*model1.StackJobId, error)
 }
 
 // UnimplementedApiResourceStackJobCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedApiResourceStackJobCommandControllerServer struct {
 }
 
-func (UnimplementedApiResourceStackJobCommandControllerServer) CreateStackJob(context.Context, *model.CreateStackJobCommandInput) (*model1.StackJobId, error) {
+func (UnimplementedApiResourceStackJobCommandControllerServer) CreateStackJob(context.Context, *model.CreateStackJobInput) (*model1.StackJobId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateStackJob not implemented")
 }
 
@@ -77,7 +77,7 @@ func RegisterApiResourceStackJobCommandControllerServer(s grpc.ServiceRegistrar,
 }
 
 func _ApiResourceStackJobCommandController_CreateStackJob_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.CreateStackJobCommandInput)
+	in := new(model.CreateStackJobInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -89,7 +89,7 @@ func _ApiResourceStackJobCommandController_CreateStackJob_Handler(srv interface{
 		FullMethod: ApiResourceStackJobCommandController_CreateStackJob_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceStackJobCommandControllerServer).CreateStackJob(ctx, req.(*model.CreateStackJobCommandInput))
+		return srv.(ApiResourceStackJobCommandControllerServer).CreateStackJob(ctx, req.(*model.CreateStackJobInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

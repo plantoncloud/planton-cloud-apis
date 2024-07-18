@@ -3,7 +3,7 @@ syntax = "proto3";
 package cloud.planton.apis.integration.v1.gcp.model;
 
 // input for command to authorize gcp cloud-account
-message AuthorizeGcpCloudAccountCommandInput {
+message AuthorizeGcpCloudAccountInput {
   // id of the organization on google cloud.
   string org_id = 1;
   // email of the google service account to be used as principal for granting required roles.

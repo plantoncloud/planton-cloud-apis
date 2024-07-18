@@ -46,17 +46,17 @@ type GcpCloudDnsZoneCommandControllerClient interface {
 	// update an existing gcp-cloud-dns-zone
 	Update(ctx context.Context, in *model.GcpCloudDnsZone, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// preview deleting a gcp-cloud-dns-zone
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// delete a gcp-cloud-dns-zone
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// preview restoring a deleted gcp-cloud-dns-zone
 	PreviewRestore(ctx context.Context, in *model.GcpCloudDnsZone, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// restore a deleted gcp-cloud-dns-zone
 	Restore(ctx context.Context, in *model.GcpCloudDnsZone, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// preview refresh a gcp-cloud-dns-zone that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// refresh a gcp-cloud-dns-zone that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 }
 
 type gcpCloudDnsZoneCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *gcpCloudDnsZoneCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *gcpCloudDnsZoneCommandControllerClient) PreviewDelete(ctx context.Conte
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *gcpCloudDnsZoneCommandControllerClient) Restore(ctx context.Context, in
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *gcpCloudDnsZoneCommandControllerClient) PreviewRefresh(ctx context.Cont
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type GcpCloudDnsZoneCommandControllerServer interface {
 	// update an existing gcp-cloud-dns-zone
 	Update(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error)
 	// preview deleting a gcp-cloud-dns-zone
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCloudDnsZone, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCloudDnsZone, error)
 	// delete a gcp-cloud-dns-zone
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCloudDnsZone, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCloudDnsZone, error)
 	// preview restoring a deleted gcp-cloud-dns-zone
 	PreviewRestore(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error)
 	// restore a deleted gcp-cloud-dns-zone
 	Restore(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error)
 	// preview refresh a gcp-cloud-dns-zone that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpCloudDnsZone, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpCloudDnsZone, error)
 	// refresh a gcp-cloud-dns-zone that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpCloudDnsZone, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpCloudDnsZone, error)
 }
 
 // UnimplementedGcpCloudDnsZoneCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewUpdate(context
 func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Update(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewRestore(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error) {
@@ -211,10 +211,10 @@ func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewRestore(contex
 func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Restore(context.Context, *model.GcpCloudDnsZone) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _GcpCloudDnsZoneCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _GcpCloudDnsZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _GcpCloudDnsZoneCommandController_PreviewDelete_Handler(srv interface{}, ct
 		FullMethod: GcpCloudDnsZoneCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpCloudDnsZoneCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpCloudDnsZoneCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _GcpCloudDnsZoneCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: GcpCloudDnsZoneCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpCloudDnsZoneCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _GcpCloudDnsZoneCommandController_Restore_Handler(srv interface{}, ctx cont
 }
 
 func _GcpCloudDnsZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _GcpCloudDnsZoneCommandController_PreviewRefresh_Handler(srv interface{}, c
 		FullMethod: GcpCloudDnsZoneCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpCloudDnsZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpCloudDnsZoneCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _GcpCloudDnsZoneCommandController_Refresh_Handler(srv interface{}, ctx cont
 		FullMethod: GcpCloudDnsZoneCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpCloudDnsZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -472,11 +472,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GcpCloudDnsZoneRecordCommandControllerClient interface {
 	// add a new dns-record to gcp-cloud-dns-zone
-	Add(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	Add(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// update an existing dns-record in gcp-cloud-dns-zone
-	Update(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	Update(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// delete a dns-record from a gcp-cloud-dns-zone
-	Delete(ctx context.Context, in *model.DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
+	Delete(ctx context.Context, in *model.DeleteGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 }
 
 type gcpCloudDnsZoneRecordCommandControllerClient struct {
@@ -487,7 +487,7 @@ func NewGcpCloudDnsZoneRecordCommandControllerClient(cc grpc.ClientConnInterface
 	return &gcpCloudDnsZoneRecordCommandControllerClient{cc}
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -496,7 +496,7 @@ func (c *gcpCloudDnsZoneRecordCommandControllerClient) Add(ctx context.Context, 
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -505,7 +505,7 @@ func (c *gcpCloudDnsZoneRecordCommandControllerClient) Update(ctx context.Contex
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsZoneRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
 	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -519,24 +519,24 @@ func (c *gcpCloudDnsZoneRecordCommandControllerClient) Delete(ctx context.Contex
 // for forward compatibility
 type GcpCloudDnsZoneRecordCommandControllerServer interface {
 	// add a new dns-record to gcp-cloud-dns-zone
-	Add(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.GcpCloudDnsZone, error)
+	Add(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error)
 	// update an existing dns-record in gcp-cloud-dns-zone
-	Update(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.GcpCloudDnsZone, error)
+	Update(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error)
 	// delete a dns-record from a gcp-cloud-dns-zone
-	Delete(context.Context, *model.DeleteDnsRecordCommandInput) (*model.GcpCloudDnsZone, error)
+	Delete(context.Context, *model.DeleteGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error)
 }
 
 // UnimplementedGcpCloudDnsZoneRecordCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGcpCloudDnsZoneRecordCommandControllerServer struct {
 }
 
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Delete(context.Context, *model.DeleteDnsRecordCommandInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Delete(context.Context, *model.DeleteGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -552,7 +552,7 @@ func RegisterGcpCloudDnsZoneRecordCommandControllerServer(s grpc.ServiceRegistra
 }
 
 func _GcpCloudDnsZoneRecordCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateDnsRecordCommandInput)
+	in := new(model.AddOrUpdateGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -564,13 +564,13 @@ func _GcpCloudDnsZoneRecordCommandController_Add_Handler(srv interface{}, ctx co
 		FullMethod: GcpCloudDnsZoneRecordCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateDnsRecordCommandInput))
+		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpCloudDnsZoneRecordCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateDnsRecordCommandInput)
+	in := new(model.AddOrUpdateGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -582,13 +582,13 @@ func _GcpCloudDnsZoneRecordCommandController_Update_Handler(srv interface{}, ctx
 		FullMethod: GcpCloudDnsZoneRecordCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateDnsRecordCommandInput))
+		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpCloudDnsZoneRecordCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.DeleteDnsRecordCommandInput)
+	in := new(model.DeleteGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -600,7 +600,7 @@ func _GcpCloudDnsZoneRecordCommandController_Delete_Handler(srv interface{}, ctx
 		FullMethod: GcpCloudDnsZoneRecordCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteDnsRecordCommandInput))
+		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

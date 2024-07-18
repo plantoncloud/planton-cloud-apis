@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for organization credential id
+// wrapper for gcp-credential id
 type GcpCredentialId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

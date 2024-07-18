@@ -49,9 +49,9 @@ type ArgocdKubernetesCommandControllerClient interface {
 	// update an existing argocd-kubernetes
 	Update(ctx context.Context, in *model.ArgocdKubernetes, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// preview deleting an existing argocd-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// delete an existing argocd-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// preview restoring a previously deleted argocd-kubernetes
 	PreviewRestore(ctx context.Context, in *model.ArgocdKubernetes, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// restore a previously deleted argocd-kubernetes
@@ -62,15 +62,15 @@ type ArgocdKubernetesCommandControllerClient interface {
 	// pause a argocd-kubernetes running in a environment.
 	// argocd-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// unpause a previously paused argocd-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// preview refresh a argocd-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 	// refresh a argocd-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 }
 
 type argocdKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *argocdKubernetesCommandControllerClient) Update(ctx context.Context, in
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *argocdKubernetesCommandControllerClient) PreviewDelete(ctx context.Cont
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *argocdKubernetesCommandControllerClient) Restart(ctx context.Context, i
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *argocdKubernetesCommandControllerClient) Pause(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *argocdKubernetesCommandControllerClient) Unpause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *argocdKubernetesCommandControllerClient) PreviewRefresh(ctx context.Con
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
+func (c *argocdKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
 	out := new(model.ArgocdKubernetes)
 	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type ArgocdKubernetesCommandControllerServer interface {
 	// update an existing argocd-kubernetes
 	Update(context.Context, *model.ArgocdKubernetes) (*model.ArgocdKubernetes, error)
 	// preview deleting an existing argocd-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.ArgocdKubernetes, error)
 	// delete an existing argocd-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ArgocdKubernetes, error)
 	// preview restoring a previously deleted argocd-kubernetes
 	PreviewRestore(context.Context, *model.ArgocdKubernetes) (*model.ArgocdKubernetes, error)
 	// restore a previously deleted argocd-kubernetes
@@ -224,15 +224,15 @@ type ArgocdKubernetesCommandControllerServer interface {
 	// pause a argocd-kubernetes running in a environment.
 	// argocd-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgocdKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.ArgocdKubernetes, error)
 	// unpause a previously paused argocd-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgocdKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ArgocdKubernetes, error)
 	// preview refresh a argocd-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error)
 	// refresh a argocd-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error)
 }
 
 // UnimplementedArgocdKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewUpdate(contex
 func (UnimplementedArgocdKubernetesCommandControllerServer) Update(context.Context, *model.ArgocdKubernetes) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.ArgocdKubernetes) (*model.ArgocdKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedArgocdKubernetesCommandControllerServer) Restore(context.Cont
 func (UnimplementedArgocdKubernetesCommandControllerServer) Restart(context.Context, *model.ArgocdKubernetesId) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedArgocdKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.ArgocdKubernetes, error) {
+func (UnimplementedArgocdKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _ArgocdKubernetesCommandController_Update_Handler(srv interface{}, ctx cont
 }
 
 func _ArgocdKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _ArgocdKubernetesCommandController_PreviewDelete_Handler(srv interface{}, c
 		FullMethod: ArgocdKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArgocdKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _ArgocdKubernetesCommandController_Delete_Handler(srv interface{}, ctx cont
 		FullMethod: ArgocdKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _ArgocdKubernetesCommandController_Restart_Handler(srv interface{}, ctx con
 }
 
 func _ArgocdKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _ArgocdKubernetesCommandController_Pause_Handler(srv interface{}, ctx conte
 		FullMethod: ArgocdKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArgocdKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _ArgocdKubernetesCommandController_Unpause_Handler(srv interface{}, ctx con
 		FullMethod: ArgocdKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArgocdKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _ArgocdKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, 
 		FullMethod: ArgocdKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _ArgocdKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _ArgocdKubernetesCommandController_Refresh_Handler(srv interface{}, ctx con
 		FullMethod: ArgocdKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(ArgocdKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -39,7 +39,7 @@ type KubernetesClusterCredentialCommandControllerClient interface {
 	Update(ctx context.Context, in *model.KubernetesClusterCredential, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error)
 	// delete a kubernetes-cluster-credential that was previously created
 	// warning: deleting a kubernetes-cluster-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error)
 	// restore a deleted kubernetes-cluster-credential.
 	Restore(ctx context.Context, in *model.KubernetesClusterCredential, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error)
 }
@@ -70,7 +70,7 @@ func (c *kubernetesClusterCredentialCommandControllerClient) Update(ctx context.
 	return out, nil
 }
 
-func (c *kubernetesClusterCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error) {
+func (c *kubernetesClusterCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KubernetesClusterCredential, error) {
 	out := new(model.KubernetesClusterCredential)
 	err := c.cc.Invoke(ctx, KubernetesClusterCredentialCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -98,7 +98,7 @@ type KubernetesClusterCredentialCommandControllerServer interface {
 	Update(context.Context, *model.KubernetesClusterCredential) (*model.KubernetesClusterCredential, error)
 	// delete a kubernetes-cluster-credential that was previously created
 	// warning: deleting a kubernetes-cluster-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubernetesClusterCredential, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KubernetesClusterCredential, error)
 	// restore a deleted kubernetes-cluster-credential.
 	Restore(context.Context, *model.KubernetesClusterCredential) (*model.KubernetesClusterCredential, error)
 }
@@ -113,7 +113,7 @@ func (UnimplementedKubernetesClusterCredentialCommandControllerServer) Create(co
 func (UnimplementedKubernetesClusterCredentialCommandControllerServer) Update(context.Context, *model.KubernetesClusterCredential) (*model.KubernetesClusterCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubernetesClusterCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubernetesClusterCredential, error) {
+func (UnimplementedKubernetesClusterCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KubernetesClusterCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKubernetesClusterCredentialCommandControllerServer) Restore(context.Context, *model.KubernetesClusterCredential) (*model.KubernetesClusterCredential, error) {
@@ -168,7 +168,7 @@ func _KubernetesClusterCredentialCommandController_Update_Handler(srv interface{
 }
 
 func _KubernetesClusterCredentialCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -180,7 +180,7 @@ func _KubernetesClusterCredentialCommandController_Delete_Handler(srv interface{
 		FullMethod: KubernetesClusterCredentialCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesClusterCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KubernetesClusterCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

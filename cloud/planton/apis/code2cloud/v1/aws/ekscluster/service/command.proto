@@ -65,7 +65,7 @@ service EksClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   // preview deleting a eks-cluster.
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -78,7 +78,7 @@ service EksClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   // delete a eks-cluster.
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -120,7 +120,7 @@ service EksClusterCommandController {
   //when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
   //when a eks-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
   // may continue to charge a modest operational fee for the cluster.
-  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseInput)
       returns(cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -136,7 +136,7 @@ service EksClusterCommandController {
   //a eks-cluster is resumed by setting the number of nodes in each node pool of the eks-cluster to the
   // values configured for the eks-cluster.
   //when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
-  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseInput)
       returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -149,7 +149,7 @@ service EksClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview refresh a eks-cluster that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -162,7 +162,7 @@ service EksClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //refresh a eks-cluster that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;

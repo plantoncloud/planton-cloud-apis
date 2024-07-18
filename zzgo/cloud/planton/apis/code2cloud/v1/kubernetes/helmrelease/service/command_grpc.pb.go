@@ -46,17 +46,17 @@ type HelmReleaseCommandControllerClient interface {
 	// update an existing helm-release
 	Update(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// preview deleting an existing helm-release
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// delete an existing helm-release
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// preview restoring a previously deleted helm-release
 	PreviewRestore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// preview refresh a helm-release that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// refresh a helm-release that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 }
 
 type helmReleaseCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *helmReleaseCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
+func (c *helmReleaseCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *helmReleaseCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
+func (c *helmReleaseCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *helmReleaseCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
+func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context,
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
+func (c *helmReleaseCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
 	out := new(model.HelmRelease)
 	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type HelmReleaseCommandControllerServer interface {
 	// update an existing helm-release
 	Update(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
 	// preview deleting an existing helm-release
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.HelmRelease, error)
 	// delete an existing helm-release
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.HelmRelease, error)
 	// preview restoring a previously deleted helm-release
 	PreviewRestore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
 	// preview refresh a helm-release that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error)
 	// refresh a helm-release that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error)
 }
 
 // UnimplementedHelmReleaseCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedHelmReleaseCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedHelmReleaseCommandControllerServer) Update(context.Context, *model.HelmRelease) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedHelmReleaseCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error) {
+func (UnimplementedHelmReleaseCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedHelmReleaseCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.HelmRelease, error) {
+func (UnimplementedHelmReleaseCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedHelmReleaseCommandControllerServer) PreviewRestore(context.Context, *model.HelmRelease) (*model.HelmRelease, error) {
@@ -211,10 +211,10 @@ func (UnimplementedHelmReleaseCommandControllerServer) PreviewRestore(context.Co
 func (UnimplementedHelmReleaseCommandControllerServer) Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedHelmReleaseCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error) {
+func (UnimplementedHelmReleaseCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedHelmReleaseCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.HelmRelease, error) {
+func (UnimplementedHelmReleaseCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _HelmReleaseCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _HelmReleaseCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _HelmReleaseCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: HelmReleaseCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(HelmReleaseCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _HelmReleaseCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _HelmReleaseCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: HelmReleaseCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(HelmReleaseCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _HelmReleaseCommandController_Restore_Handler(srv interface{}, ctx context.
 }
 
 func _HelmReleaseCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _HelmReleaseCommandController_PreviewRefresh_Handler(srv interface{}, ctx c
 		FullMethod: HelmReleaseCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(HelmReleaseCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _HelmReleaseCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _HelmReleaseCommandController_Refresh_Handler(srv interface{}, ctx context.
 		FullMethod: HelmReleaseCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(HelmReleaseCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

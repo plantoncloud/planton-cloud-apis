@@ -50,13 +50,13 @@ message GcpZoneList {
   repeated GcpZone entries = 1;
 }
 
-message GkeClusterGcpNodePoolCommandInput {
+message GkeClusterGcpNodePoolInput {
   string gke_cluster_id = 1;
   GkeClusterNodePool node_pool = 2;
 }
 
-// AddOrUpdateGkeClusterNodePoolCommandInput is a protobuf message designed to add or update or restore a GCP Node Pool in a specific Kube Cluster.
-message AddOrUpdateGkeClusterNodePoolCommandInput {
+// AddOrUpdateGkeClusterNodePoolInput is a protobuf message designed to add or update or restore a GCP Node Pool in a specific Kube Cluster.
+message AddOrUpdateGkeClusterNodePoolInput {
 
   // gke_cluster_id uniquely identifies the Kube Cluster to which the operation applies.
   string gke_cluster_id = 1 [
@@ -75,10 +75,10 @@ message AddOrUpdateGkeClusterNodePoolCommandInput {
   ];
 }
 
-// DeleteOrRestoreGkeClusterNodePoolCommandInput is a protobuf message designed for operations that either
+// DeleteOrRestoreGkeClusterNodePoolInput is a protobuf message designed for operations that either
 // soft delete (i.e., set an 'inactive' flag) or restore a GCP Node Pool in a specific Kube Cluster.
 // Soft deleting is typically used as a safer alternative to permanent deletion, providing an option for recovery.
-message DeleteGkeClusterNodePoolCommandInput {
+message DeleteGkeClusterNodePoolInput {
   // gke_cluster_id is the unique identifier of the Kube Cluster that contains the Node Pool
   // which is targeted for deletion or restoration. This ID helps the server locate the specific Kube Cluster.
   string gke_cluster_id = 1 [

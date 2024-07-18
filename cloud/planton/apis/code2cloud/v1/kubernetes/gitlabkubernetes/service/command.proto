@@ -61,7 +61,7 @@ service GitlabKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview deleting an existing gitlab-kubernetes
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -74,7 +74,7 @@ service GitlabKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete an existing gitlab-kubernetes
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -124,7 +124,7 @@ service GitlabKubernetesCommandController {
   //pause a gitlab-kubernetes running in a environment.
   //gitlab-kubernetes is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
-  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -139,7 +139,7 @@ service GitlabKubernetesCommandController {
   //unpause a previously paused gitlab-kubernetes running in a environment.
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the gitlab-kubernetes.
-  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -152,7 +152,7 @@ service GitlabKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview refresh a gitlab-kubernetes that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -165,7 +165,7 @@ service GitlabKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //refresh a gitlab-kubernetes that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gitlab_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;

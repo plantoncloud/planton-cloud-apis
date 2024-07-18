@@ -36,7 +36,7 @@ type AzureCredentialCommandControllerClient interface {
 	// update an existing azure-credential
 	Update(ctx context.Context, in *model.AzureCredential, opts ...grpc.CallOption) (*model.AzureCredential, error)
 	// delete a azure-credential that was previously created
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AzureCredential, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AzureCredential, error)
 	// restore a deleted azure-credential.
 	Restore(ctx context.Context, in *model.AzureCredential, opts ...grpc.CallOption) (*model.AzureCredential, error)
 }
@@ -67,7 +67,7 @@ func (c *azureCredentialCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *azureCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.AzureCredential, error) {
+func (c *azureCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.AzureCredential, error) {
 	out := new(model.AzureCredential)
 	err := c.cc.Invoke(ctx, AzureCredentialCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type AzureCredentialCommandControllerServer interface {
 	// update an existing azure-credential
 	Update(context.Context, *model.AzureCredential) (*model.AzureCredential, error)
 	// delete a azure-credential that was previously created
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AzureCredential, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AzureCredential, error)
 	// restore a deleted azure-credential.
 	Restore(context.Context, *model.AzureCredential) (*model.AzureCredential, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedAzureCredentialCommandControllerServer) Create(context.Contex
 func (UnimplementedAzureCredentialCommandControllerServer) Update(context.Context, *model.AzureCredential) (*model.AzureCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedAzureCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.AzureCredential, error) {
+func (UnimplementedAzureCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.AzureCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedAzureCredentialCommandControllerServer) Restore(context.Context, *model.AzureCredential) (*model.AzureCredential, error) {
@@ -164,7 +164,7 @@ func _AzureCredentialCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _AzureCredentialCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _AzureCredentialCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: AzureCredentialCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AzureCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(AzureCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

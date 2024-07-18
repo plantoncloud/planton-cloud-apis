@@ -37,7 +37,7 @@ type KubernetesDockerCredentialCommandControllerClient interface {
 	Update(ctx context.Context, in *model.KubernetesDockerCredential, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error)
 	// delete a kubernetes-docker-credential that was previously created
 	// warning: deleting a kubernetes-docker-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error)
 	// restore a deleted kubernetes-docker-credential.
 	Restore(ctx context.Context, in *model.KubernetesDockerCredential, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error)
 }
@@ -68,7 +68,7 @@ func (c *kubernetesDockerCredentialCommandControllerClient) Update(ctx context.C
 	return out, nil
 }
 
-func (c *kubernetesDockerCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error) {
+func (c *kubernetesDockerCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KubernetesDockerCredential, error) {
 	out := new(model.KubernetesDockerCredential)
 	err := c.cc.Invoke(ctx, KubernetesDockerCredentialCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -96,7 +96,7 @@ type KubernetesDockerCredentialCommandControllerServer interface {
 	Update(context.Context, *model.KubernetesDockerCredential) (*model.KubernetesDockerCredential, error)
 	// delete a kubernetes-docker-credential that was previously created
 	// warning: deleting a kubernetes-docker-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubernetesDockerCredential, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KubernetesDockerCredential, error)
 	// restore a deleted kubernetes-docker-credential.
 	Restore(context.Context, *model.KubernetesDockerCredential) (*model.KubernetesDockerCredential, error)
 }
@@ -111,7 +111,7 @@ func (UnimplementedKubernetesDockerCredentialCommandControllerServer) Create(con
 func (UnimplementedKubernetesDockerCredentialCommandControllerServer) Update(context.Context, *model.KubernetesDockerCredential) (*model.KubernetesDockerCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKubernetesDockerCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KubernetesDockerCredential, error) {
+func (UnimplementedKubernetesDockerCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KubernetesDockerCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKubernetesDockerCredentialCommandControllerServer) Restore(context.Context, *model.KubernetesDockerCredential) (*model.KubernetesDockerCredential, error) {
@@ -166,7 +166,7 @@ func _KubernetesDockerCredentialCommandController_Update_Handler(srv interface{}
 }
 
 func _KubernetesDockerCredentialCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -178,7 +178,7 @@ func _KubernetesDockerCredentialCommandController_Delete_Handler(srv interface{}
 		FullMethod: KubernetesDockerCredentialCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KubernetesDockerCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KubernetesDockerCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

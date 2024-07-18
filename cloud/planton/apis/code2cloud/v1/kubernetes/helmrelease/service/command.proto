@@ -62,7 +62,7 @@ service HelmReleaseCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview deleting an existing helm-release
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -75,7 +75,7 @@ service HelmReleaseCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete an existing helm-release
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -112,7 +112,7 @@ service HelmReleaseCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview refresh a helm-release that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -125,7 +125,7 @@ service HelmReleaseCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //refresh a helm-release that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = helm_release;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;

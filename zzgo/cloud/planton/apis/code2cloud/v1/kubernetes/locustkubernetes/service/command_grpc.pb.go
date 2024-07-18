@@ -49,9 +49,9 @@ type LocustKubernetesCommandControllerClient interface {
 	// update an existing locust-kubernetes
 	Update(ctx context.Context, in *model.LocustKubernetes, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// preview deleting an existing locust-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// delete an existing locust-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// preview restoring a previously deleted locust-kubernetes
 	PreviewRestore(ctx context.Context, in *model.LocustKubernetes, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// restore a previously deleted locust-kubernetes
@@ -62,15 +62,15 @@ type LocustKubernetesCommandControllerClient interface {
 	// pause a locust-kubernetes running in a environment.
 	// locust-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// unpause a previously paused locust-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the locust-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// preview refresh a locust-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 	// refresh a locust-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error)
 }
 
 type locustKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *locustKubernetesCommandControllerClient) Update(ctx context.Context, in
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *locustKubernetesCommandControllerClient) PreviewDelete(ctx context.Cont
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *locustKubernetesCommandControllerClient) Restart(ctx context.Context, i
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *locustKubernetesCommandControllerClient) Pause(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *locustKubernetesCommandControllerClient) Unpause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *locustKubernetesCommandControllerClient) PreviewRefresh(ctx context.Con
 	return out, nil
 }
 
-func (c *locustKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
+func (c *locustKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.LocustKubernetes, error) {
 	out := new(model.LocustKubernetes)
 	err := c.cc.Invoke(ctx, LocustKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type LocustKubernetesCommandControllerServer interface {
 	// update an existing locust-kubernetes
 	Update(context.Context, *model.LocustKubernetes) (*model.LocustKubernetes, error)
 	// preview deleting an existing locust-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.LocustKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.LocustKubernetes, error)
 	// delete an existing locust-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.LocustKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.LocustKubernetes, error)
 	// preview restoring a previously deleted locust-kubernetes
 	PreviewRestore(context.Context, *model.LocustKubernetes) (*model.LocustKubernetes, error)
 	// restore a previously deleted locust-kubernetes
@@ -224,15 +224,15 @@ type LocustKubernetesCommandControllerServer interface {
 	// pause a locust-kubernetes running in a environment.
 	// locust-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.LocustKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.LocustKubernetes, error)
 	// unpause a previously paused locust-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the locust-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.LocustKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.LocustKubernetes, error)
 	// preview refresh a locust-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.LocustKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.LocustKubernetes, error)
 	// refresh a locust-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.LocustKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.LocustKubernetes, error)
 }
 
 // UnimplementedLocustKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedLocustKubernetesCommandControllerServer) PreviewUpdate(contex
 func (UnimplementedLocustKubernetesCommandControllerServer) Update(context.Context, *model.LocustKubernetes) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedLocustKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.LocustKubernetes) (*model.LocustKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedLocustKubernetesCommandControllerServer) Restore(context.Cont
 func (UnimplementedLocustKubernetesCommandControllerServer) Restart(context.Context, *model.LocustKubernetesId) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedLocustKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.LocustKubernetes, error) {
+func (UnimplementedLocustKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.LocustKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _LocustKubernetesCommandController_Update_Handler(srv interface{}, ctx cont
 }
 
 func _LocustKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _LocustKubernetesCommandController_PreviewDelete_Handler(srv interface{}, c
 		FullMethod: LocustKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _LocustKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _LocustKubernetesCommandController_Delete_Handler(srv interface{}, ctx cont
 		FullMethod: LocustKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _LocustKubernetesCommandController_Restart_Handler(srv interface{}, ctx con
 }
 
 func _LocustKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _LocustKubernetesCommandController_Pause_Handler(srv interface{}, ctx conte
 		FullMethod: LocustKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _LocustKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _LocustKubernetesCommandController_Unpause_Handler(srv interface{}, ctx con
 		FullMethod: LocustKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _LocustKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _LocustKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, 
 		FullMethod: LocustKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _LocustKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _LocustKubernetesCommandController_Refresh_Handler(srv interface{}, ctx con
 		FullMethod: LocustKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(LocustKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(LocustKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -46,17 +46,17 @@ type GcsBucketCommandControllerClient interface {
 	// update an existing gcs-bucket
 	Update(ctx context.Context, in *model.GcsBucket, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// preview delete an existing gcs-bucket
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// delete an existing gcs-bucket
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// preview restore a deleted gcs-bucket
 	PreviewRestore(ctx context.Context, in *model.GcsBucket, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// restore a deleted gcs-bucket
 	Restore(ctx context.Context, in *model.GcsBucket, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// preview refresh a gcs-bucket that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// refresh a gcs-bucket that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
 }
 
 type gcsBucketCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *gcsBucketCommandControllerClient) Update(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *gcsBucketCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
+func (c *gcsBucketCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
 	out := new(model.GcsBucket)
 	err := c.cc.Invoke(ctx, GcsBucketCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *gcsBucketCommandControllerClient) PreviewDelete(ctx context.Context, in
 	return out, nil
 }
 
-func (c *gcsBucketCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
+func (c *gcsBucketCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
 	out := new(model.GcsBucket)
 	err := c.cc.Invoke(ctx, GcsBucketCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *gcsBucketCommandControllerClient) Restore(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *gcsBucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
+func (c *gcsBucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
 	out := new(model.GcsBucket)
 	err := c.cc.Invoke(ctx, GcsBucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *gcsBucketCommandControllerClient) PreviewRefresh(ctx context.Context, i
 	return out, nil
 }
 
-func (c *gcsBucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
+func (c *gcsBucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
 	out := new(model.GcsBucket)
 	err := c.cc.Invoke(ctx, GcsBucketCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type GcsBucketCommandControllerServer interface {
 	// update an existing gcs-bucket
 	Update(context.Context, *model.GcsBucket) (*model.GcsBucket, error)
 	// preview delete an existing gcs-bucket
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcsBucket, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcsBucket, error)
 	// delete an existing gcs-bucket
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcsBucket, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcsBucket, error)
 	// preview restore a deleted gcs-bucket
 	PreviewRestore(context.Context, *model.GcsBucket) (*model.GcsBucket, error)
 	// restore a deleted gcs-bucket
 	Restore(context.Context, *model.GcsBucket) (*model.GcsBucket, error)
 	// preview refresh a gcs-bucket that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcsBucket, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error)
 	// refresh a gcs-bucket that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcsBucket, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error)
 }
 
 // UnimplementedGcsBucketCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedGcsBucketCommandControllerServer) PreviewUpdate(context.Conte
 func (UnimplementedGcsBucketCommandControllerServer) Update(context.Context, *model.GcsBucket) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcsBucketCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcsBucket, error) {
+func (UnimplementedGcsBucketCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGcsBucketCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcsBucket, error) {
+func (UnimplementedGcsBucketCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGcsBucketCommandControllerServer) PreviewRestore(context.Context, *model.GcsBucket) (*model.GcsBucket, error) {
@@ -211,10 +211,10 @@ func (UnimplementedGcsBucketCommandControllerServer) PreviewRestore(context.Cont
 func (UnimplementedGcsBucketCommandControllerServer) Restore(context.Context, *model.GcsBucket) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGcsBucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcsBucket, error) {
+func (UnimplementedGcsBucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGcsBucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcsBucket, error) {
+func (UnimplementedGcsBucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _GcsBucketCommandController_Update_Handler(srv interface{}, ctx context.Con
 }
 
 func _GcsBucketCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _GcsBucketCommandController_PreviewDelete_Handler(srv interface{}, ctx cont
 		FullMethod: GcsBucketCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcsBucketCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcsBucketCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _GcsBucketCommandController_Delete_Handler(srv interface{}, ctx context.Con
 		FullMethod: GcsBucketCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcsBucketCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _GcsBucketCommandController_Restore_Handler(srv interface{}, ctx context.Co
 }
 
 func _GcsBucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _GcsBucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx con
 		FullMethod: GcsBucketCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcsBucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcsBucketCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _GcsBucketCommandController_Refresh_Handler(srv interface{}, ctx context.Co
 		FullMethod: GcsBucketCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcsBucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

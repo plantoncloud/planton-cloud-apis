@@ -37,7 +37,7 @@ service StackCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //delete stack
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.iac.v1.stack.model.Stack) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = platform_microservice_account;
@@ -50,6 +50,6 @@ service StackCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //delete stack on pulumi cloud
-  rpc deleteOnPulumiCloud(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc deleteOnPulumiCloud(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.iac.v1.stack.model.Stack);
 }

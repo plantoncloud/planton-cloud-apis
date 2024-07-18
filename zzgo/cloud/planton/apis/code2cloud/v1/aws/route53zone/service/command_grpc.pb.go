@@ -46,17 +46,17 @@ type Route53ZoneCommandControllerClient interface {
 	// update an existing route53-zone
 	Update(ctx context.Context, in *model.Route53Zone, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// preview deleting a route53-zone
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// delete a route53-zone
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// preview restoring a deleted route53-zone
 	PreviewRestore(ctx context.Context, in *model.Route53Zone, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// restore a deleted route53-zone
 	Restore(ctx context.Context, in *model.Route53Zone, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// preview refresh a route53-zone that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// refresh a route53-zone that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 }
 
 type route53ZoneCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *route53ZoneCommandControllerClient) Update(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *route53ZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *route53ZoneCommandControllerClient) PreviewDelete(ctx context.Context, 
 	return out, nil
 }
 
-func (c *route53ZoneCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *route53ZoneCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *route53ZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *route53ZoneCommandControllerClient) PreviewRefresh(ctx context.Context,
 	return out, nil
 }
 
-func (c *route53ZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type Route53ZoneCommandControllerServer interface {
 	// update an existing route53-zone
 	Update(context.Context, *model.Route53Zone) (*model.Route53Zone, error)
 	// preview deleting a route53-zone
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Route53Zone, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.Route53Zone, error)
 	// delete a route53-zone
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Route53Zone, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Route53Zone, error)
 	// preview restoring a deleted route53-zone
 	PreviewRestore(context.Context, *model.Route53Zone) (*model.Route53Zone, error)
 	// restore a deleted route53-zone
 	Restore(context.Context, *model.Route53Zone) (*model.Route53Zone, error)
 	// preview refresh a route53-zone that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Route53Zone, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error)
 	// refresh a route53-zone that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Route53Zone, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error)
 }
 
 // UnimplementedRoute53ZoneCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedRoute53ZoneCommandControllerServer) PreviewUpdate(context.Con
 func (UnimplementedRoute53ZoneCommandControllerServer) Update(context.Context, *model.Route53Zone) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedRoute53ZoneCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedRoute53ZoneCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRestore(context.Context, *model.Route53Zone) (*model.Route53Zone, error) {
@@ -211,10 +211,10 @@ func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRestore(context.Co
 func (UnimplementedRoute53ZoneCommandControllerServer) Restore(context.Context, *model.Route53Zone) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedRoute53ZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _Route53ZoneCommandController_Update_Handler(srv interface{}, ctx context.C
 }
 
 func _Route53ZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _Route53ZoneCommandController_PreviewDelete_Handler(srv interface{}, ctx co
 		FullMethod: Route53ZoneCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(Route53ZoneCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Route53ZoneCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _Route53ZoneCommandController_Delete_Handler(srv interface{}, ctx context.C
 		FullMethod: Route53ZoneCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(Route53ZoneCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _Route53ZoneCommandController_Restore_Handler(srv interface{}, ctx context.
 }
 
 func _Route53ZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _Route53ZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx c
 		FullMethod: Route53ZoneCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(Route53ZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Route53ZoneCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _Route53ZoneCommandController_Refresh_Handler(srv interface{}, ctx context.
 		FullMethod: Route53ZoneCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(Route53ZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -472,11 +472,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type Route53ZoneRecordCommandControllerClient interface {
 	// add a new dns-record to route53-zone
-	Add(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	Add(ctx context.Context, in *model.AddOrUpdateDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// update an existing dns-record in route53-zone
-	Update(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	Update(ctx context.Context, in *model.AddOrUpdateDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// delete a dns-record from a route53-zone
-	Delete(ctx context.Context, in *model.DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
+	Delete(ctx context.Context, in *model.DeleteDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 }
 
 type route53ZoneRecordCommandControllerClient struct {
@@ -487,7 +487,7 @@ func NewRoute53ZoneRecordCommandControllerClient(cc grpc.ClientConnInterface) Ro
 	return &route53ZoneRecordCommandControllerClient{cc}
 }
 
-func (c *route53ZoneRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneRecordCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -496,7 +496,7 @@ func (c *route53ZoneRecordCommandControllerClient) Add(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *route53ZoneRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneRecordCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -505,7 +505,7 @@ func (c *route53ZoneRecordCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *route53ZoneRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteDnsRecordCommandInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
+func (c *route53ZoneRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteDnsRecordInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
 	out := new(model.Route53Zone)
 	err := c.cc.Invoke(ctx, Route53ZoneRecordCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -519,24 +519,24 @@ func (c *route53ZoneRecordCommandControllerClient) Delete(ctx context.Context, i
 // for forward compatibility
 type Route53ZoneRecordCommandControllerServer interface {
 	// add a new dns-record to route53-zone
-	Add(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.Route53Zone, error)
+	Add(context.Context, *model.AddOrUpdateDnsRecordInput) (*model.Route53Zone, error)
 	// update an existing dns-record in route53-zone
-	Update(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.Route53Zone, error)
+	Update(context.Context, *model.AddOrUpdateDnsRecordInput) (*model.Route53Zone, error)
 	// delete a dns-record from a route53-zone
-	Delete(context.Context, *model.DeleteDnsRecordCommandInput) (*model.Route53Zone, error)
+	Delete(context.Context, *model.DeleteDnsRecordInput) (*model.Route53Zone, error)
 }
 
 // UnimplementedRoute53ZoneRecordCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedRoute53ZoneRecordCommandControllerServer struct {
 }
 
-func (UnimplementedRoute53ZoneRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateDnsRecordInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedRoute53ZoneRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateDnsRecordCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateDnsRecordInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedRoute53ZoneRecordCommandControllerServer) Delete(context.Context, *model.DeleteDnsRecordCommandInput) (*model.Route53Zone, error) {
+func (UnimplementedRoute53ZoneRecordCommandControllerServer) Delete(context.Context, *model.DeleteDnsRecordInput) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -552,7 +552,7 @@ func RegisterRoute53ZoneRecordCommandControllerServer(s grpc.ServiceRegistrar, s
 }
 
 func _Route53ZoneRecordCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateDnsRecordCommandInput)
+	in := new(model.AddOrUpdateDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -564,13 +564,13 @@ func _Route53ZoneRecordCommandController_Add_Handler(srv interface{}, ctx contex
 		FullMethod: Route53ZoneRecordCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateDnsRecordCommandInput))
+		return srv.(Route53ZoneRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Route53ZoneRecordCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateDnsRecordCommandInput)
+	in := new(model.AddOrUpdateDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -582,13 +582,13 @@ func _Route53ZoneRecordCommandController_Update_Handler(srv interface{}, ctx con
 		FullMethod: Route53ZoneRecordCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateDnsRecordCommandInput))
+		return srv.(Route53ZoneRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Route53ZoneRecordCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.DeleteDnsRecordCommandInput)
+	in := new(model.DeleteDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -600,7 +600,7 @@ func _Route53ZoneRecordCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: Route53ZoneRecordCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteDnsRecordCommandInput))
+		return srv.(Route53ZoneRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

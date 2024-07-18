@@ -49,9 +49,9 @@ type SolrKubernetesCommandControllerClient interface {
 	// update an existing solr-kubernetes
 	Update(ctx context.Context, in *model.SolrKubernetes, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// preview deleting an existing solr-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// delete an existing solr-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// preview restoring a deleted solr-kubernetes
 	PreviewRestore(ctx context.Context, in *model.SolrKubernetes, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// restore a deleted solr-kubernetes
@@ -62,15 +62,15 @@ type SolrKubernetesCommandControllerClient interface {
 	// pause a solr-kubernetes running in a environment.
 	// solr-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// unpause a previously paused solr-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// preview refresh a solr-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 	// refresh a solr-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error)
 }
 
 type solrKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *solrKubernetesCommandControllerClient) Update(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *solrKubernetesCommandControllerClient) PreviewDelete(ctx context.Contex
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *solrKubernetesCommandControllerClient) Restart(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *solrKubernetesCommandControllerClient) Pause(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *solrKubernetesCommandControllerClient) Unpause(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *solrKubernetesCommandControllerClient) PreviewRefresh(ctx context.Conte
 	return out, nil
 }
 
-func (c *solrKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
+func (c *solrKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.SolrKubernetes, error) {
 	out := new(model.SolrKubernetes)
 	err := c.cc.Invoke(ctx, SolrKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type SolrKubernetesCommandControllerServer interface {
 	// update an existing solr-kubernetes
 	Update(context.Context, *model.SolrKubernetes) (*model.SolrKubernetes, error)
 	// preview deleting an existing solr-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.SolrKubernetes, error)
 	// delete an existing solr-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.SolrKubernetes, error)
 	// preview restoring a deleted solr-kubernetes
 	PreviewRestore(context.Context, *model.SolrKubernetes) (*model.SolrKubernetes, error)
 	// restore a deleted solr-kubernetes
@@ -224,15 +224,15 @@ type SolrKubernetesCommandControllerServer interface {
 	// pause a solr-kubernetes running in a environment.
 	// solr-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.SolrKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.SolrKubernetes, error)
 	// unpause a previously paused solr-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the solr-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.SolrKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.SolrKubernetes, error)
 	// preview refresh a solr-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.SolrKubernetes, error)
 	// refresh a solr-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.SolrKubernetes, error)
 }
 
 // UnimplementedSolrKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedSolrKubernetesCommandControllerServer) PreviewUpdate(context.
 func (UnimplementedSolrKubernetesCommandControllerServer) Update(context.Context, *model.SolrKubernetes) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedSolrKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.SolrKubernetes) (*model.SolrKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedSolrKubernetesCommandControllerServer) Restore(context.Contex
 func (UnimplementedSolrKubernetesCommandControllerServer) Restart(context.Context, *model.SolrKubernetesId) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedSolrKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.SolrKubernetes, error) {
+func (UnimplementedSolrKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.SolrKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _SolrKubernetesCommandController_Update_Handler(srv interface{}, ctx contex
 }
 
 func _SolrKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _SolrKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx
 		FullMethod: SolrKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _SolrKubernetesCommandController_Delete_Handler(srv interface{}, ctx contex
 		FullMethod: SolrKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _SolrKubernetesCommandController_Restart_Handler(srv interface{}, ctx conte
 }
 
 func _SolrKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _SolrKubernetesCommandController_Pause_Handler(srv interface{}, ctx context
 		FullMethod: SolrKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _SolrKubernetesCommandController_Unpause_Handler(srv interface{}, ctx conte
 		FullMethod: SolrKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _SolrKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ct
 		FullMethod: SolrKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SolrKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _SolrKubernetesCommandController_Refresh_Handler(srv interface{}, ctx conte
 		FullMethod: SolrKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SolrKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(SolrKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -62,7 +62,7 @@ service ArgocdKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview deleting an existing argocd-kubernetes
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -75,7 +75,7 @@ service ArgocdKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete an existing argocd-kubernetes
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -125,7 +125,7 @@ service ArgocdKubernetesCommandController {
   //pause a argocd-kubernetes running in a environment.
   //argocd-kubernetes is paused by scaling down number of replicas of
   //the kubernetes stateful sets to zero in the environment.
-  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -140,7 +140,7 @@ service ArgocdKubernetesCommandController {
   //unpause a previously paused argocd-kubernetes running in a environment.
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the argocd-kubernetes.
-  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -153,7 +153,7 @@ service ArgocdKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview refresh a argocd-kubernetes that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -166,7 +166,7 @@ service ArgocdKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //refresh a argocd-kubernetes that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = argocd_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;

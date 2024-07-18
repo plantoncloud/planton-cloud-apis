@@ -49,9 +49,9 @@ type MongodbKubernetesCommandControllerClient interface {
 	// update an existing mongodb-kubernetes
 	Update(ctx context.Context, in *model.MongodbKubernetes, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// preview deleting an existing mongodb-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// delete an existing mongodb-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// preview restoring a previously deleted mongodb-kubernetes
 	PreviewRestore(ctx context.Context, in *model.MongodbKubernetes, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// restore a previously deleted mongodb-kubernetes
@@ -62,15 +62,15 @@ type MongodbKubernetesCommandControllerClient interface {
 	// pause a mongodb-kubernetes running in a environment.
 	// mongodb-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// unpause a previously paused mongodb-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the mongodb-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// preview refresh a mongodb-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 	// refresh a mongodb-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error)
 }
 
 type mongodbKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *mongodbKubernetesCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *mongodbKubernetesCommandControllerClient) PreviewDelete(ctx context.Con
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *mongodbKubernetesCommandControllerClient) Restart(ctx context.Context, 
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *mongodbKubernetesCommandControllerClient) Pause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *mongodbKubernetesCommandControllerClient) Unpause(ctx context.Context, 
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *mongodbKubernetesCommandControllerClient) PreviewRefresh(ctx context.Co
 	return out, nil
 }
 
-func (c *mongodbKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
+func (c *mongodbKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MongodbKubernetes, error) {
 	out := new(model.MongodbKubernetes)
 	err := c.cc.Invoke(ctx, MongodbKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type MongodbKubernetesCommandControllerServer interface {
 	// update an existing mongodb-kubernetes
 	Update(context.Context, *model.MongodbKubernetes) (*model.MongodbKubernetes, error)
 	// preview deleting an existing mongodb-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MongodbKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.MongodbKubernetes, error)
 	// delete an existing mongodb-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MongodbKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.MongodbKubernetes, error)
 	// preview restoring a previously deleted mongodb-kubernetes
 	PreviewRestore(context.Context, *model.MongodbKubernetes) (*model.MongodbKubernetes, error)
 	// restore a previously deleted mongodb-kubernetes
@@ -224,15 +224,15 @@ type MongodbKubernetesCommandControllerServer interface {
 	// pause a mongodb-kubernetes running in a environment.
 	// mongodb-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.MongodbKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.MongodbKubernetes, error)
 	// unpause a previously paused mongodb-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the mongodb-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.MongodbKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.MongodbKubernetes, error)
 	// preview refresh a mongodb-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MongodbKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MongodbKubernetes, error)
 	// refresh a mongodb-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MongodbKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MongodbKubernetes, error)
 }
 
 // UnimplementedMongodbKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewUpdate(conte
 func (UnimplementedMongodbKubernetesCommandControllerServer) Update(context.Context, *model.MongodbKubernetes) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.MongodbKubernetes) (*model.MongodbKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedMongodbKubernetesCommandControllerServer) Restore(context.Con
 func (UnimplementedMongodbKubernetesCommandControllerServer) Restart(context.Context, *model.MongodbKubernetesId) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedMongodbKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MongodbKubernetes, error) {
+func (UnimplementedMongodbKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MongodbKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _MongodbKubernetesCommandController_Update_Handler(srv interface{}, ctx con
 }
 
 func _MongodbKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _MongodbKubernetesCommandController_PreviewDelete_Handler(srv interface{}, 
 		FullMethod: MongodbKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MongodbKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _MongodbKubernetesCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: MongodbKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _MongodbKubernetesCommandController_Restart_Handler(srv interface{}, ctx co
 }
 
 func _MongodbKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _MongodbKubernetesCommandController_Pause_Handler(srv interface{}, ctx cont
 		FullMethod: MongodbKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MongodbKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _MongodbKubernetesCommandController_Unpause_Handler(srv interface{}, ctx co
 		FullMethod: MongodbKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MongodbKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _MongodbKubernetesCommandController_PreviewRefresh_Handler(srv interface{},
 		FullMethod: MongodbKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MongodbKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _MongodbKubernetesCommandController_Refresh_Handler(srv interface{}, ctx co
 		FullMethod: MongodbKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MongodbKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MongodbKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

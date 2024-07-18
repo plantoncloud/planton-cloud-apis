@@ -12,12 +12,12 @@ message IstioHttpEndpointId {
   ];
 }
 
-//AddOrUpdateIstioHttpEndpointRouteCommandInput is used to encapsulate the details required
+//AddOrUpdateIstioHttpEndpointRouteInput is used to encapsulate the details required
 //for adding a new route to a specific istio-http-endpoint, or updating
 //an existing one. This message is typically used to transmit data between the client and
 //server during an add or update operation concerning a specific route
 //associated with a particular istio-http-endpoint.
-message AddOrUpdateIstioHttpEndpointRouteCommandInput {
+message AddOrUpdateIstioHttpEndpointRouteInput {
   //The unique identifier for the istio-http-endpoint to which the route
   // needs to be added or updated. This field must be populated with a valid
   //istio-http-endpoint ID, which can be obtained from the istio-http-endpoint entity itself.
@@ -41,12 +41,12 @@ message AddOrUpdateIstioHttpEndpointRouteCommandInput {
   ];
 }
 
-//DeleteOrRestoreIstioHttpEndpointRouteCommandInput is used to encapsulate the details required for
+//DeleteOrRestoreIstioHttpEndpointRouteInput is used to encapsulate the details required for
 //deleting or restore a route of a specific istio-http-endpoint.
 //This message is typically used to transmit data between the client and the server
 //during a delete or restore operation concerning a specific route associated
 //with a particular istio-http-endpoint.
-message DeleteOrRestoreIstioHttpEndpointRouteCommandInput {
+message DeleteOrRestoreIstioHttpEndpointRouteInput {
   //The unique identifier for the istio-http-endpoint from which the route
   // needs to be deleted. This field must be populated with a valid
   //istio-http-endpoint ID, which can be obtained from the istio-http-endpoint entity itself.

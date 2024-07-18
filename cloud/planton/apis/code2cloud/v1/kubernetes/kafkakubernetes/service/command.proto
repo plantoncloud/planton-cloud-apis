@@ -64,7 +64,7 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
   //preview deleting an existing kafka-kubernetes
-  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc previewDelete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -77,7 +77,7 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //delete an existing kafka-kubernetes
-  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteCommandInput)
+  rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
@@ -128,7 +128,7 @@ service KafkaKubernetesCommandController {
   //pause a kafka-kubernetes running in a environment.
   //kafka-kubernetes is paused by scaling down number of replicas of
   //the kubernetes deployment/stateful sets to zero in the environment.
-  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseCommandInput)
+  rpc pause(cloud.planton.apis.commons.apiresource.model.ApiResourcePauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -143,7 +143,7 @@ service KafkaKubernetesCommandController {
   //unpause a previously paused kafka-kubernetes running in a environment.
   //unpause is done by scaling the number of pods back to the number of
   //replicas configured for the kafka-kubernetes.
-  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseCommandInput)
+  rpc unpause(cloud.planton.apis.commons.apiresource.model.ApiResourceUnPauseInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -156,7 +156,7 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //preview refresh a kafka-kubernetes that was previously created
-  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc previewRefresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -169,7 +169,7 @@ service KafkaKubernetesCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
   //refresh a kafka-kubernetes that was previously created
-  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshCommandInput)
+  rpc refresh(cloud.planton.apis.commons.apiresource.model.ApiResourceRefreshInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -187,7 +187,7 @@ service KafkaKubernetesCommandController {
 service KafkaTopicCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = kafka_kubernetes;
   //add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
-  rpc add(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
+  rpc add(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -201,7 +201,7 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-  rpc addMultiple(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddKafkaTopicsCommandInput)
+  rpc addMultiple(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddKafkaTopicsInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -215,7 +215,7 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //update a kafka topic.
-  rpc update(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicCommandInput)
+  rpc update(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.AddOrUpdateKafkaTopicInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
@@ -229,7 +229,7 @@ service KafkaTopicCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_id_field_path) = "kafka_kubernetes_id";
   }
   //delete a kafka topic.
-  rpc delete(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.DeleteOrRestoreKafkaTopicCommandInput)
+  rpc delete(cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.DeleteOrRestoreKafkaTopicInput)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.model.KafkaKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = kafka_kubernetes;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;

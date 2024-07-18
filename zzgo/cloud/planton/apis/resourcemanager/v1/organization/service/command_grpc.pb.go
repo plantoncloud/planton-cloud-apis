@@ -36,7 +36,7 @@ type OrganizationCommandControllerClient interface {
 	// update an existing organization on planton-cloud
 	Update(ctx context.Context, in *model.Organization, opts ...grpc.CallOption) (*model.Organization, error)
 	// delete an existing organization on planton-cloud using organization id
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Organization, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Organization, error)
 	// restore a previously deleted organization.
 	Restore(ctx context.Context, in *model.Organization, opts ...grpc.CallOption) (*model.Organization, error)
 }
@@ -67,7 +67,7 @@ func (c *organizationCommandControllerClient) Update(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *organizationCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.Organization, error) {
+func (c *organizationCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.Organization, error) {
 	out := new(model.Organization)
 	err := c.cc.Invoke(ctx, OrganizationCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type OrganizationCommandControllerServer interface {
 	// update an existing organization on planton-cloud
 	Update(context.Context, *model.Organization) (*model.Organization, error)
 	// delete an existing organization on planton-cloud using organization id
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Organization, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Organization, error)
 	// restore a previously deleted organization.
 	Restore(context.Context, *model.Organization) (*model.Organization, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedOrganizationCommandControllerServer) Create(context.Context, 
 func (UnimplementedOrganizationCommandControllerServer) Update(context.Context, *model.Organization) (*model.Organization, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedOrganizationCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.Organization, error) {
+func (UnimplementedOrganizationCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.Organization, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedOrganizationCommandControllerServer) Restore(context.Context, *model.Organization) (*model.Organization, error) {
@@ -164,7 +164,7 @@ func _OrganizationCommandController_Update_Handler(srv interface{}, ctx context.
 }
 
 func _OrganizationCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _OrganizationCommandController_Delete_Handler(srv interface{}, ctx context.
 		FullMethod: OrganizationCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrganizationCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(OrganizationCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

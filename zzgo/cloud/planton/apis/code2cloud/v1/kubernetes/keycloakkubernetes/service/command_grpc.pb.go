@@ -49,9 +49,9 @@ type KeycloakKubernetesCommandControllerClient interface {
 	// update an existing keycloak-kubernetes
 	Update(ctx context.Context, in *model.KeycloakKubernetes, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// preview deleting an existing keycloak-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// delete an existing keycloak-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// preview restoring a previously deleted keycloak-kubernetes
 	PreviewRestore(ctx context.Context, in *model.KeycloakKubernetes, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// restore a previously deleted keycloak-kubernetes
@@ -62,15 +62,15 @@ type KeycloakKubernetesCommandControllerClient interface {
 	// pause a keycloak-kubernetes running in a environment.
 	// keycloak-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// unpause a previously paused keycloak-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the keycloak-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// preview refresh a keycloak-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 	// refresh a keycloak-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error)
 }
 
 type keycloakKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *keycloakKubernetesCommandControllerClient) Update(ctx context.Context, 
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *keycloakKubernetesCommandControllerClient) PreviewDelete(ctx context.Co
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *keycloakKubernetesCommandControllerClient) Restart(ctx context.Context,
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *keycloakKubernetesCommandControllerClient) Pause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *keycloakKubernetesCommandControllerClient) Unpause(ctx context.Context,
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *keycloakKubernetesCommandControllerClient) PreviewRefresh(ctx context.C
 	return out, nil
 }
 
-func (c *keycloakKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
+func (c *keycloakKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KeycloakKubernetes, error) {
 	out := new(model.KeycloakKubernetes)
 	err := c.cc.Invoke(ctx, KeycloakKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type KeycloakKubernetesCommandControllerServer interface {
 	// update an existing keycloak-kubernetes
 	Update(context.Context, *model.KeycloakKubernetes) (*model.KeycloakKubernetes, error)
 	// preview deleting an existing keycloak-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KeycloakKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.KeycloakKubernetes, error)
 	// delete an existing keycloak-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KeycloakKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KeycloakKubernetes, error)
 	// preview restoring a previously deleted keycloak-kubernetes
 	PreviewRestore(context.Context, *model.KeycloakKubernetes) (*model.KeycloakKubernetes, error)
 	// restore a previously deleted keycloak-kubernetes
@@ -224,15 +224,15 @@ type KeycloakKubernetesCommandControllerServer interface {
 	// pause a keycloak-kubernetes running in a environment.
 	// keycloak-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.KeycloakKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.KeycloakKubernetes, error)
 	// unpause a previously paused keycloak-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the keycloak-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KeycloakKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KeycloakKubernetes, error)
 	// preview refresh a keycloak-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KeycloakKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KeycloakKubernetes, error)
 	// refresh a keycloak-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KeycloakKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KeycloakKubernetes, error)
 }
 
 // UnimplementedKeycloakKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewUpdate(cont
 func (UnimplementedKeycloakKubernetesCommandControllerServer) Update(context.Context, *model.KeycloakKubernetes) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.KeycloakKubernetes) (*model.KeycloakKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedKeycloakKubernetesCommandControllerServer) Restore(context.Co
 func (UnimplementedKeycloakKubernetesCommandControllerServer) Restart(context.Context, *model.KeycloakKubernetesId) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedKeycloakKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.KeycloakKubernetes, error) {
+func (UnimplementedKeycloakKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KeycloakKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _KeycloakKubernetesCommandController_Update_Handler(srv interface{}, ctx co
 }
 
 func _KeycloakKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _KeycloakKubernetesCommandController_PreviewDelete_Handler(srv interface{},
 		FullMethod: KeycloakKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KeycloakKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _KeycloakKubernetesCommandController_Delete_Handler(srv interface{}, ctx co
 		FullMethod: KeycloakKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _KeycloakKubernetesCommandController_Restart_Handler(srv interface{}, ctx c
 }
 
 func _KeycloakKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _KeycloakKubernetesCommandController_Pause_Handler(srv interface{}, ctx con
 		FullMethod: KeycloakKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KeycloakKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _KeycloakKubernetesCommandController_Unpause_Handler(srv interface{}, ctx c
 		FullMethod: KeycloakKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KeycloakKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _KeycloakKubernetesCommandController_PreviewRefresh_Handler(srv interface{}
 		FullMethod: KeycloakKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _KeycloakKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _KeycloakKubernetesCommandController_Refresh_Handler(srv interface{}, ctx c
 		FullMethod: KeycloakKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KeycloakKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(KeycloakKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

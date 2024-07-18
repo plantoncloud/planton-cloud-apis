@@ -37,7 +37,7 @@ type GcpCredentialCommandControllerClient interface {
 	Update(ctx context.Context, in *model.GcpCredential, opts ...grpc.CallOption) (*model.GcpCredential, error)
 	// delete a gcp-credential that was previously created
 	// warning: deleting a gcp-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCredential, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCredential, error)
 	// restore a deleted gcp-credential.
 	Restore(ctx context.Context, in *model.GcpCredential, opts ...grpc.CallOption) (*model.GcpCredential, error)
 }
@@ -68,7 +68,7 @@ func (c *gcpCredentialCommandControllerClient) Update(ctx context.Context, in *m
 	return out, nil
 }
 
-func (c *gcpCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpCredential, error) {
+func (c *gcpCredentialCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpCredential, error) {
 	out := new(model.GcpCredential)
 	err := c.cc.Invoke(ctx, GcpCredentialCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -96,7 +96,7 @@ type GcpCredentialCommandControllerServer interface {
 	Update(context.Context, *model.GcpCredential) (*model.GcpCredential, error)
 	// delete a gcp-credential that was previously created
 	// warning: deleting a gcp-credential from planton-cloud destroys the resources created by planton-cloud in the account
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCredential, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCredential, error)
 	// restore a deleted gcp-credential.
 	Restore(context.Context, *model.GcpCredential) (*model.GcpCredential, error)
 }
@@ -111,7 +111,7 @@ func (UnimplementedGcpCredentialCommandControllerServer) Create(context.Context,
 func (UnimplementedGcpCredentialCommandControllerServer) Update(context.Context, *model.GcpCredential) (*model.GcpCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpCredential, error) {
+func (UnimplementedGcpCredentialCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGcpCredentialCommandControllerServer) Restore(context.Context, *model.GcpCredential) (*model.GcpCredential, error) {
@@ -166,7 +166,7 @@ func _GcpCredentialCommandController_Update_Handler(srv interface{}, ctx context
 }
 
 func _GcpCredentialCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -178,7 +178,7 @@ func _GcpCredentialCommandController_Delete_Handler(srv interface{}, ctx context
 		FullMethod: GcpCredentialCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpCredentialCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

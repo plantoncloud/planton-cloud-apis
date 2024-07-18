@@ -49,9 +49,9 @@ type MicroserviceKubernetesCommandControllerClient interface {
 	// update microservice-kubernetes
 	Update(ctx context.Context, in *model.MicroserviceKubernetes, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// preview delete microservice-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// delete microservice-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// preview restoring a deleted microservice-kubernetes
 	PreviewRestore(ctx context.Context, in *model.MicroserviceKubernetes, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// restore a deleted microservice-kubernetes of a environment.
@@ -62,15 +62,15 @@ type MicroserviceKubernetesCommandControllerClient interface {
 	// pause a microservice-kubernetes running in a environment.
 	// microservice-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// unpause a previously paused microservice-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// preview refresh a microservice-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 	// refresh a microservice-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error)
 }
 
 type microserviceKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *microserviceKubernetesCommandControllerClient) Update(ctx context.Conte
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *microserviceKubernetesCommandControllerClient) PreviewDelete(ctx contex
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *microserviceKubernetesCommandControllerClient) Restart(ctx context.Cont
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *microserviceKubernetesCommandControllerClient) Pause(ctx context.Contex
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *microserviceKubernetesCommandControllerClient) Unpause(ctx context.Cont
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *microserviceKubernetesCommandControllerClient) PreviewRefresh(ctx conte
 	return out, nil
 }
 
-func (c *microserviceKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
+func (c *microserviceKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.MicroserviceKubernetes, error) {
 	out := new(model.MicroserviceKubernetes)
 	err := c.cc.Invoke(ctx, MicroserviceKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type MicroserviceKubernetesCommandControllerServer interface {
 	// update microservice-kubernetes
 	Update(context.Context, *model.MicroserviceKubernetes) (*model.MicroserviceKubernetes, error)
 	// preview delete microservice-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.MicroserviceKubernetes, error)
 	// delete microservice-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.MicroserviceKubernetes, error)
 	// preview restoring a deleted microservice-kubernetes
 	PreviewRestore(context.Context, *model.MicroserviceKubernetes) (*model.MicroserviceKubernetes, error)
 	// restore a deleted microservice-kubernetes of a environment.
@@ -224,15 +224,15 @@ type MicroserviceKubernetesCommandControllerServer interface {
 	// pause a microservice-kubernetes running in a environment.
 	// microservice-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes deployment/stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.MicroserviceKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.MicroserviceKubernetes, error)
 	// unpause a previously paused microservice-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the microservice-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.MicroserviceKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.MicroserviceKubernetes, error)
 	// preview refresh a microservice-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MicroserviceKubernetes, error)
 	// refresh a microservice-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MicroserviceKubernetes, error)
 }
 
 // UnimplementedMicroserviceKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewUpdate(
 func (UnimplementedMicroserviceKubernetesCommandControllerServer) Update(context.Context, *model.MicroserviceKubernetes) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.MicroserviceKubernetes) (*model.MicroserviceKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedMicroserviceKubernetesCommandControllerServer) Restore(contex
 func (UnimplementedMicroserviceKubernetesCommandControllerServer) Restart(context.Context, *model.MicroserviceKubernetesId) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedMicroserviceKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.MicroserviceKubernetes, error) {
+func (UnimplementedMicroserviceKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.MicroserviceKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _MicroserviceKubernetesCommandController_Update_Handler(srv interface{}, ct
 }
 
 func _MicroserviceKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _MicroserviceKubernetesCommandController_PreviewDelete_Handler(srv interfac
 		FullMethod: MicroserviceKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _MicroserviceKubernetesCommandController_Delete_Handler(srv interface{}, ct
 		FullMethod: MicroserviceKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _MicroserviceKubernetesCommandController_Restart_Handler(srv interface{}, c
 }
 
 func _MicroserviceKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _MicroserviceKubernetesCommandController_Pause_Handler(srv interface{}, ctx
 		FullMethod: MicroserviceKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _MicroserviceKubernetesCommandController_Unpause_Handler(srv interface{}, c
 		FullMethod: MicroserviceKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _MicroserviceKubernetesCommandController_PreviewRefresh_Handler(srv interfa
 		FullMethod: MicroserviceKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _MicroserviceKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _MicroserviceKubernetesCommandController_Refresh_Handler(srv interface{}, c
 		FullMethod: MicroserviceKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(MicroserviceKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(MicroserviceKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

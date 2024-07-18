@@ -36,7 +36,7 @@ type StackModuleDescriptorCommandControllerClient interface {
 	// update an existing stack-module-descriptor.
 	Update(ctx context.Context, in *model.StackModuleDescriptor, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error)
 	// delete a stack-module-descriptor.
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error)
 	// restore a deleted stack-module-descriptor.
 	Restore(ctx context.Context, in *model.StackModuleDescriptor, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error)
 }
@@ -67,7 +67,7 @@ func (c *stackModuleDescriptorCommandControllerClient) Update(ctx context.Contex
 	return out, nil
 }
 
-func (c *stackModuleDescriptorCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error) {
+func (c *stackModuleDescriptorCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.StackModuleDescriptor, error) {
 	out := new(model.StackModuleDescriptor)
 	err := c.cc.Invoke(ctx, StackModuleDescriptorCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -94,7 +94,7 @@ type StackModuleDescriptorCommandControllerServer interface {
 	// update an existing stack-module-descriptor.
 	Update(context.Context, *model.StackModuleDescriptor) (*model.StackModuleDescriptor, error)
 	// delete a stack-module-descriptor.
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.StackModuleDescriptor, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.StackModuleDescriptor, error)
 	// restore a deleted stack-module-descriptor.
 	Restore(context.Context, *model.StackModuleDescriptor) (*model.StackModuleDescriptor, error)
 }
@@ -109,7 +109,7 @@ func (UnimplementedStackModuleDescriptorCommandControllerServer) Create(context.
 func (UnimplementedStackModuleDescriptorCommandControllerServer) Update(context.Context, *model.StackModuleDescriptor) (*model.StackModuleDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedStackModuleDescriptorCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.StackModuleDescriptor, error) {
+func (UnimplementedStackModuleDescriptorCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.StackModuleDescriptor, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedStackModuleDescriptorCommandControllerServer) Restore(context.Context, *model.StackModuleDescriptor) (*model.StackModuleDescriptor, error) {
@@ -164,7 +164,7 @@ func _StackModuleDescriptorCommandController_Update_Handler(srv interface{}, ctx
 }
 
 func _StackModuleDescriptorCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -176,7 +176,7 @@ func _StackModuleDescriptorCommandController_Delete_Handler(srv interface{}, ctx
 		FullMethod: StackModuleDescriptorCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StackModuleDescriptorCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(StackModuleDescriptorCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

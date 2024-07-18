@@ -49,9 +49,9 @@ type RedisKubernetesCommandControllerClient interface {
 	// update an existing redis-kubernetes
 	Update(ctx context.Context, in *model.RedisKubernetes, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// preview deleting an existing redis-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// delete an existing redis-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// preview restoring a previously deleted redis-kubernetes
 	PreviewRestore(ctx context.Context, in *model.RedisKubernetes, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// restore a previously deleted redis-kubernetes
@@ -62,15 +62,15 @@ type RedisKubernetesCommandControllerClient interface {
 	// pause a redis-kubernetes running in a environment.
 	// redis-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// unpause a previously paused redis-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// preview refresh a redis-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 	// refresh a redis-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error)
 }
 
 type redisKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *redisKubernetesCommandControllerClient) Update(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *redisKubernetesCommandControllerClient) PreviewDelete(ctx context.Conte
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *redisKubernetesCommandControllerClient) Restart(ctx context.Context, in
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *redisKubernetesCommandControllerClient) Pause(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *redisKubernetesCommandControllerClient) Unpause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *redisKubernetesCommandControllerClient) PreviewRefresh(ctx context.Cont
 	return out, nil
 }
 
-func (c *redisKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
+func (c *redisKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.RedisKubernetes, error) {
 	out := new(model.RedisKubernetes)
 	err := c.cc.Invoke(ctx, RedisKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type RedisKubernetesCommandControllerServer interface {
 	// update an existing redis-kubernetes
 	Update(context.Context, *model.RedisKubernetes) (*model.RedisKubernetes, error)
 	// preview deleting an existing redis-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.RedisKubernetes, error)
 	// delete an existing redis-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.RedisKubernetes, error)
 	// preview restoring a previously deleted redis-kubernetes
 	PreviewRestore(context.Context, *model.RedisKubernetes) (*model.RedisKubernetes, error)
 	// restore a previously deleted redis-kubernetes
@@ -224,15 +224,15 @@ type RedisKubernetesCommandControllerServer interface {
 	// pause a redis-kubernetes running in a environment.
 	// redis-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.RedisKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.RedisKubernetes, error)
 	// unpause a previously paused redis-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the redis-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.RedisKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.RedisKubernetes, error)
 	// preview refresh a redis-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.RedisKubernetes, error)
 	// refresh a redis-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.RedisKubernetes, error)
 }
 
 // UnimplementedRedisKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedRedisKubernetesCommandControllerServer) PreviewUpdate(context
 func (UnimplementedRedisKubernetesCommandControllerServer) Update(context.Context, *model.RedisKubernetes) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedRedisKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.RedisKubernetes) (*model.RedisKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedRedisKubernetesCommandControllerServer) Restore(context.Conte
 func (UnimplementedRedisKubernetesCommandControllerServer) Restart(context.Context, *model.RedisKubernetesId) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedRedisKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.RedisKubernetes, error) {
+func (UnimplementedRedisKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.RedisKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _RedisKubernetesCommandController_Update_Handler(srv interface{}, ctx conte
 }
 
 func _RedisKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _RedisKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ct
 		FullMethod: RedisKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _RedisKubernetesCommandController_Delete_Handler(srv interface{}, ctx conte
 		FullMethod: RedisKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _RedisKubernetesCommandController_Restart_Handler(srv interface{}, ctx cont
 }
 
 func _RedisKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _RedisKubernetesCommandController_Pause_Handler(srv interface{}, ctx contex
 		FullMethod: RedisKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _RedisKubernetesCommandController_Unpause_Handler(srv interface{}, ctx cont
 		FullMethod: RedisKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _RedisKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, c
 		FullMethod: RedisKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _RedisKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _RedisKubernetesCommandController_Refresh_Handler(srv interface{}, ctx cont
 		FullMethod: RedisKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RedisKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(RedisKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

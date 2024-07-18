@@ -49,9 +49,9 @@ type GrafanaKubernetesCommandControllerClient interface {
 	// update an existing grafana-kubernetes
 	Update(ctx context.Context, in *model.GrafanaKubernetes, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// preview deleting an existing grafana-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// delete an existing grafana-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// preview restoring a previously deleted grafana-kubernetes
 	PreviewRestore(ctx context.Context, in *model.GrafanaKubernetes, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// restore a previously deleted grafana-kubernetes
@@ -62,15 +62,15 @@ type GrafanaKubernetesCommandControllerClient interface {
 	// pause a grafana-kubernetes running in a environment.
 	// grafana-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// unpause a previously paused grafana-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the grafana-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// preview refresh a grafana-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 	// refresh a grafana-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error)
 }
 
 type grafanaKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *grafanaKubernetesCommandControllerClient) Update(ctx context.Context, i
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *grafanaKubernetesCommandControllerClient) PreviewDelete(ctx context.Con
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *grafanaKubernetesCommandControllerClient) Restart(ctx context.Context, 
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *grafanaKubernetesCommandControllerClient) Pause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *grafanaKubernetesCommandControllerClient) Unpause(ctx context.Context, 
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *grafanaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Co
 	return out, nil
 }
 
-func (c *grafanaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
+func (c *grafanaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GrafanaKubernetes, error) {
 	out := new(model.GrafanaKubernetes)
 	err := c.cc.Invoke(ctx, GrafanaKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type GrafanaKubernetesCommandControllerServer interface {
 	// update an existing grafana-kubernetes
 	Update(context.Context, *model.GrafanaKubernetes) (*model.GrafanaKubernetes, error)
 	// preview deleting an existing grafana-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GrafanaKubernetes, error)
 	// delete an existing grafana-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GrafanaKubernetes, error)
 	// preview restoring a previously deleted grafana-kubernetes
 	PreviewRestore(context.Context, *model.GrafanaKubernetes) (*model.GrafanaKubernetes, error)
 	// restore a previously deleted grafana-kubernetes
@@ -224,15 +224,15 @@ type GrafanaKubernetesCommandControllerServer interface {
 	// pause a grafana-kubernetes running in a environment.
 	// grafana-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GrafanaKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GrafanaKubernetes, error)
 	// unpause a previously paused grafana-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the grafana-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GrafanaKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GrafanaKubernetes, error)
 	// preview refresh a grafana-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GrafanaKubernetes, error)
 	// refresh a grafana-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GrafanaKubernetes, error)
 }
 
 // UnimplementedGrafanaKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewUpdate(conte
 func (UnimplementedGrafanaKubernetesCommandControllerServer) Update(context.Context, *model.GrafanaKubernetes) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.GrafanaKubernetes) (*model.GrafanaKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedGrafanaKubernetesCommandControllerServer) Restore(context.Con
 func (UnimplementedGrafanaKubernetesCommandControllerServer) Restart(context.Context, *model.GrafanaKubernetesId) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGrafanaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GrafanaKubernetes, error) {
+func (UnimplementedGrafanaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GrafanaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _GrafanaKubernetesCommandController_Update_Handler(srv interface{}, ctx con
 }
 
 func _GrafanaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _GrafanaKubernetesCommandController_PreviewDelete_Handler(srv interface{}, 
 		FullMethod: GrafanaKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GrafanaKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _GrafanaKubernetesCommandController_Delete_Handler(srv interface{}, ctx con
 		FullMethod: GrafanaKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _GrafanaKubernetesCommandController_Restart_Handler(srv interface{}, ctx co
 }
 
 func _GrafanaKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _GrafanaKubernetesCommandController_Pause_Handler(srv interface{}, ctx cont
 		FullMethod: GrafanaKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GrafanaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _GrafanaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx co
 		FullMethod: GrafanaKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GrafanaKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _GrafanaKubernetesCommandController_PreviewRefresh_Handler(srv interface{},
 		FullMethod: GrafanaKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GrafanaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _GrafanaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx co
 		FullMethod: GrafanaKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GrafanaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GrafanaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

@@ -49,9 +49,9 @@ type GitlabKubernetesCommandControllerClient interface {
 	// update an existing gitlab-kubernetes
 	Update(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// preview deleting an existing gitlab-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// delete an existing gitlab-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// preview restoring a previously deleted gitlab-kubernetes
 	PreviewRestore(ctx context.Context, in *model.GitlabKubernetes, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// restore a previously deleted gitlab-kubernetes
@@ -62,15 +62,15 @@ type GitlabKubernetesCommandControllerClient interface {
 	// pause a gitlab-kubernetes running in a environment.
 	// gitlab-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// unpause a previously paused gitlab-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// preview refresh a gitlab-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 	// refresh a gitlab-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 }
 
 type gitlabKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *gitlabKubernetesCommandControllerClient) Update(ctx context.Context, in
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *gitlabKubernetesCommandControllerClient) PreviewDelete(ctx context.Cont
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *gitlabKubernetesCommandControllerClient) Restart(ctx context.Context, i
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *gitlabKubernetesCommandControllerClient) Pause(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *gitlabKubernetesCommandControllerClient) Unpause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *gitlabKubernetesCommandControllerClient) PreviewRefresh(ctx context.Con
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
+func (c *gitlabKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
 	out := new(model.GitlabKubernetes)
 	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type GitlabKubernetesCommandControllerServer interface {
 	// update an existing gitlab-kubernetes
 	Update(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
 	// preview deleting an existing gitlab-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GitlabKubernetes, error)
 	// delete an existing gitlab-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GitlabKubernetes, error)
 	// preview restoring a previously deleted gitlab-kubernetes
 	PreviewRestore(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error)
 	// restore a previously deleted gitlab-kubernetes
@@ -224,15 +224,15 @@ type GitlabKubernetesCommandControllerServer interface {
 	// pause a gitlab-kubernetes running in a environment.
 	// gitlab-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitlabKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GitlabKubernetes, error)
 	// unpause a previously paused gitlab-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitlabKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GitlabKubernetes, error)
 	// preview refresh a gitlab-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error)
 	// refresh a gitlab-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error)
 }
 
 // UnimplementedGitlabKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewUpdate(contex
 func (UnimplementedGitlabKubernetesCommandControllerServer) Update(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.GitlabKubernetes) (*model.GitlabKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedGitlabKubernetesCommandControllerServer) Restore(context.Cont
 func (UnimplementedGitlabKubernetesCommandControllerServer) Restart(context.Context, *model.GitlabKubernetesId) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGitlabKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GitlabKubernetes, error) {
+func (UnimplementedGitlabKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _GitlabKubernetesCommandController_Update_Handler(srv interface{}, ctx cont
 }
 
 func _GitlabKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _GitlabKubernetesCommandController_PreviewDelete_Handler(srv interface{}, c
 		FullMethod: GitlabKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _GitlabKubernetesCommandController_Delete_Handler(srv interface{}, ctx cont
 		FullMethod: GitlabKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _GitlabKubernetesCommandController_Restart_Handler(srv interface{}, ctx con
 }
 
 func _GitlabKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _GitlabKubernetesCommandController_Pause_Handler(srv interface{}, ctx conte
 		FullMethod: GitlabKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _GitlabKubernetesCommandController_Unpause_Handler(srv interface{}, ctx con
 		FullMethod: GitlabKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _GitlabKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, 
 		FullMethod: GitlabKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GitlabKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _GitlabKubernetesCommandController_Refresh_Handler(srv interface{}, ctx con
 		FullMethod: GitlabKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GitlabKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

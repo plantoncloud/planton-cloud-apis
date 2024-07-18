@@ -48,9 +48,9 @@ type GkeClusterCommandControllerClient interface {
 	// update an existing gke-cluster.
 	Update(ctx context.Context, in *model.GkeCluster, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// preview deleting a gke-cluster.
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// delete a gke-cluster.
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// preview restoring a deleted gke-cluster.
 	PreviewRestore(ctx context.Context, in *model.GkeCluster, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// restore a deleted gke-cluster.
@@ -61,16 +61,16 @@ type GkeClusterCommandControllerClient interface {
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a gke-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// unpause a gke-cluster.
 	// a gke-cluster is resumed by setting the number of nodes in each node pool of the gke-cluster to the
 	// values configured for the gke-cluster.
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// preview refresh a gke-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// refresh a gke-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 }
 
 type gkeClusterCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *gkeClusterCommandControllerClient) Update(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *gkeClusterCommandControllerClient) PreviewDelete(ctx context.Context, i
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -153,7 +153,7 @@ func (c *gkeClusterCommandControllerClient) Restore(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *gkeClusterCommandControllerClient) Pause(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *gkeClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *gkeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, 
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -202,9 +202,9 @@ type GkeClusterCommandControllerServer interface {
 	// update an existing gke-cluster.
 	Update(context.Context, *model.GkeCluster) (*model.GkeCluster, error)
 	// preview deleting a gke-cluster.
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GkeCluster, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GkeCluster, error)
 	// delete a gke-cluster.
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GkeCluster, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GkeCluster, error)
 	// preview restoring a deleted gke-cluster.
 	PreviewRestore(context.Context, *model.GkeCluster) (*model.GkeCluster, error)
 	// restore a deleted gke-cluster.
@@ -215,16 +215,16 @@ type GkeClusterCommandControllerServer interface {
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
 	// when a gke-cluster is paused, cloud provider will not charge for the compute resources(cpu & memory) but
 	// may continue to charge a modest operational fee for the cluster.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GkeCluster, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GkeCluster, error)
 	// unpause a gke-cluster.
 	// a gke-cluster is resumed by setting the number of nodes in each node pool of the gke-cluster to the
 	// values configured for the gke-cluster.
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GkeCluster, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GkeCluster, error)
 	// preview refresh a gke-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GkeCluster, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
 	// refresh a gke-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GkeCluster, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
 }
 
 // UnimplementedGkeClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -243,10 +243,10 @@ func (UnimplementedGkeClusterCommandControllerServer) PreviewUpdate(context.Cont
 func (UnimplementedGkeClusterCommandControllerServer) Update(context.Context, *model.GkeCluster) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGkeClusterCommandControllerServer) PreviewRestore(context.Context, *model.GkeCluster) (*model.GkeCluster, error) {
@@ -255,16 +255,16 @@ func (UnimplementedGkeClusterCommandControllerServer) PreviewRestore(context.Con
 func (UnimplementedGkeClusterCommandControllerServer) Restore(context.Context, *model.GkeCluster) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGkeClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -352,7 +352,7 @@ func _GkeClusterCommandController_Update_Handler(srv interface{}, ctx context.Co
 }
 
 func _GkeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -364,13 +364,13 @@ func _GkeClusterCommandController_PreviewDelete_Handler(srv interface{}, ctx con
 		FullMethod: GkeClusterCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GkeClusterCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -382,7 +382,7 @@ func _GkeClusterCommandController_Delete_Handler(srv interface{}, ctx context.Co
 		FullMethod: GkeClusterCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GkeClusterCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -424,7 +424,7 @@ func _GkeClusterCommandController_Restore_Handler(srv interface{}, ctx context.C
 }
 
 func _GkeClusterCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -436,13 +436,13 @@ func _GkeClusterCommandController_Pause_Handler(srv interface{}, ctx context.Con
 		FullMethod: GkeClusterCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(GkeClusterCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -454,13 +454,13 @@ func _GkeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 		FullMethod: GkeClusterCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(GkeClusterCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -472,13 +472,13 @@ func _GkeClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx co
 		FullMethod: GkeClusterCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GkeClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -490,7 +490,7 @@ func _GkeClusterCommandController_Refresh_Handler(srv interface{}, ctx context.C
 		FullMethod: GkeClusterCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GkeClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -566,11 +566,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GkeClusterNodePoolCommandControllerClient interface {
 	// add a node pool to a gke-cluster in a gke-cluster
-	Add(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Add(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// update a node pool of a gke-cluster in a gke-cluster
-	Update(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Update(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// delete a node pool from a gke-cluster in a gke-cluster
-	Delete(ctx context.Context, in *model.DeleteGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	Delete(ctx context.Context, in *model.DeleteGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 }
 
 type gkeClusterNodePoolCommandControllerClient struct {
@@ -581,7 +581,7 @@ func NewGkeClusterNodePoolCommandControllerClient(cc grpc.ClientConnInterface) G
 	return &gkeClusterNodePoolCommandControllerClient{cc}
 }
 
-func (c *gkeClusterNodePoolCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterNodePoolCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterNodePoolCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -590,7 +590,7 @@ func (c *gkeClusterNodePoolCommandControllerClient) Add(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *gkeClusterNodePoolCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterNodePoolCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterNodePoolCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -599,7 +599,7 @@ func (c *gkeClusterNodePoolCommandControllerClient) Update(ctx context.Context, 
 	return out, nil
 }
 
-func (c *gkeClusterNodePoolCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGkeClusterNodePoolCommandInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
+func (c *gkeClusterNodePoolCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGkeClusterNodePoolInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
 	out := new(model.GkeCluster)
 	err := c.cc.Invoke(ctx, GkeClusterNodePoolCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -613,24 +613,24 @@ func (c *gkeClusterNodePoolCommandControllerClient) Delete(ctx context.Context, 
 // for forward compatibility
 type GkeClusterNodePoolCommandControllerServer interface {
 	// add a node pool to a gke-cluster in a gke-cluster
-	Add(context.Context, *model.AddOrUpdateGkeClusterNodePoolCommandInput) (*model.GkeCluster, error)
+	Add(context.Context, *model.AddOrUpdateGkeClusterNodePoolInput) (*model.GkeCluster, error)
 	// update a node pool of a gke-cluster in a gke-cluster
-	Update(context.Context, *model.AddOrUpdateGkeClusterNodePoolCommandInput) (*model.GkeCluster, error)
+	Update(context.Context, *model.AddOrUpdateGkeClusterNodePoolInput) (*model.GkeCluster, error)
 	// delete a node pool from a gke-cluster in a gke-cluster
-	Delete(context.Context, *model.DeleteGkeClusterNodePoolCommandInput) (*model.GkeCluster, error)
+	Delete(context.Context, *model.DeleteGkeClusterNodePoolInput) (*model.GkeCluster, error)
 }
 
 // UnimplementedGkeClusterNodePoolCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGkeClusterNodePoolCommandControllerServer struct {
 }
 
-func (UnimplementedGkeClusterNodePoolCommandControllerServer) Add(context.Context, *model.AddOrUpdateGkeClusterNodePoolCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterNodePoolCommandControllerServer) Add(context.Context, *model.AddOrUpdateGkeClusterNodePoolInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedGkeClusterNodePoolCommandControllerServer) Update(context.Context, *model.AddOrUpdateGkeClusterNodePoolCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterNodePoolCommandControllerServer) Update(context.Context, *model.AddOrUpdateGkeClusterNodePoolInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGkeClusterNodePoolCommandControllerServer) Delete(context.Context, *model.DeleteGkeClusterNodePoolCommandInput) (*model.GkeCluster, error) {
+func (UnimplementedGkeClusterNodePoolCommandControllerServer) Delete(context.Context, *model.DeleteGkeClusterNodePoolInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
@@ -646,7 +646,7 @@ func RegisterGkeClusterNodePoolCommandControllerServer(s grpc.ServiceRegistrar, 
 }
 
 func _GkeClusterNodePoolCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateGkeClusterNodePoolCommandInput)
+	in := new(model.AddOrUpdateGkeClusterNodePoolInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -658,13 +658,13 @@ func _GkeClusterNodePoolCommandController_Add_Handler(srv interface{}, ctx conte
 		FullMethod: GkeClusterNodePoolCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterNodePoolCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGkeClusterNodePoolCommandInput))
+		return srv.(GkeClusterNodePoolCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGkeClusterNodePoolInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterNodePoolCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddOrUpdateGkeClusterNodePoolCommandInput)
+	in := new(model.AddOrUpdateGkeClusterNodePoolInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -676,13 +676,13 @@ func _GkeClusterNodePoolCommandController_Update_Handler(srv interface{}, ctx co
 		FullMethod: GkeClusterNodePoolCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterNodePoolCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGkeClusterNodePoolCommandInput))
+		return srv.(GkeClusterNodePoolCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGkeClusterNodePoolInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GkeClusterNodePoolCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.DeleteGkeClusterNodePoolCommandInput)
+	in := new(model.DeleteGkeClusterNodePoolInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -694,7 +694,7 @@ func _GkeClusterNodePoolCommandController_Delete_Handler(srv interface{}, ctx co
 		FullMethod: GkeClusterNodePoolCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterNodePoolCommandControllerServer).Delete(ctx, req.(*model.DeleteGkeClusterNodePoolCommandInput))
+		return srv.(GkeClusterNodePoolCommandControllerServer).Delete(ctx, req.(*model.DeleteGkeClusterNodePoolInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

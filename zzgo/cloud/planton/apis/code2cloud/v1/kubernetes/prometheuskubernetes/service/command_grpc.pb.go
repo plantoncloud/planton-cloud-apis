@@ -49,9 +49,9 @@ type PrometheusKubernetesCommandControllerClient interface {
 	// update an existing prometheus-kubernetes
 	Update(ctx context.Context, in *model.PrometheusKubernetes, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// preview deleting an existing prometheus-kubernetes
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// delete an existing prometheus-kubernetes
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// preview restoring a previously deleted prometheus-kubernetes
 	PreviewRestore(ctx context.Context, in *model.PrometheusKubernetes, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// restore a previously deleted prometheus-kubernetes
@@ -62,15 +62,15 @@ type PrometheusKubernetesCommandControllerClient interface {
 	// pause a prometheus-kubernetes running in a environment.
 	// prometheus-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// unpause a previously paused prometheus-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the prometheus-kubernetes.
-	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// preview refresh a prometheus-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 	// refresh a prometheus-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 }
 
 type prometheusKubernetesCommandControllerClient struct {
@@ -117,7 +117,7 @@ func (c *prometheusKubernetesCommandControllerClient) Update(ctx context.Context
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -126,7 +126,7 @@ func (c *prometheusKubernetesCommandControllerClient) PreviewDelete(ctx context.
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -162,7 +162,7 @@ func (c *prometheusKubernetesCommandControllerClient) Restart(ctx context.Contex
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) Pause(ctx context.Context, in *model1.ApiResourcePauseInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_Pause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -171,7 +171,7 @@ func (c *prometheusKubernetesCommandControllerClient) Pause(ctx context.Context,
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_Unpause_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -180,7 +180,7 @@ func (c *prometheusKubernetesCommandControllerClient) Unpause(ctx context.Contex
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -189,7 +189,7 @@ func (c *prometheusKubernetesCommandControllerClient) PreviewRefresh(ctx context
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
+func (c *prometheusKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
 	out := new(model.PrometheusKubernetes)
 	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -211,9 +211,9 @@ type PrometheusKubernetesCommandControllerServer interface {
 	// update an existing prometheus-kubernetes
 	Update(context.Context, *model.PrometheusKubernetes) (*model.PrometheusKubernetes, error)
 	// preview deleting an existing prometheus-kubernetes
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PrometheusKubernetes, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.PrometheusKubernetes, error)
 	// delete an existing prometheus-kubernetes
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PrometheusKubernetes, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.PrometheusKubernetes, error)
 	// preview restoring a previously deleted prometheus-kubernetes
 	PreviewRestore(context.Context, *model.PrometheusKubernetes) (*model.PrometheusKubernetes, error)
 	// restore a previously deleted prometheus-kubernetes
@@ -224,15 +224,15 @@ type PrometheusKubernetesCommandControllerServer interface {
 	// pause a prometheus-kubernetes running in a environment.
 	// prometheus-kubernetes is paused by scaling down number of replicas of
 	// the kubernetes stateful sets to zero in the environment.
-	Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.PrometheusKubernetes, error)
+	Pause(context.Context, *model1.ApiResourcePauseInput) (*model.PrometheusKubernetes, error)
 	// unpause a previously paused prometheus-kubernetes running in a environment.
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the prometheus-kubernetes.
-	Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.PrometheusKubernetes, error)
+	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PrometheusKubernetes, error)
 	// preview refresh a prometheus-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PrometheusKubernetes, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error)
 	// refresh a prometheus-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PrometheusKubernetes, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error)
 }
 
 // UnimplementedPrometheusKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -251,10 +251,10 @@ func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewUpdate(co
 func (UnimplementedPrometheusKubernetesCommandControllerServer) Update(context.Context, *model.PrometheusKubernetes) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewRestore(context.Context, *model.PrometheusKubernetes) (*model.PrometheusKubernetes, error) {
@@ -266,16 +266,16 @@ func (UnimplementedPrometheusKubernetesCommandControllerServer) Restore(context.
 func (UnimplementedPrometheusKubernetesCommandControllerServer) Restart(context.Context, *model.PrometheusKubernetesId) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restart not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) Pause(context.Context, *model1.ApiResourcePauseInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Pause not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedPrometheusKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.PrometheusKubernetes, error) {
+func (UnimplementedPrometheusKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -363,7 +363,7 @@ func _PrometheusKubernetesCommandController_Update_Handler(srv interface{}, ctx 
 }
 
 func _PrometheusKubernetesCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -375,13 +375,13 @@ func _PrometheusKubernetesCommandController_PreviewDelete_Handler(srv interface{
 		FullMethod: PrometheusKubernetesCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PrometheusKubernetesCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -393,7 +393,7 @@ func _PrometheusKubernetesCommandController_Delete_Handler(srv interface{}, ctx 
 		FullMethod: PrometheusKubernetesCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -453,7 +453,7 @@ func _PrometheusKubernetesCommandController_Restart_Handler(srv interface{}, ctx
 }
 
 func _PrometheusKubernetesCommandController_Pause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourcePauseCommandInput)
+	in := new(model1.ApiResourcePauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -465,13 +465,13 @@ func _PrometheusKubernetesCommandController_Pause_Handler(srv interface{}, ctx c
 		FullMethod: PrometheusKubernetesCommandController_Pause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).Pause(ctx, req.(*model1.ApiResourcePauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PrometheusKubernetesCommandController_Unpause_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceUnPauseCommandInput)
+	in := new(model1.ApiResourceUnPauseInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -483,13 +483,13 @@ func _PrometheusKubernetesCommandController_Unpause_Handler(srv interface{}, ctx
 		FullMethod: PrometheusKubernetesCommandController_Unpause_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).Unpause(ctx, req.(*model1.ApiResourceUnPauseInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PrometheusKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -501,13 +501,13 @@ func _PrometheusKubernetesCommandController_PreviewRefresh_Handler(srv interface
 		FullMethod: PrometheusKubernetesCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _PrometheusKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -519,7 +519,7 @@ func _PrometheusKubernetesCommandController_Refresh_Handler(srv interface{}, ctx
 		FullMethod: PrometheusKubernetesCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(PrometheusKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

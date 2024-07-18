@@ -24,7 +24,7 @@ message KafkaKubernetesPassword {
 }
 
 //input for command to add multiple kafka topics to a kafka-kubernetes
-message AddKafkaTopicsCommandInput {
+message AddKafkaTopicsInput {
   //id of the kafka-kubernetes to which the kafka topics are added
   string kafka_kubernetes_id = 1 [
     (buf.validate.field).required = true
@@ -42,12 +42,12 @@ message AddKafkaTopicsCommandInput {
   ];
 }
 
-//AddOrUpdateKafkaTopicCommandInput is used to encapsulate the details required
+//AddOrUpdateKafkaTopicInput is used to encapsulate the details required
 //for adding a new kafka-topic to a specific kafka-kubernetes, or updating
 //an existing one. This message is typically used to transmit data between the client and
 //server during an add or update operation concerning a specific kafka-topic
 //associated with a particular kafka-kubernetes.
-message AddOrUpdateKafkaTopicCommandInput {
+message AddOrUpdateKafkaTopicInput {
   //The unique identifier for the kafka-kubernetes to which the kafka-topic
   // needs to be added or updated. This field must be populated with a valid
   //kafka-kubernetes ID, which can be obtained from the kafka-kubernetes entity itself.
@@ -73,12 +73,12 @@ message AddOrUpdateKafkaTopicCommandInput {
   ];
 }
 
-//DeleteOrRestoreKafkaTopicCommandInput is used to encapsulate the details required for
+//DeleteOrRestoreKafkaTopicInput is used to encapsulate the details required for
 //deleting or restoring a kafka-topic of a specific kafka-kubernetes.
 //This message is typically used to transmit data between the client and the server
 //during a delete or restore operation concerning a specific kafka-topic associated
 //with a particular kafka-kubernetes.
-message DeleteOrRestoreKafkaTopicCommandInput {
+message DeleteOrRestoreKafkaTopicInput {
   //The unique identifier for the kafka-kubernetes from which the kafka-topic
   // needs to be deleted or restored. This field must be populated with a valid
   //kafka-kubernetes ID, which can be obtained from the kafka-kubernetes entity itself.

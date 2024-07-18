@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GcpCommandControllerClient interface {
 	// authorizes the service-account to be used for authenticating with google cloud for the specific cloud-account.
-	AuthorizeCloudAccount(ctx context.Context, in *model.AuthorizeGcpCloudAccountCommandInput, opts ...grpc.CallOption) (*model.AuthorizeGcpCloudAccountCommandResponse, error)
+	AuthorizeCloudAccount(ctx context.Context, in *model.AuthorizeGcpCloudAccountInput, opts ...grpc.CallOption) (*model.AuthorizeGcpCloudAccountCommandResponse, error)
 }
 
 type gcpCommandControllerClient struct {
@@ -39,7 +39,7 @@ func NewGcpCommandControllerClient(cc grpc.ClientConnInterface) GcpCommandContro
 	return &gcpCommandControllerClient{cc}
 }
 
-func (c *gcpCommandControllerClient) AuthorizeCloudAccount(ctx context.Context, in *model.AuthorizeGcpCloudAccountCommandInput, opts ...grpc.CallOption) (*model.AuthorizeGcpCloudAccountCommandResponse, error) {
+func (c *gcpCommandControllerClient) AuthorizeCloudAccount(ctx context.Context, in *model.AuthorizeGcpCloudAccountInput, opts ...grpc.CallOption) (*model.AuthorizeGcpCloudAccountCommandResponse, error) {
 	out := new(model.AuthorizeGcpCloudAccountCommandResponse)
 	err := c.cc.Invoke(ctx, GcpCommandController_AuthorizeCloudAccount_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -53,14 +53,14 @@ func (c *gcpCommandControllerClient) AuthorizeCloudAccount(ctx context.Context, 
 // for forward compatibility
 type GcpCommandControllerServer interface {
 	// authorizes the service-account to be used for authenticating with google cloud for the specific cloud-account.
-	AuthorizeCloudAccount(context.Context, *model.AuthorizeGcpCloudAccountCommandInput) (*model.AuthorizeGcpCloudAccountCommandResponse, error)
+	AuthorizeCloudAccount(context.Context, *model.AuthorizeGcpCloudAccountInput) (*model.AuthorizeGcpCloudAccountCommandResponse, error)
 }
 
 // UnimplementedGcpCommandControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGcpCommandControllerServer struct {
 }
 
-func (UnimplementedGcpCommandControllerServer) AuthorizeCloudAccount(context.Context, *model.AuthorizeGcpCloudAccountCommandInput) (*model.AuthorizeGcpCloudAccountCommandResponse, error) {
+func (UnimplementedGcpCommandControllerServer) AuthorizeCloudAccount(context.Context, *model.AuthorizeGcpCloudAccountInput) (*model.AuthorizeGcpCloudAccountCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeCloudAccount not implemented")
 }
 
@@ -76,7 +76,7 @@ func RegisterGcpCommandControllerServer(s grpc.ServiceRegistrar, srv GcpCommandC
 }
 
 func _GcpCommandController_AuthorizeCloudAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AuthorizeGcpCloudAccountCommandInput)
+	in := new(model.AuthorizeGcpCloudAccountInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -88,7 +88,7 @@ func _GcpCommandController_AuthorizeCloudAccount_Handler(srv interface{}, ctx co
 		FullMethod: GcpCommandController_AuthorizeCloudAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCommandControllerServer).AuthorizeCloudAccount(ctx, req.(*model.AuthorizeGcpCloudAccountCommandInput))
+		return srv.(GcpCommandControllerServer).AuthorizeCloudAccount(ctx, req.(*model.AuthorizeGcpCloudAccountInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }

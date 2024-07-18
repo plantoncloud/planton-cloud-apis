@@ -15,7 +15,7 @@ message ApiResourceId {
 }
 
 // input for rpc to delete or previewing delete for any api resource
-message ApiResourceDeleteCommandInput {
+message ApiResourceDeleteInput {
   //id of the resource.
   string resource_id = 1;
   // A descriptive message explaining the reason for deleting the resource. This is used for audit purposes.
@@ -24,7 +24,7 @@ message ApiResourceDeleteCommandInput {
 }
 
 // input for rpc to pause or previewing pause for any api resource
-message ApiResourcePauseCommandInput {
+message ApiResourcePauseInput {
   //id of the resource.
   string resource_id = 1;
   // A descriptive message explaining the reason for pausing the resource. This is used for audit purposes.
@@ -33,7 +33,7 @@ message ApiResourcePauseCommandInput {
 }
 
 // input for rpc to un pause or previewing un pause for any api resource
-message ApiResourceUnPauseCommandInput {
+message ApiResourceUnPauseInput {
   //id of the resource.
   string resource_id = 1;
   // A descriptive message explaining the reason for un pausing the resource. This is used for audit purposes.
@@ -42,7 +42,7 @@ message ApiResourceUnPauseCommandInput {
 }
 
 // input for rpc to refresh or previewing refresh for any api resource
-message ApiResourceRefreshCommandInput {
+message ApiResourceRefreshInput {
   //id of the resource.
   string resource_id = 1;
   // A descriptive message explaining the reason for refreshing the resource. This is used for audit purposes.
@@ -108,7 +108,7 @@ message GetByApiResourceKindInput {
 }
 
 // input required for generating a new java package for a new planton-cloud api-resource
-message GenerateNewApiResourceJavaPackageCliCommandInput {
+message GenerateNewApiResourceJavaPackageCliInput {
   //a list of source and destination directories
   //source directory to be used to get the files to work upon.
   //destination directory in which modified files will be finally located.
@@ -116,11 +116,11 @@ message GenerateNewApiResourceJavaPackageCliCommandInput {
   // replacements to be made to generate the package for the new api-resource
   // these replacements will be applied for every file inside each directory and its
   // sub-directories specified in the "directories".
-  GenerateNewApiResourceJavaPackageCliCommandInputOrderedReplacements replacements = 2;
+  GenerateNewApiResourceJavaPackageCliInputOrderedReplacements replacements = 2;
 }
 
 // replacement inputs for file & directory names along with file content replacements.
-message GenerateNewApiResourceJavaPackageCliCommandInputOrderedReplacements {
+message GenerateNewApiResourceJavaPackageCliInputOrderedReplacements {
   // a map of strings used for renaming files and directories.
   // all the keys will be matched in the source files/directories and replaced with the corresponding values.
   // usage of a repeated object instead of a map is an intentional design choice as the order of replacements is important.
@@ -161,7 +161,7 @@ message ListByResourceKindWithoutContext {
 }
 
 // input for rpc to create a new stack job for any resource.
-message CreateStackJobCommandInput {
+message CreateStackJobInput {
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 1 [
     (buf.validate.field).required = true
   ];

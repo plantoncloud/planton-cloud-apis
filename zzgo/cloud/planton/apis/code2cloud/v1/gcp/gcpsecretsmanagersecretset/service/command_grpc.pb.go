@@ -46,17 +46,17 @@ type GcpSecretsManagerSecretSetCommandControllerClient interface {
 	// update an existing gcp-secrets-manager-secret-set
 	Update(ctx context.Context, in *model.GcpSecretsManagerSecretSet, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// preview delete an existing gcp-secrets-manager-secret-set
-	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
+	PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// delete an existing gcp-secrets-manager-secret-set
-	Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
+	Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// preview restore a deleted gcp-secrets-manager-secret-set
 	PreviewRestore(ctx context.Context, in *model.GcpSecretsManagerSecretSet, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// restore a deleted gcp-secrets-manager-secret-set
 	Restore(ctx context.Context, in *model.GcpSecretsManagerSecretSet, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// preview refresh a gcp-secrets-manager-secret-set that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
+	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 	// refresh a gcp-secrets-manager-secret-set that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
+	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error)
 }
 
 type gcpSecretsManagerSecretSetCommandControllerClient struct {
@@ -103,7 +103,7 @@ func (c *gcpSecretsManagerSecretSetCommandControllerClient) Update(ctx context.C
 	return out, nil
 }
 
-func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
+func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewDelete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
 	out := new(model.GcpSecretsManagerSecretSet)
 	err := c.cc.Invoke(ctx, GcpSecretsManagerSecretSetCommandController_PreviewDelete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -112,7 +112,7 @@ func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewDelete(ctx co
 	return out, nil
 }
 
-func (c *gcpSecretsManagerSecretSetCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
+func (c *gcpSecretsManagerSecretSetCommandControllerClient) Delete(ctx context.Context, in *model1.ApiResourceDeleteInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
 	out := new(model.GcpSecretsManagerSecretSet)
 	err := c.cc.Invoke(ctx, GcpSecretsManagerSecretSetCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -139,7 +139,7 @@ func (c *gcpSecretsManagerSecretSetCommandControllerClient) Restore(ctx context.
 	return out, nil
 }
 
-func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
+func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
 	out := new(model.GcpSecretsManagerSecretSet)
 	err := c.cc.Invoke(ctx, GcpSecretsManagerSecretSetCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -148,7 +148,7 @@ func (c *gcpSecretsManagerSecretSetCommandControllerClient) PreviewRefresh(ctx c
 	return out, nil
 }
 
-func (c *gcpSecretsManagerSecretSetCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshCommandInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
+func (c *gcpSecretsManagerSecretSetCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpSecretsManagerSecretSet, error) {
 	out := new(model.GcpSecretsManagerSecretSet)
 	err := c.cc.Invoke(ctx, GcpSecretsManagerSecretSetCommandController_Refresh_FullMethodName, in, out, opts...)
 	if err != nil {
@@ -170,17 +170,17 @@ type GcpSecretsManagerSecretSetCommandControllerServer interface {
 	// update an existing gcp-secrets-manager-secret-set
 	Update(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error)
 	// preview delete an existing gcp-secrets-manager-secret-set
-	PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpSecretsManagerSecretSet, error)
+	PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpSecretsManagerSecretSet, error)
 	// delete an existing gcp-secrets-manager-secret-set
-	Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpSecretsManagerSecretSet, error)
+	Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpSecretsManagerSecretSet, error)
 	// preview restore a deleted gcp-secrets-manager-secret-set
 	PreviewRestore(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error)
 	// restore a deleted gcp-secrets-manager-secret-set
 	Restore(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error)
 	// preview refresh a gcp-secrets-manager-secret-set that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpSecretsManagerSecretSet, error)
+	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpSecretsManagerSecretSet, error)
 	// refresh a gcp-secrets-manager-secret-set that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpSecretsManagerSecretSet, error)
+	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpSecretsManagerSecretSet, error)
 }
 
 // UnimplementedGcpSecretsManagerSecretSetCommandControllerServer should be embedded to have forward compatible implementations.
@@ -199,10 +199,10 @@ func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewUpd
 func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Update(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpSecretsManagerSecretSet, error) {
+func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewDelete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewDelete not implemented")
 }
-func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteCommandInput) (*model.GcpSecretsManagerSecretSet, error) {
+func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Delete(context.Context, *model1.ApiResourceDeleteInput) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewRestore(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error) {
@@ -211,10 +211,10 @@ func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewRes
 func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Restore(context.Context, *model.GcpSecretsManagerSecretSet) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
-func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpSecretsManagerSecretSet, error) {
+func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
 }
-func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshCommandInput) (*model.GcpSecretsManagerSecretSet, error) {
+func (UnimplementedGcpSecretsManagerSecretSetCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
@@ -302,7 +302,7 @@ func _GcpSecretsManagerSecretSetCommandController_Update_Handler(srv interface{}
 }
 
 func _GcpSecretsManagerSecretSetCommandController_PreviewDelete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -314,13 +314,13 @@ func _GcpSecretsManagerSecretSetCommandController_PreviewDelete_Handler(srv inte
 		FullMethod: GcpSecretsManagerSecretSetCommandController_PreviewDelete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).PreviewDelete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpSecretsManagerSecretSetCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceDeleteCommandInput)
+	in := new(model1.ApiResourceDeleteInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -332,7 +332,7 @@ func _GcpSecretsManagerSecretSetCommandController_Delete_Handler(srv interface{}
 		FullMethod: GcpSecretsManagerSecretSetCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteCommandInput))
+		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).Delete(ctx, req.(*model1.ApiResourceDeleteInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -374,7 +374,7 @@ func _GcpSecretsManagerSecretSetCommandController_Restore_Handler(srv interface{
 }
 
 func _GcpSecretsManagerSecretSetCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -386,13 +386,13 @@ func _GcpSecretsManagerSecretSetCommandController_PreviewRefresh_Handler(srv int
 		FullMethod: GcpSecretsManagerSecretSetCommandController_PreviewRefresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _GcpSecretsManagerSecretSetCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshCommandInput)
+	in := new(model1.ApiResourceRefreshInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _GcpSecretsManagerSecretSetCommandController_Refresh_Handler(srv interface{
 		FullMethod: GcpSecretsManagerSecretSetCommandController_Refresh_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshCommandInput))
+		return srv.(GcpSecretsManagerSecretSetCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
