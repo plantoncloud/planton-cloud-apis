@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.ekscluster.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/ekscluster/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/aws/ekscluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+
+// eks-cluster query controller
+service EksClusterQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = eks_cluster;
+  // lookup eks-cluster using eks-cluster id
+  rpc get(cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksClusterId)
+      returns (cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = eks_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup eks-cluster";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+}
