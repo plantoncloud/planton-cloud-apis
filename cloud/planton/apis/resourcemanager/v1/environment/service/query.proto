@@ -22,13 +22,4 @@ service EnvironmentQueryController {
 
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
-
-  //look up environment using by organization-id and environment name
-  rpc getByOrgIdAndEnvName(cloud.planton.apis.resourcemanager.v1.environment.model.GetByOrgIdAndEnvNameQueryInput)
-      returns (cloud.planton.apis.resourcemanager.v1.environment.model.Environment) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
-    //field-path can not be added as the target resource-id is not present in the request input
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup environment";
-  }
 }

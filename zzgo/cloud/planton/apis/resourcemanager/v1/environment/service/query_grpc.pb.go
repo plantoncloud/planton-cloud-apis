@@ -20,8 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	EnvironmentQueryController_Get_FullMethodName                  = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentQueryController/get"
-	EnvironmentQueryController_GetByOrgIdAndEnvName_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentQueryController/getByOrgIdAndEnvName"
+	EnvironmentQueryController_Get_FullMethodName = "/cloud.planton.apis.resourcemanager.v1.environment.service.EnvironmentQueryController/get"
 )
 
 // EnvironmentQueryControllerClient is the client API for EnvironmentQueryController service.
@@ -30,8 +29,6 @@ const (
 type EnvironmentQueryControllerClient interface {
 	// look up environment using environment id
 	Get(ctx context.Context, in *model.EnvId, opts ...grpc.CallOption) (*model.Environment, error)
-	// look up environment using by organization-id and environment name
-	GetByOrgIdAndEnvName(ctx context.Context, in *model.GetByOrgIdAndEnvNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error)
 }
 
 type environmentQueryControllerClient struct {
@@ -51,23 +48,12 @@ func (c *environmentQueryControllerClient) Get(ctx context.Context, in *model.En
 	return out, nil
 }
 
-func (c *environmentQueryControllerClient) GetByOrgIdAndEnvName(ctx context.Context, in *model.GetByOrgIdAndEnvNameQueryInput, opts ...grpc.CallOption) (*model.Environment, error) {
-	out := new(model.Environment)
-	err := c.cc.Invoke(ctx, EnvironmentQueryController_GetByOrgIdAndEnvName_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // EnvironmentQueryControllerServer is the server API for EnvironmentQueryController service.
 // All implementations should embed UnimplementedEnvironmentQueryControllerServer
 // for forward compatibility
 type EnvironmentQueryControllerServer interface {
 	// look up environment using environment id
 	Get(context.Context, *model.EnvId) (*model.Environment, error)
-	// look up environment using by organization-id and environment name
-	GetByOrgIdAndEnvName(context.Context, *model.GetByOrgIdAndEnvNameQueryInput) (*model.Environment, error)
 }
 
 // UnimplementedEnvironmentQueryControllerServer should be embedded to have forward compatible implementations.
@@ -76,9 +62,6 @@ type UnimplementedEnvironmentQueryControllerServer struct {
 
 func (UnimplementedEnvironmentQueryControllerServer) Get(context.Context, *model.EnvId) (*model.Environment, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (UnimplementedEnvironmentQueryControllerServer) GetByOrgIdAndEnvName(context.Context, *model.GetByOrgIdAndEnvNameQueryInput) (*model.Environment, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByOrgIdAndEnvName not implemented")
 }
 
 // UnsafeEnvironmentQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -110,24 +93,6 @@ func _EnvironmentQueryController_Get_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentQueryController_GetByOrgIdAndEnvName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.GetByOrgIdAndEnvNameQueryInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EnvironmentQueryControllerServer).GetByOrgIdAndEnvName(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EnvironmentQueryController_GetByOrgIdAndEnvName_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentQueryControllerServer).GetByOrgIdAndEnvName(ctx, req.(*model.GetByOrgIdAndEnvNameQueryInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // EnvironmentQueryController_ServiceDesc is the grpc.ServiceDesc for EnvironmentQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -138,10 +103,6 @@ var EnvironmentQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "get",
 			Handler:    _EnvironmentQueryController_Get_Handler,
-		},
-		{
-			MethodName: "getByOrgIdAndEnvName",
-			Handler:    _EnvironmentQueryController_GetByOrgIdAndEnvName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -16,13 +16,3 @@ message EnvId {
     (buf.validate.field).required = true
   ];
 }
-
-// input for rpc to lookup environment using org-id and env-name
-message GetByOrgIdAndEnvNameQueryInput {
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
-  string env_name = 2 [
-    (buf.validate.field).required = true
-  ];
-}
