@@ -462,15 +462,15 @@ var GcpCloudDnsZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	GcpCloudDnsZoneRecordCommandController_Add_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsZoneRecordCommandController/add"
-	GcpCloudDnsZoneRecordCommandController_Update_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsZoneRecordCommandController/update"
-	GcpCloudDnsZoneRecordCommandController_Delete_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsZoneRecordCommandController/delete"
+	GcpCloudDnsRecordCommandController_Add_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsRecordCommandController/add"
+	GcpCloudDnsRecordCommandController_Update_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsRecordCommandController/update"
+	GcpCloudDnsRecordCommandController_Delete_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsRecordCommandController/delete"
 )
 
-// GcpCloudDnsZoneRecordCommandControllerClient is the client API for GcpCloudDnsZoneRecordCommandController service.
+// GcpCloudDnsRecordCommandControllerClient is the client API for GcpCloudDnsRecordCommandController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GcpCloudDnsZoneRecordCommandControllerClient interface {
+type GcpCloudDnsRecordCommandControllerClient interface {
 	// add a new dns-record to gcp-cloud-dns-zone
 	Add(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 	// update an existing dns-record in gcp-cloud-dns-zone
@@ -479,45 +479,45 @@ type GcpCloudDnsZoneRecordCommandControllerClient interface {
 	Delete(ctx context.Context, in *model.DeleteGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error)
 }
 
-type gcpCloudDnsZoneRecordCommandControllerClient struct {
+type gcpCloudDnsRecordCommandControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGcpCloudDnsZoneRecordCommandControllerClient(cc grpc.ClientConnInterface) GcpCloudDnsZoneRecordCommandControllerClient {
-	return &gcpCloudDnsZoneRecordCommandControllerClient{cc}
+func NewGcpCloudDnsRecordCommandControllerClient(cc grpc.ClientConnInterface) GcpCloudDnsRecordCommandControllerClient {
+	return &gcpCloudDnsRecordCommandControllerClient{cc}
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsRecordCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
-	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Add_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GcpCloudDnsRecordCommandController_Add_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsRecordCommandControllerClient) Update(ctx context.Context, in *model.AddOrUpdateGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
-	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Update_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GcpCloudDnsRecordCommandController_Update_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *gcpCloudDnsZoneRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
+func (c *gcpCloudDnsRecordCommandControllerClient) Delete(ctx context.Context, in *model.DeleteGcpCloudDnsRecordInput, opts ...grpc.CallOption) (*model.GcpCloudDnsZone, error) {
 	out := new(model.GcpCloudDnsZone)
-	err := c.cc.Invoke(ctx, GcpCloudDnsZoneRecordCommandController_Delete_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GcpCloudDnsRecordCommandController_Delete_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// GcpCloudDnsZoneRecordCommandControllerServer is the server API for GcpCloudDnsZoneRecordCommandController service.
-// All implementations should embed UnimplementedGcpCloudDnsZoneRecordCommandControllerServer
+// GcpCloudDnsRecordCommandControllerServer is the server API for GcpCloudDnsRecordCommandController service.
+// All implementations should embed UnimplementedGcpCloudDnsRecordCommandControllerServer
 // for forward compatibility
-type GcpCloudDnsZoneRecordCommandControllerServer interface {
+type GcpCloudDnsRecordCommandControllerServer interface {
 	// add a new dns-record to gcp-cloud-dns-zone
 	Add(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error)
 	// update an existing dns-record in gcp-cloud-dns-zone
@@ -526,103 +526,103 @@ type GcpCloudDnsZoneRecordCommandControllerServer interface {
 	Delete(context.Context, *model.DeleteGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error)
 }
 
-// UnimplementedGcpCloudDnsZoneRecordCommandControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGcpCloudDnsZoneRecordCommandControllerServer struct {
+// UnimplementedGcpCloudDnsRecordCommandControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGcpCloudDnsRecordCommandControllerServer struct {
 }
 
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsRecordCommandControllerServer) Add(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsRecordCommandControllerServer) Update(context.Context, *model.AddOrUpdateGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
-func (UnimplementedGcpCloudDnsZoneRecordCommandControllerServer) Delete(context.Context, *model.DeleteGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
+func (UnimplementedGcpCloudDnsRecordCommandControllerServer) Delete(context.Context, *model.DeleteGcpCloudDnsRecordInput) (*model.GcpCloudDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
-// UnsafeGcpCloudDnsZoneRecordCommandControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GcpCloudDnsZoneRecordCommandControllerServer will
+// UnsafeGcpCloudDnsRecordCommandControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GcpCloudDnsRecordCommandControllerServer will
 // result in compilation errors.
-type UnsafeGcpCloudDnsZoneRecordCommandControllerServer interface {
-	mustEmbedUnimplementedGcpCloudDnsZoneRecordCommandControllerServer()
+type UnsafeGcpCloudDnsRecordCommandControllerServer interface {
+	mustEmbedUnimplementedGcpCloudDnsRecordCommandControllerServer()
 }
 
-func RegisterGcpCloudDnsZoneRecordCommandControllerServer(s grpc.ServiceRegistrar, srv GcpCloudDnsZoneRecordCommandControllerServer) {
-	s.RegisterService(&GcpCloudDnsZoneRecordCommandController_ServiceDesc, srv)
+func RegisterGcpCloudDnsRecordCommandControllerServer(s grpc.ServiceRegistrar, srv GcpCloudDnsRecordCommandControllerServer) {
+	s.RegisterService(&GcpCloudDnsRecordCommandController_ServiceDesc, srv)
 }
 
-func _GcpCloudDnsZoneRecordCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GcpCloudDnsRecordCommandController_Add_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddOrUpdateGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Add(ctx, in)
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Add(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GcpCloudDnsZoneRecordCommandController_Add_FullMethodName,
+		FullMethod: GcpCloudDnsRecordCommandController_Add_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GcpCloudDnsZoneRecordCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GcpCloudDnsRecordCommandController_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.AddOrUpdateGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Update(ctx, in)
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GcpCloudDnsZoneRecordCommandController_Update_FullMethodName,
+		FullMethod: GcpCloudDnsRecordCommandController_Update_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Update(ctx, req.(*model.AddOrUpdateGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GcpCloudDnsZoneRecordCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GcpCloudDnsRecordCommandController_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.DeleteGcpCloudDnsRecordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Delete(ctx, in)
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Delete(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GcpCloudDnsZoneRecordCommandController_Delete_FullMethodName,
+		FullMethod: GcpCloudDnsRecordCommandController_Delete_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpCloudDnsZoneRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteGcpCloudDnsRecordInput))
+		return srv.(GcpCloudDnsRecordCommandControllerServer).Delete(ctx, req.(*model.DeleteGcpCloudDnsRecordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// GcpCloudDnsZoneRecordCommandController_ServiceDesc is the grpc.ServiceDesc for GcpCloudDnsZoneRecordCommandController service.
+// GcpCloudDnsRecordCommandController_ServiceDesc is the grpc.ServiceDesc for GcpCloudDnsRecordCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GcpCloudDnsZoneRecordCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsZoneRecordCommandController",
-	HandlerType: (*GcpCloudDnsZoneRecordCommandControllerServer)(nil),
+var GcpCloudDnsRecordCommandController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.service.GcpCloudDnsRecordCommandController",
+	HandlerType: (*GcpCloudDnsRecordCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "add",
-			Handler:    _GcpCloudDnsZoneRecordCommandController_Add_Handler,
+			Handler:    _GcpCloudDnsRecordCommandController_Add_Handler,
 		},
 		{
 			MethodName: "update",
-			Handler:    _GcpCloudDnsZoneRecordCommandController_Update_Handler,
+			Handler:    _GcpCloudDnsRecordCommandController_Update_Handler,
 		},
 		{
 			MethodName: "delete",
-			Handler:    _GcpCloudDnsZoneRecordCommandController_Delete_Handler,
+			Handler:    _GcpCloudDnsRecordCommandController_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

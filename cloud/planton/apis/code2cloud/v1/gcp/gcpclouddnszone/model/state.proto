@@ -78,7 +78,7 @@ message GcpCloudDnsZoneSpec {
   repeated string iam_service_accounts = 2;
 
   // The DNS records that are added to the Zone.
-  repeated GcpCloudDnsDnsRecord records = 3;
+  repeated GcpCloudDnsRecord records = 3;
 }
 
 // Status for the Route53 Zone
@@ -104,7 +104,7 @@ message GcpCloudDnsZoneStackOutputs {
 }
 
 // gcp-cloud-dns-zone dns-record
-message GcpCloudDnsDnsRecord {
+message GcpCloudDnsRecord {
   string id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];

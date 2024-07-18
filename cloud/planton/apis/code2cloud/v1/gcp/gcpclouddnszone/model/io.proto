@@ -34,7 +34,7 @@ message AddOrUpdateGcpCloudDnsRecordInput {
   // This field contains the actual DNS record that is to be added or updated. The DNS record
   // object should be populated with all necessary fields (like name, type, TTL, data etc.),
   // which the server uses to create a new DNS record or update an existing one.
-  GcpCloudDnsDnsRecord record = 2 [
+  GcpCloudDnsRecord record = 2 [
     (buf.validate.field).required = true
   ];
 

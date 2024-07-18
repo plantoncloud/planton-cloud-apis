@@ -142,7 +142,7 @@ service GcpCloudDnsZoneCommandController {
 }
 
 //gcp-cloud-dns-zone dns-record command controller
-service GcpCloudDnsZoneRecordCommandController {
+service GcpCloudDnsRecordCommandController {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = gcp_cloud_dns_zone;
   // add a new dns-record to gcp-cloud-dns-zone
   rpc add(cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model.AddOrUpdateGcpCloudDnsRecordInput)
