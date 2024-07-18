@@ -78,7 +78,7 @@ message GcpCredentialSpec {
 
   // The ID of the Google Cloud Organization, required and immutable. For more information,
   // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
-  string gcp_org_id = 2 [
+  string gcp_organization_id = 2 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).ignore_empty = true,
@@ -90,7 +90,7 @@ message GcpCredentialSpec {
   ];
 
   //base64 encoded google service account key
-  string service_account_key_base64 = 3 [
+  string gcp_service_account_key_base64 = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }
