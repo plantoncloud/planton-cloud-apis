@@ -20,30 +20,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GcpArtifactRegistryGcpStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.service.GcpArtifactRegistryGcpStackController/execute"
+	GcpArtifactRegistryStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.service.GcpArtifactRegistryStackController/execute"
 )
 
-// GcpArtifactRegistryGcpStackControllerClient is the client API for GcpArtifactRegistryGcpStackController service.
+// GcpArtifactRegistryStackControllerClient is the client API for GcpArtifactRegistryStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GcpArtifactRegistryGcpStackControllerClient interface {
-	Execute(ctx context.Context, in *model.GcpArtifactRegistryStackInput, opts ...grpc.CallOption) (GcpArtifactRegistryGcpStackController_ExecuteClient, error)
+type GcpArtifactRegistryStackControllerClient interface {
+	Execute(ctx context.Context, in *model.GcpArtifactRegistryStackInput, opts ...grpc.CallOption) (GcpArtifactRegistryStackController_ExecuteClient, error)
 }
 
-type gcpArtifactRegistryGcpStackControllerClient struct {
+type gcpArtifactRegistryStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGcpArtifactRegistryGcpStackControllerClient(cc grpc.ClientConnInterface) GcpArtifactRegistryGcpStackControllerClient {
-	return &gcpArtifactRegistryGcpStackControllerClient{cc}
+func NewGcpArtifactRegistryStackControllerClient(cc grpc.ClientConnInterface) GcpArtifactRegistryStackControllerClient {
+	return &gcpArtifactRegistryStackControllerClient{cc}
 }
 
-func (c *gcpArtifactRegistryGcpStackControllerClient) Execute(ctx context.Context, in *model.GcpArtifactRegistryStackInput, opts ...grpc.CallOption) (GcpArtifactRegistryGcpStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &GcpArtifactRegistryGcpStackController_ServiceDesc.Streams[0], GcpArtifactRegistryGcpStackController_Execute_FullMethodName, opts...)
+func (c *gcpArtifactRegistryStackControllerClient) Execute(ctx context.Context, in *model.GcpArtifactRegistryStackInput, opts ...grpc.CallOption) (GcpArtifactRegistryStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &GcpArtifactRegistryStackController_ServiceDesc.Streams[0], GcpArtifactRegistryStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gcpArtifactRegistryGcpStackControllerExecuteClient{stream}
+	x := &gcpArtifactRegistryStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -53,16 +53,16 @@ func (c *gcpArtifactRegistryGcpStackControllerClient) Execute(ctx context.Contex
 	return x, nil
 }
 
-type GcpArtifactRegistryGcpStackController_ExecuteClient interface {
+type GcpArtifactRegistryStackController_ExecuteClient interface {
 	Recv() (*model.GcpArtifactRegistryStackResponse, error)
 	grpc.ClientStream
 }
 
-type gcpArtifactRegistryGcpStackControllerExecuteClient struct {
+type gcpArtifactRegistryStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *gcpArtifactRegistryGcpStackControllerExecuteClient) Recv() (*model.GcpArtifactRegistryStackResponse, error) {
+func (x *gcpArtifactRegistryStackControllerExecuteClient) Recv() (*model.GcpArtifactRegistryStackResponse, error) {
 	m := new(model.GcpArtifactRegistryStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -70,64 +70,64 @@ func (x *gcpArtifactRegistryGcpStackControllerExecuteClient) Recv() (*model.GcpA
 	return m, nil
 }
 
-// GcpArtifactRegistryGcpStackControllerServer is the server API for GcpArtifactRegistryGcpStackController service.
-// All implementations should embed UnimplementedGcpArtifactRegistryGcpStackControllerServer
+// GcpArtifactRegistryStackControllerServer is the server API for GcpArtifactRegistryStackController service.
+// All implementations should embed UnimplementedGcpArtifactRegistryStackControllerServer
 // for forward compatibility
-type GcpArtifactRegistryGcpStackControllerServer interface {
-	Execute(*model.GcpArtifactRegistryStackInput, GcpArtifactRegistryGcpStackController_ExecuteServer) error
+type GcpArtifactRegistryStackControllerServer interface {
+	Execute(*model.GcpArtifactRegistryStackInput, GcpArtifactRegistryStackController_ExecuteServer) error
 }
 
-// UnimplementedGcpArtifactRegistryGcpStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGcpArtifactRegistryGcpStackControllerServer struct {
+// UnimplementedGcpArtifactRegistryStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGcpArtifactRegistryStackControllerServer struct {
 }
 
-func (UnimplementedGcpArtifactRegistryGcpStackControllerServer) Execute(*model.GcpArtifactRegistryStackInput, GcpArtifactRegistryGcpStackController_ExecuteServer) error {
+func (UnimplementedGcpArtifactRegistryStackControllerServer) Execute(*model.GcpArtifactRegistryStackInput, GcpArtifactRegistryStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
-// UnsafeGcpArtifactRegistryGcpStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GcpArtifactRegistryGcpStackControllerServer will
+// UnsafeGcpArtifactRegistryStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GcpArtifactRegistryStackControllerServer will
 // result in compilation errors.
-type UnsafeGcpArtifactRegistryGcpStackControllerServer interface {
-	mustEmbedUnimplementedGcpArtifactRegistryGcpStackControllerServer()
+type UnsafeGcpArtifactRegistryStackControllerServer interface {
+	mustEmbedUnimplementedGcpArtifactRegistryStackControllerServer()
 }
 
-func RegisterGcpArtifactRegistryGcpStackControllerServer(s grpc.ServiceRegistrar, srv GcpArtifactRegistryGcpStackControllerServer) {
-	s.RegisterService(&GcpArtifactRegistryGcpStackController_ServiceDesc, srv)
+func RegisterGcpArtifactRegistryStackControllerServer(s grpc.ServiceRegistrar, srv GcpArtifactRegistryStackControllerServer) {
+	s.RegisterService(&GcpArtifactRegistryStackController_ServiceDesc, srv)
 }
 
-func _GcpArtifactRegistryGcpStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _GcpArtifactRegistryStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.GcpArtifactRegistryStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(GcpArtifactRegistryGcpStackControllerServer).Execute(m, &gcpArtifactRegistryGcpStackControllerExecuteServer{stream})
+	return srv.(GcpArtifactRegistryStackControllerServer).Execute(m, &gcpArtifactRegistryStackControllerExecuteServer{stream})
 }
 
-type GcpArtifactRegistryGcpStackController_ExecuteServer interface {
+type GcpArtifactRegistryStackController_ExecuteServer interface {
 	Send(*model.GcpArtifactRegistryStackResponse) error
 	grpc.ServerStream
 }
 
-type gcpArtifactRegistryGcpStackControllerExecuteServer struct {
+type gcpArtifactRegistryStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *gcpArtifactRegistryGcpStackControllerExecuteServer) Send(m *model.GcpArtifactRegistryStackResponse) error {
+func (x *gcpArtifactRegistryStackControllerExecuteServer) Send(m *model.GcpArtifactRegistryStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// GcpArtifactRegistryGcpStackController_ServiceDesc is the grpc.ServiceDesc for GcpArtifactRegistryGcpStackController service.
+// GcpArtifactRegistryStackController_ServiceDesc is the grpc.ServiceDesc for GcpArtifactRegistryStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GcpArtifactRegistryGcpStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.service.GcpArtifactRegistryGcpStackController",
-	HandlerType: (*GcpArtifactRegistryGcpStackControllerServer)(nil),
+var GcpArtifactRegistryStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.stack.service.GcpArtifactRegistryStackController",
+	HandlerType: (*GcpArtifactRegistryStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _GcpArtifactRegistryGcpStackController_Execute_Handler,
+			Handler:       _GcpArtifactRegistryStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},

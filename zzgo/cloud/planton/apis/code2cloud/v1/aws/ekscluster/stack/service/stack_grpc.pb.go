@@ -20,30 +20,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	EksClusterGcpStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.stack.service.EksClusterGcpStackController/execute"
+	EksClusterStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.stack.service.EksClusterStackController/execute"
 )
 
-// EksClusterGcpStackControllerClient is the client API for EksClusterGcpStackController service.
+// EksClusterStackControllerClient is the client API for EksClusterStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EksClusterGcpStackControllerClient interface {
-	Execute(ctx context.Context, in *model.EksClusterStackInput, opts ...grpc.CallOption) (EksClusterGcpStackController_ExecuteClient, error)
+type EksClusterStackControllerClient interface {
+	Execute(ctx context.Context, in *model.EksClusterStackInput, opts ...grpc.CallOption) (EksClusterStackController_ExecuteClient, error)
 }
 
-type eksClusterGcpStackControllerClient struct {
+type eksClusterStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEksClusterGcpStackControllerClient(cc grpc.ClientConnInterface) EksClusterGcpStackControllerClient {
-	return &eksClusterGcpStackControllerClient{cc}
+func NewEksClusterStackControllerClient(cc grpc.ClientConnInterface) EksClusterStackControllerClient {
+	return &eksClusterStackControllerClient{cc}
 }
 
-func (c *eksClusterGcpStackControllerClient) Execute(ctx context.Context, in *model.EksClusterStackInput, opts ...grpc.CallOption) (EksClusterGcpStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &EksClusterGcpStackController_ServiceDesc.Streams[0], EksClusterGcpStackController_Execute_FullMethodName, opts...)
+func (c *eksClusterStackControllerClient) Execute(ctx context.Context, in *model.EksClusterStackInput, opts ...grpc.CallOption) (EksClusterStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &EksClusterStackController_ServiceDesc.Streams[0], EksClusterStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &eksClusterGcpStackControllerExecuteClient{stream}
+	x := &eksClusterStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -53,16 +53,16 @@ func (c *eksClusterGcpStackControllerClient) Execute(ctx context.Context, in *mo
 	return x, nil
 }
 
-type EksClusterGcpStackController_ExecuteClient interface {
+type EksClusterStackController_ExecuteClient interface {
 	Recv() (*model.EksClusterStackResponse, error)
 	grpc.ClientStream
 }
 
-type eksClusterGcpStackControllerExecuteClient struct {
+type eksClusterStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *eksClusterGcpStackControllerExecuteClient) Recv() (*model.EksClusterStackResponse, error) {
+func (x *eksClusterStackControllerExecuteClient) Recv() (*model.EksClusterStackResponse, error) {
 	m := new(model.EksClusterStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -70,64 +70,64 @@ func (x *eksClusterGcpStackControllerExecuteClient) Recv() (*model.EksClusterSta
 	return m, nil
 }
 
-// EksClusterGcpStackControllerServer is the server API for EksClusterGcpStackController service.
-// All implementations should embed UnimplementedEksClusterGcpStackControllerServer
+// EksClusterStackControllerServer is the server API for EksClusterStackController service.
+// All implementations should embed UnimplementedEksClusterStackControllerServer
 // for forward compatibility
-type EksClusterGcpStackControllerServer interface {
-	Execute(*model.EksClusterStackInput, EksClusterGcpStackController_ExecuteServer) error
+type EksClusterStackControllerServer interface {
+	Execute(*model.EksClusterStackInput, EksClusterStackController_ExecuteServer) error
 }
 
-// UnimplementedEksClusterGcpStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedEksClusterGcpStackControllerServer struct {
+// UnimplementedEksClusterStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedEksClusterStackControllerServer struct {
 }
 
-func (UnimplementedEksClusterGcpStackControllerServer) Execute(*model.EksClusterStackInput, EksClusterGcpStackController_ExecuteServer) error {
+func (UnimplementedEksClusterStackControllerServer) Execute(*model.EksClusterStackInput, EksClusterStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
-// UnsafeEksClusterGcpStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EksClusterGcpStackControllerServer will
+// UnsafeEksClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EksClusterStackControllerServer will
 // result in compilation errors.
-type UnsafeEksClusterGcpStackControllerServer interface {
-	mustEmbedUnimplementedEksClusterGcpStackControllerServer()
+type UnsafeEksClusterStackControllerServer interface {
+	mustEmbedUnimplementedEksClusterStackControllerServer()
 }
 
-func RegisterEksClusterGcpStackControllerServer(s grpc.ServiceRegistrar, srv EksClusterGcpStackControllerServer) {
-	s.RegisterService(&EksClusterGcpStackController_ServiceDesc, srv)
+func RegisterEksClusterStackControllerServer(s grpc.ServiceRegistrar, srv EksClusterStackControllerServer) {
+	s.RegisterService(&EksClusterStackController_ServiceDesc, srv)
 }
 
-func _EksClusterGcpStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _EksClusterStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.EksClusterStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(EksClusterGcpStackControllerServer).Execute(m, &eksClusterGcpStackControllerExecuteServer{stream})
+	return srv.(EksClusterStackControllerServer).Execute(m, &eksClusterStackControllerExecuteServer{stream})
 }
 
-type EksClusterGcpStackController_ExecuteServer interface {
+type EksClusterStackController_ExecuteServer interface {
 	Send(*model.EksClusterStackResponse) error
 	grpc.ServerStream
 }
 
-type eksClusterGcpStackControllerExecuteServer struct {
+type eksClusterStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *eksClusterGcpStackControllerExecuteServer) Send(m *model.EksClusterStackResponse) error {
+func (x *eksClusterStackControllerExecuteServer) Send(m *model.EksClusterStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// EksClusterGcpStackController_ServiceDesc is the grpc.ServiceDesc for EksClusterGcpStackController service.
+// EksClusterStackController_ServiceDesc is the grpc.ServiceDesc for EksClusterStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var EksClusterGcpStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.aws.ekscluster.stack.service.EksClusterGcpStackController",
-	HandlerType: (*EksClusterGcpStackControllerServer)(nil),
+var EksClusterStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.aws.ekscluster.stack.service.EksClusterStackController",
+	HandlerType: (*EksClusterStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _EksClusterGcpStackController_Execute_Handler,
+			Handler:       _EksClusterStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},

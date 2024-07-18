@@ -20,30 +20,30 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GkeClusterGcpStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.stack.service.GkeClusterGcpStackController/execute"
+	GkeClusterStackController_Execute_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.stack.service.GkeClusterStackController/execute"
 )
 
-// GkeClusterGcpStackControllerClient is the client API for GkeClusterGcpStackController service.
+// GkeClusterStackControllerClient is the client API for GkeClusterStackController service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type GkeClusterGcpStackControllerClient interface {
-	Execute(ctx context.Context, in *model.GkeClusterStackInput, opts ...grpc.CallOption) (GkeClusterGcpStackController_ExecuteClient, error)
+type GkeClusterStackControllerClient interface {
+	Execute(ctx context.Context, in *model.GkeClusterStackInput, opts ...grpc.CallOption) (GkeClusterStackController_ExecuteClient, error)
 }
 
-type gkeClusterGcpStackControllerClient struct {
+type gkeClusterStackControllerClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewGkeClusterGcpStackControllerClient(cc grpc.ClientConnInterface) GkeClusterGcpStackControllerClient {
-	return &gkeClusterGcpStackControllerClient{cc}
+func NewGkeClusterStackControllerClient(cc grpc.ClientConnInterface) GkeClusterStackControllerClient {
+	return &gkeClusterStackControllerClient{cc}
 }
 
-func (c *gkeClusterGcpStackControllerClient) Execute(ctx context.Context, in *model.GkeClusterStackInput, opts ...grpc.CallOption) (GkeClusterGcpStackController_ExecuteClient, error) {
-	stream, err := c.cc.NewStream(ctx, &GkeClusterGcpStackController_ServiceDesc.Streams[0], GkeClusterGcpStackController_Execute_FullMethodName, opts...)
+func (c *gkeClusterStackControllerClient) Execute(ctx context.Context, in *model.GkeClusterStackInput, opts ...grpc.CallOption) (GkeClusterStackController_ExecuteClient, error) {
+	stream, err := c.cc.NewStream(ctx, &GkeClusterStackController_ServiceDesc.Streams[0], GkeClusterStackController_Execute_FullMethodName, opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &gkeClusterGcpStackControllerExecuteClient{stream}
+	x := &gkeClusterStackControllerExecuteClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -53,16 +53,16 @@ func (c *gkeClusterGcpStackControllerClient) Execute(ctx context.Context, in *mo
 	return x, nil
 }
 
-type GkeClusterGcpStackController_ExecuteClient interface {
+type GkeClusterStackController_ExecuteClient interface {
 	Recv() (*model.GkeClusterStackResponse, error)
 	grpc.ClientStream
 }
 
-type gkeClusterGcpStackControllerExecuteClient struct {
+type gkeClusterStackControllerExecuteClient struct {
 	grpc.ClientStream
 }
 
-func (x *gkeClusterGcpStackControllerExecuteClient) Recv() (*model.GkeClusterStackResponse, error) {
+func (x *gkeClusterStackControllerExecuteClient) Recv() (*model.GkeClusterStackResponse, error) {
 	m := new(model.GkeClusterStackResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
@@ -70,64 +70,64 @@ func (x *gkeClusterGcpStackControllerExecuteClient) Recv() (*model.GkeClusterSta
 	return m, nil
 }
 
-// GkeClusterGcpStackControllerServer is the server API for GkeClusterGcpStackController service.
-// All implementations should embed UnimplementedGkeClusterGcpStackControllerServer
+// GkeClusterStackControllerServer is the server API for GkeClusterStackController service.
+// All implementations should embed UnimplementedGkeClusterStackControllerServer
 // for forward compatibility
-type GkeClusterGcpStackControllerServer interface {
-	Execute(*model.GkeClusterStackInput, GkeClusterGcpStackController_ExecuteServer) error
+type GkeClusterStackControllerServer interface {
+	Execute(*model.GkeClusterStackInput, GkeClusterStackController_ExecuteServer) error
 }
 
-// UnimplementedGkeClusterGcpStackControllerServer should be embedded to have forward compatible implementations.
-type UnimplementedGkeClusterGcpStackControllerServer struct {
+// UnimplementedGkeClusterStackControllerServer should be embedded to have forward compatible implementations.
+type UnimplementedGkeClusterStackControllerServer struct {
 }
 
-func (UnimplementedGkeClusterGcpStackControllerServer) Execute(*model.GkeClusterStackInput, GkeClusterGcpStackController_ExecuteServer) error {
+func (UnimplementedGkeClusterStackControllerServer) Execute(*model.GkeClusterStackInput, GkeClusterStackController_ExecuteServer) error {
 	return status.Errorf(codes.Unimplemented, "method Execute not implemented")
 }
 
-// UnsafeGkeClusterGcpStackControllerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to GkeClusterGcpStackControllerServer will
+// UnsafeGkeClusterStackControllerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to GkeClusterStackControllerServer will
 // result in compilation errors.
-type UnsafeGkeClusterGcpStackControllerServer interface {
-	mustEmbedUnimplementedGkeClusterGcpStackControllerServer()
+type UnsafeGkeClusterStackControllerServer interface {
+	mustEmbedUnimplementedGkeClusterStackControllerServer()
 }
 
-func RegisterGkeClusterGcpStackControllerServer(s grpc.ServiceRegistrar, srv GkeClusterGcpStackControllerServer) {
-	s.RegisterService(&GkeClusterGcpStackController_ServiceDesc, srv)
+func RegisterGkeClusterStackControllerServer(s grpc.ServiceRegistrar, srv GkeClusterStackControllerServer) {
+	s.RegisterService(&GkeClusterStackController_ServiceDesc, srv)
 }
 
-func _GkeClusterGcpStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
+func _GkeClusterStackController_Execute_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(model.GkeClusterStackInput)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(GkeClusterGcpStackControllerServer).Execute(m, &gkeClusterGcpStackControllerExecuteServer{stream})
+	return srv.(GkeClusterStackControllerServer).Execute(m, &gkeClusterStackControllerExecuteServer{stream})
 }
 
-type GkeClusterGcpStackController_ExecuteServer interface {
+type GkeClusterStackController_ExecuteServer interface {
 	Send(*model.GkeClusterStackResponse) error
 	grpc.ServerStream
 }
 
-type gkeClusterGcpStackControllerExecuteServer struct {
+type gkeClusterStackControllerExecuteServer struct {
 	grpc.ServerStream
 }
 
-func (x *gkeClusterGcpStackControllerExecuteServer) Send(m *model.GkeClusterStackResponse) error {
+func (x *gkeClusterStackControllerExecuteServer) Send(m *model.GkeClusterStackResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-// GkeClusterGcpStackController_ServiceDesc is the grpc.ServiceDesc for GkeClusterGcpStackController service.
+// GkeClusterStackController_ServiceDesc is the grpc.ServiceDesc for GkeClusterStackController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var GkeClusterGcpStackController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gkecluster.stack.service.GkeClusterGcpStackController",
-	HandlerType: (*GkeClusterGcpStackControllerServer)(nil),
+var GkeClusterStackController_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "cloud.planton.apis.code2cloud.v1.gcp.gkecluster.stack.service.GkeClusterStackController",
+	HandlerType: (*GkeClusterStackControllerServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "execute",
-			Handler:       _GkeClusterGcpStackController_Execute_Handler,
+			Handler:       _GkeClusterStackController_Execute_Handler,
 			ServerStreams: true,
 		},
 	},
