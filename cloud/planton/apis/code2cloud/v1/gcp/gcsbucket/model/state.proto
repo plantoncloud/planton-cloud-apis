@@ -65,13 +65,18 @@ message GcsBucketSpec {
   string gcp_credential_id = 97;
 
   //gcp project in which the storage-bucket is to be created.
-  string project_id = 1 [
+  string gcp_project_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //gcp region
+  string gcp_region = 2 [
     (buf.validate.field).required = true
   ];
 
   //flag to indicate if gcs-bucket should have external(public) access.
   //defaults to "false"
-  bool is_public = 2;
+  bool is_public = 3;
 }
 
 //gcs-bucket status
