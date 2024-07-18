@@ -12,7 +12,7 @@ message HelmReleaseStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
   //api-resource
-  cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease helm_release = 2;
+  cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.model.HelmRelease api_resource = 2;
   //kubernetes-cluster-credential
   cloud.planton.apis.connect.v1.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
 }
