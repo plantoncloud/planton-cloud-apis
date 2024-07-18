@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/prometheuskubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of prometheus-kubernetes
+message PrometheusKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for prometheus-kubernetes password
+message PrometheusKubernetesPassword {
+  string value = 1;
+}

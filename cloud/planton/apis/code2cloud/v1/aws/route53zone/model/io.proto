@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.route53zone.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/code2cloud/v1/aws/route53zone/model/state.proto";
+import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
+
+// wrapper for route53-zone id
+message Route53ZoneId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+// list of route53-zones
+message Route53ZoneList {
+  repeated Route53Zone entries = 1;
+}
+
+// AddOrUpdateDnsRecordCommandInput is used to encapsulate the details needed to either add
+// a new DNS record or update an existing one within a specific DNS zone.
+// This message is typically used to transmit data from the client to the server
+// during an add or update or restore operation on a DNS record within a specified DNS zone.
+message AddOrUpdateDnsRecordCommandInput {
+  // This field contains the unique identifier of the DNS zone within which the DNS record
+  // is to be added or updated. The ID should be a valid DNS zone ID, typically obtained
+  // from the DNS zone entity itself. This field is used by the server to determine
+  // the correct DNS zone where the DNS record is to be added or updated.
+  string route53_zone_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // This field contains the actual DNS record that is to be added or updated. The DNS record
+  // object should be populated with all necessary fields (like name, type, TTL, data etc.),
+  // which the server uses to create a new DNS record or update an existing one.
+  Route53ZoneDnsRecord record = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+// DeleteOrRestoreDnsRecordCommandInput is a protobuf message that encapsulates the data
+// necessary for either soft deleting or restoring a specific DNS record within a DNS zone.
+// This message is typically used to send the relevant details from the client to the server.
+message DeleteDnsRecordCommandInput {
+
+  // This field carries the unique identifier of the DNS zone from which the DNS record
+  // is to be either soft deleted or restored. The server uses this ID to find the appropriate DNS zone.
+  // This is a required field.
+  string route53_zone_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  // This field holds the type of the DNS record that is to be either soft deleted or restored.
+  // DNS record types include but are not limited to A, AAAA, CNAME, MX, etc.
+  // The server uses this information to find the DNS record of the correct type within the
+  // specified DNS zone. This is a required field.
+  cloud.planton.apis.commons.networking.enums.dnsrecordtype.DnsRecordType record_type = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).enum.defined_only = true
+  ];
+
+  // This field contains the name of the DNS record that is to be either soft deleted or restored.
+  // The DNS record name is a significant identifier used by the server to find the specific record
+  // within the specified DNS zone and of the provided type to either soft delete or restore.
+  // This is a required field.
+  string record_name = 3 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 4 [
+    (buf.validate.field).required = true
+  ];
+}

@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackmoduledescriptor.model;
+
+import "buf/validate/validate.proto";
+
+// wrapper for stack-module-descriptor id
+message StackModuleDescriptorId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.openfgakubernetes.model;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/openfgakubernetes/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for id field of openfga-kubernetes
+message OpenfgaKubernetesId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//wrapper for openfga-kubernetes password
+message OpenfgaKubernetesPassword {
+  string value = 1;
+}

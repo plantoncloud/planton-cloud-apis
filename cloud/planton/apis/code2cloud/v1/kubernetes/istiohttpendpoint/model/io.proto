@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.istiohttpendpoint.model;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/istiohttpendpoint/model/state.proto";
+import "buf/validate/validate.proto";
+
+//wrapper for istio-http-endpoint id
+message IstioHttpEndpointId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//AddOrUpdateIstioHttpEndpointRouteCommandInput is used to encapsulate the details required
+//for adding a new route to a specific istio-http-endpoint, or updating
+//an existing one. This message is typically used to transmit data between the client and
+//server during an add or update operation concerning a specific route
+//associated with a particular istio-http-endpoint.
+message AddOrUpdateIstioHttpEndpointRouteCommandInput {
+  //The unique identifier for the istio-http-endpoint to which the route
+  // needs to be added or updated. This field must be populated with a valid
+  //istio-http-endpoint ID, which can be obtained from the istio-http-endpoint entity itself.
+  //The server uses this ID to identify the correct istio-http-endpoint where the
+  //route needs to be added or updated.
+  string istio_http_endpoint_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //The route that needs to be added or updated within the
+  //environment. This field should be populated with a valid IstioHttpEndpointRoute object,
+  //which encapsulates the details of the route. If an route
+  //with the same url path prefix already exists in the istio-http-endpoint, the value will be updated.
+  //Otherwise, a new route will be created with the provided details.
+  IstioHttpEndpointRoute route = 2;
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//DeleteOrRestoreIstioHttpEndpointRouteCommandInput is used to encapsulate the details required for
+//deleting or restore a route of a specific istio-http-endpoint.
+//This message is typically used to transmit data between the client and the server
+//during a delete or restore operation concerning a specific route associated
+//with a particular istio-http-endpoint.
+message DeleteOrRestoreIstioHttpEndpointRouteCommandInput {
+  //The unique identifier for the istio-http-endpoint from which the route
+  // needs to be deleted. This field must be populated with a valid
+  //istio-http-endpoint ID, which can be obtained from the istio-http-endpoint entity itself.
+  //The server uses this ID to identify the correct istio-http-endpoint from which
+  //the route needs to be deleted.
+  string istio_http_endpoint_id = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //The url path prefix of the route that needs to be deleted
+  //from the istio-http-endpoint. This field should be populated with a valid
+  //url path prefix, which can be obtained from the route entity itself.
+  //The server uses this url path prefix to identify the correct route that
+  //needs to be deleted.
+  string url_path_prefix = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  // A descriptive message explaining the reason for the change or operation.
+  // This is used for history logging purposes.
+  string version_message = 3 [
+    (buf.validate.field).required = true
+  ];
+}
