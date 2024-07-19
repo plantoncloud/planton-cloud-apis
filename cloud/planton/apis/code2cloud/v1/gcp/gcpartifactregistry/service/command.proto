@@ -5,10 +5,9 @@ package cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service;
 import "cloud/planton/apis/code2cloud/v1/gcp/gcpartifactregistry/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/gcp/gcpartifactregistry/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
-import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
+import "cloud/planton/apis/connect/v1/kubernetesdockercredential/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //gcp-artifact-registry command controller
@@ -137,6 +136,16 @@ service GcpArtifactRegistryCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+
+  rpc createKubernetesDockerCredential(cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.model.GcpArtifactRegistryId)
+      returns (cloud.planton.apis.connect.v1.kubernetesdockercredential.model.KubernetesDockerCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gcp_artifact_registry;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create kubernetes-docker-credential for gcp-artifact-registry";
+
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
 }

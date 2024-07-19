@@ -10,6 +10,7 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gcp/gcpartifactregistry/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/connect/v1/kubernetesdockercredential/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,16 +22,17 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GcpArtifactRegistryCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewCreate"
-	GcpArtifactRegistryCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/create"
-	GcpArtifactRegistryCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewUpdate"
-	GcpArtifactRegistryCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/update"
-	GcpArtifactRegistryCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewDelete"
-	GcpArtifactRegistryCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/delete"
-	GcpArtifactRegistryCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRestore"
-	GcpArtifactRegistryCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/restore"
-	GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRefresh"
-	GcpArtifactRegistryCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/refresh"
+	GcpArtifactRegistryCommandController_PreviewCreate_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewCreate"
+	GcpArtifactRegistryCommandController_Create_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/create"
+	GcpArtifactRegistryCommandController_PreviewUpdate_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewUpdate"
+	GcpArtifactRegistryCommandController_Update_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/update"
+	GcpArtifactRegistryCommandController_PreviewDelete_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewDelete"
+	GcpArtifactRegistryCommandController_Delete_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/delete"
+	GcpArtifactRegistryCommandController_PreviewRestore_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRestore"
+	GcpArtifactRegistryCommandController_Restore_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/restore"
+	GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRefresh"
+	GcpArtifactRegistryCommandController_Refresh_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/refresh"
+	GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/createKubernetesDockerCredential"
 )
 
 // GcpArtifactRegistryCommandControllerClient is the client API for GcpArtifactRegistryCommandController service.
@@ -57,6 +59,7 @@ type GcpArtifactRegistryCommandControllerClient interface {
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// refresh a gcp-artifact-registry that was previously created
 	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
+	CreateKubernetesDockerCredential(ctx context.Context, in *model.GcpArtifactRegistryId, opts ...grpc.CallOption) (*model2.KubernetesDockerCredential, error)
 }
 
 type gcpArtifactRegistryCommandControllerClient struct {
@@ -157,6 +160,15 @@ func (c *gcpArtifactRegistryCommandControllerClient) Refresh(ctx context.Context
 	return out, nil
 }
 
+func (c *gcpArtifactRegistryCommandControllerClient) CreateKubernetesDockerCredential(ctx context.Context, in *model.GcpArtifactRegistryId, opts ...grpc.CallOption) (*model2.KubernetesDockerCredential, error) {
+	out := new(model2.KubernetesDockerCredential)
+	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GcpArtifactRegistryCommandControllerServer is the server API for GcpArtifactRegistryCommandController service.
 // All implementations should embed UnimplementedGcpArtifactRegistryCommandControllerServer
 // for forward compatibility
@@ -181,6 +193,7 @@ type GcpArtifactRegistryCommandControllerServer interface {
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
 	// refresh a gcp-artifact-registry that was previously created
 	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
+	CreateKubernetesDockerCredential(context.Context, *model.GcpArtifactRegistryId) (*model2.KubernetesDockerCredential, error)
 }
 
 // UnimplementedGcpArtifactRegistryCommandControllerServer should be embedded to have forward compatible implementations.
@@ -216,6 +229,9 @@ func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRefresh(co
 }
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+}
+func (UnimplementedGcpArtifactRegistryCommandControllerServer) CreateKubernetesDockerCredential(context.Context, *model.GcpArtifactRegistryId) (*model2.KubernetesDockerCredential, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKubernetesDockerCredential not implemented")
 }
 
 // UnsafeGcpArtifactRegistryCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -409,6 +425,24 @@ func _GcpArtifactRegistryCommandController_Refresh_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GcpArtifactRegistryId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GcpArtifactRegistryCommandControllerServer).CreateKubernetesDockerCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GcpArtifactRegistryCommandControllerServer).CreateKubernetesDockerCredential(ctx, req.(*model.GcpArtifactRegistryId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GcpArtifactRegistryCommandController_ServiceDesc is the grpc.ServiceDesc for GcpArtifactRegistryCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -455,6 +489,10 @@ var GcpArtifactRegistryCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "refresh",
 			Handler:    _GcpArtifactRegistryCommandController_Refresh_Handler,
+		},
+		{
+			MethodName: "createKubernetesDockerCredential",
+			Handler:    _GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

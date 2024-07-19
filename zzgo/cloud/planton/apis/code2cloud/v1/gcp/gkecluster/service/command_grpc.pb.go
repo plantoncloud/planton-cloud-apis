@@ -10,6 +10,7 @@ import (
 	context "context"
 	model "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/code2cloud/v1/gcp/gkecluster/model"
 	model1 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/commons/apiresource/model"
+	model2 "github.com/plantoncloud/planton-cloud-apis/zzgo/cloud/planton/apis/connect/v1/kubernetesclustercredential/model"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -21,18 +22,19 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	GkeClusterCommandController_PreviewCreate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewCreate"
-	GkeClusterCommandController_Create_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/create"
-	GkeClusterCommandController_PreviewUpdate_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewUpdate"
-	GkeClusterCommandController_Update_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/update"
-	GkeClusterCommandController_PreviewDelete_FullMethodName  = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewDelete"
-	GkeClusterCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/delete"
-	GkeClusterCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewRestore"
-	GkeClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/restore"
-	GkeClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/pause"
-	GkeClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/unpause"
-	GkeClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewRefresh"
-	GkeClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/refresh"
+	GkeClusterCommandController_PreviewCreate_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewCreate"
+	GkeClusterCommandController_Create_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/create"
+	GkeClusterCommandController_PreviewUpdate_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewUpdate"
+	GkeClusterCommandController_Update_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/update"
+	GkeClusterCommandController_PreviewDelete_FullMethodName                     = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewDelete"
+	GkeClusterCommandController_Delete_FullMethodName                            = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/delete"
+	GkeClusterCommandController_PreviewRestore_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewRestore"
+	GkeClusterCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/restore"
+	GkeClusterCommandController_Pause_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/pause"
+	GkeClusterCommandController_Unpause_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/unpause"
+	GkeClusterCommandController_PreviewRefresh_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewRefresh"
+	GkeClusterCommandController_Refresh_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/refresh"
+	GkeClusterCommandController_CreateKubernetesClusterCredential_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/createKubernetesClusterCredential"
 )
 
 // GkeClusterCommandControllerClient is the client API for GkeClusterCommandController service.
@@ -71,6 +73,7 @@ type GkeClusterCommandControllerClient interface {
 	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	// refresh a gke-cluster that was previously created
 	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
+	CreateKubernetesClusterCredential(ctx context.Context, in *model.GkeClusterId, opts ...grpc.CallOption) (*model2.KubernetesClusterCredential, error)
 }
 
 type gkeClusterCommandControllerClient struct {
@@ -189,6 +192,15 @@ func (c *gkeClusterCommandControllerClient) Refresh(ctx context.Context, in *mod
 	return out, nil
 }
 
+func (c *gkeClusterCommandControllerClient) CreateKubernetesClusterCredential(ctx context.Context, in *model.GkeClusterId, opts ...grpc.CallOption) (*model2.KubernetesClusterCredential, error) {
+	out := new(model2.KubernetesClusterCredential)
+	err := c.cc.Invoke(ctx, GkeClusterCommandController_CreateKubernetesClusterCredential_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // GkeClusterCommandControllerServer is the server API for GkeClusterCommandController service.
 // All implementations should embed UnimplementedGkeClusterCommandControllerServer
 // for forward compatibility
@@ -225,6 +237,7 @@ type GkeClusterCommandControllerServer interface {
 	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
 	// refresh a gke-cluster that was previously created
 	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
+	CreateKubernetesClusterCredential(context.Context, *model.GkeClusterId) (*model2.KubernetesClusterCredential, error)
 }
 
 // UnimplementedGkeClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -266,6 +279,9 @@ func (UnimplementedGkeClusterCommandControllerServer) PreviewRefresh(context.Con
 }
 func (UnimplementedGkeClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
+}
+func (UnimplementedGkeClusterCommandControllerServer) CreateKubernetesClusterCredential(context.Context, *model.GkeClusterId) (*model2.KubernetesClusterCredential, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateKubernetesClusterCredential not implemented")
 }
 
 // UnsafeGkeClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -495,6 +511,24 @@ func _GkeClusterCommandController_Refresh_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
+func _GkeClusterCommandController_CreateKubernetesClusterCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.GkeClusterId)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(GkeClusterCommandControllerServer).CreateKubernetesClusterCredential(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: GkeClusterCommandController_CreateKubernetesClusterCredential_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(GkeClusterCommandControllerServer).CreateKubernetesClusterCredential(ctx, req.(*model.GkeClusterId))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // GkeClusterCommandController_ServiceDesc is the grpc.ServiceDesc for GkeClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -549,6 +583,10 @@ var GkeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "refresh",
 			Handler:    _GkeClusterCommandController_Refresh_Handler,
+		},
+		{
+			MethodName: "createKubernetesClusterCredential",
+			Handler:    _GkeClusterCommandController_CreateKubernetesClusterCredential_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

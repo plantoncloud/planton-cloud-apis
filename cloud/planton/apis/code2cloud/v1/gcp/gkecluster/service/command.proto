@@ -8,9 +8,9 @@ import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "google/protobuf/empty.proto";
 
 // gke-cluster command controller
 service GkeClusterCommandController {
@@ -18,7 +18,7 @@ service GkeClusterCommandController {
   // preview create a gke-cluster.
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gke_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gke_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create gke-cluster";
@@ -30,7 +30,7 @@ service GkeClusterCommandController {
   // create a gke-cluster.
   rpc create(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gke_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gke_cluster_create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create gke-cluster";
@@ -171,6 +171,15 @@ service GkeClusterCommandController {
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = refreshed;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
+  }
+  rpc createKubernetesClusterCredential(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeClusterId)
+      returns (cloud.planton.apis.connect.v1.kubernetesclustercredential.model.KubernetesClusterCredential) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gke_cluster;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create kubernetes-cluster-credential for gke-cluster";
+
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
 }
