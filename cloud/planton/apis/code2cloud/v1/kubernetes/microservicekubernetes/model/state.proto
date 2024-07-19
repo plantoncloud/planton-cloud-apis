@@ -79,6 +79,9 @@ message MicroserviceKubernetesSpec {
   //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
   string kubernetes_cluster_credential_id = 97;
 
+  //kubernetes-docker-credential-id to be used for setting up docker image-pull-secret on kubernetes
+  string kubernetes_docker_credential_id = 96;
+
   //version of the microservice being deployed. this is usually either "main" which is the default git branch name or
   //review-<id> where id is the merge request number
   string version = 1 [
