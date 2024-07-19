@@ -189,6 +189,21 @@ message ApiResourceKubernetesSpecContainerSpec {
   ];
 }
 
+//this input should return empty string since there is no spec attribute
+message EnvironmentApiResourceNameTestWithOutEnvironmentInfo {
+  string api_version = 1;
+  string kind = 2;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+}
 
+//this input should return proper id when both metadata and environment info has env-id
+message EnvironmentApiResourceNameTestWithEnvironmentInfo {
+  string api_version = 1;
+  string kind = 2;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+    EnvironmentApiResourceNameTestWithEnvironmentInfoSpec spec = 4;
+}
 
-
+message EnvironmentApiResourceNameTestWithEnvironmentInfoSpec {
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+}
