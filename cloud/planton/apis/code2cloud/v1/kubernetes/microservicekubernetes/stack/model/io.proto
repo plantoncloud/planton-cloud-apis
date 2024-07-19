@@ -2,14 +2,12 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.kubernetes.microservicekubernetes.stack.model;
 
-import "cloud/planton/apis/connect/v1/gcpcredential/model/state.proto";
-import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/kubernetes/microservicekubernetes/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/gcp/gkecluster/model/state.proto";
+import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/state.proto";
+import "cloud/planton/apis/connect/v1/kubernetesdockercredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
-//todo: should there be seperate api-resource for MicroserviceGkeKubernetes & MicroserviceEksKubernetes etc
 //input for microservice-kubernetes stack
 message MicroserviceKubernetesStackInput {
   //stack-job
@@ -18,11 +16,8 @@ message MicroserviceKubernetesStackInput {
   cloud.planton.apis.code2cloud.v1.kubernetes.microservicekubernetes.model.MicroserviceKubernetes api_resource = 2;
   //kubernetes-cluster-credential
   cloud.planton.apis.connect.v1.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
-  //google provider credential for ensuring workload identity resources on google cloud
-  cloud.planton.apis.connect.v1.gcpcredential.model.GcpCredential gcp_credential = 4;
-  //kubernetes cluster project required to configure workload identity
-  //service account is created in kubernetes cluster project and a binding created to workload identity pool.
-  cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GcpProject gke_cluster_project = 5;
+  //kubernetes-docker-credential
+  cloud.planton.apis.connect.v1.kubernetesdockercredential.model.KubernetesDockerCredential kubernetes_docker_credential = 4;
 }
 
 //stack response
