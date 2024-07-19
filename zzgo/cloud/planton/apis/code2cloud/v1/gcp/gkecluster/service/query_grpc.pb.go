@@ -111,7 +111,7 @@ var GkeClusterQueryController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	GkeClusterNodePoolQueryController_GetByGcpContainerNodePoolId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterNodePoolQueryController/getByGcpContainerNodePoolId"
+	GkeClusterNodePoolQueryController_GetByNodePoolId_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterNodePoolQueryController/getByNodePoolId"
 )
 
 // GkeClusterNodePoolQueryControllerClient is the client API for GkeClusterNodePoolQueryController service.
@@ -119,7 +119,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GkeClusterNodePoolQueryControllerClient interface {
 	// lookup gcp container node pool env using container-nodepool-id
-	GetByGcpContainerNodePoolId(ctx context.Context, in *model.GetByGkeClusterNodePoolIdInput, opts ...grpc.CallOption) (*model.GkeClusterNodePool, error)
+	GetByNodePoolId(ctx context.Context, in *model.GetByGkeClusterNodePoolIdInput, opts ...grpc.CallOption) (*model.GkeClusterNodePool, error)
 }
 
 type gkeClusterNodePoolQueryControllerClient struct {
@@ -130,9 +130,9 @@ func NewGkeClusterNodePoolQueryControllerClient(cc grpc.ClientConnInterface) Gke
 	return &gkeClusterNodePoolQueryControllerClient{cc}
 }
 
-func (c *gkeClusterNodePoolQueryControllerClient) GetByGcpContainerNodePoolId(ctx context.Context, in *model.GetByGkeClusterNodePoolIdInput, opts ...grpc.CallOption) (*model.GkeClusterNodePool, error) {
+func (c *gkeClusterNodePoolQueryControllerClient) GetByNodePoolId(ctx context.Context, in *model.GetByGkeClusterNodePoolIdInput, opts ...grpc.CallOption) (*model.GkeClusterNodePool, error) {
 	out := new(model.GkeClusterNodePool)
-	err := c.cc.Invoke(ctx, GkeClusterNodePoolQueryController_GetByGcpContainerNodePoolId_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, GkeClusterNodePoolQueryController_GetByNodePoolId_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -144,15 +144,15 @@ func (c *gkeClusterNodePoolQueryControllerClient) GetByGcpContainerNodePoolId(ct
 // for forward compatibility
 type GkeClusterNodePoolQueryControllerServer interface {
 	// lookup gcp container node pool env using container-nodepool-id
-	GetByGcpContainerNodePoolId(context.Context, *model.GetByGkeClusterNodePoolIdInput) (*model.GkeClusterNodePool, error)
+	GetByNodePoolId(context.Context, *model.GetByGkeClusterNodePoolIdInput) (*model.GkeClusterNodePool, error)
 }
 
 // UnimplementedGkeClusterNodePoolQueryControllerServer should be embedded to have forward compatible implementations.
 type UnimplementedGkeClusterNodePoolQueryControllerServer struct {
 }
 
-func (UnimplementedGkeClusterNodePoolQueryControllerServer) GetByGcpContainerNodePoolId(context.Context, *model.GetByGkeClusterNodePoolIdInput) (*model.GkeClusterNodePool, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetByGcpContainerNodePoolId not implemented")
+func (UnimplementedGkeClusterNodePoolQueryControllerServer) GetByNodePoolId(context.Context, *model.GetByGkeClusterNodePoolIdInput) (*model.GkeClusterNodePool, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByNodePoolId not implemented")
 }
 
 // UnsafeGkeClusterNodePoolQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -166,20 +166,20 @@ func RegisterGkeClusterNodePoolQueryControllerServer(s grpc.ServiceRegistrar, sr
 	s.RegisterService(&GkeClusterNodePoolQueryController_ServiceDesc, srv)
 }
 
-func _GkeClusterNodePoolQueryController_GetByGcpContainerNodePoolId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _GkeClusterNodePoolQueryController_GetByNodePoolId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GetByGkeClusterNodePoolIdInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GkeClusterNodePoolQueryControllerServer).GetByGcpContainerNodePoolId(ctx, in)
+		return srv.(GkeClusterNodePoolQueryControllerServer).GetByNodePoolId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: GkeClusterNodePoolQueryController_GetByGcpContainerNodePoolId_FullMethodName,
+		FullMethod: GkeClusterNodePoolQueryController_GetByNodePoolId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterNodePoolQueryControllerServer).GetByGcpContainerNodePoolId(ctx, req.(*model.GetByGkeClusterNodePoolIdInput))
+		return srv.(GkeClusterNodePoolQueryControllerServer).GetByNodePoolId(ctx, req.(*model.GetByGkeClusterNodePoolIdInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -192,8 +192,8 @@ var GkeClusterNodePoolQueryController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*GkeClusterNodePoolQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "getByGcpContainerNodePoolId",
-			Handler:    _GkeClusterNodePoolQueryController_GetByGcpContainerNodePoolId_Handler,
+			MethodName: "getByNodePoolId",
+			Handler:    _GkeClusterNodePoolQueryController_GetByNodePoolId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

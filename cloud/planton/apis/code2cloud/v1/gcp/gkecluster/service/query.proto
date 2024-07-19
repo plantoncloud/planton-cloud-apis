@@ -27,7 +27,7 @@ service GkeClusterQueryController {
 // gke gke-cluster container node pool query controller
 service GkeClusterNodePoolQueryController {
   // lookup gcp container node pool env using container-nodepool-id
-  rpc getByGcpContainerNodePoolId(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GetByGkeClusterNodePoolIdInput)
+  rpc getByNodePoolId(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GetByGkeClusterNodePoolIdInput)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeClusterNodePool) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = gke_cluster;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
