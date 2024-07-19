@@ -11,10 +11,10 @@ import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 message LocustKubernetesStackInput {
   //stack-job
   cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
-  //kubernetes-cluster-credential
-  cloud.planton.apis.connect.v1.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
   //api-resource
   cloud.planton.apis.code2cloud.v1.kubernetes.locustkubernetes.model.LocustKubernetes api_resource = 2;
+  //kubernetes-cluster-credential
+  cloud.planton.apis.connect.v1.kubernetesclustercredential.model.KubernetesClusterCredential kubernetes_cluster_credential = 3;
 }
 
 //stack response
