@@ -79,9 +79,13 @@ message KubernetesClusterCredentialSpec {
 //kubernetes-cluster-credential spec for gke-cluster
 message KubernetesClusterCredentialGkeClusterSpec {
   //cluster-endpoint for gke-cluster
-  string cluster_endpoint = 1;
+  string cluster_endpoint = 1 [
+    (buf.validate.field).required = true
+  ];
   //cluster-ca-data for gke-cluster
-  string cluster_ca_data = 2;
+  string cluster_ca_data = 2 [
+    (buf.validate.field).required = true
+  ];
   //base64 encoded google service-account json key
   string service_account_key_base64 = 3 [
     (buf.validate.field).required = true
