@@ -62,11 +62,11 @@ message KubernetesDockerCredential {
     }
   ];
 
-  // credential spec
+  //spec
   KubernetesDockerCredentialSpec spec = 4;
 
-  // credential status
-  KubernetesDockerCredentialStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // Specification for the Cloud Account in Google Cloud Platform (GCP)
@@ -117,13 +117,4 @@ message KubernetesDockerCredentialSpec {
   string service_account_key_secret_name = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
-}
-
-// kubernetes-docker-credential status
-message KubernetesDockerCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

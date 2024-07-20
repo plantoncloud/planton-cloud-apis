@@ -62,7 +62,7 @@ message ConfigMap {
   ConfigMapSpec spec = 4;
 
   //status
-  ConfigMapStatus status = 5;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 //config-map spec
@@ -72,13 +72,4 @@ message ConfigMapSpec {
 
   //map of config variables and their values
   map<string, string> entries = 1;
-}
-
-//config-map status
-message ConfigMapStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

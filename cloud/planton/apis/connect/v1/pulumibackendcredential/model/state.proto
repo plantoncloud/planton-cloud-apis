@@ -29,11 +29,11 @@ message PulumiBackendCredential {
   // resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  //resource spec
+  //spec
   PulumiBackendCredentialSpec spec = 4;
 
-  //resource status
-  PulumiBackendCredentialStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // pulumi-backend-credential spec
@@ -93,13 +93,4 @@ message PulumiBackendCredentialAzureBlobStorageSpec {
   string azure_credential_id = 1;
   //azure blob storage container name
   string blob_storage_container = 2;
-}
-
-// pulumi-backend-credential status
-message PulumiBackendCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

@@ -66,12 +66,12 @@ message AwsCredential {
   AwsCredentialSpec spec = 4;
 
   // aws-credential status
-  AwsCredentialStatus status = 5;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// organization aws-credential
+// aws-credential spec
 message AwsCredentialSpec {
-  // organization to which organization aws-credential belongs to.
+  // organization to which aws-credential belongs to.
   string org_id = 1 [
     (buf.validate.field).required = true
   ];
@@ -118,13 +118,4 @@ message AwsCredentialSpec {
       expression: "this.matches('^[0-9a-zA-Z/+]{40}$')"
     }
   ];
-}
-
-// aws-credential status
-message AwsCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

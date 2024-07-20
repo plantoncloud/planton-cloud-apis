@@ -62,11 +62,11 @@ message GcpCredential {
     }
   ];
 
-  // credential spec
+  //spec
   GcpCredentialSpec spec = 4;
 
-  // credential status
-  GcpCredentialStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // gcp-credential spec
@@ -93,13 +93,4 @@ message GcpCredentialSpec {
   string gcp_service_account_key_base64 = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
-}
-
-// gcp-credential status
-message GcpCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

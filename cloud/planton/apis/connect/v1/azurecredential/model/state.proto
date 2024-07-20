@@ -66,22 +66,13 @@ message AzureCredential {
   AzureCredentialSpec spec = 4;
 
   // azure-credential status
-  AzureCredentialStatus status = 5;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// organization azure-credential
+// azure-credential spec
 message AzureCredentialSpec {
-  // organization to which organization azure-credential belongs to.
+  // organization to which azure-credential belongs to.
   string org_id = 1 [
     (buf.validate.field).required = true
   ];
-}
-
-// azure-credential status
-message AzureCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

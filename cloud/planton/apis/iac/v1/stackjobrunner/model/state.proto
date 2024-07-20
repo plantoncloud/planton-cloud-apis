@@ -28,11 +28,11 @@ message StackJobRunner {
   // resource metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  //resource spec
+  //spec
   StackJobRunnerSpec spec = 4;
 
-  //resource status
-  StackJobRunnerStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // stack-job-runner spec
@@ -52,13 +52,4 @@ message StackJobRunnerSpec {
   // maintainer of stack-job-runner is responsible for
   // matching the grpc-metadata provided by client.
   map<string, string> grpc_metadata = 3;
-}
-
-// stack-job-runner status
-message StackJobRunnerStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

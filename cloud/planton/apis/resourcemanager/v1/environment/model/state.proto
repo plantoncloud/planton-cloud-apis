@@ -60,7 +60,7 @@ message Environment {
   EnvironmentSpec spec = 4;
 
   //status
-  EnvironmentStatus status = 5;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 //environment spec
@@ -73,15 +73,6 @@ message EnvironmentSpec {
 
   //description for environment.
   string description = 2;
-}
-
-//environment status
-message EnvironmentStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }
 
 // owner details common for all environment level resources

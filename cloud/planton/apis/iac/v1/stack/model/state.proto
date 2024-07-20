@@ -23,11 +23,11 @@ message Stack {
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  //stack spec
+  //spec
   StackSpec spec = 4;
 
-  //stack status
-  StackStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // stack spec
@@ -61,13 +61,4 @@ message StackSpec {
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
-}
-
-// stack status
-message StackStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

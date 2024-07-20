@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/connect/v1/kubernetesclustercredential/enums/kubernetesprovider/kubernetes_provider.proto";
 
 // kubernetes-cluster-credential
 message KubernetesClusterCredential {
@@ -62,14 +63,14 @@ message KubernetesClusterCredential {
     }
   ];
 
-  // credential spec
+  //spec
   KubernetesClusterCredentialSpec spec = 4;
 
-  // credential status
-  KubernetesClusterCredentialStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// Specification for the Cloud Account in Google Cloud Platform (GCP)
+// kubernetes-cluster-credential spec
 message KubernetesClusterCredentialSpec {
   // The ID of the Google Cloud Organization, required and immutable. For more information,
   // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
@@ -119,11 +120,3 @@ message KubernetesClusterCredentialSpec {
   ];
 }
 
-// kubernetes-cluster-credential status
-message KubernetesClusterCredentialStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
-}

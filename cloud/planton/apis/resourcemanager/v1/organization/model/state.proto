@@ -48,11 +48,11 @@ message Organization {
     }
   ];
 
-  // organization spec
+  //spec
   OrganizationSpec spec = 4;
 
-  // organization status
-  OrganizationStatus status = 5;
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
 // OrganizationSpec is a message type that defines the specifications for a organization.
@@ -63,15 +63,6 @@ message OrganizationSpec {
   string logo_url = 2;
   //stack-job settings for organization
   OrganizationStackJobSettings stack_job_settings = 3;
-}
-
-// organization status
-message OrganizationStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
-
-  // resource audit info
-  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }
 
 //stack-job settings for organization

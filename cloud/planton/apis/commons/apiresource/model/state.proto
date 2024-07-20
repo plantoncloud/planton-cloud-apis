@@ -82,3 +82,12 @@ message ApiResourceLifecycle {
   // flag to indicate if the resource is paused
   bool is_paused = 2;
 }
+
+// api-resource status containing just the lifecyle and audit messages.
+message ApiResourceLifecycleAndAuditStatus {
+  // resource lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  // resource audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+}
