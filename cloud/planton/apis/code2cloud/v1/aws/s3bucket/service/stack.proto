@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.s3bucket.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/s3bucket/model/stack.proto";
+
+//s3-bucket stack controller
+service S3BucketStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.aws.s3bucket.model.S3BucketStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.aws.s3bucket.model.S3BucketStackResponse);
+}

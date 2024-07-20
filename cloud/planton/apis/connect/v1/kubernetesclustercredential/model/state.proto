@@ -64,50 +64,26 @@ message KubernetesClusterCredential {
 
 //kubernetes-cluster-credential spec
 message KubernetesClusterCredentialSpec {
-  // if of organization to which the credential belongs to
+  //id of the organization on planton cloud to which the credential belongs to
   string org_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).cel = {
-      id: "spec.gcp.org_id",
-      message: "Only numbers (0-9) are allowed",
-      expression: "this.matches('^[0-9]+$')"
-    }
+    (buf.validate.field).required = true
   ];
 
-  // The DNS domain of the Google Cloud Organization, optional during creation.
-  string org_domain = 2;
+  //kubernetes-provider
+  cloud.planton.apis.connect.v1.kubernetesclustercredential.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 2;
 
-  // The GCP Billing Account ID that will be linked to the projects created for shared services. Required during creation.
-  string billing_account_id = 3 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Only alphanumeric characters (A-Z,a-z, 0-9) and hyphens are allowed",
-      // https://regex101.com/r/NKTohE/1
-      expression: "this.matches('^[A-Za-z0-9-]+$')"
-    },
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Must not start with a hyphen",
-      // https://regex101.com/r/t1LOCE/1
-      expression: "this.matches('^[^-].*$')"
-    },
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Must not end with a hyphen",
-      // https://regex101.com/r/reQjcB/1
-      expression: "this.matches('[^-]$')"
-    }
-  ];
-
-  // Name of the secret containing the value of the service-account key in the secrets manager.
-  // name of the secret is in the format `projects/<project-id>/secrets/<secret-name>`
-  // This is computed automatically by the Platon Cloud system.
-  // The value is derived from the organization-status object
-  string service_account_key_secret_name = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+  //credential spec for gcp-gke provider
+  KubernetesClusterCredentialGkeClusterSpec gke_cluster_spec = 3;
 }
 
+//kubernetes-cluster-credential spec for gke-cluster
+message KubernetesClusterCredentialGkeClusterSpec {
+  //cluster-endpoint for gke-cluster
+  string cluster_endpoint = 1;
+  //cluster-ca-data for gke-cluster
+  string cluster_ca_data = 2;
+  //base64 encoded google service-account json key
+  string service_account_key_base64 = 3 [
+    (buf.validate.field).required = true
+  ];
+}

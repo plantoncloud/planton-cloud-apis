@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.azure.akscluster.service;
+
+import "cloud/planton/apis/code2cloud/v1/azure/akscluster/model/stack.proto";
+
+//aks-cluster stack controller
+service AksClusterStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksClusterStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksClusterStackResponse);
+}

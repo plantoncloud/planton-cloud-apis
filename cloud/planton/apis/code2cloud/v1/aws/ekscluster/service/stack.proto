@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.ekscluster.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/ekscluster/model/stack.proto";
+
+//eks-cluster stack controller
+service EksClusterStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksClusterStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksClusterStackResponse);
+}

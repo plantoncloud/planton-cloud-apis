@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package cloud.planton.apis.connect.v1.kubernetesclustercredential.enums.kubernetesprovider;
 
+//kubernetes-provider
 enum KubernetesProvider {
   unspecified = 0;
   gcp_gke = 1;

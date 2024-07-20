@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.route53zone.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/route53zone/model/stack.proto";
+
+// route53-zone stack controller
+service Route53ZoneStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.aws.route53zone.model.Route53ZoneStackInput) returns
+      (stream cloud.planton.apis.code2cloud.v1.aws.route53zone.model.Route53ZoneStackResponse);
+}

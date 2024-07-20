@@ -20,6 +20,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// kubernetes-provider
 type KubernetesProvider int32
 
 const (
