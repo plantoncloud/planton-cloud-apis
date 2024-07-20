@@ -36,9 +36,9 @@ type ApiResourceVersion struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource api-version
+	// api-version
 	ApiVersion string `protobuf:"bytes,1,opt,name=api_version,json=apiVersion,proto3" json:"api_version,omitempty"`
-	// resource kind
+	// resource-kind
 	Kind     string                     `protobuf:"bytes,2,opt,name=kind,proto3" json:"kind,omitempty"`
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
 	// spec
@@ -242,9 +242,9 @@ type ApiResourceVersionStatus struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource lifecycle
+	// lifecycle
 	Lifecycle *model.ApiResourceLifecycle `protobuf:"bytes,99,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
-	// resource audit info
+	// audit-info
 	Audit *model.ApiResourceAudit `protobuf:"bytes,98,opt,name=audit,proto3" json:"audit,omitempty"`
 	// represents the current status of the stack job.
 	StackJobProgressStatus stackjobprogressstatustype.StackJobProgressStatusType `protobuf:"varint,1,opt,name=stack_job_progress_status,json=stackJobProgressStatus,proto3,enum=cloud.planton.apis.iac.v1.stackjob.enums.stackjobprogressstatustype.StackJobProgressStatusType" json:"stack_job_progress_status,omitempty"`

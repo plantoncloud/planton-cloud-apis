@@ -427,7 +427,7 @@ func (x *ApiResourceAuditActor) GetAvatar() string {
 	return ""
 }
 
-// resource lifecycle
+// lifecycle
 type ApiResourceLifecycle struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -491,9 +491,9 @@ type ApiResourceLifecycleAndAuditStatus struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource lifecycle
+	// lifecycle
 	Lifecycle *ApiResourceLifecycle `protobuf:"bytes,99,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
-	// resource audit info
+	// audit info
 	Audit *ApiResourceAudit `protobuf:"bytes,98,opt,name=audit,proto3" json:"audit,omitempty"`
 }
 

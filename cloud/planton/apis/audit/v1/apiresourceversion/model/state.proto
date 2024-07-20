@@ -17,10 +17,10 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 message ApiResourceVersion {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = api_resource_version;
 
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
@@ -57,10 +57,10 @@ message ApiResourceVersionSpec {
 
 // api-resource-version status
 message ApiResourceVersionStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // represents the current status of the stack job.

@@ -9,10 +9,10 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 
 // iam-role
 message IamRole {
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
   // metadata for the resource
@@ -24,10 +24,10 @@ message IamRole {
   // name of the iam role.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  // resource spec
+  //spec
   IamRoleSpec spec = 4;
 
-  // resource status
+  //status
   IamRoleStatus status = 5;
 }
 
@@ -52,6 +52,6 @@ message IamRoleStatus {
   // lifecycle of the resource
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

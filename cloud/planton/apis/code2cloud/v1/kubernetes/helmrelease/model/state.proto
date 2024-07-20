@@ -15,16 +15,14 @@ message HelmRelease {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
-  //id format "<id-prefix>-<env-id>-<normalized-resource-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
-  //resource metadata
+  //metadata
+  //id format "<id-prefix>-<env-id>-<normalized-resource-name>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -83,13 +81,13 @@ message HelmReleaseSpec {
 
 //helm-release status.
 message HelmReleaseStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
-  // id of the stack-job
+  //stack-job id
   string stack_job_id = 97;
 
   //stack-outputs

@@ -14,10 +14,10 @@ message Organization {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = identity_account;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "status.audit.spec_audit.created_by.id";
 
-  // resource api-version
+  //api-version
   string api_version = 1;
 
-  // resource kind
+  //resource-kind
   string kind = 2;
 
   // metadata for the resource

@@ -75,7 +75,7 @@ message ApiResourceAuditActor {
   string avatar = 2;
 }
 
-// resource lifecycle
+//lifecycle
 message ApiResourceLifecycle {
   // flag to indicate if the resource is not deleted and is active
   bool is_active = 1;
@@ -85,9 +85,9 @@ message ApiResourceLifecycle {
 
 // api-resource status containing just the lifecyle and audit messages.
 message ApiResourceLifecycleAndAuditStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

@@ -13,33 +13,30 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "google/protobuf/timestamp.proto";
 
-// stack-job
+//stack-job
 message StackJob {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job;
-
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = stack;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";
 
-  //id format "<id-prefix>-<ulid>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  // resource api-version
+  //api-version
   string api_version = 1;
 
-  // resource kind
+  //resource-kind
   string kind = 2;
 
-  // resource metadata
+  //metadata
+  //id format "sj-<ulid>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  //resource spec
+  //spec
   StackJobSpec spec = 4;
 
-  //resource status
+  //status
   StackJobStatus status = 5;
 }
 
-// stack-job spec
+//stack-job spec
 message StackJobSpec {
   // id of the organization to which the stack-job belongs to.
   //value is computed from stack
@@ -108,12 +105,12 @@ message StackJobSpec {
   ];
 }
 
-// stack-job status
+//stack-job status
 message StackJobStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // stack-job progress status
@@ -178,13 +175,13 @@ message StackJobStatusPulumiOperationStatus {
   repeated string errors = 6;
 }
 
-//stack-job settings for each api-resource
+//stack-job-settings for api-resource
 message StackJobSettings {
   //flag to toggle stack-jobs
   bool is_enabled = 1;
   // id of pulumi-backend-credential to be used to store state for api-resource's pulumi-stack state
   string pulumi_backend_credential_id = 2;
-  // id of the stack-job-runner to be used to run stack-jobs
+  //stack-job id-runner to be used to run stack-jobs
   string stack_job_runner_id = 3;
   //key value pairs to configure custom-inputs for the stack-job which are not included in the api-resource spec
   map<string, string> custom_inputs = 4;

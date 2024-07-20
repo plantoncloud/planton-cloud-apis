@@ -319,7 +319,7 @@ type ApiResourceRecord struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource audit info
+	// audit-info
 	SpecAudit *ApiResourceAuditInfo `protobuf:"bytes,98,opt,name=spec_audit,json=specAudit,proto3" json:"spec_audit,omitempty"`
 	// Unique identifier for the resource.
 	// example for resource in planton-cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;

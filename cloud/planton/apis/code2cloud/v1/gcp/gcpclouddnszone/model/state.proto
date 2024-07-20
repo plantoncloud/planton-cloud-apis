@@ -6,7 +6,6 @@ import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
@@ -17,18 +16,14 @@ message GcpCloudDnsZone {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
-  // metadata for the resource
-  // Name is a valid, unique DNS domain name within the Platon Cloud.
-  // Id value is automatically computed in the format 'dns-<org_id>-<normalized-domain-name>',
-  // and its uniqueness is guaranteed by the backend.
+  //metadata
+  //id format "<id-prefix>-<env-id>-<normalized-resource-name>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -49,14 +44,14 @@ message GcpCloudDnsZone {
     }
   ];
 
-  //gcp-cloud-dns-zone spec
+  //spec
   GcpCloudDnsZoneSpec spec = 4;
 
-  //gcp-cloud-dns-zone status
+  //status
   GcpCloudDnsZoneStatus status = 5;
 }
 
-// Specification for the Route53 Zone
+//gcp-cloud-dns-zone spec
 message GcpCloudDnsZoneSpec {
   //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
@@ -81,15 +76,15 @@ message GcpCloudDnsZoneSpec {
   repeated GcpCloudDnsRecord records = 3;
 }
 
-// Status for the Route53 Zone
+//gcp-cloud-dns-zone status
 message GcpCloudDnsZoneStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
-  // id of the stack-job
+  //stack-job id
   string stack_job_id = 97;
 
   //stack-outputs
@@ -97,13 +92,13 @@ message GcpCloudDnsZoneStatus {
   GcpCloudDnsZoneStackOutputs stack_outputs = 1;
 }
 
-// Status for the Route53 Zone
+//gcp-cloud-dns-zone stack-outputs
 message GcpCloudDnsZoneStackOutputs {
   // The list of nameservers for the Managed Zone created for the DNS Domain.
   repeated string nameservers = 1;
 }
 
-// gcp-cloud-dns-zone dns-record
+//gcp-cloud-dns-zone dns-record
 message GcpCloudDnsRecord {
   string id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true

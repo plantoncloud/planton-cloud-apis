@@ -31,9 +31,9 @@ type IdentityAccount struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource api-version
+	// api-version
 	ApiVersion string `protobuf:"bytes,1,opt,name=api_version,json=apiVersion,proto3" json:"api_version,omitempty"`
-	// resource kind
+	// resource-kind
 	Kind string `protobuf:"bytes,2,opt,name=kind,proto3" json:"kind,omitempty"`
 	// metadata for the resource
 	// id:
@@ -50,9 +50,9 @@ type IdentityAccount struct {
 	// name must match the regex '^[A-Za-z0-9-]{6,16}$'.
 	// It represents a string of 6-16 alphanumeric characters or hyphens, with no spaces or other special characters.
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// resource spec
+	// spec
 	Spec *IdentityAccountSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
-	// resource status
+	// status
 	Status *IdentityAccountStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 }
 
@@ -123,7 +123,7 @@ func (x *IdentityAccount) GetStatus() *IdentityAccountStatus {
 	return nil
 }
 
-// resource spec for identity-account
+// identity-account spec
 type IdentityAccountSpec struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -239,7 +239,7 @@ func (x *IdentityAccountSpec) GetPictureUrl() string {
 	return ""
 }
 
-// resource status for identity-account
+// identity-account spec
 type IdentityAccountStatus struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -247,7 +247,7 @@ type IdentityAccountStatus struct {
 
 	// lifecycle of the resource
 	Lifecycle *model.ApiResourceLifecycle `protobuf:"bytes,99,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
-	// resource audit info
+	// audit-info
 	Audit *model.ApiResourceAudit `protobuf:"bytes,98,opt,name=audit,proto3" json:"audit,omitempty"`
 }
 

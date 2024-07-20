@@ -9,28 +9,20 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/connect/v1/kubernetesclustercredential/enums/kubernetesprovider/kubernetes_provider.proto";
 
-// kubernetes-cluster-credential
+//kubernetes-cluster-credential
 message KubernetesClusterCredential {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = kubernetes_cluster_credential;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "<id-prefix>-<org-id>-<normalized-resource-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
-  // metadata for the resource
-  // kubernetes-cluster-credential id value adheres to the following constraints:
-  // 1. The ID must be prefixed with 'ca-<org_id>-', where <org_id> can vary in length.
-  // 2. The ID must not exceed 27 characters in length.
-  // 3. Once a credential is added to a organization, the ID cannot be changed.
-  // By convention, the kubernetes_cluster_credential_name is used as the suffix, but a different suffix may be used if desired.
-  // The constraints are enforced by the regular expression "^ca-.{1,22}$".
+  //metadata
+  //id format "<id-prefix>-<org-id>-<normalized-resource-name>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -70,10 +62,9 @@ message KubernetesClusterCredential {
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// kubernetes-cluster-credential spec
+//kubernetes-cluster-credential spec
 message KubernetesClusterCredentialSpec {
-  // The ID of the Google Cloud Organization, required and immutable. For more information,
-  // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
+  // if of organization to which the credential belongs to
   string org_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,

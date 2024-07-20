@@ -9,23 +9,20 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-// stack-job-runner
+//stack-job-runner
 message StackJobRunner {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job_runner;
-
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
 
-  //id format "<id-prefix>-<ulid>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  // resource api-version
+  //api-version
   string api_version = 1;
 
-  // resource kind
+  //resource-kind
   string kind = 2;
 
-  // resource metadata
+  //metadata
+  //id format "sjr-<ulid>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
   //spec
@@ -35,7 +32,7 @@ message StackJobRunner {
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// stack-job-runner spec
+//stack-job-runner spec
 message StackJobRunnerSpec {
   // id of the organization to which the stack-job-runner belongs to.
   string org_id = 1 [

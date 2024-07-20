@@ -6,13 +6,8 @@ import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.MessageOptions {
   bool is_id_required = 50001;
-  bool is_id_computed = 50002;
-  string id_regex = 50003;
-  int32 id_min_length = 50004;
-  int32 id_max_length = 50005;
-  string id_constraints_description = 50006;
-  string name_regex = 50007;
-  int32 name_min_length = 50008;
-  int32 name_max_length = 50009;
-  string name_constraints_description = 50010;
+  string id_regex = 50002;
+  int32 id_min_length = 50003;
+  int32 id_max_length = 50004;
+  string id_constraints_description = 50005;
 }

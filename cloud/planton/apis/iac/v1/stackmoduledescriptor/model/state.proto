@@ -7,21 +7,19 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 
-// stack-module-descriptor
+//stack-module-descriptor
 message StackModuleDescriptor {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_module_descriptor;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = platform;
 
-  //id format "<id-prefix>-<normalized-resource-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  //resource api-version
+  //api-version
   string api_version = 1;
 
-  //resource kind
+  //resource-kind
   string kind = 2;
 
-  // resource metadata
+  //metadata
+  //id format "<id-prefix>-<normalized-resource-name>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -61,7 +59,7 @@ message StackModuleDescriptor {
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
 }
 
-// StackModuleDescriptorSpec is a message type that defines the specifications for a stack-module-descriptor on Planton Cloud.
+//stack-module-descriptor spec
 message StackModuleDescriptorSpec {
   //brief overview for stack-module
   string overview = 1;

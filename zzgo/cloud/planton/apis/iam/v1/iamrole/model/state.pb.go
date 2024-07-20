@@ -30,9 +30,9 @@ type IamRole struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	// resource api-version
+	// api-version
 	ApiVersion string `protobuf:"bytes,1,opt,name=api_version,json=apiVersion,proto3" json:"api_version,omitempty"`
-	// resource kind
+	// resource-kind
 	Kind string `protobuf:"bytes,2,opt,name=kind,proto3" json:"kind,omitempty"`
 	// metadata for the resource
 	// id:
@@ -42,9 +42,9 @@ type IamRole struct {
 	//
 	// name of the iam role.
 	Metadata *model.ApiResourceMetadata `protobuf:"bytes,3,opt,name=metadata,proto3" json:"metadata,omitempty"`
-	// resource spec
+	// spec
 	Spec *IamRoleSpec `protobuf:"bytes,4,opt,name=spec,proto3" json:"spec,omitempty"`
-	// resource status
+	// status
 	Status *IamRoleStatus `protobuf:"bytes,5,opt,name=status,proto3" json:"status,omitempty"`
 }
 
@@ -210,7 +210,7 @@ type IamRoleStatus struct {
 
 	// lifecycle of the resource
 	Lifecycle *model.ApiResourceLifecycle `protobuf:"bytes,99,opt,name=lifecycle,proto3" json:"lifecycle,omitempty"`
-	// resource audit info
+	// audit-info
 	Audit *model.ApiResourceAudit `protobuf:"bytes,98,opt,name=audit,proto3" json:"audit,omitempty"`
 }
 
