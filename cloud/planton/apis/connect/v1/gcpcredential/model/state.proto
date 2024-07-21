@@ -82,7 +82,7 @@ message GcpCredentialSpec {
   ];
 
   //base64 encoded google service account key
-  string gcp_service_account_key_base64 = 3 [
+  string service_account_key_base64 = 3 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }
