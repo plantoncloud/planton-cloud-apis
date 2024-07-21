@@ -36,7 +36,7 @@ enum ApiResourceIamPermission {
   aks_cluster_create = 19;
 
   gcp_artifact_registry_create = 20;
-  gcp_cloud_dns_zone_create = 21;
+  gcp_dns_zone_create = 21;
   gcp_secrets_manager_secret_set_create = 22;
   gcs_bucket_create = 23;
   gke_cluster_create = 24;

@@ -1,6 +1,6 @@
-package buf.gen.cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone;
+package buf.gen.cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone;
 
-import build.buf.gen.cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model.GcpCloudDnsZone;
+import build.buf.gen.cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.model.GcpDnsZone;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata;
 import build.buf.gen.cloud.planton.apis.commons.apiresource.model.ApiResourceMetadataVersion;
 import build.buf.protovalidate.Validator;
@@ -9,18 +9,18 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public final class GcpCloudDnsZoneTest {
+public final class GcpDnsZoneTest {
 
     @Test
-    public void testGcpCloudDnsZone_ShouldNotThroughProtoValidationException() {
-        var input = GcpCloudDnsZone.newBuilder().build();
+    public void testGcpDnsZone_ShouldNotThroughProtoValidationException() {
+        var input = GcpDnsZone.newBuilder().build();
         Validator validator = new Validator();
         assertDoesNotThrow(() -> validator.validate(input));
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldReturnValidationErrorIfMetadataIsNotPassed() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder().build();
+    public void testGcpDnsZone_ShouldReturnValidationErrorIfMetadataIsNotPassed() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder().build();
         Validator validator = new Validator();
         var result = validator.validate(dnsZone);
         var versionMessageViolation = result.getViolations().stream()
@@ -30,8 +30,8 @@ public final class GcpCloudDnsZoneTest {
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldReturnValidationErrorIfVersionMessageIsNotPassed() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder().setMetadata(ApiResourceMetadata.newBuilder().build()).build();
+    public void testGcpDnsZone_ShouldReturnValidationErrorIfVersionMessageIsNotPassed() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder().setMetadata(ApiResourceMetadata.newBuilder().build()).build();
         Validator validator = new Validator();
         var result = validator.validate(dnsZone);
         var versionMessageViolation = result.getViolations().stream()
@@ -41,8 +41,8 @@ public final class GcpCloudDnsZoneTest {
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldNotReturnValidationErrorIfVersionMessageIsPassed() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder()
+    public void testGcpDnsZone_ShouldNotReturnValidationErrorIfVersionMessageIsPassed() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test gcp-cloud-dns-zone ").build())
                         .build())
@@ -56,8 +56,8 @@ public final class GcpCloudDnsZoneTest {
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldReturnValidationErrorIfNameIsEmpty() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder()
+    public void testGcpDnsZone_ShouldReturnValidationErrorIfNameIsEmpty() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test gcp-cloud-dns-zone ").build())
                         .build())
@@ -71,8 +71,8 @@ public final class GcpCloudDnsZoneTest {
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldReturnValidationErrorIfNameLengthIsGreaterThan65() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder()
+    public void testGcpDnsZone_ShouldReturnValidationErrorIfNameLengthIsGreaterThan65() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setName("this is test name to check length validation. adding additional text to make it greater than 65")
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test gcp-cloud-dns-zone ").build())
@@ -87,8 +87,8 @@ public final class GcpCloudDnsZoneTest {
     }
 
     @Test
-    public void testGcpCloudDnsZone_ShouldNotReturnValidationErrorIfNameLengthIsLessThan65() throws ValidationException {
-        var dnsZone = GcpCloudDnsZone.newBuilder()
+    public void testGcpDnsZone_ShouldNotReturnValidationErrorIfNameLengthIsLessThan65() throws ValidationException {
+        var dnsZone = GcpDnsZone.newBuilder()
                 .setMetadata(ApiResourceMetadata.newBuilder()
                         .setName("test")
                         .setVersion(ApiResourceMetadataVersion.newBuilder().setMessage(" test gcp-cloud-dns-zone ").build())

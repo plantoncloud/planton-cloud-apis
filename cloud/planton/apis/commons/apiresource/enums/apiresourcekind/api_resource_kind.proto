@@ -78,9 +78,9 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Google Cloud Credential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];
-  gcp_cloud_dns_zone = 13 [
+  gcp_dns_zone = 13 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpdns",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpCloudDnsZone",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpDnsZone",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Google Cloud DNS Zone",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
   ];

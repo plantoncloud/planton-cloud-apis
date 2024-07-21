@@ -1,40 +1,40 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model;
+package cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/gcp/gcpclouddnszone/model/state.proto";
+import "cloud/planton/apis/code2cloud/v1/gcp/gcpdnszone/model/state.proto";
 import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_type.proto";
 
-// wrapper for gcp-cloud-dns-zone id
-message GcpCloudDnsZoneId {
+// wrapper for gcp-dns-zone id
+message GcpDnsZoneId {
   string value = 1 [
     (buf.validate.field).required = true
   ];
 }
 
-// list of gcp-cloud-dns-zones
-message GcpCloudDnsZoneList {
-  repeated GcpCloudDnsZone entries = 1;
+// list of gcp-dns-zones
+message GcpDnsZoneList {
+  repeated GcpDnsZone entries = 1;
 }
 
 // AddOrUpdateDnsRecordInput is used to encapsulate the details needed to either add
 // a new DNS record or update an existing one within a specific DNS zone.
 // This message is typically used to transmit data from the client to the server
 // during an add or update or restore operation on a DNS record within a specified DNS zone.
-message AddOrUpdateGcpCloudDnsRecordInput {
+message AddOrUpdateGcpDnsRecordInput {
   // This field contains the unique identifier of the DNS zone within which the DNS record
   // is to be added or updated. The ID should be a valid DNS zone ID, typically obtained
   // from the DNS zone entity itself. This field is used by the server to determine
   // the correct DNS zone where the DNS record is to be added or updated.
-  string gcp_cloud_dns_zone_id = 1 [
+  string gcp_dns_zone_id = 1 [
     (buf.validate.field).required = true
   ];
 
   // This field contains the actual DNS record that is to be added or updated. The DNS record
   // object should be populated with all necessary fields (like name, type, TTL, data etc.),
   // which the server uses to create a new DNS record or update an existing one.
-  GcpCloudDnsRecord record = 2 [
+  GcpDnsRecord record = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -48,11 +48,11 @@ message AddOrUpdateGcpCloudDnsRecordInput {
 // DeleteOrRestoreDnsRecordInput is a protobuf message that encapsulates the data
 // necessary for either soft deleting or restoring a specific DNS record within a DNS zone.
 // This message is typically used to send the relevant details from the client to the server.
-message DeleteGcpCloudDnsRecordInput {
+message DeleteGcpDnsRecordInput {
   // This field carries the unique identifier of the DNS zone from which the DNS record
   // is to be either soft deleted or restored. The server uses this ID to find the appropriate DNS zone.
   // This is a required field.
-  string gcp_cloud_dns_zone_id = 1 [
+  string gcp_dns_zone_id = 1 [
     (buf.validate.field).required = true
   ];
 

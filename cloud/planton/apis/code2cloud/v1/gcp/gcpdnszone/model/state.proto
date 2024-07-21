@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.gcp.gcpclouddnszone.model;
+package cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
@@ -10,9 +10,9 @@ import "cloud/planton/apis/commons/networking/enums/dnsrecordtype/dns_record_typ
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
-//gcp-cloud-dns-zone
-message GcpCloudDnsZone {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gcp_cloud_dns_zone;
+//gcp-dns-zone
+message GcpDnsZone {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gcp_dns_zone;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
@@ -45,14 +45,14 @@ message GcpCloudDnsZone {
   ];
 
   //spec
-  GcpCloudDnsZoneSpec spec = 4;
+  GcpDnsZoneSpec spec = 4;
 
   //status
-  GcpCloudDnsZoneStatus status = 5;
+  GcpDnsZoneStatus status = 5;
 }
 
-//gcp-cloud-dns-zone spec
-message GcpCloudDnsZoneSpec {
+//gcp-dns-zone spec
+message GcpDnsZoneSpec {
   //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
@@ -73,11 +73,11 @@ message GcpCloudDnsZoneSpec {
   repeated string iam_service_accounts = 2;
 
   // The DNS records that are added to the Zone.
-  repeated GcpCloudDnsRecord records = 3;
+  repeated GcpDnsRecord records = 3;
 }
 
-//gcp-cloud-dns-zone status
-message GcpCloudDnsZoneStatus {
+//gcp-dns-zone status
+message GcpDnsZoneStatus {
   //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
@@ -89,17 +89,17 @@ message GcpCloudDnsZoneStatus {
 
   //stack-outputs
   //  stack outputs
-  GcpCloudDnsZoneStackOutputs stack_outputs = 1;
+  GcpDnsZoneStackOutputs stack_outputs = 1;
 }
 
-//gcp-cloud-dns-zone stack-outputs
-message GcpCloudDnsZoneStackOutputs {
+//gcp-dns-zone stack-outputs
+message GcpDnsZoneStackOutputs {
   // The list of nameservers for the Managed Zone created for the DNS Domain.
   repeated string nameservers = 1;
 }
 
-//gcp-cloud-dns-zone dns-record
-message GcpCloudDnsRecord {
+//gcp-dns-zone dns-record
+message GcpDnsRecord {
   string id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
@@ -108,7 +108,7 @@ message GcpCloudDnsRecord {
     (buf.validate.field).required = true
   ];
 
-  // name of the gcp-cloud-dns-zone ex: example.com or dev.example.com.
+  // name of the gcp-dns-zone ex: example.com or dev.example.com.
   // this value should always end with a dot.
   string name = 3 [
     (buf.validate.field).required = true,
@@ -119,8 +119,8 @@ message GcpCloudDnsRecord {
     }
   ];
 
-  // values for the gcp-cloud-dns-zone record.
-  // if the gcp_cloud_dns_zone_record_type is cname then each value in the list should end with a dot.
+  // values for the gcp-dns-zone record.
+  // if the gcp_dns_zone_record_type is cname then each value in the list should end with a dot.
   repeated string values = 4;
 
   // ttl for the domain record in seconds.
