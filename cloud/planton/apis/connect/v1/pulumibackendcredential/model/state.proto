@@ -60,10 +60,13 @@ message PulumiBackendCredentialSpec {
 
 //pulumi-backend-credential spec for pulumi-cloud
 message PulumiBackendCredentialPulumiCloudSpec {
+  //api base url
+  //this will be https://api.pulumi.com for Hosted Pulumi Cloud
+  string api_base_url = 1;
   //name of the pulumi organization
-  string pulumi_organization = 1;
+  string pulumi_organization = 2;
   //access token to be used for authorization
-  string access_token = 2;
+  string access_token = 3;
 }
 
 //pulumi-backend-credential spec for aws s3

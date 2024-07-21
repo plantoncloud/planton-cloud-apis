@@ -2,19 +2,22 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.azure.akscluster.model;
 
-import "cloud/planton/apis/connect/v1/azurecredential/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/azure/akscluster/model/state.proto";
+import "cloud/planton/apis/connect/v1/azurecredential/model/state.proto";
+import "cloud/planton/apis/connect/v1/pulumibackendcredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 //aks-cluster stack-insput
 message AksClusterStackInput {
   //stack-job
-  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 99;
+  //pulumi-backend-credential
+  cloud.planton.apis.connect.v1.pulumibackendcredential.model.PulumiBackendCredential pulumi_backend_credential = 98;
   //api-resource
-  cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster api_resource = 2;
+  cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster api_resource = 97;
   //azure-credential
-  cloud.planton.apis.connect.v1.azurecredential.model.AzureCredential azure_credential = 3;
+  cloud.planton.apis.connect.v1.azurecredential.model.AzureCredential azure_credential = 1;
 }
 
 //aks-cluster stack-response

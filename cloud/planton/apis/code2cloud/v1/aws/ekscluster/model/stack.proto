@@ -2,19 +2,22 @@ syntax = "proto3";
 
 package cloud.planton.apis.code2cloud.v1.aws.ekscluster.model;
 
-import "cloud/planton/apis/connect/v1/awscredential/model/state.proto";
 import "cloud/planton/apis/code2cloud/v1/aws/ekscluster/model/state.proto";
+import "cloud/planton/apis/connect/v1/awscredential/model/state.proto";
+import "cloud/planton/apis/connect/v1/pulumibackendcredential/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/io.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 
 //input for eks-cluster stack
 message EksClusterStackInput {
   //stack-job
-  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 1;
+  cloud.planton.apis.iac.v1.stackjob.model.StackJob stack_job = 99;
+  //pulumi-backend-credential
+  cloud.planton.apis.connect.v1.pulumibackendcredential.model.PulumiBackendCredential pulumi_backend_credential = 98;
   //api-resource
-  cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster api_resource = 2;
+  cloud.planton.apis.code2cloud.v1.aws.ekscluster.model.EksCluster api_resource = 97;
   //aws-credential
-  cloud.planton.apis.connect.v1.awscredential.model.AwsCredential aws_credential = 3;
+  cloud.planton.apis.connect.v1.awscredential.model.AwsCredential aws_credential = 1;
 }
 
 //eks-cluster stack-response
