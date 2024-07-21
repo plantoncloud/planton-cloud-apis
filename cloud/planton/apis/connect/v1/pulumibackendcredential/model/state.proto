@@ -8,7 +8,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/connect/v1/pulumibackendcredential/enums/pulumistatebackendprovidertype/pulumi_state_backend_provider_type.proto";
+import "cloud/planton/apis/connect/v1/pulumibackendcredential/enums/pulumibackendtype/pulumi_backend_type.proto";
 
 //pulumi-backend-credential
 message PulumiBackendCredential {
@@ -43,23 +43,34 @@ message PulumiBackendCredentialSpec {
 
   // provider for pulumi-backend-credential
   // https://www.pulumi.com/docs/concepts/state
-  cloud.planton.apis.connect.v1.pulumibackendcredential.enums.pulumistatebackendprovidertype.PulumiBackendCredentialProviderType provider = 2;
+  cloud.planton.apis.connect.v1.pulumibackendcredential.enums.pulumibackendtype.PulumiBackendType pulumi_backend_type = 2;
 
-  // pulumi-cloud backend provider spec
-  PulumiBackendCredentialPulumiCloudSpec pulumi_cloud = 3;
+  // local-file-system backend spec
+  PulumiBackendCredentialLocalFileSystemBackendSpec local_file_system_backend = 3;
 
-  // aws s3 backend provider spec
-  PulumiBackendCredentialAwsS3Spec aws_s3 = 4;
+  // http backend spec
+  PulumiBackendCredentialHttpBackendSpec http_backend = 4;
 
-  // google cloud storage backend provider spec
-  PulumiBackendCredentialGoogleCloudStorageSpec google_cloud_storage = 5;
+  // aws-s3 backend spec
+  PulumiBackendCredentialAwsS3BackendSpec aws_s3_backend = 5;
 
-  // azure blob storage backend provider spec
-  PulumiBackendCredentialAzureBlobStorageSpec azure_blob_storage = 6;
+  // google-cloud-storage backend spec
+  PulumiBackendCredentialGcsBucketBackendSpec google_cloud_storage_backend = 6;
+
+  // azure-blob-storage backend spec
+  PulumiBackendCredentialAzureBlobStorageBackendSpec azure_blob_storage_backend = 7;
 }
 
-//pulumi-backend-credential spec for pulumi-cloud
-message PulumiBackendCredentialPulumiCloudSpec {
+//pulumi-backend-credential spec for local-file-system backend
+//https://www.pulumi.com/docs/concepts/state/#local-filesystem
+message PulumiBackendCredentialLocalFileSystemBackendSpec {
+  //state-file path
+  string state_file_path = 1;
+}
+
+//pulumi-backend-credential spec for http backend
+// hosted http backend provided by Pulumi Inc is is https://pulumi.cloud
+message PulumiBackendCredentialHttpBackendSpec {
   //api base url
   //this will be https://api.pulumi.com for Hosted Pulumi Cloud
   string api_base_url = 1;
@@ -69,8 +80,9 @@ message PulumiBackendCredentialPulumiCloudSpec {
   string access_token = 3;
 }
 
-//pulumi-backend-credential spec for aws s3
-message PulumiBackendCredentialAwsS3Spec {
+//pulumi-backend-credential spec for aws-s3 backend
+//https://www.pulumi.com/docs/concepts/state/#aws-s3
+message PulumiBackendCredentialAwsS3BackendSpec {
   //aws-credential-id to be used for authorization
   string aws_credential_id = 1;
   //name of s3-bucket
@@ -79,16 +91,18 @@ message PulumiBackendCredentialAwsS3Spec {
   string region = 3;
 }
 
-//pulumi-backend-credential spec for google-cloud-storage
-message PulumiBackendCredentialGoogleCloudStorageSpec {
+//pulumi-backend-credential spec for google-cloud-storage backend
+//https://www.pulumi.com/docs/concepts/state/#google-cloud-storage
+message PulumiBackendCredentialGcsBucketBackendSpec {
   //gcp-credential-id to be used for authorization
   string gcp_credential_id = 1;
   //name of gcs-bucket
   string gcs_bucket = 2;
 }
 
-//pulumi-backend-credential spec for azure-blob-storage
-message PulumiBackendCredentialAzureBlobStorageSpec {
+//pulumi-backend-credential spec for azure-blob-storage backend
+// https://www.pulumi.com/docs/concepts/state/#azure-blob-storage
+message PulumiBackendCredentialAzureBlobStorageBackendSpec {
   //azure-credential-id to be used for authorization
   string azure_credential_id = 1;
   //azure blob storage container name

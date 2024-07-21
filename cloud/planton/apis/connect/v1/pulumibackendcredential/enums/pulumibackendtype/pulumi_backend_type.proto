@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package cloud.planton.apis.connect.v1.pulumibackendcredential.enums.pulumibackendtype;
+
+//https://www.pulumi.com/docs/concepts/state
+enum PulumiBackendType {
+  unspecified = 0;
+  local_file_system = 1;
+  http = 2;
+  aws_s3 = 3;
+  google_cloud_storage = 4;
+  azure_blob_storage = 5;
+}
