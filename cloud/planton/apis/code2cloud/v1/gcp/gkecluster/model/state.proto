@@ -160,17 +160,6 @@ message GkeClusterAddonsSpec {
   bool is_install_external_secrets = 10;
 }
 
-//planton-cloud-kube-agent addon spec
-message GkeClusterAddonsPlantonCloudKubeAgentSpec {
-  // flag to control planton-cloud-kube-agent installation
-  bool is_install = 1;
-  // machine_account_email is the email of the machine-account to be used by planton-cloud-kube-agent.
-  // this is only created if the is_install is true.
-  string machine_account_email = 2 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-}
-
 // gke-cluster status
 message GkeClusterStatus {
   //lifecycle
@@ -247,6 +236,18 @@ message GkeClusterClusterAutoscalingConfigSpec {
   // The maximum amount of memory in gigabytes (GB) that the cluster can scale up to when autoscaling is enabled.
   // The memory size is a sum across all nodes in the cluster.
   int64 memory_max_gb = 5;
+}
+
+
+//planton-cloud-kube-agent addon spec
+message GkeClusterAddonsPlantonCloudKubeAgentSpec {
+  // flag to control planton-cloud-kube-agent installation
+  bool is_install = 1;
+  // machine_account_email is the email of the machine-account to be used by planton-cloud-kube-agent.
+  // this is only created if the is_install is true.
+  string machine_account_email = 2 [
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
+  ];
 }
 
 // status of the gke-cluster in gcp
