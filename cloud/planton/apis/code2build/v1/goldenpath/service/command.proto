@@ -1,8 +1,0 @@
-syntax = "proto3";
-
-package cloud.planton.apis.code2build.v1.goldenpath.service;
-
-//golden-path command controller
-service GoldenPathCommandController {
-
-}

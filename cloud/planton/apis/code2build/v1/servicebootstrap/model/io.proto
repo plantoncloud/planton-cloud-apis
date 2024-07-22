@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2build.v1.goldenpath.model;
+package cloud.planton.apis.code2build.v1.servicebootstrap.model;
 
 //input for rpc to bootstrap a new microservice
 message BootstrapNewMicroserviceInput {

@@ -182,7 +182,7 @@ message IngressDnsDomain {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
-  // dns domain name ex: mytodoapp.com
+  // dns domain name
   string name = 2 [
     (buf.validate.field).required = true
   ];

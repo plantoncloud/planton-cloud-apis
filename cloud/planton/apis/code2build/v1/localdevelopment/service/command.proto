@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2build.v1.localdevelopment.service;
+
+//local-development command controller
+service LocalDevelopmentCommandController {
+
+}

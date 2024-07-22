@@ -110,4 +110,8 @@ message PulumiBackendCredentialGcsBucketBackendSpec {
 message PulumiBackendCredentialAzureBlobStorageBackendSpec {
   //name of azure blob storage container
   string blob_storage_container = 1;
+  //azure storage-account-name
+  string storage_account_name = 2;
+  //azure storage-account-key
+  string storage_account_key = 3;
 }

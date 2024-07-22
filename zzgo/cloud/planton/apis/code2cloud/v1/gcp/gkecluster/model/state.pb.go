@@ -485,7 +485,7 @@ type IngressDnsDomain struct {
 
 	// unique identifier of ingress-dns-domain
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// dns domain name ex: mytodoapp.com
+	// dns domain name
 	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	// flag to toggle tls for endpoint-domain.
 	// defaults to "false".
