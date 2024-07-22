@@ -110,4 +110,7 @@ message AwsCredentialSpec {
       expression: "this.matches('^[0-9a-zA-Z/+]{40}$')"
     }
   ];
+
+  //region to be configured when using this aws-credential
+  string region = 5;
 }
