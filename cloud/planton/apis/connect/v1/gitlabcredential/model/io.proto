@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.connect.v1.gitlabcredential.model;
+
+import "buf/validate/validate.proto";
+
+// wrapper for gitlab-credential id
+message GitlabCredentialId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

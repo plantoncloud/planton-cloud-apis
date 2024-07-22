@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2build.v1.cicd.service;
+
+//ci-cd query controller
+service CiCdQueryController {
+
+}

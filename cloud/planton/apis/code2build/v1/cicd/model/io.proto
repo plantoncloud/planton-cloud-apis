@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2build.v1.cicd.model;
+
+//input for rpc to add CI/CD Pipeline to a Git Repository
+message AddCiCdPipelineInput {
+
+}

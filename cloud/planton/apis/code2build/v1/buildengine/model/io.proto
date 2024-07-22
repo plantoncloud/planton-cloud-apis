@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2build.v1.buildengine.model;
+
+//build-engine project
+message BuildEngineProject {
+  //environment variables for the project
+  map<string, string> env_vars = 1;
+}
