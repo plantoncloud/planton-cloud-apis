@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for route53-zone stack
+// route53-zone stack-input
 type Route53ZoneStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *Route53ZoneStackInput) GetAwsCredential() *model2.AwsCredential {
 	return nil
 }
 
-// stack response
+// route53-zone stack-response
 type Route53ZoneStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

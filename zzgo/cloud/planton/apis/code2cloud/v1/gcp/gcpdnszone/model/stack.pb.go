@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for gcp-dns-zone stack
+// gcp-dns-zone stack-input
 type GcpDnsZoneStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *GcpDnsZoneStackInput) GetGcpCredential() *model2.GcpCredential {
 	return nil
 }
 
-// stack response
+// gcp-dns-zone stack-response
 type GcpDnsZoneStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

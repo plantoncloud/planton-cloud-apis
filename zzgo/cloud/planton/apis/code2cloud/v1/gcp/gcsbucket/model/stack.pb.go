@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for gcs-bucket stack
+// gcs-bucket stack-input
 type GcsBucketStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *GcsBucketStackInput) GetGcpCredential() *model2.GcpCredential {
 	return nil
 }
 
-// stack response
+// gcs-bucket stack-response
 type GcsBucketStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

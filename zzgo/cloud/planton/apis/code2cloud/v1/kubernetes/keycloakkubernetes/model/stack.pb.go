@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for keycloak-kubernetes stack
+// keycloak-kubernetes stack-input
 type KeycloakKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *KeycloakKubernetesStackInput) GetKubernetesClusterCredential() *model2.
 	return nil
 }
 
-// stack response
+// keycloak-kubernetes stack-response
 type KeycloakKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

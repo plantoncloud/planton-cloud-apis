@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for prometheus-kubernetes stack
+// prometheus-kubernetes stack-input
 type PrometheusKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *PrometheusKubernetesStackInput) GetKubernetesClusterCredential() *model
 	return nil
 }
 
-// stack response
+// prometheus-kubernetes stack-response
 type PrometheusKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

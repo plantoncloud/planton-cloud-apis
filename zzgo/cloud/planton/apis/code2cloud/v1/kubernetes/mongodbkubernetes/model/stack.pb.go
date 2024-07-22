@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for mongodb-kubernetes stack
+// mongodb-kubernetes stack-input
 type MongodbKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *MongodbKubernetesStackInput) GetKubernetesClusterCredential() *model2.K
 	return nil
 }
 
-// stack response
+// mongodb-kubernetes stack-response
 type MongodbKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

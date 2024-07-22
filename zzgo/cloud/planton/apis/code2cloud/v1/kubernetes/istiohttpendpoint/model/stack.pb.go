@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// istio-http-endpoint container stack input
+// istio-http-endpoint stack-input
 type IstioHttpEndpointStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *IstioHttpEndpointStackInput) GetKubernetesClusterCredential() *model2.K
 	return nil
 }
 
-// stack response
+// istio-http-endpoint stack-response
 type IstioHttpEndpointStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

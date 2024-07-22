@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for kafka-kubernetes kubernetes stack
+// kafka-kubernetes stack-input
 type KafkaKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *KafkaKubernetesStackInput) GetKubernetesClusterCredential() *model2.Kub
 	return nil
 }
 
-// stack response
+// kafka-kubernetes stack-response
 type KafkaKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

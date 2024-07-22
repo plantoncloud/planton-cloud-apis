@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for gitlab-kubernetes stack
+// gitlab-kubernetes stack-input
 type GitlabKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *GitlabKubernetesStackInput) GetKubernetesClusterCredential() *model2.Ku
 	return nil
 }
 
-// stack response
+// gitlab-kubernetes stack-response
 type GitlabKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

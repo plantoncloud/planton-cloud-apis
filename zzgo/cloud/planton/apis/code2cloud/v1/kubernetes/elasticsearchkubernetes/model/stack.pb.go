@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for elasticsearch-kubernetes stack
+// elasticsearch-kubernetes stack-input
 type ElasticsearchKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *ElasticsearchKubernetesStackInput) GetKubernetesClusterCredential() *mo
 	return nil
 }
 
-// stack response
+// elasticsearch-kubernetes stack-response
 type ElasticsearchKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for s3-bucket stack
+// s3-bucket stack-input
 type S3BucketStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *S3BucketStackInput) GetAwsCredential() *model2.AwsCredential {
 	return nil
 }
 
-// stack response
+// s3-bucket stack-response
 type S3BucketStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

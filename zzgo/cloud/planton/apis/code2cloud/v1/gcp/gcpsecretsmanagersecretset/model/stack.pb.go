@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for gcp-secrets-manager-secret-set stack
+// gcp-secrets-manager-secret-set stack-input
 type GcpSecretsManagerSecretSetStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *GcpSecretsManagerSecretSetStackInput) GetGcpCredential() *model2.GcpCre
 	return nil
 }
 
-// stack response
+// gcp-secrets-manager-secret-set stack-response
 type GcpSecretsManagerSecretSetStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for redis-kubernetes stack
+// redis-kubernetes stack-input
 type RedisKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *RedisKubernetesStackInput) GetKubernetesClusterCredential() *model2.Kub
 	return nil
 }
 
-// stack response
+// redis-kubernetes stack-response
 type RedisKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

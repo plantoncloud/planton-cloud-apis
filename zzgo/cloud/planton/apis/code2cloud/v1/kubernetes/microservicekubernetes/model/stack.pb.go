@@ -25,7 +25,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for microservice-kubernetes stack
+// microservice-kubernetes stack-input
 type MicroserviceKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -110,7 +110,7 @@ func (x *MicroserviceKubernetesStackInput) GetKubernetesDockerCredential() *mode
 	return nil
 }
 
-// stack response
+// microservice-kubernetes stack-response
 type MicroserviceKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

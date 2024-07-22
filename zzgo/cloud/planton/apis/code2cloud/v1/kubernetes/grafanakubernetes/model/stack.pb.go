@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for grafana-kubernetes stack
+// grafana-kubernetes stack-input
 type GrafanaKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *GrafanaKubernetesStackInput) GetKubernetesClusterCredential() *model2.K
 	return nil
 }
 
-// stack response
+// grafana-kubernetes stack-response
 type GrafanaKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

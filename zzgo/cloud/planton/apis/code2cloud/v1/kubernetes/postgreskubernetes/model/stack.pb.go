@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for postgres-kubernetes stack
+// postgres-kubernetes stack-input
 type PostgresKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *PostgresKubernetesStackInput) GetKubernetesClusterCredential() *model2.
 	return nil
 }
 
-// stack response
+// postgres-kubernetes stack-response
 type PostgresKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

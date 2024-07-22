@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for solr-kubernetes stack
+// //solr-kubernetes stack-input
 type SolrKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *SolrKubernetesStackInput) GetKubernetesClusterCredential() *model2.Kube
 	return nil
 }
 
-// stack response
+// solr-kubernetes stack-response
 type SolrKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

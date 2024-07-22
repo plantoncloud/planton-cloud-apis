@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for jenkins-kubernetes stack
+// jenkins-kubernetes stack-input
 type JenkinsKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *JenkinsKubernetesStackInput) GetKubernetesClusterCredential() *model2.K
 	return nil
 }
 
-// stack response
+// jenkins-kubernetes stack-response
 type JenkinsKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

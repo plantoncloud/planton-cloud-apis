@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for helm-release stack
+// helm-release stack-input
 type HelmReleaseStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *HelmReleaseStackInput) GetKubernetesClusterCredential() *model2.Kuberne
 	return nil
 }
 
-// stack response
+// helm-release stack-response
 type HelmReleaseStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for locust-kubernetes stack
+// locust-kubernetes stack-input
 type LocustKubernetesStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -100,7 +100,7 @@ func (x *LocustKubernetesStackInput) GetKubernetesClusterCredential() *model2.Ku
 	return nil
 }
 
-// stack response
+// locust-kubernetes stack-response
 type LocustKubernetesStackResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
