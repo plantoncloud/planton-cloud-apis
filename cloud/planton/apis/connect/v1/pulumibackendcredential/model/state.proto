@@ -86,28 +86,28 @@ message PulumiBackendCredentialHttpBackendSpec {
 //pulumi-backend-credential spec for aws-s3 backend
 //https://www.pulumi.com/docs/concepts/state/#aws-s3
 message PulumiBackendCredentialAwsS3BackendSpec {
-  //aws-credential-id to be used for authorization
-  string aws_credential_id = 1;
   //name of s3-bucket
-  string s3_bucket = 2;
+  string s3_bucket = 1;
   //aws region
-  string region = 3;
+  string region = 2;
+  //aws-access-key-id
+  string aws_access_key_id = 3;
+  //aws-secret-key-id
+  string aws_secret_key_id = 4;
 }
 
 //pulumi-backend-credential spec for google-cloud-storage backend
 //https://www.pulumi.com/docs/concepts/state/#google-cloud-storage
 message PulumiBackendCredentialGcsBucketBackendSpec {
-  //gcp-credential-id to be used for authorization
-  string gcp_credential_id = 1;
   //name of gcs-bucket
-  string gcs_bucket = 2;
+  string gcs_bucket = 1;
+  //base64 encoded gcp service-account-key
+  string gcp_service_account_key_base64 = 2;
 }
 
 //pulumi-backend-credential spec for azure-blob-storage backend
 // https://www.pulumi.com/docs/concepts/state/#azure-blob-storage
 message PulumiBackendCredentialAzureBlobStorageBackendSpec {
-  //azure-credential-id to be used for authorization
-  string azure_credential_id = 1;
-  //azure blob storage container name
-  string blob_storage_container = 2;
+  //name of azure blob storage container
+  string blob_storage_container = 1;
 }
