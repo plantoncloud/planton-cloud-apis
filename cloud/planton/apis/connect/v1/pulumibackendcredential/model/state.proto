@@ -41,24 +41,29 @@ message PulumiBackendCredentialSpec {
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
+  //name of the pulumi organization
+  string pulumi_organization = 2 [
+    (buf.validate.field).required = true
+  ];
+
   // provider for pulumi-backend-credential
   // https://www.pulumi.com/docs/concepts/state
-  cloud.planton.apis.connect.v1.pulumibackendcredential.enums.pulumibackendtype.PulumiBackendType pulumi_backend_type = 2;
+  cloud.planton.apis.connect.v1.pulumibackendcredential.enums.pulumibackendtype.PulumiBackendType pulumi_backend_type = 3;
 
   // local-file-system backend spec
-  PulumiBackendCredentialLocalFileSystemBackendSpec local_file_system_backend = 3;
+  PulumiBackendCredentialLocalFileSystemBackendSpec local_file_system_backend = 4;
 
   // http backend spec
-  PulumiBackendCredentialHttpBackendSpec http_backend = 4;
+  PulumiBackendCredentialHttpBackendSpec http_backend = 5;
 
   // aws-s3 backend spec
-  PulumiBackendCredentialAwsS3BackendSpec aws_s3_backend = 5;
+  PulumiBackendCredentialAwsS3BackendSpec aws_s3_backend = 6;
 
   // google-cloud-storage backend spec
-  PulumiBackendCredentialGcsBucketBackendSpec google_cloud_storage_backend = 6;
+  PulumiBackendCredentialGcsBucketBackendSpec google_cloud_storage_backend = 7;
 
   // azure-blob-storage backend spec
-  PulumiBackendCredentialAzureBlobStorageBackendSpec azure_blob_storage_backend = 7;
+  PulumiBackendCredentialAzureBlobStorageBackendSpec azure_blob_storage_backend = 8;
 }
 
 //pulumi-backend-credential spec for local-file-system backend
@@ -74,10 +79,8 @@ message PulumiBackendCredentialHttpBackendSpec {
   //api base url
   //this will be https://api.pulumi.com for Hosted Pulumi Cloud
   string api_base_url = 1;
-  //name of the pulumi organization
-  string pulumi_organization = 2;
   //access token to be used for authorization
-  string access_token = 3;
+  string access_token = 2;
 }
 
 //pulumi-backend-credential spec for aws-s3 backend
