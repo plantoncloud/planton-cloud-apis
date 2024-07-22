@@ -52,7 +52,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "cmap",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "ConfigMap",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Config Map",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "resource-manager.planton.cloud"
   ];
   eks_cluster = 8 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "eks",
