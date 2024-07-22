@@ -46,7 +46,7 @@ message StackJobRunnerSpec {
   ];
 
   //when set, a secure grpc connection is created, plaintext otherwise.
-  bool use_secure_connection = 3;
+  bool is_use_secure_connection = 3;
 
   // grpc metadata to be attached to execute rpc call.
   // maintainer of stack-job-runner is responsible for
