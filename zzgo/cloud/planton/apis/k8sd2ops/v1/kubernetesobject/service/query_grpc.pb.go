@@ -22,11 +22,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceKubernetesObjectQueryController_Get_FullMethodName                     = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController/get"
-	ApiResourceKubernetesObjectQueryController_FindNamespaces_FullMethodName          = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController/findNamespaces"
-	ApiResourceKubernetesObjectQueryController_StreamKubernetesObjects_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController/streamKubernetesObjects"
-	ApiResourceKubernetesObjectQueryController_FindPods_FullMethodName                = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController/findPods"
-	ApiResourceKubernetesObjectQueryController_GetPod_FullMethodName                  = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController/getPod"
+	ApiResourceKubernetesObjectQueryController_Get_FullMethodName                     = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController/get"
+	ApiResourceKubernetesObjectQueryController_FindNamespaces_FullMethodName          = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController/findNamespaces"
+	ApiResourceKubernetesObjectQueryController_StreamKubernetesObjects_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController/streamKubernetesObjects"
+	ApiResourceKubernetesObjectQueryController_FindPods_FullMethodName                = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController/findPods"
+	ApiResourceKubernetesObjectQueryController_GetPod_FullMethodName                  = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController/getPod"
 )
 
 // ApiResourceKubernetesObjectQueryControllerClient is the client API for ApiResourceKubernetesObjectQueryController service.
@@ -269,7 +269,7 @@ func _ApiResourceKubernetesObjectQueryController_GetPod_Handler(srv interface{},
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApiResourceKubernetesObjectQueryController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectQueryController",
+	ServiceName: "cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectQueryController",
 	HandlerType: (*ApiResourceKubernetesObjectQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

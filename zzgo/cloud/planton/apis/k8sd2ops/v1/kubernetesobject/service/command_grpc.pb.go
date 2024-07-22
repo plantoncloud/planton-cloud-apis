@@ -21,8 +21,8 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceKubernetesObjectCommandController_Update_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectCommandController/update"
-	ApiResourceKubernetesObjectCommandController_Delete_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectCommandController/delete"
+	ApiResourceKubernetesObjectCommandController_Update_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectCommandController/update"
+	ApiResourceKubernetesObjectCommandController_Delete_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectCommandController/delete"
 )
 
 // ApiResourceKubernetesObjectCommandControllerClient is the client API for ApiResourceKubernetesObjectCommandController service.
@@ -133,7 +133,7 @@ func _ApiResourceKubernetesObjectCommandController_Delete_Handler(srv interface{
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApiResourceKubernetesObjectCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.k8sd2ops.v1.service.ApiResourceKubernetesObjectCommandController",
+	ServiceName: "cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service.ApiResourceKubernetesObjectCommandController",
 	HandlerType: (*ApiResourceKubernetesObjectCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

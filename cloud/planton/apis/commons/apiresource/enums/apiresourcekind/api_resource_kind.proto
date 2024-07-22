@@ -32,7 +32,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "awscred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "AwsCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   aws_secrets_manager_secret_set = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "awssec",
@@ -46,7 +46,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "azcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "AzureCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Microsoft Azure Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   config_map = 7 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "cmap",
@@ -86,7 +86,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Google Cloud Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   gcp_dns_zone = 13 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpdns",
@@ -196,13 +196,13 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8sdkrcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesDockerCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Docker Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   kubernetes_cluster_credential = 28 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "k8scred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "KubernetesClusterCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Kubernetes Cluster Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   locust_kubernetes = 29 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "lock8s",
@@ -263,7 +263,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pulcred",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "PulumiBackendCredential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "Pulumi Backend Credential",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "iac.planton.cloud"
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
   redis_kubernetes = 38 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "redk8s",

@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.k8sd2ops.v1.shellexec.service;
+package cloud.planton.apis.k8sd2ops.v1.podexec.service;
 
 import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
 import "cloud/planton/apis/k8sd2ops/v1/podexec/model/io.proto";

@@ -22,9 +22,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceKubernetesPodExecCommandController_ExecIntoPodContainer_FullMethodName                    = "/cloud.planton.apis.k8sd2ops.v1.shellexec.service.ApiResourceKubernetesPodExecCommandController/execIntoPodContainer"
-	ApiResourceKubernetesPodExecCommandController_BrowserExecIntoPodContainer_FullMethodName             = "/cloud.planton.apis.k8sd2ops.v1.shellexec.service.ApiResourceKubernetesPodExecCommandController/browserExecIntoPodContainer"
-	ApiResourceKubernetesPodExecCommandController_BrowserExecuteNextCommandInPodContainer_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.shellexec.service.ApiResourceKubernetesPodExecCommandController/browserExecuteNextCommandInPodContainer"
+	ApiResourceKubernetesPodExecCommandController_ExecIntoPodContainer_FullMethodName                    = "/cloud.planton.apis.k8sd2ops.v1.podexec.service.ApiResourceKubernetesPodExecCommandController/execIntoPodContainer"
+	ApiResourceKubernetesPodExecCommandController_BrowserExecIntoPodContainer_FullMethodName             = "/cloud.planton.apis.k8sd2ops.v1.podexec.service.ApiResourceKubernetesPodExecCommandController/browserExecIntoPodContainer"
+	ApiResourceKubernetesPodExecCommandController_BrowserExecuteNextCommandInPodContainer_FullMethodName = "/cloud.planton.apis.k8sd2ops.v1.podexec.service.ApiResourceKubernetesPodExecCommandController/browserExecuteNextCommandInPodContainer"
 )
 
 // ApiResourceKubernetesPodExecCommandControllerClient is the client API for ApiResourceKubernetesPodExecCommandController service.
@@ -237,7 +237,7 @@ func _ApiResourceKubernetesPodExecCommandController_BrowserExecuteNextCommandInP
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ApiResourceKubernetesPodExecCommandController_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cloud.planton.apis.k8sd2ops.v1.shellexec.service.ApiResourceKubernetesPodExecCommandController",
+	ServiceName: "cloud.planton.apis.k8sd2ops.v1.podexec.service.ApiResourceKubernetesPodExecCommandController",
 	HandlerType: (*ApiResourceKubernetesPodExecCommandControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

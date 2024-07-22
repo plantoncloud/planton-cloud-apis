@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.k8sd2ops.v1.service;
+package cloud.planton.apis.k8sd2ops.v1.kubernetesobject.service;
 
 import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/io.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
