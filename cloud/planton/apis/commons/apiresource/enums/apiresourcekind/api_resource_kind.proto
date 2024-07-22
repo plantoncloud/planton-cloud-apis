@@ -240,9 +240,7 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Organization",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "resource-manager.planton.cloud"
   ];
-  platform = 34 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "Platform"
-  ];
+  platform = 34;
   postgres_kubernetes = 35 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "pgk8s",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "PostgresKubernetes",
