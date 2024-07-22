@@ -3,10 +3,13 @@ syntax = "proto3";
 package cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions;
 
 import "google/protobuf/descriptor.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcedeploytarget/api_resource_deploy_target.proto";
 
 extend google.protobuf.EnumValueOptions {
   string id_prefix = 90100;
   string kind_name = 90101;
   string display_name = 90102;
   string api_resource_group = 90103;
+  bool is_deployable = 90104;
+  cloud.planton.apis.commons.apiresource.enums.apiresourcedeploytarget.ApiResourceDeploymentTarget deployment_target = 90105;
 }

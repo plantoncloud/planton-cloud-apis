@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.commons.apiresource.enums.apiresourcedeploytarget;
+
+enum ApiResourceDeploymentTarget {
+  unspecified = 0;
+  aws = 1;
+  gcp = 2;
+  azure = 3;
+  kubernetes = 4;
+}
