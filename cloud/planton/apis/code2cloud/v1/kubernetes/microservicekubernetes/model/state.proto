@@ -10,7 +10,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/enums/podmanagertype/pod_manager_type.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/enums/podmanagertype/pod_manager_type.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //microservice-kubernetes
@@ -102,7 +102,7 @@ message MicroserviceKubernetesSpec {
 
   //(required) type of the pod manager to use for the microservice deployment.
   //default is set to "deployment".
-  cloud.planton.apis.integration.v1.kubernetes.apiresources.enums.podmanagertype.PodManagerType pod_manager_type = 2 [
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.enums.podmanagertype.PodManagerType pod_manager_type = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).enum.defined_only = true
   ];

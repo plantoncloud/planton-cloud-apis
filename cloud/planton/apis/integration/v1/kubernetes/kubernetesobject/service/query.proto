@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.service;
+
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+import "google/protobuf/wrappers.proto";
+
+service KubernetesObjectQueryController {
+  // find list of namespaces on the kubernetes cluster
+  rpc findNamespaces(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubeConfigBase64Encoded)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesNamespaceList);
+  //stream all kubernetes objects corresponding to a planton-cloud api-resource.
+  rpc streamByNamespace(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.StreamKubernetesObjectsInNamespaceWithKubeConfigInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObjectList);
+  //get detailed object of a kubernetes object
+  rpc getKubernetesObject(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.GetKubernetesObjectWithKubeConfigInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObjectDetail);
+  //find list of pods from a namespace.
+  rpc findPods(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.FindPodsWithKubeConfigInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesPodList);
+  //find list of pods from a namespace.
+  rpc getPod(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.GetKubernetesObjectWithKubeConfigInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesPod);
+  //stream logs of a pod/s corresponding to a planton-cloud api-resource based
+  // on specified options.
+  rpc streamPodLogs(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.StreamPodLogsWithKubeConfigInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.PodLogLine);
+}

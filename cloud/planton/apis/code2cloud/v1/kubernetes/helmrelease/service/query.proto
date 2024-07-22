@@ -6,7 +6,7 @@ import "cloud/planton/apis/code2cloud/v1/kubernetes/helmrelease/model/io.proto";
 import "cloud/planton/apis/code2cloud/v1/kubernetes/helmrelease/model/state.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 

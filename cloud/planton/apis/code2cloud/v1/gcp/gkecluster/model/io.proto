@@ -8,7 +8,7 @@ import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resourc
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
-import "cloud/planton/apis/integration/v1/kubernetes/apiresources/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
 
 // wrapper for gke-cluster id
 message GkeClusterId {

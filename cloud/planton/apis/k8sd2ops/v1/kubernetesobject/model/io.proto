@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.kubernetesobject.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+
+// api-resource-kubernetes-object
+message ApiResourceKubernetesObject {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //kubernetes object
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject kubernetes_object = 2;
+}
+
+// input for rpc to find all kubernetes objects in a namespace.
+message StreamKubernetesObjectsInNamespaceInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //kubernetes namespace
+  string namespace = 2;
+}
+
+// input for rpc to update a kubernetes object in a kube-cluster
+message UpdateKubernetesObjectInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //kubernetes object
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject kubernetes_object = 2;
+  // base64 encoded of the updated kubernetes object yaml
+  string updated_object_yaml_base64 = 3;
+}
+
+// input for rpc to find list of pods for api-resource
+message FindKubernetesPodsInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //kubernetes namespace
+  string namespace = 2;
+  //details of the parent kubernetes object(pod-manager) to be used to filter pods list
+  //if a parent is not specified, pods of all pod-managers will be included in the response.
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject pod_manager = 3;
+}

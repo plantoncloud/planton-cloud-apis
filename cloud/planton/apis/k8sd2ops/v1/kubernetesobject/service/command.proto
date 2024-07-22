@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.service;
+
+import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+import "cloud/planton/apis/k8sd2ops/v1/kubernetesobject/model/io.proto";
+import "google/protobuf/empty.proto";
+
+// api-resource kubernetes-object command controller
+// todo: add authorization config
+service ApiResourceKubernetesObjectCommandController {
+  //update kubernetes object in a kube-cluster
+  rpc update(cloud.planton.apis.k8sd2ops.v1.kubernetesobject.model.UpdateKubernetesObjectInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject);
+
+  //delete kubernetes object in a kube-cluster
+  rpc delete(cloud.planton.apis.k8sd2ops.v1.kubernetesobject.model.ApiResourceKubernetesObject)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject);
+}

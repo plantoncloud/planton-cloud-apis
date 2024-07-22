@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.service;
+
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+
+service KubernetesObjectCommandController {
+  rpc update(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.UpdateKubernetesObjectWithKubeConfigInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject);
+  rpc delete(cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.DeleteKubernetesObjectWithKubeConfigInput)
+      returns (cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.KubernetesObject);
+  //mimic kubectl exec
+  rpc execIntoPodContainer(stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.ExecIntoPodContainerWithKubeConfigInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.ExecIntoPodContainerResponse);
+}
