@@ -24,7 +24,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// input for eks-cluster stack
+// eks-cluster stack-input
 type EksClusterStackInput struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
