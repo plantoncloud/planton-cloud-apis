@@ -4,7 +4,7 @@ package cloud.planton.apis.connect.v1.kubernetesdockercredential.model;
 
 import "buf/validate/validate.proto";
 
-// wrapper for organization credential id
+// wrapper for kubernetes-docker-credential id
 message KubernetesDockerCredentialId {
   string value = 1 [
     (buf.validate.field).required = true

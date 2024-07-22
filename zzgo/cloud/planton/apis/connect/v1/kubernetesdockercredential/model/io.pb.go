@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-// wrapper for organization credential id
+// wrapper for kubernetes-docker-credential id
 type KubernetesDockerCredentialId struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
