@@ -78,7 +78,7 @@ message PulumiBackendCredentialLocalFileSystemBackendSpec {
 message PulumiBackendCredentialHttpBackendSpec {
   //api base url
   //this will be https://api.pulumi.com for Hosted Pulumi Cloud
-  string api_base_url = 1;
+  string api_url = 1;
   //access token to be used for authorization
   string access_token = 2;
 }
