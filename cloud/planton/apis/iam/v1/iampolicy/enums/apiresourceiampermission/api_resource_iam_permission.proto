@@ -5,62 +5,19 @@ package cloud.planton.apis.iam.v1.iampolicy.enums.apiresourceiampermission;
 enum ApiResourceIamPermission {
   unspecified = 0;
 
-  create = 2000;
-  delete = 1;
-  get = 2;
-  restore = 3;
-  update = 4;
+  create = 1;
+  delete = 2;
+  get = 3;
+  restore = 4;
+  update = 5;
 
   // list_associates
-  list_associates = 5;
+  list_associates = 6;
 
   // login_to_back_office
-  login_to_back_office = 6;
+  login_to_back_office = 7;
 
-  platform_microservice_account = 7;
-  back_office_admin = 8;
-  platform = 9;
-
-  config_map_create = 10;
-
-  aws_credential_create = 11;
-  azure_credential_create = 12;
-  gcp_credential_create = 13;
-  github_credential_create = 14;
-  gitlab_credential_create = 15;
-  kubernetes_cluster_credential_create = 16;
-  kubernetes_docker_credential_create = 17;
-
-  eks_cluster_create = 18;
-  route53_zone_create = 19;
-  s3_bucket_create = 20;
-
-  aks_cluster_create = 21;
-
-  gcp_artifact_registry_create = 22;
-  gcp_dns_zone_create = 23;
-  gcp_secrets_manager_secret_set_create = 24;
-  gcs_bucket_create = 25;
-  gke_cluster_create = 26;
-
-  argocd_kubernetes_create = 27;
-  elasticsearch_kubernetes_create = 28;
-  gitlab_kubernetes_create = 29;
-  grafana_kubernetes_create = 30;
-  helm_release_create = 31;
-  istio_http_endpoint_create = 32;
-  jenkins_kubernetes_create = 33;
-  kafka_kubernetes_create = 34;
-  keycloak_kubernetes_create = 35;
-  locust_kubernetes_create = 36;
-  microservice_kubernetes_create = 37;
-  mongodb_kubernetes_create = 38;
-  openfga_kubernetes_create = 39;
-  postgres_kubernetes_create = 40;
-  prometheus_kubernetes_create = 41;
-  redis_kubernetes_create = 42;
-  solr_kubernetes_create = 43;
-
-  pulumi_backend_credential_create = 44;
-  stack_module_descriptor_create = 45;
+  platform_microservice_account = 8;
+  back_office_admin = 9;
+  platform = 10;
 }

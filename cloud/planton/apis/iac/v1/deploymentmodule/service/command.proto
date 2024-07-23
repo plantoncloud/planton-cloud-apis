@@ -1,61 +1,61 @@
 syntax = "proto3";
 
-package cloud.planton.apis.iac.v1.stackmoduledescriptor.service;
+package cloud.planton.apis.iac.v1.deploymentmodule.service;
 
 import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
-import "cloud/planton/apis/iac/v1/stackmoduledescriptor/model/io.proto";
-import "cloud/planton/apis/iac/v1/stackmoduledescriptor/model/state.proto";
+import "cloud/planton/apis/iac/v1/deploymentmodule/model/io.proto";
+import "cloud/planton/apis/iac/v1/deploymentmodule/model/state.proto";
 
-// stack-module-descriptor command controller
-service StackModuleDescriptorCommandController {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = stack_module_descriptor;
-  // create a stack-module-descriptor.
-  rpc create(cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor)
-      returns (cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor) {
+// deployment-module command controller
+service DeploymentModuleCommandController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = deployment_module;
+  // create a deployment-module.
+  rpc create(cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule)
+      returns (cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = platform;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = stack_module_descriptor_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "planton-cloud";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create stack-module-descriptor";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create deployment-module";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
-  // update an existing stack-module-descriptor.
-  rpc update(cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor)
-      returns (cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = stack_module_descriptor;
+  // update an existing deployment-module.
+  rpc update(cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule)
+      returns (cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = deployment_module;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update stack-module-descriptor";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update deployment-module";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = updated;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
   }
-  // delete a stack-module-descriptor.
+  // delete a deployment-module.
   rpc delete(cloud.planton.apis.commons.apiresource.model.ApiResourceDeleteInput)
-      returns (cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = stack_module_descriptor;
+      returns (cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = deployment_module;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = delete;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "resource_id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete stack-module-descriptor";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to delete deployment-module";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = deleted;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_load_state_from_db) = true;
   }
-  // restore a deleted stack-module-descriptor.
-  rpc restore(cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor)
-      returns (cloud.planton.apis.iac.v1.stackmoduledescriptor.model.StackModuleDescriptor) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = stack_module_descriptor;
+  // restore a deleted deployment-module.
+  rpc restore(cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule)
+      returns (cloud.planton.apis.iac.v1.deploymentmodule.model.DeploymentModule) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = deployment_module;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = restore;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "metadata.id";
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore stack-module-descriptor";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to restore deployment-module";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = restored;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = update;

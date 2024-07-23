@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.deploymentmodule.model;
+
+import "buf/validate/validate.proto";
+
+// wrapper for deployment-module id
+message DeploymentModuleId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

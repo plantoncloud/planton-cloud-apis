@@ -19,7 +19,7 @@ service SolrKubernetesCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.kubernetes.solrkubernetes.model.SolrKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create solr-kubernetes";
     // api resource rpc method options
@@ -31,7 +31,7 @@ service SolrKubernetesCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.kubernetes.solrkubernetes.model.SolrKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.solrkubernetes.model.SolrKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = solr_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create solr-kubernetes";
     // api resource rpc method options

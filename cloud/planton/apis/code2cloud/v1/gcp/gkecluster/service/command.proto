@@ -19,7 +19,7 @@ service GkeClusterCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gke_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create gke-cluster";
     // api resource rpc method options
@@ -31,7 +31,7 @@ service GkeClusterCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gke_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create gke-cluster";
     // api resource rpc method options

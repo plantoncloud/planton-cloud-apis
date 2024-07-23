@@ -20,7 +20,7 @@ service AksClusterCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster)
       returns (cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = aks_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create aks-cluster";
     // api resource rpc method options
@@ -32,7 +32,7 @@ service AksClusterCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster)
       returns (cloud.planton.apis.code2cloud.v1.azure.akscluster.model.AksCluster) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = aks_cluster_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create aks-cluster";
     // api resource rpc method options

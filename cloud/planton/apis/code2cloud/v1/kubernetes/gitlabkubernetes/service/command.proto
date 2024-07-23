@@ -16,7 +16,7 @@ service GitlabKubernetesCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create gitlab-kubernetes";
     // api resource rpc method options
@@ -28,7 +28,7 @@ service GitlabKubernetesCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes)
       returns (cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.model.GitlabKubernetes) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gitlab_kubernetes_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create gitlab-kubernetes";
     // api resource rpc method options

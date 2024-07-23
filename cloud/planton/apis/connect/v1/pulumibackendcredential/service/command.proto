@@ -13,7 +13,7 @@ service PulumiBackendCredentialCommandController {
   //create pulumi-backend-credential
   rpc create(cloud.planton.apis.connect.v1.pulumibackendcredential.model.PulumiBackendCredential) returns (cloud.planton.apis.connect.v1.pulumibackendcredential.model.PulumiBackendCredential) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = pulumi_backend_credential_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create pulumi-backend-credential";
     // api resource rpc method options

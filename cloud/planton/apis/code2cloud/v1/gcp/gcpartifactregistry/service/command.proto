@@ -17,7 +17,7 @@ service GcpArtifactRegistryCommandController {
   rpc previewCreate(cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.model.GcpArtifactRegistry)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.model.GcpArtifactRegistry) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gcp_artifact_registry_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to preview create gcp-artifact-registry";
     // api resource rpc method options
@@ -29,7 +29,7 @@ service GcpArtifactRegistryCommandController {
   rpc create(cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.model.GcpArtifactRegistry)
       returns (cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.model.GcpArtifactRegistry) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = gcp_artifact_registry_create;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create gcp-artifact-registry";
     // api resource rpc method options
