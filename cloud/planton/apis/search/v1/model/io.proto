@@ -41,6 +41,9 @@ message ApiResourceSearchResultRecord {
   bool is_active = 8;
   // this field is specific to identity account resource and it represents the email of the identity account
   string email = 9;
+  //list of supported deployment-modules
+  // this field is specific to stack job runner
+  repeated cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind supported_deployment_modules = 10;
 }
 
 // ResourceList is a message type that represents a paginated list of Resource objects.
@@ -103,5 +106,22 @@ message SearchIdentityAccountByEmailInput {
   string search_text = 2;
   // Pagination info to retrieve specific paginated data.
   cloud.planton.apis.commons.rpc.PageInfo page_info = 3;
+}
+
+message SearchStackJobRunnerByDeploymentModuleInput {
+  // This is the unique identifier for the organization
+  // associated with the search query. The search operation will only consider resources
+  // associated with this organization.
+  string org_id = 1;
+  // This is the unique identifier for the environment
+  // associated with the search query. The search operation will only consider resources
+  // that are linked with this environment.
+  string env_id = 2;
+  // This field indicates the supported_deployment_modules of the stack job runner that the search operation will be focusing on.
+  // The possible supported_deployment_modules are defined by the ApiResourceKind enum.
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind deployment_module = 3;
+  // This field contains the pagination information used for retrieving specific paginated
+  // data. It enables the client to specify the number of records per page and the page number.
+  cloud.planton.apis.commons.rpc.PageInfo page_info = 4;
 }
 

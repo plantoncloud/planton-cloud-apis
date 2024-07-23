@@ -49,4 +49,9 @@ service SearchQueryController {
       returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
+
+  rpc searchStackJobRunnerByDeploymentModule(cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput)
+      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
 }

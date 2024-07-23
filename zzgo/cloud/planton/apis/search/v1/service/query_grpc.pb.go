@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SearchQueryController_SearchByText_FullMethodName                 = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchByText"
-	SearchQueryController_SearchByApiResourceKind_FullMethodName      = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchByApiResourceKind"
-	SearchQueryController_SearchIdentityAccountByEmail_FullMethodName = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchIdentityAccountByEmail"
+	SearchQueryController_SearchByText_FullMethodName                           = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchByText"
+	SearchQueryController_SearchByApiResourceKind_FullMethodName                = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchByApiResourceKind"
+	SearchQueryController_SearchIdentityAccountByEmail_FullMethodName           = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchIdentityAccountByEmail"
+	SearchQueryController_SearchStackJobRunnerByDeploymentModule_FullMethodName = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchStackJobRunnerByDeploymentModule"
 )
 
 // SearchQueryControllerClient is the client API for SearchQueryController service.
@@ -43,6 +44,7 @@ type SearchQueryControllerClient interface {
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
 }
 
 type searchQueryControllerClient struct {
@@ -80,6 +82,15 @@ func (c *searchQueryControllerClient) SearchIdentityAccountByEmail(ctx context.C
 	return out, nil
 }
 
+func (c *searchQueryControllerClient) SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error) {
+	out := new(model.ApiResourceSearchResultRecordList)
+	err := c.cc.Invoke(ctx, SearchQueryController_SearchStackJobRunnerByDeploymentModule_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchQueryControllerServer is the server API for SearchQueryController service.
 // All implementations should embed UnimplementedSearchQueryControllerServer
 // for forward compatibility
@@ -98,6 +109,7 @@ type SearchQueryControllerServer interface {
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error)
+	SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error)
 }
 
 // UnimplementedSearchQueryControllerServer should be embedded to have forward compatible implementations.
@@ -112,6 +124,9 @@ func (UnimplementedSearchQueryControllerServer) SearchByApiResourceKind(context.
 }
 func (UnimplementedSearchQueryControllerServer) SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchIdentityAccountByEmail not implemented")
+}
+func (UnimplementedSearchQueryControllerServer) SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchStackJobRunnerByDeploymentModule not implemented")
 }
 
 // UnsafeSearchQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -179,6 +194,24 @@ func _SearchQueryController_SearchIdentityAccountByEmail_Handler(srv interface{}
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchQueryController_SearchStackJobRunnerByDeploymentModule_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.SearchStackJobRunnerByDeploymentModuleInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchQueryControllerServer).SearchStackJobRunnerByDeploymentModule(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SearchQueryController_SearchStackJobRunnerByDeploymentModule_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchQueryControllerServer).SearchStackJobRunnerByDeploymentModule(ctx, req.(*model.SearchStackJobRunnerByDeploymentModuleInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchQueryController_ServiceDesc is the grpc.ServiceDesc for SearchQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -197,6 +230,10 @@ var SearchQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "searchIdentityAccountByEmail",
 			Handler:    _SearchQueryController_SearchIdentityAccountByEmail_Handler,
+		},
+		{
+			MethodName: "searchStackJobRunnerByDeploymentModule",
+			Handler:    _SearchQueryController_SearchStackJobRunnerByDeploymentModule_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
