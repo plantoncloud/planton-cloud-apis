@@ -113,15 +113,11 @@ message SearchStackJobRunnerByDeploymentModuleInput {
   // associated with the search query. The search operation will only consider resources
   // associated with this organization.
   string org_id = 1;
-  // This is the unique identifier for the environment
-  // associated with the search query. The search operation will only consider resources
-  // that are linked with this environment.
-  string env_id = 2;
   // This field indicates the supported_deployment_modules of the stack job runner that the search operation will be focusing on.
   // The possible supported_deployment_modules are defined by the ApiResourceKind enum.
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind deployment_module = 3;
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind deployment_module = 2;
   // This field contains the pagination information used for retrieving specific paginated
   // data. It enables the client to specify the number of records per page and the page number.
-  cloud.planton.apis.commons.rpc.PageInfo page_info = 4;
+  cloud.planton.apis.commons.rpc.PageInfo page_info = 3;
 }
 
