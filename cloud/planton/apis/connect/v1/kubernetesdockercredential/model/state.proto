@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/connect/v1/kubernetesdockercredential/enums/dockerrepoprovider/docker_repo_provider.proto";
 
 //kubernetes-docker-credential
 message KubernetesDockerCredential {
@@ -76,37 +77,22 @@ message KubernetesDockerCredentialSpec {
     }
   ];
 
-  // The DNS domain of the Google Cloud Organization, optional during creation.
-  string org_domain = 2;
+  //docker repo provider
+  cloud.planton.apis.connect.v1.kubernetesdockercredential.enums.dockerrepoprovider.DockerRepoProvider docker_repo_provider = 2;
 
-  // The GCP Billing Account ID that will be linked to the projects created for shared services. Required during creation.
-  string billing_account_id = 3 [
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Only alphanumeric characters (A-Z,a-z, 0-9) and hyphens are allowed",
-      // https://regex101.com/r/NKTohE/1
-      expression: "this.matches('^[A-Za-z0-9-]+$')"
-    },
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Must not start with a hyphen",
-      // https://regex101.com/r/t1LOCE/1
-      expression: "this.matches('^[^-].*$')"
-    },
-    (buf.validate.field).cel = {
-      id: "spec.gcp.billing_account_id",
-      message: "Must not end with a hyphen",
-      // https://regex101.com/r/reQjcB/1
-      expression: "this.matches('[^-]$')"
-    }
-  ];
+  //gcp-artifact-registry-credential spec
+  KubernetesDockerCredentialGcpArtifactRegistryCredentialSpec gcp_artifact_registry_credential_spec = 3;
+}
 
-  // Name of the secret containing the value of the service-account key in the secrets manager.
-  // name of the secret is in the format `projects/<project-id>/secrets/<secret-name>`
-  // This is computed automatically by the Platon Cloud system.
-  // The value is derived from the organization-status object
-  string service_account_key_secret_name = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
+//kubernetes-docker-credential spec for docker-repo provided by gcp-artifact-registry
+message KubernetesDockerCredentialGcpArtifactRegistryCredentialSpec {
+  //id of the gcp project in which the docker-repo is created.
+  string gcp_project_id = 1;
+  //gcp region in which the docker-repo is created.
+  //this is required for constructing the registry hostname.
+  string gcp_region = 2;
+  //name of the docker-repository on gcp artifact-registry.
+  string docker_repo_name = 3;
+  //base64 encoded google service account key that has required permissions for downloading docker images from the repo.
+  string gcp_service_account_key_base64 = 4;
 }
