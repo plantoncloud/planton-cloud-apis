@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package cloud.planton.apis.code2cloud.v1.gcp.gcpsecretsmanagersecretset.model;
+package cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.model;
 
 import "buf/validate/validate.proto";
 import "cloud/planton/apis/commons/apiresource/model/state.proto";
@@ -10,9 +10,9 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessag
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
-//gcp-secrets-manager-secret-set
-message GcpSecretsManagerSecretSet {
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = gcp_secrets_manager_secret_set;
+//aws-secrets-manager-secret-set
+message AwsSecretsManagerSecretSet {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = aws_secrets_manager_secret_set;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
@@ -57,34 +57,29 @@ message GcpSecretsManagerSecretSet {
   ];
 
   //spec
-  GcpSecretsManagerSecretSetSpec spec = 4;
+  AwsSecretsManagerSecretSetSpec spec = 4;
 
   //status
-  GcpSecretsManagerSecretSetStatus status = 5;
+  AwsSecretsManagerSecretSetStatus status = 5;
 }
 
-//gcp-secrets-manager-secret-set spec
-message GcpSecretsManagerSecretSetSpec {
+//aws-secrets-manager-secret-set spec
+message AwsSecretsManagerSecretSetSpec {
   //environment-info
   cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   //stack-job settings
   cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
 
-  //gcp-credential-id to be used for setting up gcp-provider in stack-job
-  string gcp_credential_id = 97;
+  //aws-credential-id to be used for setting up aws-provider in stack-job
+  string aws_credential_id = 97;
 
-  //gcp project in which the secrets are to be created.
-  string project_id = 1 [
-    (buf.validate.field).required = true
-  ];
-
-  //list of secret names to create in google cloud secrets-manager
-  repeated string secret_names = 2;
+  //list of secret names to create in aws secrets-manager
+  repeated string secret_names = 1;
 }
 
-//gcp-secrets-manager-secret-set status
-message GcpSecretsManagerSecretSetStatus {
+//aws-secrets-manager-secret-set status
+message AwsSecretsManagerSecretSetStatus {
   //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
@@ -95,11 +90,11 @@ message GcpSecretsManagerSecretSetStatus {
   string stack_job_id = 97;
 
   //stack-outputs
-  GcpSecretsManagerSecretSetStackOutputs stack_outputs = 1;
+  AwsSecretsManagerSecretSetStackOutputs stack_outputs = 1;
 }
 
-//gcp-secrets-manager-secret-set stack outputs
-message GcpSecretsManagerSecretSetStackOutputs {
+//aws-secrets-manager-secret-set stack outputs
+message AwsSecretsManagerSecretSetStackOutputs {
   //map containing secret-name and its corresponding secret-id on secrets-manager
   map<string, string> secret_id_map = 1;
 }

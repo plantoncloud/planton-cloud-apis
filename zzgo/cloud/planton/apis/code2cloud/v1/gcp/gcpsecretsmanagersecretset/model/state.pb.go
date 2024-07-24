@@ -125,8 +125,9 @@ type GcpSecretsManagerSecretSetSpec struct {
 	StackJobSettings *model2.StackJobSettings `protobuf:"bytes,98,opt,name=stack_job_settings,json=stackJobSettings,proto3" json:"stack_job_settings,omitempty"`
 	// gcp-credential-id to be used for setting up gcp-provider in stack-job
 	GcpCredentialId string `protobuf:"bytes,97,opt,name=gcp_credential_id,json=gcpCredentialId,proto3" json:"gcp_credential_id,omitempty"`
-	// gcp project in which the storage-bucket is to be created.
-	ProjectId   string   `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// gcp project in which the secrets are to be created.
+	ProjectId string `protobuf:"bytes,1,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	// list of secret names to create in google cloud secrets-manager
 	SecretNames []string `protobuf:"bytes,2,rep,name=secret_names,json=secretNames,proto3" json:"secret_names,omitempty"`
 }
 
