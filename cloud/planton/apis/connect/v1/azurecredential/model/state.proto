@@ -63,8 +63,32 @@ message AzureCredential {
 
 //azure-credential spec
 message AzureCredentialSpec {
-  // organization to which azure-credential belongs to.
+  // organization to which azure-credential belongs to
   string org_id = 1 [
     (buf.validate.field).required = true
+  ];
+
+  // azure client id
+  string client_id = 2 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore_empty = true
+  ];
+
+  // azure client secret
+  string client_secret = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore_empty = true
+  ];
+
+  // azure tenant id
+  string tenant_id = 4 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore_empty = true
+  ];
+
+  // azure subscription id
+  string subscription_id = 5 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).ignore_empty = true
   ];
 }
