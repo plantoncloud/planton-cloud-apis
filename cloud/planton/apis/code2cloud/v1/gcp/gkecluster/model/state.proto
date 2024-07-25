@@ -124,7 +124,7 @@ message GkeClusterSpec {
   bool is_workload_logs_enabled = 5;
 
   // cluster autoscaling configuration
-  GkeClusterClusterAutoscalingConfigSpec cluster_autoscaling_config = 6;
+  GkeClusterAutoscalingConfigSpec cluster_autoscaling_config = 6;
 
   // gke-cluster node pools
   repeated GkeClusterNodePool node_pools = 7;
@@ -216,7 +216,7 @@ message IngressDnsDomain {
 
 //cluster autoscaling configuration for gke clusters.
 // https://cloud.google.com/kubernetes-engine/docs/how-to/node-auto-provisioning
-message GkeClusterClusterAutoscalingConfigSpec {
+message GkeClusterAutoscalingConfigSpec {
   // Flag to control autoscaling of kubernetes worker nodes.
   // When set to true, the cluster will automatically scale up or down based on the resource requirements.
   bool is_enabled = 1;
