@@ -20,7 +20,9 @@ message StackJob {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";
 
   //api-version
-  string api_version = 1;
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'iac.planton.cloud/v1'
+  ];
 
   //resource-kind
   string kind = 2;

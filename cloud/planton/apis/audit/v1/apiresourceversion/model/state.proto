@@ -18,7 +18,9 @@ message ApiResourceVersion {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = api_resource_version;
 
   //api-version
-  string api_version = 1;
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'audit.planton.cloud/v1'
+  ];
 
   //resource-kind
   string kind = 2;

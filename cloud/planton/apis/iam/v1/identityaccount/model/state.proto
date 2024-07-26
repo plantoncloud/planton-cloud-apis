@@ -13,7 +13,9 @@ message IdentityAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = identity_account;
 
   //api-version
-  string api_version = 1;
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'iam.planton.cloud/v1'
+  ];
 
   //resource-kind
   string kind = 2;

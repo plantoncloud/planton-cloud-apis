@@ -13,7 +13,9 @@ message Stack {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack;
 
   //api-version
-  string api_version = 1;
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'iac.planton.cloud/v1'
+  ];
 
   //resource-kind
   string kind = 2;
