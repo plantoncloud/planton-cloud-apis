@@ -127,16 +127,16 @@ message SearchContextHierarchyInput {
 }
 
 message SearchContextHierarchy {
-  repeated OrgInfo organizations = 3;
+  repeated ContextOrg orgs = 3;
 }
 
-message OrgInfo {
+message ContextOrg {
   string org_id = 1;
   string org_name = 2;
-  repeated EnvInfo envs = 3;
+  repeated ContextEnv envs = 3;
 }
 
-message EnvInfo {
+message ContextEnv {
   string env_id = 1;
   string env_name = 2;
 }
