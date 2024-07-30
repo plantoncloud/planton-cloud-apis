@@ -7,7 +7,6 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/enums/podmanagertype/pod_manager_type.proto";
@@ -102,36 +101,22 @@ message MicroserviceKubernetesSpec {
     }
   ];
 
-  //(required) type of the pod manager to use for the microservice deployment.
-  //default is set to "deployment".
-  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.enums.podmanagertype.PodManagerType pod_manager_type = 2 [
-    (buf.validate.field).required = true,
-    (buf.validate.field).enum.defined_only = true
-  ];
-
   //container spec
-  MicroserviceKubernetesSpecContainerSpec container = 3 [
+  MicroserviceKubernetesContainerSpec container = 3 [
     (buf.validate.field).required = true
   ];
 
   //microservice kubernetes ingress configuration on kubernetes
-  MicroserviceKubernetesSpecIngressSpec ingress = 4;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 4;
 
   //microservice kubernetes availability configuration on kubernetes
-  MicroserviceKubernetesSpecAvailabilitySpec availability = 5;
-
-  //flag to toggle workload identity for the microservice
-  //default is set to "false".
-  bool is_workload_identity_enabled = 6;
-
-  //pipeline configuration required to update the microservice kubernetes from ci/cd pipelines
-  MicroserviceKubernetesSpecPipelineSpec pipeline = 7;
+  MicroserviceKubernetesAvailabilitySpec availability = 5;
 }
 
 //microservice-kubernetes-spec kubernetes container spec
-message MicroserviceKubernetesSpecContainerSpec {
+message MicroserviceKubernetesContainerSpec {
   //microservice app container
-  MicroserviceKubernetesSpecContainerSpecAppSpec app = 1 [
+  MicroserviceKubernetesContainerAppSpec app = 1 [
     (buf.validate.field).required = true
   ];
 
@@ -140,7 +125,7 @@ message MicroserviceKubernetesSpecContainerSpec {
 }
 
 //microservice-kubernetes-spec kubernetes app container spec
-message MicroserviceKubernetesSpecContainerSpecAppSpec {
+message MicroserviceKubernetesContainerAppSpec {
   //container image. this value is computed during creation but is allowed for updates.
   //value is computed by combining the docker-repo of the artifact-store configured for environment and code project path.
   //
@@ -153,17 +138,14 @@ message MicroserviceKubernetesSpecContainerSpecAppSpec {
   cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 2;
 
   //microservice-kubernetes environment variables and secrets.
-  MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec env = 3;
+  MicroserviceKubernetesContainerAppEnvSpec env = 3;
 
   //list of ports to be configured for the app container
-  repeated MicroserviceKubernetesSpecContainerSpecAppSpecPortSpec ports = 4;
-
-  //list of container volume mounts
-  repeated MicroserviceKubernetesSpecContainerSpecAppSpecVolumeMountSpec volume_mounts = 5;
+  repeated MicroserviceKubernetesContainerAppPortSpec ports = 4;
 }
 
 //microservice-kubernetes-spec kubernetes app container environment variables spec
-message MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec {
+message MicroserviceKubernetesContainerAppEnvSpec {
   //map of variable
   map<string, string> variables = 1;
   //map of secrets
@@ -171,7 +153,7 @@ message MicroserviceKubernetesSpecContainerSpecAppSpecEnvSpec {
 }
 
 //microservice-kubernetes-spec kubernetes container port spec
-message MicroserviceKubernetesSpecContainerSpecAppSpecPortSpec {
+message MicroserviceKubernetesContainerAppPortSpec {
   //name for the port ex: http, grpc
   string name = 1 [
     (buf.validate.field).required = true,
@@ -208,91 +190,26 @@ message MicroserviceKubernetesSpecContainerSpecAppSpecPortSpec {
   int32 service_port = 5 [
     (buf.validate.field).required = true
   ];
-}
-
-//microservice-kubernetes-spec kubernetes container volume mount spec
-message MicroserviceKubernetesSpecContainerSpecAppSpecVolumeMountSpec {
-  // name for the volume mount ex: solr-collection
-  string name = 1;
-  // path to mount the volume inside the container
-  string mount_path = 2;
-  // size of the volume mount ex: 1Gi
-  string size = 3;
-}
-
-//microservice-kubernetes-spec kubernetes ingress spec
-message MicroserviceKubernetesSpecIngressSpec {
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
-        "? 'endpoint domain name is mandatory to enable ingress'"
-        ": ''"
-  };
-  option (buf.validate.message).cel = {
-    id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
-        "? 'ingress type is mandatory to enable ingress'"
-        ": ''"
-  };
-  //toggle to control ingress
-  bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.commons.kubernetes.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
-  //selected endpoint-domain from the environment endpoint-domains to configure dns
-  string endpoint_domain_name = 3;
-  //port on which the ingress requests are sent by the clients
-  int32 listener_ingress_port = 4;
-  //kubernetes service port to which the incoming ingress requests are forwarded
-  int32 forward_service_port = 5;
+  // flag to tag the port as ingress port
+  bool is_ingress_port = 6;
 }
 
 //microservice-kubernetes-spec kubernetes availability spec
-message MicroserviceKubernetesSpecAvailabilitySpec {
+message MicroserviceKubernetesAvailabilitySpec {
   //minimum number of pod replicas
   int32 min_replicas = 1;
   //horizontal pod autoscaling configuration
-  MicroserviceKubernetesSpecAvailabilitySpecHorizontalPodAutoscalingSpec horizontal_pod_autoscaling = 2;
+  MicroserviceKubernetesAvailabilityHpaSpec horizontal_pod_autoscaling = 2;
 }
 
 //microservice-kubernetes-spec kubernetes availability spec horizontal pod autoscaling
-message MicroserviceKubernetesSpecAvailabilitySpecHorizontalPodAutoscalingSpec {
+message MicroserviceKubernetesAvailabilityHpaSpec {
   //flag to toggle horizontal pod autoscaling
   bool is_enabled = 1;
   //percentage for target cpu utilization to trigger auto scaling. ex: 60.0
   double target_cpu_utilization_percent = 2;
   //target memory utilization to trigger auto scaling. ex: 1Gi
   string target_memory_utilization = 3;
-}
-
-//microservice-kubernetes-spec pipeline configuration
-message MicroserviceKubernetesSpecPipelineSpec {
-  //flag to toggle pipelines for microservice-kubernetes.
-  //default is "false".
-  bool is_enabled = 1;
-
-  //id of the code project.
-  //allowed values are the list of code projects in the same organization.
-  string code_project_id = 2 [
-    (buf.validate.field).required = true
-  ];
-
-  //git branch configured to deploy new versions of microservice-kubernetes
-  string git_branch = 3 [
-    (buf.validate.field).required = true
-  ];
-
-  //toggle to enable or disable review environments to control the creation of ephemeral
-  //review environments for merge requests.
-  //default is "false".
-  bool is_review_deployments_enabled = 4;
-
-  //toggle for manual gate on ci/cd deployment jobs
-  bool is_manual_gate_required = 5;
-
-  //environment url to access the microservice deployed from the deployment job
-  string deployment_environment_url = 6 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
 }
 
 //microservice-kubernetes-status
@@ -332,13 +249,10 @@ message MicroserviceKubernetesStackOutputs {
   string kube_endpoint = 4;
 
   //public endpoint to open microservice-kubernetes from clients outside kubernetes.
-  //ex: https://ms-planton-pcs-dev-account.dev.planton.live:8080
+  //ex: https://msk8s-planton-pcs-dev-account.dev.planton.live:8080
   string external_hostname = 5;
 
   //internal endpoint to open microservice-kubernetes from clients inside kubernetes.
-  //ex: https://ms-planton-pcs-dev-account-internal.dev.planton.live:8080
+  //ex: https://msk8s-planton-pcs-dev-account-internal.dev.planton.live:8080
   string internal_hostname = 6;
-
-  //id of the service account created for the workload identity
-  string workload_identity_account_id = 7;
 }

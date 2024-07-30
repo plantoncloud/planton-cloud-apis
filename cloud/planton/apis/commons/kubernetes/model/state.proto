@@ -3,7 +3,6 @@ syntax = "proto3";
 package cloud.planton.apis.commons.kubernetes.model;
 
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/commons/kubernetes/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
 
 //sidecar object in microservice deployment configuration
 //this spec should always match the specification of a kubernetes container spec https://pkg.go.dev/k8s.io/api/core/v1#Container
@@ -72,20 +71,18 @@ message ContainerImage {
 message IngressSpec {
   option (buf.validate.message).cel = {
     id: "ingres.enabled.endpoint_domain_name.mandatory",
-    expression: "this.is_enabled && size(this.endpoint_domain_name) == 0"
+    expression: "this.is_enabled"
         "? 'endpoint domain name is mandatory to enable ingress'"
         ": ''"
   };
   option (buf.validate.message).cel = {
     id: "ingres.enabled.ingress_type.mandatory",
-    expression: "this.is_enabled && this.ingress_type == 0"
+    expression: "this.is_enabled"
         "? 'ingress type is mandatory to enable ingress'"
         ": ''"
   };
   //toggle to control ingress
   bool is_enabled = 1;
-  //ingress type
-  cloud.planton.apis.commons.kubernetes.enums.kubernetesworkloadingresstype.KubernetesWorkloadIngressType ingress_type = 2;
   //endpoint domain to be used for creating internal and external endpoints for planton cloud api resource.
-  string endpoint_domain_name = 3;
+  string endpoint_domain_name = 2;
 }
