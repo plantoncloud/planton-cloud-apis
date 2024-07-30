@@ -24,6 +24,7 @@ const (
 	SearchQueryController_SearchByApiResourceKind_FullMethodName                = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchByApiResourceKind"
 	SearchQueryController_SearchIdentityAccountByEmail_FullMethodName           = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchIdentityAccountByEmail"
 	SearchQueryController_SearchStackJobRunnerByDeploymentModule_FullMethodName = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchStackJobRunnerByDeploymentModule"
+	SearchQueryController_SearchContextHierarchy_FullMethodName                 = "/cloud.planton.apis.search.v1.service.SearchQueryController/searchContextHierarchy"
 )
 
 // SearchQueryControllerClient is the client API for SearchQueryController service.
@@ -44,7 +45,13 @@ type SearchQueryControllerClient interface {
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	// This method returns a `ResourceList` message, which encapsulates a list of stack job runners that match
+	// the input search parameters. Each stack job runner in the list should be associated with the specified organization
+	// and support the specified deployment module.
 	SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	// Each environment within an organization is represented by a `EnvInfo` message, containing a unique identifier (`env_id`)
+	// and the environment's name (`env_name`).
+	SearchContextHierarchy(ctx context.Context, in *model.SearchContextHierarchyInput, opts ...grpc.CallOption) (*model.SearchContextHierarchy, error)
 }
 
 type searchQueryControllerClient struct {
@@ -91,6 +98,15 @@ func (c *searchQueryControllerClient) SearchStackJobRunnerByDeploymentModule(ctx
 	return out, nil
 }
 
+func (c *searchQueryControllerClient) SearchContextHierarchy(ctx context.Context, in *model.SearchContextHierarchyInput, opts ...grpc.CallOption) (*model.SearchContextHierarchy, error) {
+	out := new(model.SearchContextHierarchy)
+	err := c.cc.Invoke(ctx, SearchQueryController_SearchContextHierarchy_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchQueryControllerServer is the server API for SearchQueryController service.
 // All implementations should embed UnimplementedSearchQueryControllerServer
 // for forward compatibility
@@ -109,7 +125,13 @@ type SearchQueryControllerServer interface {
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
 	SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error)
+	// This method returns a `ResourceList` message, which encapsulates a list of stack job runners that match
+	// the input search parameters. Each stack job runner in the list should be associated with the specified organization
+	// and support the specified deployment module.
 	SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error)
+	// Each environment within an organization is represented by a `EnvInfo` message, containing a unique identifier (`env_id`)
+	// and the environment's name (`env_name`).
+	SearchContextHierarchy(context.Context, *model.SearchContextHierarchyInput) (*model.SearchContextHierarchy, error)
 }
 
 // UnimplementedSearchQueryControllerServer should be embedded to have forward compatible implementations.
@@ -127,6 +149,9 @@ func (UnimplementedSearchQueryControllerServer) SearchIdentityAccountByEmail(con
 }
 func (UnimplementedSearchQueryControllerServer) SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchStackJobRunnerByDeploymentModule not implemented")
+}
+func (UnimplementedSearchQueryControllerServer) SearchContextHierarchy(context.Context, *model.SearchContextHierarchyInput) (*model.SearchContextHierarchy, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SearchContextHierarchy not implemented")
 }
 
 // UnsafeSearchQueryControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -212,6 +237,24 @@ func _SearchQueryController_SearchStackJobRunnerByDeploymentModule_Handler(srv i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchQueryController_SearchContextHierarchy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(model.SearchContextHierarchyInput)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchQueryControllerServer).SearchContextHierarchy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SearchQueryController_SearchContextHierarchy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchQueryControllerServer).SearchContextHierarchy(ctx, req.(*model.SearchContextHierarchyInput))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchQueryController_ServiceDesc is the grpc.ServiceDesc for SearchQueryController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -234,6 +277,10 @@ var SearchQueryController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "searchStackJobRunnerByDeploymentModule",
 			Handler:    _SearchQueryController_SearchStackJobRunnerByDeploymentModule_Handler,
+		},
+		{
+			MethodName: "searchContextHierarchy",
+			Handler:    _SearchQueryController_SearchContextHierarchy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

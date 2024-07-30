@@ -541,6 +541,219 @@ func (x *SearchStackJobRunnerByDeploymentModuleInput) GetPageInfo() *rpc.PageInf
 	return nil
 }
 
+type SearchContextHierarchyInput struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	// The text input to be used as the basis for the search query.
+	SearchText string `protobuf:"bytes,1,opt,name=search_text,json=searchText,proto3" json:"search_text,omitempty"`
+}
+
+func (x *SearchContextHierarchyInput) Reset() {
+	*x = SearchContextHierarchyInput{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchContextHierarchyInput) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchContextHierarchyInput) ProtoMessage() {}
+
+func (x *SearchContextHierarchyInput) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchContextHierarchyInput.ProtoReflect.Descriptor instead.
+func (*SearchContextHierarchyInput) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_search_v1_model_io_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *SearchContextHierarchyInput) GetSearchText() string {
+	if x != nil {
+		return x.SearchText
+	}
+	return ""
+}
+
+type SearchContextHierarchy struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Organizations []*OrgInfo `protobuf:"bytes,3,rep,name=organizations,proto3" json:"organizations,omitempty"`
+}
+
+func (x *SearchContextHierarchy) Reset() {
+	*x = SearchContextHierarchy{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SearchContextHierarchy) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchContextHierarchy) ProtoMessage() {}
+
+func (x *SearchContextHierarchy) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchContextHierarchy.ProtoReflect.Descriptor instead.
+func (*SearchContextHierarchy) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_search_v1_model_io_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SearchContextHierarchy) GetOrganizations() []*OrgInfo {
+	if x != nil {
+		return x.Organizations
+	}
+	return nil
+}
+
+type OrgInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	OrgId   string     `protobuf:"bytes,1,opt,name=org_id,json=orgId,proto3" json:"org_id,omitempty"`
+	OrgName string     `protobuf:"bytes,2,opt,name=org_name,json=orgName,proto3" json:"org_name,omitempty"`
+	Envs    []*EnvInfo `protobuf:"bytes,3,rep,name=envs,proto3" json:"envs,omitempty"`
+}
+
+func (x *OrgInfo) Reset() {
+	*x = OrgInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *OrgInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrgInfo) ProtoMessage() {}
+
+func (x *OrgInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrgInfo.ProtoReflect.Descriptor instead.
+func (*OrgInfo) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_search_v1_model_io_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *OrgInfo) GetOrgId() string {
+	if x != nil {
+		return x.OrgId
+	}
+	return ""
+}
+
+func (x *OrgInfo) GetOrgName() string {
+	if x != nil {
+		return x.OrgName
+	}
+	return ""
+}
+
+func (x *OrgInfo) GetEnvs() []*EnvInfo {
+	if x != nil {
+		return x.Envs
+	}
+	return nil
+}
+
+type EnvInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	EnvId   string `protobuf:"bytes,1,opt,name=env_id,json=envId,proto3" json:"env_id,omitempty"`
+	EnvName string `protobuf:"bytes,2,opt,name=env_name,json=envName,proto3" json:"env_name,omitempty"`
+}
+
+func (x *EnvInfo) Reset() {
+	*x = EnvInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *EnvInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EnvInfo) ProtoMessage() {}
+
+func (x *EnvInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EnvInfo.ProtoReflect.Descriptor instead.
+func (*EnvInfo) Descriptor() ([]byte, []int) {
+	return file_cloud_planton_apis_search_v1_model_io_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *EnvInfo) GetEnvId() string {
+	if x != nil {
+		return x.EnvId
+	}
+	return ""
+}
+
+func (x *EnvInfo) GetEnvName() string {
+	if x != nil {
+		return x.EnvName
+	}
+	return ""
+}
+
 var File_cloud_planton_apis_search_v1_model_io_proto protoreflect.FileDescriptor
 
 var file_cloud_planton_apis_search_v1_model_io_proto_rawDesc = []byte{
@@ -679,27 +892,50 @@ var file_cloud_planton_apis_search_v1_model_io_proto_rawDesc = []byte{
 	0x28, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e,
 	0x61, 0x70, 0x69, 0x73, 0x2e, 0x63, 0x6f, 0x6d, 0x6d, 0x6f, 0x6e, 0x73, 0x2e, 0x72, 0x70, 0x63,
 	0x2e, 0x50, 0x61, 0x67, 0x65, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x49,
-	0x6e, 0x66, 0x6f, 0x42, 0xbf, 0x02, 0x0a, 0x30, 0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75,
-	0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e,
-	0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2e,
-	0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x42, 0x07, 0x49, 0x6f, 0x50, 0x72, 0x6f, 0x74,
-	0x6f, 0x50, 0x01, 0x5a, 0x52, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
-	0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61,
-	0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f,
-	0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74,
-	0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2f, 0x76,
-	0x31, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0xa2, 0x02, 0x06, 0x43, 0x50, 0x41, 0x53, 0x56, 0x4d,
-	0xaa, 0x02, 0x22, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e,
-	0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2e, 0x56, 0x31, 0x2e,
-	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x22, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c,
-	0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x53, 0x65, 0x61, 0x72, 0x63,
-	0x68, 0x5c, 0x56, 0x31, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xe2, 0x02, 0x2e, 0x43, 0x6c, 0x6f,
-	0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c,
-	0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5c, 0x56, 0x31, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c,
-	0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x27, 0x43, 0x6c,
-	0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70,
-	0x69, 0x73, 0x3a, 0x3a, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a,
-	0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6e, 0x66, 0x6f, 0x22, 0x3e, 0x0a, 0x1b, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6f, 0x6e,
+	0x74, 0x65, 0x78, 0x74, 0x48, 0x69, 0x65, 0x72, 0x61, 0x72, 0x63, 0x68, 0x79, 0x49, 0x6e, 0x70,
+	0x75, 0x74, 0x12, 0x1f, 0x0a, 0x0b, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5f, 0x74, 0x65, 0x78,
+	0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x54,
+	0x65, 0x78, 0x74, 0x22, 0x6b, 0x0a, 0x16, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x43, 0x6f, 0x6e,
+	0x74, 0x65, 0x78, 0x74, 0x48, 0x69, 0x65, 0x72, 0x61, 0x72, 0x63, 0x68, 0x79, 0x12, 0x51, 0x0a,
+	0x0d, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x03,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x63, 0x6c, 0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73, 0x2e, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68,
+	0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x2e, 0x4f, 0x72, 0x67, 0x49, 0x6e, 0x66,
+	0x6f, 0x52, 0x0d, 0x6f, 0x72, 0x67, 0x61, 0x6e, 0x69, 0x7a, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x22, 0x7c, 0x0a, 0x07, 0x4f, 0x72, 0x67, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x15, 0x0a, 0x06, 0x6f,
+	0x72, 0x67, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x6f, 0x72, 0x67,
+	0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x6f, 0x72, 0x67, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6f, 0x72, 0x67, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x3f, 0x0a,
+	0x04, 0x65, 0x6e, 0x76, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x2b, 0x2e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x2e, 0x45, 0x6e, 0x76, 0x49, 0x6e, 0x66, 0x6f, 0x52, 0x04, 0x65, 0x6e, 0x76, 0x73, 0x22, 0x3b,
+	0x0a, 0x07, 0x45, 0x6e, 0x76, 0x49, 0x6e, 0x66, 0x6f, 0x12, 0x15, 0x0a, 0x06, 0x65, 0x6e, 0x76,
+	0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6e, 0x76, 0x49, 0x64,
+	0x12, 0x19, 0x0a, 0x08, 0x65, 0x6e, 0x76, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x07, 0x65, 0x6e, 0x76, 0x4e, 0x61, 0x6d, 0x65, 0x42, 0xbf, 0x02, 0x0a, 0x30,
+	0x62, 0x75, 0x69, 0x6c, 0x64, 0x2e, 0x62, 0x75, 0x66, 0x2e, 0x67, 0x65, 0x6e, 0x2e, 0x63, 0x6c,
+	0x6f, 0x75, 0x64, 0x2e, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x61, 0x70, 0x69, 0x73,
+	0x2e, 0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2e, 0x76, 0x31, 0x2e, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x42, 0x07, 0x49, 0x6f, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x52, 0x67, 0x69, 0x74,
+	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x63,
+	0x6c, 0x6f, 0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2d, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2d, 0x61, 0x70, 0x69, 0x73, 0x2f, 0x7a, 0x7a, 0x67, 0x6f, 0x2f, 0x63, 0x6c, 0x6f,
+	0x75, 0x64, 0x2f, 0x70, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2f, 0x61, 0x70, 0x69, 0x73, 0x2f,
+	0x73, 0x65, 0x61, 0x72, 0x63, 0x68, 0x2f, 0x76, 0x31, 0x2f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0xa2,
+	0x02, 0x06, 0x43, 0x50, 0x41, 0x53, 0x56, 0x4d, 0xaa, 0x02, 0x22, 0x43, 0x6c, 0x6f, 0x75, 0x64,
+	0x2e, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x2e, 0x41, 0x70, 0x69, 0x73, 0x2e, 0x53, 0x65,
+	0x61, 0x72, 0x63, 0x68, 0x2e, 0x56, 0x31, 0x2e, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0xca, 0x02, 0x22,
+	0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74, 0x6f, 0x6e, 0x5c, 0x41, 0x70,
+	0x69, 0x73, 0x5c, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5c, 0x56, 0x31, 0x5c, 0x4d, 0x6f, 0x64,
+	0x65, 0x6c, 0xe2, 0x02, 0x2e, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x5c, 0x50, 0x6c, 0x61, 0x6e, 0x74,
+	0x6f, 0x6e, 0x5c, 0x41, 0x70, 0x69, 0x73, 0x5c, 0x53, 0x65, 0x61, 0x72, 0x63, 0x68, 0x5c, 0x56,
+	0x31, 0x5c, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64,
+	0x61, 0x74, 0x61, 0xea, 0x02, 0x27, 0x43, 0x6c, 0x6f, 0x75, 0x64, 0x3a, 0x3a, 0x50, 0x6c, 0x61,
+	0x6e, 0x74, 0x6f, 0x6e, 0x3a, 0x3a, 0x41, 0x70, 0x69, 0x73, 0x3a, 0x3a, 0x53, 0x65, 0x61, 0x72,
+	0x63, 0x68, 0x3a, 0x3a, 0x56, 0x31, 0x3a, 0x3a, 0x4d, 0x6f, 0x64, 0x65, 0x6c, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -714,7 +950,7 @@ func file_cloud_planton_apis_search_v1_model_io_proto_rawDescGZIP() []byte {
 	return file_cloud_planton_apis_search_v1_model_io_proto_rawDescData
 }
 
-var file_cloud_planton_apis_search_v1_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_cloud_planton_apis_search_v1_model_io_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_cloud_planton_apis_search_v1_model_io_proto_goTypes = []interface{}{
 	(*ApiResourceSearchResultRecord)(nil),                // 0: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord
 	(*ApiResourceSearchResultRecordList)(nil),            // 1: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList
@@ -722,28 +958,34 @@ var file_cloud_planton_apis_search_v1_model_io_proto_goTypes = []interface{}{
 	(*SearchApiResourcesByKindInput)(nil),                // 3: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput
 	(*SearchIdentityAccountByEmailInput)(nil),            // 4: cloud.planton.apis.search.v1.model.SearchIdentityAccountByEmailInput
 	(*SearchStackJobRunnerByDeploymentModuleInput)(nil),  // 5: cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput
-	(apiresourcekind.ApiResourceKind)(0),                 // 6: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	(*timestamppb.Timestamp)(nil),                        // 7: google.protobuf.Timestamp
-	(*rpc.PageInfo)(nil),                                 // 8: cloud.planton.apis.commons.rpc.PageInfo
-	(apiresourcelookupfilter.ApiResourceLookupFilter)(0), // 9: cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter
+	(*SearchContextHierarchyInput)(nil),                  // 6: cloud.planton.apis.search.v1.model.SearchContextHierarchyInput
+	(*SearchContextHierarchy)(nil),                       // 7: cloud.planton.apis.search.v1.model.SearchContextHierarchy
+	(*OrgInfo)(nil),                                      // 8: cloud.planton.apis.search.v1.model.OrgInfo
+	(*EnvInfo)(nil),                                      // 9: cloud.planton.apis.search.v1.model.EnvInfo
+	(apiresourcekind.ApiResourceKind)(0),                 // 10: cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	(*timestamppb.Timestamp)(nil),                        // 11: google.protobuf.Timestamp
+	(*rpc.PageInfo)(nil),                                 // 12: cloud.planton.apis.commons.rpc.PageInfo
+	(apiresourcelookupfilter.ApiResourceLookupFilter)(0), // 13: cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter
 }
 var file_cloud_planton_apis_search_v1_model_io_proto_depIdxs = []int32{
-	6,  // 0: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.type:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	7,  // 1: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.created_at:type_name -> google.protobuf.Timestamp
-	6,  // 2: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.supported_deployment_modules:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	10, // 0: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.type:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	11, // 1: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.created_at:type_name -> google.protobuf.Timestamp
+	10, // 2: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord.supported_deployment_modules:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
 	0,  // 3: cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList.entries:type_name -> cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecord
-	8,  // 4: cloud.planton.apis.search.v1.model.SearchByTextInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	6,  // 5: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	8,  // 6: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	9,  // 7: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.lookup_filter:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter
-	8,  // 8: cloud.planton.apis.search.v1.model.SearchIdentityAccountByEmailInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	6,  // 9: cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput.deployment_module:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
-	8,  // 10: cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
-	11, // [11:11] is the sub-list for method output_type
-	11, // [11:11] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	12, // 4: cloud.planton.apis.search.v1.model.SearchByTextInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	10, // 5: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.resource_kind:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	12, // 6: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	13, // 7: cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput.lookup_filter:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcelookupfilter.ApiResourceLookupFilter
+	12, // 8: cloud.planton.apis.search.v1.model.SearchIdentityAccountByEmailInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	10, // 9: cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput.deployment_module:type_name -> cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind
+	12, // 10: cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput.page_info:type_name -> cloud.planton.apis.commons.rpc.PageInfo
+	8,  // 11: cloud.planton.apis.search.v1.model.SearchContextHierarchy.organizations:type_name -> cloud.planton.apis.search.v1.model.OrgInfo
+	9,  // 12: cloud.planton.apis.search.v1.model.OrgInfo.envs:type_name -> cloud.planton.apis.search.v1.model.EnvInfo
+	13, // [13:13] is the sub-list for method output_type
+	13, // [13:13] is the sub-list for method input_type
+	13, // [13:13] is the sub-list for extension type_name
+	13, // [13:13] is the sub-list for extension extendee
+	0,  // [0:13] is the sub-list for field type_name
 }
 
 func init() { file_cloud_planton_apis_search_v1_model_io_proto_init() }
@@ -824,6 +1066,54 @@ func file_cloud_planton_apis_search_v1_model_io_proto_init() {
 				return nil
 			}
 		}
+		file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SearchContextHierarchyInput); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SearchContextHierarchy); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*OrgInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cloud_planton_apis_search_v1_model_io_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*EnvInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -831,7 +1121,7 @@ func file_cloud_planton_apis_search_v1_model_io_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cloud_planton_apis_search_v1_model_io_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

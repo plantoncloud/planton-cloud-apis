@@ -121,3 +121,25 @@ message SearchStackJobRunnerByDeploymentModuleInput {
   cloud.planton.apis.commons.rpc.PageInfo page_info = 3;
 }
 
+message SearchContextHierarchyInput {
+  // The text input to be used as the basis for the search query.
+  string search_text = 1;
+}
+
+message SearchContextHierarchy {
+  repeated OrgInfo organizations = 3;
+}
+
+message OrgInfo {
+  string org_id = 1;
+  string org_name = 2;
+  repeated EnvInfo envs = 3;
+}
+
+message EnvInfo {
+  string env_id = 1;
+  string env_name = 2;
+}
+
+
+
