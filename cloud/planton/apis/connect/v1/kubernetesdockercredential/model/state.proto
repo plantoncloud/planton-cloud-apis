@@ -93,8 +93,8 @@ message KubernetesDockerCredentialGcpArtifactRegistryCredentialSpec {
   //gcp region in which the docker-repo is created.
   //this is required for constructing the registry hostname.
   string gcp_region = 2;
-  //name of the docker-repository on gcp artifact-registry.
-  string docker_repo_name = 3;
+  //hostname of the docker-repository on gcp artifact-registry.
+  string docker_repo_hostname = 3;
   //base64 encoded google service account key that has required permissions for downloading docker images from the repo.
   string gcp_service_account_key_base64 = 4;
 }
