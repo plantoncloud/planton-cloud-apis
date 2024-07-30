@@ -14,7 +14,7 @@ import "buf/validate/validate.proto";
 // It contains identifying and contextual information about the resource,
 // such as its id, name, type, and the associated organization and
 // environment identifiers.
-message ApiResourceSearchResultRecord {
+message ApiResourceSearchRecord {
   // Unique identifier for the resource.
   // example for resource in planton-cloud could be postgres_cluster/ kafka_cluster/ microservice_instance etc.;
   string id = 1;
@@ -52,7 +52,7 @@ message ApiResourceSearchResultRecordList {
   // The total number of pages in the paginated list of Resource objects.
   int32 total_pages = 1;
   // An array of Resource objects contained in the current page of the paginated list.
-  repeated ApiResourceSearchResultRecord entries = 2;
+  repeated ApiResourceSearchRecord entries = 2;
 }
 
 // SearchByTextInput is a message type that represents the input parameters
