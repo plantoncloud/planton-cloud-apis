@@ -135,7 +135,7 @@ message GkeClusterSpec {
   GkeClusterAddonsSpec kubernetes_addons = 8;
 
   // ingress dns-domains to be configured in gke cluster.
-  repeated IngressDnsDomain ingress_dns_domains = 9;
+  repeated GkeClusterIngressDnsDomainSpec ingress_dns_domains = 9;
 
   // istio-http-endpoints to be configured in the gke cluster.
   repeated GkeClusterIstioHttpEndpointSpec istio_http_endpoints = 10;
@@ -181,7 +181,7 @@ message GkeClusterStatus {
 }
 
 //ingress dns domain
-message IngressDnsDomain {
+message GkeClusterIngressDnsDomainSpec {
   // unique identifier of ingress-dns-domain
   string id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
@@ -199,22 +199,10 @@ message IngressDnsDomain {
   //creating endpoints for microservice-instances, postgres-clusters, kafka-clusters, redis-clusters or solr-clouds
   bool is_tls_enabled = 3;
 
-  //external dns domain ex: dev.example.com.
-  //this value is computed by combining the environment-name with the endpoint-domain-name.
-  string external_endpoint_domain_name = 4 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
-  //internal dns domain ex: dev-internal.example.com.
-  //this value is computed by combining the environment-name with the endpoint-domain-name.
-  string internal_endpoint_domain_name = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
-  ];
-
   //id of the project on google cloud containing the dns zone for the endpoint-domain.
   //this value is looked up from the dns-domains in the organization dns data.
   //this value is required for configuring the cert-issuer to perform dns validations.
-  string dns_zone_gcp_project_id = 6 [
+  string dns_zone_gcp_project_id = 4 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }
@@ -260,7 +248,7 @@ message GkeClusterStackOutputs {
   // a folder is created with the credential folder as parent for the gke-cluster.
   // resources created for gke-cluster are linked to this folder as the parent.
   // children for a credential are the gcp projects in the gke-cluster.
-  GcpFolder folder = 1;
+  string folder_id = 1;
 
   // projects created on google cloud for this gke-cluster
   // this value is updated upon successful gke-cluster creation stack-job.
@@ -371,21 +359,6 @@ message GkeClusterNodePool  {
 }
 
 // gcp project
-// https://cloud.google.com/resource-manager/reference/rest/v2/folders
-message GcpFolder {
-  // id of the gcp project.
-  // ex: 498520640386.
-  string id = 1;
-  // display name for the folder.
-  // (important) a two character suffix starting with a hyphen is added at the end of the
-  // display name to allow recreating folders with same resource identifier on planton-cloud.
-  string display_name = 2;
-  // parent of the folder.
-  // parent can be either a gcp organization or another gcp folder.
-  string parent = 3;
-}
-
-// gcp project
 message GcpProject {
   // name of the gcp project
   string name = 1;
@@ -399,8 +372,9 @@ message GcpProject {
 
 //gke-cluster-istio-http-endpoint spec
 message GkeClusterIstioHttpEndpointSpec {
+  string id = 1;
   //ingress endpoint domain name
-  string endpoint_domain_name = 1[
+  string endpoint_domain_name = 2[
     (buf.validate.field).required = true
   ];
 
@@ -409,22 +383,22 @@ message GkeClusterIstioHttpEndpointSpec {
   //(important note) certificates are not created for endpoints that do not need tls.
   //(important note) endpoint domains with out tls enabled are not eligible to be used for
   //creating endpoints for postgres-clusters or kafka-clusters.
-  bool is_tls_enabled = 2;
+  bool is_tls_enabled = 3;
 
   //flag to control virtual service configuration compatible for grpc-web clients.
   //grpc-web clients would rely on extra headers added by envoy proxy.
-  bool is_grpc_web_compatible = 3;
+  bool is_grpc_web_compatible = 4;
 
   //routes to configure backends for url paths of the domain.
   //routes allow configuring requests to be routed to different microservices based on the url path.
   //ex: if the endpoint domain name is console.example.com, then console.example.com/public/api/* can be
   //to be sent to public-api microservice and console.example.com/private/api/* can be configured to route to
   //route to private-api microservice.
-  repeated GkeClusterIstioHttpEndpointRoute routes = 4;
+  repeated GkeClusterIstioHttpEndpointRouteSpec routes = 5;
 }
 
 //gke-cluster-istio-http-endpoint route
-message GkeClusterIstioHttpEndpointRoute {
+message GkeClusterIstioHttpEndpointRouteSpec {
   string id = 1 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];

@@ -123,7 +123,7 @@ message AddOrUpdateGkeClusterIngressDnsDomainInput {
   ];
 
   // Details about the ingress-dns-domain that is to be added or updated.
-  IngressDnsDomain ingress_dns_domain = 2 [
+  GkeClusterIngressDnsDomainSpec ingress_dns_domain = 2 [
     (buf.validate.field).required = true
   ];
 
