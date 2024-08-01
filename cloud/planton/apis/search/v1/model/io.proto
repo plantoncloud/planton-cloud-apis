@@ -48,7 +48,7 @@ message ApiResourceSearchRecord {
 
 // ResourceList is a message type that represents a paginated list of Resource objects.
 // It contains information about the total number of pages in the list and an array of Resource entries.
-message ApiResourceSearchResultRecordList {
+message ApiResourceSearchRecordList {
   // The total number of pages in the paginated list of Resource objects.
   int32 total_pages = 1;
   // An array of Resource objects contained in the current page of the paginated list.

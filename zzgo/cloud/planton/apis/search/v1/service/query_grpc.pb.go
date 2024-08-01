@@ -36,19 +36,19 @@ type SearchQueryControllerClient interface {
 	// This method is responsible for performing a text-based search query
 	// related to the specified organization and environment, and it returns a response
 	// containing the search results.
-	SearchByText(ctx context.Context, in *model.SearchByTextInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	SearchByText(ctx context.Context, in *model.SearchByTextInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
 	// and be associated with the specified organization and environment.
-	SearchByApiResourceKind(ctx context.Context, in *model.SearchApiResourcesByKindInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	SearchByApiResourceKind(ctx context.Context, in *model.SearchApiResourcesByKindInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of identities that match
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
-	SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of stack job runners that match
 	// the input search parameters. Each stack job runner in the list should be associated with the specified organization
 	// and support the specified deployment module.
-	SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error)
+	SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error)
 	// Each environment within an organization is represented by a `EnvInfo` message, containing a unique identifier (`env_id`)
 	// and the environment's name (`env_name`).
 	SearchContextHierarchy(ctx context.Context, in *model.SearchContextHierarchyInput, opts ...grpc.CallOption) (*model.SearchContextHierarchy, error)
@@ -62,8 +62,8 @@ func NewSearchQueryControllerClient(cc grpc.ClientConnInterface) SearchQueryCont
 	return &searchQueryControllerClient{cc}
 }
 
-func (c *searchQueryControllerClient) SearchByText(ctx context.Context, in *model.SearchByTextInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error) {
-	out := new(model.ApiResourceSearchResultRecordList)
+func (c *searchQueryControllerClient) SearchByText(ctx context.Context, in *model.SearchByTextInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error) {
+	out := new(model.ApiResourceSearchRecordList)
 	err := c.cc.Invoke(ctx, SearchQueryController_SearchByText_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -71,8 +71,8 @@ func (c *searchQueryControllerClient) SearchByText(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *searchQueryControllerClient) SearchByApiResourceKind(ctx context.Context, in *model.SearchApiResourcesByKindInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error) {
-	out := new(model.ApiResourceSearchResultRecordList)
+func (c *searchQueryControllerClient) SearchByApiResourceKind(ctx context.Context, in *model.SearchApiResourcesByKindInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error) {
+	out := new(model.ApiResourceSearchRecordList)
 	err := c.cc.Invoke(ctx, SearchQueryController_SearchByApiResourceKind_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (c *searchQueryControllerClient) SearchByApiResourceKind(ctx context.Contex
 	return out, nil
 }
 
-func (c *searchQueryControllerClient) SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error) {
-	out := new(model.ApiResourceSearchResultRecordList)
+func (c *searchQueryControllerClient) SearchIdentityAccountByEmail(ctx context.Context, in *model.SearchIdentityAccountByEmailInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error) {
+	out := new(model.ApiResourceSearchRecordList)
 	err := c.cc.Invoke(ctx, SearchQueryController_SearchIdentityAccountByEmail_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -89,8 +89,8 @@ func (c *searchQueryControllerClient) SearchIdentityAccountByEmail(ctx context.C
 	return out, nil
 }
 
-func (c *searchQueryControllerClient) SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchResultRecordList, error) {
-	out := new(model.ApiResourceSearchResultRecordList)
+func (c *searchQueryControllerClient) SearchStackJobRunnerByDeploymentModule(ctx context.Context, in *model.SearchStackJobRunnerByDeploymentModuleInput, opts ...grpc.CallOption) (*model.ApiResourceSearchRecordList, error) {
+	out := new(model.ApiResourceSearchRecordList)
 	err := c.cc.Invoke(ctx, SearchQueryController_SearchStackJobRunnerByDeploymentModule_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -116,19 +116,19 @@ type SearchQueryControllerServer interface {
 	// This method is responsible for performing a text-based search query
 	// related to the specified organization and environment, and it returns a response
 	// containing the search results.
-	SearchByText(context.Context, *model.SearchByTextInput) (*model.ApiResourceSearchResultRecordList, error)
+	SearchByText(context.Context, *model.SearchByTextInput) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of resources that match
 	// the input search parameters. Each resource in the list should match the specified resource type,
 	// and be associated with the specified organization and environment.
-	SearchByApiResourceKind(context.Context, *model.SearchApiResourcesByKindInput) (*model.ApiResourceSearchResultRecordList, error)
+	SearchByApiResourceKind(context.Context, *model.SearchApiResourcesByKindInput) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of identities that match
 	// the input search parameters. Each identity in the list should be associated with the specified organization
 	// and match the specified email or part thereof.
-	SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error)
+	SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchRecordList, error)
 	// This method returns a `ResourceList` message, which encapsulates a list of stack job runners that match
 	// the input search parameters. Each stack job runner in the list should be associated with the specified organization
 	// and support the specified deployment module.
-	SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error)
+	SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchRecordList, error)
 	// Each environment within an organization is represented by a `EnvInfo` message, containing a unique identifier (`env_id`)
 	// and the environment's name (`env_name`).
 	SearchContextHierarchy(context.Context, *model.SearchContextHierarchyInput) (*model.SearchContextHierarchy, error)
@@ -138,16 +138,16 @@ type SearchQueryControllerServer interface {
 type UnimplementedSearchQueryControllerServer struct {
 }
 
-func (UnimplementedSearchQueryControllerServer) SearchByText(context.Context, *model.SearchByTextInput) (*model.ApiResourceSearchResultRecordList, error) {
+func (UnimplementedSearchQueryControllerServer) SearchByText(context.Context, *model.SearchByTextInput) (*model.ApiResourceSearchRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchByText not implemented")
 }
-func (UnimplementedSearchQueryControllerServer) SearchByApiResourceKind(context.Context, *model.SearchApiResourcesByKindInput) (*model.ApiResourceSearchResultRecordList, error) {
+func (UnimplementedSearchQueryControllerServer) SearchByApiResourceKind(context.Context, *model.SearchApiResourcesByKindInput) (*model.ApiResourceSearchRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchByApiResourceKind not implemented")
 }
-func (UnimplementedSearchQueryControllerServer) SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchResultRecordList, error) {
+func (UnimplementedSearchQueryControllerServer) SearchIdentityAccountByEmail(context.Context, *model.SearchIdentityAccountByEmailInput) (*model.ApiResourceSearchRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchIdentityAccountByEmail not implemented")
 }
-func (UnimplementedSearchQueryControllerServer) SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchResultRecordList, error) {
+func (UnimplementedSearchQueryControllerServer) SearchStackJobRunnerByDeploymentModule(context.Context, *model.SearchStackJobRunnerByDeploymentModuleInput) (*model.ApiResourceSearchRecordList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchStackJobRunnerByDeploymentModule not implemented")
 }
 func (UnimplementedSearchQueryControllerServer) SearchContextHierarchy(context.Context, *model.SearchContextHierarchyInput) (*model.SearchContextHierarchy, error) {
