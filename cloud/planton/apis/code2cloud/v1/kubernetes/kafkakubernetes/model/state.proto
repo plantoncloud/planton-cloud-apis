@@ -289,8 +289,4 @@ message KafkaKubernetesStackOutputs {
   //external url to access kowl dashboard.
   //this is set to empty when kowl dashboard is not enabled.
   string external_kowl_dashboard_url = 7;
-
-  //internal url to access kowl dashboard.
-  //this is set to empty when kowl dashboard is not enabled.
-  string internal_kowl_dashboard_url = 8;
 }
