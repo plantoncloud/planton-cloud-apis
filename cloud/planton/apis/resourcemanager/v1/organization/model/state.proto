@@ -28,9 +28,9 @@ message Organization {
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
       id: "metadata.id",
-      message: "Only lowercase letters and numbers are allowed",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
       // https://regex101.com/r/NKTohE/1
-      expression: "this.id.matches('^[a-z0-9]+$')"
+      expression: "this.id.matches('^[a-z0-9-]+$')"
     },
     (buf.validate.field).cel = {
       id: "metadata.id",
@@ -40,13 +40,13 @@ message Organization {
     },
     (buf.validate.field).cel = {
       id: "metadata.id",
-      message: "Must be between 2 and 9 characters long",
-      expression: "size(this.id) >= 2 && size(this.id) <= 9"
+      message: "Must be between 2 and 15 characters long",
+      expression: "size(this.id) >= 2 && size(this.id) <= 15"
     },
     (buf.validate.field).cel = {
       id: "metadata.name",
-      message: "Must be between 2 and 20 characters long",
-      expression: "size(this.name) > 1 && size(this.name) <= 20"
+      message: "Must be between 2 and 30 characters long",
+      expression: "size(this.name) > 1 && size(this.name) <= 30"
     }
   ];
 
