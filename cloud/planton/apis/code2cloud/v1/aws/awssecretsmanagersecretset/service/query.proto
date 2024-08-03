@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/awssecretsmanagersecretset/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/aws/awssecretsmanagersecretset/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/io.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/rpc/pagination.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+
+//aws-secrets-manager-secret-set query controller
+service AwsSecretsManagerSecretSetQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = aws_secrets_manager_secret_set;
+  //look up a aws-secrets-manager-secret-set using aws-secrets-manager-secret-set id
+  rpc get(cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.model.AwsSecretsManagerSecretSetId)
+      returns(cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.model.AwsSecretsManagerSecretSet) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = aws_secrets_manager_secret_set;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup aws-secrets-manager-secret-set";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+}

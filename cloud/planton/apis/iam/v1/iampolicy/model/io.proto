@@ -22,7 +22,7 @@ message IamPrincipal {
   string email = 3;
   // Indicates the category of the principal. The type field can
   // help in distinguishing between different entities that could be
-  // associated with policies, such as 'user', 'company', 'group', etc.
+  // associated with policies, such as 'user', 'organization', 'group', etc.
   string type = 4;
   // The URL to a picture associated with the principal. This URL points
   // to an image resource that can be used to visually represent the
@@ -59,7 +59,7 @@ message IamPolicy {
 // input message to get IAM policies of a resource.
 message GetIamPolicyByApiResourceKindAndResourceIdInput {
   // type of the resource for which we want to get iam policies
-  // example values could be company/ cloud_account etc.;
+  // example values could be organization/ connection etc.;
   string resource_kind = 1;
   // id of the resource to get iam policy
   string resource_id = 2;
@@ -86,7 +86,7 @@ message AddIamPolicyInput {
   repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
 
   // The type of resource that the IAM policy is to be associated with.
-  // Valid values include 'company', 'cloud_account', and other resource types.
+  // Valid values include 'organization', 'connection', and other resource types.
   string resource_kind = 3;
 
   // The unique identifier for the resource which the IAM policy will be added to.
@@ -102,7 +102,7 @@ message RemoveIamPolicyInput {
   // Multiple roles can be specified for removal, adjusting the principal's access and permissions.
   repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
   // The type of resource from which IAM policies are to be removed.
-  // Valid values include 'company', 'cloud_account', and other resource types.
+  // Valid values include 'organization', 'connection', and other resource types.
   string resource_kind = 4;
   // The unique identifier for the resource from which IAM policies will be removed.
   // This ID should correspond to the actual resource entity in the system.
@@ -140,7 +140,7 @@ message UpdateIamPolicyInput {
   repeated cloud.planton.apis.iam.v1.iamrole.model.IamRole roles = 2 [(buf.validate.field).skipped = true];
 
   // The type of resource that the IAM policy is to be associated with.
-  // Valid values include 'company', 'cloud_account', and other resource types.
+  // Valid values include 'organization', 'connection', and other resource types.
   string resource_kind = 3;
 
   // The unique identifier for the resource which the IAM policy will be added to.

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.podexec.service;
+
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+import "cloud/planton/apis/k8sd2ops/v1/podexec/model/io.proto";
+import "google/protobuf/empty.proto";
+
+// api-resource pod-exec command controller
+// todo: add authorization config
+service ApiResourceKubernetesPodExecCommandController {
+  //mimic kubectl exec for a container on kube-cluster
+  rpc execIntoPodContainer(stream cloud.planton.apis.k8sd2ops.v1.podexec.model.ExecIntoPodContainerInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.ExecIntoPodContainerResponse);
+
+  /**
+* Mimic kubectl exec for a container on a kube-cluster from browsers.
+* This is a workaround to handle the limitation of browsers not supporting bi-directional gRPC streams.
+*/
+  rpc browserExecIntoPodContainer(cloud.planton.apis.k8sd2ops.v1.podexec.model.ExecIntoPodContainerInput)
+      returns (stream cloud.planton.apis.k8sd2ops.v1.podexec.model.BrowserExecIntoPodContainerResponse);
+
+  /**
+   * Send the next command to execute for kube-ctl exec.
+   * This RPC is used to send input from the client (browser) which originally would have been sent in a bi-directional stream.
+   * NOTE: Authorization will be handled based on the api-resource kind and id since the request input is same for
+    all other api-resources and kube-cluster resources.
+   */
+  rpc browserExecuteNextCommandInPodContainer(cloud.planton.apis.k8sd2ops.v1.podexec.model.BrowserExecuteNextCommandInPodContainerInput)
+      returns (google.protobuf.Empty);
+}

@@ -6,10 +6,16 @@ import "cloud/planton/apis/commons/apiresource/model/io.proto";
 import "cloud/planton/apis/iac/v1/stack/model/io.proto";
 import "cloud/planton/apis/iac/v1/stack/model/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/io.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 
 service StackQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = stack;
   //look up stack by stack-id
-  rpc getById(cloud.planton.apis.iac.v1.stack.model.StackId) returns(cloud.planton.apis.iac.v1.stack.model.Stack);
+  rpc get(cloud.planton.apis.iac.v1.stack.model.StackId) returns(cloud.planton.apis.iac.v1.stack.model.Stack) {
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+
   //lookup a stack by resource-id
   rpc getByResourceId(cloud.planton.apis.commons.apiresource.model.ApiResourceId) returns(cloud.planton.apis.iac.v1.stack.model.Stack);
   //retrieve all pulumi resources in a pulumi stack for a given stack-id.

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/argocdkubernetes/model/stack.proto";
+
+service ArgocdKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.model.ArgocdKubernetesStackResponse);
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/plantoncloudkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubernetes/plantoncloudkubernetes/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+
+//planton-cloud-kubernetes query controller
+service PlantonCloudKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = planton_cloud_kubernetes;
+  //look up planton-cloud-kubernetes using planton-cloud-kubernetes id
+  rpc get(cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.model.PlantonCloudKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.model.PlantonCloudKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = planton_cloud_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup planton-cloud-kubernetes";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+}

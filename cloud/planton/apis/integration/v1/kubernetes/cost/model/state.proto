@@ -7,15 +7,14 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
 import "cloud/planton/apis/commons/rpc/pagination.proto";
 
-//cost allocation
+// Cost allocation
 message CostAllocation {
-  // resource audit info
+  // Resource audit info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAuditInfo audit = 99;
 
-  string company_id = 1;
-  string product_id = 2;
+  string org_id = 1;
   string kube_cluster_id = 3;
-  string environment_id = 4;
+  string env_id = 4;
   string resource_kind = 5;
   string resource_id = 6;
   string name = 7;

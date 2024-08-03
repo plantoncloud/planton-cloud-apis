@@ -100,7 +100,7 @@ message ApiResourceCount {
 }
 
 // ResourcesCount aggregates multiple ResourceCount entries, providing a comprehensive overview
-// of resource counts across different types and names within a specific context, such as a company.
+// of resource counts across different types and names within a specific context, such as a organization.
 // Each entry in the 'entries' field details the type, name, and count of a distinct resource.
 message ApiResourcesCount {
   // entries is a collection of ResourceCount messages, each of which details the type, name,
@@ -109,23 +109,23 @@ message ApiResourcesCount {
   repeated ApiResourceCount entries = 1;
 }
 
-// GetResourceCountByCompanyIdInput is used for requests aimed at obtaining the number of resources
-// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company.
-// The focus on company identification via the company_id field enables targeted queries for resource
-// counts within the specified company's context, supporting operations like auditing, resource management,
+// GetResourceCountByOrgIdInput is used for requests aimed at obtaining the number of resources
+// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given organization.
+// The focus on organization identification via the org_id field enables targeted queries for resource
+// counts within the specified organization's context, supporting operations like auditing, resource management,
 // and planning.
-message GetResourceCountByCompanyIdInput {
-  // company_id uniquely identifies a company within the system. The field is formatted as a string.
-  string company_id = 1;
+message GetResourceCountByOrgIdInput {
+  // org_id uniquely identifies a organization within the system. The field is formatted as a string.
+  string org_id = 1;
 }
 
 // GetResourceCountByContextInput is used for requests aimed at obtaining the number of resources
-// (such as postgres clusters, redis clusters, kubernetes clusters licenses, etc.) associated with a given company/ product.
+// (such as postgres databases, redis databases, kubernetes clusters, etc.) associated with a given organization/environment.
 message GetResourceCountByContextInput {
-  // company_id uniquely identifies a company within the system.
-  string company_id = 1;
+  // org_id uniquely identifies a organization within the system.
+  string org_id = 1;
 
-  // product_id uniquely identifies a product associated with a company within the system.
-  string product_id = 2;
+  // env_id uniquely identifies a environment associated with a organization within the system.
+  string env_id = 2;
 }
 

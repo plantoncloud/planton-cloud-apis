@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2build.v1.localdevelopment.model;
+
+//local-development project
+message LocalDevelopmentProject {
+  //environment variables for the project
+  map<string, string> env_vars = 1;
+}

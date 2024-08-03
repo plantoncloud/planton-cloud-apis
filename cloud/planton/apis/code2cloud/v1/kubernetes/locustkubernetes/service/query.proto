@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.locustkubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/locustkubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubernetes/locustkubernetes/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+
+//locust-kubernetes query controller
+service LocustKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = locust_kubernetes;
+  //look up locust-kubernetes using locust-kubernetes id
+  rpc get(cloud.planton.apis.code2cloud.v1.kubernetes.locustkubernetes.model.LocustKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.kubernetes.locustkubernetes.model.LocustKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = locust_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup locust-kubernetes";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+}

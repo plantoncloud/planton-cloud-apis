@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.podlogs.model;
+
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+
+// input for rpc to stream logs of a pod on kube-cluster based on specified filters
+message StreamApiResourceKubernetesPodLogsInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //options to configure pod log stream
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.PodLogStreamOptions options = 2;
+}

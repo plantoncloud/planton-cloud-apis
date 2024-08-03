@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.podlogs.service;
+
+import "cloud/planton/apis/connect/v1/kubernetesclustercredential/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+import "cloud/planton/apis/k8sd2ops/v1/podlogs/model/io.proto";
+
+// api-resource kubernetes-pod logs query controller
+// todo: add authorization for rpcs
+service ApiResourceKubernetesPodLogsQueryController {
+  //stream logs of all kubernetes pods running in a kubernetes-cluster on the specified filters
+  rpc streamPodLogs(cloud.planton.apis.k8sd2ops.v1.podlogs.model.StreamApiResourceKubernetesPodLogsInput)
+      returns (stream cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.PodLogLine);
+}

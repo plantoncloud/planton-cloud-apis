@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service;
+
+import "cloud/planton/apis/code2cloud/v1/gcp/gkecluster/model/stack.proto";
+
+//gke-cluster stack controller
+service GkeClusterStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeClusterStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.gcp.gkecluster.model.GkeClusterStackResponse);
+}

@@ -1,0 +1,140 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.openfgakubernetes.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
+import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
+
+//openfga-kubernetes
+message OpenfgaKubernetes {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = openfga_kubernetes;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
+
+  //api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'code2cloud.planton.cloud/v1'
+  ];
+
+  //resource-kind
+  string kind = 2;
+
+  //metadata
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3[
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Only lowercase letters, numbers, and hyphens are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.name.matches('^[a-z0-9-]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.name.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must not end with a hyphen",
+      // https://regex101.com/r/reQjcB/1
+      expression: "this.name.matches('[^-]$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Name must be between 1 and 30 characters long",
+      expression: "size(this.name) > 0 && size(this.name) <= 30"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.version.message",
+      message: "Version message is mandatory and cannot be empty",
+      expression: "has(this.version.message)"
+    }
+  ];
+
+  //spec
+  OpenfgaKubernetesSpec spec = 4;
+
+  //status
+  OpenfgaKubernetesStatus status = 5;
+}
+
+//openfga-kubernetes spec
+message OpenfgaKubernetesSpec {
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
+
+  //stack-job settings
+  cloud.planton.apis.iac.v1.stackjob.model.StackJobSettings stack_job_settings = 98;
+
+  //kubernetes-cluster-credential-id to be used for setting up kubernetes-provider in stack-job
+  string kubernetes_cluster_credential_id = 97;
+
+  //openfga-container spec
+  OpenfgaKubernetesSpecContainerSpec container = 1 [
+    (buf.validate.field).required = true
+  ];
+
+  //openfga-kubernetes ingress-spec
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 2;
+}
+
+//openfga-kubernetes status.
+message OpenfgaKubernetesStatus {
+  //lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  //audit-info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
+
+  //stack-job id
+  string stack_job_id = 97;
+
+  //stack-outputs
+  OpenfgaKubernetesStackOutputs stack_outputs = 1;
+}
+
+// openfga-kubernetes kubernetes openfga-container spec
+message OpenfgaKubernetesSpecContainerSpec {
+  //openfga container cpu and memory resources.
+  //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 1 [
+    (buf.validate.field).required = true
+  ];
+}
+
+//openfga-kubernetes kubernetes status
+message OpenfgaKubernetesStackOutputs {
+  //kubernetes namespace in which openfga-kubernetes is created.
+  string namespace = 1;
+
+  //kubernetes service name for openfga-kubernetes.
+  //ex: main-openfga-kubernetes
+  //in the above example, "main" is the name of the openfga-kubernetes
+  string service = 2;
+
+  //command to setup port-forwarding to open openfga-kubernetes from developers laptop.
+  //this might come handy when openfga-kubernetes ingress is disabled for security reasons.
+  //this is rendered by combining openfga_kubernetes_kubernetes_service and kubernetes_namespace
+  //ex: kubectl port-forward svc/openfga_kubernetes_kubernetes_service -n kubernetes_namespace 6379:6379
+  //running the command from this attribute makes it possible to access openfga-kubernetes using http://localhost:8080/openfga
+  string port_forward_command = 3;
+
+  //kubernetes endpoint to connect to openfga-kubernetes from the web browser.
+  //ex: main-openfga-kubernetes.namespace.svc.cluster.local:6379
+  string kube_endpoint = 4;
+
+  //public endpoint to open openfga-kubernetes from clients outside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data.dev.planton.live
+  string external_hostname = 5;
+
+  //private endpoint to open openfga-kubernetes from clients inside kubernetes.
+  //ex: https://rdc-planton-pcs-dev-main.data-internal.dev.planton.live
+  string internal_hostname = 6;
+}

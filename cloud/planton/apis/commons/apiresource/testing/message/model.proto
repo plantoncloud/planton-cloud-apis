@@ -2,22 +2,21 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.apiresource.testing.message;
 
-import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
-import "cloud/planton/apis/commons/apiresource/model/state.proto";
-import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
 import "buf/validate/validate.proto";
-import "cloud/planton/apis/code2cloud/v1/environment/model/state.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/enums/kubernetesworkloadingresstype/kubernetes_workload_ingress_type.proto";
-import "cloud/planton/apis/code2cloud/v1/kubecluster/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/testing/enums/model.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
+import "cloud/planton/apis/commons/kubernetes/model/state.proto";
 
 message MessageLevelProtoValidateConditionalTest {
   option (buf.validate.message).cel = {
     id: "gcp_spec.project_id",
     expression: "this.cloud_provider == 1 && size(this.gcp_spec.project_id) == 0"
-    "? 'gcp project id should be mentioned'"
-    ": ''"
+        "? 'gcp project id should be mentioned'"
+        ": ''"
   };
   option (buf.validate.message).cel = {
     id: "aws_spec.account_id",
@@ -61,24 +60,16 @@ message AwsSpecTest {
 //test message of api resource specific to be deployed to kubernetes
 message ApiResourceKubernetesTest {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = unspecified;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.is_runnable) = true;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.environment_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
-  //id format "pgc-<environment-id>-<api-resource-kubernetes-name>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
+  //api-version
+  string api_version = 1;
 
-  //resource api-version
-  string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
-  ];
+  //resource-kind
+  string kind = 2;
 
-  //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "ApiResourceKubernetes"
-  ];
-
-  //resource metadata
+  //metadata
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -120,8 +111,8 @@ message ApiResourceKubernetesTest {
 
 //api-resource-kubernetes spec
 message ApiResourceKubernetesTestSpec {
-  //resource parent
-  cloud.planton.apis.code2cloud.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   // api-resource-container spec
   ApiResourceKubernetesSpecContainerSpec container = 2 [
@@ -129,21 +120,22 @@ message ApiResourceKubernetesTestSpec {
   ];
 
   //api-resource-kubernetes ingress
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.IngressSpec ingress = 3;
+  cloud.planton.apis.commons.kubernetes.model.IngressSpec ingress = 3;
 }
 
 //api-resource-kubernetes status
 message ApiResourceKubernetesTestStatus {
-  // resource lifecycle
-  cloud.planton.apis.commons.apiresource.model.RunnableApiResourceLifecycle lifecycle = 99;
+  //lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
-  // id of the stack-job
+  //stack-job id
   string stack_job_id = 97;
 
-  //name of the kubernetes namespace in which the api-resource-kubernetes has been created.
+  //stack-outputs
+  // name of the kubernetes namespace in which the api-resource-kubernetes has been created.
   string namespace = 1;
 
   //name of the kubernetes service created for api-resource-kubernetes.
@@ -177,7 +169,7 @@ message ApiResourceKubernetesSpecContainerSpec {
 
   //api-resource container cpu and memory resources.
   //recommended default "cpu-requests: 50m, memory-requests: 256Mi, cpu-limits: 1, memory-limits: 1Gi"
-  cloud.planton.apis.code2cloud.v1.kubecluster.model.ContainerResources resources = 2 [
+  cloud.planton.apis.commons.kubernetes.model.ContainerResources resources = 2 [
     (buf.validate.field).required = true
   ];
 
@@ -194,6 +186,21 @@ message ApiResourceKubernetesSpecContainerSpec {
   ];
 }
 
+//this input should return empty string since there is no spec attribute
+message EnvironmentApiResourceNameTestWithOutEnvironmentInfo {
+  string api_version = 1;
+  string kind = 2;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+}
 
+//this input should return proper id when both metadata and environment info has env-id
+message EnvironmentApiResourceNameTestWithEnvironmentInfo {
+  string api_version = 1;
+  string kind = 2;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+    EnvironmentApiResourceNameTestWithEnvironmentInfoSpec spec = 4;
+}
 
-
+message EnvironmentApiResourceNameTestWithEnvironmentInfoSpec {
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 1;
+}

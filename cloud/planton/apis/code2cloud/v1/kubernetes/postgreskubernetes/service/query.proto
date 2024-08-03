@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.postgreskubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/postgreskubernetes/model/io.proto";
+import "cloud/planton/apis/code2cloud/v1/kubernetes/postgreskubernetes/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
+import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+
+//postgres-kubernetes query controller
+service PostgresKubernetesQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = postgres_kubernetes;
+  //look up a postgres-kubernetes using postgres-kubernetes id
+  rpc get(cloud.planton.apis.code2cloud.v1.kubernetes.postgreskubernetes.model.PostgresKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.kubernetes.postgreskubernetes.model.PostgresKubernetes) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = postgres_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = get;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup postgres-kubernetes";
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
+  }
+  //look up postgres-kubernetes password
+  //password is retrieved from the kubernetes cluster.
+  rpc getPassword(cloud.planton.apis.code2cloud.v1.kubernetes.postgreskubernetes.model.PostgresKubernetesId)
+      returns (cloud.planton.apis.code2cloud.v1.kubernetes.postgreskubernetes.model.PostgresKubernetesPassword) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = postgres_kubernetes;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "value";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to lookup postgres-kubernetes password";
+  }
+}

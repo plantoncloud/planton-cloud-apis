@@ -9,15 +9,13 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 
 // iam-role
 message IamRole {
-  //resource api-version
+  //api-version
   string api_version = 1 [
-    (buf.validate.field).string.const = "iam.planton.cloud/v1"
+    (buf.validate.field).string.const = 'iam.planton.cloud/v1'
   ];
 
-  //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "IamRole"
-  ];
+  //resource-kind
+  string kind = 2;
 
   // metadata for the resource
   // id:
@@ -28,10 +26,10 @@ message IamRole {
   // name of the iam role.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  // resource spec
+  //spec
   IamRoleSpec spec = 4;
 
-  // resource status
+  //status
   IamRoleStatus status = 5;
 }
 
@@ -40,14 +38,14 @@ message IamRoleSpec {
   // code of role that is used in FGA model
   string role_code = 1;
   // identifies the principal type that would be used to create relation with the resource
-  // example values are user/company etc.
+  // example values are user/organization etc.
   string principal_type = 2;
   // type of the resource the role belongs to
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3;
   // description of iam role
   string description = 4;
   // flag to identify if the role can be used to grant public access
-  // by public it is to grant access to all companies in the platform
+  // by public it is to grant access to all organizations in the platform
   bool is_public = 5;
 }
 
@@ -56,6 +54,6 @@ message IamRoleStatus {
   // lifecycle of the resource
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

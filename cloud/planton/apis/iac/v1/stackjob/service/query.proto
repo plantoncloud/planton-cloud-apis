@@ -10,18 +10,23 @@ import "cloud/planton/apis/iac/v1/stackjob/model/progress/pulumiengine/state.pro
 import "cloud/planton/apis/iac/v1/stackjob/model/progress/snapshot/state.proto";
 import "cloud/planton/apis/iac/v1/stackjob/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcmethodoptions/api_resource_rpc_method_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcerpcserviceoptions/api_resource_rpc_service_options.proto";
 import "google/protobuf/wrappers.proto";
 
 service StackJobQueryController {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcserviceoptions.api_resource_kind) = stack_job;
   //list of stack-jobs
   //todo: need to add authorization
   rpc listByFilters(cloud.planton.apis.iac.v1.stackjob.model.ListStackJobsByFiltersQueryInput)
       returns(cloud.planton.apis.iac.v1.stackjob.model.StackJobList);
   //look up stack-job by stack-job-id
   //todo: need to add authorization
-  rpc getById(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
+  rpc get(cloud.planton.apis.iac.v1.stackjob.model.StackJobId)
       returns(cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = read;
   }
   //rpc to get stack-job progress event stream
   //this rpc is required to support pulumi progress or diff view in the cli client which is an interactive client.
@@ -36,24 +41,24 @@ service StackJobQueryController {
       returns (cloud.planton.apis.iac.v1.stackjob.model.progress.pulumiengine.PulumiResources);
   // The getPulumiResourceCountByContext RPC retrieves the total count of Pulumi resources
   // for a given context. This context is defined by the combination of parameters specified in the
-  // GetPulumiResourceCountByContextInput message, such as company and product identifiers. This operation
-  // is crucial for understanding the scale of Pulumi infrastructure managed by a company for a specific product.
+  // GetPulumiResourceCountByContextInput message, such as organization and environment identifiers. This operation
+  // is crucial for understanding the scale of Pulumi infrastructure managed by a organization for a specific environment.
   rpc getPulumiResourceCountByContextSummary(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.TotalPulumiResourceCount);
   // getPulumiResourceCountByContextDetailed retrieves detailed information about Pulumi resources
   // within a given context. This context is specified by the GetPulumiResourceCountByContextInput message,
-  // which includes identifiers for the company, product, and potentially other criteria to narrow down the query.
+  // which includes identifiers for the organization, environment, and potentially other criteria to narrow down the query.
   rpc getPulumiResourceCountByContextDetailed(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountByContextInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.PulumiResourceCountDetailedList);
-  // getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific company/ product.
+  // getStackJobMinutesNTDByContextInput retrieves the total running minutes of stack jobs associated with a specific organization/environment.
   // This call is essential for systems needing to monitor, report, or bill based on the duration of stack jobs executed
-  // within the context of a company/ product. It requires a GetStackJobMinutesByContextInput message containing the company_id/ product_id
+  // within the context of a organization/ environment. It requires a GetStackJobMinutesByContextInput message containing the org_id/env_id
   // for which the stack job minutes are being queried and returns a StackJobMinutesMTB message containing the total minutes.
   rpc getStackJobMinutesCurrentAndPreviousMonthByContext(cloud.planton.apis.iac.v1.stackjob.model.GetStackJobMinutesByContextInput)
       returns (cloud.planton.apis.iac.v1.stackjob.model.StackJobMinutesCurrentAndPreviousMonth);
 
   // getPulumiResourceCountTimeSeriesByContext retrieves a time series of Pulumi resource counts
-  // within a specified context, defined by the combination of company and product identifiers.
+  // within a specified context, defined by the combination of organization and environment identifiers.
   // This RPC is designed to provide clients with detailed insights into how resource usage has
   // evolved over time, enabling trend analysis, forecasting, and resource optimization strategies.
   rpc getPulumiResourceCountTimeSeriesByContext(cloud.planton.apis.iac.v1.stackjob.model.GetPulumiResourceCountTimeSeriesByContextInput)

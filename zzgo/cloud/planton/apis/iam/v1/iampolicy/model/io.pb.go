@@ -42,7 +42,7 @@ type IamPrincipal struct {
 	Email string `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	// Indicates the category of the principal. The type field can
 	// help in distinguishing between different entities that could be
-	// associated with policies, such as 'user', 'company', 'group', etc.
+	// associated with policies, such as 'user', 'organization', 'group', etc.
 	Type string `protobuf:"bytes,4,opt,name=type,proto3" json:"type,omitempty"`
 	// The URL to a picture associated with the principal. This URL points
 	// to an image resource that can be used to visually represent the
@@ -297,7 +297,7 @@ type GetIamPolicyByApiResourceKindAndResourceIdInput struct {
 	unknownFields protoimpl.UnknownFields
 
 	// type of the resource for which we want to get iam policies
-	// example values could be company/ cloud_account etc.;
+	// example values could be organization/ connection etc.;
 	ResourceKind string `protobuf:"bytes,1,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
 	// id of the resource to get iam policy
 	ResourceId string `protobuf:"bytes,2,opt,name=resource_id,json=resourceId,proto3" json:"resource_id,omitempty"`
@@ -429,7 +429,7 @@ type AddIamPolicyInput struct {
 	// Multiple roles can be assigned to the principals, defining their access level and permissions.
 	Roles []*model.IamRole `protobuf:"bytes,2,rep,name=roles,proto3" json:"roles,omitempty"`
 	// The type of resource that the IAM policy is to be associated with.
-	// Valid values include 'company', 'cloud_account', and other resource types.
+	// Valid values include 'organization', 'connection', and other resource types.
 	ResourceKind string `protobuf:"bytes,3,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
 	// The unique identifier for the resource which the IAM policy will be added to.
 	// This ID should correspond to the actual resource entity in the system.
@@ -508,7 +508,7 @@ type RemoveIamPolicyInput struct {
 	// Multiple roles can be specified for removal, adjusting the principal's access and permissions.
 	Roles []*model.IamRole `protobuf:"bytes,2,rep,name=roles,proto3" json:"roles,omitempty"`
 	// The type of resource from which IAM policies are to be removed.
-	// Valid values include 'company', 'cloud_account', and other resource types.
+	// Valid values include 'organization', 'connection', and other resource types.
 	ResourceKind string `protobuf:"bytes,4,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
 	// The unique identifier for the resource from which IAM policies will be removed.
 	// This ID should correspond to the actual resource entity in the system.
@@ -744,7 +744,7 @@ type UpdateIamPolicyInput struct {
 	// Multiple roles can be assigned to the principals, defining their access level and permissions.
 	Roles []*model.IamRole `protobuf:"bytes,2,rep,name=roles,proto3" json:"roles,omitempty"`
 	// The type of resource that the IAM policy is to be associated with.
-	// Valid values include 'company', 'cloud_account', and other resource types.
+	// Valid values include 'organization', 'connection', and other resource types.
 	ResourceKind string `protobuf:"bytes,3,opt,name=resource_kind,json=resourceKind,proto3" json:"resource_kind,omitempty"`
 	// The unique identifier for the resource which the IAM policy will be added to.
 	// This ID should correspond to the actual resource entity in the system.

@@ -7,46 +7,79 @@ import "cloud/planton/apis/search/v1/model/io.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 // SearchQueryController is a service that provides search functionality
-// related to specific companies and products.
+// related to specific organizations and environments.
 // It defines an RPC method, SearchByText, which accepts a text-based search
 // input and returns a response.
 service SearchQueryController {
   // SearchByText is an RPC method that takes a SearchByTextInput message
-  // containing the company identifier, product identifier, and search text.
+  // containing the organization identifier, environment identifier, and search text.
   // This method is responsible for performing a text-based search query
-  // related to the specified company and product, and it returns a response
+  // related to the specified organization and environment, and it returns a response
   // containing the search results.
   rpc searchByText(cloud.planton.apis.search.v1.model.SearchByTextInput)
-      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
+      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchRecordList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
 
   // The `searchByApiResourceKindInput` RPC service method enables clients to execute a search operation
-  // based on a specific resource type within a specified company's product.
+  // based on a specific resource type within a specified organization's environment.
 
   // The input parameters for this operation are packaged into a `SearchByApiResourceKindInput` message,
-  // which includes the unique identifiers for the company and the product, the resource type, and
+  // which includes the unique identifiers for the organization and the environment, the resource type, and
   // pagination information for retrieving specific paginated data.
 
   // This method returns a `ResourceList` message, which encapsulates a list of resources that match
   // the input search parameters. Each resource in the list should match the specified resource type,
-  // and be associated with the specified company and product.
+  // and be associated with the specified organization and environment.
   rpc searchByApiResourceKind(cloud.planton.apis.search.v1.model.SearchApiResourcesByKindInput)
-      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
+      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchRecordList) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
   // The `searchIdentityAccountByEmail` RPC service method enables clients to execute a search operation
-  // based on a specific email within a specified company's context.
+  // based on a specific email within a specified organization's context.
 
   // The input parameters for this operation are packaged into a `SearchIdentityAccountByEmailInput` message,
-  // which includes the unique identifier for the company, the email (or part of it) to be used for the search,
+  // which includes the unique identifier for the organization, the email (or part of it) to be used for the search,
   // and pagination information for retrieving specific paginated data.
 
   // This method returns a `ResourceList` message, which encapsulates a list of identities that match
-  // the input search parameters. Each identity in the list should be associated with the specified company
+  // the input search parameters. Each identity in the list should be associated with the specified organization
   // and match the specified email or part thereof.
   rpc searchIdentityAccountByEmail(cloud.planton.apis.search.v1.model.SearchIdentityAccountByEmailInput)
-      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchResultRecordList) {
+      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchRecordList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
+
+  // The `searchStackJobRunnerByDeploymentModule` RPC service method enables clients to execute a search operation
+  // based on a specific deployment module within a specified organization's context.
+
+  // The input parameters for this operation are packaged into a `SearchStackJobRunnerByDeploymentModuleInput` message,
+  // which includes the unique identifier for the organization, the deployment module to be used for the search,
+  // and pagination information for retrieving specific paginated data.
+
+  // This method returns a `ResourceList` message, which encapsulates a list of stack job runners that match
+  // the input search parameters. Each stack job runner in the list should be associated with the specified organization
+  // and support the specified deployment module.
+  rpc searchStackJobRunnerByDeploymentModule(cloud.planton.apis.search.v1.model.SearchStackJobRunnerByDeploymentModuleInput)
+      returns (cloud.planton.apis.search.v1.model.ApiResourceSearchRecordList) {
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
+  }
+
+  // The `searchContextHierarchy` RPC service method enables clients to execute a search operation
+  // based on a specific text input, returning a structured representation of organizations
+  // and their associated environments.
+
+  // The input parameters for this operation are packaged into a `SearchContextHierarchyInput` message,
+  // which includes the text input to be used as the basis for the search query.
+
+  // This method returns a `SearchContextHierarchy` message, which encapsulates a hierarchical list of organizations
+  // that match the input search parameters. Each organization in the list contains a unique identifier (`org_id`),
+  // the organization's name (`org_name`), and a list of environments (`envs`) associated with that organization.
+
+  // Each environment within an organization is represented by a `EnvInfo` message, containing a unique identifier (`env_id`)
+  // and the environment's name (`env_name`).
+  rpc searchContextHierarchy(cloud.planton.apis.search.v1.model.SearchContextHierarchyInput)
+      returns (cloud.planton.apis.search.v1.model.SearchContextHierarchy) {
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.is_skip_authorization) = true;
   }
 }

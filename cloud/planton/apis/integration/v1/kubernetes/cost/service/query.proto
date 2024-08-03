@@ -9,7 +9,7 @@ import "cloud/planton/apis/integration/v1/kubernetes/cost/model/state.proto";
 service CostAllocationQueryController {
   // Get Cost allocation data by search filters
   // This returns a paginated list of cost allocation data
-  // Filters include start and end date so company identifier product identifier environment identifier and posting environment identifier
+  // Filters include start and end date so organization identifier, environment identifier and posting environment identifier
   rpc listByCostAllocationFilters(cloud.planton.apis.integration.v1.kubernetes.cost.model.ListByCostAllocationFiltersInput)
       returns (cloud.planton.apis.integration.v1.kubernetes.cost.model.CostAllocationList);
   // get cost aggregate by timestamp for a given resource.

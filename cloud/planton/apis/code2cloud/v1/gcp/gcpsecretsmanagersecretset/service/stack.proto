@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.gcp.gcpsecretsmanagersecretset.service;
+
+import "cloud/planton/apis/code2cloud/v1/gcp/gcpsecretsmanagersecretset/model/stack.proto";
+
+//gcp-secrets-manager-secret-set stack controller
+service GcpSecretsManagerSecretSetStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.gcp.gcpsecretsmanagersecretset.model.GcpSecretsManagerSecretSetStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.gcp.gcpsecretsmanagersecretset.model.GcpSecretsManagerSecretSetStackResponse);
+}

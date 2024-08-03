@@ -13,118 +13,106 @@ import "cloud/planton/apis/iac/v1/stackjob/enums/stackjobprogressstatustype/stac
 import "cloud/planton/apis/iac/v1/stackjob/enums/stackjoboperationtype/stack_job_operation_type.proto";
 import "google/protobuf/timestamp.proto";
 
-// stack-job
+//stack-job
 message StackJob {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job;
-
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = stack;
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.stack_id";
 
-  //id format "sj-<ulid>"
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemetadatamessageoptions.is_id_computed) = true;
-
-  // resource api-version
+  //api-version
   string api_version = 1 [
-    (buf.validate.field).string.const = "iac.planton.cloud/v1"
+    (buf.validate.field).string.const = 'iac.planton.cloud/v1'
   ];
 
-  // resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "StackJob"
-  ];
+  //resource-kind
+  string kind = 2;
 
-  // resource metadata
+  //metadata
+  //id format "sj-<ulid>"
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  //resource spec
+  //spec
   StackJobSpec spec = 4;
 
-  //resource status
+  //status
   StackJobStatus status = 5;
 }
 
-// stack-job spec
+//stack-job spec
 message StackJobSpec {
-  // id of the company to which the stack-job belongs to.
+  // id of the organization to which the stack-job belongs to.
   //value is computed from stack
-  string company_id = 1 [
+  string org_id = 1 [
     (buf.validate.field).ignore_empty = false,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
-
-  //id of the product to which the stack-job belongs to.
-  //value is empty for non-product specific resources
-  string product_id = 2 [
-    (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the environment to which the stack-job belongs to.
   //value is empty for non-environment specific resources
-  string environment_id = 3 [
+  string env_id = 2 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // resource type for which the stack-job is created
   //value is computed from stack.
-  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 4 [
+  cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 3 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the resource for which the stack-job is created.
-  string resource_id = 5 [
+  string resource_id = 4 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the resource version for which the stack-job is created.
-  string resource_version_id = 6 [
+  string resource_version_id = 5 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the stack to which the stack-job belongs to.
   // value is computed based on resource-id.
-  string stack_id = 7 [
+  string stack_id = 6 [
     (buf.validate.field).ignore_empty = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 
   // stack-job operation type
-  cloud.planton.apis.iac.v1.stackjob.enums.operationtype.StackJobOperationType operation_type = 8 [
+  cloud.planton.apis.iac.v1.stackjob.enums.stackjoboperationtype.StackJobOperationType operation_type = 7 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // name of the pulumi-stack.
   // this value is computed by stack service.
-  string pulumi_stack_name = 9 [
+  string pulumi_stack_name = 8 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // event type of the resource that triggered the stack job
-  string api_resource_event_type = 10 [
+  string api_resource_event_type = 9 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 
   // id of the identity-account that created the event
   // this is used to configure the audit-actor before persisting the state of stack-job resource.
-  string api_resource_event_created_by = 11 [
+  string api_resource_event_created_by = 10 [
     (buf.validate.field).ignore_empty = false,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
 }
 
-// stack-job status
+//stack-job status
 message StackJobStatus {
-  // resource lifecycle
+  //lifecycle
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 
   // stack-job progress status
@@ -187,4 +175,27 @@ message StackJobStatusPulumiOperationStatus {
   //list of errors reported during the operation execution.
   //this list is only populated when the operation fails or pulumi-engine emits diagnostic events of severity "error".
   repeated string errors = 6;
+}
+
+//stack-job-settings for api-resource
+message StackJobSettings {
+  //flag to toggle stack-jobs
+  bool is_enabled = 1;
+  // id of pulumi-backend-credential to be used to store state for api-resource's pulumi-stack state
+  string pulumi_backend_credential_id = 2;
+  //stack-job id-runner to be used to run stack-jobs
+  string stack_job_runner_id = 3;
+  //key value pairs to configure custom-inputs for the stack-job which are not included in the api-resource spec
+  map<string, string> custom_inputs = 4;
+  //skip refresh for preview, apply and destroy steps.
+  //defaults to false.
+  //refresh is always executed for all stack-jobs unless disabled.
+  bool skip_refresh = 5;
+  //always run preview step for apply or destroy.
+  //defaults to true.
+  bool preview_before_apply_or_destroy = 6;
+  //if the stack-job includes apply or destroy and if preview-before-apply-or-destroy is enabled,
+  // pause after preview is execute but before apply/destroy is executed.
+  //defaults to false.
+  bool pause_between_preview_and_apply_or_destroy = 7;
 }

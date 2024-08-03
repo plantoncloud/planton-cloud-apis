@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package cloud.planton.apis.commons.english.enums.englishword;
 
-// english word enums added to avoid typing mistakes for the commonly used words for naming things
-// this enum is encapsulated inside a message as a few entries like "name" (a reserved word in few languages) can only be added to the enum if it is inside a message.
-// the recommended best practice to prefix the entry with enum name has been intentionally ignored to as the values of the entries are intended to be used to name resources.
+// English word enums added to avoid typing mistakes for the commonly used words for naming things.
+// This enum is encapsulated inside a message as a few entries like "name" (a reserved word in a few languages) can only be added to the enum if it is inside a message.
+// The recommended best practice to prefix the entry with enum name has been intentionally ignored as the values of the entries are intended to be used to name resources.
 message EnglishWord {
   enum EnglishWordEnum {
     word_unspecified = 0;
@@ -13,7 +13,7 @@ message EnglishWord {
     aws = 3;
     azure = 4;
     bill = 5;
-    company = 6;
+    organization = 6;
     config = 7;
     cpu = 8;
     debug = 9;
@@ -50,7 +50,6 @@ message EnglishWord {
     org = 40;
     parent = 41;
     postgres = 42;
-    product = 43;
     project = 44;
     python = 45;
     repo = 46;

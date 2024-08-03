@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service;
+
+import "cloud/planton/apis/code2cloud/v1/kubernetes/plantoncloudkubernetes/model/stack.proto";
+
+service PlantonCloudKubernetesStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.model.PlantonCloudKubernetesStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.model.PlantonCloudKubernetesStackResponse);
+}

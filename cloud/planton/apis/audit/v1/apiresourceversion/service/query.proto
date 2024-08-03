@@ -2,15 +2,13 @@ syntax = "proto3";
 
 package cloud.planton.apis.audit.v1.apiresourceversion.service;
 
-import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
 import "cloud/planton/apis/audit/v1/apiresourceversion/model/io.proto";
+import "cloud/planton/apis/audit/v1/apiresourceversion/model/state.proto";
 import "cloud/planton/apis/iam/v1/iampolicy/options/rpcauthorizationmethodoptions/rpc_authorization_method_options.proto";
 
 //api-resource-version query controller
 service ApiResourceVersionQueryController {
-  //look up a cloud-account by id
-  //todo: add authorization
-  rpc getById(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionId)
+  rpc get(cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersionId)
       returns (cloud.planton.apis.audit.v1.apiresourceversion.model.ApiResourceVersion);
 
   // list of api-resource-versions

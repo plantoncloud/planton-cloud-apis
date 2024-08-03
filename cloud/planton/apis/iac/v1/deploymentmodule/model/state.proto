@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.deploymentmodule.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+//deployment-module
+message DeploymentModule {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = deployment_module;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = platform;
+
+  //api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'iac.planton.cloud/v1'
+  ];
+
+  //resource-kind
+  string kind = 2;
+
+  //metadata
+  //id format - one of the value of api resource "ApiResourceKind"
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true
+  ];
+
+  //spec
+  DeploymentModuleSpec spec = 4;
+
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
+}
+
+message DeploymentModuleSpec {
+  // A brief description of the deployment module.
+  string description = 1;
+
+  // The URL of the banner image for the deployment module.
+  string banner_image_url = 2;
+
+  // The URL of the icon for the deployment module.
+  string icon_url = 3;
+
+  // A list of multimedia assets associated with the deployment module.
+  repeated DeploymentModuleMultiMediaAssetSpec multi_media_assets = 4;
+
+  // An overview of the deployment module.
+  string overview = 5;
+}
+
+message DeploymentModuleMultiMediaAssetSpec {
+  // The URL of the multimedia asset.
+  string url = 1;
+
+  // Indicates if the multimedia asset is a video.
+  string is_video = 2;
+
+  // The position of the multimedia asset in the list.
+  int32 position = 3;
+}

@@ -22,7 +22,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	IamRoleQueryController_List_FullMethodName                                  = "/cloud.planton.apis.iam.v1.iamrole.service.IamRoleQueryController/list"
-	IamRoleQueryController_GetById_FullMethodName                               = "/cloud.planton.apis.iam.v1.iamrole.service.IamRoleQueryController/getById"
+	IamRoleQueryController_Get_FullMethodName                                   = "/cloud.planton.apis.iam.v1.iamrole.service.IamRoleQueryController/get"
 	IamRoleQueryController_FindByApiResourceKindAndPrincipalType_FullMethodName = "/cloud.planton.apis.iam.v1.iamrole.service.IamRoleQueryController/findByApiResourceKindAndPrincipalType"
 	IamRoleQueryController_GetIamPrincipalTypesByApiResourceKind_FullMethodName = "/cloud.planton.apis.iam.v1.iamrole.service.IamRoleQueryController/getIamPrincipalTypesByApiResourceKind"
 )
@@ -34,13 +34,13 @@ type IamRoleQueryControllerClient interface {
 	// retrieve paginated list of all iam roles on planton-cloud.
 	List(ctx context.Context, in *rpc.PageInfo, opts ...grpc.CallOption) (*model.IamRoleList, error)
 	// lookup iam role by role id
-	GetById(ctx context.Context, in *model.IamRoleId, opts ...grpc.CallOption) (*model.IamRole, error)
+	Get(ctx context.Context, in *model.IamRoleId, opts ...grpc.CallOption) (*model.IamRole, error)
 	// lookup iam role by resource type and principal type
 	FindByApiResourceKindAndPrincipalType(ctx context.Context, in *model.ApiResourceKindAndPrincipalTypeInput, opts ...grpc.CallOption) (*model.IamRoles, error)
 	// lookup iam principal type by resource type
 	// returns the list of principal types that can be used to create relations with the resource
-	// for example cloud account is allowed to share at company and user level
-	// by this cloud account have two principal types to create relations with
+	// for example credential is allowed to share at organization and user level
+	// by this credential have two principal types to create relations with
 	GetIamPrincipalTypesByApiResourceKind(ctx context.Context, in *model.IamApiResourceKindInput, opts ...grpc.CallOption) (*model.PrincipalTypes, error)
 }
 
@@ -61,9 +61,9 @@ func (c *iamRoleQueryControllerClient) List(ctx context.Context, in *rpc.PageInf
 	return out, nil
 }
 
-func (c *iamRoleQueryControllerClient) GetById(ctx context.Context, in *model.IamRoleId, opts ...grpc.CallOption) (*model.IamRole, error) {
+func (c *iamRoleQueryControllerClient) Get(ctx context.Context, in *model.IamRoleId, opts ...grpc.CallOption) (*model.IamRole, error) {
 	out := new(model.IamRole)
-	err := c.cc.Invoke(ctx, IamRoleQueryController_GetById_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, IamRoleQueryController_Get_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,13 +95,13 @@ type IamRoleQueryControllerServer interface {
 	// retrieve paginated list of all iam roles on planton-cloud.
 	List(context.Context, *rpc.PageInfo) (*model.IamRoleList, error)
 	// lookup iam role by role id
-	GetById(context.Context, *model.IamRoleId) (*model.IamRole, error)
+	Get(context.Context, *model.IamRoleId) (*model.IamRole, error)
 	// lookup iam role by resource type and principal type
 	FindByApiResourceKindAndPrincipalType(context.Context, *model.ApiResourceKindAndPrincipalTypeInput) (*model.IamRoles, error)
 	// lookup iam principal type by resource type
 	// returns the list of principal types that can be used to create relations with the resource
-	// for example cloud account is allowed to share at company and user level
-	// by this cloud account have two principal types to create relations with
+	// for example credential is allowed to share at organization and user level
+	// by this credential have two principal types to create relations with
 	GetIamPrincipalTypesByApiResourceKind(context.Context, *model.IamApiResourceKindInput) (*model.PrincipalTypes, error)
 }
 
@@ -112,8 +112,8 @@ type UnimplementedIamRoleQueryControllerServer struct {
 func (UnimplementedIamRoleQueryControllerServer) List(context.Context, *rpc.PageInfo) (*model.IamRoleList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method List not implemented")
 }
-func (UnimplementedIamRoleQueryControllerServer) GetById(context.Context, *model.IamRoleId) (*model.IamRole, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
+func (UnimplementedIamRoleQueryControllerServer) Get(context.Context, *model.IamRoleId) (*model.IamRole, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedIamRoleQueryControllerServer) FindByApiResourceKindAndPrincipalType(context.Context, *model.ApiResourceKindAndPrincipalTypeInput) (*model.IamRoles, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method FindByApiResourceKindAndPrincipalType not implemented")
@@ -151,20 +151,20 @@ func _IamRoleQueryController_List_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _IamRoleQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _IamRoleQueryController_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.IamRoleId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(IamRoleQueryControllerServer).GetById(ctx, in)
+		return srv.(IamRoleQueryControllerServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: IamRoleQueryController_GetById_FullMethodName,
+		FullMethod: IamRoleQueryController_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(IamRoleQueryControllerServer).GetById(ctx, req.(*model.IamRoleId))
+		return srv.(IamRoleQueryControllerServer).Get(ctx, req.(*model.IamRoleId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,8 +217,8 @@ var IamRoleQueryController_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _IamRoleQueryController_List_Handler,
 		},
 		{
-			MethodName: "getById",
-			Handler:    _IamRoleQueryController_GetById_Handler,
+			MethodName: "get",
+			Handler:    _IamRoleQueryController_Get_Handler,
 		},
 		{
 			MethodName: "findByApiResourceKindAndPrincipalType",

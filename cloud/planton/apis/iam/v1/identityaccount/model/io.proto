@@ -41,19 +41,19 @@ message MachineAccountClientSecret {
   string value = 1;
 }
 
-// wrapper for machine account company id.
-message MachineAccountCompanyId {
+// wrapper for machine account organization id.
+message MachineAccountOrgId {
   string value = 1;
 }
 
-// wrapper for identity account company id.
-message ListWithIdentityCompanyId {
-  string company_id = 1;
+// wrapper for identity account organization id.
+message ListWithIdentityOrgId {
+  string org_id = 1;
   cloud.planton.apis.commons.rpc.PageInfo page = 2;
 }
 
-message GetByCompanyByNameQueryInput {
-  string company_id = 1 [
+message GetByOrganizationByNameQueryInput {
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1
   ];
   string name = 2 [
@@ -65,20 +65,20 @@ message MembersCount {
   int32 count = 1;
 }
 
-// MembersCountByCompanyIdInput is designed for requests that need to determine the number of members
-// associated exclusively with a given company. This simplified input focuses solely on company identification,
-// making it suitable to aggregate members count at the company level.
-message MembersCountByCompanyIdInput {
-  // company_id uniquely identifies a company within the system. The field accepts a string format.
-  string company_id = 1;
+// MembersCountByOrgIdInput is designed for requests that need to determine the number of members
+// associated exclusively with a given organization. This simplified input focuses solely on organization identification,
+// making it suitable to aggregate members count at the organization level.
+message MembersCountByOrgIdInput {
+  // org_id uniquely identifies a organization within the system. The field accepts a string format.
+  string org_id = 1;
 }
 
 // MembersCountByProductIdInput is designed for requests that need to determine the number of members
-// associated exclusively with a given product. This simplified input focuses solely on product identification,
-// making it suitable to aggregate members count at the product level.
-message MembersCountByProductIdInput {
-  // product_id uniquely identifies a product within the system. The field accepts a string format.
-  string product_id = 1;
+// associated exclusively with a given environment. This simplified input focuses solely on environment identification,
+// making it suitable to aggregate members count at the environment level.
+message MembersCountByEnvIdInput {
+  // env_id uniquely identifies a environment within the system. The field accepts a string format.
+  string env_id = 1;
 }
 
 // input for rpc to create access token for machine identity account

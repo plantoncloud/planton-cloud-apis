@@ -14,8 +14,10 @@ message ApiResourceMetadata {
   string id = 2;
   // labels for the resource
   map<string, string> labels = 3;
+  // tags for the resource
+  repeated string tags = 4;
   //metadata for resource version
-  ApiResourceMetadataVersion version = 4;
+  ApiResourceMetadataVersion version = 5;
 }
 
 // version information for api-resource to be used in api-resource metadata
@@ -73,16 +75,19 @@ message ApiResourceAuditActor {
   string avatar = 2;
 }
 
-// resource lifecycle
+//lifecycle
 message ApiResourceLifecycle {
-  // flag to indicate if the resource is not deleted and is active
-  bool is_active = 1;
-}
-
-// runnable resource lifecycle
-message RunnableApiResourceLifecycle {
   // flag to indicate if the resource is not deleted and is active
   bool is_active = 1;
   // flag to indicate if the resource is paused
   bool is_paused = 2;
+}
+
+// api-resource status containing just the lifecyle and audit messages.
+message ApiResourceLifecycleAndAuditStatus {
+  //lifecycle
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
+
+  //audit info
+  cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }

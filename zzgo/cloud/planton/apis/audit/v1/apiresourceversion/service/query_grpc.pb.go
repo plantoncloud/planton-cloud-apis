@@ -20,7 +20,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	ApiResourceVersionQueryController_GetById_FullMethodName                   = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getById"
+	ApiResourceVersionQueryController_Get_FullMethodName                       = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/get"
 	ApiResourceVersionQueryController_ListByFilters_FullMethodName             = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/listByFilters"
 	ApiResourceVersionQueryController_GetByIdWithContextSize_FullMethodName    = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getByIdWithContextSize"
 	ApiResourceVersionQueryController_GetCount_FullMethodName                  = "/cloud.planton.apis.audit.v1.apiresourceversion.service.ApiResourceVersionQueryController/getCount"
@@ -31,9 +31,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ApiResourceVersionQueryControllerClient interface {
-	// look up a cloud-account by id
-	// todo: add authorization
-	GetById(ctx context.Context, in *model.ApiResourceVersionId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
+	Get(ctx context.Context, in *model.ApiResourceVersionId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error)
 	// list of api-resource-versions
 	ListByFilters(ctx context.Context, in *model.ListApiResourceVersionsInput, opts ...grpc.CallOption) (*model.ApiResourceVersionList, error)
 	// look up api-resource-version by version-id
@@ -51,9 +49,9 @@ func NewApiResourceVersionQueryControllerClient(cc grpc.ClientConnInterface) Api
 	return &apiResourceVersionQueryControllerClient{cc}
 }
 
-func (c *apiResourceVersionQueryControllerClient) GetById(ctx context.Context, in *model.ApiResourceVersionId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
+func (c *apiResourceVersionQueryControllerClient) Get(ctx context.Context, in *model.ApiResourceVersionId, opts ...grpc.CallOption) (*model.ApiResourceVersion, error) {
 	out := new(model.ApiResourceVersion)
-	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_GetById_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, ApiResourceVersionQueryController_Get_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,9 +98,7 @@ func (c *apiResourceVersionQueryControllerClient) GetResourceCountByContext(ctx 
 // All implementations should embed UnimplementedApiResourceVersionQueryControllerServer
 // for forward compatibility
 type ApiResourceVersionQueryControllerServer interface {
-	// look up a cloud-account by id
-	// todo: add authorization
-	GetById(context.Context, *model.ApiResourceVersionId) (*model.ApiResourceVersion, error)
+	Get(context.Context, *model.ApiResourceVersionId) (*model.ApiResourceVersion, error)
 	// list of api-resource-versions
 	ListByFilters(context.Context, *model.ListApiResourceVersionsInput) (*model.ApiResourceVersionList, error)
 	// look up api-resource-version by version-id
@@ -116,8 +112,8 @@ type ApiResourceVersionQueryControllerServer interface {
 type UnimplementedApiResourceVersionQueryControllerServer struct {
 }
 
-func (UnimplementedApiResourceVersionQueryControllerServer) GetById(context.Context, *model.ApiResourceVersionId) (*model.ApiResourceVersion, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetById not implemented")
+func (UnimplementedApiResourceVersionQueryControllerServer) Get(context.Context, *model.ApiResourceVersionId) (*model.ApiResourceVersion, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
 }
 func (UnimplementedApiResourceVersionQueryControllerServer) ListByFilters(context.Context, *model.ListApiResourceVersionsInput) (*model.ApiResourceVersionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListByFilters not implemented")
@@ -143,20 +139,20 @@ func RegisterApiResourceVersionQueryControllerServer(s grpc.ServiceRegistrar, sr
 	s.RegisterService(&ApiResourceVersionQueryController_ServiceDesc, srv)
 }
 
-func _ApiResourceVersionQueryController_GetById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ApiResourceVersionQueryController_Get_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.ApiResourceVersionId)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ApiResourceVersionQueryControllerServer).GetById(ctx, in)
+		return srv.(ApiResourceVersionQueryControllerServer).Get(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ApiResourceVersionQueryController_GetById_FullMethodName,
+		FullMethod: ApiResourceVersionQueryController_Get_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ApiResourceVersionQueryControllerServer).GetById(ctx, req.(*model.ApiResourceVersionId))
+		return srv.(ApiResourceVersionQueryControllerServer).Get(ctx, req.(*model.ApiResourceVersionId))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -241,8 +237,8 @@ var ApiResourceVersionQueryController_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ApiResourceVersionQueryControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "getById",
-			Handler:    _ApiResourceVersionQueryController_GetById_Handler,
+			MethodName: "get",
+			Handler:    _ApiResourceVersionQueryController_Get_Handler,
 		},
 		{
 			MethodName: "listByFilters",

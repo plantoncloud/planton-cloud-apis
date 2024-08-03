@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+package cloud.planton.apis.iac.v1.stackjobrunner.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/enums/apiresourcekind/api_resource_kind.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+
+//stack-job-runner
+message StackJobRunner {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = stack_job_runner;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
+
+  //api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'iac.planton.cloud/v1'
+  ];
+
+  //resource-kind
+  string kind = 2;
+
+  //metadata
+  //id format "sjr-<ulid>"
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
+
+  //spec
+  StackJobRunnerSpec spec = 4;
+
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
+}
+
+//stack-job-runner spec
+message StackJobRunnerSpec {
+  // id of the organization to which the stack-job-runner belongs to.
+  string org_id = 1 [
+    (buf.validate.field).required = true,
+    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
+  ];
+
+  // grpc endpoint to be used for creating grpc client
+  string grpc_endpoint = 2 [
+    (buf.validate.field).required = true
+  ];
+
+  //when set, a secure grpc connection is created, plaintext otherwise.
+  bool is_use_secure_connection = 3;
+
+  // grpc metadata to be attached to execute rpc call.
+  // maintainer of stack-job-runner is responsible for
+  // matching the grpc-metadata provided by client.
+  map<string, string> grpc_metadata = 4;
+
+  //list of supported deployment-modules
+  repeated cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind supported_deployment_modules = 5;
+}

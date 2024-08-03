@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.environment.model;
+
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
+import "buf/validate/validate.proto";
+
+//list of environments
+message EnvironmentList {
+  repeated Environment entries = 1;
+}
+
+//wrapper for environment id field
+message EnvId {
+  string value = 1 [
+    (buf.validate.field).required = true
+  ];
+}

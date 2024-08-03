@@ -12,15 +12,13 @@ import "cloud/planton/apis/iam/v1/identityaccount/enums/identityaccounttype/iden
 message IdentityAccount {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = identity_account;
 
-  //resource api-version
+  //api-version
   string api_version = 1 [
-    (buf.validate.field).string.const = "code2cloud.planton.cloud/v1"
+    (buf.validate.field).string.const = 'iam.planton.cloud/v1'
   ];
 
-  //resource kind
-  string kind = 2 [
-    (buf.validate.field).string.const = "IdentityAccount"
-  ];
+  //resource-kind
+  string kind = 2;
 
   // metadata for the resource
   // id:
@@ -38,18 +36,18 @@ message IdentityAccount {
   // It represents a string of 6-16 alphanumeric characters or hyphens, with no spaces or other special characters.
   cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3;
 
-  // resource spec
+  //spec
   IdentityAccountSpec spec = 4;
 
-  // resource status
+  //status
   IdentityAccountStatus status = 5;
 }
 
-// resource spec for identity-account
+//identity-account spec
 message IdentityAccountSpec {
   // this is only relevant in case of machine identity accounts.
-  // machine accounts are associated to companies on creation.
-  string company_id = 1 [
+  // machine accounts are associated to organizations on creation.
+  string org_id = 1 [
     (buf.validate.field).string.min_len = 1,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
   ];
@@ -88,12 +86,12 @@ message IdentityAccountSpec {
   ];
 }
 
-// resource status for identity-account
+//identity-account spec
 message IdentityAccountStatus {
   // lifecycle of the resource
   cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycle lifecycle = 99;
 
-  // resource audit info
+  //audit-info
   cloud.planton.apis.commons.apiresource.model.ApiResourceAudit audit = 98;
 }
 

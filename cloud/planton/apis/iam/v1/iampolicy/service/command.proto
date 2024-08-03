@@ -11,33 +11,33 @@ service IamPolicyCommandController {
   // add iam policies to a resource
   rpc add(cloud.planton.apis.iam.v1.iampolicy.model.AddIamPolicyInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add iam policy";
   }
   // remove list of iam policies of a principal and resource
   rpc removeMultiple(cloud.planton.apis.iam.v1.iampolicy.model.RemoveIamPoliciesInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to remove iam policy";
   }
 
   rpc update(cloud.planton.apis.iam.v1.iampolicy.model.UpdateIamPolicyInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPolicyByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to update iam policy";
   }
 
   // add iam policies to a resource
-  rpc addCompany(cloud.planton.apis.iam.v1.iampolicy.model.AddIamPolicyInput)
+  rpc addEnvironment(cloud.planton.apis.iam.v1.iampolicy.model.AddIamPolicyInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add iam policy";
   }
 
   // remove list of iam policies of a principal and resource
-  rpc removeCompanyMultiple(cloud.planton.apis.iam.v1.iampolicy.model.RemoveIamPoliciesInput)
+  rpc removeEnvironmentMultiple(cloud.planton.apis.iam.v1.iampolicy.model.RemoveIamPoliciesInput)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.IamPoliciesByPrincipal) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to remove iam policy";
   }
 
@@ -47,7 +47,7 @@ service IamPolicyCommandController {
   // information is stored in planton-cloud's database.
   rpc addApiResourceOwner(cloud.planton.apis.iam.v1.iampolicy.model.FgaTuple)
       returns (cloud.planton.apis.iam.v1.iampolicy.model.FgaTuple) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = iam_policy_update;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = update;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to add resource owner";
   }
 }

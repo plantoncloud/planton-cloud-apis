@@ -10,14 +10,6 @@ import "google/protobuf/descriptor.proto";
 extend google.protobuf.MessageOptions {
   // An identifier for the type of resource.
   cloud.planton.apis.commons.apiresource.enums.apiresourcekind.ApiResourceKind resource_kind = 60001;
-  // Whether the resource is runnable.
-  // All resources that require runtime platform to run should set this to true.
-  // For example, a microservice-instance requires a runtime platform to run and so it is considered runnable.
-  bool is_runnable = 60002;
   // The owner information for the resource.
-  cloud.planton.apis.commons.apiresource.model.ApiResourceOwnerInfo owner = 60003;
-  // flag to indicate if the api-resource is versioned.
-  // changes to the api-resources are captured using api-resource-versions only for those
-  // api-resources that have this flag enabled.
-  bool is_versioned = 60004;
+  cloud.planton.apis.commons.apiresource.model.ApiResourceOwnerInfo owner = 60002;
 }

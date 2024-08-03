@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.organization.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/state.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
+
+// organization on planton-cloud
+message Organization {
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = organization;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = identity_account;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "status.audit.spec_audit.created_by.id";
+
+  //api-version
+  string api_version = 1 [
+    (buf.validate.field).string.const = 'resource-manager.planton.cloud/v1'
+  ];
+
+  //resource-kind
+  string kind = 2;
+
+  // metadata for the resource
+  // id for this resource should not exceed 9 characters.
+  cloud.planton.apis.commons.apiresource.model.ApiResourceMetadata metadata = 3 [
+    (buf.validate.field).required = true,
+    (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "Only lowercase letters and numbers are allowed",
+      // https://regex101.com/r/NKTohE/1
+      expression: "this.id.matches('^[a-z0-9]+$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "Must start with a lowercase letter",
+      // https://regex101.com/r/qpK7XF/1
+      expression: "this.id.matches('^[a-z].*$')"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.id",
+      message: "Must be between 2 and 9 characters long",
+      expression: "size(this.id) >= 2 && size(this.id) <= 9"
+    },
+    (buf.validate.field).cel = {
+      id: "metadata.name",
+      message: "Must be between 2 and 20 characters long",
+      expression: "size(this.name) > 1 && size(this.name) <= 20"
+    }
+  ];
+
+  //spec
+  OrganizationSpec spec = 4;
+
+  //status
+  cloud.planton.apis.commons.apiresource.model.ApiResourceLifecycleAndAuditStatus status = 5;
+}
+
+// OrganizationSpec is a message type that defines the specifications for a organization.
+message OrganizationSpec {
+  // description for the organization
+  string description = 1;
+  // public url for the organization logo
+  string logo_url = 2;
+  //stack-job settings for organization
+  OrganizationStackJobSettings stack_job_settings = 3;
+}
+
+//stack-job settings for organization
+message OrganizationStackJobSettings {
+  // flag to disable use of planton-cloud provided default stack-job-runner to run stack-jobs
+  bool is_default_stack_job_runner_disabled = 1;
+  // flag to disable use of planton-cloud provided default pulumi-backend-credential to store pulumi state
+  bool is_default_pulumi_backend_credential_disabled = 2;
+}

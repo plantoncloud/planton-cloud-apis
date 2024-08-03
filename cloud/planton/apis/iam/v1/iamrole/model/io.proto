@@ -31,10 +31,10 @@ message IamRoleList {
 // input to pass resource type and principal type
 message ApiResourceKindAndPrincipalTypeInput {
   // type of the resource the role belongs to
-  // examples: company/ cloud_account etc
+  // examples: organization/ connection etc
   string resource_kind = 1;
   // type of the principal that is allowed to link with the resource
-  // examples: user/ company etc
+  // examples: user/ organization etc
   string principal_type = 2;
   // flag to get only roles that can be publicly granted
   bool is_public = 3;

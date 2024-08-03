@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package cloud.planton.apis.resourcemanager.v1.organization.model;
+
+import "cloud/planton/apis/resourcemanager/v1/organization/model/state.proto";
+
+// list of organizations
+message Organizations {
+  repeated Organization entries = 2;
+}
+
+//response for paginated list query
+message OrganizationList {
+  int32 total_pages = 1;
+  repeated Organization entries = 2;
+}
+
+// wrapper for organization id
+message OrgId {
+  string value = 1;
+}

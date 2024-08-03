@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package cloud.planton.apis.k8sd2ops.v1.podexec.model;
+
+import "buf/validate/validate.proto";
+import "cloud/planton/apis/commons/apiresource/model/io.proto";
+import "cloud/planton/apis/integration/v1/kubernetes/kubernetesobject/model/io.proto";
+
+// input for rpc to exec into a kube-cluster pod container
+// input for rpc to exec into a pod container that belongs to a planton-cloud api-resource
+message ExecIntoPodContainerInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  // options required for performing exec into a pod container
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.PodContainerExecOptions options = 2;
+}
+
+//id of the stream created for the shell session
+message BrowserExecIntoPodContainerResponse {
+  //pod container exec shell session id
+  string shell_session_id = 1;
+  //shell command execution response
+  cloud.planton.apis.integration.v1.kubernetes.kubernetesobject.model.ExecIntoPodContainerResponse command_response = 2;
+}
+
+// input for rpc to execute next command for a shell session in a pod container from a browser
+message BrowserExecuteNextCommandInPodContainerInput {
+  //planton-cloud api-resource
+  cloud.planton.apis.commons.apiresource.model.ApiResourceKindApiResourceId api_resource = 1;
+  //pod container exec shell session id
+  string shell_session_id = 2;
+  // command to execute inside an existing shell session of a pod container
+  string command = 3;
+}
