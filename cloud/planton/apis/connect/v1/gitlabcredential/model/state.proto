@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //gitlab-credential
 message GitlabCredential {
@@ -65,8 +66,6 @@ message GitlabCredential {
 
 //gitlab-credential spec
 message GitlabCredentialSpec {
-  // organization to which gitlab-credential belongs to.
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 }

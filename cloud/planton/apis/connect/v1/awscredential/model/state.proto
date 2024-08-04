@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 // aws-credential
 message AwsCredential {
@@ -65,13 +66,11 @@ message AwsCredential {
 
 //aws-credential spec
 message AwsCredentialSpec {
-  // organization to which aws-credential belongs to.
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   // The ID of the AWS Account, required and immutable. For more information,
-  string account_id = 2 [
+  string account_id = 1 [
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).required = true,
     (buf.validate.field).cel = {
@@ -82,7 +81,7 @@ message AwsCredentialSpec {
   ];
 
   //AWS Access Key Id
-  string access_key_id = 3 [
+  string access_key_id = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).string.len = 20,
@@ -101,7 +100,7 @@ message AwsCredentialSpec {
   ];
 
   //AWS Secret Access Key
-  string secret_access_key = 4 [
+  string secret_access_key = 3 [
     (buf.validate.field).ignore_empty = true,
     (buf.validate.field).required = true,
     (buf.validate.field).string.len = 40,
@@ -114,5 +113,5 @@ message AwsCredentialSpec {
   ];
 
   //region to be configured when using this aws-credential
-  string region = 5;
+  string region = 4;
 }

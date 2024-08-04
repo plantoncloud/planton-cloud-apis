@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 // gcp-credential
 message GcpCredential {
@@ -65,14 +66,12 @@ message GcpCredential {
 
 //gcp-credential spec
 message GcpCredentialSpec {
-  //id of the organization on planton cloud to which the credential belongs to
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   // The ID of the Google Cloud Organization, required and immutable. For more information,
   // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
-  string gcp_organization_id = 2 [
+  string gcp_organization_id = 1 [
     (buf.validate.field).required = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
     (buf.validate.field).ignore_empty = true,
@@ -84,7 +83,7 @@ message GcpCredentialSpec {
   ];
 
   //base64 encoded google service account key
-  string service_account_key_base64 = 3 [
+  string service_account_key_base64 = 2 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_computed) = true
   ];
 }
