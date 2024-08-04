@@ -7,6 +7,7 @@ import "cloud/planton/apis/commons/apiresource/model/state.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/api_resource_field_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //azure-credential
 message AzureCredential {
@@ -65,31 +66,29 @@ message AzureCredential {
 
 //azure-credential spec
 message AzureCredentialSpec {
-  // organization to which azure-credential belongs to
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   // azure client id
-  string client_id = 2 [
+  string client_id = 1 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true
   ];
 
   // azure client secret
-  string client_secret = 3 [
+  string client_secret = 2 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true
   ];
 
   // azure tenant id
-  string tenant_id = 4 [
+  string tenant_id = 3 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true
   ];
 
   // azure subscription id
-  string subscription_id = 5 [
+  string subscription_id = 4 [
     (buf.validate.field).required = true,
     (buf.validate.field).ignore_empty = true
   ];

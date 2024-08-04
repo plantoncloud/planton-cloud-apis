@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/connect/v1/kubernetesdockercredential/enums/dockerrepoprovider/docker_repo_provider.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //kubernetes-docker-credential
 message KubernetesDockerCredential {
@@ -66,24 +67,14 @@ message KubernetesDockerCredential {
 
 //kubernetes-docker-credential spec
 message KubernetesDockerCredentialSpec {
-  // The ID of the Google Cloud Organization, required and immutable. For more information,
-  // visit: https://cloud.google.com/resource-manager/docs/creating-managing-organization
-  string org_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true,
-    (buf.validate.field).ignore_empty = true,
-    (buf.validate.field).cel = {
-      id: "spec.gcp.org_id",
-      message: "Only numbers (0-9) are allowed",
-      expression: "this.matches('^[0-9]+$')"
-    }
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   //docker repo provider
-  cloud.planton.apis.connect.v1.kubernetesdockercredential.enums.dockerrepoprovider.DockerRepoProvider docker_repo_provider = 2;
+  cloud.planton.apis.connect.v1.kubernetesdockercredential.enums.dockerrepoprovider.DockerRepoProvider docker_repo_provider = 1;
 
   //gcp-artifact-registry-credential spec
-  KubernetesDockerCredentialGcpArtifactRegistryCredentialSpec gcp_artifact_registry_credential_spec = 3;
+  KubernetesDockerCredentialGcpArtifactRegistryCredentialSpec gcp_artifact_registry_credential_spec = 2;
 }
 
 //kubernetes-docker-credential spec for docker-repo provided by gcp-artifact-registry

@@ -9,6 +9,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/connect/v1/pulumibackendcredential/enums/pulumibackendtype/pulumi_backend_type.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //pulumi-backend-credential
 message PulumiBackendCredential {
@@ -37,11 +38,8 @@ message PulumiBackendCredential {
 
 //pulumi-backend-credential spec
 message PulumiBackendCredentialSpec {
-  // id of the organization to which the pulumi-backend-credential belongs to.
-  string org_id = 1 [
-    (buf.validate.field).required = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourcefieldoptions.is_immutable) = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   //name of the pulumi organization
   string pulumi_organization = 2 [

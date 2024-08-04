@@ -8,6 +8,7 @@ import "cloud/planton/apis/commons/apiresource/options/apiresourcefieldoptions/a
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemessageoptions/api_resource_message_options.proto";
 import "cloud/planton/apis/commons/apiresource/options/apiresourcemetadatamessageoptions/api_resource_metadata_message_options.proto";
 import "cloud/planton/apis/connect/v1/kubernetesclustercredential/enums/kubernetesprovider/kubernetes_provider.proto";
+import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 
 //kubernetes-cluster-credential
 message KubernetesClusterCredential {
@@ -66,16 +67,14 @@ message KubernetesClusterCredential {
 
 //kubernetes-cluster-credential spec
 message KubernetesClusterCredentialSpec {
-  //id of the organization on planton cloud to which the credential belongs to
-  string org_id = 1 [
-    (buf.validate.field).required = true
-  ];
+  //environment-info
+  cloud.planton.apis.resourcemanager.v1.environment.model.ApiResourceEnvironmentInfo environment_info = 99;
 
   //kubernetes-provider
-  cloud.planton.apis.connect.v1.kubernetesclustercredential.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 2;
+  cloud.planton.apis.connect.v1.kubernetesclustercredential.enums.kubernetesprovider.KubernetesProvider kubernetes_provider = 1;
 
   //credential spec for gcp-gke provider
-  KubernetesClusterCredentialGkeClusterSpec gke_cluster_spec = 3;
+  KubernetesClusterCredentialGkeClusterSpec gke_cluster_spec = 2;
 }
 
 //kubernetes-cluster-credential spec for gke-cluster
