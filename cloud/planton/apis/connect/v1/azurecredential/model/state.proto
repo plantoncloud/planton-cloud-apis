@@ -12,8 +12,8 @@ import "cloud/planton/apis/resourcemanager/v1/environment/model/state.proto";
 //azure-credential
 message AzureCredential {
   option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.resource_kind) = azure_credential;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = organization;
-  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.org_id";
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).resource_kind = environment;
+  option (cloud.planton.apis.commons.apiresource.options.apiresourcemessageoptions.owner).id_field_path = "spec.environment_info.env_id";
 
   //api-version
   string api_version = 1 [
