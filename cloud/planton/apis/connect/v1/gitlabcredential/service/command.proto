@@ -16,9 +16,9 @@ service GitlabCredentialCommandController {
   //create a gitlab-credential resource
   rpc create(cloud.planton.apis.connect.v1.gitlabcredential.model.GitlabCredential)
       returns (cloud.planton.apis.connect.v1.gitlabcredential.model.GitlabCredential) {
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = organization;
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).resource_kind = environment;
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).permission = create;
-    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.org_id";
+    option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).field_path = "spec.environment_info.env_id";
     option (cloud.planton.apis.iam.v1.iampolicy.options.rpcauthorizationmethodoptions.authorization_config).error_msg = "unauthorized to create gitlab-credential";
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
