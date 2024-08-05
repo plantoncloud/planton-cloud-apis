@@ -22,7 +22,7 @@ service StackJobCommandController {
     // api resource rpc method options
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.event_type) = created;
     option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.api_resource_state_operation_type) = create;
-    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = true;
+    option (cloud.planton.apis.commons.apiresource.options.apiresourcerpcmethodoptions.is_api_resource_new_version_required) = false;
   }
   //update stack-job
   rpc update(cloud.planton.apis.iac.v1.stackjob.model.StackJob) returns (cloud.planton.apis.iac.v1.stackjob.model.StackJob) {
