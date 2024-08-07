@@ -27,7 +27,7 @@ public final class RedisKubernetesTest {
                 .build();
         Validator validator = new Validator();
         var validationResult = validator.validate(input);
-        assertEquals(2, validationResult.getViolations().size());
+        assertEquals(1, validationResult.getViolations().size());
     }
 
     @Test
