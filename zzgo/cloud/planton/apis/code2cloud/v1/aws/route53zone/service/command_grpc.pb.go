@@ -29,8 +29,6 @@ const (
 	Route53ZoneCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.aws.route53zone.service.Route53ZoneCommandController/delete"
 	Route53ZoneCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.route53zone.service.Route53ZoneCommandController/previewRestore"
 	Route53ZoneCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.route53zone.service.Route53ZoneCommandController/restore"
-	Route53ZoneCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.route53zone.service.Route53ZoneCommandController/previewRefresh"
-	Route53ZoneCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.route53zone.service.Route53ZoneCommandController/refresh"
 )
 
 // Route53ZoneCommandControllerClient is the client API for Route53ZoneCommandController service.
@@ -53,10 +51,6 @@ type Route53ZoneCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.Route53Zone, opts ...grpc.CallOption) (*model.Route53Zone, error)
 	// restore a deleted route53-zone
 	Restore(ctx context.Context, in *model.Route53Zone, opts ...grpc.CallOption) (*model.Route53Zone, error)
-	// preview refresh a route53-zone that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
-	// refresh a route53-zone that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error)
 }
 
 type route53ZoneCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *route53ZoneCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *route53ZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
-	out := new(model.Route53Zone)
-	err := c.cc.Invoke(ctx, Route53ZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *route53ZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.Route53Zone, error) {
-	out := new(model.Route53Zone)
-	err := c.cc.Invoke(ctx, Route53ZoneCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // Route53ZoneCommandControllerServer is the server API for Route53ZoneCommandController service.
 // All implementations should embed UnimplementedRoute53ZoneCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type Route53ZoneCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.Route53Zone) (*model.Route53Zone, error)
 	// restore a deleted route53-zone
 	Restore(context.Context, *model.Route53Zone) (*model.Route53Zone, error)
-	// preview refresh a route53-zone that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error)
-	// refresh a route53-zone that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error)
 }
 
 // UnimplementedRoute53ZoneCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRestore(context.Co
 }
 func (UnimplementedRoute53ZoneCommandControllerServer) Restore(context.Context, *model.Route53Zone) (*model.Route53Zone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedRoute53ZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedRoute53ZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.Route53Zone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeRoute53ZoneCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _Route53ZoneCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Route53ZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(Route53ZoneCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Route53ZoneCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Route53ZoneCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(Route53ZoneCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Route53ZoneCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(Route53ZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Route53ZoneCommandController_ServiceDesc is the grpc.ServiceDesc for Route53ZoneCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var Route53ZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _Route53ZoneCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _Route53ZoneCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _Route53ZoneCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

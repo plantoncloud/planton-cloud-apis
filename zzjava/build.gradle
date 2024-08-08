@@ -20,7 +20,7 @@ publishing {
     repositories {
         maven {
             name "artifact-store"
-            url 'artifactregistry://us-central1-maven.pkg.dev/ca-planton-gcp-sh-zg/afs-planton-cloud-gcp-uc1-maven'
+            url 'artifactregistry://asia-south1-maven.pkg.dev/pc-artifact-registry/gcpart-planton-cloud-prod-main-maven'
         }
     }
 }
@@ -34,7 +34,7 @@ dependencies {
     implementation("com.google.protobuf:protobuf-java:3.23.2")
     implementation("io.grpc:grpc-stub:1.55.1")
     implementation("io.grpc:grpc-protobuf:1.55.1")
-    implementation("build.buf:protovalidate:0.1.4")
+    implementation("build.buf:protovalidate:0.1.5")
     testImplementation 'org.springframework.boot:spring-boot-starter-test:3.1.0'
 }
 

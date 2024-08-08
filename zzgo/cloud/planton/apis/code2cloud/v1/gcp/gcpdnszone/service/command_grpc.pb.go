@@ -29,8 +29,6 @@ const (
 	GcpDnsZoneCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.service.GcpDnsZoneCommandController/delete"
 	GcpDnsZoneCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.service.GcpDnsZoneCommandController/previewRestore"
 	GcpDnsZoneCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.service.GcpDnsZoneCommandController/restore"
-	GcpDnsZoneCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.service.GcpDnsZoneCommandController/previewRefresh"
-	GcpDnsZoneCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcpdnszone.service.GcpDnsZoneCommandController/refresh"
 )
 
 // GcpDnsZoneCommandControllerClient is the client API for GcpDnsZoneCommandController service.
@@ -53,10 +51,6 @@ type GcpDnsZoneCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.GcpDnsZone, opts ...grpc.CallOption) (*model.GcpDnsZone, error)
 	// restore a deleted gcp-dns-zone
 	Restore(ctx context.Context, in *model.GcpDnsZone, opts ...grpc.CallOption) (*model.GcpDnsZone, error)
-	// preview refresh a gcp-dns-zone that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpDnsZone, error)
-	// refresh a gcp-dns-zone that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpDnsZone, error)
 }
 
 type gcpDnsZoneCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *gcpDnsZoneCommandControllerClient) Restore(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *gcpDnsZoneCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpDnsZone, error) {
-	out := new(model.GcpDnsZone)
-	err := c.cc.Invoke(ctx, GcpDnsZoneCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gcpDnsZoneCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpDnsZone, error) {
-	out := new(model.GcpDnsZone)
-	err := c.cc.Invoke(ctx, GcpDnsZoneCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GcpDnsZoneCommandControllerServer is the server API for GcpDnsZoneCommandController service.
 // All implementations should embed UnimplementedGcpDnsZoneCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type GcpDnsZoneCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.GcpDnsZone) (*model.GcpDnsZone, error)
 	// restore a deleted gcp-dns-zone
 	Restore(context.Context, *model.GcpDnsZone) (*model.GcpDnsZone, error)
-	// preview refresh a gcp-dns-zone that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpDnsZone, error)
-	// refresh a gcp-dns-zone that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpDnsZone, error)
 }
 
 // UnimplementedGcpDnsZoneCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedGcpDnsZoneCommandControllerServer) PreviewRestore(context.Con
 }
 func (UnimplementedGcpDnsZoneCommandControllerServer) Restore(context.Context, *model.GcpDnsZone) (*model.GcpDnsZone, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedGcpDnsZoneCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpDnsZone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedGcpDnsZoneCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpDnsZone, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeGcpDnsZoneCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _GcpDnsZoneCommandController_Restore_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GcpDnsZoneCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcpDnsZoneCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcpDnsZoneCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpDnsZoneCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GcpDnsZoneCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcpDnsZoneCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcpDnsZoneCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpDnsZoneCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GcpDnsZoneCommandController_ServiceDesc is the grpc.ServiceDesc for GcpDnsZoneCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var GcpDnsZoneCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _GcpDnsZoneCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _GcpDnsZoneCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _GcpDnsZoneCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

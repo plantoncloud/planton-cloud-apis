@@ -32,8 +32,6 @@ const (
 	PrometheusKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.service.PrometheusKubernetesCommandController/restart"
 	PrometheusKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.service.PrometheusKubernetesCommandController/pause"
 	PrometheusKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.service.PrometheusKubernetesCommandController/unpause"
-	PrometheusKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.service.PrometheusKubernetesCommandController/previewRefresh"
-	PrometheusKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.prometheuskubernetes.service.PrometheusKubernetesCommandController/refresh"
 )
 
 // PrometheusKubernetesCommandControllerClient is the client API for PrometheusKubernetesCommandController service.
@@ -67,10 +65,6 @@ type PrometheusKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the prometheus-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
-	// preview refresh a prometheus-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
-	// refresh a prometheus-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error)
 }
 
 type prometheusKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *prometheusKubernetesCommandControllerClient) Unpause(ctx context.Contex
 	return out, nil
 }
 
-func (c *prometheusKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
-	out := new(model.PrometheusKubernetes)
-	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *prometheusKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PrometheusKubernetes, error) {
-	out := new(model.PrometheusKubernetes)
-	err := c.cc.Invoke(ctx, PrometheusKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PrometheusKubernetesCommandControllerServer is the server API for PrometheusKubernetesCommandController service.
 // All implementations should embed UnimplementedPrometheusKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type PrometheusKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the prometheus-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PrometheusKubernetes, error)
-	// preview refresh a prometheus-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error)
-	// refresh a prometheus-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error)
 }
 
 // UnimplementedPrometheusKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedPrometheusKubernetesCommandControllerServer) Pause(context.Co
 }
 func (UnimplementedPrometheusKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PrometheusKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedPrometheusKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedPrometheusKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PrometheusKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafePrometheusKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _PrometheusKubernetesCommandController_Unpause_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PrometheusKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrometheusKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrometheusKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PrometheusKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrometheusKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PrometheusKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrometheusKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PrometheusKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for PrometheusKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var PrometheusKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _PrometheusKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _PrometheusKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _PrometheusKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

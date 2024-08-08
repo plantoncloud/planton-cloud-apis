@@ -29,8 +29,6 @@ const (
 	GcsBucketCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.service.GcsBucketCommandController/delete"
 	GcsBucketCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.service.GcsBucketCommandController/previewRestore"
 	GcsBucketCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.service.GcsBucketCommandController/restore"
-	GcsBucketCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.service.GcsBucketCommandController/previewRefresh"
-	GcsBucketCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.gcp.gcsbucket.service.GcsBucketCommandController/refresh"
 )
 
 // GcsBucketCommandControllerClient is the client API for GcsBucketCommandController service.
@@ -53,10 +51,6 @@ type GcsBucketCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.GcsBucket, opts ...grpc.CallOption) (*model.GcsBucket, error)
 	// restore a deleted gcs-bucket
 	Restore(ctx context.Context, in *model.GcsBucket, opts ...grpc.CallOption) (*model.GcsBucket, error)
-	// preview refresh a gcs-bucket that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
-	// refresh a gcs-bucket that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error)
 }
 
 type gcsBucketCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *gcsBucketCommandControllerClient) Restore(ctx context.Context, in *mode
 	return out, nil
 }
 
-func (c *gcsBucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
-	out := new(model.GcsBucket)
-	err := c.cc.Invoke(ctx, GcsBucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gcsBucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcsBucket, error) {
-	out := new(model.GcsBucket)
-	err := c.cc.Invoke(ctx, GcsBucketCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GcsBucketCommandControllerServer is the server API for GcsBucketCommandController service.
 // All implementations should embed UnimplementedGcsBucketCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type GcsBucketCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.GcsBucket) (*model.GcsBucket, error)
 	// restore a deleted gcs-bucket
 	Restore(context.Context, *model.GcsBucket) (*model.GcsBucket, error)
-	// preview refresh a gcs-bucket that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error)
-	// refresh a gcs-bucket that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error)
 }
 
 // UnimplementedGcsBucketCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedGcsBucketCommandControllerServer) PreviewRestore(context.Cont
 }
 func (UnimplementedGcsBucketCommandControllerServer) Restore(context.Context, *model.GcsBucket) (*model.GcsBucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedGcsBucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedGcsBucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcsBucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeGcsBucketCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _GcsBucketCommandController_Restore_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GcsBucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcsBucketCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcsBucketCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GcsBucketCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcsBucketCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcsBucketCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcsBucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GcsBucketCommandController_ServiceDesc is the grpc.ServiceDesc for GcsBucketCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var GcsBucketCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _GcsBucketCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _GcsBucketCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _GcsBucketCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

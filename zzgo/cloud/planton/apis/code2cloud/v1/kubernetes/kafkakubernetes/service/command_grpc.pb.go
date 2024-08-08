@@ -32,8 +32,6 @@ const (
 	KafkaKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaKubernetesCommandController/restart"
 	KafkaKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaKubernetesCommandController/pause"
 	KafkaKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaKubernetesCommandController/unpause"
-	KafkaKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaKubernetesCommandController/previewRefresh"
-	KafkaKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaKubernetesCommandController/refresh"
 )
 
 // KafkaKubernetesCommandControllerClient is the client API for KafkaKubernetesCommandController service.
@@ -68,10 +66,6 @@ type KafkaKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
-	// preview refresh a kafka-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
-	// refresh a kafka-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 }
 
 type kafkaKubernetesCommandControllerClient struct {
@@ -181,24 +175,6 @@ func (c *kafkaKubernetesCommandControllerClient) Unpause(ctx context.Context, in
 	return out, nil
 }
 
-func (c *kafkaKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
-	out := new(model.KafkaKubernetes)
-	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kafkaKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
-	out := new(model.KafkaKubernetes)
-	err := c.cc.Invoke(ctx, KafkaKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // KafkaKubernetesCommandControllerServer is the server API for KafkaKubernetesCommandController service.
 // All implementations should embed UnimplementedKafkaKubernetesCommandControllerServer
 // for forward compatibility
@@ -231,10 +207,6 @@ type KafkaKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the kafka-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KafkaKubernetes, error)
-	// preview refresh a kafka-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error)
-	// refresh a kafka-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error)
 }
 
 // UnimplementedKafkaKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -273,12 +245,6 @@ func (UnimplementedKafkaKubernetesCommandControllerServer) Pause(context.Context
 }
 func (UnimplementedKafkaKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedKafkaKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedKafkaKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.KafkaKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeKafkaKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -490,42 +456,6 @@ func _KafkaKubernetesCommandController_Unpause_Handler(srv interface{}, ctx cont
 	return interceptor(ctx, in, info, handler)
 }
 
-func _KafkaKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KafkaKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // KafkaKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for KafkaKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -576,14 +506,6 @@ var KafkaKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _KafkaKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _KafkaKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _KafkaKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -32,8 +32,6 @@ const (
 	ArgocdKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service.ArgocdKubernetesCommandController/restart"
 	ArgocdKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service.ArgocdKubernetesCommandController/pause"
 	ArgocdKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service.ArgocdKubernetesCommandController/unpause"
-	ArgocdKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service.ArgocdKubernetesCommandController/previewRefresh"
-	ArgocdKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.argocdkubernetes.service.ArgocdKubernetesCommandController/refresh"
 )
 
 // ArgocdKubernetesCommandControllerClient is the client API for ArgocdKubernetesCommandController service.
@@ -67,10 +65,6 @@ type ArgocdKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
-	// preview refresh a argocd-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
-	// refresh a argocd-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error)
 }
 
 type argocdKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *argocdKubernetesCommandControllerClient) Unpause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *argocdKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
-	out := new(model.ArgocdKubernetes)
-	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *argocdKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ArgocdKubernetes, error) {
-	out := new(model.ArgocdKubernetes)
-	err := c.cc.Invoke(ctx, ArgocdKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ArgocdKubernetesCommandControllerServer is the server API for ArgocdKubernetesCommandController service.
 // All implementations should embed UnimplementedArgocdKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type ArgocdKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the argocd-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ArgocdKubernetes, error)
-	// preview refresh a argocd-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error)
-	// refresh a argocd-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error)
 }
 
 // UnimplementedArgocdKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedArgocdKubernetesCommandControllerServer) Pause(context.Contex
 }
 func (UnimplementedArgocdKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ArgocdKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedArgocdKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedArgocdKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ArgocdKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeArgocdKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _ArgocdKubernetesCommandController_Unpause_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ArgocdKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ArgocdKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ArgocdKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ArgocdKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ArgocdKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ArgocdKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for ArgocdKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var ArgocdKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _ArgocdKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _ArgocdKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _ArgocdKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

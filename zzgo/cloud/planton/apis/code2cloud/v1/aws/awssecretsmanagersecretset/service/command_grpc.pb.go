@@ -29,8 +29,6 @@ const (
 	AwsSecretsManagerSecretSetCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service.AwsSecretsManagerSecretSetCommandController/delete"
 	AwsSecretsManagerSecretSetCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service.AwsSecretsManagerSecretSetCommandController/previewRestore"
 	AwsSecretsManagerSecretSetCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service.AwsSecretsManagerSecretSetCommandController/restore"
-	AwsSecretsManagerSecretSetCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service.AwsSecretsManagerSecretSetCommandController/previewRefresh"
-	AwsSecretsManagerSecretSetCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.awssecretsmanagersecretset.service.AwsSecretsManagerSecretSetCommandController/refresh"
 )
 
 // AwsSecretsManagerSecretSetCommandControllerClient is the client API for AwsSecretsManagerSecretSetCommandController service.
@@ -53,10 +51,6 @@ type AwsSecretsManagerSecretSetCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.AwsSecretsManagerSecretSet, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error)
 	// restore a deleted aws-secrets-manager-secret-set
 	Restore(ctx context.Context, in *model.AwsSecretsManagerSecretSet, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error)
-	// preview refresh a aws-secrets-manager-secret-set that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error)
-	// refresh a aws-secrets-manager-secret-set that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error)
 }
 
 type awsSecretsManagerSecretSetCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *awsSecretsManagerSecretSetCommandControllerClient) Restore(ctx context.
 	return out, nil
 }
 
-func (c *awsSecretsManagerSecretSetCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error) {
-	out := new(model.AwsSecretsManagerSecretSet)
-	err := c.cc.Invoke(ctx, AwsSecretsManagerSecretSetCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *awsSecretsManagerSecretSetCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AwsSecretsManagerSecretSet, error) {
-	out := new(model.AwsSecretsManagerSecretSet)
-	err := c.cc.Invoke(ctx, AwsSecretsManagerSecretSetCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AwsSecretsManagerSecretSetCommandControllerServer is the server API for AwsSecretsManagerSecretSetCommandController service.
 // All implementations should embed UnimplementedAwsSecretsManagerSecretSetCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type AwsSecretsManagerSecretSetCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.AwsSecretsManagerSecretSet) (*model.AwsSecretsManagerSecretSet, error)
 	// restore a deleted aws-secrets-manager-secret-set
 	Restore(context.Context, *model.AwsSecretsManagerSecretSet) (*model.AwsSecretsManagerSecretSet, error)
-	// preview refresh a aws-secrets-manager-secret-set that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AwsSecretsManagerSecretSet, error)
-	// refresh a aws-secrets-manager-secret-set that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AwsSecretsManagerSecretSet, error)
 }
 
 // UnimplementedAwsSecretsManagerSecretSetCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedAwsSecretsManagerSecretSetCommandControllerServer) PreviewRes
 }
 func (UnimplementedAwsSecretsManagerSecretSetCommandControllerServer) Restore(context.Context, *model.AwsSecretsManagerSecretSet) (*model.AwsSecretsManagerSecretSet, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedAwsSecretsManagerSecretSetCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AwsSecretsManagerSecretSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedAwsSecretsManagerSecretSetCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AwsSecretsManagerSecretSet, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeAwsSecretsManagerSecretSetCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _AwsSecretsManagerSecretSetCommandController_Restore_Handler(srv interface{
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AwsSecretsManagerSecretSetCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsSecretsManagerSecretSetCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AwsSecretsManagerSecretSetCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsSecretsManagerSecretSetCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AwsSecretsManagerSecretSetCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AwsSecretsManagerSecretSetCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AwsSecretsManagerSecretSetCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AwsSecretsManagerSecretSetCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AwsSecretsManagerSecretSetCommandController_ServiceDesc is the grpc.ServiceDesc for AwsSecretsManagerSecretSetCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var AwsSecretsManagerSecretSetCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _AwsSecretsManagerSecretSetCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _AwsSecretsManagerSecretSetCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _AwsSecretsManagerSecretSetCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
