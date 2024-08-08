@@ -513,10 +513,9 @@ var KafkaKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	KafkaTopicCommandController_Add_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/add"
-	KafkaTopicCommandController_AddMultiple_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/addMultiple"
-	KafkaTopicCommandController_Update_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/update"
-	KafkaTopicCommandController_Delete_FullMethodName      = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/delete"
+	KafkaTopicCommandController_Add_FullMethodName    = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/add"
+	KafkaTopicCommandController_Update_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/update"
+	KafkaTopicCommandController_Delete_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.kafkakubernetes.service.KafkaTopicCommandController/delete"
 )
 
 // KafkaTopicCommandControllerClient is the client API for KafkaTopicCommandController service.
@@ -525,8 +524,6 @@ const (
 type KafkaTopicCommandControllerClient interface {
 	// add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
 	Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
-	// add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-	AddMultiple(ctx context.Context, in *model.AddKafkaTopicsInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// update a kafka topic.
 	Update(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error)
 	// delete a kafka topic.
@@ -544,15 +541,6 @@ func NewKafkaTopicCommandControllerClient(cc grpc.ClientConnInterface) KafkaTopi
 func (c *kafkaTopicCommandControllerClient) Add(ctx context.Context, in *model.AddOrUpdateKafkaTopicInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
 	out := new(model.KafkaKubernetes)
 	err := c.cc.Invoke(ctx, KafkaTopicCommandController_Add_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *kafkaTopicCommandControllerClient) AddMultiple(ctx context.Context, in *model.AddKafkaTopicsInput, opts ...grpc.CallOption) (*model.KafkaKubernetes, error) {
-	out := new(model.KafkaKubernetes)
-	err := c.cc.Invoke(ctx, KafkaTopicCommandController_AddMultiple_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -583,8 +571,6 @@ func (c *kafkaTopicCommandControllerClient) Delete(ctx context.Context, in *mode
 type KafkaTopicCommandControllerServer interface {
 	// add a single kafka topic to existing list of kafka topics of a kafka-kubernetes
 	Add(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error)
-	// add multiple kafka topics to existing list of kafka topics of a kafka-kubernetes
-	AddMultiple(context.Context, *model.AddKafkaTopicsInput) (*model.KafkaKubernetes, error)
 	// update a kafka topic.
 	Update(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error)
 	// delete a kafka topic.
@@ -597,9 +583,6 @@ type UnimplementedKafkaTopicCommandControllerServer struct {
 
 func (UnimplementedKafkaTopicCommandControllerServer) Add(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
-}
-func (UnimplementedKafkaTopicCommandControllerServer) AddMultiple(context.Context, *model.AddKafkaTopicsInput) (*model.KafkaKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddMultiple not implemented")
 }
 func (UnimplementedKafkaTopicCommandControllerServer) Update(context.Context, *model.AddOrUpdateKafkaTopicInput) (*model.KafkaKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -633,24 +616,6 @@ func _KafkaTopicCommandController_Add_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(KafkaTopicCommandControllerServer).Add(ctx, req.(*model.AddOrUpdateKafkaTopicInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _KafkaTopicCommandController_AddMultiple_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model.AddKafkaTopicsInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(KafkaTopicCommandControllerServer).AddMultiple(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: KafkaTopicCommandController_AddMultiple_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(KafkaTopicCommandControllerServer).AddMultiple(ctx, req.(*model.AddKafkaTopicsInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -701,10 +666,6 @@ var KafkaTopicCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "add",
 			Handler:    _KafkaTopicCommandController_Add_Handler,
-		},
-		{
-			MethodName: "addMultiple",
-			Handler:    _KafkaTopicCommandController_AddMultiple_Handler,
 		},
 		{
 			MethodName: "update",
