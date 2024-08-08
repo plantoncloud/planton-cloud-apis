@@ -31,8 +31,6 @@ const (
 	EksClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.service.EksClusterCommandController/restore"
 	EksClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.service.EksClusterCommandController/pause"
 	EksClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.service.EksClusterCommandController/unpause"
-	EksClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.service.EksClusterCommandController/previewRefresh"
-	EksClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.ekscluster.service.EksClusterCommandController/refresh"
 )
 
 // EksClusterCommandControllerClient is the client API for EksClusterCommandController service.
@@ -67,10 +65,6 @@ type EksClusterCommandControllerClient interface {
 	// values configured for the eks-cluster.
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.EksCluster, error)
-	// preview refresh a eks-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error)
-	// refresh a eks-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error)
 }
 
 type eksClusterCommandControllerClient struct {
@@ -171,24 +165,6 @@ func (c *eksClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *eksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
-	out := new(model.EksCluster)
-	err := c.cc.Invoke(ctx, EksClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *eksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.EksCluster, error) {
-	out := new(model.EksCluster)
-	err := c.cc.Invoke(ctx, EksClusterCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // EksClusterCommandControllerServer is the server API for EksClusterCommandController service.
 // All implementations should embed UnimplementedEksClusterCommandControllerServer
 // for forward compatibility
@@ -221,10 +197,6 @@ type EksClusterCommandControllerServer interface {
 	// values configured for the eks-cluster.
 	// when the eks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.EksCluster, error)
-	// preview refresh a eks-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error)
-	// refresh a eks-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error)
 }
 
 // UnimplementedEksClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -260,12 +232,6 @@ func (UnimplementedEksClusterCommandControllerServer) Pause(context.Context, *mo
 }
 func (UnimplementedEksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.EksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedEksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedEksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.EksCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeEksClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -459,42 +425,6 @@ func _EksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EksClusterCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EksClusterCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EksClusterCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EksClusterCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // EksClusterCommandController_ServiceDesc is the grpc.ServiceDesc for EksClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -541,14 +471,6 @@ var EksClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _EksClusterCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _EksClusterCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _EksClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

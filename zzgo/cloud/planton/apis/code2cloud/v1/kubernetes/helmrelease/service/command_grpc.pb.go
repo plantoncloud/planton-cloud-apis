@@ -29,8 +29,6 @@ const (
 	HelmReleaseCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.service.HelmReleaseCommandController/delete"
 	HelmReleaseCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.service.HelmReleaseCommandController/previewRestore"
 	HelmReleaseCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.service.HelmReleaseCommandController/restore"
-	HelmReleaseCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.service.HelmReleaseCommandController/previewRefresh"
-	HelmReleaseCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.helmrelease.service.HelmReleaseCommandController/refresh"
 )
 
 // HelmReleaseCommandControllerClient is the client API for HelmReleaseCommandController service.
@@ -53,10 +51,6 @@ type HelmReleaseCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(ctx context.Context, in *model.HelmRelease, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// preview refresh a helm-release that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
-	// refresh a helm-release that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error)
 }
 
 type helmReleaseCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *helmReleaseCommandControllerClient) Restore(ctx context.Context, in *mo
 	return out, nil
 }
 
-func (c *helmReleaseCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *helmReleaseCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.HelmRelease, error) {
-	out := new(model.HelmRelease)
-	err := c.cc.Invoke(ctx, HelmReleaseCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // HelmReleaseCommandControllerServer is the server API for HelmReleaseCommandController service.
 // All implementations should embed UnimplementedHelmReleaseCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type HelmReleaseCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
 	// restore a previously deleted helm-release
 	Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error)
-	// preview refresh a helm-release that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error)
-	// refresh a helm-release that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error)
 }
 
 // UnimplementedHelmReleaseCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedHelmReleaseCommandControllerServer) PreviewRestore(context.Co
 }
 func (UnimplementedHelmReleaseCommandControllerServer) Restore(context.Context, *model.HelmRelease) (*model.HelmRelease, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedHelmReleaseCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.HelmRelease, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeHelmReleaseCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _HelmReleaseCommandController_Restore_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-func _HelmReleaseCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _HelmReleaseCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(HelmReleaseCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: HelmReleaseCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(HelmReleaseCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // HelmReleaseCommandController_ServiceDesc is the grpc.ServiceDesc for HelmReleaseCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var HelmReleaseCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _HelmReleaseCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _HelmReleaseCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _HelmReleaseCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

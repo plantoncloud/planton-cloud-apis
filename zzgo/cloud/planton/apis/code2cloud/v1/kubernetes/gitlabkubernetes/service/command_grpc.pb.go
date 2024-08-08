@@ -32,8 +32,6 @@ const (
 	GitlabKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.service.GitlabKubernetesCommandController/restart"
 	GitlabKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.service.GitlabKubernetesCommandController/pause"
 	GitlabKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.service.GitlabKubernetesCommandController/unpause"
-	GitlabKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.service.GitlabKubernetesCommandController/previewRefresh"
-	GitlabKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.gitlabkubernetes.service.GitlabKubernetesCommandController/refresh"
 )
 
 // GitlabKubernetesCommandControllerClient is the client API for GitlabKubernetesCommandController service.
@@ -67,10 +65,6 @@ type GitlabKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// preview refresh a gitlab-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
-	// refresh a gitlab-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error)
 }
 
 type gitlabKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *gitlabKubernetesCommandControllerClient) Unpause(ctx context.Context, i
 	return out, nil
 }
 
-func (c *gitlabKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
-	out := new(model.GitlabKubernetes)
-	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gitlabKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GitlabKubernetes, error) {
-	out := new(model.GitlabKubernetes)
-	err := c.cc.Invoke(ctx, GitlabKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GitlabKubernetesCommandControllerServer is the server API for GitlabKubernetesCommandController service.
 // All implementations should embed UnimplementedGitlabKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type GitlabKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the gitlab-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GitlabKubernetes, error)
-	// preview refresh a gitlab-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error)
-	// refresh a gitlab-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error)
 }
 
 // UnimplementedGitlabKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedGitlabKubernetesCommandControllerServer) Pause(context.Contex
 }
 func (UnimplementedGitlabKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GitlabKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedGitlabKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedGitlabKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GitlabKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeGitlabKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _GitlabKubernetesCommandController_Unpause_Handler(srv interface{}, ctx con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GitlabKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GitlabKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GitlabKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GitlabKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GitlabKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GitlabKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GitlabKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GitlabKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for GitlabKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var GitlabKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _GitlabKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _GitlabKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _GitlabKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

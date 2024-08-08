@@ -32,8 +32,6 @@ const (
 	JenkinsKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.jenkinskubernetes.service.JenkinsKubernetesCommandController/restart"
 	JenkinsKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.jenkinskubernetes.service.JenkinsKubernetesCommandController/pause"
 	JenkinsKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.jenkinskubernetes.service.JenkinsKubernetesCommandController/unpause"
-	JenkinsKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.jenkinskubernetes.service.JenkinsKubernetesCommandController/previewRefresh"
-	JenkinsKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.jenkinskubernetes.service.JenkinsKubernetesCommandController/refresh"
 )
 
 // JenkinsKubernetesCommandControllerClient is the client API for JenkinsKubernetesCommandController service.
@@ -67,10 +65,6 @@ type JenkinsKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the jenkins-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
-	// preview refresh a jenkins-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
-	// refresh a jenkins-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error)
 }
 
 type jenkinsKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *jenkinsKubernetesCommandControllerClient) Unpause(ctx context.Context, 
 	return out, nil
 }
 
-func (c *jenkinsKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
-	out := new(model.JenkinsKubernetes)
-	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *jenkinsKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.JenkinsKubernetes, error) {
-	out := new(model.JenkinsKubernetes)
-	err := c.cc.Invoke(ctx, JenkinsKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // JenkinsKubernetesCommandControllerServer is the server API for JenkinsKubernetesCommandController service.
 // All implementations should embed UnimplementedJenkinsKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type JenkinsKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the jenkins-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.JenkinsKubernetes, error)
-	// preview refresh a jenkins-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error)
-	// refresh a jenkins-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error)
 }
 
 // UnimplementedJenkinsKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedJenkinsKubernetesCommandControllerServer) Pause(context.Conte
 }
 func (UnimplementedJenkinsKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.JenkinsKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedJenkinsKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedJenkinsKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.JenkinsKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeJenkinsKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _JenkinsKubernetesCommandController_Unpause_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _JenkinsKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(JenkinsKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: JenkinsKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _JenkinsKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(JenkinsKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: JenkinsKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(JenkinsKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // JenkinsKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for JenkinsKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var JenkinsKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _JenkinsKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _JenkinsKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _JenkinsKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

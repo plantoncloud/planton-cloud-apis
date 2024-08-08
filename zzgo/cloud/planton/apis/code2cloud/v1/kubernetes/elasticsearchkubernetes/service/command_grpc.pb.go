@@ -32,8 +32,6 @@ const (
 	ElasticsearchKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.elasticsearchkubernetes.service.ElasticsearchKubernetesCommandController/restart"
 	ElasticsearchKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.elasticsearchkubernetes.service.ElasticsearchKubernetesCommandController/pause"
 	ElasticsearchKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.elasticsearchkubernetes.service.ElasticsearchKubernetesCommandController/unpause"
-	ElasticsearchKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.elasticsearchkubernetes.service.ElasticsearchKubernetesCommandController/previewRefresh"
-	ElasticsearchKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.elasticsearchkubernetes.service.ElasticsearchKubernetesCommandController/refresh"
 )
 
 // ElasticsearchKubernetesCommandControllerClient is the client API for ElasticsearchKubernetesCommandController service.
@@ -67,10 +65,6 @@ type ElasticsearchKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the elasticsearch-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
-	// preview refresh a elasticsearch-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
-	// refresh a elasticsearch-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error)
 }
 
 type elasticsearchKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *elasticsearchKubernetesCommandControllerClient) Unpause(ctx context.Con
 	return out, nil
 }
 
-func (c *elasticsearchKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
-	out := new(model.ElasticsearchKubernetes)
-	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *elasticsearchKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.ElasticsearchKubernetes, error) {
-	out := new(model.ElasticsearchKubernetes)
-	err := c.cc.Invoke(ctx, ElasticsearchKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ElasticsearchKubernetesCommandControllerServer is the server API for ElasticsearchKubernetesCommandController service.
 // All implementations should embed UnimplementedElasticsearchKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type ElasticsearchKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the elasticsearch-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ElasticsearchKubernetes, error)
-	// preview refresh a elasticsearch-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error)
-	// refresh a elasticsearch-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error)
 }
 
 // UnimplementedElasticsearchKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedElasticsearchKubernetesCommandControllerServer) Pause(context
 }
 func (UnimplementedElasticsearchKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.ElasticsearchKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedElasticsearchKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.ElasticsearchKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeElasticsearchKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _ElasticsearchKubernetesCommandController_Unpause_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ElasticsearchKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ElasticsearchKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ElasticsearchKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ElasticsearchKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ElasticsearchKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ElasticsearchKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for ElasticsearchKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var ElasticsearchKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _ElasticsearchKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _ElasticsearchKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _ElasticsearchKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

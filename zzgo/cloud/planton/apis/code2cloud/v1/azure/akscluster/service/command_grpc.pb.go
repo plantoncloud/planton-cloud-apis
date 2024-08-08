@@ -31,8 +31,6 @@ const (
 	AksClusterCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.azure.akscluster.service.AksClusterCommandController/restore"
 	AksClusterCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.azure.akscluster.service.AksClusterCommandController/pause"
 	AksClusterCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.azure.akscluster.service.AksClusterCommandController/unpause"
-	AksClusterCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.azure.akscluster.service.AksClusterCommandController/previewRefresh"
-	AksClusterCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.azure.akscluster.service.AksClusterCommandController/refresh"
 )
 
 // AksClusterCommandControllerClient is the client API for AksClusterCommandController service.
@@ -67,10 +65,6 @@ type AksClusterCommandControllerClient interface {
 	// values configured for the aks-cluster.
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.AksCluster, error)
-	// preview refresh a aks-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error)
-	// refresh a aks-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error)
 }
 
 type aksClusterCommandControllerClient struct {
@@ -171,24 +165,6 @@ func (c *aksClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *aksClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
-	out := new(model.AksCluster)
-	err := c.cc.Invoke(ctx, AksClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *aksClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.AksCluster, error) {
-	out := new(model.AksCluster)
-	err := c.cc.Invoke(ctx, AksClusterCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // AksClusterCommandControllerServer is the server API for AksClusterCommandController service.
 // All implementations should embed UnimplementedAksClusterCommandControllerServer
 // for forward compatibility
@@ -221,10 +197,6 @@ type AksClusterCommandControllerServer interface {
 	// values configured for the aks-cluster.
 	// when the aks-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.AksCluster, error)
-	// preview refresh a aks-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error)
-	// refresh a aks-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error)
 }
 
 // UnimplementedAksClusterCommandControllerServer should be embedded to have forward compatible implementations.
@@ -260,12 +232,6 @@ func (UnimplementedAksClusterCommandControllerServer) Pause(context.Context, *mo
 }
 func (UnimplementedAksClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.AksCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedAksClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedAksClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.AksCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeAksClusterCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -459,42 +425,6 @@ func _AksClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AksClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AksClusterCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AksClusterCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _AksClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(AksClusterCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: AksClusterCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AksClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // AksClusterCommandController_ServiceDesc is the grpc.ServiceDesc for AksClusterCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -541,14 +471,6 @@ var AksClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _AksClusterCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _AksClusterCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _AksClusterCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

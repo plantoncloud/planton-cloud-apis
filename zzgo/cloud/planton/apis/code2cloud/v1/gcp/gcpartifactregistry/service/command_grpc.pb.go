@@ -30,8 +30,6 @@ const (
 	GcpArtifactRegistryCommandController_Delete_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/delete"
 	GcpArtifactRegistryCommandController_PreviewRestore_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRestore"
 	GcpArtifactRegistryCommandController_Restore_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/restore"
-	GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName                   = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/previewRefresh"
-	GcpArtifactRegistryCommandController_Refresh_FullMethodName                          = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/refresh"
 	GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gcpartifactregistry.service.GcpArtifactRegistryCommandController/createKubernetesDockerCredential"
 )
 
@@ -55,10 +53,6 @@ type GcpArtifactRegistryCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.GcpArtifactRegistry, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	// restore a deleted gcp-artifact-registry.
 	Restore(ctx context.Context, in *model.GcpArtifactRegistry, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
-	// preview refresh a gcp-artifact-registry that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
-	// refresh a gcp-artifact-registry that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error)
 	CreateKubernetesDockerCredential(ctx context.Context, in *model.GcpArtifactRegistryId, opts ...grpc.CallOption) (*model2.KubernetesDockerCredential, error)
 }
 
@@ -142,24 +136,6 @@ func (c *gcpArtifactRegistryCommandControllerClient) Restore(ctx context.Context
 	return out, nil
 }
 
-func (c *gcpArtifactRegistryCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
-	out := new(model.GcpArtifactRegistry)
-	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gcpArtifactRegistryCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GcpArtifactRegistry, error) {
-	out := new(model.GcpArtifactRegistry)
-	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *gcpArtifactRegistryCommandControllerClient) CreateKubernetesDockerCredential(ctx context.Context, in *model.GcpArtifactRegistryId, opts ...grpc.CallOption) (*model2.KubernetesDockerCredential, error) {
 	out := new(model2.KubernetesDockerCredential)
 	err := c.cc.Invoke(ctx, GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_FullMethodName, in, out, opts...)
@@ -189,10 +165,6 @@ type GcpArtifactRegistryCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error)
 	// restore a deleted gcp-artifact-registry.
 	Restore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error)
-	// preview refresh a gcp-artifact-registry that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
-	// refresh a gcp-artifact-registry that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error)
 	CreateKubernetesDockerCredential(context.Context, *model.GcpArtifactRegistryId) (*model2.KubernetesDockerCredential, error)
 }
 
@@ -223,12 +195,6 @@ func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRestore(co
 }
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) Restore(context.Context, *model.GcpArtifactRegistry) (*model.GcpArtifactRegistry, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedGcpArtifactRegistryCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GcpArtifactRegistry, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 func (UnimplementedGcpArtifactRegistryCommandControllerServer) CreateKubernetesDockerCredential(context.Context, *model.GcpArtifactRegistryId) (*model2.KubernetesDockerCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKubernetesDockerCredential not implemented")
@@ -389,42 +355,6 @@ func _GcpArtifactRegistryCommandController_Restore_Handler(srv interface{}, ctx 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GcpArtifactRegistryCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcpArtifactRegistryCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GcpArtifactRegistryCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GcpArtifactRegistryCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GcpArtifactRegistryCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GcpArtifactRegistryCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GcpArtifactRegistryCommandController_CreateKubernetesDockerCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GcpArtifactRegistryId)
 	if err := dec(in); err != nil {
@@ -481,14 +411,6 @@ var GcpArtifactRegistryCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _GcpArtifactRegistryCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _GcpArtifactRegistryCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _GcpArtifactRegistryCommandController_Refresh_Handler,
 		},
 		{
 			MethodName: "createKubernetesDockerCredential",

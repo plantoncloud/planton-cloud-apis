@@ -32,49 +32,44 @@ enum KeycloakKubernetesApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
   ];
-  refreshed = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
-  ];
-  stack_job_progress_updated = 6;
-  stack_job_refresh_requested = 7 [
+  stack_job_progress_updated = 5;
+  stack_job_refresh_requested = 6 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = refresh
   ];
-  stack_job_refresh_completed = 8 [
+  stack_job_refresh_completed = 7 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
-  stack_job_apply_preview_requested = 9 [
+  stack_job_apply_preview_requested = 8 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply_preview
   ];
-  stack_job_apply_requested = 10 [
+  stack_job_apply_requested = 9 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
   ];
-  stack_job_apply_completed = 11 [
+  stack_job_apply_completed = 10 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
-  stack_job_destroy_preview_requested = 12 [
+  stack_job_destroy_preview_requested = 11 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy_preview
   ];
-  stack_job_destroy_requested = 13 [
+  stack_job_destroy_requested = 12 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = destroy
   ];
-  stack_job_destroy_completed = 14 [
+  stack_job_destroy_completed = 13 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_only_persist_required) = true
   ];
-  paused = 15 [
+  paused = 14 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply
   ];
-  unpaused = 16 [
+  unpaused = 15 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_job_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.stack_job_operation_type) = apply

@@ -32,8 +32,6 @@ const (
 	PlantonCloudKubernetesCommandController_Restart_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service.PlantonCloudKubernetesCommandController/restart"
 	PlantonCloudKubernetesCommandController_Pause_FullMethodName          = "/cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service.PlantonCloudKubernetesCommandController/pause"
 	PlantonCloudKubernetesCommandController_Unpause_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service.PlantonCloudKubernetesCommandController/unpause"
-	PlantonCloudKubernetesCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service.PlantonCloudKubernetesCommandController/previewRefresh"
-	PlantonCloudKubernetesCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.kubernetes.plantoncloudkubernetes.service.PlantonCloudKubernetesCommandController/refresh"
 )
 
 // PlantonCloudKubernetesCommandControllerClient is the client API for PlantonCloudKubernetesCommandController service.
@@ -67,10 +65,6 @@ type PlantonCloudKubernetesCommandControllerClient interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the planton-cloud-kubernetes.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.PlantonCloudKubernetes, error)
-	// preview refresh a planton-cloud-kubernetes that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PlantonCloudKubernetes, error)
-	// refresh a planton-cloud-kubernetes that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PlantonCloudKubernetes, error)
 }
 
 type plantonCloudKubernetesCommandControllerClient struct {
@@ -180,24 +174,6 @@ func (c *plantonCloudKubernetesCommandControllerClient) Unpause(ctx context.Cont
 	return out, nil
 }
 
-func (c *plantonCloudKubernetesCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PlantonCloudKubernetes, error) {
-	out := new(model.PlantonCloudKubernetes)
-	err := c.cc.Invoke(ctx, PlantonCloudKubernetesCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *plantonCloudKubernetesCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.PlantonCloudKubernetes, error) {
-	out := new(model.PlantonCloudKubernetes)
-	err := c.cc.Invoke(ctx, PlantonCloudKubernetesCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PlantonCloudKubernetesCommandControllerServer is the server API for PlantonCloudKubernetesCommandController service.
 // All implementations should embed UnimplementedPlantonCloudKubernetesCommandControllerServer
 // for forward compatibility
@@ -229,10 +205,6 @@ type PlantonCloudKubernetesCommandControllerServer interface {
 	// unpause is done by scaling the number of pods back to the number of
 	// replicas configured for the planton-cloud-kubernetes.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PlantonCloudKubernetes, error)
-	// preview refresh a planton-cloud-kubernetes that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PlantonCloudKubernetes, error)
-	// refresh a planton-cloud-kubernetes that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PlantonCloudKubernetes, error)
 }
 
 // UnimplementedPlantonCloudKubernetesCommandControllerServer should be embedded to have forward compatible implementations.
@@ -271,12 +243,6 @@ func (UnimplementedPlantonCloudKubernetesCommandControllerServer) Pause(context.
 }
 func (UnimplementedPlantonCloudKubernetesCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.PlantonCloudKubernetes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedPlantonCloudKubernetesCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PlantonCloudKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedPlantonCloudKubernetesCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.PlantonCloudKubernetes, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafePlantonCloudKubernetesCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -488,42 +454,6 @@ func _PlantonCloudKubernetesCommandController_Unpause_Handler(srv interface{}, c
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PlantonCloudKubernetesCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlantonCloudKubernetesCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PlantonCloudKubernetesCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlantonCloudKubernetesCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _PlantonCloudKubernetesCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PlantonCloudKubernetesCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: PlantonCloudKubernetesCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PlantonCloudKubernetesCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // PlantonCloudKubernetesCommandController_ServiceDesc is the grpc.ServiceDesc for PlantonCloudKubernetesCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -574,14 +504,6 @@ var PlantonCloudKubernetesCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _PlantonCloudKubernetesCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _PlantonCloudKubernetesCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _PlantonCloudKubernetesCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

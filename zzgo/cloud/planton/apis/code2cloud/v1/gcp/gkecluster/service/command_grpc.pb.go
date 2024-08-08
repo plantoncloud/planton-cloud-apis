@@ -32,8 +32,6 @@ const (
 	GkeClusterCommandController_Restore_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/restore"
 	GkeClusterCommandController_Pause_FullMethodName                             = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/pause"
 	GkeClusterCommandController_Unpause_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/unpause"
-	GkeClusterCommandController_PreviewRefresh_FullMethodName                    = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/previewRefresh"
-	GkeClusterCommandController_Refresh_FullMethodName                           = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/refresh"
 	GkeClusterCommandController_CreateKubernetesClusterCredential_FullMethodName = "/cloud.planton.apis.code2cloud.v1.gcp.gkecluster.service.GkeClusterCommandController/createKubernetesClusterCredential"
 )
 
@@ -69,10 +67,6 @@ type GkeClusterCommandControllerClient interface {
 	// values configured for the gke-cluster.
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(ctx context.Context, in *model1.ApiResourceUnPauseInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
-	// preview refresh a gke-cluster that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
-	// refresh a gke-cluster that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error)
 	CreateKubernetesClusterCredential(ctx context.Context, in *model.GkeClusterId, opts ...grpc.CallOption) (*model2.KubernetesClusterCredential, error)
 }
 
@@ -174,24 +168,6 @@ func (c *gkeClusterCommandControllerClient) Unpause(ctx context.Context, in *mod
 	return out, nil
 }
 
-func (c *gkeClusterCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
-	out := new(model.GkeCluster)
-	err := c.cc.Invoke(ctx, GkeClusterCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *gkeClusterCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.GkeCluster, error) {
-	out := new(model.GkeCluster)
-	err := c.cc.Invoke(ctx, GkeClusterCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *gkeClusterCommandControllerClient) CreateKubernetesClusterCredential(ctx context.Context, in *model.GkeClusterId, opts ...grpc.CallOption) (*model2.KubernetesClusterCredential, error) {
 	out := new(model2.KubernetesClusterCredential)
 	err := c.cc.Invoke(ctx, GkeClusterCommandController_CreateKubernetesClusterCredential_FullMethodName, in, out, opts...)
@@ -233,10 +209,6 @@ type GkeClusterCommandControllerServer interface {
 	// values configured for the gke-cluster.
 	// when the gke-cluster is resumed, the pods come back up online automatically when nodes become available.
 	Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GkeCluster, error)
-	// preview refresh a gke-cluster that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
-	// refresh a gke-cluster that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error)
 	CreateKubernetesClusterCredential(context.Context, *model.GkeClusterId) (*model2.KubernetesClusterCredential, error)
 }
 
@@ -273,12 +245,6 @@ func (UnimplementedGkeClusterCommandControllerServer) Pause(context.Context, *mo
 }
 func (UnimplementedGkeClusterCommandControllerServer) Unpause(context.Context, *model1.ApiResourceUnPauseInput) (*model.GkeCluster, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Unpause not implemented")
-}
-func (UnimplementedGkeClusterCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedGkeClusterCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.GkeCluster, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 func (UnimplementedGkeClusterCommandControllerServer) CreateKubernetesClusterCredential(context.Context, *model.GkeClusterId) (*model2.KubernetesClusterCredential, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateKubernetesClusterCredential not implemented")
@@ -475,42 +441,6 @@ func _GkeClusterCommandController_Unpause_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GkeClusterCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GkeClusterCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GkeClusterCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GkeClusterCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GkeClusterCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GkeClusterCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GkeClusterCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _GkeClusterCommandController_CreateKubernetesClusterCredential_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(model.GkeClusterId)
 	if err := dec(in); err != nil {
@@ -575,14 +505,6 @@ var GkeClusterCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "unpause",
 			Handler:    _GkeClusterCommandController_Unpause_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _GkeClusterCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _GkeClusterCommandController_Refresh_Handler,
 		},
 		{
 			MethodName: "createKubernetesClusterCredential",

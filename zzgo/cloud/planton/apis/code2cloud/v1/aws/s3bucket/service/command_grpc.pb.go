@@ -29,8 +29,6 @@ const (
 	S3BucketCommandController_Delete_FullMethodName         = "/cloud.planton.apis.code2cloud.v1.aws.s3bucket.service.S3BucketCommandController/delete"
 	S3BucketCommandController_PreviewRestore_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.s3bucket.service.S3BucketCommandController/previewRestore"
 	S3BucketCommandController_Restore_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.s3bucket.service.S3BucketCommandController/restore"
-	S3BucketCommandController_PreviewRefresh_FullMethodName = "/cloud.planton.apis.code2cloud.v1.aws.s3bucket.service.S3BucketCommandController/previewRefresh"
-	S3BucketCommandController_Refresh_FullMethodName        = "/cloud.planton.apis.code2cloud.v1.aws.s3bucket.service.S3BucketCommandController/refresh"
 )
 
 // S3BucketCommandControllerClient is the client API for S3BucketCommandController service.
@@ -53,10 +51,6 @@ type S3BucketCommandControllerClient interface {
 	PreviewRestore(ctx context.Context, in *model.S3Bucket, opts ...grpc.CallOption) (*model.S3Bucket, error)
 	// restore a deleted s3-bucket
 	Restore(ctx context.Context, in *model.S3Bucket, opts ...grpc.CallOption) (*model.S3Bucket, error)
-	// preview refresh a s3-bucket that was previously created
-	PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
-	// refresh a s3-bucket that was previously created
-	Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error)
 }
 
 type s3BucketCommandControllerClient struct {
@@ -139,24 +133,6 @@ func (c *s3BucketCommandControllerClient) Restore(ctx context.Context, in *model
 	return out, nil
 }
 
-func (c *s3BucketCommandControllerClient) PreviewRefresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
-	out := new(model.S3Bucket)
-	err := c.cc.Invoke(ctx, S3BucketCommandController_PreviewRefresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *s3BucketCommandControllerClient) Refresh(ctx context.Context, in *model1.ApiResourceRefreshInput, opts ...grpc.CallOption) (*model.S3Bucket, error) {
-	out := new(model.S3Bucket)
-	err := c.cc.Invoke(ctx, S3BucketCommandController_Refresh_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // S3BucketCommandControllerServer is the server API for S3BucketCommandController service.
 // All implementations should embed UnimplementedS3BucketCommandControllerServer
 // for forward compatibility
@@ -177,10 +153,6 @@ type S3BucketCommandControllerServer interface {
 	PreviewRestore(context.Context, *model.S3Bucket) (*model.S3Bucket, error)
 	// restore a deleted s3-bucket
 	Restore(context.Context, *model.S3Bucket) (*model.S3Bucket, error)
-	// preview refresh a s3-bucket that was previously created
-	PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error)
-	// refresh a s3-bucket that was previously created
-	Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error)
 }
 
 // UnimplementedS3BucketCommandControllerServer should be embedded to have forward compatible implementations.
@@ -210,12 +182,6 @@ func (UnimplementedS3BucketCommandControllerServer) PreviewRestore(context.Conte
 }
 func (UnimplementedS3BucketCommandControllerServer) Restore(context.Context, *model.S3Bucket) (*model.S3Bucket, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
-}
-func (UnimplementedS3BucketCommandControllerServer) PreviewRefresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PreviewRefresh not implemented")
-}
-func (UnimplementedS3BucketCommandControllerServer) Refresh(context.Context, *model1.ApiResourceRefreshInput) (*model.S3Bucket, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Refresh not implemented")
 }
 
 // UnsafeS3BucketCommandControllerServer may be embedded to opt out of forward compatibility for this service.
@@ -373,42 +339,6 @@ func _S3BucketCommandController_Restore_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
-func _S3BucketCommandController_PreviewRefresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(S3BucketCommandControllerServer).PreviewRefresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: S3BucketCommandController_PreviewRefresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).PreviewRefresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _S3BucketCommandController_Refresh_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(model1.ApiResourceRefreshInput)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(S3BucketCommandControllerServer).Refresh(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: S3BucketCommandController_Refresh_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(S3BucketCommandControllerServer).Refresh(ctx, req.(*model1.ApiResourceRefreshInput))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // S3BucketCommandController_ServiceDesc is the grpc.ServiceDesc for S3BucketCommandController service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -447,14 +377,6 @@ var S3BucketCommandController_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "restore",
 			Handler:    _S3BucketCommandController_Restore_Handler,
-		},
-		{
-			MethodName: "previewRefresh",
-			Handler:    _S3BucketCommandController_PreviewRefresh_Handler,
-		},
-		{
-			MethodName: "refresh",
-			Handler:    _S3BucketCommandController_Refresh_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
