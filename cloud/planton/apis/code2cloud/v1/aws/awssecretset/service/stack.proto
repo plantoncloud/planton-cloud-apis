@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package cloud.planton.apis.code2cloud.v1.aws.awssecretset.service;
+
+import "cloud/planton/apis/code2cloud/v1/aws/awssecretset/model/stack.proto";
+
+//aws-secret-set stack controller
+service AwsSecretSetStackController {
+  rpc execute(cloud.planton.apis.code2cloud.v1.aws.awssecretset.model.AwsSecretSetStackInput)
+      returns (stream cloud.planton.apis.code2cloud.v1.aws.awssecretset.model.AwsSecretSetStackResponse);
+}

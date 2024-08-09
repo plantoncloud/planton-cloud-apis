@@ -34,10 +34,10 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Credential",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "connect.planton.cloud"
   ];
-  aws_secrets_manager_secret_set = 5 [
+  aws_secret_set = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "awssec",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "AwsSecretSet",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Secrets",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "AWS Secrets Manager Secrets",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.is_deployable) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.deployment_target) = aws
@@ -96,9 +96,9 @@ enum ApiResourceKind {
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.is_deployable) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.deployment_target) = gcp
   ];
-  gcp_secrets_manager_secret_set = 14 [
+  gcp_secret_set = 14 [
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.id_prefix) = "gcpsec",
-    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpSecretsManagerSecretSet",
+    (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.kind_name) = "GcpSecretSet",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.display_name) = "GCP Secrets Manager Secrets",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.api_resource_group) = "code2cloud.planton.cloud",
     (cloud.planton.apis.commons.apiresource.options.apiresourcekindenumoptions.is_deployable) = true,
