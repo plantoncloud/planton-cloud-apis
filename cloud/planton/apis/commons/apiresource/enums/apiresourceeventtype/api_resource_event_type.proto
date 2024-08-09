@@ -26,48 +26,44 @@ enum ApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Restored"
   ];
-  refreshed = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Refreshed"
-  ];
-  paused = 6 [
+  paused = 5 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Paused"
   ];
-  unpaused = 7 [
+  unpaused = 6 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_spec_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Unpaused"
   ];
-  stack_job_progress_updated = 8[
+  stack_job_progress_updated = 7 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_event) = true
   ];
-  stack_job_refresh_requested = 9 [
+  stack_job_refresh_requested = 8 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Refresh"
   ];
-  stack_job_refresh_completed = 10 [
+  stack_job_refresh_completed = 9 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_event) = true
   ];
-  stack_job_apply_preview_requested = 11 [
+  stack_job_apply_preview_requested = 10 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Preview"
   ];
-  stack_job_apply_requested = 12 [
+  stack_job_apply_requested = 11 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Apply"
   ];
-  stack_job_apply_completed = 13 [
+  stack_job_apply_completed = 12 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_event) = true
   ];
-  stack_job_destroy_preview_requested = 14[
+  stack_job_destroy_preview_requested = 13 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Preview"
   ];
-  stack_job_destroy_requested = 15 [
+  stack_job_destroy_requested = 14 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_stack_event) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.display_name) = "Destroy"
   ];
-  stack_job_destroy_completed = 16 [
+  stack_job_destroy_completed = 15 [
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_status_event) = true
   ];
 }

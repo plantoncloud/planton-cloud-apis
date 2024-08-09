@@ -23,7 +23,4 @@ enum EnvironmentApiResourceEventType {
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true,
     (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_search_indexing_required) = true
   ];
-  refreshed = 5 [
-    (cloud.planton.apis.commons.apiresource.options.apiresourceeventtypeenumoptions.is_persist_required) = true
-  ];
 }
